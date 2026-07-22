@@ -1,0 +1,1653 @@
+<!--
+  NEO Mathematics KS3 — Ratio and Proportion
+  Interactive lesson + practice companion
+  Cornerstones: Connection, Movement, Creativity, Reflection, Rest, Nutrition
+  Includes:
+  • Interactive Recipe Scaler
+  • Interactive Ratio Table Builder
+  • Interactive Smoothie Design Challenge
+  • In-page progressive Practice Companion
+-->
+
+<div id="lessonView">
+
+  <div style="font-family:Arial, sans-serif; max-width:1000px; margin:auto; padding:22px; background:#f7f3ea; color:#2f3429; line-height:1.55; border-radius:18px;">
+
+    <h1 style="margin-bottom:6px; color:#3f5f45;">
+      NEO Mathematics KS3: Ratio and Proportion
+    </h1>
+
+    <h2 style="margin-top:0; color:#6a7f4e; font-size:1.35em;">
+      Driving Question:
+      <em>Can maths help us share, scale and sustain things fairly?</em>
+    </h2>
+
+    <div style="background:#fffaf0; padding:15px; border-left:6px solid #d8b26e; border-radius:12px; margin:18px 0;">
+
+      <p style="margin-top:0;">
+        <strong>Lesson focus:</strong>
+        scaling recipes, equivalent ratios, ratio tables and proportional reasoning.
+      </p>
+
+      <p>
+        <strong>Stepping Stones:</strong>
+        use ratio notation; recognise equivalent ratios; solve problems involving direct proportion;
+        use multiplicative reasoning; and explain why quantities must scale by the same factor.
+      </p>
+
+      <p style="margin-bottom:0;">
+        <strong>NEO Cornerstones:</strong>
+        Connection, Movement, Creativity, Reflection, Rest and Nutrition.
+      </p>
+
+    </div>
+
+
+    <details open style="background:#e8f0e3; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌿 Connection — What is connected to what?
+      </summary>
+
+      <h3>Ratio shows a relationship</h3>
+
+      <p>
+        A ratio compares quantities. In a recipe, the ingredients are connected.
+        If the number of people changes, each ingredient must change by the same multiplier.
+      </p>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        Base smoothie recipe for <strong>2 people</strong>:<br>
+        <strong>1 banana : 200 ml milk : 80 g oats : 2 tsp honey</strong>
+      </p>
+
+      <h3>Connect the quantities</h3>
+
+      <ul>
+        <li>For every <strong>1 banana</strong>, there are <strong>200 ml</strong> of milk.</li>
+        <li>For every <strong>2 people</strong>, there is <strong>1 banana</strong>.</li>
+        <li>For every <strong>2 people</strong>, there are <strong>80 g</strong> of oats.</li>
+      </ul>
+
+      <p style="background:#f8f4ee; padding:12px; border-radius:10px;">
+        <strong>Sentence stem:</strong>
+        “The quantities are connected because…”
+      </p>
+
+    </details>
+
+
+    <details style="background:#e5eef2; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🚶 Movement — How does the recipe scale?
+      </summary>
+
+      <h3>Interactive investigation 1: Recipe Scaler</h3>
+
+      <p>
+        Choose how many people the smoothie should serve. Watch every ingredient scale by the same multiplier.
+      </p>
+
+      <div id="recipeScalerApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end;">
+
+          <div style="flex:1; min-width:220px;">
+            <label for="recipeServes" style="display:block; margin-bottom:6px;">
+              <strong>Number of people</strong>
+            </label>
+
+            <select id="recipeServes"
+                    onchange="updateRecipeScaler()"
+                    style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+              <option value="1">1 person</option>
+              <option value="2" selected>2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5 people</option>
+              <option value="6">6 people</option>
+              <option value="8">8 people</option>
+              <option value="10">10 people</option>
+              <option value="12">12 people</option>
+            </select>
+          </div>
+
+          <div style="flex:1; min-width:220px;">
+            <label for="recipeCustomServes" style="display:block; margin-bottom:6px;">
+              <strong>Or enter your own number</strong>
+            </label>
+
+            <input id="recipeCustomServes"
+                   type="number"
+                   min="0.5"
+                   step="0.5"
+                   placeholder="Example: 7"
+                   oninput="updateRecipeScaler()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+          <button type="button"
+                  onclick="randomRecipeServes()"
+                  style="padding:10px 14px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            🎲 Random group
+          </button>
+
+        </div>
+
+        <div style="background:#fffaf0; margin-top:14px; padding:14px; border-radius:10px; text-align:center;">
+          <strong>Scale factor from the base recipe:</strong>
+          <span id="recipeScaleFactor" style="font-size:1.3em; margin-left:8px;">×1</span>
+        </div>
+
+        <div style="overflow-x:auto; margin-top:14px;">
+
+          <table style="width:100%; min-width:760px; border-collapse:collapse; background:#ffffff;">
+            <tr>
+              <th style="border:1px solid #b9b09f; padding:8px;">Ingredient</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Base amount for 2 people</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Scaled amount</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Reasoning</th>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Bananas</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">1 banana</td>
+              <td id="scaledBananas" style="border:1px solid #b9b09f; padding:8px; font-weight:bold;">1 banana</td>
+              <td id="bananaReasoning" style="border:1px solid #b9b09f; padding:8px;">1 × 1</td>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Milk</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">200 ml</td>
+              <td id="scaledMilk" style="border:1px solid #b9b09f; padding:8px; font-weight:bold;">200 ml</td>
+              <td id="milkReasoning" style="border:1px solid #b9b09f; padding:8px;">200 × 1</td>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Oats</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">80 g</td>
+              <td id="scaledOats" style="border:1px solid #b9b09f; padding:8px; font-weight:bold;">80 g</td>
+              <td id="oatsReasoning" style="border:1px solid #b9b09f; padding:8px;">80 × 1</td>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Honey</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">2 tsp</td>
+              <td id="scaledHoney" style="border:1px solid #b9b09f; padding:8px; font-weight:bold;">2 tsp</td>
+              <td id="honeyReasoning" style="border:1px solid #b9b09f; padding:8px;">2 × 1</td>
+            </tr>
+          </table>
+
+        </div>
+
+        <div style="margin-top:14px; background:#ffffff; padding:12px; border-radius:10px;">
+          <label for="recipeScalerReflection" style="display:block; margin-bottom:6px;">
+            <strong>What stays the same when the recipe scales?</strong>
+          </label>
+
+          <textarea id="recipeScalerReflection"
+                    rows="3"
+                    placeholder="Example: The ratio stays the same because every ingredient is multiplied by..."
+                    style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+          <button type="button"
+                  onclick="checkRecipeReflection()"
+                  style="margin-top:10px; padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check reflection
+          </button>
+
+          <div id="recipeReflectionFeedback"
+               aria-live="polite"
+               style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details style="background:#ece7f2; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🪞 Reflection — Can I build and check a ratio table?
+      </summary>
+
+      <h3>Interactive investigation 2: Ratio Table Builder</h3>
+
+      <p>
+        Complete each row. Use the multiplier from 2 people to find the missing ingredient amounts.
+      </p>
+
+      <div id="ratioTableApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <p id="ratioTableLabel" style="text-transform:uppercase; color:#604f75; letter-spacing:1px; font-weight:bold;"></p>
+
+        <div id="ratioTablePrompt" style="background:#ffffff; padding:14px; border-radius:10px; margin-bottom:14px;"></div>
+
+        <div style="overflow-x:auto;">
+
+          <table style="width:100%; min-width:760px; border-collapse:collapse; background:#ffffff;">
+            <tr>
+              <th style="border:1px solid #b9b09f; padding:8px;">People</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Bananas</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Milk</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Oats</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Honey</th>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">2</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">1</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">200 ml</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">80 g</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">2 tsp</td>
+            </tr>
+
+            <tr>
+              <td id="ratioTargetPeople" style="border:1px solid #b9b09f; padding:8px; font-weight:bold;">4</td>
+
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="ratioBananasInput"
+                       type="text"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="ratioMilkInput"
+                       type="text"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="ratioOatsInput"
+                       type="text"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="ratioHoneyInput"
+                       type="text"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+            </tr>
+          </table>
+
+        </div>
+
+        <label for="ratioMultiplierInput" style="display:block; margin:14px 0 6px;">
+          <strong>Multiplier from 2 people</strong>
+        </label>
+
+        <input id="ratioMultiplierInput"
+               type="text"
+               placeholder="Example: 4 people means ×2"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="showRatioPrompt()"
+                  style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">
+            🤔 Socratic prompt
+          </button>
+
+          <button type="button"
+                  onclick="showRatioHint()"
+                  style="padding:9px 13px; background:#f8f1d8; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            💡 Hint
+          </button>
+
+          <button type="button"
+                  onclick="checkRatioTable()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check row
+          </button>
+
+          <button type="button"
+                  onclick="showRatioSolution()"
+                  style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            👀 Worked solution
+          </button>
+
+        </div>
+
+        <div id="ratioSupport"
+             aria-live="polite"
+             style="display:none; margin-top:14px; background:#f7f2e9; padding:12px; border-radius:9px;"></div>
+
+        <div id="ratioFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:14px;">
+
+          <button id="ratioPrevious"
+                  type="button"
+                  onclick="previousRatioQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #738697; border-radius:8px; cursor:pointer;">
+            ← Previous
+          </button>
+
+          <button id="ratioNext"
+                  type="button"
+                  onclick="nextRatioQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #54718a; border-radius:8px; cursor:pointer;">
+            Next →
+          </button>
+
+        </div>
+
+      </div>
+
+      <h3>Misconception to watch for</h3>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <strong>Additive mistake:</strong>
+        “If I add 2 more people, I add 2 more bananas.”
+        <br><br>
+        <strong>Repair:</strong>
+        In ratio, we usually need multiplicative reasoning.
+        If people double, each ingredient doubles.
+      </p>
+
+    </details>
+
+
+    <details style="background:#f1e9dc; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🎨 Creativity — What can I make with ratio?
+      </summary>
+
+      <h3>Interactive investigation 3: Smoothie Design Challenge</h3>
+
+      <p>
+        Create your own smoothie recipe. Choose your ingredients, choose your group size, then generate a recipe card.
+      </p>
+
+      <div id="smoothieDesignApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:14px;">
+
+          <div style="flex:1; min-width:220px;">
+            <label for="smoothieName" style="display:block; margin-bottom:6px;">
+              <strong>Name your smoothie</strong>
+            </label>
+
+            <input id="smoothieName"
+                   type="text"
+                   placeholder="Example: Green Energy Smoothie"
+                   oninput="updateSmoothiePreview()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+          <div style="flex:1; min-width:220px;">
+            <label for="smoothiePeople" style="display:block; margin-bottom:6px;">
+              <strong>Number of people</strong>
+            </label>
+
+            <input id="smoothiePeople"
+                   type="number"
+                   min="1"
+                   step="1"
+                   value="8"
+                   oninput="updateSmoothiePreview()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+        </div>
+
+        <h4>Choose ingredients</h4>
+
+        <div style="display:flex; flex-wrap:wrap; gap:14px;">
+
+          <div style="flex:1; min-width:210px;">
+            <label for="smoothieFruit" style="display:block; margin-bottom:6px;">
+              <strong>Fruit</strong>
+            </label>
+            <select id="smoothieFruit"
+                    onchange="updateSmoothiePreview()"
+                    style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+              <option>banana</option>
+              <option>berries</option>
+              <option>mango</option>
+              <option>apple</option>
+              <option>pear</option>
+            </select>
+          </div>
+
+          <div style="flex:1; min-width:210px;">
+            <label for="smoothieLiquid" style="display:block; margin-bottom:6px;">
+              <strong>Liquid</strong>
+            </label>
+            <select id="smoothieLiquid"
+                    onchange="updateSmoothiePreview()"
+                    style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+              <option>milk</option>
+              <option>oat milk</option>
+              <option>water</option>
+              <option>yoghurt drink</option>
+              <option>coconut water</option>
+            </select>
+          </div>
+
+          <div style="flex:1; min-width:210px;">
+            <label for="smoothieThickener" style="display:block; margin-bottom:6px;">
+              <strong>Thickener</strong>
+            </label>
+            <select id="smoothieThickener"
+                    onchange="updateSmoothiePreview()"
+                    style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+              <option>oats</option>
+              <option>yoghurt</option>
+              <option>ice</option>
+              <option>avocado</option>
+              <option>seeds</option>
+            </select>
+          </div>
+
+        </div>
+
+        <h4>Base recipe for 2 people</h4>
+
+        <div style="overflow-x:auto;">
+
+          <table style="width:100%; min-width:780px; border-collapse:collapse; background:#ffffff;">
+            <tr>
+              <th style="border:1px solid #b9b09f; padding:8px;">Ingredient</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Amount for 2 people</th>
+              <th style="border:1px solid #b9b09f; padding:8px;">Unit</th>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Fruit</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="smoothieFruitAmount"
+                       type="number"
+                       step="0.5"
+                       value="1"
+                       oninput="updateSmoothiePreview()"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+              <td style="border:1px solid #b9b09f; padding:8px;">pieces / cups</td>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Liquid</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="smoothieLiquidAmount"
+                       type="number"
+                       step="10"
+                       value="200"
+                       oninput="updateSmoothiePreview()"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+              <td style="border:1px solid #b9b09f; padding:8px;">ml</td>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Thickener</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="smoothieThickenerAmount"
+                       type="number"
+                       step="5"
+                       value="80"
+                       oninput="updateSmoothiePreview()"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+              <td style="border:1px solid #b9b09f; padding:8px;">g</td>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:8px;">Optional extra</td>
+              <td style="border:1px solid #b9b09f; padding:8px;">
+                <input id="smoothieExtraAmount"
+                       type="number"
+                       step="0.5"
+                       value="2"
+                       oninput="updateSmoothiePreview()"
+                       style="width:100%; box-sizing:border-box; padding:8px; border:1px solid #bcae98; border-radius:7px;">
+              </td>
+              <td style="border:1px solid #b9b09f; padding:8px;">tsp</td>
+            </tr>
+          </table>
+
+        </div>
+
+        <label for="smoothiePriority" style="display:block; margin:14px 0 6px;">
+          <strong>Design priority</strong>
+        </label>
+
+        <select id="smoothiePriority"
+                onchange="updateSmoothiePreview()"
+                style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          <option value="fair">Make sure everyone gets a fair amount</option>
+          <option value="healthy">Keep the recipe balanced</option>
+          <option value="affordable">Keep the cost sensible</option>
+          <option value="easy">Make it easy to prepare</option>
+          <option value="sustainable">Use ingredients thoughtfully</option>
+        </select>
+
+        <label for="smoothieExplanation" style="display:block; margin:14px 0 6px;">
+          <strong>Explain your ratio reasoning</strong>
+        </label>
+
+        <textarea id="smoothieExplanation"
+                  rows="4"
+                  placeholder="Example: I scaled from 2 people to 8 people, so I multiplied every amount by 4..."
+                  oninput="updateSmoothiePreview()"
+                  style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="updateSmoothiePreview()"
+                  style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            🧾 Generate recipe card
+          </button>
+
+          <button type="button"
+                  onclick="checkSmoothieDesign()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Review my design
+          </button>
+
+          <button type="button"
+                  onclick="randomSmoothieDesign()"
+                  style="padding:9px 13px; background:#fffaf0; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            🎲 Try a random group
+          </button>
+
+        </div>
+
+        <div id="smoothiePreview"
+             style="margin-top:18px; background:#ffffff; padding:14px; border-radius:10px;"></div>
+
+        <div id="smoothieFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:13px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+      </div>
+
+    </details>
+
+
+    <details style="background:#eef0df; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌙 Rest — Where is the pause?
+      </summary>
+
+      <h3>Calm consolidation</h3>
+
+      <p>
+        Ratio can feel easier when we slow the problem down.
+        Use this pause structure:
+      </p>
+
+      <ol>
+        <li>Find the original number of people.</li>
+        <li>Find the new number of people.</li>
+        <li>Work out the multiplier.</li>
+        <li>Use the same multiplier for every ingredient.</li>
+        <li>Check whether the answer is reasonable.</li>
+      </ol>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <strong>Helpful self-talk:</strong>
+        “I do not need to solve the whole recipe at once. I can find the multiplier first.”
+      </p>
+
+      <h3>Regulation pause</h3>
+
+      <ul>
+        <li>Take three slow breaths.</li>
+        <li>Look away from the screen for 20 seconds.</li>
+        <li>Say the multiplier out loud or write it down.</li>
+        <li>Return to the table one row at a time.</li>
+      </ul>
+
+    </details>
+
+
+    <details style="background:#e7efe8; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🥣 Nutrition — How does this maths help us sustain life?
+      </summary>
+
+      <h3>Mathematics for choices</h3>
+
+      <p>
+        Ratio helps us scale food fairly, compare quantities and make decisions about health, cost and sustainability.
+        Maths can support decisions, but it does not make the human judgement for us.
+      </p>
+
+      <div style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <h4>Mini inquiry</h4>
+        <p>
+          If you are making smoothies for a group, which priority matters most?
+        </p>
+
+        <ul>
+          <li>Everyone gets the same amount.</li>
+          <li>The recipe is affordable.</li>
+          <li>The recipe is balanced.</li>
+          <li>The recipe uses ingredients people like.</li>
+          <li>The recipe is easy to prepare.</li>
+        </ul>
+
+        <p>
+          <strong>Reflection sentence:</strong>
+          “Ratio helps with this decision because…”
+        </p>
+      </div>
+
+    </details>
+
+
+    <details style="background:#f3eadc; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🛠 Final Task — Smoothie Ratio Portfolio Piece
+      </summary>
+
+      <h3>Assignment</h3>
+
+      <p>
+        Create a <strong>Smoothie Ratio Portfolio Piece</strong> showing how you used ratio and proportion to design a smoothie for a group.
+      </p>
+
+      <p>Your portfolio piece must include:</p>
+
+      <ul>
+        <li>a title and chosen group size</li>
+        <li>the original recipe for 2 people</li>
+        <li>the scale factor</li>
+        <li>the scaled recipe</li>
+        <li>a completed ratio table</li>
+        <li>a short explanation of why the recipe is proportional</li>
+        <li>a reflection on fairness, health, cost, taste or sustainability</li>
+      </ul>
+
+      <p>
+        <strong>Filename pattern:</strong>
+        <code>NEO_Maths_Ratio_Smoothie_[FirstName]_[Date]</code>
+      </p>
+
+      <h3>Assessment Rubric</h3>
+
+      <div style="overflow-x:auto;">
+
+        <table style="width:100%; min-width:900px; border-collapse:collapse; background:#fffaf0;">
+
+          <tr>
+            <th style="border:1px solid #c8b99a; padding:8px;">Criteria</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Emerging</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Developing</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Secure</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Mastering</th>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Understanding</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can recognise that quantities are connected.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can use simple ratio language with support.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can explain how ratio connects quantities.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can explain ratio relationships flexibly across contexts.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Application</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can scale some quantities correctly with support.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can scale most quantities using a given multiplier.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can use scale factors accurately to complete a proportional recipe.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can choose efficient methods and apply proportional reasoning independently.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Communication</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can show some working or labels.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can give a partial explanation of my method.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can explain my method clearly using ratio vocabulary.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can communicate reasoning precisely and compare choices.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Reflection</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can identify one thing about the task.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can describe what was easy or difficult.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can reflect on how ratio helped with a real decision.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can reflect thoughtfully using mathematical evidence.
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+
+    </details>
+
+
+    <div style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;">
+
+      <h2 style="margin-top:0; color:#46533d; font-size:1.35em;">
+        ✏️ Ready to strengthen your skills?
+      </h2>
+
+      <p>
+        Open the practice activity to work through eight questions that gradually increase in challenge.
+        You can return to the lesson whenever you need the recipe scaler, ratio table or smoothie design tool.
+      </p>
+
+      <button type="button"
+              onclick="openPracticeSession()"
+              style="padding:13px 22px; background:#5c6b4f; color:#ffffff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">
+        Open Practice Activity →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="practiceView" hidden>
+
+  <div style="font-family:Georgia, 'Times New Roman', serif; max-width:960px; margin:auto; padding:24px; background:#f8f4ee; color:#2f2f2f; line-height:1.55; border-radius:18px;">
+
+    <h1 style="margin-bottom:5px;">
+      Ratio and Proportion Practice
+    </h1>
+
+    <h2 style="margin-top:0; color:#66605a; font-size:1.2em;">
+      KS3 Mathematics · Progressive Practice Companion
+    </h2>
+
+    <button type="button"
+            onclick="returnToLesson()"
+            style="padding:10px 16px; background:#ffffff; color:#315d72; border:1px solid #315d72; border-radius:9px; font-weight:bold; cursor:pointer;">
+      ← Return to the Lesson
+    </button>
+
+    <div style="background:#e5edf4; border-left:6px solid #315d72; padding:18px; border-radius:12px; margin:22px 0;">
+
+      <p style="margin-top:0;">
+        Work through eight questions involving scale factors, ratio tables, proportional reasoning and recipe scaling.
+      </p>
+
+      <p style="margin-bottom:0;">
+        Use support in this order:
+        <strong>🤔 Socratic prompt</strong>,
+        <strong>💡 Hint</strong>,
+        <strong>✅ Check my answer</strong>,
+        then <strong>👀 Worked solution</strong>.
+      </p>
+
+    </div>
+
+    <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:18px;">
+      <strong>Progress:</strong>
+      <div id="practiceDots" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+    </div>
+
+    <div style="background:#ffffff; border:1px solid #cdbfa9; border-radius:12px; padding:22px;">
+
+      <p id="practiceLabel" style="text-transform:uppercase; color:#8a6d43; letter-spacing:1px; font-weight:bold;"></p>
+
+      <div id="practiceQuestion" style="font-size:1.15em; margin-bottom:16px;"></div>
+
+      <label for="practiceWorking" style="display:block; margin-bottom:6px;">
+        Your working:
+      </label>
+
+      <textarea id="practiceWorking"
+                rows="4"
+                style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #cdbfa9; border-radius:8px; font:inherit;"></textarea>
+
+      <label for="practiceAnswer" style="display:block; margin:14px 0 6px;">
+        Your final answer:
+      </label>
+
+      <input id="practiceAnswer"
+             type="text"
+             autocomplete="off"
+             style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #cdbfa9; border-radius:8px; font:inherit;">
+
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;">
+
+        <button type="button"
+                onclick="showPracticePrompt()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #70466b; background:#f3e6f1; cursor:pointer;">
+          🤔 Socratic prompt
+        </button>
+
+        <button type="button"
+                onclick="showPracticeHint()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #8a7932; background:#f8f1d8; cursor:pointer;">
+          💡 Hint
+        </button>
+
+        <button type="button"
+                onclick="checkPracticeAnswer()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #4d6b47; background:#e5f0e2; cursor:pointer;">
+          ✅ Check my answer
+        </button>
+
+        <button id="practiceSolutionButton"
+                type="button"
+                onclick="showPracticeSolution()"
+                disabled
+                style="padding:10px 14px; border-radius:8px; border:1px solid #aaa29a; background:#eeeae5; color:#9a938b; cursor:not-allowed;">
+          👀 Worked solution
+        </button>
+
+      </div>
+
+      <div id="practiceSupport"
+           aria-live="polite"
+           style="display:none; margin-top:16px; background:#f7f2e9; padding:14px; border-radius:10px;"></div>
+
+      <div id="practiceFeedback"
+           aria-live="polite"
+           style="display:none; margin-top:12px; padding:14px; border-radius:10px; font-weight:bold;"></div>
+
+    </div>
+
+    <div style="display:flex; justify-content:space-between; gap:12px; margin-top:16px;">
+
+      <button id="practicePrevious"
+              type="button"
+              onclick="previousPracticeQuestion()"
+              style="padding:10px 16px; border-radius:8px; border:1px solid #8c9cab; background:#ffffff; cursor:pointer;">
+        ← Previous
+      </button>
+
+      <button id="practiceNext"
+              type="button"
+              onclick="nextPracticeQuestion()"
+              style="padding:10px 16px; border-radius:8px; border:1px solid #54718a; background:#ffffff; cursor:pointer;">
+        Next →
+      </button>
+
+    </div>
+
+    <details style="background:#f5edcf; border-left:6px solid #9d8530; padding:16px; border-radius:12px; margin-top:24px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        💛 Reflection
+      </summary>
+
+      <ul>
+        <li>A multiplier I used confidently was...</li>
+        <li>A ratio table helped me because...</li>
+        <li>A mistake I now know how to avoid is...</li>
+        <li>A question I would like to revisit is...</li>
+      </ul>
+
+    </details>
+
+    <div style="text-align:center; margin-top:20px;">
+
+      <button type="button"
+              onclick="returnToLesson()"
+              style="padding:11px 18px; background:#315d72; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+        ← Return to the Lesson
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+  function openPracticeSession() {
+    document.getElementById("lessonView").hidden = true;
+    document.getElementById("practiceView").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function returnToLesson() {
+    document.getElementById("practiceView").hidden = true;
+    document.getElementById("lessonView").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function normaliseText(value) {
+    return String(value)
+      .toLowerCase()
+      .replace(/£/g, "")
+      .replace(/,/g, "")
+      .replace(/ml/g, "")
+      .replace(/g/g, "")
+      .replace(/tsp/g, "")
+      .replace(/teaspoons/g, "")
+      .replace(/teaspoon/g, "")
+      .replace(/bananas/g, "")
+      .replace(/banana/g, "")
+      .replace(/people/g, "")
+      .replace(/person/g, "")
+      .replace(/x/g, "")
+      .replace(/×/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function parseNumber(value) {
+    const cleaned = normaliseText(value);
+
+    if (cleaned.indexOf("/") !== -1) {
+      const parts = cleaned.split("/");
+      if (parts.length === 2) {
+        const numerator = Number(parts[0]);
+        const denominator = Number(parts[1]);
+        if (Number.isFinite(numerator) && Number.isFinite(denominator) && denominator !== 0) {
+          return numerator / denominator;
+        }
+      }
+    }
+
+    return Number(cleaned);
+  }
+
+  function nearlyEqual(a, b) {
+    return Math.abs(a - b) < 0.000001;
+  }
+
+  function formatAmount(value) {
+    if (Number.isInteger(value)) return String(value);
+    return String(Math.round(value * 100) / 100);
+  }
+</script>
+
+
+<script>
+  function getRecipeServes() {
+    const custom = Number(document.getElementById("recipeCustomServes").value);
+
+    if (Number.isFinite(custom) && custom > 0) {
+      return custom;
+    }
+
+    return Number(document.getElementById("recipeServes").value);
+  }
+
+  function updateRecipeScaler() {
+    const serves = getRecipeServes();
+    const factor = serves / 2;
+
+    const bananas = 1 * factor;
+    const milk = 200 * factor;
+    const oats = 80 * factor;
+    const honey = 2 * factor;
+
+    document.getElementById("recipeScaleFactor").textContent = "×" + formatAmount(factor);
+
+    document.getElementById("scaledBananas").textContent =
+      formatAmount(bananas) + (bananas === 1 ? " banana" : " bananas");
+
+    document.getElementById("scaledMilk").textContent =
+      formatAmount(milk) + " ml";
+
+    document.getElementById("scaledOats").textContent =
+      formatAmount(oats) + " g";
+
+    document.getElementById("scaledHoney").textContent =
+      formatAmount(honey) + " tsp";
+
+    document.getElementById("bananaReasoning").textContent = "1 × " + formatAmount(factor);
+    document.getElementById("milkReasoning").textContent = "200 × " + formatAmount(factor);
+    document.getElementById("oatsReasoning").textContent = "80 × " + formatAmount(factor);
+    document.getElementById("honeyReasoning").textContent = "2 × " + formatAmount(factor);
+
+    document.getElementById("recipeReflectionFeedback").style.display = "none";
+  }
+
+  function randomRecipeServes() {
+    const choices = [1, 3, 4, 5, 6, 7, 8, 10, 12];
+    const selected = choices[Math.floor(Math.random() * choices.length)];
+    document.getElementById("recipeCustomServes").value = selected;
+    updateRecipeScaler();
+  }
+
+  function checkRecipeReflection() {
+    const text = normaliseText(document.getElementById("recipeScalerReflection").value);
+    const box = document.getElementById("recipeReflectionFeedback");
+
+    box.style.display = "block";
+
+    const hasRatio = text.indexOf("ratio") !== -1;
+    const hasMultiply = text.indexOf("multiply") !== -1 || text.indexOf("multiplied") !== -1 || text.indexOf("factor") !== -1;
+    const hasSame = text.indexOf("same") !== -1 || text.indexOf("equal") !== -1;
+
+    if (text.length < 15) {
+      box.style.background = "#fff1cf";
+      box.textContent = "Write a little more. Try explaining what happens to every ingredient.";
+    } else if (hasRatio && hasMultiply && hasSame) {
+      box.style.background = "#e3f0df";
+      box.textContent = "Strong reflection. You connected ratio, sameness and multiplication.";
+    } else if (hasMultiply || hasSame) {
+      box.style.background = "#fff1cf";
+      box.textContent = "Good start. Can you include the word ratio and explain that every ingredient uses the same multiplier?";
+    } else {
+      box.style.background = "#f6dddd";
+      box.textContent = "Not quite yet. Focus on the idea that all ingredients scale by the same multiplier.";
+    }
+  }
+
+  updateRecipeScaler();
+</script>
+
+
+<script>
+(function () {
+  const rows = [
+    {
+      label: "Ratio table row 1 of 5",
+      people: 4,
+      prompt: "Complete the row for 4 people.",
+      multiplier: 2,
+      bananas: 2,
+      milk: 400,
+      oats: 160,
+      honey: 4,
+      socratic: "How do you get from 2 people to 4 people?",
+      hint: "2 people to 4 people is ×2, so every ingredient is ×2."
+    },
+    {
+      label: "Ratio table row 2 of 5",
+      people: 6,
+      prompt: "Complete the row for 6 people.",
+      multiplier: 3,
+      bananas: 3,
+      milk: 600,
+      oats: 240,
+      honey: 6,
+      socratic: "What multiplier changes 2 people into 6 people?",
+      hint: "2 × 3 = 6, so multiply every ingredient by 3."
+    },
+    {
+      label: "Ratio table row 3 of 5",
+      people: 8,
+      prompt: "Complete the row for 8 people.",
+      multiplier: 4,
+      bananas: 4,
+      milk: 800,
+      oats: 320,
+      honey: 8,
+      socratic: "How many groups of 2 people are there in 8 people?",
+      hint: "8 ÷ 2 = 4, so the multiplier is ×4."
+    },
+    {
+      label: "Ratio table row 4 of 5",
+      people: 1,
+      prompt: "Complete the row for 1 person.",
+      multiplier: 0.5,
+      bananas: 0.5,
+      milk: 100,
+      oats: 40,
+      honey: 1,
+      socratic: "How do you get from 2 people to 1 person?",
+      hint: "1 is half of 2, so divide every ingredient by 2."
+    },
+    {
+      label: "Ratio table row 5 of 5",
+      people: 10,
+      prompt: "Complete the row for 10 people.",
+      multiplier: 5,
+      bananas: 5,
+      milk: 1000,
+      oats: 400,
+      honey: 10,
+      socratic: "How many groups of 2 people are there in 10 people?",
+      hint: "10 ÷ 2 = 5, so multiply every ingredient by 5."
+    }
+  ];
+
+  let current = 0;
+  const answers = rows.map(function () {
+    return { bananas: "", milk: "", oats: "", honey: "", multiplier: "" };
+  });
+  const completed = new Array(rows.length).fill(false);
+
+  function saveCurrentRatio() {
+    answers[current].bananas = document.getElementById("ratioBananasInput").value;
+    answers[current].milk = document.getElementById("ratioMilkInput").value;
+    answers[current].oats = document.getElementById("ratioOatsInput").value;
+    answers[current].honey = document.getElementById("ratioHoneyInput").value;
+    answers[current].multiplier = document.getElementById("ratioMultiplierInput").value;
+  }
+
+  function renderRatioQuestion() {
+    const row = rows[current];
+
+    document.getElementById("ratioTableLabel").textContent = row.label;
+    document.getElementById("ratioTablePrompt").innerHTML =
+      "<strong>" + row.prompt + "</strong><br>Base recipe: 2 people need 1 banana, 200 ml milk, 80 g oats and 2 tsp honey.";
+
+    document.getElementById("ratioTargetPeople").textContent = row.people;
+
+    document.getElementById("ratioBananasInput").value = answers[current].bananas;
+    document.getElementById("ratioMilkInput").value = answers[current].milk;
+    document.getElementById("ratioOatsInput").value = answers[current].oats;
+    document.getElementById("ratioHoneyInput").value = answers[current].honey;
+    document.getElementById("ratioMultiplierInput").value = answers[current].multiplier;
+
+    document.getElementById("ratioSupport").style.display = "none";
+    document.getElementById("ratioFeedback").style.display = "none";
+
+    const previous = document.getElementById("ratioPrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("ratioNext").textContent =
+      current === rows.length - 1 ? "Finish" : "Next →";
+  }
+
+  window.showRatioPrompt = function () {
+    const support = document.getElementById("ratioSupport");
+    support.style.display = "block";
+    support.innerHTML = "<strong>🤔 Socratic prompt:</strong> " + rows[current].socratic;
+  };
+
+  window.showRatioHint = function () {
+    const support = document.getElementById("ratioSupport");
+    support.style.display = "block";
+    support.innerHTML = "<strong>💡 Hint:</strong> " + rows[current].hint;
+  };
+
+  window.checkRatioTable = function () {
+    saveCurrentRatio();
+
+    const row = rows[current];
+    const feedback = document.getElementById("ratioFeedback");
+    feedback.style.display = "block";
+
+    const b = parseNumber(answers[current].bananas);
+    const m = parseNumber(answers[current].milk);
+    const o = parseNumber(answers[current].oats);
+    const h = parseNumber(answers[current].honey);
+    const mult = parseNumber(answers[current].multiplier);
+
+    if (
+      !Number.isFinite(b) ||
+      !Number.isFinite(m) ||
+      !Number.isFinite(o) ||
+      !Number.isFinite(h) ||
+      !Number.isFinite(mult)
+    ) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Complete all entries with numbers. Units are optional.";
+      return;
+    }
+
+    const correct =
+      nearlyEqual(b, row.bananas) &&
+      nearlyEqual(m, row.milk) &&
+      nearlyEqual(o, row.oats) &&
+      nearlyEqual(h, row.honey) &&
+      nearlyEqual(mult, row.multiplier);
+
+    const quantitiesCorrect =
+      nearlyEqual(b, row.bananas) &&
+      nearlyEqual(m, row.milk) &&
+      nearlyEqual(o, row.oats) &&
+      nearlyEqual(h, row.honey);
+
+    if (correct) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent = "Correct. Every ingredient has been scaled by the same multiplier.";
+    } else if (quantitiesCorrect) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "The ingredient amounts are correct. Recheck the multiplier.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent = "Not quite yet. Find the multiplier from 2 people first, then apply it to every ingredient.";
+    }
+  };
+
+  window.showRatioSolution = function () {
+    const row = rows[current];
+    const support = document.getElementById("ratioSupport");
+    support.style.display = "block";
+    support.innerHTML =
+      "<strong>👀 Worked solution:</strong><br>" +
+      "2 people to " + row.people + " people is ×" + formatAmount(row.multiplier) + ".<br>" +
+      "Bananas: 1 × " + formatAmount(row.multiplier) + " = " + formatAmount(row.bananas) + "<br>" +
+      "Milk: 200 × " + formatAmount(row.multiplier) + " = " + formatAmount(row.milk) + " ml<br>" +
+      "Oats: 80 × " + formatAmount(row.multiplier) + " = " + formatAmount(row.oats) + " g<br>" +
+      "Honey: 2 × " + formatAmount(row.multiplier) + " = " + formatAmount(row.honey) + " tsp";
+  };
+
+  window.previousRatioQuestion = function () {
+    if (current === 0) return;
+    saveCurrentRatio();
+    current--;
+    renderRatioQuestion();
+  };
+
+  window.nextRatioQuestion = function () {
+    saveCurrentRatio();
+
+    if (current < rows.length - 1) {
+      current++;
+      renderRatioQuestion();
+    } else {
+      const feedback = document.getElementById("ratioFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "You have completed " +
+        completed.filter(Boolean).length +
+        " of 5 ratio table rows correctly.";
+    }
+  };
+
+  renderRatioQuestion();
+})();
+</script>
+
+
+<script>
+  function getSmoothieValues() {
+    const people = Number(document.getElementById("smoothiePeople").value);
+    const factor = people / 2;
+
+    return {
+      name: document.getElementById("smoothieName").value.trim() || "My Smoothie",
+      people: people,
+      factor: factor,
+      fruit: document.getElementById("smoothieFruit").value,
+      liquid: document.getElementById("smoothieLiquid").value,
+      thickener: document.getElementById("smoothieThickener").value,
+      fruitAmount: Number(document.getElementById("smoothieFruitAmount").value),
+      liquidAmount: Number(document.getElementById("smoothieLiquidAmount").value),
+      thickenerAmount: Number(document.getElementById("smoothieThickenerAmount").value),
+      extraAmount: Number(document.getElementById("smoothieExtraAmount").value),
+      priority: document.getElementById("smoothiePriority").value,
+      explanation: document.getElementById("smoothieExplanation").value.trim()
+    };
+  }
+
+  function updateSmoothiePreview() {
+    const s = getSmoothieValues();
+    const preview = document.getElementById("smoothiePreview");
+
+    if (!Number.isFinite(s.people) || s.people <= 0) {
+      preview.innerHTML = "<p><strong>Enter a valid number of people to generate your recipe card.</strong></p>";
+      return;
+    }
+
+    const scaledFruit = s.fruitAmount * s.factor;
+    const scaledLiquid = s.liquidAmount * s.factor;
+    const scaledThickener = s.thickenerAmount * s.factor;
+    const scaledExtra = s.extraAmount * s.factor;
+
+    let priorityText = "";
+
+    if (s.priority === "fair") priorityText = "making sure everyone gets a fair amount";
+    if (s.priority === "healthy") priorityText = "keeping the recipe balanced";
+    if (s.priority === "affordable") priorityText = "keeping the cost sensible";
+    if (s.priority === "easy") priorityText = "making the smoothie easy to prepare";
+    if (s.priority === "sustainable") priorityText = "using ingredients thoughtfully";
+
+    preview.innerHTML =
+      "<h3 style='margin-top:0; color:#7a5a2e;'>" + s.name + "</h3>" +
+      "<p><strong>Serves:</strong> " + formatAmount(s.people) + " people</p>" +
+      "<p><strong>Scale factor from 2 people:</strong> ×" + formatAmount(s.factor) + "</p>" +
+      "<div style='overflow-x:auto;'>" +
+      "<table style='width:100%; min-width:700px; border-collapse:collapse; background:#fffaf0;'>" +
+      "<tr>" +
+      "<th style='border:1px solid #c8b99a; padding:8px;'>Ingredient</th>" +
+      "<th style='border:1px solid #c8b99a; padding:8px;'>Base amount for 2 people</th>" +
+      "<th style='border:1px solid #c8b99a; padding:8px;'>Scaled amount</th>" +
+      "</tr>" +
+      "<tr>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>" + s.fruit + "</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>" + formatAmount(s.fruitAmount) + " pieces / cups</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'><strong>" + formatAmount(scaledFruit) + " pieces / cups</strong></td>" +
+      "</tr>" +
+      "<tr>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>" + s.liquid + "</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>" + formatAmount(s.liquidAmount) + " ml</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'><strong>" + formatAmount(scaledLiquid) + " ml</strong></td>" +
+      "</tr>" +
+      "<tr>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>" + s.thickener + "</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>" + formatAmount(s.thickenerAmount) + " g</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'><strong>" + formatAmount(scaledThickener) + " g</strong></td>" +
+      "</tr>" +
+      "<tr>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>optional extra</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'>" + formatAmount(s.extraAmount) + " tsp</td>" +
+      "<td style='border:1px solid #c8b99a; padding:8px;'><strong>" + formatAmount(scaledExtra) + " tsp</strong></td>" +
+      "</tr>" +
+      "</table>" +
+      "</div>" +
+      "<p><strong>Design priority:</strong> " + priorityText + ".</p>" +
+      "<p><strong>My explanation:</strong> " + (s.explanation || "Add your ratio reasoning above.") + "</p>";
+  }
+
+  function checkSmoothieDesign() {
+    const s = getSmoothieValues();
+    const feedback = document.getElementById("smoothieFeedback");
+    feedback.style.display = "block";
+
+    const valuesValid =
+      Number.isFinite(s.people) &&
+      s.people > 0 &&
+      Number.isFinite(s.fruitAmount) &&
+      Number.isFinite(s.liquidAmount) &&
+      Number.isFinite(s.thickenerAmount) &&
+      Number.isFinite(s.extraAmount) &&
+      s.fruitAmount >= 0 &&
+      s.liquidAmount >= 0 &&
+      s.thickenerAmount >= 0 &&
+      s.extraAmount >= 0;
+
+    const explanation = normaliseText(s.explanation);
+    const hasReasoning =
+      explanation.indexOf("multiply") !== -1 ||
+      explanation.indexOf("multiplied") !== -1 ||
+      explanation.indexOf("scale") !== -1 ||
+      explanation.indexOf("factor") !== -1 ||
+      explanation.indexOf("ratio") !== -1;
+
+    if (!valuesValid) {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent = "Check that all group sizes and ingredient amounts are valid positive numbers.";
+    } else if (s.name === "My Smoothie") {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Give your smoothie a name so it feels like a finished portfolio piece.";
+    } else if (s.explanation.length < 25) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Add a fuller explanation of how you scaled your recipe.";
+    } else if (hasReasoning) {
+      feedback.style.background = "#e3f0df";
+      feedback.textContent = "Strong design. Your recipe card includes proportional scaling and a mathematical explanation.";
+    } else {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Your recipe is complete. Strengthen your explanation by using words like ratio, scale factor or multiplier.";
+    }
+  }
+
+  function randomSmoothieDesign() {
+    const groupChoices = [3, 4, 5, 6, 8, 10, 12];
+    document.getElementById("smoothiePeople").value =
+      groupChoices[Math.floor(Math.random() * groupChoices.length)];
+    updateSmoothiePreview();
+  }
+
+  updateSmoothiePreview();
+</script>
+
+
+<script>
+(function () {
+  const questions = [
+    {
+      label: "Question 1 of 8 · Simple scaling",
+      text: "A recipe for 2 people uses <strong>1 banana</strong>. How many bananas are needed for <strong>4 people</strong>?",
+      answers: ["2", "2 bananas"],
+      prompt: "How do you get from 2 people to 4 people?",
+      hint: "2 people to 4 people is ×2.",
+      solution: "The number of people doubles, so the bananas double. 1 × 2 = 2 bananas."
+    },
+    {
+      label: "Question 2 of 8 · Milk scaling",
+      text: "A recipe for 2 people uses <strong>200 ml</strong> of milk. How much milk is needed for <strong>6 people</strong>?",
+      answers: ["600", "600 ml"],
+      prompt: "What multiplier changes 2 people into 6 people?",
+      hint: "2 × 3 = 6, so multiply 200 ml by 3.",
+      solution: "200 × 3 = 600 ml."
+    },
+    {
+      label: "Question 3 of 8 · Scaling down",
+      text: "A recipe for 2 people uses <strong>80 g</strong> of oats. How many grams are needed for <strong>1 person</strong>?",
+      answers: ["40", "40 g"],
+      prompt: "How do you get from 2 people to 1 person?",
+      hint: "1 person is half of 2 people.",
+      solution: "80 ÷ 2 = 40 g."
+    },
+    {
+      label: "Question 4 of 8 · Find the multiplier",
+      text: "A recipe is scaled from <strong>2 people</strong> to <strong>10 people</strong>. What is the scale factor?",
+      answers: ["5", "x5", "×5", "multiply by 5"],
+      prompt: "Ask: 2 multiplied by what gives 10?",
+      hint: "10 ÷ 2 = 5.",
+      solution: "The scale factor is ×5."
+    },
+    {
+      label: "Question 5 of 8 · Ratio table",
+      text: "A smoothie for 3 people uses <strong>150 g</strong> of strawberries. How many grams are needed for <strong>12 people</strong>?",
+      answers: ["600", "600 g"],
+      prompt: "How do you get from 3 people to 12 people?",
+      hint: "3 × 4 = 12.",
+      solution: "150 × 4 = 600 g."
+    },
+    {
+      label: "Question 6 of 8 · Spot the misconception",
+      text: "A recipe for 2 people uses 1 banana. A learner says 6 people need 5 bananas because they add 4 more people and 4 more bananas. What should the correct number of bananas be?",
+      answers: ["3", "3 bananas"],
+      prompt: "Should this be additive or multiplicative reasoning?",
+      hint: "2 people to 6 people is ×3.",
+      solution: "The multiplier is ×3, so 1 × 3 = 3 bananas."
+    },
+    {
+      label: "Question 7 of 8 · Unit rate",
+      text: "A recipe for 4 people uses <strong>1000 ml</strong> of juice. How much juice is needed for <strong>1 person</strong>?",
+      answers: ["250", "250 ml"],
+      prompt: "How can you scale from 4 people down to 1 person?",
+      hint: "Divide by 4.",
+      solution: "1000 ÷ 4 = 250 ml."
+    },
+    {
+      label: "Question 8 of 8 · Challenge",
+      text: "A recipe for 5 people uses <strong>300 g</strong> yoghurt. How many grams are needed for <strong>8 people</strong>?",
+      answers: ["480", "480 g"],
+      prompt: "Find the amount for 1 person first.",
+      hint: "300 ÷ 5 = 60 g per person.",
+      solution: "300 ÷ 5 = 60 g per person. 60 × 8 = 480 g."
+    }
+  ];
+
+  let current = 0;
+  const savedWorking = new Array(questions.length).fill("");
+  const savedAnswers = new Array(questions.length).fill("");
+  const attempts = new Array(questions.length).fill(0);
+  const completed = new Array(questions.length).fill(false);
+
+  function saveCurrentPractice() {
+    savedWorking[current] = document.getElementById("practiceWorking").value;
+    savedAnswers[current] = document.getElementById("practiceAnswer").value;
+  }
+
+  function renderPracticeDots() {
+    const dots = document.getElementById("practiceDots");
+    dots.innerHTML = "";
+
+    for (let index = 0; index < questions.length; index++) {
+      const dot = document.createElement("span");
+      dot.textContent = index + 1;
+      dot.style.display = "inline-flex";
+      dot.style.alignItems = "center";
+      dot.style.justifyContent = "center";
+      dot.style.width = "28px";
+      dot.style.height = "28px";
+      dot.style.borderRadius = "50%";
+      dot.style.fontWeight = "bold";
+      dot.style.border = "1px solid #8c9cab";
+
+      if (completed[index]) {
+        dot.style.background = "#e3f0df";
+      } else if (index === current) {
+        dot.style.background = "#e5edf4";
+      } else {
+        dot.style.background = "#ffffff";
+      }
+
+      dots.appendChild(dot);
+    }
+  }
+
+  function renderPracticeQuestion() {
+    const q = questions[current];
+
+    document.getElementById("practiceLabel").textContent = q.label;
+    document.getElementById("practiceQuestion").innerHTML = q.text;
+    document.getElementById("practiceWorking").value = savedWorking[current];
+    document.getElementById("practiceAnswer").value = savedAnswers[current];
+
+    document.getElementById("practiceSupport").style.display = "none";
+    document.getElementById("practiceFeedback").style.display = "none";
+
+    const solutionButton = document.getElementById("practiceSolutionButton");
+    solutionButton.disabled = attempts[current] < 1;
+    solutionButton.style.cursor = attempts[current] < 1 ? "not-allowed" : "pointer";
+    solutionButton.style.background = attempts[current] < 1 ? "#eeeae5" : "#e5edf4";
+    solutionButton.style.color = attempts[current] < 1 ? "#9a938b" : "#2f2f2f";
+    solutionButton.style.borderColor = attempts[current] < 1 ? "#aaa29a" : "#315d72";
+
+    const previous = document.getElementById("practicePrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("practiceNext").textContent =
+      current === questions.length - 1 ? "Finish" : "Next →";
+
+    renderPracticeDots();
+  }
+
+  window.showPracticePrompt = function () {
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>🤔 Socratic prompt:</strong> " + questions[current].prompt;
+  };
+
+  window.showPracticeHint = function () {
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>💡 Hint:</strong> " + questions[current].hint;
+  };
+
+  window.checkPracticeAnswer = function () {
+    saveCurrentPractice();
+
+    const learner = normaliseText(savedAnswers[current]);
+    const feedback = document.getElementById("practiceFeedback");
+    feedback.style.display = "block";
+
+    attempts[current]++;
+
+    const correct = questions[current].answers.some(function (answer) {
+      return normaliseText(answer) === learner;
+    });
+
+    if (!learner) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Enter a final answer before checking.";
+    } else if (correct) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent = "Correct. Your proportional reasoning is working.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent = "Not quite yet. Find the multiplier first, then scale the quantity.";
+    }
+
+    renderPracticeQuestion();
+    document.getElementById("practiceFeedback").style.display = "block";
+
+    if (!learner) {
+      document.getElementById("practiceFeedback").style.background = "#fff1cf";
+      document.getElementById("practiceFeedback").textContent = "Enter a final answer before checking.";
+    } else if (correct) {
+      document.getElementById("practiceFeedback").style.background = "#e3f0df";
+      document.getElementById("practiceFeedback").textContent = "Correct. Your proportional reasoning is working.";
+    } else {
+      document.getElementById("practiceFeedback").style.background = "#f6dddd";
+      document.getElementById("practiceFeedback").textContent = "Not quite yet. Find the multiplier first, then scale the quantity.";
+    }
+  };
+
+  window.showPracticeSolution = function () {
+    attempts[current]++;
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>👀 Worked solution:</strong> " + questions[current].solution;
+    renderPracticeQuestion();
+    document.getElementById("practiceSupport").style.display = "block";
+    document.getElementById("practiceSupport").innerHTML = "<strong>👀 Worked solution:</strong> " + questions[current].solution;
+  };
+
+  window.previousPracticeQuestion = function () {
+    if (current === 0) return;
+    saveCurrentPractice();
+    current--;
+    renderPracticeQuestion();
+  };
+
+  window.nextPracticeQuestion = function () {
+    saveCurrentPractice();
+
+    if (current < questions.length - 1) {
+      current++;
+      renderPracticeQuestion();
+    } else {
+      const feedback = document.getElementById("practiceFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "Practice complete. You answered " +
+        completed.filter(Boolean).length +
+        " of 8 questions correctly. Return to the lesson to revise or strengthen any areas.";
+    }
+  };
+
+  renderPracticeQuestion();
+})();
+</script>

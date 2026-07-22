@@ -1,0 +1,6 @@
+NEO_Maths_Accuracy_Powers_Scale_Lesson_05_Calculating_with_Standard_Form_v0.4_Package
+1. Lesson_05_Calculating_with_Standard_Form_v0.4.html  (interactive lesson, Practice Companion, Scratchpad, Reconnection Routes)
+2. NEO_Maths_Accuracy_Powers_Scale_Lesson_05_Learner_Guidance.pdf
+3. NEO_Maths_Accuracy_Powers_Scale_Lesson_05_Supporting_Adult_Guidance.pdf
+4. NEO_Maths_Accuracy_Powers_Scale_Lesson_05_PREVIEW.txt
+Version reason: v0.4 reframes the whole lesson from a machine metaphor to chains of equalities (Director decision, 19 July 2026): the interactive is now a line-by-line working builder with a reason for every line; Reflection judges handed-in working; Creativity poses a calculation from tiles and has the learner write the chain by hand before comparing with a model; guidance documents rewritten to match. v0.3 added the factor-of-ten repair algebra. v0.2 fixed the superscript exponent display. v0.1 was the initial build.

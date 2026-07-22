@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Calculating with Standard Form v0.4</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+button:disabled{opacity:.5;cursor:not-allowed}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.chiprow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chipcol{display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.chip{font-size:1.02em;text-align:left}
+.chip.right{background:#e3f0df;border-color:#4d6b47}
+.chip.wrong{background:#fff1cf;border-color:#b77814}
+.tile{min-width:60px;text-align:center}
+.tile.picked{background:#dce8ef;border-color:#365a68}
+.storycard{text-align:left;padding:12px;border-radius:12px;flex:1;min-width:180px}
+.storycard.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.5em;font-weight:bold;text-align:center;margin:.4em 0}
+.workpad{background:#fff;border:1px solid #cdbfa9;border-radius:12px;padding:14px 18px;margin:10px 0;font-size:1.12em;line-height:2}
+.workline{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.workline b{font-weight:bold}
+.workreason{font-size:.78em;color:#7a806f;align-self:center;text-align:right;font-style:italic}
+.nudge{font-size:.95em;color:#835d1d;min-height:18px;margin:6px 0 0}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.practice-svg{width:100%;max-width:520px;background:#fff;border:1px solid #cdbfa9;border-radius:10px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px;background:#fff}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Accuracy, Powers and Scale</h1>
+<h2>Calculating with Standard Form</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>Can I calculate with giant and tiny numbers without ever writing out their zeros?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> chain-of-equalities working and supported practice.</p>
+<p><b>Stepping Stones:</b> multiply and divide numbers in standard form by regrouping the factors and applying the index laws; rewrite an answer whose coefficient breaks the definition of standard form; add and subtract by matching powers first; interpret an answer in context.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 5 · Explore 20 · Create or Apply 12 · Reflect 8</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to Calculating with Standard Form.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_05_Learner_Guidance.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_05_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('working-lines','Set out your working: one equals sign per line, and a reason for every line.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<details class="kw" open>
+<summary>🌿 Connection — Why may the factors change places?</summary>
+<p><b>What to do:</b> here is a multiplication of two standard-form numbers. Tap the line of working that may come next — and notice <em>why</em> it is allowed.</p>
+<p><b>What you are trying to notice:</b> multiplication can be done in any order, so the factors are free to regroup — ordinary numbers together, powers of ten together.</p>
+<div class="toolbox">
+<p class="bignum">(6 × 10⁵) × (7 × 10³)</p>
+<div class="chipcol">
+<button class="chip" onclick="checkPlan(this,false)">= (6 + 7) × 10⁵ × 10³</button>
+<button class="chip" onclick="checkPlan(this,true)">= 6 × 7 × 10⁵ × 10³, because multiplication can be regrouped in any order</button>
+<button class="chip" onclick="checkPlan(this,false)">= 6 × 7 × 10⁵ ˣ ³</button>
+</div>
+<div id="planFeedback" class="feedback"></div>
+</div>
+<div class="card"><b>The definition, precisely:</b> a number in standard form is written <b>a × 10ⁿ</b>, where <b>1 ≤ a &lt; 10</b> and <b>n</b> is an integer. Every chain of working in this lesson finishes by checking its last line against this definition.</div>
+<div class="card"><strong>Carry this idea forward:</strong> regroup → simplify each part → check against the definition. The next panel lets you grow a full chain yourself.</div>
+</details>
+
+<details class="hs">
+<summary>🚶 Movement — Growing the working</summary>
+<p><b>What to do:</b> choose a story, then grow the written working one line at a time. Every new line must be <em>equal to the line above it</em>, and every line has a reason in the margin.</p>
+<p><b>What you are trying to notice:</b> each line follows from a named mathematical fact — regrouping, the index law, or the definition of standard form. Nothing else is needed, however large the numbers.</p>
+<div class="toolbox">
+<div class="buttonrow" id="storyRow">
+<button class="storycard" onclick="loadStory(0,this)"><b>Light in 500 seconds</b><br><span class="small">(3 × 10⁸ m/s) × (5 × 10² s)</span></button>
+<button class="storycard" onclick="loadStory(1,this)"><b>Hair versus virus</b><br><span class="small">(8 × 10⁻⁵) ÷ (2 × 10⁻⁷)</span></button>
+<button class="storycard" onclick="loadStory(2,this)"><b>A tiny share</b><br><span class="small">(2 × 10³) ÷ (8 × 10⁵)</span></button>
+</div>
+<p id="storyLine" class="small" style="text-align:center"></p>
+<div id="workPad" class="workpad"></div>
+<p id="stepPrompt" style="font-weight:bold"></p>
+<div id="stepChoices" class="chipcol"></div>
+<p id="stepNudge" class="nudge"></p>
+<div id="chainDone" style="display:none;text-align:center">
+<p id="anchorLine" class="small"></p>
+<button class="scratchbtn" onclick="openMathsScratchpad('working-lines','Copy this chain in your own hand — writing it yourself is how it becomes yours.')">✏️ Write this chain in my own hand</button>
+</div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> a finished chain is a complete mathematical argument. When you meet an unfamiliar calculation, you are not looking for a method to remember — you are looking for the next true line.</div>
+</details>
+
+<details class="dw">
+<summary>🪞 Reflection — Check this working</summary>
+<p><b>What to do:</b> three pieces of working have been handed in. Read each chain line by line, then judge it: complete and correct, or is there a line that does not follow?</p>
+<p><b>What you are trying to notice:</b> a chain can go wrong in two ways — a line that is not equal to the one above it, or a final line that has not been checked against the definition.</p>
+<div class="toolbox">
+<p id="shopLabel" class="small"></p>
+<div id="shopJob" class="workpad"></div>
+<div class="chiprow"><button class="chip" onclick="judgeJob(true)">✅ Complete and correct</button><button class="chip" onclick="judgeJob(false)">✍️ A line does not follow, or it is unfinished</button></div>
+<div id="shopFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button id="shopNext" onclick="nextJob()" style="display:none">Next piece of working →</button></div>
+</div>
+<div class="card"><p><b>In my own words, checking the last line against the definition matters because...</b></p><textarea rows="3" placeholder="If everyone finishes in standard form, then comparing answers is as easy as..."></textarea></div>
+</details>
+
+<details class="es">
+<summary>🎨 Creativity — Pose your own, then write the chain</summary>
+<p><b>What to do:</b> compose your own calculation from the tiles below, then <em>write its full chain yourself</em> — on the Scratchpad or on paper. When your chain is written, reveal a model chain and compare, line by line.</p>
+<p><b>Your challenge:</b> pose one calculation whose chain needs the extra rewrite line, and one that does not. Can you tell which will be which <em>before</em> you write?</p>
+<div class="toolbox">
+<p id="poseStatus" class="small" style="text-align:center;font-weight:bold"></p>
+<div id="poseTiles" class="chiprow"></div>
+<p id="posedCalc" class="bignum"></p>
+<div class="buttonrow" style="justify-content:center">
+<button class="scratchbtn" onclick="openMathsScratchpad('working-lines','Write the full chain for your posed calculation: regroup, simplify, check the definition, rewrite if needed.')">✏️ Write my chain</button>
+<button id="revealBtn" onclick="revealModel()" style="display:none">👀 Reveal a model chain to compare</button>
+<button onclick="resetPose()">↺ Pose another</button>
+</div>
+<div id="modelChain" class="workpad" style="display:none"></div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> your best chain — especially one with the rewrite line — belongs in the Final Task fact file. A rewrite is evidence of understanding, not a mistake.</div>
+</details>
+
+<details class="lb">
+<summary>🌙 Rest — What is the calm four-step route?</summary>
+<div class="card"><p>Look away from the screen, then retrieve this route in your own words:</p><p style="font-size:1.25em;font-weight:bold;text-align:center">regroup → simplify each part → check against the definition → rewrite if needed</p><p class="small" style="text-align:center">Every chain ends resting in standard form. The rewrite line is part of good working, not a detour.</p></div>
+</details>
+
+<details class="nt">
+<summary>🥣 Nutrition — What is this lesson nourishing?</summary>
+<p>This lesson uses <strong>intellectual nourishment</strong>. It nourishes mathematical self-reliance: the knowledge that a calculation at any scale yields to a short chain of justified lines — and that you can write one.</p>
+<div class="twocol"><div class="card">🌱 <b>Structure</b><br>I regroup one large calculation into small familiar pieces.</div><div class="card">🌱 <b>Reasoning</b><br>I can give the reason for every line I write.</div><div class="card">🌱 <b>Care</b><br>I check my final line against the definition.</div><div class="card">🌱 <b>Self-reliance</b><br>When a problem is unfamiliar, I look for the next true line.</div></div>
+<div class="card"><p class="small">Carry one idea forward: which of these four feels stronger than it did at the start of the lesson?</p></div>
+</details>
+
+<details class="ft">
+<summary>🛠 Final Task — Publish your Cosmic Fact File</summary>
+<h3>Three comparisons the universe is proud of</h3>
+<p><b>What to do:</b> create a fact file (Scratchpad export, paper, poster or slide) containing three calculations at astronomical or microscopic scale. It must include:</p>
+<ul><li>three calculations in standard form, each set out as a full written chain of equalities with a reason for every line (a distance, a comparison, and one of your own choosing);</li><li>at least one chain that needs the rewrite line — shown proudly, with the factorisation visible (for example 15 = 1.5 × 10);</li><li>each answer translated into an ordinary number <em>and</em> one sentence of meaning; and</li><li>one sentence explaining why a chain of justified lines can handle any calculation, however unfamiliar.</li></ul>
+<p><b>Filename pattern:</b> <code>NEO_MATH_SF_CALC_FirstName_Date</code></p>
+<table><tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr><tr><td><b>Understanding</b></td><td>Regroups one calculation.</td><td>Simplifies the numbers and the powers with support.</td><td>Multiplies and divides accurately, rewriting where the definition requires it.</td><td>Explains why a factor of 10 must change groups when the coefficient breaks the definition.</td></tr><tr><td><b>Application</b></td><td>Completes one comparison.</td><td>Completes two chains with one slip.</td><td>Completes three correct chains including a rewrite.</td><td>Poses and completes a chain in an unfamiliar context.</td></tr><tr><td><b>Communication</b></td><td>Records part of a chain.</td><td>Writes a chain with some reasons.</td><td>Writes full chains with a reason for every line.</td><td>Writes a chain another learner could learn the mathematics from.</td></tr><tr><td><b>Reflection</b></td><td>Notices when a final line looks wrong.</td><td>Checks one chain against the definition.</td><td>Explains the rewrite line in their own words.</td><td>Finds and corrects the faulty line in a convincing wrong chain.</td></tr></table>
+</details>
+</div></div>
+
+<div id="practiceView" hidden><div class="practice"><h1>Calculating with Standard Form — Practice Companion</h1><button onclick="returnLesson()">← Return to lesson</button><p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 👀 <b>worked solution</b>.</p><p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p><div id="practiceDots" class="buttonrow"></div><div class="toolbox"><p id="practiceLabel"></p><div class="twocol"><svg id="practiceSvg" viewBox="0 0 520 360" class="practice-svg" aria-label="Standard form calculation practice focus"></svg><div><div id="practiceQuestion" class="readout"></div><input id="practiceAnswer" placeholder="Enter your answer"><div class="buttonrow"><button onclick="pPrompt()">🤔 Socratic prompt</button><button onclick="pHint()">💡 Hint</button><button onclick="pCheck()">✅ Check</button><button id="practiceWorkedBtn" onclick="pSolution()">👀 Worked solution</button><button class="scratchbtn" onclick="openMathsScratchpad('working-lines','Write the chain for this question before you answer.')">✏️ Scratchpad</button></div><div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div><div id="practiceSupport" class="readout" style="display:none"></div><div id="practiceFeedback" class="feedback"></div></div></div></div><div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div></div></div>
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+<div role="dialog" aria-modal="true" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+<div><h2 style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2><p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p></div>
+<button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+</div>
+<p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+<button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+<button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+<label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+<select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;"><option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option></select>
+<label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+<select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;"><option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option></select>
+<button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+<button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+<button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;"><label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label><select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;"><option value="working-lines" selected>Lines of working</option><option value="powers-ladder">Powers-of-ten ladder</option><option value="place-value">Place-value chart</option><option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option></select></span>
+</div>
+<div style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+<canvas id="neoScratchBackgroundCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+<canvas id="neoScratchCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+<div id="neoStickyLayer" style="position:absolute;inset:0;pointer-events:none;"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+<button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+<button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+<button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+</div>
+<div id="scratchStatus" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+</div>
+</div>
+
+<script>
+function clean(v){return String(v).replace(/,/g,'').trim();}
+function num(v){const n=Number(clean(v));return Number.isFinite(n)?n:NaN;}
+function almostRel(a,b){if(!Number.isFinite(a)||!Number.isFinite(b))return false;const scale=Math.max(Math.abs(a),Math.abs(b),1e-12);return Math.abs(a-b)/scale<=1e-9;}
+function almost(a,b){return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9;}
+function superscript(n){const map={'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return String(n).split('').map(x=>map[x]||x).join('');}
+function fmt(c){return String(+c.toFixed(4));}
+function pw(e){return '10'+superscript(e);}
+function sform(c,e){return fmt(c)+' × '+pw(e);}
+function shuffle(a){return a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);}
+
+function checkPlan(btn,ok){planFeedback.style.display='block';if(ok){btn.classList.add('right');planFeedback.className='feedback good';planFeedback.innerHTML='<b>Yes — and the reason is the point.</b> Multiplication can be done in any order, so the factors regroup: ordinary numbers together, powers of ten together. Every chain in this lesson starts with this move.';}else{btn.classList.add('wrong');planFeedback.className='feedback bad';planFeedback.innerHTML='<b>Not quite yet.</b> Is that line <em>equal</em> to the one above it? Check what happened to each factor.';}}
+
+// ---- chain generation (shared by the builder and the model reveal)
+function chainLines(a,m,b,n,op){
+ const mul=op==='mul';
+ const c=mul?a*b:a/b, e=mul?m+n:m-n;
+ const lines=[];
+ lines.push(mul
+  ?{t:'= '+fmt(a)+' × '+fmt(b)+' × '+pw(m)+' × '+pw(n),reason:'multiplication can be regrouped in any order'}
+  :{t:'= ('+fmt(a)+' ÷ '+fmt(b)+') × ('+pw(m)+' ÷ '+pw(n)+')',reason:'divide the numbers, and separately divide the powers'});
+ lines.push({t:'= '+fmt(c)+' × '+pw(e),reason:fmt(a)+(mul?' × ':' ÷ ')+fmt(b)+' = '+fmt(c)+'; index law: '+(mul?'add':'subtract')+' the exponents, '+m+(mul?' + ':' − ')+n+' = '+e});
+ if(!(c>=1&&c<10)){
+  let rc=c,re=e;while(rc>=10){rc/=10;re+=1;}while(rc<1){rc*=10;re-=1;}
+  const up=c>=10;
+  lines.push(up
+   ?{t:'= '+fmt(rc)+' × 10 × '+pw(e),reason:fmt(c)+' = '+fmt(rc)+' × 10 — the same number, factorised'}
+   :{t:'= '+fmt(rc)+' × 10⁻¹ × '+pw(e),reason:fmt(c)+' = '+fmt(rc)+' × 10⁻¹ — the same number, factorised'});
+  lines.push({t:'= '+sform(rc,re),reason:'index law: 10'+(up?'¹':'⁻¹')+' × '+pw(e)+' = '+pw(re)});
+  return {lines,c:rc,e:re,rewrite:true};
+ }
+ return {lines,c,e,rewrite:false};
+}
+
+const STORIES=[
+ {a:3,m:8,b:5,n:2,op:'mul',story:'Light travels 3 × 10⁸ metres every second. How far does it travel in 5 × 10² seconds?',anchor:'1.5 × 10¹¹ m — this chain has just measured the distance from Earth to the Sun.'},
+ {a:8,m:-5,b:2,n:-7,op:'div',story:'A hair is 8 × 10⁻⁵ m wide and a virus is 2 × 10⁻⁷ m. How many times wider is the hair?',anchor:'4 × 10² — the hair is 400 times wider. This chain finished without the rewrite line.'},
+ {a:2,m:3,b:8,n:5,op:'div',story:'Divide a small number by a much bigger one and watch what the definition demands.',anchor:'2.5 × 10⁻³ — the coefficient was too small, so the factorisation went the other way.'}
+];
+let mst=null, mchain=null, mlines=[], mstep=0;
+function calcHeader(s){return '('+sform(s.a,s.m)+') '+(s.op==='mul'?'×':'÷')+' ('+sform(s.b,s.n)+')';}
+function loadStory(i,btn){
+ mst=STORIES[i];mchain=chainLines(mst.a,mst.m,mst.b,mst.n,mst.op);mlines=[];mstep=0;
+ document.querySelectorAll('#storyRow .storycard').forEach(b=>b.classList.remove('active'));
+ if(btn)btn.classList.add('active');
+ storyLine.textContent=mst.story;
+ chainDone.style.display='none';anchorLine.textContent='';
+ renderChainStep();
+}
+function renderWorkPad(){
+ workPad.innerHTML='<div class="workline"><b>'+calcHeader(mst)+'</b><span class="workreason">the calculation</span></div>'+
+  mlines.map(l=>'<div class="workline"><b>'+l.t+'</b><span class="workreason">'+l.reason+'</span></div>').join('');
+}
+function chainStepData(){
+ const mul=mst.op==='mul', c=mul?mst.a*mst.b:mst.a/mst.b, e=mul?mst.m+mst.n:mst.m-mst.n;
+ const L=mchain.lines;
+ const steps=[];
+ steps.push({prompt:'Which line may come next?',correct:L[0],opts:mul
+  ?[{t:'= ('+fmt(mst.a)+' + '+fmt(mst.b)+') × '+pw(mst.m)+' × '+pw(mst.n),nudge:'The numbers are multiplied, not added. Which fact lets factors change places?'},
+    {t:'= '+fmt(mst.a)+' × '+fmt(mst.b)+' × '+pw(mst.m*mst.n),nudge:'Careful — that changed the value. Regrouping moves factors; it never multiplies the exponents together.'}]
+  :[{t:'= ('+fmt(mst.b)+' ÷ '+fmt(mst.a)+') × ('+pw(mst.m)+' ÷ '+pw(mst.n)+')',nudge:'Order matters in division — which number is being divided?'},
+    {t:'= ('+fmt(mst.a)+' ÷ '+fmt(mst.b)+') × '+pw(mst.m*mst.n),nudge:'That changed the value. Keep the powers as a division for now — the index law comes next.'}]});
+ steps.push({prompt:'Now simplify both parts. Which line is equal to the one above?',correct:L[1],opts:[
+  {t:'= '+fmt(c)+' × '+pw(mul?mst.m*mst.n:mst.m+mst.n),nudge:'Check the index law: does '+(mul?'multiplying':'dividing')+' powers '+(mul?'add':'subtract')+' the exponents, or something else?'},
+  {t:'= '+fmt(mul?mst.a+mst.b:Math.abs(mst.a-mst.b))+' × '+pw(e),nudge:'Check the number part: what is '+fmt(mst.a)+(mul?' × ':' ÷ ')+fmt(mst.b)+'?'}]});
+ if(mchain.rewrite){
+  const up=c>=10;
+  steps.push({prompt:'Check the definition: is '+sform(c,e)+' in standard form (a × 10ⁿ with 1 ≤ a < 10)?',
+   correct:{t:null,reason:null,label:'No — '+fmt(c)+' is '+(up?'not less than 10':'less than 1')+', so the working is not finished'},
+   opts:[{t:'Yes — the calculation is done',nudge:'Check '+fmt(c)+' against the definition: does it satisfy 1 ≤ a < 10?'}]});
+  steps.push({prompt:fmt(c)+' cannot be the coefficient. Which rewrite is equal to '+sform(c,e)+'?',correct:L[2],opts:[
+   {t:'= '+fmt(mchain.c)+' × '+pw(e),nudge:'Is that really equal to '+sform(c,e)+'? Where did the factor of 10 go?'}]});
+  steps.push({prompt:'One last simplification:',correct:L[3],opts:[
+   {t:'= '+sform(mchain.c,e),nudge:'10'+(up?'¹':'⁻¹')+' × '+pw(e)+' — the index law adds the exponents.'}]});
+ } else {
+  steps.push({prompt:'Check the definition: is '+sform(c,e)+' in standard form (a × 10ⁿ with 1 ≤ a < 10)?',
+   correct:{t:null,reason:null,label:'Yes — '+fmt(c)+' sits between 1 and 10, so the chain is complete'},
+   opts:[{t:'No — it still needs a rewrite line',nudge:'Check '+fmt(c)+' against the definition: 1 ≤ a < 10. Does it already qualify?'}]});
+ }
+ return steps;
+}
+function renderChainStep(){
+ renderWorkPad();
+ const steps=chainStepData();
+ stepNudge.textContent='';
+ if(mstep>=steps.length){
+  stepPrompt.textContent='';stepChoices.innerHTML='';
+  chainDone.style.display='block';
+  anchorLine.textContent=mst.anchor+' Every line had a reason — that is what makes it mathematics rather than a recipe.';
+  return;
+ }
+ const st=steps[mstep];
+ stepPrompt.textContent=st.prompt;
+ stepChoices.innerHTML='';
+ const options=shuffle([{good:true,label:st.correct.label||st.correct.t},...st.opts.map(o=>({good:false,label:o.t,nudge:o.nudge}))]);
+ options.forEach(o=>{
+  const b=document.createElement('button');b.className='chip';b.textContent=o.label;
+  b.onclick=()=>{
+   if(o.good){b.classList.add('right');if(st.correct.t)mlines.push(st.correct);mstep++;setTimeout(renderChainStep,350);}
+   else{b.classList.add('wrong');stepNudge.textContent=o.nudge;}
+  };
+  stepChoices.appendChild(b);
+ });
+}
+
+// ---- Reflection: check this working
+const SHOP=[
+ {title:'Working A',header:'(6 × 10⁴) × (5 × 10³)',lines:[
+   {t:'= 6 × 5 × 10⁴ × 10³',reason:'regrouping'},
+   {t:'= 30 × 10⁷',reason:'6 × 5 = 30; index law'}],
+  ok:false,why:'Every line so far is true — but the chain is unfinished. 30 is not a valid coefficient (1 ≤ a < 10), so it needs: = 3 × 10 × 10⁷ = 3 × 10⁸.'},
+ {title:'Working B',header:'(9 × 10⁷) ÷ (3 × 10²)',lines:[
+   {t:'= (9 ÷ 3) × (10⁷ ÷ 10²)',reason:'divide numbers and powers separately'},
+   {t:'= 3 × 10⁵',reason:'9 ÷ 3 = 3; index law subtracts: 7 − 2 = 5'}],
+  ok:true,why:'Complete and correct: every line follows, and 3 satisfies 1 ≤ a < 10.'},
+ {title:'Working C',header:'3 × 10⁵ + 2 × 10⁴',lines:[
+   {t:'= (3 + 2) × 10⁵⁺⁴',reason:'add the numbers, add the powers'},
+   {t:'= 5 × 10⁹',reason:''}],
+  ok:false,why:'The first line does not follow — addition cannot regroup like multiplication, and unmatched powers cannot be joined. Match the powers first: 3 × 10⁵ + 2 × 10⁴ = 30 × 10⁴ + 2 × 10⁴ = 32 × 10⁴ = 3.2 × 10⁵.'}
+];
+let shopIdx=0;
+function showJob(){
+ const j=SHOP[shopIdx];
+ shopLabel.textContent=j.title+' — piece '+(shopIdx+1)+' of '+SHOP.length;
+ shopJob.innerHTML='<div class="workline"><b>'+j.header+'</b><span class="workreason">the calculation</span></div>'+j.lines.map(l=>'<div class="workline"><b>'+l.t+'</b><span class="workreason">'+l.reason+'</span></div>').join('');
+ shopFeedback.style.display='none';shopNext.style.display='none';
+}
+function judgeJob(saidOk){
+ const j=SHOP[shopIdx];shopFeedback.style.display='block';
+ const right=(saidOk===j.ok);
+ shopFeedback.className='feedback '+(right?'good':'bad');
+ shopFeedback.innerHTML=(right?'<b>Well judged.</b> ':'<b>Read it once more, line by line.</b> ')+j.why;
+ shopNext.style.display=shopIdx<SHOP.length-1?'inline-block':'none';
+ if(right&&shopIdx===SHOP.length-1){shopFeedback.innerHTML+=' <br><b>All three pieces judged — you are now the one doing the checking.</b>';}
+}
+function nextJob(){if(shopIdx<SHOP.length-1){shopIdx++;showJob();}}
+
+// ---- Creativity: pose your own
+const COEFFS=[2,3,4.5,6,7.5,9], POWS=[-4,-2,3,5,8];
+let pose={stage:0,a:null,m:null,op:null,b:null,n:null};
+const STAGES=['Choose the first coefficient','Choose the first power of ten','Choose the operation','Choose the second coefficient','Choose the second power of ten'];
+function resetPose(){pose={stage:0,a:null,m:null,op:null,b:null,n:null};modelChain.style.display='none';revealBtn.style.display='none';renderPose();}
+function renderPose(){
+ const parts=[];
+ if(pose.a!==null)parts.push('('+sform(pose.a,pose.m===null?'?':pose.m).replace('× 10?','× 10^?')+')');
+ posedCalc.textContent=poseText();
+ if(pose.stage>=STAGES.length){poseStatus.textContent='Your calculation is posed. Predict: will its chain need the rewrite line? Then write the chain.';poseTiles.innerHTML='';revealBtn.style.display='inline-block';return;}
+ poseStatus.textContent=STAGES[pose.stage];
+ poseTiles.innerHTML='';
+ const items=pose.stage===2?['×','÷']:(pose.stage===0||pose.stage===3)?COEFFS:POWS;
+ items.forEach(v=>{
+  const b=document.createElement('button');b.className='tile';
+  b.textContent=pose.stage===2?v:(pose.stage===1||pose.stage===4)?pw(v):fmt(v);
+  b.onclick=()=>{
+   if(pose.stage===0)pose.a=v;else if(pose.stage===1)pose.m=v;else if(pose.stage===2)pose.op=(v==='×'?'mul':'div');else if(pose.stage===3)pose.b=v;else pose.n=v;
+   pose.stage++;renderPose();
+  };
+  poseTiles.appendChild(b);
+ });
+}
+function poseText(){
+ let s='';
+ s+=pose.a!==null?('('+fmt(pose.a)+(pose.m!==null?' × '+pw(pose.m):' × 10^?')+')'):'( ? )';
+ s+=' '+(pose.op===null?'?':pose.op==='mul'?'×':'÷')+' ';
+ s+=pose.b!==null?('('+fmt(pose.b)+(pose.n!==null?' × '+pw(pose.n):' × 10^?')+')'):'( ? )';
+ return s;
+}
+function revealModel(){
+ const ch=chainLines(pose.a,pose.m,pose.b,pose.n,pose.op);
+ modelChain.style.display='block';
+ modelChain.innerHTML='<div class="workline"><b>'+poseText()+'</b><span class="workreason">your calculation</span></div>'+
+  ch.lines.map(l=>'<div class="workline"><b>'+l.t+'</b><span class="workreason">'+l.reason+'</span></div>').join('')+
+  '<div class="workline"><span class="small">'+(ch.rewrite?'This chain needed the rewrite line — did you predict that, and did your chain include it?':'No rewrite line needed — the coefficient already satisfied 1 ≤ a < 10. Now pose one that does need it.')+'</span></div>';
+}
+
+const RECONNECT={
+ indexlaws:{title:'Index laws (Lesson 03)',prompt:'Simplify 10⁴ × 10³. Enter the resulting exponent.',answer:7,hint:'Multiplication with the same base adds the exponents: 4 + 3.'},
+ writing:{title:'Writing standard form (Lesson 04)',prompt:'When 4500 is written in standard form, enter the exponent.',answer:3,hint:'4500 = 4.5 × 10^?. The digits slide 3 places while the fixed decimal point stays still.'},
+ multiplying:{title:'Multiplying decimals',prompt:'Calculate 1.5 × 4.',answer:6,hint:'1.5 × 4 is the same as 1.5 + 1.5 + 1.5 + 1.5.'},
+ dividing:{title:'Dividing to a decimal',prompt:'Calculate 2 ÷ 8. Enter the answer as a decimal.',answer:0.25,hint:'2 ÷ 8 = 1 ÷ 4. One quarter written as a decimal.'}
+};
+function openReconnect(){reconnectionPanel.style.display='block';reconnectionPanel.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson.</p><div class="buttonrow"><button onclick="showReconnect(\'indexlaws\')">Index laws</button><button onclick="showReconnect(\'writing\')">Writing standard form</button><button onclick="showReconnect(\'multiplying\')">Multiplying decimals</button><button onclick="showReconnect(\'dividing\')">Dividing to a decimal</button><button onclick="closeReconnect()">Return to Calculating with Standard Form</button></div><div id="reconnectTask"></div>';}
+function showReconnect(key){const r=RECONNECT[key];reconnectTask.innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p><input id="reconnectAnswer" inputmode="decimal" placeholder="Your answer" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px"><div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to Calculating with Standard Form</button></div><div id="reconnectFeedback" class="feedback"></div></div>';}
+function checkReconnect(key){const r=RECONNECT[key],ok=almost(num(reconnectAnswer.value),r.answer);reconnectFeedback.style.display='block';reconnectFeedback.className='feedback '+(ok?'good':'bad');reconnectFeedback.textContent=ok?'Ready to return. This idea is secure enough for the current lesson.':'Not yet. Use the hint or write the working on the Scratchpad.';}
+function reconnectHint(key){reconnectFeedback.style.display='block';reconnectFeedback.className='feedback warn';reconnectFeedback.textContent=RECONNECT[key].hint;}
+function closeReconnect(){reconnectionPanel.style.display='none';}
+
+const PRACTICE=[
+ {title:'Regroup and multiply',question:'Work (4 × 10³) × (2 × 10⁴). Enter the exponent of the answer.',answer:7,prompt:'Which factors group together, and which fact allows it?',hint:'Regroup: 4 × 2 = 8, and the index law gives 10³ × 10⁴ = 10⁷.',solution:'(4 × 10³) × (2 × 10⁴) = 4 × 2 × 10³ × 10⁴ = 8 × 10⁷. The coefficient 8 satisfies 1 ≤ a < 10, so the chain is complete.'},
+ {title:'Regroup and divide',question:'Work (9 × 10⁷) ÷ (3 × 10²). Enter the coefficient of the answer.',answer:3,prompt:'Divide the numbers and the powers separately. What does the index law do to the exponents?',hint:'9 ÷ 3 = 3, and the index law subtracts the exponents: 7 − 2.',solution:'(9 × 10⁷) ÷ (3 × 10²) = (9 ÷ 3) × (10⁷ ÷ 10²) = 3 × 10⁵. The coefficient 3 already satisfies the definition.'},
+ {title:'Rewrite after multiplying',question:'(6 × 10⁴) × (5 × 10³) simplifies to 30 × 10⁷. Enter the exponent of the finished standard form.',answer:8,prompt:'Is 30 a valid coefficient under the definition 1 ≤ a < 10?',hint:'30 = 3 × 10, so one factor of 10 joins the powers: 10⁷ becomes 10⁸.',solution:'30 × 10⁷ = 3 × 10 × 10⁷ = 3 × 10⁸. The factorisation 30 = 3 × 10 supplies the extra line, and the index law raises the exponent to 8.'},
+ {title:'Rewrite after dividing',question:'(2 × 10⁶) ÷ (4 × 10²) simplifies to 0.5 × 10⁴. Enter the coefficient of the finished standard form.',answer:5,prompt:'Is 0.5 allowed as a coefficient?',hint:'0.5 = 5 × 10⁻¹, so a factor of 10⁻¹ joins the powers: 10⁴ becomes 10³.',solution:'0.5 × 10⁴ = 5 × 10⁻¹ × 10⁴ = 5 × 10³. The coefficient becomes 5 and the index law lowers the exponent to 3.'},
+ {title:'Match the powers first',question:'Work 3 × 10⁵ + 2 × 10⁴. Enter the answer as an ordinary number.',answer:320000,prompt:'Can unmatched powers be joined by addition?',hint:'Rewrite with matching powers: 30 × 10⁴ + 2 × 10⁴ = 32 × 10⁴.',solution:'3 × 10⁵ + 2 × 10⁴ = 30 × 10⁴ + 2 × 10⁴ = 32 × 10⁴ = 3.2 × 10⁵ = 320,000. Powers must match before coefficients may add.'},
+ {title:'Light-speed context',question:'Light travels 3 × 10⁸ m each second. How far in 6 × 10² seconds? Enter the exponent of the answer in standard form.',answer:11,prompt:'Write the chain: regroup, simplify, check the definition.',hint:'3 × 6 = 18 breaks the definition: 18 × 10¹⁰ = 1.8 × 10 × 10¹⁰.',solution:'(3 × 10⁸) × (6 × 10²) = 18 × 10¹⁰ = 1.8 × 10 × 10¹⁰ = 1.8 × 10¹¹ m — roughly the distance from Earth to the Sun.'}
+];
+let practiceIndex=0,done={};
+function openPractice(){lessonView.hidden=true;practiceView.hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
+function returnLesson(){practiceView.hidden=true;lessonView.hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+function renderPractice(){const p=PRACTICE[practiceIndex];practiceLabel.textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;practiceQuestion.textContent=p.question;practiceAnswer.value='';practiceSupport.style.display='none';practiceFeedback.style.display='none';practicePrev.disabled=practiceIndex===0;practiceNext.textContent=practiceIndex===PRACTICE.length-1?'Finish':'Next →';renderPracticeDotsOnly();drawPracticeDiagram(p);}
+function drawPracticeDiagram(p){const svg=practiceSvg;svg.innerHTML='<rect x="55" y="55" width="430" height="250" rx="18" fill="#fffaf0" stroke="#cdbfa9" stroke-width="2"/><text x="270" y="135" text-anchor="middle" font-size="22" font-weight="700" fill="#3f5f45">'+p.title+'</text><text x="270" y="195" text-anchor="middle" font-size="17" fill="#365a68">Regroup • Simplify • Check the definition • Rewrite</text><text x="270" y="245" text-anchor="middle" font-size="16" fill="#2f3429">A rewrite line is part of good working.</text>';}
+function pPrompt(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>🤔 Socratic prompt:</b> '+PRACTICE[practiceIndex].prompt;}
+function pHint(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>💡 Hint:</b> '+PRACTICE[practiceIndex].hint;}
+function pSolution(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>👀 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
+function pCheck(){const p=PRACTICE[practiceIndex],ok=almostRel(num(practiceAnswer.value),p.answer);practiceFeedback.style.display='block';if(ok){done[practiceIndex]=true;practiceFeedback.className='feedback good';practiceFeedback.textContent='Correct. Regroup, simplify, and always check the final line against the definition.';}else{practiceFeedback.className='feedback bad';practiceFeedback.textContent='Not quite yet. Use the prompt or hint, then try again.';}renderPracticeDotsOnly();}
+function renderPracticeDotsOnly(){practiceDots.innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ':'')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');}
+function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
+function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{practiceFeedback.style.display='block';practiceFeedback.className='feedback good';practiceFeedback.textContent='Practice complete. Take your favourite chain into the Cosmic Fact File.';}}
+
+// Scratchpad
+(function(){
+const overlay=document.getElementById('neoScratchpadOverlay'),subtitle=document.getElementById('neoScratchpadSubtitle'),canvas=document.getElementById('neoScratchCanvas'),bgCanvas=document.getElementById('neoScratchBackgroundCanvas'),stickyLayer=document.getElementById('neoStickyLayer'),ctx=canvas.getContext('2d'),bg=bgCanvas.getContext('2d');
+let tool='pen',colour='#2f3429',width=4,template='working-lines',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_sf_calc_v04';
+function status(msg,col){const box=document.getElementById('scratchStatus');box.style.display='block';box.style.background=col||'#e5edf4';box.textContent=msg;}
+function pt(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+function drawBackground(){bg.clearRect(0,0,920,560);bg.fillStyle='#fff';bg.fillRect(0,0,920,560);bg.save();
+if(template==='working-lines'){bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,52);bg.fillStyle='#3f5f45';bg.font='bold 16px Arial';bg.textAlign='left';bg.fillText('Lines of working — one equals sign per line, a reason for every line',18,32);bg.strokeStyle='#cdbfa9';bg.lineWidth=1;bg.strokeRect(30,66,860,60);bg.fillStyle='#7a806f';bg.font='13px Arial';bg.fillText('the calculation',40,86);bg.strokeStyle='#9fb2bd';bg.lineWidth=1.5;bg.beginPath();bg.moveTo(640,140);bg.lineTo(640,540);bg.stroke();bg.fillStyle='#7a806f';bg.font='italic 13px Arial';bg.fillText('reason',652,160);for(let i=0;i<6;i++){const y=200+i*58;bg.strokeStyle='#e6dccb';bg.beginPath();bg.moveTo(30,y);bg.lineTo(890,y);bg.stroke();bg.fillStyle='#9fb2bd';bg.font='bold 16px Arial';bg.fillText('=',40,y-8);}}
+if(template==='powers-ladder'){const rungs=[['10¹¹','Earth to Sun'],['10⁹',"Sun's diameter"],['10⁷',"Earth's diameter"],['10⁴','deepest ocean'],['10²','football pitch'],['10⁰','a doorway'],['10⁻³','grain of sand'],['10⁻⁵','width of a hair'],['10⁻⁷','virus'],['10⁻⁹','DNA strand']];bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,52);bg.fillStyle='#3f5f45';bg.font='bold 16px Arial';bg.textAlign='left';bg.fillText('Powers-of-ten ladder (metres) — mark your numbers where they live',18,32);bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(120,70);bg.lineTo(120,540);bg.stroke();bg.font='bold 15px Arial';rungs.forEach((r,i)=>{const y=86+i*49;bg.strokeStyle='#cdbfa9';bg.lineWidth=1;bg.beginPath();bg.moveTo(120,y);bg.lineTo(900,y);bg.stroke();bg.fillStyle='#365a68';bg.textAlign='right';bg.fillText(r[0],108,y+5);bg.fillStyle='#7a806f';bg.font='13px Arial';bg.textAlign='left';bg.fillText(r[1],130,y-6);bg.font='bold 15px Arial';});}
+if(template==='place-value'){const labels=['Millions','Hundred thousands','Ten thousands','Thousands','Hundreds','Tens','Ones','Tenths','Hundredths'];const w=920/labels.length;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 13px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();const words=label.split(' ');words.forEach((word,j)=>bg.fillText(word,i*w+w/2,34+j*18));});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}
+bg.lineWidth=1;bg.strokeStyle='#e6dccb';if(template==='square-grid'||template==='coordinate-grid'){for(let x=0;x<=920;x+=28){bg.beginPath();bg.moveTo(x,0);bg.lineTo(x,560);bg.stroke();}for(let y=0;y<=560;y+=28){bg.beginPath();bg.moveTo(0,y);bg.lineTo(920,y);bg.stroke();}}
+if(template==='coordinate-grid'){bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(460,0);bg.lineTo(460,560);bg.moveTo(0,280);bg.lineTo(920,280);bg.stroke();}
+if(template==='ratio-table'){bg.strokeStyle='#cdbfa9';for(let x=80;x<=840;x+=190){bg.beginPath();bg.moveTo(x,70);bg.lineTo(x,490);bg.stroke();}for(let y=70;y<=490;y+=70){bg.beginPath();bg.moveTo(80,y);bg.lineTo(840,y);bg.stroke();}}
+if(template==='double-number-line'){bg.strokeStyle='#315d72';bg.lineWidth=3;[210,350].forEach(y=>{bg.beginPath();bg.moveTo(90,y);bg.lineTo(830,y);bg.stroke();for(let x=90;x<=830;x+=74){bg.beginPath();bg.moveTo(x,y-10);bg.lineTo(x,y+10);bg.stroke();}});}
+bg.restore();}
+function drawStroke(s){if(!s||!s.points.length)return;ctx.save();ctx.lineCap='round';ctx.lineJoin='round';if(s.tool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=Math.max(18,s.width*5);}else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=s.colour;ctx.lineWidth=s.width;}const pts=s.points;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);if(s.tool==='line'){const last=pts[pts.length-1];ctx.lineTo(last.x,last.y);}else{pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));if(pts.length===1)ctx.lineTo(pts[0].x+.1,pts[0].y+.1);}ctx.stroke();ctx.restore();}
+function renderInk(){ctx.clearRect(0,0,920,560);strokes.forEach(drawStroke);}
+function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText=`position:absolute;left:${note.x}%;top:${note.y}%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;`;const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
+function render(){drawBackground();renderInk();renderNotes();}
+function store(){try{localStorage.setItem(storageKey,JSON.stringify({template,strokes,redo,notes,colour,width}));}catch(err){}}
+function restore(){try{const s=JSON.parse(localStorage.getItem(storageKey)||'null');if(!s)return;template=s.template||template;strokes=s.strokes||[];redo=s.redo||[];notes=s.notes||[];colour=s.colour||colour;width=s.width||width;scratchTemplate.value=template;scratchColour.value=colour;scratchWidth.value=String(width);}catch(err){}}
+function updateButtons(){scratchPenBtn.style.background=tool==='pen'?'#e5f0e2':'#fff';scratchLineBtn.style.background=tool==='line'?'#e5edf4':'#fff';scratchEraserBtn.style.background=tool==='eraser'?'#e5f0e2':'#fff';canvas.style.cursor=tool==='eraser'?'cell':tool==='note'?'copy':'crosshair';}
+canvas.addEventListener('pointerdown',e=>{if(tool==='note'){const r=canvas.getBoundingClientRect();notes.push({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100,text:''});renderNotes();setScratchTool('pen');status('Sticky note added.','#fff7c7');store();e.preventDefault();return;}drawing=true;canvas.setPointerCapture(e.pointerId);const p=pt(e);current={tool,width,colour,points:tool==='line'?[p,p]:[p]};strokes.push(current);redo=[];renderInk();e.preventDefault();});
+canvas.addEventListener('pointermove',e=>{if(!drawing||!current)return;const p=pt(e);if(current.tool==='line')current.points[1]=p;else current.points.push(p);renderInk();e.preventDefault();});
+function finish(e){if(!drawing)return;drawing=false;current=null;try{canvas.releasePointerCapture(e.pointerId);}catch(err){}store();e.preventDefault();}
+canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',finish);
+window.openMathsScratchpad=function(t,sub){if(t){template=t;scratchTemplate.value=t;}subtitle.textContent=sub||'Use the Scratchpad to predict, sketch, test and revise.';overlay.hidden=false;document.body.style.overflow='hidden';render();};
+window.closeMathsScratchpad=function(){store();overlay.hidden=true;document.body.style.overflow='';};
+window.setScratchTool=function(t){tool=t;updateButtons();if(t==='line')status('Line tool: press at the start point, drag to the end point, then release.');if(t==='note')status('Click anywhere on the Scratchpad to place a sticky note.','#fff7c7');};
+window.updateScratchColour=function(){colour=scratchColour.value;store();};
+window.updateScratchWidth=function(){width=Number(scratchWidth.value);store();};
+window.changeScratchTemplate=function(v){template=v;drawBackground();store();status('Background changed. Your drawing marks are unchanged.','#e3f0df');};
+window.scratchUndo=function(){if(!strokes.length){status('Nothing to undo yet.','#fff1cf');return;}redo.push(strokes.pop());renderInk();store();};
+window.scratchRedo=function(){if(!redo.length){status('Nothing to redo yet.','#fff1cf');return;}strokes.push(redo.pop());renderInk();store();};
+window.newScratchPage=function(){if((strokes.length||notes.length)&&!confirm('Start a new Scratchpad page?'))return;strokes=[];redo=[];notes=[];render();store();status('New Scratchpad page started.');};
+window.saveScratchPage=function(){store();status('Working page saved in this browser.','#e3f0df');};
+window.clearScratchpad=function(){if(!confirm('Clear learner marks and sticky notes? The selected background will remain.'))return;strokes=[];redo=[];notes=[];render();store();status('Learner marks cleared. Background preserved.','#fff1cf');};
+window.downloadScratchImage=function(){const ex=document.createElement('canvas');ex.width=920;ex.height=560;const ec=ex.getContext('2d');ec.drawImage(bgCanvas,0,0);ec.drawImage(canvas,0,0);const link=document.createElement('a');link.download='NEO_Maths_SF_Calculation_Working.png';link.href=ex.toDataURL('image/png');link.click();};
+restore();updateButtons();render();
+})();
+loadStory(0,document.querySelector('#storyRow .storycard'));
+showJob();
+resetPose();
+</script>
+
+<script id="practiceWorkedUnlockWrapper">
+// GreenPrint compliance patch; internal lesson version v0.4.
+(function(){
+  if (window.__neoWorkedUnlockInstalled) return;
+  window.__neoWorkedUnlockInstalled = true;
+  const promptSeen = Array(PRACTICE.length).fill(false);
+  const hintSeen = Array(PRACTICE.length).fill(false);
+  const attempts = Array(PRACTICE.length).fill(0);
+
+  function currentIdx(){ return practiceIndex; }
+  function workedUnlocked(i){
+    return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
+  }
+  function button(){ return document.getElementById('practiceWorkedBtn'); }
+  function notice(){ return document.getElementById('practiceWorkedNotice'); }
+  function lockMessage(i){
+    const parts = [];
+    if (!promptSeen[i]) parts.push('use the Socratic prompt');
+    if (!hintSeen[i]) parts.push('use the hint');
+    const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
+    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+  }
+  function updateWorkedButton(){
+    const i = currentIdx();
+    const btn = button();
+    if (!btn) return;
+    const unlocked = workedUnlocked(i);
+    btn.disabled = !unlocked;
+    btn.style.opacity = unlocked ? '1' : '.5';
+    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+    const n = notice();
+    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+  }
+
+  const oldRender = renderPractice;
+  renderPractice = function(){ oldRender(); updateWorkedButton(); };
+
+  const oldPrompt = pPrompt;
+  pPrompt = function(){ promptSeen[currentIdx()] = true; oldPrompt(); updateWorkedButton(); };
+
+  const oldHint = pHint;
+  pHint = function(){ hintSeen[currentIdx()] = true; oldHint(); updateWorkedButton(); };
+
+  const oldCheck = pCheck;
+  pCheck = function(){
+    const answer = document.getElementById('practiceAnswer');
+    if (answer && answer.value.trim()) {
+      attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
+    }
+    oldCheck();
+    updateWorkedButton();
+  };
+
+  const oldSolution = pSolution;
+  pSolution = function(){
+    const i = currentIdx();
+    if (!workedUnlocked(i)) {
+      const fb = document.getElementById('practiceFeedback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.className = 'feedback';
+        fb.textContent = lockMessage(i);
+      }
+      updateWorkedButton();
+      return;
+    }
+    oldSolution();
+    updateWorkedButton();
+  };
+
+  updateWorkedButton();
+})();
+</script>
+
+</body>
+</html>

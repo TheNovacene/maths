@@ -1,0 +1,33 @@
+NEO Mathematics - Accuracy, Powers and Scale
+Lesson 05 - Calculating with Standard Form
+
+This lesson uses the established NEO reference shell and includes:
+- all six Cornerstones in the locked order;
+- Why May the Factors Change Places? (regrouping, with the a x 10^n
+  definition, 1 <= a < 10, stated precisely);
+- Growing the Working: a chain-of-equalities builder - the learner
+  constructs written working line by line, each line chosen from genuine
+  alternatives and justified by a named fact (regrouping, index law,
+  the definition, factorisation);
+- Check This Working (Reflection): three handed-in chains judged line by
+  line, including the matched-powers addition trap;
+- Pose Your Own (Creativity): compose a calculation from tiles, predict
+  whether its chain needs the rewrite line, write the chain by hand,
+  then compare with a generated model chain;
+- Cosmic Fact File Final Task with the full mastery rubric;
+- six-question Practice Companion with chain-based worked solutions;
+- Lines of Working Scratchpad background (plus the powers ladder);
+- Learner and Supporting Adult Guidance;
+- Reconnection Routes (index laws, writing standard form, multiplying
+  decimals, dividing to a decimal) with an explicit return; and
+- the universal independent worked-solution release rule.
+
+Design note: the machine metaphor of earlier drafts was removed at the
+Director's direction. The lesson teaches transferable mathematical
+reasoning - every line justified, every chain checked against the
+definition - so learners can approach non-routine problems from
+understanding rather than procedure.
+
+Internal curriculum tag: Y9 (NEO-MATH-Y9-005A, unit session 5)
+Learner-facing pathway: Foundations
+Status: Preview-ready (v0.4 accepted by curriculum lead 20 July 2026; GreenPrint v1.4 and v1.5 approved same day)

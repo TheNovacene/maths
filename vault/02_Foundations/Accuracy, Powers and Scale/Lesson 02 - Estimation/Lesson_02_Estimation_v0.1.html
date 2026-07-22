@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Estimation v0.1</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.mathsvg{width:100%;max-width:600px;background:#fff;border-radius:10px;border:1px solid #cdbfa9}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.tabs button.active,.stepbtn.active{background:#dce8ef;border-color:#365a68}
+.stepbtn.done{background:#e3f0df;border-color:#5c6b4f}
+.stepline{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:12px;font-size:1.15em;line-height:1.55}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.practice-svg{width:100%;max-width:520px;background:#fff;border:1px solid #cdbfa9;border-radius:10px}
+.small{font-size:.95em;color:#4f554b}
+.solution-reveal{display:none}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.digitline{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;font:700 clamp(2.1rem,7vw,4.2rem)/1 Arial,sans-serif;margin:18px 0}
+.digit{min-width:.72em;text-align:center;padding:7px 4px;border-bottom:7px solid transparent;border-radius:7px 7px 0 0}.digit.keep{background:#dfeeda;border-color:#4e744d}.digit.decide{background:#fae4b8;border-color:#b77814}.digit.drop{background:#ededeb;border-color:#a9aaa5;color:#777}.digit.locator{background:#e5eef2;border-color:#66879a;color:#365a68}.digit.mark{min-width:.2em}
+.lenscontrols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.lenscontrols input,.lenscontrols select,textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px;background:#fff}
+.numberline{margin:34px 12px 12px;padding-top:28px}.track{height:7px;background:#365a68;position:relative;border-radius:10px}.track:before,.track:after{content:"";position:absolute;top:-8px;width:3px;height:23px;background:#365a68}.track:before{left:0}.track:after{right:0}.mid{position:absolute;left:50%;top:-9px;width:3px;height:25px;background:#b77814}.marker{position:absolute;top:-34px;transform:translateX(-50%);white-space:nowrap;color:#70466b;font-weight:bold}.marker:after{content:"";display:block;width:13px;height:13px;border-radius:50%;background:#70466b;margin:5px auto}
+.linelabels{display:grid;grid-template-columns:1fr 1fr 1fr;font-weight:bold;font-size:.9em;margin-top:14px}.linelabels span:nth-child(2){text-align:center;color:#835d1d}.linelabels span:last-child{text-align:right}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Accuracy, Powers and Scale</h1>
+<h2>Estimation</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can an estimate help us decide whether an answer makes sense?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Estimation Laboratory, reasonableness investigation and supported practice.</p>
+<p><b>Stepping Stone:</b> estimate calculations by rounding values appropriately and use the estimate to judge reasonableness.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 18 · Practise 10 · Reflect/Create 5 · Rest/Nourish 2 · Evidence 2</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to Estimation.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_02_Learner_Guidance.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_02_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('estimation-organiser','Record original values, rounded values, your estimate and what you notice.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<details class="kw" open>
+<summary>🌿 Connection — Which answer could make sense?</summary>
+<p><b>What to do:</b> look at the calculation and choose the answer that has a sensible size. Do not calculate it exactly yet.</p>
+<p><b>What you are trying to notice:</b> an estimate can reject an impossible answer before an exact calculation is completed.</p>
+<div class="toolbox">
+<div class="card" style="text-align:center"><p class="small">Calculation</p><p style="font-size:2.2em;font-weight:bold;margin:.2em">48.7 × 19.6</p></div>
+<div class="buttonrow" role="group" aria-label="Possible answers"><button onclick="checkSuspicious(95.452)">95.452</button><button onclick="checkSuspicious(954.52)">954.52</button><button onclick="checkSuspicious(9545.2)">9,545.2</button></div>
+<div id="suspiciousFeedback" class="feedback"></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('estimation-organiser','Round 48.7 and 19.6 to friendly numbers. Which answer is close to your estimate?')">✏️ Record my estimate</button>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> estimate the size first; exact calculation can come second.</div>
+</details>
+
+<details class="hs">
+<summary>🚶 Movement — How does an estimate change when the numbers move?</summary>
+<p><b>What to do:</b> choose or enter a calculation. Round each value to 1 significant figure, predict the estimate, then compare it with the exact result.</p>
+<p><b>What you are trying to notice:</b> friendly rounded values make mental calculation possible while preserving the overall magnitude.</p>
+<div class="toolbox">
+<h3>🧪 Estimation Laboratory</h3>
+<div class="lenscontrols"><label><b>First value</b><input id="labA" value="48.7" inputmode="decimal" oninput="resetLab()"></label><label><b>Operation</b><select id="labOp" onchange="resetLab()"><option value="+">+</option><option value="-">−</option><option value="*" selected>×</option><option value="/">÷</option></select></label><label><b>Second value</b><input id="labB" value="19.6" inputmode="decimal" oninput="resetLab()"></label></div>
+<div class="buttonrow"><button onclick="setLab(48.7,'*',19.6)">48.7 × 19.6</button><button onclick="setLab(398,'+',607)">398 + 607</button><button onclick="setLab(82.4,'/',3.9)">82.4 ÷ 3.9</button><button onclick="setLab(0.498,'*',61.2)">0.498 × 61.2</button></div>
+<div id="labRounded" class="readout" aria-live="polite"></div>
+<label><b>My estimated result</b><input id="labPrediction" inputmode="decimal" placeholder="Enter your estimate"></label>
+<div class="buttonrow"><button onclick="checkLab()">✅ Check my estimate</button><button onclick="revealLab()">👀 Compare estimate and exact</button><button class="scratchbtn" onclick="openMathsScratchpad('estimation-organiser','Record the original values, rounded values, estimate and exact result.')">✏️ Scratchpad</button></div>
+<div id="labFeedback" class="feedback"></div><div id="labResult" class="readout" style="display:none"></div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> round → calculate mentally → compare → judge.</div>
+</details>
+
+<details class="dw">
+<summary>🪞 Reflection — Is the estimate close enough for its purpose?</summary>
+<p><b>What to do:</b> compare the current estimate with the exact result, then decide whether it is useful.</p>
+<div class="toolbox"><button onclick="showQuality()">🔎 Show comparison for the current calculation</button><div id="qualityBox" class="readout" style="display:none"></div></div>
+<div class="card"><p><b>This estimate is useful because...</b></p><textarea rows="4" placeholder="It is useful because..."></textarea></div>
+<p><b>What you are trying to notice:</b> an estimate is not an exact answer. Its job is to give a sensible scale and support a decision.</p>
+</details>
+
+<details class="es">
+<summary>🎨 Creativity — Can I design a convincing suspicious answer?</summary>
+<p><b>What to do:</b> create one calculation, one plausible answer and one suspicious answer.</p>
+<ol><li>Choose two values and an operation.</li><li>Round to friendly values and estimate.</li><li>Create one answer near the estimate.</li><li>Create one answer with the decimal point or place value deliberately wrong.</li><li>Explain how estimation exposes the suspicious answer.</li></ol>
+<button class="scratchbtn" onclick="openMathsScratchpad('estimation-organiser','Design a calculation, its estimate, a plausible answer and a suspicious answer.')">✏️ Create my answer card</button>
+</details>
+
+<details class="lb">
+<summary>🌙 Rest — What is the calm three-step route?</summary>
+<div class="card"><p>Look away from the screen, then retrieve this route in your own words:</p><p style="font-size:1.3em;font-weight:bold;text-align:center">round → calculate → check</p></div>
+</details>
+
+<details class="nt">
+<summary>🥣 Nutrition — What is this lesson nourishing?</summary>
+<p>This lesson uses <strong>intellectual nourishment</strong>. It nourishes judgement: noticing scale, resisting an implausible calculator display and deciding when an approximation is useful.</p>
+<div class="twocol"><div class="card">🌱 <b>Magnitude</b><br>I notice the likely size first.</div><div class="card">🌱 <b>Judgement</b><br>I ask whether an answer is reasonable.</div><div class="card">🌱 <b>Efficiency</b><br>I use friendly numbers when exactness is unnecessary.</div><div class="card">🌱 <b>Confidence</b><br>I can challenge an answer rather than accepting it automatically.</div></div>
+</details>
+
+<details class="ft">
+<summary>🛠 Final Task — Become an Estimation Investigator</summary>
+<h3>Investigate two calculations</h3>
+<p><b>What to do:</b> choose two calculations, including at least one decimal calculation. For each one:</p>
+<ul><li>record the original values;</li><li>round to friendly values;</li><li>calculate an estimate;</li><li>find or check the exact result;</li><li>judge whether the exact answer is reasonable; and</li><li>explain whether the estimate was useful.</li></ul>
+<p><b>Filename pattern:</b> <code>NEO_MATH_ESTIMATION_FirstName_Date</code></p>
+<table><tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr><tr><td><b>Understanding</b></td><td>Identifies a value to round.</td><td>Rounds familiar values.</td><td>Explains why rounded values are useful.</td><td>Chooses precision to suit the purpose.</td></tr><tr><td><b>Application</b></td><td>Begins an estimate.</td><td>Estimates a familiar calculation.</td><td>Estimates varied calculations accurately.</td><td>Uses estimation to diagnose an unfamiliar error.</td></tr><tr><td><b>Communication</b></td><td>Shows some values.</td><td>Shows rounded values and an estimate.</td><td>Makes the reasoning clear.</td><td>Creates an explanation another learner could use.</td></tr><tr><td><b>Reflection</b></td><td>Names an answer as large or small.</td><td>Compares estimate and exact result.</td><td>Judges reasonableness.</td><td>Explains when an estimate is sufficiently accurate.</td></tr></table>
+</details>
+</div></div>
+
+<div id="practiceView" hidden><div class="practice"><h1>Estimation — Practice Companion</h1><button onclick="returnLesson()">← Return to lesson</button><p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 👀 <b>worked solution</b>.</p><p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p><div id="practiceDots" class="buttonrow"></div><div class="toolbox"><p id="practiceLabel"></p><div class="twocol"><svg id="practiceSvg" viewBox="0 0 520 360" class="practice-svg" aria-label="Estimation practice focus"></svg><div><div id="practiceQuestion" class="readout"></div><input id="practiceAnswer" placeholder="Your answer"><div class="buttonrow"><button onclick="pPrompt()">🤔 Socratic prompt</button><button onclick="pHint()">💡 Hint</button><button onclick="pCheck()">✅ Check</button><button id="practiceWorkedBtn" onclick="pSolution()">👀 Worked solution</button><button class="scratchbtn" onclick="openMathsScratchpad('estimation-organiser','Record original values, rounded values, estimate and what you notice.')">✏️ Scratchpad</button></div><div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div><div id="practiceSupport" class="readout" style="display:none"></div><div id="practiceFeedback" class="feedback"></div></div></div></div><div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div></div></div>
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+<div role="dialog" aria-modal="true" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+<div><h2 style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2><p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p></div>
+<button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+</div>
+<p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+<button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+<button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+<label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+<select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;"><option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option></select>
+<label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+<select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;"><option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option></select>
+<button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+<button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+<button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;"><label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label><select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;"><option value="estimation-organiser" selected>Estimation organiser</option><option value="place-value">Place-value chart</option><option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option></select></span>
+</div>
+<div style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+<canvas id="neoScratchBackgroundCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+<canvas id="neoScratchCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+<div id="neoStickyLayer" style="position:absolute;inset:0;pointer-events:none;"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+<button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+<button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+<button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+</div>
+<div id="scratchStatus" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+</div>
+</div>
+
+<script>
+function clean(v){return String(v).replace(/,/g,'').trim();}
+function num(v){const n=Number(clean(v));return Number.isFinite(n)?n:NaN;}
+function round1(n){if(!Number.isFinite(n)||n===0)return n;const p=-Math.floor(Math.log10(Math.abs(n)));const f=10**p;return Math.round((n+Number.EPSILON)*f)/f;}
+function fmt(n,max=6){return Number(n).toLocaleString('en-GB',{maximumFractionDigits:max});}
+function operate(a,op,b){return op==='+'?a+b:op==='-'?a-b:op==='*'?a*b:a/b;}
+function almost(a,b){return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=Math.max(1e-9,Math.abs(b)*1e-9);}
+function currentLab(){return {a:num(labA.value),b:num(labB.value),op:labOp.value};}
+function labData(){const c=currentLab(),ra=round1(c.a),rb=round1(c.b);return {...c,ra,rb,estimate:operate(ra,c.op,rb),exact:operate(c.a,c.op,c.b)};}
+function opSymbol(op){return op==='*'?'×':op==='/'?'÷':op;}
+function resetLab(){labPrediction.value='';labFeedback.style.display='none';labResult.style.display='none';const d=labData();labRounded.innerHTML=Number.isFinite(d.ra)&&Number.isFinite(d.rb)?'<b>Rounded calculation:</b> '+fmt(d.ra)+' '+opSymbol(d.op)+' '+fmt(d.rb):'Enter two valid values.';}
+function setLab(a,op,b){labA.value=a;labOp.value=op;labB.value=b;resetLab();}
+function checkLab(){const d=labData(),answer=num(labPrediction.value);labFeedback.style.display='block';if(almost(answer,d.estimate)){labFeedback.className='feedback good';labFeedback.innerHTML='<b>Yes.</b> Your estimate matches the rounded calculation. Now compare it with the exact result.';}else{labFeedback.className='feedback bad';labFeedback.innerHTML='<b>Not quite yet.</b> Round each value to 1 significant figure, then calculate with the friendly values.';}}
+function revealLab(){const d=labData();labResult.style.display='block';labResult.innerHTML='<b>Estimate:</b> '+fmt(d.ra)+' '+opSymbol(d.op)+' '+fmt(d.rb)+' = '+fmt(d.estimate)+'<br><b>Exact result:</b> '+fmt(d.exact)+'<br><span class="small">The estimate gives the scale; the exact result gives the precision.</span>';}
+function checkSuspicious(choice){suspiciousFeedback.style.display='block';if(choice===954.52){suspiciousFeedback.className='feedback good';suspiciousFeedback.innerHTML='<b>Sensible.</b> 48.7 is about 50 and 19.6 is about 20, so the result should be about 1,000.';}else{suspiciousFeedback.className='feedback bad';suspiciousFeedback.innerHTML='<b>Suspicious.</b> Use 50 × 20 to estimate the likely size, then choose again.';}}
+function showQuality(){const d=labData(),diff=Math.abs(d.exact-d.estimate),pct=Math.abs(d.exact)>1e-12?diff/Math.abs(d.exact)*100:0;qualityBox.style.display='block';qualityBox.innerHTML='<b>Estimate:</b> '+fmt(d.estimate)+' &nbsp; <b>Exact:</b> '+fmt(d.exact)+'<br><b>Difference:</b> '+fmt(diff)+' (about '+fmt(pct,1)+'% of the exact result).<br><span class="small">Ask: did the estimate correctly predict the magnitude and help me judge the exact answer?</span>';}
+
+const RECONNECT={
+ place:{title:'Place value',prompt:'What is the value of the 3 in 38,420?',answer:30000,hint:'The 3 is in the ten-thousands place.'},
+ rounding:{title:'Rounding to significant figures',prompt:'Round 6,847 to 1 significant figure.',answer:7000,hint:'Keep the 6. The next digit is 8, so round up.'},
+ magnitude:{title:'Magnitude',prompt:'Which is closer to 4,980: 500, 5,000 or 50,000?',answer:5000,hint:'Think about the number of thousands.'},
+ operations:{title:'Four operations',prompt:'Calculate 6 × 40.',answer:240,hint:'6 × 4 = 24, then restore the zero.'}
+};
+function openReconnect(){reconnectionPanel.style.display='block';reconnectionPanel.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson.</p><div class="buttonrow"><button onclick="showReconnect(\'place\')">Place value</button><button onclick="showReconnect(\'rounding\')">Rounding</button><button onclick="showReconnect(\'magnitude\')">Magnitude</button><button onclick="showReconnect(\'operations\')">Four operations</button><button onclick="closeReconnect()">Return to Estimation</button></div><div id="reconnectTask"></div>';}
+function showReconnect(key){const r=RECONNECT[key];reconnectTask.innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p><input id="reconnectAnswer" inputmode="decimal" placeholder="Your answer"><div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to Estimation</button></div><div id="reconnectFeedback" class="feedback"></div></div>';}
+function checkReconnect(key){const r=RECONNECT[key],ok=almost(num(reconnectAnswer.value),r.answer);reconnectFeedback.style.display='block';reconnectFeedback.className='feedback '+(ok?'good':'bad');reconnectFeedback.textContent=ok?'Ready to return. This idea is secure enough for the current lesson.':'Not yet. Use the hint or record the place value on the Scratchpad.';}
+function reconnectHint(key){reconnectFeedback.style.display='block';reconnectFeedback.className='feedback warn';reconnectFeedback.textContent=RECONNECT[key].hint;}
+function closeReconnect(){reconnectionPanel.style.display='none';}
+
+const PRACTICE=[
+ {title:'Product',question:'Estimate 48.7 × 19.6 by rounding each value to 1 significant figure.',answer:1000,prompt:'What friendly values are close to 48.7 and 19.6?',hint:'Use 50 × 20.',solution:'48.7 ≈ 50 and 19.6 ≈ 20. So the estimate is 50 × 20 = 1,000.'},
+ {title:'Sum',question:'Estimate 398 + 607 by rounding each value to 1 significant figure.',answer:1000,prompt:'What hundreds are close to 398 and 607?',hint:'Use 400 + 600.',solution:'398 ≈ 400 and 607 ≈ 600. The estimate is 400 + 600 = 1,000.'},
+ {title:'Quotient',question:'Estimate 82.4 ÷ 3.9 by rounding each value to 1 significant figure.',answer:20,prompt:'Which friendly values make the division mental?',hint:'Use 80 ÷ 4.',solution:'82.4 ≈ 80 and 3.9 ≈ 4. The estimate is 80 ÷ 4 = 20.'},
+ {title:'Decimal product',question:'Estimate 0.498 × 61.2 by rounding each value to 1 significant figure.',answer:30,prompt:'What is 0.498 close to? What is 61.2 close to?',hint:'Use 0.5 × 60.',solution:'0.498 ≈ 0.5 and 61.2 ≈ 60. The estimate is 0.5 × 60 = 30.'},
+ {title:'Difference',question:'Estimate 1,987 − 1,012 by rounding each value to 1 significant figure.',answer:1000,prompt:'What thousands are close to the two values?',hint:'Use 2,000 − 1,000.',solution:'1,987 ≈ 2,000 and 1,012 ≈ 1,000. The estimate is 2,000 − 1,000 = 1,000.'},
+ {title:'Suspicious display',question:'A calculator display says 24.8 × 3.06 = 7,588.8. Enter the corrected exact result.',answer:75.888,prompt:'Estimate first: 25 × 3 is about what?',hint:'The exact digits may be right but the decimal point is not. Recalculate 24.8 × 3.06.',solution:'25 × 3 ≈ 75, so 7,588.8 is far too large. The corrected exact result is 75.888.'}
+];
+let practiceIndex=0,done={};
+function openPractice(){lessonView.hidden=true;practiceView.hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
+function returnLesson(){practiceView.hidden=true;lessonView.hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+function renderPractice(){const p=PRACTICE[practiceIndex];practiceLabel.textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;practiceQuestion.textContent=p.question;practiceAnswer.value='';practiceSupport.style.display='none';practiceFeedback.style.display='none';practicePrev.disabled=practiceIndex===0;practiceNext.textContent=practiceIndex===PRACTICE.length-1?'Finish':'Next →';renderPracticeDotsOnly();drawPracticeDiagram(p);}
+function drawPracticeDiagram(p){const svg=practiceSvg;svg.innerHTML='';svg.innerHTML='<rect x="55" y="55" width="430" height="250" rx="18" fill="#fffaf0" stroke="#cdbfa9" stroke-width="2"/><text x="270" y="135" text-anchor="middle" font-size="22" font-weight="700" fill="#3f5f45">'+p.title+'</text><text x="270" y="195" text-anchor="middle" font-size="18" fill="#365a68">Round • Calculate • Check</text><text x="270" y="245" text-anchor="middle" font-size="16" fill="#2f3429">Use the organiser if you want to record each step.</text>';}
+function pPrompt(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>🤔 Socratic prompt:</b> '+PRACTICE[practiceIndex].prompt;}
+function pHint(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>💡 Hint:</b> '+PRACTICE[practiceIndex].hint;}
+function pSolution(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>👀 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
+function pCheck(){const p=PRACTICE[practiceIndex],ok=almost(num(practiceAnswer.value),p.answer);practiceFeedback.style.display='block';if(ok){done[practiceIndex]=true;practiceFeedback.className='feedback good';practiceFeedback.textContent='Correct. Keep the rounded values and estimate visible.';}else{practiceFeedback.className='feedback bad';practiceFeedback.textContent='Not quite yet. Use the prompt or hint, then try again.';}renderPracticeDotsOnly();}
+function renderPracticeDotsOnly(){practiceDots.innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ':'')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');}
+function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
+function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{practiceFeedback.style.display='block';practiceFeedback.className='feedback good';practiceFeedback.textContent='Practice complete. Choose one question to explain in the Final Task.';}}
+
+// Scratchpad
+(function(){
+const overlay=document.getElementById('neoScratchpadOverlay'),subtitle=document.getElementById('neoScratchpadSubtitle'),canvas=document.getElementById('neoScratchCanvas'),bgCanvas=document.getElementById('neoScratchBackgroundCanvas'),stickyLayer=document.getElementById('neoStickyLayer'),ctx=canvas.getContext('2d'),bg=bgCanvas.getContext('2d');
+let tool='pen',colour='#2f3429',width=4,template='estimation-organiser',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_estimation_v01';
+function status(msg,col){const box=document.getElementById('scratchStatus');box.style.display='block';box.style.background=col||'#e5edf4';box.textContent=msg;}
+function pt(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+function drawBackground(){bg.clearRect(0,0,920,560);bg.fillStyle='#fff';bg.fillRect(0,0,920,560);bg.save();if(template==='estimation-organiser'){const labels=['Original values','Rounded values','Estimate','What I notice'];const w=920/4;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 16px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();bg.fillText(label,i*w+w/2,50);});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}if(template==='place-value'){const labels=['Millions','Hundred thousands','Ten thousands','Thousands','Hundreds','Tens','Ones','Tenths','Hundredths'];const w=920/labels.length;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 13px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();const words=label.split(' ');words.forEach((word,j)=>bg.fillText(word,i*w+w/2,34+j*18));});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}bg.lineWidth=1;bg.strokeStyle='#e6dccb';if(template==='square-grid'||template==='coordinate-grid'){for(let x=0;x<=920;x+=28){bg.beginPath();bg.moveTo(x,0);bg.lineTo(x,560);bg.stroke();}for(let y=0;y<=560;y+=28){bg.beginPath();bg.moveTo(0,y);bg.lineTo(920,y);bg.stroke();}}if(template==='coordinate-grid'){bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(460,0);bg.lineTo(460,560);bg.moveTo(0,280);bg.lineTo(920,280);bg.stroke();}if(template==='ratio-table'){bg.strokeStyle='#cdbfa9';for(let x=80;x<=840;x+=190){bg.beginPath();bg.moveTo(x,70);bg.lineTo(x,490);bg.stroke();}for(let y=70;y<=490;y+=70){bg.beginPath();bg.moveTo(80,y);bg.lineTo(840,y);bg.stroke();}}if(template==='double-number-line'){bg.strokeStyle='#315d72';bg.lineWidth=3;[210,350].forEach(y=>{bg.beginPath();bg.moveTo(90,y);bg.lineTo(830,y);bg.stroke();for(let x=90;x<=830;x+=74){bg.beginPath();bg.moveTo(x,y-10);bg.lineTo(x,y+10);bg.stroke();}});}bg.restore();}
+function drawStroke(s){if(!s||!s.points.length)return;ctx.save();ctx.lineCap='round';ctx.lineJoin='round';if(s.tool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=Math.max(18,s.width*5);}else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=s.colour;ctx.lineWidth=s.width;}const pts=s.points;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);if(s.tool==='line'){const last=pts[pts.length-1];ctx.lineTo(last.x,last.y);}else{pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));if(pts.length===1)ctx.lineTo(pts[0].x+.1,pts[0].y+.1);}ctx.stroke();ctx.restore();}
+function renderInk(){ctx.clearRect(0,0,920,560);strokes.forEach(drawStroke);}
+function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText=`position:absolute;left:${note.x}%;top:${note.y}%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;`;const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
+function render(){drawBackground();renderInk();renderNotes();}
+function store(){try{localStorage.setItem(storageKey,JSON.stringify({template,strokes,redo,notes,colour,width}));}catch(err){}}
+function restore(){try{const s=JSON.parse(localStorage.getItem(storageKey)||'null');if(!s)return;template=s.template||template;strokes=s.strokes||[];redo=s.redo||[];notes=s.notes||[];colour=s.colour||colour;width=s.width||width;scratchTemplate.value=template;scratchColour.value=colour;scratchWidth.value=String(width);}catch(err){}}
+function updateButtons(){scratchPenBtn.style.background=tool==='pen'?'#e5f0e2':'#fff';scratchLineBtn.style.background=tool==='line'?'#e5edf4':'#fff';scratchEraserBtn.style.background=tool==='eraser'?'#e5f0e2':'#fff';canvas.style.cursor=tool==='eraser'?'cell':tool==='note'?'copy':'crosshair';}
+canvas.addEventListener('pointerdown',e=>{if(tool==='note'){const r=canvas.getBoundingClientRect();notes.push({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100,text:''});renderNotes();setScratchTool('pen');status('Sticky note added.','#fff7c7');store();e.preventDefault();return;}drawing=true;canvas.setPointerCapture(e.pointerId);const p=pt(e);current={tool,width,colour,points:tool==='line'?[p,p]:[p]};strokes.push(current);redo=[];renderInk();e.preventDefault();});
+canvas.addEventListener('pointermove',e=>{if(!drawing||!current)return;const p=pt(e);if(current.tool==='line')current.points[1]=p;else current.points.push(p);renderInk();e.preventDefault();});
+function finish(e){if(!drawing)return;drawing=false;current=null;try{canvas.releasePointerCapture(e.pointerId);}catch(err){}store();e.preventDefault();}
+canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',finish);
+window.openMathsScratchpad=function(t,sub){if(t){template=t;scratchTemplate.value=t;}subtitle.textContent=sub||'Use the Scratchpad to predict, sketch, test and revise.';overlay.hidden=false;document.body.style.overflow='hidden';render();};
+window.closeMathsScratchpad=function(){store();overlay.hidden=true;document.body.style.overflow='';};
+window.setScratchTool=function(t){tool=t;updateButtons();if(t==='line')status('Line tool: press at the start point, drag to the end point, then release.');if(t==='note')status('Click anywhere on the Scratchpad to place a sticky note.','#fff7c7');};
+window.updateScratchColour=function(){colour=scratchColour.value;store();};
+window.updateScratchWidth=function(){width=Number(scratchWidth.value);store();};
+window.changeScratchTemplate=function(v){template=v;drawBackground();store();status('Background changed. Your drawing marks are unchanged.','#e3f0df');};
+window.scratchUndo=function(){if(!strokes.length){status('Nothing to undo yet.','#fff1cf');return;}redo.push(strokes.pop());renderInk();store();};
+window.scratchRedo=function(){if(!redo.length){status('Nothing to redo yet.','#fff1cf');return;}strokes.push(redo.pop());renderInk();store();};
+window.newScratchPage=function(){if((strokes.length||notes.length)&&!confirm('Start a new Scratchpad page?'))return;strokes=[];redo=[];notes=[];render();store();status('New Scratchpad page started.');};
+window.saveScratchPage=function(){store();status('Working page saved in this browser.','#e3f0df');};
+window.clearScratchpad=function(){if(!confirm('Clear learner marks and sticky notes? The selected background will remain.'))return;strokes=[];redo=[];notes=[];render();store();status('Learner marks cleared. Background preserved.','#fff1cf');};
+window.downloadScratchImage=function(){const ex=document.createElement('canvas');ex.width=920;ex.height=560;const ec=ex.getContext('2d');ec.drawImage(bgCanvas,0,0);ec.drawImage(canvas,0,0);const link=document.createElement('a');link.download='NEO_Maths_Estimation_Scratchpad.png';link.href=ex.toDataURL('image/png');link.click();};
+restore();updateButtons();render();
+})();
+resetLab();
+</script>
+
+<script id="practiceWorkedUnlockWrapper">
+// GreenPrint compliance patch; internal lesson version v0.1.
+(function(){
+  if (window.__neoWorkedUnlockInstalled) return;
+  window.__neoWorkedUnlockInstalled = true;
+  const promptSeen = Array(PRACTICE.length).fill(false);
+  const hintSeen = Array(PRACTICE.length).fill(false);
+  const attempts = Array(PRACTICE.length).fill(0);
+
+  function currentIdx(){ return practiceIndex; }
+  function workedUnlocked(i){
+    return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
+  }
+  function button(){
+    return document.getElementById('practiceWorkedBtn');
+  }
+  function notice(){
+    return document.getElementById('practiceWorkedNotice');
+  }
+  function lockMessage(i){
+    const parts = [];
+    if (!promptSeen[i]) parts.push('use the Socratic prompt');
+    if (!hintSeen[i]) parts.push('use the hint');
+    const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
+    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+  }
+  function updateWorkedButton(){
+    const i = currentIdx();
+    const btn = button();
+    if (!btn) return;
+    const unlocked = workedUnlocked(i);
+    btn.disabled = !unlocked;
+    btn.style.opacity = unlocked ? '1' : '.5';
+    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+    const n = notice();
+    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+  }
+
+  const oldRender = renderPractice;
+  renderPractice = function(){
+    oldRender();
+    updateWorkedButton();
+  };
+
+  const oldPrompt = pPrompt;
+  pPrompt = function(){
+    promptSeen[currentIdx()] = true;
+    oldPrompt();
+    updateWorkedButton();
+  };
+
+  const oldHint = pHint;
+  pHint = function(){
+    hintSeen[currentIdx()] = true;
+    oldHint();
+    updateWorkedButton();
+  };
+
+  const oldCheck = pCheck;
+  pCheck = function(){
+    const answer = document.getElementById('practiceAnswer');
+    if (answer && answer.value.trim()) {
+      attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
+    }
+    oldCheck();
+    updateWorkedButton();
+  };
+
+  const oldSolution = pSolution;
+  pSolution = function(){
+    const i = currentIdx();
+    if (!workedUnlocked(i)) {
+      const fb = document.getElementById('practiceFeedback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.className = 'feedback';
+        fb.textContent = lockMessage(i);
+      }
+      updateWorkedButton();
+      return;
+    }
+    oldSolution();
+    updateWorkedButton();
+  };
+
+  updateWorkedButton();
+})();
+</script>
+
+</body>
+</html>

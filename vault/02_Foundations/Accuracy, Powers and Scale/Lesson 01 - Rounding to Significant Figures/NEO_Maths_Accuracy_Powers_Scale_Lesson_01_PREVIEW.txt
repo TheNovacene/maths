@@ -1,0 +1,11 @@
+NEO Mathematics - Foundations
+Accuracy, Powers and Scale - Lesson 1
+Which Digits Matter? Rounding to Significant Figures
+
+Live lesson preview:
+https://neo-foundations-rounding-sf.jinxy2358.chatgpt.site
+
+This preview is separate from the NEO GitHub repository and existing live NEO site.
+Lesson package version: 0.1
+GreenPrint basis: v1.1
+Reviewed: 16 July 2026

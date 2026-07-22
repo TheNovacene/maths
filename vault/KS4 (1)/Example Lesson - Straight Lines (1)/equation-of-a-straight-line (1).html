@@ -1,0 +1,1796 @@
+<!--
+  NEO Mathematics KS4 — Straight-Line Graphs
+  Interactive lesson + practice companion
+  Cornerstones: Connection, Movement, Creativity, Reflection, Rest, Nutrition
+  Includes:
+  • Interactive Gradient and Intercept Explorer
+  • Match the Equation, Table, Graph and Story
+  • Line Detective
+  • Human Graph Story Builder
+  • In-page progressive Practice Companion
+-->
+
+<div id="lessonView">
+
+  <div style="font-family:Arial, sans-serif; max-width:1000px; margin:auto; padding:22px; background:#f7f3ea; color:#2f3429; line-height:1.55; border-radius:18px;">
+
+    <h1 style="margin-bottom:6px; color:#3f5f45;">
+      NEO Mathematics KS4: Straight-Line Graphs
+    </h1>
+
+    <h2 style="margin-top:0; color:#6a7f4e; font-size:1.35em;">
+      Driving Question:
+      <em>Can a line tell the story of change?</em>
+    </h2>
+
+    <div style="background:#fffaf0; padding:15px; border-left:6px solid #d8b26e; border-radius:12px; margin:18px 0;">
+
+      <p style="margin-top:0;">
+        <strong>Lesson focus:</strong>
+        interpreting and drawing straight-line graphs using equations of the form <strong>y = mx + c</strong>.
+      </p>
+
+      <p>
+        <strong>Stepping Stones:</strong>
+        connect equations, tables and graphs; identify gradient as rate of change; identify the y-intercept as starting value;
+        interpret positive, negative and zero gradients; write equations of straight lines; and explain what a linear model means in context.
+      </p>
+
+      <p style="margin-bottom:0;">
+        <strong>NEO Cornerstones:</strong>
+        Connection, Movement, Creativity, Reflection, Rest and Nutrition.
+      </p>
+
+    </div>
+
+
+    <details open style="background:#e8f0e3; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌿 Connection — How are the equation, table and graph connected?
+      </summary>
+
+      <h3>The structure of a straight line</h3>
+
+      <p>
+        Many straight-line graphs can be written in the form:
+      </p>
+
+      <p style="font-size:1.5em; text-align:center; background:#fffaf0; padding:12px; border-radius:10px;">
+        <strong>y = mx + c</strong>
+      </p>
+
+      <ul>
+        <li><strong>m</strong> is the <strong>gradient</strong>. It tells us how much y changes when x increases by 1.</li>
+        <li><strong>c</strong> is the <strong>y-intercept</strong>. It tells us where the line crosses the y-axis.</li>
+      </ul>
+
+      <p style="background:#f8f4ee; padding:12px; border-radius:10px;">
+        A line is a relationship. It connects every x-value to a y-value.
+        A table shows some of the pairs. A graph shows the whole relationship visually.
+      </p>
+
+      <h3>Quick connection check</h3>
+
+      <p>
+        For the equation <strong>y = 2x + 3</strong>:
+      </p>
+
+      <ul>
+        <li>The gradient is <strong>2</strong>.</li>
+        <li>The y-intercept is <strong>3</strong>.</li>
+        <li>The graph crosses the y-axis at <strong>(0, 3)</strong>.</li>
+        <li>Each time x increases by 1, y increases by 2.</li>
+      </ul>
+
+    </details>
+
+
+    <details style="background:#e5eef2; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🚶 Movement — How does a line move when m and c change?
+      </summary>
+
+      <h3>Interactive investigation 1: Gradient and Intercept Explorer</h3>
+
+      <p>
+        Change the gradient <strong>m</strong> and intercept <strong>c</strong>. Watch how the line changes.
+      </p>
+
+      <div id="graphExplorerApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end;">
+
+          <div style="flex:1; min-width:220px;">
+            <label for="gradientInput" style="display:block; margin-bottom:6px;">
+              <strong>Gradient, m</strong>
+            </label>
+            <input id="gradientInput"
+                   type="range"
+                   min="-5"
+                   max="5"
+                   step="1"
+                   value="2"
+                   oninput="updateGraphExplorer()"
+                   style="width:100%;">
+            <div style="background:#ffffff; padding:8px; border-radius:8px; margin-top:6px;">
+              m = <strong id="gradientValue">2</strong>
+            </div>
+          </div>
+
+          <div style="flex:1; min-width:220px;">
+            <label for="interceptInput" style="display:block; margin-bottom:6px;">
+              <strong>Y-intercept, c</strong>
+            </label>
+            <input id="interceptInput"
+                   type="range"
+                   min="-5"
+                   max="5"
+                   step="1"
+                   value="3"
+                   oninput="updateGraphExplorer()"
+                   style="width:100%;">
+            <div style="background:#ffffff; padding:8px; border-radius:8px; margin-top:6px;">
+              c = <strong id="interceptValue">3</strong>
+            </div>
+          </div>
+
+          <button type="button"
+                  onclick="randomLineExplorer()"
+                  style="padding:10px 14px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            🎲 Random line
+          </button>
+
+        </div>
+
+        <div style="background:#fffaf0; margin-top:14px; padding:14px; border-radius:10px; text-align:center;">
+          <strong>Equation:</strong>
+          <span id="explorerEquation" style="font-size:1.35em; margin-left:8px;">y = 2x + 3</span>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:16px; align-items:flex-start;">
+
+          <div style="flex:1; min-width:320px; background:#ffffff; padding:12px; border-radius:12px;">
+            <svg id="graphSvg" width="320" height="320" viewBox="0 0 320 320" style="width:100%; max-width:420px; display:block; margin:auto; background:#ffffff; border:1px solid #cdbfa9; border-radius:8px;"></svg>
+          </div>
+
+          <div style="flex:1; min-width:280px;">
+            <h4 style="margin-top:0;">Table of values</h4>
+            <div id="explorerTable"></div>
+
+            <div id="explorerMeaning" style="background:#ffffff; padding:12px; border-radius:10px; margin-top:12px;"></div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:14px; background:#ffffff; padding:12px; border-radius:10px;">
+          <label for="graphExplorerReflection" style="display:block; margin-bottom:6px;">
+            <strong>What changes when you adjust m? What changes when you adjust c?</strong>
+          </label>
+
+          <textarea id="graphExplorerReflection"
+                    rows="3"
+                    placeholder="Example: When m changes, the steepness changes. When c changes..."
+                    style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+          <button type="button"
+                  onclick="checkGraphExplorerReflection()"
+                  style="margin-top:10px; padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check reflection
+          </button>
+
+          <div id="graphExplorerFeedback"
+               aria-live="polite"
+               style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details style="background:#e8f0e3; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌿 Connection — Can I match the equation, table, graph and story?
+      </summary>
+
+      <h3>Interactive investigation 2: Representation Matcher</h3>
+
+      <p>
+        Match the story to the correct equation, table and graph description.
+      </p>
+
+      <div id="representationMatcherApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <p id="matcherLabel" style="text-transform:uppercase; color:#3f5f45; letter-spacing:1px; font-weight:bold;"></p>
+
+        <div id="matcherStory" style="background:#ffffff; padding:14px; border-radius:10px; margin-bottom:14px;"></div>
+
+        <label for="matcherEquation" style="display:block; margin:14px 0 6px;">
+          <strong>Choose the equation</strong>
+        </label>
+        <select id="matcherEquation" style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;"></select>
+
+        <label for="matcherTable" style="display:block; margin:14px 0 6px;">
+          <strong>Choose the table description</strong>
+        </label>
+        <select id="matcherTable" style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;"></select>
+
+        <label for="matcherGraph" style="display:block; margin:14px 0 6px;">
+          <strong>Choose the graph description</strong>
+        </label>
+        <select id="matcherGraph" style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;"></select>
+
+        <label for="matcherReason" style="display:block; margin:14px 0 6px;">
+          <strong>Explain your match</strong>
+        </label>
+        <textarea id="matcherReason"
+                  rows="3"
+                  placeholder="Example: The starting value is..., and the amount changes by..."
+                  style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="showMatcherPrompt()"
+                  style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">
+            🤔 Socratic prompt
+          </button>
+
+          <button type="button"
+                  onclick="showMatcherHint()"
+                  style="padding:9px 13px; background:#f8f1d8; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            💡 Hint
+          </button>
+
+          <button type="button"
+                  onclick="checkMatcher()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check match
+          </button>
+
+          <button type="button"
+                  onclick="showMatcherSolution()"
+                  style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            👀 Worked solution
+          </button>
+
+        </div>
+
+        <div id="matcherSupport"
+             aria-live="polite"
+             style="display:none; margin-top:14px; background:#f7f2e9; padding:12px; border-radius:9px;"></div>
+
+        <div id="matcherFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:14px;">
+          <button id="matcherPrevious"
+                  type="button"
+                  onclick="previousMatcherQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #738697; border-radius:8px; cursor:pointer;">
+            ← Previous
+          </button>
+
+          <button id="matcherNext"
+                  type="button"
+                  onclick="nextMatcherQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #54718a; border-radius:8px; cursor:pointer;">
+            Next →
+          </button>
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details style="background:#ece7f2; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🪞 Reflection — Can I become a line detective?
+      </summary>
+
+      <h3>Interactive investigation 3: Line Detective</h3>
+
+      <p>
+        Use the clues to identify the gradient, the intercept and the equation of the line.
+      </p>
+
+      <div id="lineDetectiveApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <p id="detectiveLabel" style="text-transform:uppercase; color:#604f75; letter-spacing:1px; font-weight:bold;"></p>
+
+        <div id="detectiveQuestion" style="background:#ffffff; padding:14px; border-radius:10px; margin-bottom:14px;"></div>
+
+        <label for="detectiveGradient" style="display:block; margin:14px 0 6px;">
+          <strong>Gradient, m</strong>
+        </label>
+        <input id="detectiveGradient"
+               type="text"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <label for="detectiveIntercept" style="display:block; margin:14px 0 6px;">
+          <strong>Y-intercept, c</strong>
+        </label>
+        <input id="detectiveIntercept"
+               type="text"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <label for="detectiveEquation" style="display:block; margin:14px 0 6px;">
+          <strong>Equation of the line</strong>
+        </label>
+        <input id="detectiveEquation"
+               type="text"
+               placeholder="Example: y = 2x + 3"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="showDetectivePrompt()"
+                  style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">
+            🤔 Socratic prompt
+          </button>
+
+          <button type="button"
+                  onclick="showDetectiveHint()"
+                  style="padding:9px 13px; background:#f8f1d8; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            💡 Hint
+          </button>
+
+          <button type="button"
+                  onclick="checkDetective()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check my line
+          </button>
+
+          <button type="button"
+                  onclick="showDetectiveSolution()"
+                  style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            👀 Worked solution
+          </button>
+
+        </div>
+
+        <div id="detectiveSupport"
+             aria-live="polite"
+             style="display:none; margin-top:14px; background:#f7f2e9; padding:12px; border-radius:9px;"></div>
+
+        <div id="detectiveFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:14px;">
+          <button id="detectivePrevious"
+                  type="button"
+                  onclick="previousDetectiveQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #738697; border-radius:8px; cursor:pointer;">
+            ← Previous
+          </button>
+
+          <button id="detectiveNext"
+                  type="button"
+                  onclick="nextDetectiveQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #54718a; border-radius:8px; cursor:pointer;">
+            Next →
+          </button>
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details style="background:#f1e9dc; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🎨 Creativity — Can I create a human story for a graph?
+      </summary>
+
+      <h3>Interactive investigation 4: Human Graph Story Builder</h3>
+
+      <p>
+        Build your own linear model. Decide what x and y mean, then explain the story your line tells.
+      </p>
+
+      <div id="graphStoryApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:14px;">
+
+          <div style="flex:1; min-width:220px;">
+            <label for="storyTitle" style="display:block; margin-bottom:6px;">
+              <strong>Model title</strong>
+            </label>
+            <input id="storyTitle"
+                   type="text"
+                   placeholder="Example: Saving for a bike"
+                   oninput="updateStoryPreview()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+          <div style="flex:1; min-width:220px;">
+            <label for="storyContext" style="display:block; margin-bottom:6px;">
+              <strong>Context</strong>
+            </label>
+            <select id="storyContext"
+                    onchange="setStoryContext(); updateStoryPreview();"
+                    style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+              <option value="saving">Saving money</option>
+              <option value="walking">Walking distance</option>
+              <option value="temperature">Temperature change</option>
+              <option value="food">Food/event cost</option>
+              <option value="custom">My own context</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:14px;">
+
+          <div style="flex:1; min-width:220px;">
+            <label for="storyXMeaning" style="display:block; margin-bottom:6px;">
+              <strong>What does x represent?</strong>
+            </label>
+            <input id="storyXMeaning"
+                   type="text"
+                   value="number of weeks"
+                   oninput="updateStoryPreview()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+          <div style="flex:1; min-width:220px;">
+            <label for="storyYMeaning" style="display:block; margin-bottom:6px;">
+              <strong>What does y represent?</strong>
+            </label>
+            <input id="storyYMeaning"
+                   type="text"
+                   value="total money saved in pounds"
+                   oninput="updateStoryPreview()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:14px;">
+
+          <div style="flex:1; min-width:220px;">
+            <label for="storyGradient" style="display:block; margin-bottom:6px;">
+              <strong>Gradient, m</strong>
+            </label>
+            <input id="storyGradient"
+                   type="number"
+                   step="1"
+                   value="5"
+                   oninput="updateStoryPreview()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+          <div style="flex:1; min-width:220px;">
+            <label for="storyIntercept" style="display:block; margin-bottom:6px;">
+              <strong>Starting value, c</strong>
+            </label>
+            <input id="storyIntercept"
+                   type="number"
+                   step="1"
+                   value="10"
+                   oninput="updateStoryPreview()"
+                   style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          </div>
+
+        </div>
+
+        <label for="storyExplanation" style="display:block; margin:14px 0 6px;">
+          <strong>Explain the human story of your graph</strong>
+        </label>
+
+        <textarea id="storyExplanation"
+                  rows="4"
+                  placeholder="Example: The person starts with £10 and saves £5 each week..."
+                  oninput="updateStoryPreview()"
+                  style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+        <label for="storyLimitation" style="display:block; margin:14px 0 6px;">
+          <strong>Where might the model stop making sense?</strong>
+        </label>
+
+        <textarea id="storyLimitation"
+                  rows="3"
+                  placeholder="Example: This model may stop working if..."
+                  oninput="updateStoryPreview()"
+                  style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="updateStoryPreview()"
+                  style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            🧾 Generate model card
+          </button>
+
+          <button type="button"
+                  onclick="checkStoryBuilder()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Review my model
+          </button>
+
+          <button type="button"
+                  onclick="randomStoryLine()"
+                  style="padding:9px 13px; background:#fffaf0; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            🎲 Random m and c
+          </button>
+
+        </div>
+
+        <div id="storyPreview"
+             style="margin-top:18px; background:#ffffff; padding:14px; border-radius:10px;"></div>
+
+        <div id="storyFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:13px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+      </div>
+
+    </details>
+
+
+    <details style="background:#eef0df; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌙 Rest — Where is the pause?
+      </summary>
+
+      <h3>Calm graph-reading routine</h3>
+
+      <p>
+        When a graph or equation feels crowded, pause and use this routine:
+      </p>
+
+      <ol>
+        <li>Find the equation form: <strong>y = mx + c</strong>.</li>
+        <li>Identify <strong>c</strong>: where the line starts on the y-axis.</li>
+        <li>Identify <strong>m</strong>: how much y changes for each 1 step in x.</li>
+        <li>Make a small table of values.</li>
+        <li>Plot carefully or interpret the story.</li>
+        <li>Check whether your answer makes sense.</li>
+      </ol>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <strong>Helpful self-talk:</strong>
+        “I do not need to understand the whole graph at once. I can find the start, then find the change.”
+      </p>
+
+    </details>
+
+
+    <details style="background:#e7efe8; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🥣 Nutrition — How can linear models support real choices?
+      </summary>
+
+      <h3>Lines and life decisions</h3>
+
+      <p>
+        Straight-line graphs can model real situations: saving money, food costs, travel, energy use, phone contracts and event planning.
+        The gradient often shows the <strong>ongoing rate</strong>. The intercept often shows a <strong>starting value or fixed cost</strong>.
+      </p>
+
+      <div style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <h4>Mini inquiry</h4>
+        <p>
+          A community lunch has a fixed room cost and then a cost per person for food.
+        </p>
+
+        <p style="font-size:1.2em; text-align:center;">
+          <strong>Total cost = cost per person × number of people + room cost</strong>
+        </p>
+
+        <p>
+          In this model:
+        </p>
+
+        <ul>
+          <li>The gradient is the cost per person.</li>
+          <li>The intercept is the room cost.</li>
+          <li>The graph helps organisers predict and plan.</li>
+        </ul>
+
+        <p>
+          <strong>Reflection sentence:</strong>
+          “A straight-line model helps with planning because…”
+        </p>
+      </div>
+
+    </details>
+
+
+    <details style="background:#f3eadc; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🛠 Final Task — Linear Model Portfolio Piece
+      </summary>
+
+      <h3>Assignment</h3>
+
+      <p>
+        Create a <strong>Linear Model Portfolio Piece</strong> showing how a straight-line graph can tell the story of change.
+      </p>
+
+      <p>Your portfolio piece must include:</p>
+
+      <ul>
+        <li>a real or invented context</li>
+        <li>a clearly defined x-variable and y-variable</li>
+        <li>an equation in the form <strong>y = mx + c</strong></li>
+        <li>a table of at least five values</li>
+        <li>a graph or graph sketch</li>
+        <li>an explanation of the gradient</li>
+        <li>an explanation of the y-intercept</li>
+        <li>a reflection on where the model is useful and where it might stop making sense</li>
+      </ul>
+
+      <p>
+        <strong>Filename pattern:</strong>
+        <code>NEO_Maths_StraightLineGraphs_[FirstName]_[Date]</code>
+      </p>
+
+      <h3>Assessment Rubric</h3>
+
+      <div style="overflow-x:auto;">
+
+        <table style="width:100%; min-width:900px; border-collapse:collapse; background:#fffaf0;">
+
+          <tr>
+            <th style="border:1px solid #c8b99a; padding:8px;">Criteria</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Emerging</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Developing</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Secure</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Mastering</th>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Understanding</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can identify parts of a straight-line equation with support.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can identify gradient and intercept in familiar examples.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can explain how m and c affect a straight-line graph.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can connect equation, table, graph and context fluently.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Application</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can plot or read some points with support.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can complete tables and draw simple straight lines.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can form and interpret linear equations in context.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can create, test and evaluate a linear model independently.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Communication</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can label parts of a graph or table.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can describe what the graph shows.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can explain gradient and intercept using mathematical language.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can communicate the model clearly and compare representations.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Reflection</strong>
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can say one thing I noticed.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can describe what helped me interpret the line.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can reflect on what the model shows and what it hides.
+            </td>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can evaluate the usefulness and limitations of a linear model.
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+
+    </details>
+
+
+    <div style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;">
+
+      <h2 style="margin-top:0; color:#46533d; font-size:1.35em;">
+        ✏️ Ready to strengthen your skills?
+      </h2>
+
+      <p>
+        Open the practice activity to work through eight questions that gradually increase in challenge.
+        You can return to the lesson whenever you need the graph explorer, matcher, line detective or story builder.
+      </p>
+
+      <button type="button"
+              onclick="openPracticeSession()"
+              style="padding:13px 22px; background:#5c6b4f; color:#ffffff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">
+        Open Practice Activity →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="practiceView" hidden>
+
+  <div style="font-family:Georgia, 'Times New Roman', serif; max-width:960px; margin:auto; padding:24px; background:#f8f4ee; color:#2f2f2f; line-height:1.55; border-radius:18px;">
+
+    <h1 style="margin-bottom:5px;">
+      Straight-Line Graphs Practice
+    </h1>
+
+    <h2 style="margin-top:0; color:#66605a; font-size:1.2em;">
+      KS4 Mathematics · Progressive Practice Companion
+    </h2>
+
+    <button type="button"
+            onclick="returnToLesson()"
+            style="padding:10px 16px; background:#ffffff; color:#315d72; border:1px solid #315d72; border-radius:9px; font-weight:bold; cursor:pointer;">
+      ← Return to the Lesson
+    </button>
+
+    <div style="background:#e5edf4; border-left:6px solid #315d72; padding:18px; border-radius:12px; margin:22px 0;">
+
+      <p style="margin-top:0;">
+        Work through eight questions involving tables of values, gradient, intercept, equations and real-world linear models.
+      </p>
+
+      <p style="margin-bottom:0;">
+        Use support in this order:
+        <strong>🤔 Socratic prompt</strong>,
+        <strong>💡 Hint</strong>,
+        <strong>✅ Check my answer</strong>,
+        then <strong>👀 Worked solution</strong>.
+      </p>
+
+    </div>
+
+    <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:18px;">
+      <strong>Progress:</strong>
+      <div id="practiceDots" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+    </div>
+
+    <div style="background:#ffffff; border:1px solid #cdbfa9; border-radius:12px; padding:22px;">
+
+      <p id="practiceLabel" style="text-transform:uppercase; color:#8a6d43; letter-spacing:1px; font-weight:bold;"></p>
+
+      <div id="practiceQuestion" style="font-size:1.15em; margin-bottom:16px;"></div>
+
+      <label for="practiceWorking" style="display:block; margin-bottom:6px;">
+        Your working:
+      </label>
+
+      <textarea id="practiceWorking"
+                rows="4"
+                style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #cdbfa9; border-radius:8px; font:inherit;"></textarea>
+
+      <label for="practiceAnswer" style="display:block; margin:14px 0 6px;">
+        Your final answer:
+      </label>
+
+      <input id="practiceAnswer"
+             type="text"
+             autocomplete="off"
+             style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #cdbfa9; border-radius:8px; font:inherit;">
+
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;">
+
+        <button type="button"
+                onclick="showPracticePrompt()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #70466b; background:#f3e6f1; cursor:pointer;">
+          🤔 Socratic prompt
+        </button>
+
+        <button type="button"
+                onclick="showPracticeHint()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #8a7932; background:#f8f1d8; cursor:pointer;">
+          💡 Hint
+        </button>
+
+        <button type="button"
+                onclick="checkPracticeAnswer()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #4d6b47; background:#e5f0e2; cursor:pointer;">
+          ✅ Check my answer
+        </button>
+
+        <button id="practiceSolutionButton"
+                type="button"
+                onclick="showPracticeSolution()"
+                disabled
+                style="padding:10px 14px; border-radius:8px; border:1px solid #aaa29a; background:#eeeae5; color:#9a938b; cursor:not-allowed;">
+          👀 Worked solution
+        </button>
+
+      </div>
+
+      <div id="practiceSupport"
+           aria-live="polite"
+           style="display:none; margin-top:16px; background:#f7f2e9; padding:14px; border-radius:10px;"></div>
+
+      <div id="practiceFeedback"
+           aria-live="polite"
+           style="display:none; margin-top:12px; padding:14px; border-radius:10px; font-weight:bold;"></div>
+
+    </div>
+
+    <div style="display:flex; justify-content:space-between; gap:12px; margin-top:16px;">
+
+      <button id="practicePrevious"
+              type="button"
+              onclick="previousPracticeQuestion()"
+              style="padding:10px 16px; border-radius:8px; border:1px solid #8c9cab; background:#ffffff; cursor:pointer;">
+        ← Previous
+      </button>
+
+      <button id="practiceNext"
+              type="button"
+              onclick="nextPracticeQuestion()"
+              style="padding:10px 16px; border-radius:8px; border:1px solid #54718a; background:#ffffff; cursor:pointer;">
+        Next →
+      </button>
+
+    </div>
+
+    <details style="background:#f5edcf; border-left:6px solid #9d8530; padding:16px; border-radius:12px; margin-top:24px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        💛 Reflection
+      </summary>
+
+      <ul>
+        <li>A gradient I interpreted correctly was...</li>
+        <li>A y-intercept helped me because...</li>
+        <li>A representation that helped me most was...</li>
+        <li>A question I would like to revisit is...</li>
+      </ul>
+
+    </details>
+
+    <div style="text-align:center; margin-top:20px;">
+
+      <button type="button"
+              onclick="returnToLesson()"
+              style="padding:11px 18px; background:#315d72; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+        ← Return to the Lesson
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+  function openPracticeSession() {
+    document.getElementById("lessonView").hidden = true;
+    document.getElementById("practiceView").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function returnToLesson() {
+    document.getElementById("practiceView").hidden = true;
+    document.getElementById("lessonView").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function normaliseText(value) {
+    return String(value)
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/−/g, "-")
+      .replace(/–/g, "-")
+      .replace(/£/g, "")
+      .replace(/,/g, "")
+      .trim();
+  }
+
+  function normaliseEquation(value) {
+    return normaliseText(value)
+      .replace(/\*/g, "")
+      .replace(/yx/g, "y=x");
+  }
+
+  function parseNumber(value) {
+    const cleaned = normaliseText(value).replace(/x/g, "").replace(/×/g, "");
+
+    if (cleaned.indexOf("/") !== -1) {
+      const parts = cleaned.split("/");
+      if (parts.length === 2) {
+        const numerator = Number(parts[0]);
+        const denominator = Number(parts[1]);
+        if (Number.isFinite(numerator) && Number.isFinite(denominator) && denominator !== 0) {
+          return numerator / denominator;
+        }
+      }
+    }
+
+    return Number(cleaned);
+  }
+
+  function nearlyEqual(a, b) {
+    return Math.abs(a - b) < 0.000001;
+  }
+
+  function formatSigned(value) {
+    if (value > 0) return "+ " + value;
+    if (value < 0) return "- " + Math.abs(value);
+    return "+ 0";
+  }
+
+  function equationString(m, c) {
+    let mPart = "";
+    if (m === 1) mPart = "x";
+    else if (m === -1) mPart = "-x";
+    else mPart = m + "x";
+
+    if (c === 0) return "y = " + mPart;
+    return "y = " + mPart + " " + formatSigned(c);
+  }
+
+  function expectedEquationForms(m, c) {
+    const forms = [];
+    const mPart = m === 1 ? "x" : m === -1 ? "-x" : m + "x";
+
+    if (c === 0) {
+      forms.push("y=" + mPart);
+    } else if (c > 0) {
+      forms.push("y=" + mPart + "+" + c);
+    } else {
+      forms.push("y=" + mPart + c);
+    }
+
+    return forms.map(normaliseEquation);
+  }
+</script>
+
+
+<script>
+  function updateGraphExplorer() {
+    const m = Number(document.getElementById("gradientInput").value);
+    const c = Number(document.getElementById("interceptInput").value);
+
+    document.getElementById("gradientValue").textContent = m;
+    document.getElementById("interceptValue").textContent = c;
+    document.getElementById("explorerEquation").textContent = equationString(m, c);
+
+    drawLineGraph("graphSvg", m, c);
+    buildExplorerTable(m, c);
+
+    let movementText = "";
+    if (m > 0) movementText = "The line rises from left to right because the gradient is positive.";
+    if (m < 0) movementText = "The line falls from left to right because the gradient is negative.";
+    if (m === 0) movementText = "The line is horizontal because the gradient is zero.";
+
+    document.getElementById("explorerMeaning").innerHTML =
+      "<p><strong>Gradient:</strong> " + m + ". Each time x increases by 1, y changes by " + m + ".</p>" +
+      "<p><strong>Y-intercept:</strong> " + c + ". The line crosses the y-axis at (0, " + c + ").</p>" +
+      "<p>" + movementText + "</p>";
+  }
+
+  function buildExplorerTable(m, c) {
+    const xs = [-2, -1, 0, 1, 2];
+    let html = "<table style='width:100%; border-collapse:collapse; background:#ffffff;'>";
+    html += "<tr><th style='border:1px solid #b9b09f; padding:7px;'>x</th><th style='border:1px solid #b9b09f; padding:7px;'>y = " + m + "x " + formatSigned(c) + "</th></tr>";
+
+    xs.forEach(function (x) {
+      const y = m * x + c;
+      html += "<tr><td style='border:1px solid #b9b09f; padding:7px; text-align:center;'>" + x + "</td><td style='border:1px solid #b9b09f; padding:7px; text-align:center;'>" + y + "</td></tr>";
+    });
+
+    html += "</table>";
+    document.getElementById("explorerTable").innerHTML = html;
+  }
+
+  function drawLineGraph(svgId, m, c) {
+    const svg = document.getElementById(svgId);
+    const size = 320;
+    const scale = 24;
+    const origin = size / 2;
+
+    svg.innerHTML = "";
+
+    function sx(x) { return origin + x * scale; }
+    function sy(y) { return origin - y * scale; }
+
+    for (let i = -6; i <= 6; i++) {
+      const gridV = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      gridV.setAttribute("x1", sx(i));
+      gridV.setAttribute("y1", 0);
+      gridV.setAttribute("x2", sx(i));
+      gridV.setAttribute("y2", size);
+      gridV.setAttribute("stroke", i === 0 ? "#4f5b45" : "#e0dbcf");
+      gridV.setAttribute("stroke-width", i === 0 ? "2" : "1");
+      svg.appendChild(gridV);
+
+      const gridH = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      gridH.setAttribute("x1", 0);
+      gridH.setAttribute("y1", sy(i));
+      gridH.setAttribute("x2", size);
+      gridH.setAttribute("y2", sy(i));
+      gridH.setAttribute("stroke", i === 0 ? "#4f5b45" : "#e0dbcf");
+      gridH.setAttribute("stroke-width", i === 0 ? "2" : "1");
+      svg.appendChild(gridH);
+    }
+
+    for (let i = -6; i <= 6; i++) {
+      if (i !== 0) {
+        const xt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        xt.setAttribute("x", sx(i) - 4);
+        xt.setAttribute("y", origin + 15);
+        xt.setAttribute("font-size", "10");
+        xt.textContent = i;
+        svg.appendChild(xt);
+
+        const yt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        yt.setAttribute("x", origin + 5);
+        yt.setAttribute("y", sy(i) + 4);
+        yt.setAttribute("font-size", "10");
+        yt.textContent = i;
+        svg.appendChild(yt);
+      }
+    }
+
+    const x1 = -7;
+    const y1 = m * x1 + c;
+    const x2 = 7;
+    const y2 = m * x2 + c;
+
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", sx(x1));
+    line.setAttribute("y1", sy(y1));
+    line.setAttribute("x2", sx(x2));
+    line.setAttribute("y2", sy(y2));
+    line.setAttribute("stroke", "#315d72");
+    line.setAttribute("stroke-width", "3");
+    svg.appendChild(line);
+
+    [-2, -1, 0, 1, 2].forEach(function (x) {
+      const y = m * x + c;
+      if (y >= -7 && y <= 7) {
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("cx", sx(x));
+        dot.setAttribute("cy", sy(y));
+        dot.setAttribute("r", "4");
+        dot.setAttribute("fill", "#7a5a2e");
+        svg.appendChild(dot);
+      }
+    });
+  }
+
+  function randomLineExplorer() {
+    const mChoices = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+    const cChoices = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+    document.getElementById("gradientInput").value = mChoices[Math.floor(Math.random() * mChoices.length)];
+    document.getElementById("interceptInput").value = cChoices[Math.floor(Math.random() * cChoices.length)];
+    updateGraphExplorer();
+  }
+
+  function checkGraphExplorerReflection() {
+    const text = normaliseText(document.getElementById("graphExplorerReflection").value);
+    const box = document.getElementById("graphExplorerFeedback");
+
+    box.style.display = "block";
+
+    const hasGradient = text.indexOf("gradient") !== -1 || text.indexOf("steep") !== -1 || text.indexOf("slope") !== -1;
+    const hasIntercept = text.indexOf("intercept") !== -1 || text.indexOf("start") !== -1 || text.indexOf("cross") !== -1;
+    const hasChange = text.indexOf("change") !== -1 || text.indexOf("move") !== -1;
+
+    if (text.length < 20) {
+      box.style.background = "#fff1cf";
+      box.textContent = "Write a little more. Try naming both m and c.";
+    } else if (hasGradient && hasIntercept && hasChange) {
+      box.style.background = "#e3f0df";
+      box.textContent = "Strong reflection. You explained how m and c control the line.";
+    } else {
+      box.style.background = "#fff1cf";
+      box.textContent = "Good start. Strengthen it by saying that m changes steepness/rate and c changes the y-intercept/start.";
+    }
+  }
+
+  updateGraphExplorer();
+</script>
+
+
+<script>
+(function () {
+  const questions = [
+    {
+      label: "Match 1 of 4",
+      story: "A taxi costs £3 before the journey starts, then £2 for each mile.",
+      equation: "y = 2x + 3",
+      table: "When x = 0, y = 3; when x = 1, y = 5; when x = 2, y = 7.",
+      graph: "The line crosses the y-axis at 3 and rises by 2 for every 1 step across.",
+      prompt: "Which number is the starting cost? Which number is the cost per mile?",
+      hint: "The fixed starting cost is the intercept. The cost per mile is the gradient."
+    },
+    {
+      label: "Match 2 of 4",
+      story: "A water tank starts with 10 litres and loses 1 litre each minute.",
+      equation: "y = -x + 10",
+      table: "When x = 0, y = 10; when x = 1, y = 9; when x = 2, y = 8.",
+      graph: "The line crosses the y-axis at 10 and falls by 1 for every 1 step across.",
+      prompt: "Is the amount increasing or decreasing?",
+      hint: "Losing water means the gradient is negative."
+    },
+    {
+      label: "Match 3 of 4",
+      story: "A learner already has 5 points and gains 4 points for each completed challenge.",
+      equation: "y = 4x + 5",
+      table: "When x = 0, y = 5; when x = 1, y = 9; when x = 2, y = 13.",
+      graph: "The line crosses the y-axis at 5 and rises by 4 for every 1 step across.",
+      prompt: "What does the learner have before any new challenge is completed?",
+      hint: "Already has means starting value."
+    },
+    {
+      label: "Match 4 of 4",
+      story: "A candle is 12 cm tall and burns down by 2 cm each hour.",
+      equation: "y = -2x + 12",
+      table: "When x = 0, y = 12; when x = 1, y = 10; when x = 2, y = 8.",
+      graph: "The line crosses the y-axis at 12 and falls by 2 for every 1 step across.",
+      prompt: "What is the starting height? What is the change each hour?",
+      hint: "Burns down means the height decreases."
+    }
+  ];
+
+  const equationOptions = ["y = 2x + 3", "y = -x + 10", "y = 4x + 5", "y = -2x + 12"];
+  const tableOptions = questions.map(q => q.table);
+  const graphOptions = questions.map(q => q.graph);
+
+  let current = 0;
+  const saved = questions.map(() => ({ equation: "", table: "", graph: "", reason: "" }));
+  const completed = new Array(questions.length).fill(false);
+
+  function populateSelect(selectId, options) {
+    const select = document.getElementById(selectId);
+    select.innerHTML = "<option value=''>Choose</option>";
+    options.forEach(function (option) {
+      const opt = document.createElement("option");
+      opt.value = option;
+      opt.textContent = option;
+      select.appendChild(opt);
+    });
+  }
+
+  function saveCurrentMatcher() {
+    saved[current].equation = document.getElementById("matcherEquation").value;
+    saved[current].table = document.getElementById("matcherTable").value;
+    saved[current].graph = document.getElementById("matcherGraph").value;
+    saved[current].reason = document.getElementById("matcherReason").value;
+  }
+
+  function renderMatcher() {
+    populateSelect("matcherEquation", equationOptions);
+    populateSelect("matcherTable", tableOptions);
+    populateSelect("matcherGraph", graphOptions);
+
+    document.getElementById("matcherLabel").textContent = questions[current].label;
+    document.getElementById("matcherStory").innerHTML = "<strong>Story:</strong> " + questions[current].story;
+
+    document.getElementById("matcherEquation").value = saved[current].equation;
+    document.getElementById("matcherTable").value = saved[current].table;
+    document.getElementById("matcherGraph").value = saved[current].graph;
+    document.getElementById("matcherReason").value = saved[current].reason;
+
+    document.getElementById("matcherSupport").style.display = "none";
+    document.getElementById("matcherFeedback").style.display = "none";
+
+    const previous = document.getElementById("matcherPrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("matcherNext").textContent =
+      current === questions.length - 1 ? "Finish" : "Next →";
+  }
+
+  window.showMatcherPrompt = function () {
+    const box = document.getElementById("matcherSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>🤔 Socratic prompt:</strong> " + questions[current].prompt;
+  };
+
+  window.showMatcherHint = function () {
+    const box = document.getElementById("matcherSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>💡 Hint:</strong> " + questions[current].hint;
+  };
+
+  window.checkMatcher = function () {
+    saveCurrentMatcher();
+
+    const q = questions[current];
+    const feedback = document.getElementById("matcherFeedback");
+    feedback.style.display = "block";
+
+    if (!saved[current].equation || !saved[current].table || !saved[current].graph || saved[current].reason.trim().length < 12) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Choose an equation, table and graph description, then add a short explanation.";
+      return;
+    }
+
+    const correct =
+      saved[current].equation === q.equation &&
+      saved[current].table === q.table &&
+      saved[current].graph === q.graph;
+
+    if (correct) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent = "Correct. You matched the starting value and rate of change across representations.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent = "Not quite yet. Look for the starting value first, then the change each step.";
+    }
+  };
+
+  window.showMatcherSolution = function () {
+    const q = questions[current];
+    const box = document.getElementById("matcherSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>👀 Worked solution:</strong><br>" +
+      "Equation: <strong>" + q.equation + "</strong><br>" +
+      "Table: " + q.table + "<br>" +
+      "Graph: " + q.graph;
+  };
+
+  window.previousMatcherQuestion = function () {
+    if (current === 0) return;
+    saveCurrentMatcher();
+    current--;
+    renderMatcher();
+  };
+
+  window.nextMatcherQuestion = function () {
+    saveCurrentMatcher();
+
+    if (current < questions.length - 1) {
+      current++;
+      renderMatcher();
+    } else {
+      const feedback = document.getElementById("matcherFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "You have completed " +
+        completed.filter(Boolean).length +
+        " of 4 representation matches correctly.";
+    }
+  };
+
+  renderMatcher();
+})();
+</script>
+
+
+<script>
+(function () {
+  const clues = [
+    {
+      label: "Line detective 1 of 4",
+      question: "The line crosses the y-axis at <strong>3</strong>. Each time x increases by 1, y increases by <strong>2</strong>.",
+      m: 2,
+      c: 3,
+      prompt: "Which clue tells you c? Which clue tells you m?",
+      hint: "Crosses the y-axis tells you c. Change each step tells you m."
+    },
+    {
+      label: "Line detective 2 of 4",
+      question: "The line crosses the y-axis at <strong>5</strong>. Each time x increases by 1, y decreases by <strong>1</strong>.",
+      m: -1,
+      c: 5,
+      prompt: "If y decreases as x increases, what sign is the gradient?",
+      hint: "A decreasing line has a negative gradient."
+    },
+    {
+      label: "Line detective 3 of 4",
+      question: "The line passes through <strong>(0, -2)</strong> and <strong>(1, 2)</strong>.",
+      m: 4,
+      c: -2,
+      prompt: "The point where x = 0 gives you the y-intercept.",
+      hint: "From (0, -2) to (1, 2), y increases by 4."
+    },
+    {
+      label: "Line detective 4 of 4",
+      question: "The line passes through <strong>(0, 4)</strong> and <strong>(2, -2)</strong>.",
+      m: -3,
+      c: 4,
+      prompt: "Find the change in y divided by the change in x.",
+      hint: "From x = 0 to x = 2, y changes from 4 to -2. That is -6 over 2."
+    }
+  ];
+
+  let current = 0;
+  const saved = clues.map(() => ({ m: "", c: "", equation: "" }));
+  const completed = new Array(clues.length).fill(false);
+
+  function saveCurrentDetective() {
+    saved[current].m = document.getElementById("detectiveGradient").value;
+    saved[current].c = document.getElementById("detectiveIntercept").value;
+    saved[current].equation = document.getElementById("detectiveEquation").value;
+  }
+
+  function renderDetective() {
+    document.getElementById("detectiveLabel").textContent = clues[current].label;
+    document.getElementById("detectiveQuestion").innerHTML = clues[current].question;
+
+    document.getElementById("detectiveGradient").value = saved[current].m;
+    document.getElementById("detectiveIntercept").value = saved[current].c;
+    document.getElementById("detectiveEquation").value = saved[current].equation;
+
+    document.getElementById("detectiveSupport").style.display = "none";
+    document.getElementById("detectiveFeedback").style.display = "none";
+
+    const previous = document.getElementById("detectivePrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("detectiveNext").textContent =
+      current === clues.length - 1 ? "Finish" : "Next →";
+  }
+
+  window.showDetectivePrompt = function () {
+    const box = document.getElementById("detectiveSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>🤔 Socratic prompt:</strong> " + clues[current].prompt;
+  };
+
+  window.showDetectiveHint = function () {
+    const box = document.getElementById("detectiveSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>💡 Hint:</strong> " + clues[current].hint;
+  };
+
+  window.checkDetective = function () {
+    saveCurrentDetective();
+
+    const q = clues[current];
+    const feedback = document.getElementById("detectiveFeedback");
+    feedback.style.display = "block";
+
+    const mLearner = parseNumber(saved[current].m);
+    const cLearner = parseNumber(saved[current].c);
+    const eqLearner = normaliseEquation(saved[current].equation);
+    const eqCorrect = expectedEquationForms(q.m, q.c).indexOf(eqLearner) !== -1;
+
+    if (!Number.isFinite(mLearner) || !Number.isFinite(cLearner) || !saved[current].equation.trim()) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Enter the gradient, intercept and equation.";
+      return;
+    }
+
+    if (nearlyEqual(mLearner, q.m) && nearlyEqual(cLearner, q.c) && eqCorrect) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent = "Correct. You identified m, c and the equation.";
+    } else if (nearlyEqual(mLearner, q.m) && nearlyEqual(cLearner, q.c)) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Your gradient and intercept are correct. Recheck how you wrote the equation.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent = "Not quite yet. Find c from the y-axis start, then find m from the change in y over the change in x.";
+    }
+  };
+
+  window.showDetectiveSolution = function () {
+    const q = clues[current];
+    const box = document.getElementById("detectiveSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>👀 Worked solution:</strong><br>" +
+      "Gradient m = <strong>" + q.m + "</strong><br>" +
+      "Intercept c = <strong>" + q.c + "</strong><br>" +
+      "Equation: <strong>" + equationString(q.m, q.c) + "</strong>";
+  };
+
+  window.previousDetectiveQuestion = function () {
+    if (current === 0) return;
+    saveCurrentDetective();
+    current--;
+    renderDetective();
+  };
+
+  window.nextDetectiveQuestion = function () {
+    saveCurrentDetective();
+
+    if (current < clues.length - 1) {
+      current++;
+      renderDetective();
+    } else {
+      const feedback = document.getElementById("detectiveFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "You have completed " +
+        completed.filter(Boolean).length +
+        " of 4 line detective challenges correctly.";
+    }
+  };
+
+  renderDetective();
+})();
+</script>
+
+
+<script>
+  function setStoryContext() {
+    const context = document.getElementById("storyContext").value;
+
+    if (context === "saving") {
+      document.getElementById("storyTitle").value = "Saving money";
+      document.getElementById("storyXMeaning").value = "number of weeks";
+      document.getElementById("storyYMeaning").value = "total money saved in pounds";
+      document.getElementById("storyGradient").value = 5;
+      document.getElementById("storyIntercept").value = 10;
+    }
+
+    if (context === "walking") {
+      document.getElementById("storyTitle").value = "Walking distance";
+      document.getElementById("storyXMeaning").value = "time in minutes";
+      document.getElementById("storyYMeaning").value = "distance from home in metres";
+      document.getElementById("storyGradient").value = 60;
+      document.getElementById("storyIntercept").value = 100;
+    }
+
+    if (context === "temperature") {
+      document.getElementById("storyTitle").value = "Cooling temperature";
+      document.getElementById("storyXMeaning").value = "time in minutes";
+      document.getElementById("storyYMeaning").value = "temperature in degrees Celsius";
+      document.getElementById("storyGradient").value = -2;
+      document.getElementById("storyIntercept").value = 80;
+    }
+
+    if (context === "food") {
+      document.getElementById("storyTitle").value = "Community lunch cost";
+      document.getElementById("storyXMeaning").value = "number of people";
+      document.getElementById("storyYMeaning").value = "total cost in pounds";
+      document.getElementById("storyGradient").value = 4;
+      document.getElementById("storyIntercept").value = 25;
+    }
+  }
+
+  function updateStoryPreview() {
+    const title = document.getElementById("storyTitle").value.trim() || "My Linear Model";
+    const xMeaning = document.getElementById("storyXMeaning").value.trim() || "x";
+    const yMeaning = document.getElementById("storyYMeaning").value.trim() || "y";
+    const m = Number(document.getElementById("storyGradient").value);
+    const c = Number(document.getElementById("storyIntercept").value);
+    const explanation = document.getElementById("storyExplanation").value.trim() || "Add your explanation above.";
+    const limitation = document.getElementById("storyLimitation").value.trim() || "Add a limitation above.";
+
+    const preview = document.getElementById("storyPreview");
+
+    if (!Number.isFinite(m) || !Number.isFinite(c)) {
+      preview.innerHTML = "<p><strong>Enter valid numbers for m and c to generate your model card.</strong></p>";
+      return;
+    }
+
+    let table = "<table style='width:100%; border-collapse:collapse; background:#fffaf0;'>";
+    table += "<tr><th style='border:1px solid #c8b99a; padding:7px;'>x</th><th style='border:1px solid #c8b99a; padding:7px;'>y</th></tr>";
+
+    [0, 1, 2, 3, 4].forEach(function (x) {
+      table += "<tr><td style='border:1px solid #c8b99a; padding:7px; text-align:center;'>" + x + "</td><td style='border:1px solid #c8b99a; padding:7px; text-align:center;'>" + (m * x + c) + "</td></tr>";
+    });
+
+    table += "</table>";
+
+    preview.innerHTML =
+      "<h3 style='margin-top:0; color:#7a5a2e;'>" + title + "</h3>" +
+      "<p><strong>Equation:</strong> " + equationString(m, c) + "</p>" +
+      "<p><strong>x represents:</strong> " + xMeaning + "</p>" +
+      "<p><strong>y represents:</strong> " + yMeaning + "</p>" +
+      "<p><strong>Gradient meaning:</strong> y changes by " + m + " for every 1 more " + xMeaning + ".</p>" +
+      "<p><strong>Intercept meaning:</strong> when x = 0, y = " + c + ".</p>" +
+      table +
+      "<p><strong>Story:</strong> " + explanation + "</p>" +
+      "<p><strong>Limitation:</strong> " + limitation + "</p>";
+  }
+
+  function checkStoryBuilder() {
+    const title = document.getElementById("storyTitle").value.trim();
+    const xMeaning = document.getElementById("storyXMeaning").value.trim();
+    const yMeaning = document.getElementById("storyYMeaning").value.trim();
+    const m = Number(document.getElementById("storyGradient").value);
+    const c = Number(document.getElementById("storyIntercept").value);
+    const explanation = document.getElementById("storyExplanation").value.trim();
+    const limitation = document.getElementById("storyLimitation").value.trim();
+    const feedback = document.getElementById("storyFeedback");
+
+    feedback.style.display = "block";
+
+    if (!title || !xMeaning || !yMeaning || !Number.isFinite(m) || !Number.isFinite(c)) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Complete the title, variables, gradient and intercept.";
+    } else if (explanation.length < 25) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Add a fuller story explaining what the gradient and intercept mean.";
+    } else if (limitation.length < 20) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Add a limitation: where might this model stop making sense?";
+    } else {
+      feedback.style.background = "#e3f0df";
+      feedback.textContent = "Strong model. You created a linear equation, connected the variables and reflected on the model.";
+    }
+  }
+
+  function randomStoryLine() {
+    const mChoices = [-4, -3, -2, -1, 1, 2, 3, 4, 5];
+    const cChoices = [-5, -2, 0, 3, 5, 10, 20];
+    document.getElementById("storyGradient").value = mChoices[Math.floor(Math.random() * mChoices.length)];
+    document.getElementById("storyIntercept").value = cChoices[Math.floor(Math.random() * cChoices.length)];
+    updateStoryPreview();
+  }
+
+  updateStoryPreview();
+</script>
+
+
+<script>
+(function () {
+  const questions = [
+    {
+      label: "Question 1 of 8 · Identify gradient",
+      text: "In the equation <strong>y = 3x + 2</strong>, what is the gradient?",
+      answers: ["3"],
+      prompt: "In y = mx + c, which letter represents the gradient?",
+      hint: "The gradient is the number multiplying x.",
+      solution: "In y = 3x + 2, the gradient is 3."
+    },
+    {
+      label: "Question 2 of 8 · Identify intercept",
+      text: "In the equation <strong>y = -2x + 5</strong>, what is the y-intercept?",
+      answers: ["5"],
+      prompt: "In y = mx + c, which number tells you where the graph crosses the y-axis?",
+      hint: "The y-intercept is c.",
+      solution: "In y = -2x + 5, c = 5, so the y-intercept is 5."
+    },
+    {
+      label: "Question 3 of 8 · Complete a table",
+      text: "For <strong>y = 2x + 1</strong>, what is y when <strong>x = 4</strong>?",
+      answers: ["9"],
+      prompt: "Substitute x = 4 into the equation.",
+      hint: "2 × 4 + 1 = ?",
+      solution: "y = 2 × 4 + 1 = 8 + 1 = 9."
+    },
+    {
+      label: "Question 4 of 8 · Interpret a graph story",
+      text: "A line has equation <strong>y = 4x + 10</strong>. In a savings model, x is weeks and y is pounds. How much money was there at the start?",
+      answers: ["10", "£10"],
+      prompt: "At the start means when x = 0.",
+      hint: "The starting value is the y-intercept.",
+      solution: "The intercept is 10, so there was £10 at the start."
+    },
+    {
+      label: "Question 5 of 8 · Positive or negative gradient",
+      text: "A line falls from left to right. Is its gradient positive, negative or zero?",
+      answers: ["negative"],
+      prompt: "As x increases, is y increasing or decreasing?",
+      hint: "A decreasing line has a negative gradient.",
+      solution: "The gradient is negative."
+    },
+    {
+      label: "Question 6 of 8 · Find an equation from clues",
+      text: "A line has gradient <strong>5</strong> and y-intercept <strong>-1</strong>. Write its equation.",
+      answers: ["y=5x-1"],
+      prompt: "Use y = mx + c.",
+      hint: "m = 5 and c = -1.",
+      solution: "The equation is y = 5x - 1."
+    },
+    {
+      label: "Question 7 of 8 · Find gradient from two points",
+      text: "A line passes through <strong>(0, 2)</strong> and <strong>(1, 6)</strong>. What is the gradient?",
+      answers: ["4"],
+      prompt: "How much does y change when x increases from 0 to 1?",
+      hint: "6 - 2 = 4.",
+      solution: "The gradient is 4."
+    },
+    {
+      label: "Question 8 of 8 · Challenge",
+      text: "A lunch event costs <strong>y = 6x + 30</strong>, where x is the number of people and y is the total cost in pounds. What does the 6 mean?",
+      answers: ["costperperson", "£6perperson", "6perperson", "sixpoundsperperson"],
+      prompt: "Which part of y = mx + c shows the repeated rate?",
+      hint: "The gradient is the cost added for each extra person.",
+      solution: "The 6 means the cost increases by £6 for each extra person."
+    }
+  ];
+
+  let current = 0;
+  const savedWorking = new Array(questions.length).fill("");
+  const savedAnswers = new Array(questions.length).fill("");
+  const attempts = new Array(questions.length).fill(0);
+  const completed = new Array(questions.length).fill(false);
+
+  function saveCurrentPractice() {
+    savedWorking[current] = document.getElementById("practiceWorking").value;
+    savedAnswers[current] = document.getElementById("practiceAnswer").value;
+  }
+
+  function renderPracticeDots() {
+    const dots = document.getElementById("practiceDots");
+    dots.innerHTML = "";
+
+    for (let index = 0; index < questions.length; index++) {
+      const dot = document.createElement("span");
+      dot.textContent = index + 1;
+      dot.style.display = "inline-flex";
+      dot.style.alignItems = "center";
+      dot.style.justifyContent = "center";
+      dot.style.width = "28px";
+      dot.style.height = "28px";
+      dot.style.borderRadius = "50%";
+      dot.style.fontWeight = "bold";
+      dot.style.border = "1px solid #8c9cab";
+
+      if (completed[index]) {
+        dot.style.background = "#e3f0df";
+      } else if (index === current) {
+        dot.style.background = "#e5edf4";
+      } else {
+        dot.style.background = "#ffffff";
+      }
+
+      dots.appendChild(dot);
+    }
+  }
+
+  function renderPracticeQuestion() {
+    const q = questions[current];
+
+    document.getElementById("practiceLabel").textContent = q.label;
+    document.getElementById("practiceQuestion").innerHTML = q.text;
+    document.getElementById("practiceWorking").value = savedWorking[current];
+    document.getElementById("practiceAnswer").value = savedAnswers[current];
+
+    document.getElementById("practiceSupport").style.display = "none";
+    document.getElementById("practiceFeedback").style.display = "none";
+
+    const solutionButton = document.getElementById("practiceSolutionButton");
+    solutionButton.disabled = attempts[current] < 1;
+    solutionButton.style.cursor = attempts[current] < 1 ? "not-allowed" : "pointer";
+    solutionButton.style.background = attempts[current] < 1 ? "#eeeae5" : "#e5edf4";
+    solutionButton.style.color = attempts[current] < 1 ? "#9a938b" : "#2f2f2f";
+    solutionButton.style.borderColor = attempts[current] < 1 ? "#aaa29a" : "#315d72";
+
+    const previous = document.getElementById("practicePrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("practiceNext").textContent =
+      current === questions.length - 1 ? "Finish" : "Next →";
+
+    renderPracticeDots();
+  }
+
+  window.showPracticePrompt = function () {
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>🤔 Socratic prompt:</strong> " + questions[current].prompt;
+  };
+
+  window.showPracticeHint = function () {
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>💡 Hint:</strong> " + questions[current].hint;
+  };
+
+  window.checkPracticeAnswer = function () {
+    saveCurrentPractice();
+
+    const learner = normaliseEquation(savedAnswers[current]);
+    const feedback = document.getElementById("practiceFeedback");
+    feedback.style.display = "block";
+
+    attempts[current]++;
+
+    const correct = questions[current].answers.some(function (answer) {
+      return normaliseEquation(answer) === learner;
+    });
+
+    if (!learner) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Enter a final answer before checking.";
+    } else if (correct) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent = "Correct. Your straight-line graph reasoning is working.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent = "Not quite yet. Identify the gradient, intercept, or substitute carefully.";
+    }
+
+    renderPracticeQuestion();
+    document.getElementById("practiceFeedback").style.display = "block";
+
+    if (!learner) {
+      document.getElementById("practiceFeedback").style.background = "#fff1cf";
+      document.getElementById("practiceFeedback").textContent = "Enter a final answer before checking.";
+    } else if (correct) {
+      document.getElementById("practiceFeedback").style.background = "#e3f0df";
+      document.getElementById("practiceFeedback").textContent = "Correct. Your straight-line graph reasoning is working.";
+    } else {
+      document.getElementById("practiceFeedback").style.background = "#f6dddd";
+      document.getElementById("practiceFeedback").textContent = "Not quite yet. Identify the gradient, intercept, or substitute carefully.";
+    }
+  };
+
+  window.showPracticeSolution = function () {
+    attempts[current]++;
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML = "<strong>👀 Worked solution:</strong> " + questions[current].solution;
+    renderPracticeQuestion();
+    document.getElementById("practiceSupport").style.display = "block";
+    document.getElementById("practiceSupport").innerHTML = "<strong>👀 Worked solution:</strong> " + questions[current].solution;
+  };
+
+  window.previousPracticeQuestion = function () {
+    if (current === 0) return;
+    saveCurrentPractice();
+    current--;
+    renderPracticeQuestion();
+  };
+
+  window.nextPracticeQuestion = function () {
+    saveCurrentPractice();
+
+    if (current < questions.length - 1) {
+      current++;
+      renderPracticeQuestion();
+    } else {
+      const feedback = document.getElementById("practiceFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "Practice complete. You answered " +
+        completed.filter(Boolean).length +
+        " of 8 questions correctly. Return to the lesson to revise or strengthen any areas.";
+    }
+  };
+
+  renderPracticeQuestion();
+})();
+</script>

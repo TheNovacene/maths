@@ -1,0 +1,229 @@
+{
+  "unit": "NEO Maths Y9 Pythagoras 10-Session Unit v0.1",
+  "lesson_count": 10,
+  "lesson_checks": [
+    {
+      "file": "01_the_harmony_of_numbers.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "02_what_can_three_squares_reveal.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "03_how_can_a_theorem_reveal_a_hidden_length.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "04_hidden_lengths_practice_studio.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "05_can_we_measure_what_we_cannot_reach.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "06_how_can_one_proof_speak_for_every_right_triangle.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "07_when_harmony_breaks.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "08_are_pythagorean_triples_random.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "09_are_squares_really_essential.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    },
+    {
+      "file": "10_what_makes_pythagoras_more_than_a_formula.html",
+      "js_syntax": true,
+      "driving_question": true,
+      "stepping_stones": true,
+      "all_cornerstones": true,
+      "final_task": true,
+      "explicit_entry": true,
+      "noticing_goals": true,
+      "conceptual_bridges": true,
+      "scratchpad_layered": true,
+      "practice_open": true,
+      "practice_return": true,
+      "rubric": true
+    }
+  ],
+  "containment_checks": {
+    "session2_viewbox": {
+      "x_min": -70,
+      "x_max": 580,
+      "y_min": -10,
+      "y_max": 570,
+      "construction_bounds": {
+        "x_min": -36,
+        "x_max": 476,
+        "y_min": 19,
+        "y_max": 531
+      },
+      "contained": true
+    },
+    "session6_perigal_viewbox": {
+      "x_min": 0,
+      "x_max": 620,
+      "y_min": 0,
+      "y_max": 520,
+      "construction_bounds": {
+        "x_min": 30.7,
+        "x_max": 527.3,
+        "y_min": 44.2,
+        "y_max": 457.4
+      },
+      "contained": true
+    },
+    "session9_shape_lab_viewbox": {
+      "x_min": -130,
+      "x_max": 970,
+      "y_min": -290,
+      "y_max": 810,
+      "construction_bounds_at_extremes": {
+        "x_min": -98,
+        "x_max": 902,
+        "y_min": -252,
+        "y_max": 748
+      },
+      "contained": true
+    }
+  },
+  "missing_relative_assets": [],
+  "guidance_pdfs": [
+    {
+      "file": "NEO_Maths_Y9_Pythagoras_Learner_Guide.pdf",
+      "pages": 2,
+      "render_checked": true
+    },
+    {
+      "file": "NEO_Maths_Y9_Pythagoras_Supporting_Adult_Guidance.pdf",
+      "pages": 3,
+      "render_checked": true
+    }
+  ],
+  "special_interactives": {
+    "S02": "Dynamic square-area explorer",
+    "S03": "Hidden Length Route Builder",
+    "S05": "Is Pythagoras allowed here?",
+    "S06": [
+      "Perigal Drag-and-Drop Proof",
+      "Tilted-Square Rearrangement"
+    ],
+    "S07": [
+      "Chase sqrt(2)",
+      "Staged proof by contradiction"
+    ],
+    "S08": [
+      "Triple Family Explorer",
+      "Triple Hunt",
+      "Triple Machine"
+    ],
+    "S09": "Visual Shape Laboratory"
+  }
+}

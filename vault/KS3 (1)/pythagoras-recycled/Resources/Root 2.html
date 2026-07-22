@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+    <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <title>Web Sketchpad</title>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/jquery-2.1.0.min.js"></script>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/wsp-min.js"></script>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/wsp-runner.js"></script>
+            <script charset="utf-8" type="text/javascript">
+                var sketch = {
+  "metadata" : {
+    "width" : 1335,
+    "height" : 706,
+    "wsp-version" : "4.8.0",
+    "exporter-version" : "5.10",
+    "exporter-build" : "3058",
+    "exporter-debug" : false,
+    "original-document-name" : "Root 2",
+    "start-page" : "1"
+    },
+  "resources" : {
+    "fontList" : [
+      "\"Times New Roman\", serif",
+      "\"Comic Sans MS\", ",
+      "\"Arial\", sans-serif"
+      ]
+    },
+  "pages" : [
+    {
+      "metadata" : {
+        "title" : "1",
+        "id" : "1",
+        "sketchRect" : {
+          "top" : 39,
+          "left" : 114,
+          "bottom" : 745,
+          "right" : 1449
+          }
+        },
+      "preferences" : {
+        "units" : {
+          "length" : "cm",
+          "angle" : "deg"
+          },
+        "precision" : {
+          "length" : 2,
+          "angle" : 2,
+          "scalar" : 5
+          },
+        "colorableComponents" : {
+          "Interior" : {
+            "color" : "green"
+            },
+          "ActionButton" : {
+            "color" : "rgb(255,128,0)"
+            }
+          },
+        "text" : {
+          "mathItalicization" : true,
+          "textTypes" : {
+            "Label" : {
+              "font-family" : "\"Times New Roman\", serif",
+              "font-size" : 36
+              },
+            "Caption" : {
+              "font-family" : "\"Comic Sans MS\", ",
+              "font-size" : 24,
+              "font-weight" : "bold"
+              },
+            "Measurement" : {
+              "font-family" : "\"Times New Roman\", serif",
+              "font-weight" : "bold"
+              },
+            "Action" : {
+              "label" : {
+                "font-family" : "\"Arial\", sans-serif",
+                "font-size" : 24
+                }
+              },
+            "Table" : {
+              "font-family" : "\"Arial\", sans-serif"
+              },
+            "AxisTicksAndOptionalLabel" : {
+              "font-family" : "\"Arial\", sans-serif"
+              }
+            }
+          }
+        },
+      "objects" : {
+        "1" : {
+          "kind" : "Point",
+          "genus" : "Point",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 194,
+              "y" : 325
+              }
+            },
+          "label" : "A",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : -30,
+              "labelOffsetY" : -2
+              }
+            }
+          },
+        "2" : {
+          "kind" : "Point",
+          "genus" : "Point",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 426,
+              "y" : 326
+              }
+            },
+          "label" : "B",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : 8,
+              "labelOffsetY" : -19
+              }
+            }
+          },
+        "3" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "p0" : "1",
+            "p1" : "2"
+            },
+          "constraint" : "Segment"
+          },
+        "4" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "source" : "3",
+            "center" : "1"
+            },
+          "angle" : -1.5707963267949001,
+          "constraint" : "Rotate",
+          "shouldAutogenerateLabel" : true
+          },
+        "5" : {
+          "kind" : "Point",
+          "genus" : "Point",
+          "parents" : {
+            "source" : "2",
+            "center" : "1"
+            },
+          "angle" : -1.5707963267949001,
+          "constraint" : "Rotate",
+          "label" : "D",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : -38,
+              "labelOffsetY" : -20
+              }
+            }
+          },
+        "6" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "source" : "4",
+            "center" : "5"
+            },
+          "angle" : -1.5707963267949001,
+          "constraint" : "Rotate",
+          "shouldAutogenerateLabel" : true
+          },
+        "7" : {
+          "kind" : "Point",
+          "genus" : "Point",
+          "parents" : {
+            "source" : "1",
+            "center" : "5"
+            },
+          "angle" : -1.5707963267949001,
+          "constraint" : "Rotate",
+          "label" : "C",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : -19,
+              "labelOffsetY" : -44
+              }
+            }
+          },
+        "8" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "source" : "6",
+            "center" : "7"
+            },
+          "angle" : -1.5707963267949001,
+          "constraint" : "Rotate",
+          "shouldAutogenerateLabel" : true
+          },
+        "9" : {
+          "kind" : "Point",
+          "genus" : "Point",
+          "parents" : {
+            "source" : "5",
+            "center" : "7"
+            },
+          "angle" : -1.5707963267949001,
+          "constraint" : "Rotate",
+          "shouldAutogenerateLabel" : true,
+          "label" : "D'"
+          },
+        "10" : {
+          "kind" : "Polygon",
+          "genus" : "Quadrilateral",
+          "parents" : {
+            "0" : "1",
+            "1" : "9",
+            "2" : "7",
+            "3" : "5"
+            },
+          "constraint" : "PolygonFromPoints",
+          "label" : "a",
+          "style" : {
+            "layerOrder" : 0
+            }
+          },
+        "11" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "p0" : "5",
+            "p1" : "9"
+            },
+          "constraint" : "Segment",
+          "label" : "a",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : -11,
+              "labelOffsetY" : 5,
+              "labelParam" : 0.43339526242452392
+              }
+            }
+          },
+        "12" : {
+          "kind" : "Text",
+          "genus" : "Caption",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 110,
+              "y" : 189
+              }
+            },
+          "textMFS" : "<VL<T'1unit'><0><F19xx3Ax20x8x>>"
+          },
+        "13" : {
+          "kind" : "Text",
+          "genus" : "Caption",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 266,
+              "y" : 329
+              }
+            },
+          "textMFS" : "<VL<T'1unit'><0><F19xx3Ax20x8x>>"
+          },
+        "14" : {
+          "kind" : "Point",
+          "genus" : "Intersection",
+          "parents" : {
+            "line0" : "4",
+            "line1" : "3"
+            },
+          "constraint" : "Intersection"
+          },
+        "15" : {
+          "kind" : "AngleMarker",
+          "genus" : "AngleMarker",
+          "parents" : {
+            "p0" : "5",
+            "p1" : "14",
+            "p2" : "2"
+            },
+          "constraint" : "AngleMarker_Simple",
+          "style" : {
+            "show-angle-direction" : true
+            }
+          },
+        "16" : {
+          "kind" : "Text",
+          "genus" : "Caption",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 308,
+              "y" : 168
+              }
+            },
+          "textMFS" : "<VL<T'???'>>"
+          },
+        "17" : {
+          "kind" : "Expression",
+          "genus" : "ScalarParameter",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 513,
+              "y" : 105
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "1.41406",
+          "latentVisibility" : true,
+          "label" : "x",
+          "style" : {
+            "precision" : 5,
+            "nameOrigin" : "namedFromLabel",
+            "contenteditable" : true
+            }
+          },
+        "18" : {
+          "kind" : "Expression",
+          "genus" : "ScalarParameter",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 643,
+              "y" : 105
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "1.41431",
+          "latentVisibility" : true,
+          "label" : "y",
+          "style" : {
+            "precision" : 5,
+            "nameOrigin" : "namedFromLabel",
+            "contenteditable" : true
+            }
+          },
+        "19" : {
+          "kind" : "Expression",
+          "genus" : "ScalarMeasure",
+          "parents" : {
+            "0" : "17",
+            "1" : "18"
+            },
+          "constraint" : "Calculation",
+          "geom" : {
+            "loc" : {
+              "x" : 1047,
+              "y" : 86
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "(@0+@1)\/2",
+          "label" : "m[1]",
+          "style" : {
+            "hidden" : true,
+            "precision" : 2,
+            "nameOrigin" : "namedFromTemplate"
+            }
+          },
+        "20" : {
+          "kind" : "Expression",
+          "genus" : "ScalarMeasure",
+          "parents" : {
+            "0" : "19"
+            },
+          "constraint" : "Calculation",
+          "geom" : {
+            "loc" : {
+              "x" : 838,
+              "y" : 99
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "@0",
+          "latentVisibility" : true,
+          "style" : {
+            "precision" : 5,
+            "nameOrigin" : "namedFromTemplate"
+            }
+          },
+        "21" : {
+          "kind" : "Expression",
+          "genus" : "ScalarMeasure",
+          "parents" : {
+            "0" : "20"
+            },
+          "constraint" : "Calculation",
+          "geom" : {
+            "loc" : {
+              "x" : 1011,
+              "y" : 102
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "@0^2",
+          "latentVisibility" : true,
+          "style" : {
+            "precision" : 5,
+            "nameOrigin" : "namedFromTemplate"
+            }
+          },
+        "22" : {
+          "kind" : "Table",
+          "genus" : "UserEditableTable",
+          "parents" : {
+            "0" : "17",
+            "1" : "18",
+            "2" : "20",
+            "3" : "21"
+            },
+          "constraint" : "UserTabulation",
+          "geom" : {
+            "loc" : {
+              "x" : 965,
+              "y" : 210
+              }
+            },
+          "latentVisibility" : true,
+          "rows" : [
+            [
+              "<H<T'1.00000'>>",
+              "<H<T'1.50000'>>",
+              "<H<T'1.25000'>>",
+              "<H<T'1.56250'>>"
+              ],
+            [
+              "<H<T'1.37500'>>",
+              "<H<T'1.50000'>>",
+              "<H<T'1.43750'>>",
+              "<H<T'2.06641'>>"
+              ],
+            [
+              "<H<T'1.37500'>>",
+              "<H<T'1.43750'>>",
+              "<H<T'1.40625'>>",
+              "<H<T'1.97754'>>"
+              ],
+            [
+              "<H<T'1.40625'>>",
+              "<H<T'1.43750'>>",
+              "<H<T'1.42188'>>",
+              "<H<T'2.02173'>>"
+              ],
+            [
+              "<H<T'1.40625'>>",
+              "<H<T'1.42188'>>",
+              "<H<T'1.41406'>>",
+              "<H<T'1.99958'>>"
+              ],
+            [
+              "<H<T'1.41406'>>",
+              "<H<T'1.42188'>>",
+              "<H<T'1.41797'>>",
+              "<H<T'2.01064'>>"
+              ],
+            [
+              "<H<T'1.41406'>>",
+              "<H<T'1.41797'>>",
+              "<H<T'1.41602'>>",
+              "<H<T'2.00510'>>"
+              ],
+            [
+              "<H<T'1.41406'>>",
+              "<H<T'1.41602'>>",
+              "<H<T'1.41504'>>",
+              "<H<T'2.00234'>>"
+              ],
+            [
+              "<H<T'1.41406'>>",
+              "<H<T'1.41504'>>",
+              "<H<T'1.41455'>>",
+              "<H<T'2.00095'>>"
+              ],
+            [
+              "<H<T'1.41406'>>",
+              "<H<T'1.41455'>>",
+              "<H<T'1.41431'>>",
+              "<H<T'2.00026'>>"
+              ],
+            [
+              "<H<T'1.41406'>>",
+              "<H<T'1.41431'>>",
+              "<H<T'1.41419'>>",
+              "<H<T'1.99992'>>"
+              ]
+            ]
+          },
+        "23" : {
+          "kind" : "Text",
+          "genus" : "Caption",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 766,
+              "y" : 100
+              }
+            },
+          "textMFS" : "<VL<H<R<T'2'>><T' '><!BB>>>",
+          "latentVisibility" : true
+          },
+        "24" : {
+          "kind" : "Button",
+          "genus" : "Action",
+          "parents" : {
+            "0" : "17",
+            "1" : "18",
+            "2" : "20",
+            "3" : "21",
+            "4" : "22",
+            "5" : "23"
+            },
+          "geom" : {
+            "loc" : {
+              "x" : 671,
+              "y" : 47
+              }
+            },
+          "label" : "The Value of the Square Root of 2",
+          "constraint" : "ActionButtonToggleHideShow",
+          "messages" : [
+            "The Value of the Square Root of 2",
+            "The Value of the Square Root of 2"
+            ],
+          "fade" : true
+          },
+        "25" : {
+          "kind" : "Text",
+          "genus" : "Caption",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 136,
+              "y" : 434
+              }
+            },
+          "textMFS" : "<VL<T'By the Pythagorean Theorem'><0><H<T'a'><+<0><T'2'>><T' = 1'><S+1<H<+<0><T'2'>><T' + '><+<S#24+1<T'1'>><S+2<T'2'>>>>>><0><H<T'a'><+<0><T'2'>><T' = 2'>><0><H<T'a = '><R<T'2'>>>>",
+          "latentVisibility" : true
+          },
+        "26" : {
+          "kind" : "Button",
+          "genus" : "Action",
+          "parents" : {
+            "0" : "25"
+            },
+          "geom" : {
+            "loc" : {
+              "x" : 184,
+              "y" : 404
+              }
+            },
+          "label" : "The value of a",
+          "constraint" : "ActionButtonToggleHideShow",
+          "messages" : [
+            "The value of a",
+            "The value of a"
+            ],
+          "fade" : true
+          }
+        }
+      }
+    ]
+  };
+            </script>
+            <style type="text/css">
+                .sketch_canvas {border: medium solid lightgray; display: inline-block;}
+            </style>
+        </head>
+        <body role="main">
+            <div class="sketch_canvas" data-var="sketch" >&nbsp;</div>
+            <footer>
+                <div class="legal">
+                    <div class="version">
+                    Exported Fri Jul 10 14:43:31 2026 by GSP 5.10 (3058).</div>
+                    <hr>
+                    <div class="copyright">Copyright &copy; 2024 KCP Technologies, a McGraw Hill Company. All rights reserved. This is a <a href="http://gsptest.scratchconsortium.com">field-test version</a> of Web Sketchpad, an internet component of <a href="http://www.dynamicgeometry.com">The Geometer’s Sketchpad<sup>&reg;</sup></a>. Commercial uses of Web Sketchpad require a license from McGraw Hill. Web Sketchpad, The Geometer’s Sketchpad, and Dynamic Geometry are trademarks and registered trademarks of McGraw Hill and KCP Technologies.</div>
+                </div>
+            </footer>
+        </body>
+    </html>
+    

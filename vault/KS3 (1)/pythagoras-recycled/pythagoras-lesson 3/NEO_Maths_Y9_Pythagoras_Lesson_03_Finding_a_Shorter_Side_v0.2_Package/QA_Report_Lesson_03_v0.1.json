@@ -1,0 +1,80 @@
+{
+  "lesson_html": "/mnt/data/NEO_Maths_Y9_Pythagoras_Lesson_03_Finding_a_Shorter_Side_v0.1_Package/NEO_Maths_Y9_Pythagoras_Lesson_03_Finding_a_Shorter_Side_v0.1.html",
+  "js_syntax_ok": true,
+  "geom_qa": [
+    {
+      "title": "Example 1: missing shorter side, hypotenuse on the right",
+      "right_dot_product": 0,
+      "hypSide": "BC",
+      "longestSide": "BC",
+      "unknownSide": "AC",
+      "lengths_px": {
+        "AB": 210.0,
+        "BC": 283.196,
+        "AC": 190.0
+      }
+    },
+    {
+      "title": "Example 2: missing shorter side, hypotenuse on the left",
+      "right_dot_product": 0,
+      "hypSide": "AC",
+      "longestSide": "AC",
+      "unknownSide": "BC",
+      "lengths_px": {
+        "AB": 290.0,
+        "BC": 140.0,
+        "AC": 322.025
+      }
+    },
+    {
+      "title": "Example 3: missing shorter side, hypotenuse as the base",
+      "right_dot_product": 0,
+      "hypSide": "AB",
+      "longestSide": "AB",
+      "unknownSide": "BC",
+      "lengths_px": {
+        "AB": 300.0,
+        "BC": 180.0,
+        "AC": 240.0
+      }
+    },
+    {
+      "title": "Example 4: missing shorter side in a tilted triangle",
+      "right_dot_product": 0,
+      "hypSide": "AC",
+      "longestSide": "AC",
+      "unknownSide": "BC",
+      "lengths_px": {
+        "AB": 120.0,
+        "BC": 225.0,
+        "AC": 255.0
+      }
+    }
+  ],
+  "greenprint_scratchpad": true,
+  "guide_buttons_present": true,
+  "dark_blue_scratchpad_present": true,
+  "focus_step_explained": true,
+  "learner_pdf": "NEO_Maths_Y9_Pythagoras_Lesson_03_Learner_Guide_v0.1.pdf",
+  "adult_pdf": "NEO_Maths_Y9_Pythagoras_Lesson_03_Supporting_Adult_Guidance_v0.1.pdf",
+  "pdf_render_results": {
+    "NEO_Maths_Y9_Pythagoras_Lesson_03_Learner_Guide_v0.1.pdf": {
+      "returncode": 0,
+      "pages": 1
+    },
+    "NEO_Maths_Y9_Pythagoras_Lesson_03_Supporting_Adult_Guidance_v0.1.pdf": {
+      "returncode": 0,
+      "pages": 2
+    }
+  },
+  "relative_link_missing": [],
+  "final_js_syntax_ok": true,
+  "package_files": [
+    "NEO_Maths_Y9_Pythagoras_Lesson_03_Finding_a_Shorter_Side_v0.1.html",
+    "NEO_Maths_Y9_Pythagoras_Lesson_03_Learner_Guide_v0.1.pdf",
+    "NEO_Maths_Y9_Pythagoras_Lesson_03_Supporting_Adult_Guidance_v0.1.pdf",
+    "QA_Report_Lesson_03_v0.1.json",
+    "README.md",
+    "index.html"
+  ]
+}

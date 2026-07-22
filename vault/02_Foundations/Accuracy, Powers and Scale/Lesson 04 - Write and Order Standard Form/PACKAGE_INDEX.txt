@@ -1,0 +1,6 @@
+NEO_Maths_Accuracy_Powers_Scale_Lesson_04_Write_and_Order_Standard_Form_v0.3_Package
+1. Lesson_04_Write_and_Order_Standard_Form_v0.3.html  (interactive lesson, Practice Companion, Scratchpad, Reconnection Routes)
+2. NEO_Maths_Accuracy_Powers_Scale_Lesson_04_Learner_Guidance.pdf
+3. NEO_Maths_Accuracy_Powers_Scale_Lesson_04_Supporting_Adult_Guidance.pdf
+4. NEO_Maths_Accuracy_Powers_Scale_Lesson_04_PREVIEW.txt
+Version reason: v0.3 fixes the Scale Explorer anchor lookup to use the true order of magnitude (coefficient included), so 8.8 x 10^3 m reads as the scale of the deepest ocean, not a football pitch. v0.2 corrected place-value language (digits move, the decimal point stays). v0.1 was the initial build.

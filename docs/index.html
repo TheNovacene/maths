@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEO Maths · GreenPrint · Nudge Education Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/neo.css" />
+</head>
+<body>
+  <header class="site">
+    <div class="wordmark">NEO by Nudge Education</div>
+    <h1 class="display">NEO <em>Maths</em></h1>
+    <p class="tagline">The GreenPrint curriculum — reasoning first, connection before curriculum. Always.</p>
+    <div class="divider"></div>
+    <nav class="crumbs" style="text-align:center; margin-top:1rem;">
+      <a href="cornerstones.html">The Six Cornerstones</a>
+    </nav>
+  </header>
+
+  <main id="app">
+    <p style="color:var(--muted); text-align:center;">Loading curriculum…</p>
+  </main>
+
+  <footer class="site">
+    <div class="neo-mark">NE<span>O</span></div>
+    <p style="margin-top:0.5rem;">Nudge Education Online · a structured online school from the team behind Nudge Education</p>
+    <p style="margin-top:0.25rem;"><a href="https://nudgeeducation.online" style="color:var(--teal-mid);">nudgeeducation.online</a></p>
+  </footer>
+
+  <script src="assets/progress.js"></script>
+  <script>
+    fetch('data/curriculum.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var app = document.getElementById('app');
+        app.innerHTML = '';
+        var progress = NEOProgress.getAll();
+
+        data.units.forEach(function (unit) {
+          var section = document.createElement('section');
+          section.className = 'unit';
+
+          var h2 = document.createElement('h2');
+          h2.className = 'unit-title';
+          h2.textContent = unit.title;
+          section.appendChild(h2);
+
+          var meta = document.createElement('p');
+          meta.className = 'unit-meta';
+          meta.textContent = unit.stage + ' · ' + unit.strand;
+          section.appendChild(meta);
+
+          var grid = document.createElement('div');
+          grid.className = 'lesson-grid';
+
+          unit.lessons.forEach(function (lesson) {
+            var card = document.createElement('a');
+            card.className = 'lesson-card' + (lesson.status === 'pending' ? ' pending' : '');
+            card.href = lesson.file;
+
+            var top = document.createElement('div');
+            top.className = 'card-top';
+
+            var num = document.createElement('span');
+            num.className = 'num';
+            num.textContent = lesson.num;
+            top.appendChild(num);
+
+            var dot = document.createElement('span');
+            dot.className = 'progress-dot';
+            var p = progress[lesson.id];
+            if (p && p.state === 'complete') { dot.classList.add('complete'); dot.title = 'Completed'; }
+            else if (p) { dot.classList.add('started'); dot.title = 'Started'; }
+            top.appendChild(dot);
+
+            card.appendChild(top);
+
+            var name = document.createElement('span');
+            name.className = 'name';
+            name.textContent = lesson.title;
+            card.appendChild(name);
+
+            if (lesson.cornerstones && lesson.cornerstones.length) {
+              var badges = document.createElement('div');
+              badges.className = 'badges';
+              lesson.cornerstones.forEach(function (cs) {
+                var b = document.createElement('span');
+                b.className = 'badge cs-' + cs.toLowerCase();
+                b.textContent = cs;
+                badges.appendChild(b);
+              });
+              card.appendChild(badges);
+            }
+
+            grid.appendChild(card);
+          });
+
+          section.appendChild(grid);
+          app.appendChild(section);
+        });
+      })
+      .catch(function () {
+        document.getElementById('app').innerHTML =
+          '<p style="color:var(--muted); text-align:center;">Could not load the curriculum index.</p>';
+      });
+  </script>
+</body>
+</html>

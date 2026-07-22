@@ -1,0 +1,48 @@
+# NEO Maths · GreenPrint
+
+**Repository:** TheNovacene/maths
+
+The working curriculum vault and public site for **NEO Maths** — the mathematics curriculum of Nudge Education Online, operated by Nudge Education Ltd.
+
+**Live site:** https://thenovacene.github.io/maths/ (once GitHub Pages is enabled)
+
+This is v2 of the NEO Maths repository. Where [neo-maths](https://github.com/TheNovacene/neo-maths) (v1) collected the open lesson library, this repository holds the **GreenPrint** curriculum build: the design records, curriculum maps, production lessons and QA materials — plus the public site that serves each lesson as an interactive webpage, connected to the Six Cornerstones and ready for progress tracking.
+
+## Structure
+
+```
+vault/      The curriculum vault, mirrored from the working Drive folder.
+            Source of truth for all curriculum materials: GreenPrint design
+            records, curriculum maps, lesson packages, guidance PDFs, QA.
+
+docs/       The GitHub Pages site.
+  index.html            Curriculum home — units and lesson cards
+  cornerstones.html     The Six Cornerstones in mathematics
+  lessons/              Interactive lesson pages (built from vault/)
+  assets/progress.js    Progress module (local-first, backend-swappable)
+  data/curriculum.json  The site's index of units and lessons
+
+scripts/
+  build_site.py         Sync vault/ → docs/lessons/ and refresh the index
+```
+
+## Updating the site
+
+1. Update or add materials in `vault/` (mirror of the Drive folder).
+2. If a lesson has a new version, point `scripts/build_site.py` at the new filename in `SOURCES`.
+3. Run `python3 scripts/build_site.py` from the repo root.
+4. Commit and push (or commit + push in GitHub Desktop). Pages redeploys automatically.
+
+## Progress tracking
+
+Every lesson page loads `assets/progress.js` (injected at build time). Today it records opened/completed state in the learner's own browser only — no accounts, no data leaves the device. The module has a single narrow interface (`NEOProgress`), so real-time progress tracking can be added later by implementing a remote backend and calling `NEOProgress.setBackend(...)` — no lesson needs to change.
+
+## Publishing (GitHub Pages)
+
+Repo Settings → Pages → Source: **Deploy from a branch** → Branch: `main`, folder `/docs`.
+
+Note: on standard GitHub plans, a Pages site is publicly viewable even when the repository is private.
+
+---
+
+Nudge Education Online · [nudgeeducation.online](https://nudgeeducation.online) · neo@nudgeeducation.co.uk

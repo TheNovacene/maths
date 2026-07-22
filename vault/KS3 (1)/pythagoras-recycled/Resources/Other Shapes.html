@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+    <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <title>Web Sketchpad</title>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/jquery-2.1.0.min.js"></script>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/wsp-min.js"></script>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/wsp-runner.js"></script>
+            <script charset="utf-8" type="text/javascript">
+                var sketch = {
+  "metadata" : {
+    "width" : 1517,
+    "height" : 1050,
+    "wsp-version" : "4.8.0",
+    "exporter-version" : "5.10",
+    "exporter-build" : "3058",
+    "exporter-debug" : false,
+    "original-document-name" : "Other Shapes",
+    "start-page" : "1"
+    },
+  "resources" : {
+    "fontList" : [
+      "\"Times New Roman\", serif",
+      "\"Comic Sans MS\", ",
+      "\"Arial\", sans-serif"
+      ]
+    },
+  "pages" : [
+    {
+      "metadata" : {
+        "title" : "1",
+        "id" : "1",
+        "sketchRect" : {
+          "top" : 123,
+          "left" : -58,
+          "bottom" : 1173,
+          "right" : 1459
+          }
+        },
+      "preferences" : {
+        "units" : {
+          "length" : "cm",
+          "angle" : "deg"
+          },
+        "precision" : {
+          "length" : 2,
+          "angle" : 2,
+          "scalar" : 2
+          },
+        "colorableComponents" : {
+          "Interior" : {
+            "color" : "yellow"
+            },
+          "ActionButton" : {
+            "color" : "rgb(255,128,0)"
+            }
+          },
+        "text" : {
+          "mathItalicization" : true,
+          "textTypes" : {
+            "Label" : {
+              "font-family" : "\"Times New Roman\", serif",
+              "font-size" : 36
+              },
+            "Caption" : {
+              "font-family" : "\"Comic Sans MS\", ",
+              "font-size" : 18,
+              "font-weight" : "bold"
+              },
+            "Measurement" : {
+              "font-family" : "\"Times New Roman\", serif",
+              "font-weight" : "bold"
+              },
+            "Action" : {
+              "label" : {
+                "font-family" : "\"Arial\", sans-serif",
+                "font-size" : 18
+                }
+              },
+            "Table" : {
+              "font-family" : "\"Arial\", sans-serif"
+              },
+            "AxisTicksAndOptionalLabel" : {
+              "font-family" : "\"Arial\", sans-serif"
+              }
+            }
+          }
+        },
+      "objects" : {
+        "1" : {
+          "kind" : "Point",
+          "genus" : "Point",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 551.01981546686545,
+              "y" : 470.46614128128715
+              }
+            },
+          "label" : "A",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : -37,
+              "labelOffsetY" : -6
+              }
+            }
+          },
+        "2" : {
+          "kind" : "Point",
+          "genus" : "Point",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 826,
+              "y" : 468
+              }
+            },
+          "label" : "B",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : 4,
+              "labelOffsetY" : 1
+              }
+            }
+          },
+        "3" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "p0" : "1",
+            "p1" : "2"
+            },
+          "constraint" : "Segment"
+          },
+        "4" : {
+          "kind" : "Straight",
+          "genus" : "Perpendicular",
+          "parents" : {
+            "p0" : "2",
+            "line" : "3"
+            },
+          "constraint" : "Perpendicular",
+          "style" : {
+            "hidden" : true,
+            "line-style" : "dashed"
+            }
+          },
+        "5" : {
+          "kind" : "Point",
+          "genus" : "PointOnPath",
+          "parents" : {
+            "path" : "4"
+            },
+          "value" : -0.17887386634511881,
+          "constraint" : "PointOnPath",
+          "label" : "C",
+          "style" : {
+            "label" : {
+              "showLabel" : true,
+              "labelOffsetX" : -19,
+              "labelOffsetY" : -43
+              }
+            }
+          },
+        "6" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "p0" : "2",
+            "p1" : "5"
+            },
+          "constraint" : "Segment"
+          },
+        "7" : {
+          "kind" : "Straight",
+          "genus" : "Segment",
+          "parents" : {
+            "p0" : "5",
+            "p1" : "1"
+            },
+          "constraint" : "Segment"
+          },
+        "8" : {
+          "kind" : "Point",
+          "genus" : "Midpoint",
+          "parents" : {
+            "path" : "3"
+            },
+          "constraint" : "Midpoint"
+          },
+        "9" : {
+          "kind" : "Arc",
+          "genus" : "SimpleArc",
+          "parents" : {
+            "center" : "8",
+            "p0" : "1",
+            "p1" : "2"
+            },
+          "constraint" : "ArcAroundPoint"
+          },
+        "10" : {
+          "kind" : "Point",
+          "genus" : "Midpoint",
+          "parents" : {
+            "path" : "7"
+            },
+          "constraint" : "Midpoint"
+          },
+        "11" : {
+          "kind" : "Arc",
+          "genus" : "SimpleArc",
+          "parents" : {
+            "center" : "10",
+            "p0" : "5",
+            "p1" : "1"
+            },
+          "constraint" : "ArcAroundPoint"
+          },
+        "12" : {
+          "kind" : "Point",
+          "genus" : "Midpoint",
+          "parents" : {
+            "path" : "6"
+            },
+          "constraint" : "Midpoint"
+          },
+        "13" : {
+          "kind" : "Arc",
+          "genus" : "SimpleArc",
+          "parents" : {
+            "center" : "12",
+            "p0" : "2",
+            "p1" : "5"
+            },
+          "constraint" : "ArcAroundPoint"
+          },
+        "14" : {
+          "kind" : "ArcInterior",
+          "genus" : "ArcSector",
+          "parents" : {
+            "arc" : "13"
+            },
+          "constraint" : "ArcSector",
+          "style" : {
+            "color" : "lime",
+            "opacity" : 0.49999237060546875,
+            "layerOrder" : 0
+            }
+          },
+        "15" : {
+          "kind" : "ArcInterior",
+          "genus" : "ArcSector",
+          "parents" : {
+            "arc" : "9"
+            },
+          "constraint" : "ArcSector",
+          "style" : {
+            "opacity" : 0.49999237060546875,
+            "layerOrder" : 1
+            }
+          },
+        "16" : {
+          "kind" : "ArcInterior",
+          "genus" : "ArcSector",
+          "parents" : {
+            "arc" : "11"
+            },
+          "constraint" : "ArcSector",
+          "style" : {
+            "color" : "red",
+            "opacity" : 0.49999237060546875,
+            "layerOrder" : 2
+            }
+          },
+        "17" : {
+          "kind" : "Polygon",
+          "genus" : "Triangle",
+          "parents" : {
+            "0" : "1",
+            "1" : "2",
+            "2" : "5"
+            },
+          "constraint" : "PolygonFromPoints",
+          "style" : {
+            "color" : "blue",
+            "layerOrder" : 3
+            }
+          },
+        "18" : {
+          "kind" : "AngleMarker",
+          "genus" : "AngleMarker",
+          "parents" : {
+            "p0" : "5",
+            "p1" : "2",
+            "p2" : "1"
+            },
+          "constraint" : "AngleMarker_Simple",
+          "style" : {
+            "show-angle-direction" : true
+            }
+          },
+        "19" : {
+          "kind" : "Measure",
+          "genus" : "AreaMeasure",
+          "parents" : {
+            "shape" : "16"
+            },
+          "constraint" : "MeasurementArea",
+          "geom" : {
+            "loc" : {
+              "x" : 269,
+              "y" : 246
+              }
+            },
+          "latentVisibility" : true,
+          "style" : {
+            "precision" : 2,
+            "nameOrigin" : "noVisibleName"
+            }
+          },
+        "20" : {
+          "kind" : "Measure",
+          "genus" : "AreaMeasure",
+          "parents" : {
+            "shape" : "14"
+            },
+          "constraint" : "MeasurementArea",
+          "geom" : {
+            "loc" : {
+              "x" : 275,
+              "y" : 314
+              }
+            },
+          "latentVisibility" : true,
+          "style" : {
+            "precision" : 2,
+            "nameOrigin" : "noVisibleName"
+            }
+          },
+        "21" : {
+          "kind" : "Measure",
+          "genus" : "AreaMeasure",
+          "parents" : {
+            "shape" : "15"
+            },
+          "constraint" : "MeasurementArea",
+          "geom" : {
+            "loc" : {
+              "x" : 286,
+              "y" : 396
+              }
+            },
+          "latentVisibility" : true,
+          "style" : {
+            "precision" : 2,
+            "nameOrigin" : "noVisibleName"
+            }
+          },
+        "22" : {
+          "kind" : "Text",
+          "genus" : "Caption",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 449,
+              "y" : 727
+              }
+            },
+          "textMFS" : "<S#12<VL<T'Look at the diagram on the above'><0><T'Does Pythagoras\\' Theorem work with semi-circles?'><0><T'Can you prove that this is true for all right-angled triangles?'><0><T'Does the Pythagorean Theorem work for other shapes that are not squares?'><0><T'If so, which shapes does it work for and which ones, does it not work for?'>>>"
+          },
+        "23" : {
+          "kind" : "Button",
+          "genus" : "Action",
+          "parents" : {
+            "0" : "1"
+            },
+          "geom" : {
+            "loc" : {
+              "x" : 47,
+              "y" : 457
+              }
+            },
+          "label" : "Change the Triangle",
+          "style" : {
+            "label" : {
+              "font-size" : 16
+              }
+            },
+          "constraint" : "ActionButtonAnimate",
+          "messages" : [
+            "Change the Triangle"
+            ],
+          "animationStates" : [
+            {
+              "rate" : 3,
+              "timeInterval" : 0,
+              "repeat" : true,
+              "motionType" : "forward"
+              }
+            ]
+          },
+        "24" : {
+          "kind" : "Button",
+          "genus" : "Action",
+          "parents" : {
+            "0" : "19"
+            },
+          "geom" : {
+            "loc" : {
+              "x" : 39,
+              "y" : 244
+              }
+            },
+          "label" : "Area of Red Semi-Circle",
+          "constraint" : "ActionButtonToggleHideShow",
+          "messages" : [
+            "Area of Red Semi-Circle",
+            "Area of Red Semi-Circle"
+            ],
+          "fade" : true
+          },
+        "25" : {
+          "kind" : "Button",
+          "genus" : "Action",
+          "parents" : {
+            "0" : "20"
+            },
+          "geom" : {
+            "loc" : {
+              "x" : 37,
+              "y" : 316
+              }
+            },
+          "label" : "Area of Green Semi-Circle",
+          "constraint" : "ActionButtonToggleHideShow",
+          "messages" : [
+            "Area of Green Semi-Circle",
+            "Area of Green Semi-Circle"
+            ],
+          "fade" : true
+          },
+        "26" : {
+          "kind" : "Button",
+          "genus" : "Action",
+          "parents" : {
+            "0" : "21"
+            },
+          "geom" : {
+            "loc" : {
+              "x" : 42,
+              "y" : 394
+              }
+            },
+          "label" : "Area of Yellow Semi-Circle",
+          "constraint" : "ActionButtonToggleHideShow",
+          "messages" : [
+            "Area of Yellow Semi-Circle",
+            "Area of Yellow Semi-Circle"
+            ],
+          "fade" : true
+          },
+        "27" : {
+          "kind" : "Text",
+          "genus" : "Caption",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 463,
+              "y" : 130
+              }
+            },
+          "textMFS" : "<T'Does The Pythagorean Theorem work for Other Shapes?'>",
+          "style" : {
+            "font-size" : 28
+            }
+          }
+        }
+      }
+    ]
+  };
+            </script>
+            <style type="text/css">
+                .sketch_canvas {border: medium solid lightgray; display: inline-block;}
+            </style>
+        </head>
+        <body role="main">
+            <div class="sketch_canvas" data-var="sketch" >&nbsp;</div>
+            <footer>
+                <div class="legal">
+                    <div class="version">
+                    Exported Fri Jul 10 14:55:34 2026 by GSP 5.10 (3058).</div>
+                    <hr>
+                    <div class="copyright">Copyright &copy; 2024 KCP Technologies, a McGraw Hill Company. All rights reserved. This is a <a href="http://gsptest.scratchconsortium.com">field-test version</a> of Web Sketchpad, an internet component of <a href="http://www.dynamicgeometry.com">The Geometer’s Sketchpad<sup>&reg;</sup></a>. Commercial uses of Web Sketchpad require a license from McGraw Hill. Web Sketchpad, The Geometer’s Sketchpad, and Dynamic Geometry are trademarks and registered trademarks of McGraw Hill and KCP Technologies.</div>
+                </div>
+            </footer>
+        </body>
+    </html>
+    

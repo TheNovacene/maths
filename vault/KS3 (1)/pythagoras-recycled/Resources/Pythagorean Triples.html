@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+    <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <title>Web Sketchpad</title>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/jquery-2.1.0.min.js"></script>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/wsp-min.js"></script>
+            <script charset="utf-8" type="text/javascript" src="https://gsptest.scratchconsortium.com/wsp/gsphost_v1/js/wsp-runner.js"></script>
+            <script charset="utf-8" type="text/javascript">
+                var sketch = {
+  "metadata" : {
+    "width" : 1007,
+    "height" : 742,
+    "wsp-version" : "4.8.0",
+    "exporter-version" : "5.10",
+    "exporter-build" : "3058",
+    "exporter-debug" : false,
+    "original-document-name" : "Pythagorean Triples",
+    "start-page" : "1"
+    },
+  "resources" : {
+    "fontList" : [
+      "\"Times New Roman\", serif",
+      "\"Arial\", sans-serif"
+      ]
+    },
+  "pages" : [
+    {
+      "metadata" : {
+        "title" : "1",
+        "id" : "1",
+        "sketchRect" : {
+          "top" : 37,
+          "left" : 40,
+          "bottom" : 779,
+          "right" : 1047
+          }
+        },
+      "preferences" : {
+        "units" : {
+          "length" : "cm",
+          "angle" : "deg"
+          },
+        "precision" : {
+          "length" : 2,
+          "angle" : 2,
+          "scalar" : 2
+          },
+        "colorableComponents" : {
+          "ActionButton" : {
+            "color" : "rgb(255,128,0)"
+            }
+          },
+        "text" : {
+          "mathItalicization" : true,
+          "textTypes" : {
+            "Label" : {
+              "font-family" : "\"Times New Roman\", serif",
+              "font-size" : 36
+              },
+            "Caption" : {
+              "font-family" : "\"Comic Sans MS\", ",
+              "font-size" : 36,
+              "font-weight" : "bold"
+              },
+            "Measurement" : {
+              "font-family" : "\"Times New Roman\", serif",
+              "font-size" : 24,
+              "font-weight" : "bold"
+              },
+            "Action" : {
+              "label" : {
+                "font-family" : "\"Arial\", sans-serif",
+                "font-size" : 24
+                }
+              },
+            "Table" : {
+              "font-family" : "\"Arial\", sans-serif",
+              "font-size" : 24
+              },
+            "AxisTicksAndOptionalLabel" : {
+              "font-family" : "\"Arial\", sans-serif"
+              }
+            }
+          }
+        },
+      "objects" : {
+        "1" : {
+          "kind" : "Expression",
+          "genus" : "ScalarParameter",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 49,
+              "y" : 43
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "9",
+          "label" : "a",
+          "style" : {
+            "precision" : 0,
+            "nameOrigin" : "namedFromLabel",
+            "contenteditable" : true
+            }
+          },
+        "2" : {
+          "kind" : "Expression",
+          "genus" : "ScalarParameter",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 47,
+              "y" : 86
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "40",
+          "label" : "b",
+          "style" : {
+            "precision" : 0,
+            "nameOrigin" : "namedFromLabel",
+            "contenteditable" : true
+            }
+          },
+        "3" : {
+          "kind" : "Expression",
+          "genus" : "ScalarParameter",
+          "constraint" : "Free",
+          "geom" : {
+            "loc" : {
+              "x" : 49,
+              "y" : 129
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "41",
+          "label" : "c",
+          "style" : {
+            "precision" : 0,
+            "nameOrigin" : "namedFromLabel",
+            "contenteditable" : true
+            }
+          },
+        "4" : {
+          "kind" : "Expression",
+          "genus" : "ScalarMeasure",
+          "parents" : {
+            "0" : "1",
+            "1" : "2"
+            },
+          "constraint" : "Calculation",
+          "geom" : {
+            "loc" : {
+              "x" : 152,
+              "y" : 47
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "@0^2+@1^2",
+          "style" : {
+            "precision" : 2,
+            "nameOrigin" : "namedFromTemplate"
+            }
+          },
+        "5" : {
+          "kind" : "Table",
+          "genus" : "UserEditableTable",
+          "parents" : {
+            "0" : "1",
+            "1" : "2",
+            "2" : "3"
+            },
+          "constraint" : "UserTabulation",
+          "geom" : {
+            "loc" : {
+              "x" : 350,
+              "y" : 69
+              }
+            },
+          "rows" : [
+            [
+              "<H<T'3'>>",
+              "<H<T'4'>>",
+              "<H<T'5'>>"
+              ],
+            [
+              "<H<T'5'>>",
+              "<H<T'12'>>",
+              "<H<T'13'>>"
+              ],
+            [
+              "<H<T'7'>>",
+              "<H<T'24'>>",
+              "<H<T'25'>>"
+              ]
+            ]
+          },
+        "6" : {
+          "kind" : "Expression",
+          "genus" : "ScalarMeasure",
+          "parents" : {
+            "0" : "3"
+            },
+          "constraint" : "Calculation",
+          "geom" : {
+            "loc" : {
+              "x" : 152,
+              "y" : 78
+              }
+            },
+          "expressionType" : "UniMeasure_ExprType",
+          "expression" : "@0^2",
+          "style" : {
+            "precision" : 2,
+            "nameOrigin" : "namedFromTemplate"
+            }
+          }
+        }
+      }
+    ]
+  };
+            </script>
+            <style type="text/css">
+                .sketch_canvas {border: medium solid lightgray; display: inline-block;}
+            </style>
+        </head>
+        <body role="main">
+            <div class="sketch_canvas" data-var="sketch" >&nbsp;</div>
+            <footer>
+                <div class="legal">
+                    <div class="version">
+                    Exported Fri Jul 10 14:56:17 2026 by GSP 5.10 (3058).</div>
+                    <hr>
+                    <div class="copyright">Copyright &copy; 2024 KCP Technologies, a McGraw Hill Company. All rights reserved. This is a <a href="http://gsptest.scratchconsortium.com">field-test version</a> of Web Sketchpad, an internet component of <a href="http://www.dynamicgeometry.com">The Geometer’s Sketchpad<sup>&reg;</sup></a>. Commercial uses of Web Sketchpad require a license from McGraw Hill. Web Sketchpad, The Geometer’s Sketchpad, and Dynamic Geometry are trademarks and registered trademarks of McGraw Hill and KCP Technologies.</div>
+                </div>
+            </footer>
+        </body>
+    </html>
+    

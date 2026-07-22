@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Rounding to Significant Figures v0.2</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.mathsvg{width:100%;max-width:600px;background:#fff;border-radius:10px;border:1px solid #cdbfa9}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.tabs button.active,.stepbtn.active{background:#dce8ef;border-color:#365a68}
+.stepbtn.done{background:#e3f0df;border-color:#5c6b4f}
+.stepline{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:12px;font-size:1.15em;line-height:1.55}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.practice-svg{width:100%;max-width:520px;background:#fff;border:1px solid #cdbfa9;border-radius:10px}
+.small{font-size:.95em;color:#4f554b}
+.solution-reveal{display:none}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.digitline{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;font:700 clamp(2.1rem,7vw,4.2rem)/1 Arial,sans-serif;margin:18px 0}
+.digit{min-width:.72em;text-align:center;padding:7px 4px;border-bottom:7px solid transparent;border-radius:7px 7px 0 0}.digit.keep{background:#dfeeda;border-color:#4e744d}.digit.decide{background:#fae4b8;border-color:#b77814}.digit.drop{background:#ededeb;border-color:#a9aaa5;color:#777}.digit.locator{background:#e5eef2;border-color:#66879a;color:#365a68}.digit.mark{min-width:.2em}
+.lenscontrols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.lenscontrols input,.lenscontrols select,textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px;background:#fff}
+.numberline{margin:34px 12px 12px;padding-top:28px}.track{height:7px;background:#365a68;position:relative;border-radius:10px}.track:before,.track:after{content:"";position:absolute;top:-8px;width:3px;height:23px;background:#365a68}.track:before{left:0}.track:after{right:0}.mid{position:absolute;left:50%;top:-9px;width:3px;height:25px;background:#b77814}.marker{position:absolute;top:-34px;transform:translateX(-50%);white-space:nowrap;color:#70466b;font-weight:bold}.marker:after{content:"";display:block;width:13px;height:13px;border-radius:50%;background:#70466b;margin:5px auto}
+.linelabels{display:grid;grid-template-columns:1fr 1fr 1fr;font-weight:bold;font-size:.9em;margin-top:14px}.linelabels span:nth-child(2){text-align:center;color:#835d1d}.linelabels span:last-child{text-align:right}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Accuracy, Powers and Scale</h1>
+<h2>Rounding to significant figures</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can we make a number easier to use while keeping it close to its original value?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Precision Lens exploration, boundary reasoning and supported practice.</p>
+<p><b>Stepping Stone:</b> round positive integers and decimals to a stated number of significant figures.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 18 · Practise 10 · Reflect/Create 5 · Rest/Nourish 2 · Evidence 2</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support and Scratchpad</h3>
+<p>Use the familiar lesson shell. Guidance opens separately so that you can keep your place.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_01_Learner_Guidance.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_01_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="scratchbtn" onclick="openMathsScratchpad('place-value','Use the Scratchpad to align digits, mark the first significant digit and record your rounding decision.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="guideBox" class="card" style="display:none"></div>
+</div>
+
+<details class="kw" open>
+<summary>🌿 Connection — Which digits carry the size of a number?</summary>
+<p><b>What to do:</b> compare the original number with its rounded version. Decide which digits keep the most useful information about size.</p>
+<p><b>What you are trying to notice:</b> rounding changes a number, but the leading digits can preserve its approximate magnitude.</p>
+<div class="toolbox">
+<div class="twocol">
+<div class="card" style="text-align:center"><p class="small">Original value</p><p style="font-size:2.5em;font-weight:bold;margin:.2em">48,271</p></div>
+<div class="card">
+<h3>Rounded value: 48,000</h3>
+<p><b>Question:</b> Which digits show that both values are about forty-eight thousand?</p>
+<p class="small">Try to explain what remains useful before opening Movement.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('place-value','Place 48,271 in the chart. Which digits carry its approximate size?')">✏️ Record my noticing</button>
+</div>
+</div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> significant figures begin at the first non-zero digit because that is where the number first communicates its scale.</div>
+</details>
+
+<details class="hs">
+<summary>🚶 Movement — How does the Precision Lens move?</summary>
+<p><b>What to do:</b> choose a number and a precision. Predict the rounded value, then reveal the lens.</p>
+<p><b>What you are trying to notice:</b> the lens begins at the first non-zero digit, keeps the required digits and uses only the next digit to decide.</p>
+<div class="toolbox">
+<h3>🧭 Precision Lens</h3>
+<div class="lenscontrols"><label><b>Number</b><input id="lensNumber" value="48271" inputmode="decimal" oninput="renderLens(false)"></label><label><b>Significant figures</b><select id="lensSf" onchange="renderLens(false)"><option value="1">1 significant figure</option><option value="2" selected>2 significant figures</option><option value="3">3 significant figures</option><option value="4">4 significant figures</option></select></label></div>
+<div class="buttonrow"><button onclick="setLensNumber('48271')">48,271</button><button onclick="setLensNumber('0.006473')">0.006473</button><button onclick="setLensNumber('90521')">90,521</button><button onclick="setLensNumber('769500')">769,500</button></div>
+<div id="lensDigits" class="digitline" aria-live="polite"></div>
+<label><b>My rounded value</b><input id="lensPrediction" inputmode="decimal" placeholder="Enter your prediction"></label>
+<div class="buttonrow"><button onclick="checkLens()">✅ Check my prediction</button><button onclick="revealLens()">👀 Reveal the lens</button><button class="scratchbtn" onclick="openMathsScratchpad('place-value','Mark the kept digits and the deciding digit.')">✏️ Scratchpad</button></div>
+<div id="lensFeedback" class="feedback"></div>
+<div id="lensResult" class="readout" style="display:none"></div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> find → keep → decide → restore place value.</div>
+</details>
+
+<details class="dw">
+<summary>🪞 Reflection — Why does the deciding digit work?</summary>
+<p><b>What to do:</b> use the Boundary Explorer, then complete the reflection sentence.</p>
+<div class="toolbox"><button onclick="showBoundary()">🔎 Show boundary evidence for the current number</button><div id="boundaryBox" style="display:none"></div></div>
+<div class="card">
+<p><b>A zero is significant when...</b></p>
+<textarea rows="4" placeholder="A zero is significant when..."></textarea>
+</div>
+<p><b>What you are trying to notice:</b> rounding chooses the nearer of two possible rounded landmarks. The halfway point explains why 5 rounds up.</p>
+</details>
+
+<details class="es">
+<summary>🎨 Creativity — Can I make the rounding decision visible?</summary>
+<p><b>What to do:</b> create a mini teaching card for one whole number and one decimal.</p>
+<ol>
+<li>Write the original number.</li><li>Mark the first significant digit.</li><li>Underline the kept digits.</li><li>Circle the deciding digit.</li><li>Write the rounded value and explain why it is sensible.</li>
+</ol>
+<button class="scratchbtn" onclick="openMathsScratchpad('place-value','Create a teaching card that makes the rounding decision visible.')">✏️ Create my teaching card</button>
+</details>
+
+<details class="lb">
+<summary>🌙 Rest — How can I reduce the process to four calm actions?</summary>
+<div class="card">
+<p>Use this quiet route. Look away from the screen, then retrieve it in your own words:</p>
+<p style="font-size:1.3em;font-weight:bold;text-align:center">find → keep → decide → restore place value</p>
+</div>
+</details>
+
+<details class="nt">
+<summary>🥣 Nutrition — What is this lesson nourishing?</summary>
+<p>This lesson uses <strong>intellectual nourishment</strong>. It nourishes attention to magnitude and confidence with crowded numbers.</p>
+<div class="twocol">
+<div class="card">🌱 <b>Magnitude</b><br>I notice the overall size before calculating.</div><div class="card">🌱 <b>Attention</b><br>I distinguish kept and deciding digits.</div><div class="card">🌱 <b>Judgement</b><br>I choose a sensible nearby landmark.</div><div class="card">🌱 <b>Confidence</b><br>I can organise a number even when it looks crowded.</div>
+</div>
+</details>
+
+<details class="ft">
+<summary>🛠 Final Task — Build a Precision Explainer</summary>
+<h3>Make one rounding decision clear</h3>
+<p><b>What to do:</b> choose one whole number and one decimal and create a clear explanation for each.</p>
+<ul>
+<li>identify the first significant digit;</li><li>state the chosen precision;</li><li>mark the deciding digit;</li><li>write the rounded value;</li><li>explain why the answer is sensible.</li>
+</ul>
+<p><b>Filename pattern:</b> <code>NEO_MATH_PRECISION_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Finds a significant digit with support.</td><td>Identifies kept and deciding digits.</td><td>Explains where significant figures begin.</td><td>Explains the different roles of zeros.</td></tr>
+<tr><td><b>Application</b></td><td>Begins a rounding attempt.</td><td>Rounds familiar values.</td><td>Rounds varied integers and decimals accurately.</td><td>Transfers the method to an unfamiliar value.</td></tr>
+<tr><td><b>Communication</b></td><td>Shows some digits.</td><td>Shows a rounding decision.</td><td>Makes the method clear.</td><td>Creates an explanation another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Checks approximate size.</td><td>Explains why the result is sensible.</td><td>Uses boundary reasoning to justify the decision.</td></tr>
+</table>
+</details>
+</div>
+</div>
+
+<div id="practiceView" hidden>
+<div class="practice">
+<h1>Rounding to Significant Figures — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 👀 <b>worked solution</b>.</p>
+<p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel"></p>
+<div class="twocol">
+<svg id="practiceSvg" viewBox="0 0 520 360" class="practice-svg" aria-label="Practice number and significant-figure focus"></svg>
+<div>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceWorkedBtn" onclick="pSolution()">👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('place-value','Use the Scratchpad to align digits and mark the rounding decision.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+</div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div>
+</div>
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+<div role="dialog" aria-modal="true" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+<div><h2 style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2><p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p></div>
+<button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+</div>
+<p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+<button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+<button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+<label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+<select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;"><option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option></select>
+<label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+<select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;"><option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option></select>
+<button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+<button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+<button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;"><label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label><select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;"><option value="place-value" selected>Place-value chart</option><option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option></select></span>
+</div>
+<div style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+<canvas id="neoScratchBackgroundCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+<canvas id="neoScratchCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+<div id="neoStickyLayer" style="position:absolute;inset:0;pointer-events:none;"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+<button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+<button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+<button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+</div>
+<div id="scratchStatus" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+</div>
+</div>
+
+<script>
+const LENS_EXAMPLES = [
+  {number:'48,763', sf:2},
+  {number:'0.006847', sf:2},
+  {number:'72.45', sf:3},
+  {number:'905,200', sf:3}
+];
+
+function cleanNumber(v){return String(v).replace(/,/g,'').trim();}
+function numeric(v){const n=Number(cleanNumber(v));return Number.isFinite(n)?n:NaN;}
+function expandedDigits(value){
+  const raw=cleanNumber(value).toLowerCase();
+  if(!raw || raw.includes('e')) return raw;
+  return raw.replace(/^[-+]/,'').replace('.','').split('');
+}
+function digitRoles(value,sf){
+  const raw=cleanNumber(value).replace(/^[-+]/,'');
+  const chars=raw.split('');
+  let significant=0, started=false, roundingReached=false;
+  return chars.map((ch)=>{
+    if(ch==='.') return {ch,role:'point'};
+    if(!started && ch==='0') return {ch,role:'leading'};
+    started=true;
+    significant++;
+    if(significant<sf) return {ch,role:'keep'};
+    if(significant===sf) return {ch,role:'last'};
+    if(!roundingReached){roundingReached=true;return {ch,role:'decide'};}
+    return {ch,role:'drop'};
+  });
+}
+function roundToSf(value,sf){
+  const n=numeric(value);
+  if(!Number.isFinite(n)||n===0) return n;
+  const power=sf-1-Math.floor(Math.log10(Math.abs(n)));
+  const factor=10**power;
+  return Math.round((n+Number.EPSILON)*factor)/factor;
+}
+function formatRounded(value,sf){
+  const n=roundToSf(value,sf);
+  if(!Number.isFinite(n)) return '';
+  if(n===0) return '0';
+  const places=Math.max(0,sf-1-Math.floor(Math.log10(Math.abs(n))));
+  return n.toLocaleString('en-GB',{minimumFractionDigits:places,maximumFractionDigits:places});
+}
+function currentLens(){
+  return {number:document.getElementById('lensNumber').value,sf:Number(document.getElementById('lensSf').value)};
+}
+function renderLens(showResult){
+  const {number,sf}=currentLens();
+  const roles=digitRoles(number,sf);
+  const colours={leading:'#8d8d86',keep:'#315d72',last:'#3f5f45',decide:'#9b5a2e',drop:'#8d8d86',point:'#2f3429'};
+  document.getElementById('lensDigits').innerHTML=roles.map(r=>'<span class="digit '+r.role+'" style="color:'+colours[r.role]+'">'+r.ch+'</span>').join('');
+  const last=roles.findIndex(r=>r.role==='last'), decide=roles.findIndex(r=>r.role==='decide');
+  const lastText=last>=0?'The green digit is the last digit to keep.':'Choose a valid number and accuracy.';
+  const decideText=decide>=0?' The orange digit decides whether it stays or rounds up.':'';
+  document.getElementById('lensFeedback').textContent=lastText+decideText;
+  const result=document.getElementById('lensResult');
+  if(showResult){result.style.display='block';result.innerHTML='<b>Rounded value:</b> '+formatRounded(number,sf)+' <span class="muted">('+sf+' significant figure'+(sf===1?'':'s')+')</span>';}
+  else result.style.display='none';
+}
+function resetLens(){
+  document.getElementById('lensNumber').value='48,763';
+  document.getElementById('lensSf').value='2';
+  document.getElementById('lensPrediction').value='';
+  renderLens(false);
+}
+function setLensNumber(value,sf){
+  document.getElementById('lensNumber').value=value;
+  if(sf) document.getElementById('lensSf').value=String(sf);
+  document.getElementById('lensPrediction').value='';
+  renderLens(false);
+}
+function revealLens(){renderLens(true);}
+function almostEqual(a,b){return Math.abs(a-b)<=Math.max(1e-12,Math.abs(b)*1e-9);}
+function checkLens(){
+  const {number,sf}=currentLens(), answer=numeric(document.getElementById('lensPrediction').value), expected=roundToSf(number,sf);
+  const box=document.getElementById('lensResult'); box.style.display='block';
+  if(Number.isFinite(answer)&&almostEqual(answer,expected)){box.className='feedback good';box.innerHTML='<b>Yes.</b> '+formatRounded(number,sf)+' is correct. Say which digit you kept and which digit decided.';}
+  else{box.className='feedback bad';box.innerHTML='<b>Not quite yet.</b> Find the first non-zero digit, count to the last digit you need, then look one place to the right.';}
+}
+function boundaryData(number,sf){
+  const n=numeric(number), rounded=roundToSf(number,sf);
+  const unit=10**(Math.floor(Math.log10(Math.abs(n)))-sf+1);
+  return {n,rounded,lower:rounded-unit/2,upper:rounded+unit/2,unit};
+}
+function boundaryLabel(n,unit){
+  const dp=Math.max(0,-Math.floor(Math.log10(unit))+1);
+  return n.toLocaleString('en-GB',{maximumFractionDigits:dp});
+}
+function showBoundary(){
+  const {number,sf}=currentLens(), d=boundaryData(number,sf), box=document.getElementById('boundaryBox');
+  box.style.display='block';
+  if(!Number.isFinite(d.n)||d.n===0){box.innerHTML='<p>Please choose a non-zero number first.</p>';return;}
+  const proportion=Math.max(0,Math.min(1,(d.n-d.lower)/(d.upper-d.lower)))*100;
+  box.innerHTML='<p><b>'+cleanNumber(number)+'</b> lies between the two halfway boundaries for <b>'+formatRounded(number,sf)+'</b>.</p><div class="numberline"><div class="track"><span class="mid"></span><span class="marker" style="left:'+proportion+'%"></span></div><div class="linelabels"><span>'+boundaryLabel(d.lower,d.unit)+'</span><span>'+formatRounded(number,sf)+'</span><span>'+boundaryLabel(d.upper,d.unit)+'</span></div></div><p class="muted">Values from the lower boundary up to, but not including, the upper boundary round to this value.</p>';
+}
+
+const PRACTICE = [
+ {label:'1',title:'Whole number',question:'Round 48,763 to 2 significant figures.',answers:[49000],prompt:'Which is the first non-zero digit, and which digit is second?',hint:'Keep 4 and 8. The next digit is 7, so the 8 rounds up.',solution:'The first two significant digits are 4 and 8. The deciding digit is 7, so 48 rounds to 49. Restore the remaining places with zeros: 49,000.'},
+ {label:'2',title:'Small decimal',question:'Round 0.006847 to 2 significant figures.',answers:[0.0068],prompt:'Which zeros only locate the decimal point, and where does significance begin?',hint:'The first significant digit is 6 and the second is 8. The next digit is 4.',solution:'Ignore the leading zeros when counting. Keep 6 and 8; 4 does not round the 8 up. The answer is 0.0068.'},
+ {label:'3',title:'Rounding up',question:'Round 72.45 to 3 significant figures.',answers:[72.5],prompt:'Count three significant digits from the 7. Which digit decides?',hint:'Keep 7, 2 and 4. The deciding digit is 5.',solution:'The first three significant digits are 7, 2 and 4. Since the next digit is 5, the 4 rounds up: 72.5.'},
+ {label:'4',title:'Showing accuracy',question:'Round 3.996 to 3 significant figures. Write the answer so that its accuracy is clear.',answers:[4],exact:'4.00',prompt:'What happens when the third significant digit rounds past 9?',hint:'3.996 rounds up to 4, but three significant figures must still be shown.',solution:'Keep 3, 9 and 9. The next digit is 6, so rounding carries through to 4. To show three significant figures, write 4.00.'},
+ {label:'5',title:'Measurement',question:'A distance is 0.09476 km. Round it to 3 significant figures.',answers:[0.0948],prompt:'Where is the first non-zero digit?',hint:'Keep 9, 4 and 7. The next digit is 6.',solution:'The first three significant digits are 9, 4 and 7. Since the next digit is 6, round the 7 up: 0.0948 km.'},
+ {label:'6',title:'Explain the decision',question:'A learner says 905,200 rounded to 3 significant figures is 905. Are they correct? Give the corrected rounded value.',answers:[905000],prompt:'Are the zeros between 9 and 5 place-holders or significant digits?',hint:'The zero between non-zero digits is significant. Keep 9, 0 and 5, then restore place value.',solution:'The learner is not correct. The zero between 9 and 5 counts. The next digit is 2, so the kept digits do not change. Restoring place value gives 905,000.'}
+];
+let practiceIndex=0, done={};
+
+function openLessonGuide(){document.getElementById('guideBox').style.display='block';document.getElementById('guideBox').innerHTML='<h3>🌱 Learner Guidance</h3><p>Use the guide when you want the lesson route in smaller steps, a language reminder, or a calm way back in. The PDF opens in a new tab so this lesson stays in place.</p><p><a href="NEO_Maths_Accuracy_Powers_Scale_Lesson_01_Learner_Guidance.pdf" target="_blank" rel="noopener">Open Learner Guidance PDF</a></p>';}
+function openAdultGuide(){document.getElementById('guideBox').style.display='block';document.getElementById('guideBox').innerHTML='<h3>📘 Supporting Adult Guidance</h3><p>Use the adult guide for prompts, observation points and ways to reduce demand without removing the mathematical thinking.</p><p><a href="NEO_Maths_Accuracy_Powers_Scale_Lesson_01_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">Open Supporting Adult Guidance PDF</a></p>';}
+function openPractice(){document.getElementById('lessonView').hidden=true;document.getElementById('practiceView').hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
+function returnLesson(){document.getElementById('practiceView').hidden=true;document.getElementById('lessonView').hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+function numFrom(s){const m=cleanNumber(s).match(/-?\d+(\.\d+)?/);return m?Number(m[0]):NaN;}
+function renderPractice(){
+ const p=PRACTICE[practiceIndex];
+ document.getElementById('practiceLabel').textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;
+ document.getElementById('practiceQuestion').textContent=p.question;
+ document.getElementById('practiceAnswer').value='';
+ document.getElementById('practiceSupport').style.display='none';document.getElementById('practiceFeedback').style.display='none';
+ document.getElementById('practicePrev').disabled=practiceIndex===0;
+ document.getElementById('practiceNext').textContent=practiceIndex===PRACTICE.length-1?'Finish':'Next →';
+ renderPracticeDotsOnly();drawPracticeDiagram(p);
+}
+function drawPracticeDiagram(p){
+ const svg=document.getElementById('practiceSvg');svg.innerHTML='';
+ const card=document.createElementNS('http://www.w3.org/2000/svg','rect');card.setAttribute('x','55');card.setAttribute('y','55');card.setAttribute('width','430');card.setAttribute('height','250');card.setAttribute('rx','18');card.setAttribute('fill','#fffaf0');card.setAttribute('stroke','#cdbfa9');card.setAttribute('stroke-width','2');svg.appendChild(card);
+ const title=document.createElementNS('http://www.w3.org/2000/svg','text');title.setAttribute('x','270');title.setAttribute('y','135');title.setAttribute('text-anchor','middle');title.setAttribute('font-size','22');title.setAttribute('font-weight','700');title.setAttribute('fill','#3f5f45');title.textContent=p.title;svg.appendChild(title);
+ const reminder=document.createElementNS('http://www.w3.org/2000/svg','text');reminder.setAttribute('x','270');reminder.setAttribute('y','195');reminder.setAttribute('text-anchor','middle');reminder.setAttribute('font-size','18');reminder.setAttribute('fill','#365a68');reminder.textContent='Find • Keep • Decide • Restore';svg.appendChild(reminder);
+ const note=document.createElementNS('http://www.w3.org/2000/svg','text');note.setAttribute('x','270');note.setAttribute('y','245');note.setAttribute('text-anchor','middle');note.setAttribute('font-size','16');note.setAttribute('fill','#2f3429');note.textContent='Use the Scratchpad if you want to mark the digits.';svg.appendChild(note);
+}
+function pPrompt(){const box=document.getElementById('practiceSupport');box.style.display='block';box.innerHTML='<b>🤔 Socratic prompt:</b> '+PRACTICE[practiceIndex].prompt;}
+function pHint(){const box=document.getElementById('practiceSupport');box.style.display='block';box.innerHTML='<b>💡 Hint:</b> '+PRACTICE[practiceIndex].hint;}
+function pSolution(){const box=document.getElementById('practiceSupport');box.style.display='block';box.innerHTML='<b>👀 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
+function pCheck(){
+ const p=PRACTICE[practiceIndex], raw=document.getElementById('practiceAnswer').value.trim(), n=numFrom(raw);
+ const ok=p.exact ? raw.replace(/\s/g,'')===p.exact : p.answers.some(a=>Number.isFinite(n)&&almostEqual(n,a));
+ const box=document.getElementById('practiceFeedback');box.style.display='block';
+ if(ok){done[practiceIndex]=true;box.className='feedback good';box.textContent='Correct. Keep the place-value reasoning visible.';}
+ else{box.className='feedback bad';box.textContent='Not quite yet. Use the prompt or hint, then try again.';}
+ renderPracticeDotsOnly();
+}
+function renderPracticeDotsOnly(){document.getElementById('practiceDots').innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ':'')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');}
+function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
+function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{const box=document.getElementById('practiceFeedback');box.style.display='block';box.className='feedback good';box.textContent='Practice complete. Choose one question to explain in the Final Task.';}}
+
+// Scratchpad
+(function(){
+const overlay=document.getElementById('neoScratchpadOverlay'),subtitle=document.getElementById('neoScratchpadSubtitle'),canvas=document.getElementById('neoScratchCanvas'),bgCanvas=document.getElementById('neoScratchBackgroundCanvas'),stickyLayer=document.getElementById('neoStickyLayer'),ctx=canvas.getContext('2d'),bg=bgCanvas.getContext('2d');
+let tool='pen',colour='#2f3429',width=4,template='place-value',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_rounding_sf_v01';
+function status(msg,col){const box=document.getElementById('scratchStatus');box.style.display='block';box.style.background=col||'#e5edf4';box.textContent=msg;}
+function pt(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+function drawBackground(){bg.clearRect(0,0,920,560);bg.fillStyle='#fff';bg.fillRect(0,0,920,560);bg.save();if(template==='place-value'){const labels=['Millions','Hundred thousands','Ten thousands','Thousands','Hundreds','Tens','Ones','Tenths','Hundredths'];const w=920/labels.length;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 13px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();const words=label.split(' ');words.forEach((word,j)=>bg.fillText(word,i*w+w/2,34+j*18));});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}bg.lineWidth=1;bg.strokeStyle='#e6dccb';if(template==='square-grid'||template==='coordinate-grid'){for(let x=0;x<=920;x+=28){bg.beginPath();bg.moveTo(x,0);bg.lineTo(x,560);bg.stroke();}for(let y=0;y<=560;y+=28){bg.beginPath();bg.moveTo(0,y);bg.lineTo(920,y);bg.stroke();}}if(template==='coordinate-grid'){bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(460,0);bg.lineTo(460,560);bg.moveTo(0,280);bg.lineTo(920,280);bg.stroke();}if(template==='ratio-table'){bg.strokeStyle='#cdbfa9';for(let x=80;x<=840;x+=190){bg.beginPath();bg.moveTo(x,70);bg.lineTo(x,490);bg.stroke();}for(let y=70;y<=490;y+=70){bg.beginPath();bg.moveTo(80,y);bg.lineTo(840,y);bg.stroke();}}if(template==='double-number-line'){bg.strokeStyle='#315d72';bg.lineWidth=3;[210,350].forEach(y=>{bg.beginPath();bg.moveTo(90,y);bg.lineTo(830,y);bg.stroke();for(let x=90;x<=830;x+=74){bg.beginPath();bg.moveTo(x,y-10);bg.lineTo(x,y+10);bg.stroke();}});}bg.restore();}
+function drawStroke(s){if(!s||!s.points.length)return;ctx.save();ctx.lineCap='round';ctx.lineJoin='round';if(s.tool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=Math.max(18,s.width*5);}else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=s.colour;ctx.lineWidth=s.width;}const pts=s.points;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);if(s.tool==='line'){const last=pts[pts.length-1];ctx.lineTo(last.x,last.y);}else{pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));if(pts.length===1)ctx.lineTo(pts[0].x+.1,pts[0].y+.1);}ctx.stroke();ctx.restore();}
+function renderInk(){ctx.clearRect(0,0,920,560);strokes.forEach(drawStroke);}
+function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText=`position:absolute;left:${note.x}%;top:${note.y}%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;`;const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
+function render(){drawBackground();renderInk();renderNotes();}
+function store(){try{localStorage.setItem(storageKey,JSON.stringify({template,strokes,redo,notes,colour,width}));}catch(err){}}
+function restore(){try{const s=JSON.parse(localStorage.getItem(storageKey)||'null');if(!s)return;template=s.template||template;strokes=s.strokes||[];redo=s.redo||[];notes=s.notes||[];colour=s.colour||colour;width=s.width||width;scratchTemplate.value=template;scratchColour.value=colour;scratchWidth.value=String(width);}catch(err){}}
+function updateButtons(){scratchPenBtn.style.background=tool==='pen'?'#e5f0e2':'#fff';scratchLineBtn.style.background=tool==='line'?'#e5edf4':'#fff';scratchEraserBtn.style.background=tool==='eraser'?'#e5f0e2':'#fff';canvas.style.cursor=tool==='eraser'?'cell':tool==='note'?'copy':'crosshair';}
+canvas.addEventListener('pointerdown',e=>{if(tool==='note'){const r=canvas.getBoundingClientRect();notes.push({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100,text:''});renderNotes();setScratchTool('pen');status('Sticky note added.','#fff7c7');store();e.preventDefault();return;}drawing=true;canvas.setPointerCapture(e.pointerId);const p=pt(e);current={tool,width,colour,points:tool==='line'?[p,p]:[p]};strokes.push(current);redo=[];renderInk();e.preventDefault();});
+canvas.addEventListener('pointermove',e=>{if(!drawing||!current)return;const p=pt(e);if(current.tool==='line')current.points[1]=p;else current.points.push(p);renderInk();e.preventDefault();});
+function finish(e){if(!drawing)return;drawing=false;current=null;try{canvas.releasePointerCapture(e.pointerId);}catch(err){}store();e.preventDefault();}
+canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',finish);
+window.openMathsScratchpad=function(t,sub){if(t){template=t;scratchTemplate.value=t;}subtitle.textContent=sub||'Use the Scratchpad to predict, sketch, test and revise.';overlay.hidden=false;document.body.style.overflow='hidden';render();};
+window.closeMathsScratchpad=function(){store();overlay.hidden=true;document.body.style.overflow='';};
+window.setScratchTool=function(t){tool=t;updateButtons();if(t==='line')status('Line tool: press at the start point, drag to the end point, then release.');if(t==='note')status('Click anywhere on the Scratchpad to place a sticky note.','#fff7c7');};
+window.updateScratchColour=function(){colour=scratchColour.value;store();};
+window.updateScratchWidth=function(){width=Number(scratchWidth.value);store();};
+window.changeScratchTemplate=function(v){template=v;drawBackground();store();status('Background changed. Your drawing marks are unchanged.','#e3f0df');};
+window.scratchUndo=function(){if(!strokes.length){status('Nothing to undo yet.','#fff1cf');return;}redo.push(strokes.pop());renderInk();store();};
+window.scratchRedo=function(){if(!redo.length){status('Nothing to redo yet.','#fff1cf');return;}strokes.push(redo.pop());renderInk();store();};
+window.newScratchPage=function(){if((strokes.length||notes.length)&&!confirm('Start a new Scratchpad page?'))return;strokes=[];redo=[];notes=[];render();store();status('New Scratchpad page started.');};
+window.saveScratchPage=function(){store();status('Working page saved in this browser.','#e3f0df');};
+window.clearScratchpad=function(){if(!confirm('Clear learner marks and sticky notes? The selected background will remain.'))return;strokes=[];redo=[];notes=[];render();store();status('Learner marks cleared. Background preserved.','#fff1cf');};
+window.downloadScratchImage=function(){const ex=document.createElement('canvas');ex.width=920;ex.height=560;const ec=ex.getContext('2d');ec.drawImage(bgCanvas,0,0);ec.drawImage(canvas,0,0);const link=document.createElement('a');link.download='NEO_Maths_Rounding_to_Significant_Figures_Scratchpad.png';link.href=ex.toDataURL('image/png');link.click();};
+restore();updateButtons();render();
+})();
+renderLens(false);
+</script>
+
+<script id="practiceWorkedUnlockWrapper">
+// GreenPrint compliance patch; internal lesson version v0.2.
+(function(){
+  if (window.__neoWorkedUnlockInstalled) return;
+  window.__neoWorkedUnlockInstalled = true;
+  const promptSeen = Array(PRACTICE.length).fill(false);
+  const hintSeen = Array(PRACTICE.length).fill(false);
+  const attempts = Array(PRACTICE.length).fill(0);
+
+  function currentIdx(){ return practiceIndex; }
+  function workedUnlocked(i){
+    return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
+  }
+  function button(){
+    return document.getElementById('practiceWorkedBtn');
+  }
+  function notice(){
+    return document.getElementById('practiceWorkedNotice');
+  }
+  function lockMessage(i){
+    const parts = [];
+    if (!promptSeen[i]) parts.push('use the Socratic prompt');
+    if (!hintSeen[i]) parts.push('use the hint');
+    const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
+    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+  }
+  function updateWorkedButton(){
+    const i = currentIdx();
+    const btn = button();
+    if (!btn) return;
+    const unlocked = workedUnlocked(i);
+    btn.disabled = !unlocked;
+    btn.style.opacity = unlocked ? '1' : '.5';
+    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+    const n = notice();
+    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+  }
+
+  const oldRender = renderPractice;
+  renderPractice = function(){
+    oldRender();
+    updateWorkedButton();
+  };
+
+  const oldPrompt = pPrompt;
+  pPrompt = function(){
+    promptSeen[currentIdx()] = true;
+    oldPrompt();
+    updateWorkedButton();
+  };
+
+  const oldHint = pHint;
+  pHint = function(){
+    hintSeen[currentIdx()] = true;
+    oldHint();
+    updateWorkedButton();
+  };
+
+  const oldCheck = pCheck;
+  pCheck = function(){
+    const answer = document.getElementById('practiceAnswer');
+    if (answer && answer.value.trim()) {
+      attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
+    }
+    oldCheck();
+    updateWorkedButton();
+  };
+
+  const oldSolution = pSolution;
+  pSolution = function(){
+    const i = currentIdx();
+    if (!workedUnlocked(i)) {
+      const fb = document.getElementById('practiceFeedback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.className = 'feedback';
+        fb.textContent = lockMessage(i);
+      }
+      updateWorkedButton();
+      return;
+    }
+    oldSolution();
+    updateWorkedButton();
+  };
+
+  updateWorkedButton();
+})();
+</script>
+
+</body>
+</html>

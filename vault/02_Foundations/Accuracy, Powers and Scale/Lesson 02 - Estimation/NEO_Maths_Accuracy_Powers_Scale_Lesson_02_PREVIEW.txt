@@ -1,0 +1,11 @@
+NEO Mathematics · Accuracy, Powers and Scale · Lesson 02
+Estimation
+
+Live lesson:
+https://neo-foundations-estimation.jinxy2358.chatgpt.site
+
+Stepping Stone:
+Estimate calculations by rounding values appropriately and use the estimate to judge reasonableness.
+
+Version 0.1 · 16 July 2026
+Includes restored Reconnection Routes, Estimation Laboratory, Sensible or Suspicious?, six-Cornerstone reference shell, Practice Companion, Scratchpad and guidance documents.

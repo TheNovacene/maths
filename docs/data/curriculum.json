@@ -1,0 +1,147 @@
+{
+  "version": "0.1",
+  "brand": "NEO by Nudge Education",
+  "site_title": "NEO Maths · GreenPrint",
+  "units": [
+    {
+      "id": "accuracy-powers-scale",
+      "title": "Accuracy, Powers and Scale",
+      "stage": "Foundations",
+      "strand": "Number",
+      "source": "vault/02_Foundations/Accuracy, Powers and Scale",
+      "lessons": [
+        {
+          "id": "aps-01-rounding-to-significant-figures",
+          "num": "Lesson 01",
+          "title": "Rounding to Significant Figures",
+          "file": "lessons/accuracy-powers-scale/01-rounding-to-significant-figures.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "aps-02-estimation",
+          "num": "Lesson 02",
+          "title": "Estimation",
+          "file": "lessons/accuracy-powers-scale/02-estimation.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "aps-03-using-index-laws",
+          "num": "Lesson 03",
+          "title": "Using Index Laws",
+          "file": "lessons/accuracy-powers-scale/03-using-index-laws.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "aps-04-write-and-order-standard-form",
+          "num": "Lesson 04",
+          "title": "Write and Order Standard Form",
+          "file": "lessons/accuracy-powers-scale/04-write-and-order-standard-form.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "aps-05-calculating-with-standard-form",
+          "num": "Lesson 05",
+          "title": "Calculating with Standard Form",
+          "file": "lessons/accuracy-powers-scale/05-calculating-with-standard-form.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
+      "id": "pythagorean-theorem",
+      "title": "Pythagorean Theorem",
+      "stage": "Foundations",
+      "strand": "Geometry",
+      "source": "vault/02_Foundations/01_Lessons/Pythagorean_Theorem",
+      "lessons": [
+        {
+          "id": "pyth-01-right-triangles-and-hidden-squares",
+          "num": "Lesson 01",
+          "title": "Right Triangles and Hidden Squares",
+          "file": "lessons/pythagorean-theorem/01-right-triangles-and-hidden-squares.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "pyth-02-finding-the-hypotenuse",
+          "num": "Lesson 02",
+          "title": "Finding the Hypotenuse",
+          "file": "lessons/pythagorean-theorem/02-finding-the-hypotenuse.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "pyth-03-finding-a-shorter-side",
+          "num": "Lesson 03",
+          "title": "Finding a Shorter Side",
+          "file": "lessons/pythagorean-theorem/03-finding-a-shorter-side.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "pyth-04-geometrical-problems",
+          "num": "Lesson 04",
+          "title": "Geometrical Problems",
+          "file": "lessons/pythagorean-theorem/04-geometrical-problems.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
+      "id": "ks3-interactive-library",
+      "title": "KS3 Interactive Library",
+      "stage": "Key Stage 3",
+      "strand": "Mixed",
+      "source": "vault/KS3 (1)",
+      "lessons": [
+        {
+          "id": "ks3-ratio-and-proportion",
+          "num": "Interactive",
+          "title": "Ratio and Proportion",
+          "file": "lessons/ks3/ratio-and-proportion.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "ks3-place-value",
+          "num": "Interactive",
+          "title": "Place Value",
+          "file": "lessons/ks3/place-value.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
+      "id": "ks4-interactive-library",
+      "title": "KS4 Interactive Library",
+      "stage": "Key Stage 4",
+      "strand": "Algebra",
+      "source": "vault/KS4 (1)",
+      "lessons": [
+        {
+          "id": "ks4-straight-line-graphs",
+          "num": "Interactive",
+          "title": "Straight Line Graphs",
+          "file": "lessons/ks4/straight-line-graphs.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "ks4-equation-of-a-straight-line",
+          "num": "Interactive",
+          "title": "Equation of a Straight Line",
+          "file": "lessons/ks4/equation-of-a-straight-line.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    }
+  ]
+}

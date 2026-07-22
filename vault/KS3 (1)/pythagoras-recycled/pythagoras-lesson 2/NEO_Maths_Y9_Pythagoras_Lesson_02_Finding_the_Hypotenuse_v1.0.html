@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Finding the Hypotenuse</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}
+.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.mathsvg{width:100%;max-width:560px;background:#fff;border-radius:10px;border:1px solid #cdbfa9}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.tabs button.active{background:#dce8ef;border-color:#365a68}
+.step-card{background:#fff;border:1px solid #cdbfa9;border-radius:12px;padding:12px;margin:12px 0}
+.stepline{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:12px;font-size:1.45em;line-height:1.85}
+.stepline select{font-size:0.72em;padding:7px 9px;border:1px solid #bcae98;border-radius:8px;background:#fff;min-width:115px}
+.pow{font-size:.82em;font-weight:700;vertical-align:super;line-height:0}
+.helperBox{display:none;background:#fffaf0;border:1px solid #cdbfa9;border-radius:10px;padding:12px;margin-top:10px}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.focusNote{background:#fffaf0;border-left:5px solid #d8b26e;padding:10px;border-radius:8px;margin-top:10px}
+@media(max-width:700px){.neo,.practice{padding:14px}.buttonrow{gap:6px}.stepline{font-size:1.2em}}
+</style>
+</head>
+<body>
+<div id="lessonView"><div class="neo">
+<h1>NEO Mathematics: Pythagoras' Theorem</h1>
+<h2>Finding the Hypotenuse</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can I recognise the hypotenuse and build a correct step-by-step solution for its length?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Worked-solution builder for finding the hypotenuse</p>
+<p><b>Stepping Stones:</b> identify the right angle; identify the side opposite it as the hypotenuse; use the correct opposite-side letter; square the two shorter side lengths; add; square-root to find the hypotenuse length.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 22 · Reflect/Create 7 · Rest/Nourish 3 · Evidence 5</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support and Scratchpad</h3>
+<p>Choose the support that is useful today. The Scratchpad stays inside this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Pythagoras_Lesson_02_Learner_Guide_v0.8.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Pythagoras_Lesson_02_Supporting_Adult_Guidance_v0.8.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to mark the right angle, trace to the opposite side, and build the worked solution step by step.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+</div>
+
+<details class="kw" open>
+<summary>🌿 Connection — Which side is the hypotenuse?</summary>
+<p><b>What to do:</b> look for the small right-angle marker first. The hypotenuse is always the side <b>opposite</b> the right angle, and it is always the longest side.</p>
+<p><b>What you are trying to notice:</b> the hypotenuse may appear on the right, on the left, as the base, or in a tilted triangle. Its position on the page does not matter.</p>
+<div class="toolbox">
+<h3>Orientation warm-up</h3>
+<div id="orientationButtons" class="buttonrow tabs"></div>
+<div class="twocol">
+<svg id="warmupSvg" viewBox="0 0 560 430" class="mathsvg" aria-label="Right-angled triangle orientation warm-up"></svg>
+<div class="card">
+<p style="font-size:1.1em"><b>Which side is the hypotenuse?</b></p>
+<select id="warmupSelect" style="font-size:1em;padding:10px;border:1px solid #bcae98;border-radius:8px;width:100%;box-sizing:border-box"></select>
+<div class="buttonrow">
+<button onclick="checkWarmup()">Check</button>
+<button onclick="nextExample()">Next orientation →</button>
+</div>
+<div id="warmupFeedback" class="feedback"></div>
+</div>
+</div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> every worked solution begins by finding the right angle and tracing to the side opposite it.</div>
+</details>
+
+<details class="hs">
+<summary>🚶 Movement — How do I build the solution step by step?</summary>
+<p><b>What to do:</b> choose one example, then complete the six steps in order. Use the Socratic prompt or Hint whenever the next move is unclear.</p>
+<p><b>What you are trying to notice:</b> the letter on the left of the equation changes when the hypotenuse changes. The structure of the method stays the same.</p>
+<div class="toolbox">
+<h3>🧭 Hypotenuse Worked-Solution Builder</h3>
+<div class="buttonrow tabs" id="problemButtons"></div>
+<div class="twocol">
+<div>
+<svg id="problemSvg" viewBox="0 0 560 430" class="mathsvg" aria-label="Worked example right-angled triangle"></svg>
+<div id="problemContext" class="card"></div>
+</div>
+<div class="card">
+<div id="currentStepLabel" style="font-size:1.15em;margin-bottom:10px"></div>
+<div class="buttonrow">
+<button onclick="showPrompt()">🤔 Socratic prompt</button>
+<button onclick="showHint()">💡 Hint</button>
+<button onclick="checkCurrentStep()">✅ Check this step</button>
+<button onclick="checkAllSteps()">✅ Check all</button>
+<button onclick="resetCurrentExample()">↺ Reset</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to copy the current step and explain why it is true.')">✏️ Scratchpad</button>
+</div>
+<div class="focusNote"><b>What does “Focus this step” do?</b> It tells the Socratic Prompt and Hint buttons which step you want support with. It does not mark your answer; it simply moves the support panel to that step.</div>
+<div id="helperBox" class="helperBox"></div>
+<div id="globalFeedback" class="feedback"></div>
+</div>
+</div>
+<div id="stepsContainer"></div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> the final answer is only secure when the route is visible: right angle → hypotenuse → square → add → root.</div>
+</details>
+
+<details class="dw">
+<summary>🪞 Reflection — What usually goes wrong?</summary>
+<p><b>What to do:</b> choose one mistake below and explain how you would prevent it.</p>
+<div class="card">
+<ul>
+<li>Choosing a side next to the right angle instead of the side opposite it.</li>
+<li>Using <b>c</b> automatically even when the right angle is not at C.</li>
+<li>Adding the two side lengths before squaring them.</li>
+<li>Forgetting the square root at the end.</li>
+</ul>
+</div>
+</details>
+
+<details class="es">
+<summary>🎨 Creativity — Can I teach someone else the method?</summary>
+<p><b>What to do:</b> create a mini teaching card showing how to find the hypotenuse in one of the four orientations.</p>
+<div class="card">
+<ol>
+<li>Draw or copy the triangle.</li>
+<li>Mark the right angle.</li>
+<li>Trace to the opposite side and name the hypotenuse.</li>
+<li>Write the full worked solution.</li>
+</ol>
+</div>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Create a mini teaching card for finding the hypotenuse.')">✏️ Create teaching card</button>
+</details>
+
+<details class="lb">
+<summary>🌙 Rest — How can I slow the method down?</summary>
+<div class="card">
+<p>You can reduce the load by using one decision at a time:</p>
+<p style="font-size:1.35em;font-weight:bold;text-align:center">right angle → opposite side → hypotenuse → square → add → root</p>
+</div>
+</details>
+
+<details class="nt">
+<summary>🥣 Nutrition — What is this practice nourishing?</summary>
+<p>This lesson uses <strong>intellectual nourishment</strong>. It strengthens precision, method confidence, orientation flexibility and sense-checking.</p>
+<div class="twocol">
+<div class="card">🌱 <b>Precision</b><br>I use the correct hypotenuse letter.</div>
+<div class="card">🌱 <b>Confidence</b><br>I know where to start.</div>
+<div class="card">🌱 <b>Flexibility</b><br>I can read tilted or rotated triangles.</div>
+<div class="card">🌱 <b>Sense-checking</b><br>The hypotenuse must be longest.</div>
+</div>
+</details>
+
+<details class="ft">
+<summary>🛠 Final Task — My hypotenuse worked solution</summary>
+<h3>Build and explain one complete hypotenuse solution</h3>
+<p><b>What to do:</b> choose one of the four examples, or design your own. Create a clear worked solution that another learner could follow.</p>
+<ul>
+<li>identify the right angle;</li>
+<li>identify the hypotenuse and its correct letter;</li>
+<li>write the theorem with the hypotenuse square on the left;</li>
+<li>show the squared values;</li>
+<li>show the addition step;</li>
+<li>square-root to find the side length;</li>
+<li>include one sentence explaining why the answer makes sense.</li>
+</ul>
+<p><b>Filename pattern:</b> <code>NEO_MATH_PYTH_HYPOTENUSE_FirstName_Date</code></p>
+<table style="width:100%;border-collapse:collapse;background:#fff">
+<tr><th style="border:1px solid #cdbfa9;padding:8px">Criterion</th><th style="border:1px solid #cdbfa9;padding:8px">Emerging</th><th style="border:1px solid #cdbfa9;padding:8px">Developing</th><th style="border:1px solid #cdbfa9;padding:8px">Secure</th><th style="border:1px solid #cdbfa9;padding:8px">Mastering</th></tr>
+<tr><td style="border:1px solid #cdbfa9;padding:8px"><b>Understanding</b></td><td style="border:1px solid #cdbfa9;padding:8px">Names some triangle features.</td><td style="border:1px solid #cdbfa9;padding:8px">Identifies the hypotenuse in a familiar orientation.</td><td style="border:1px solid #cdbfa9;padding:8px">Explains why the hypotenuse is opposite the right angle.</td><td style="border:1px solid #cdbfa9;padding:8px">Uses opposite-side labelling accurately across orientations.</td></tr>
+<tr><td style="border:1px solid #cdbfa9;padding:8px"><b>Application</b></td><td style="border:1px solid #cdbfa9;padding:8px">Begins a solution route.</td><td style="border:1px solid #cdbfa9;padding:8px">Completes some correct stages.</td><td style="border:1px solid #cdbfa9;padding:8px">Finds the hypotenuse correctly.</td><td style="border:1px solid #cdbfa9;padding:8px">Creates and solves a new correctly labelled example.</td></tr>
+<tr><td style="border:1px solid #cdbfa9;padding:8px"><b>Communication</b></td><td style="border:1px solid #cdbfa9;padding:8px">Shows limited working.</td><td style="border:1px solid #cdbfa9;padding:8px">Shows some stages.</td><td style="border:1px solid #cdbfa9;padding:8px">Shows a clear route.</td><td style="border:1px solid #cdbfa9;padding:8px">Creates a solution another learner could follow.</td></tr>
+<tr><td style="border:1px solid #cdbfa9;padding:8px"><b>Reflection</b></td><td style="border:1px solid #cdbfa9;padding:8px">Names one thing noticed.</td><td style="border:1px solid #cdbfa9;padding:8px">Identifies a helpful step.</td><td style="border:1px solid #cdbfa9;padding:8px">Explains what helped the method become clearer.</td><td style="border:1px solid #cdbfa9;padding:8px">Identifies and avoids a likely misconception.</td></tr>
+</table>
+</details>
+</div></div>
+
+
+<!-- GreenPrint Practice Companion view -->
+<div id="practiceView" hidden>
+  <div class="practice" style="max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px;">
+    <h1>Pythagoras' Theorem — Practice Companion</h1>
+    <button onclick="returnLesson()">← Return to lesson</button>
+    <p>Use support in this order: <b>🤔 prompt → 💡 hint → ✅ check → 👀 worked solution</b>.</p>
+<p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p>
+
+    <div id="practiceDots" class="buttonrow" style="margin:18px 0;"></div>
+
+    <div class="toolbox" style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+      <p id="practiceLabel" style="font-size:1.05em;font-weight:bold;"></p>
+      <div id="practiceQuestion" class="readout" style="font-size:1.08em;background:#fff;padding:14px;border-radius:10px;margin:10px 0;"></div>
+      <input id="practiceAnswer" placeholder="Your answer" style="width:100%;box-sizing:border-box;font-size:1.05em;padding:12px;border:1px solid #bcae98;border-radius:8px;background:#fff;">
+      <div class="buttonrow" style="margin-top:14px;">
+        <button onclick="practicePrompt()">🤔 Socratic prompt</button>
+        <button onclick="practiceHint()">💡 Hint</button>
+        <button onclick="practiceCheck()">✅ Check</button>
+        <button id="practiceWorkedBtn" onclick="practiceSolution()">👀 Worked solution</button>
+        <button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to organise your Pythagoras working before checking the solution.')">✏️ Scratchpad</button>
+      </div>
+      <div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div>
+      <div id="practiceSupport" class="readout" style="display:none;background:#fffaf0;padding:12px;border-radius:10px;margin-top:12px;border:1px solid #e2d4bb;"></div>
+      <div id="practiceFeedback" class="feedback"></div>
+    </div>
+
+    <div class="buttonrow" style="margin-top:14px;">
+      <button id="practicePrev" onclick="practicePrev()">← Previous</button>
+      <button id="practiceNext" onclick="practiceNext()">Next →</button>
+    </div>
+  </div>
+</div>
+<script id="practiceCompanionScript">
+const PRACTICE_QUESTIONS = [{"question": "A right-angled triangle has shorter sides 6 cm and 8 cm. The hypotenuse is labelled <b>a</b>. Find <b>a</b>.", "answer": "10", "prompt": "Are you finding the hypotenuse or a shorter side? Which operation does that suggest?", "hint": "For a hypotenuse, add the two shorter-side squares: a\u00b2 = 6\u00b2 + 8\u00b2.", "solution": "a\u00b2 = 6\u00b2 + 8\u00b2<br>a\u00b2 = 36 + 64<br>a\u00b2 = 100<br>a = \u221a100 = <b>10 cm</b>."}, {"question": "A right-angled triangle has shorter sides 5 cm and 12 cm. The hypotenuse is labelled <b>b</b>. Find <b>b</b>.", "answer": "13", "prompt": "What are the two shorter-side squares?", "hint": "5\u00b2 = 25 and 12\u00b2 = 144.", "solution": "b\u00b2 = 5\u00b2 + 12\u00b2<br>b\u00b2 = 25 + 144<br>b\u00b2 = 169<br>b = \u221a169 = <b>13 cm</b>."}, {"question": "The shorter sides of a right-angled triangle are 9 m and 12 m. The hypotenuse is labelled <b>c</b>. Find <b>c</b>.", "answer": "15", "prompt": "The hypotenuse is the unknown, so should the square areas be added or subtracted?", "hint": "Use c\u00b2 = 9\u00b2 + 12\u00b2.", "solution": "c\u00b2 = 9\u00b2 + 12\u00b2<br>c\u00b2 = 81 + 144<br>c\u00b2 = 225<br>c = \u221a225 = <b>15 m</b>."}, {"question": "A tilted right-angled triangle has shorter sides 8 cm and 15 cm. The hypotenuse is labelled <b>b</b>. Find <b>b</b>.", "answer": "17", "prompt": "Does the tilt change the method?", "hint": "The method depends on side roles, not orientation on the page.", "solution": "b\u00b2 = 8\u00b2 + 15\u00b2<br>b\u00b2 = 64 + 225<br>b\u00b2 = 289<br>b = \u221a289 = <b>17 cm</b>."}];
+let practiceIndex = 0;
+let practiceAttempts = Array(PRACTICE_QUESTIONS.length).fill(0);
+let practiceSecure = Array(PRACTICE_QUESTIONS.length).fill(false);
+
+function practiceNumber(value) {
+  const m = String(value || '').match(/-?\d+(?:\.\d+)?/);
+  return m ? Number(m[0]) : NaN;
+}
+function practiceDot(i) {
+  const active = i === practiceIndex;
+  const secure = practiceSecure[i];
+  const bg = secure ? '#e3f0df' : active ? '#e5edf4' : '#fff';
+  return `<button onclick="practiceGo(${i})" aria-label="Practice question ${i+1}" style="display:inline-flex;width:36px;height:36px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:${bg};padding:0;">${i+1}</button>`;
+}
+function renderPractice() {
+  const q = PRACTICE_QUESTIONS[practiceIndex];
+  document.getElementById('practiceDots').innerHTML = PRACTICE_QUESTIONS.map((_,i)=>practiceDot(i)).join('');
+  document.getElementById('practiceLabel').textContent = `Question ${practiceIndex+1} of ${PRACTICE_QUESTIONS.length}`;
+  document.getElementById('practiceQuestion').innerHTML = q.question;
+  document.getElementById('practiceAnswer').value = '';
+  document.getElementById('practiceSupport').style.display = 'none';
+  document.getElementById('practiceFeedback').style.display = 'none';
+  document.getElementById('practicePrev').disabled = practiceIndex === 0;
+  document.getElementById('practiceNext').textContent = practiceIndex === PRACTICE_QUESTIONS.length - 1 ? 'Finish' : 'Next →';
+}
+function practiceGo(i) { practiceIndex = i; renderPractice(); }
+function practicePrompt() {
+  const q = PRACTICE_QUESTIONS[practiceIndex];
+  const box = document.getElementById('practiceSupport');
+  box.style.display = 'block';
+  box.innerHTML = '<b>🤔 Socratic prompt:</b> ' + q.prompt;
+}
+function practiceHint() {
+  const q = PRACTICE_QUESTIONS[practiceIndex];
+  const box = document.getElementById('practiceSupport');
+  box.style.display = 'block';
+  box.innerHTML = '<b>💡 Hint:</b> ' + q.hint;
+}
+function renderPracticeDotsOnly() {
+  document.getElementById('practiceDots').innerHTML = PRACTICE_QUESTIONS.map((_,i)=>practiceDot(i)).join('');
+}
+function practiceCheck() {
+  const q = PRACTICE_QUESTIONS[practiceIndex];
+  practiceAttempts[practiceIndex]++;
+  const learner = document.getElementById('practiceAnswer').value;
+  const got = practiceNumber(learner);
+  const target = Number(q.answer);
+  const ok = !Number.isNaN(got) && Math.abs(got - target) < 0.001;
+  const fb = document.getElementById('practiceFeedback');
+  fb.style.display = 'block';
+  if (!learner.trim()) {
+    fb.className = 'feedback warn';
+    fb.textContent = 'Enter an answer first, then check.';
+  } else if (ok) {
+    practiceSecure[practiceIndex] = true;
+    fb.className = 'feedback good';
+    fb.innerHTML = 'Correct. Keep the reasoning visible, not just the answer.';
+    renderPracticeDotsOnly();
+  } else {
+    fb.className = 'feedback bad';
+    fb.innerHTML = 'Not quite yet. Use the prompt or hint, then try again.';
+  }
+}
+function practiceSolution() {
+  const q = PRACTICE_QUESTIONS[practiceIndex];
+  const box = document.getElementById('practiceSupport');
+  box.style.display = 'block';
+  box.innerHTML = '<b>👀 Worked solution:</b><br>' + q.solution;
+}
+function practicePrev() {
+  if (practiceIndex > 0) {
+    practiceIndex--;
+    renderPractice();
+  }
+}
+function practiceNext() {
+  if (practiceIndex < PRACTICE_QUESTIONS.length - 1) {
+    practiceIndex++;
+    renderPractice();
+  } else {
+    const fb = document.getElementById('practiceFeedback');
+    fb.style.display = 'block';
+    fb.className = 'feedback good';
+    fb.textContent = `Practice companion complete. ${practiceSecure.filter(Boolean).length} of ${PRACTICE_QUESTIONS.length} are secure so far.`;
+  }
+}
+(function initialisePracticeCompanion(){
+  window.openPractice = function() {
+    document.getElementById('lessonView').hidden = true;
+    document.getElementById('practiceView').hidden = false;
+    renderPractice();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  window.returnLesson = function() {
+    document.getElementById('practiceView').hidden = true;
+    document.getElementById('lessonView').hidden = false;
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  renderPractice();
+})();
+</script>
+
+<script id="practiceWorkedUnlockWrapper">
+(function(){
+  if (window.__neoWorkedUnlockInstalled) return;
+  window.__neoWorkedUnlockInstalled = true;
+  const promptSeen = Array(PRACTICE_QUESTIONS.length).fill(false);
+  const hintSeen = Array(PRACTICE_QUESTIONS.length).fill(false);
+
+  function currentIdx(){ return practiceIndex; }
+  function workedUnlocked(i){
+    return !!(promptSeen[i] && hintSeen[i] && (practiceAttempts[i] || 0) >= 2);
+  }
+  function button(){
+    return document.getElementById('practiceWorkedBtn');
+  }
+  function notice(){
+    return document.getElementById('practiceWorkedNotice');
+  }
+  function lockMessage(i){
+    const parts = [];
+    if (!promptSeen[i]) parts.push('use the Socratic prompt');
+    if (!hintSeen[i]) parts.push('use the hint');
+    const triesLeft = Math.max(0, 2 - (practiceAttempts[i] || 0));
+    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+  }
+  function updateWorkedButton(){
+    const i = currentIdx();
+    const btn = button();
+    if (!btn) return;
+    const unlocked = workedUnlocked(i);
+    btn.disabled = !unlocked;
+    btn.style.opacity = unlocked ? '1' : '.5';
+    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+    const n = notice();
+    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+  }
+
+  const oldRender = renderPractice;
+  renderPractice = function(){
+    oldRender();
+    updateWorkedButton();
+  };
+
+  const oldPrompt = practicePrompt;
+  practicePrompt = function(){
+    promptSeen[currentIdx()] = true;
+    oldPrompt();
+    updateWorkedButton();
+  };
+
+  const oldHint = practiceHint;
+  practiceHint = function(){
+    hintSeen[currentIdx()] = true;
+    oldHint();
+    updateWorkedButton();
+  };
+
+  const oldCheck = practiceCheck;
+  practiceCheck = function(){
+    oldCheck();
+    updateWorkedButton();
+  };
+
+  const oldSolution = practiceSolution;
+  practiceSolution = function(){
+    const i = currentIdx();
+    if (!workedUnlocked(i)) {
+      const fb = document.getElementById('practiceFeedback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.className = 'feedback';
+        fb.textContent = lockMessage(i);
+      }
+      updateWorkedButton();
+      return;
+    }
+    oldSolution();
+    updateWorkedButton();
+  };
+
+  updateWorkedButton();
+})();
+</script>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+const examples = [{"title": "Example 1: hypotenuse on the right", "short": "Right", "rightVertex": "A", "hypSide": "BC", "varName": "a", "unit": "cm", "knowns": [6, 8], "hypValue": 10, "pts": {"A": [140, 330], "B": [140, 120], "C": [330, 330]}, "sideTexts": {"AB": "8 cm", "AC": "6 cm", "BC": "a"}, "context": "The right angle is at A, so the side opposite A is the hypotenuse. In this triangle the unknown hypotenuse is side BC, so its length is labelled a."}, {"title": "Example 2: hypotenuse on the left", "short": "Left", "rightVertex": "B", "hypSide": "AC", "varName": "b", "unit": "cm", "knowns": [12, 5], "hypValue": 13, "pts": {"A": [100, 330], "B": [390, 330], "C": [390, 190]}, "sideTexts": {"AB": "12 cm", "BC": "5 cm", "AC": "b"}, "context": "The right angle is at B, so the side opposite B is the hypotenuse. In this triangle the unknown hypotenuse is side AC, so its length is labelled b."}, {"title": "Example 3: hypotenuse as the base", "short": "Base", "rightVertex": "C", "hypSide": "AB", "varName": "c", "unit": "m", "knowns": [12, 9], "hypValue": 15, "pts": {"A": [90, 310], "C": [282, 166], "B": [390, 310]}, "sideTexts": {"AC": "12 m", "BC": "9 m", "AB": "c"}, "context": "The right angle is at C, so the side opposite C is the hypotenuse. In this triangle the unknown hypotenuse is side AB, so its length is labelled c."}, {"title": "Example 4: tilted triangle", "short": "Tilted", "rightVertex": "B", "hypSide": "AC", "varName": "b", "unit": "cm", "knowns": [8, 15], "hypValue": 17, "pts": {"A": [140, 250], "B": [236, 178], "C": [371, 358]}, "sideTexts": {"AB": "8 cm", "BC": "15 cm", "AC": "b"}, "context": "The triangle is tilted, but it is still right-angled at B. The side opposite B is the hypotenuse, so the unknown side AC is labelled b."}];
+let exampleIndex = 0;
+let currentStep = 0;
+
+function currentExample() { return examples[exampleIndex]; }
+function value(id) { const el=document.getElementById(id); return el ? el.value : ''; }
+function unique(arr) { return [...new Set(arr)]; }
+function sideOptions() { return ["AB","BC","AC"]; }
+function numOptions(p) { return unique([String(p.knowns[0]),String(p.knowns[1]),String(p.hypValue),String(p.hypValue*p.hypValue)]); }
+function squareOptions(p) { return unique([String(p.knowns[0]*p.knowns[0]),String(p.knowns[1]*p.knowns[1]),String(p.hypValue*p.hypValue),String(p.knowns[0]+p.knowns[1])]); }
+function varOptions(p) { return unique([p.varName,'a','b','c']); }
+function sameSet(a,b) { return [...a].sort().join('|') === [...b].sort().join('|'); }
+function pow2(x) { return x + '<span class="pow">2</span>'; }
+function selectHTML(id, opts) { return '<select id="'+id+'"><option value="">Choose...</option>'+opts.map(o=>'<option value="'+o+'">'+o+'</option>').join('')+'</select>'; }
+
+const stepDefs = [
+{label:'Step 1 — Identify the hypotenuse',prompt:'Which side is directly opposite the right-angle marker?',hint:'The hypotenuse is opposite the right angle.',build:p=>'The hypotenuse is side '+selectHTML('step1_hyp',sideOptions())+'.',check:p=>value('step1_hyp')===p.hypSide},
+{label:'Step 2 — Choose the two shorter side lengths',prompt:'Which two side lengths meet to form the right angle?',hint:'Use the two known side lengths that are not the hypotenuse.',build:p=>'The two shorter side lengths are '+selectHTML('step2_a',numOptions(p))+' and '+selectHTML('step2_b',numOptions(p))+'.',check:p=>sameSet([value('step2_a'),value('step2_b')],p.knowns.map(String))},
+{label:'Step 3 — Write the theorem for this triangle',prompt:'Which lower-case letter names the hypotenuse in this example?',hint:'Put the hypotenuse letter on the left.',build:p=>pow2(selectHTML('step3_var',varOptions(p)))+' = '+pow2(selectHTML('step3_n1',numOptions(p)))+' + '+pow2(selectHTML('step3_n2',numOptions(p))),check:p=>value('step3_var')===p.varName && sameSet([value('step3_n1'),value('step3_n2')],p.knowns.map(String))},
+{label:'Step 4 — Square the two known side lengths',prompt:'What do you get when you square each known side length?',hint:'Square each number separately. Do not add first.',build:p=>pow2(p.varName)+' = '+selectHTML('step4_s1',squareOptions(p))+' + '+selectHTML('step4_s2',squareOptions(p)),check:p=>sameSet([value('step4_s1'),value('step4_s2')],p.knowns.map(n=>String(n*n)))},
+{label:'Step 5 — Add the squared values',prompt:'What is the total of the two squared numbers?',hint:'Add the two squared results from Step 4.',build:p=>pow2(p.varName)+' = '+selectHTML('step5_sum',[String(p.hypValue*p.hypValue),String(p.knowns[0]+p.knowns[1]),String(Math.abs(p.knowns[0]-p.knowns[1]))]),check:p=>value('step5_sum')===String(p.hypValue*p.hypValue)},
+{label:'Step 6 — Square root',prompt:'What do you do to turn the squared hypotenuse into the side length?',hint:'Take the square root of the result from Step 5.',build:p=>p.varName+' = √'+selectHTML('step6_rootIn',[String(p.hypValue*p.hypValue),String(p.hypValue),String(p.knowns[0]*p.knowns[1])])+' = '+selectHTML('step6_rootOut',[String(p.hypValue),String(p.knowns[0]+p.knowns[1]),String(p.knowns[1])])+' '+p.unit,check:p=>value('step6_rootIn')===String(p.hypValue*p.hypValue)&&value('step6_rootOut')===String(p.hypValue)}
+];
+
+function svgEl(n,a) { const e=document.createElementNS('http://www.w3.org/2000/svg',n); Object.entries(a||{}).forEach(([k,v])=>e.setAttribute(k,v)); return e; }
+function point(arr) { return {x:arr[0],y:arr[1]}; }
+function unit(P,Q) { const dx=Q.x-P.x,dy=Q.y-P.y,L=Math.hypot(dx,dy)||1; return {x:dx/L,y:dy/L}; }
+function centroid(A,B,C) { return {x:(A.x+B.x+C.x)/3,y:(A.y+B.y+C.y)/3}; }
+function markerPoints(X,R,Y,s=20) { const u=unit(R,X),v=unit(R,Y); const p1={x:R.x+u.x*s,y:R.y+u.y*s},p2={x:p1.x+v.x*s,y:p1.y+v.y*s},p3={x:R.x+v.x*s,y:R.y+v.y*s}; return [p1,p2,p3]; }
+function labelPoint(pt,ctr,mag=36) { const u=unit(ctr,pt); return {x:pt.x+u.x*mag,y:pt.y+u.y*mag}; }
+function sideLabelPoint(P,Q,ctr,mag=34) { const m={x:(P.x+Q.x)/2,y:(P.y+Q.y)/2},dx=Q.x-P.x,dy=Q.y-P.y,L=Math.hypot(dx,dy)||1; let nx=-dy/L,ny=dx/L; const c1={x:m.x+nx*mag,y:m.y+ny*mag},c2={x:m.x-nx*mag,y:m.y-ny*mag}; return Math.hypot(c1.x-ctr.x,c1.y-ctr.y)>Math.hypot(c2.x-ctr.x,c2.y-ctr.y)?c1:c2; }
+
+function drawTriangle(svgId,ex) {
+ const svg=document.getElementById(svgId); svg.innerHTML='';
+ const A=point(ex.pts.A),B=point(ex.pts.B),C=point(ex.pts.C),ctr=centroid(A,B,C);
+ svg.appendChild(svgEl('polygon',{points:`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}`,fill:'#efdeaa',stroke:'#365a68','stroke-width':'5','stroke-linejoin':'round'}));
+ let m = ex.rightVertex==='A'?markerPoints(B,A,C):ex.rightVertex==='B'?markerPoints(A,B,C):markerPoints(A,C,B);
+ svg.appendChild(svgEl('polyline',{points:m.map(p=>`${p.x},${p.y}`).join(' '),fill:'none',stroke:'#556b53','stroke-width':'4'}));
+ const pts={A,B,C};
+ Object.entries(pts).forEach(([name,pt])=>{
+   svg.appendChild(svgEl('circle',{cx:pt.x,cy:pt.y,r:'6',fill:'#2f3429'}));
+   const lp=labelPoint(pt,ctr,32);
+   if(name==='A') { lp.x-=10; lp.y+=2; }
+   const t=svgEl('text',{x:lp.x,y:lp.y,'font-size':'23','font-weight':'700',fill:'#2f3429','text-anchor':'middle','dominant-baseline':'middle'});
+   t.textContent=name; svg.appendChild(t);
+ });
+ [['AB',A,B],['BC',B,C],['AC',A,C]].forEach(([side,P,Q])=>{
+   const text=ex.sideTexts[side]; if(!text) return;
+   const pos=sideLabelPoint(P,Q,ctr,38);
+   const isUnknown=/^[abc]$/.test(text);
+   const t=svgEl('text',{x:pos.x,y:pos.y,'font-size':'20','font-weight':'700',fill:isUnknown?'#74447f':'#375b77','text-anchor':'middle','dominant-baseline':'middle'});
+   t.textContent=text; svg.appendChild(t);
+ });
+}
+
+function renderButtons() {
+ document.getElementById('orientationButtons').innerHTML=examples.map((ex,i)=>'<button class="'+(i===exampleIndex?'active':'')+'" onclick="setExample('+i+')">'+ex.short+'</button>').join('');
+ document.getElementById('problemButtons').innerHTML=examples.map((ex,i)=>'<button class="'+(i===exampleIndex?'active':'')+'" onclick="setExample('+i+')">'+ex.title+'</button>').join('');
+}
+function renderWarmup() {
+ const ex=currentExample(); renderButtons(); drawTriangle('warmupSvg',ex);
+ document.getElementById('warmupSelect').innerHTML='<option value="">Choose a side...</option>'+['AB','BC','AC'].map(s=>'<option value="'+s+'">'+s+'</option>').join('');
+ document.getElementById('warmupFeedback').style.display='none';
+}
+function checkWarmup() {
+ const ex=currentExample(),ans=value('warmupSelect');
+ document.getElementById('warmupFeedback').style.display='block';
+ if(!ans) { document.getElementById('warmupFeedback').className='feedback warn'; document.getElementById('warmupFeedback').textContent='Choose a side name first.'; return; }
+ if(ans===ex.hypSide) { document.getElementById('warmupFeedback').className='feedback good'; document.getElementById('warmupFeedback').textContent='Correct. In this triangle the hypotenuse is '+ex.hypSide+'.'; }
+ else { document.getElementById('warmupFeedback').className='feedback bad'; document.getElementById('warmupFeedback').textContent='Not quite. The hypotenuse is '+ex.hypSide+' because it is opposite the right angle.'; }
+}
+function nextExample() { exampleIndex=(exampleIndex+1)%examples.length; currentStep=0; renderAll(); }
+function setExample(i) { exampleIndex=i; currentStep=0; renderAll(); }
+function renderBuilder() {
+ const ex=currentExample(); drawTriangle('problemSvg',ex);
+ document.getElementById('problemContext').innerHTML='<h3 style="margin-top:0">'+ex.title+'</h3><p>'+ex.context+'</p><p class="small">Known shorter side lengths are shown clearly. The unknown hypotenuse is labelled <b>'+ex.varName+'</b>.</p>';
+ document.getElementById('currentStepLabel').innerHTML='<b>Current step:</b> '+stepDefs[currentStep].label;
+ document.getElementById('helperBox').style.display='none'; document.getElementById('globalFeedback').style.display='none';
+ document.getElementById('stepsContainer').innerHTML=stepDefs.map((step,idx)=>'<div class="step-card"><h4>'+step.label+'</h4><div class="stepline">'+step.build(ex)+'</div><div class="buttonrow"><button onclick="setCurrentStep('+idx+')">Focus this step</button><button onclick="checkSpecificStep('+idx+')">Check Step '+(idx+1)+'</button></div><div id="feedback_step_'+idx+'" class="feedback"></div></div>').join('');
+}
+function setCurrentStep(i) { currentStep=i; document.getElementById('currentStepLabel').innerHTML='<b>Current step:</b> '+stepDefs[currentStep].label; }
+function showPrompt() { document.getElementById('helperBox').style.display='block'; document.getElementById('helperBox').innerHTML='<b>🤔 Socratic prompt:</b> '+stepDefs[currentStep].prompt; }
+function showHint() { document.getElementById('helperBox').style.display='block'; document.getElementById('helperBox').innerHTML='<b>💡 Hint:</b> '+stepDefs[currentStep].hint; }
+function stepFeedback(i,msg,cls) { const el=document.getElementById('feedback_step_'+i); el.textContent=msg; el.className='feedback '+cls; el.style.display='block'; }
+function checkSpecificStep(i) { const ok=stepDefs[i].check(currentExample()); stepFeedback(i,ok?'Correct.':'Not quite yet. Use the prompt or hint and check your choices.',ok?'good':'bad'); }
+function checkCurrentStep() { checkSpecificStep(currentStep); }
+function checkAllSteps() {
+ let all=true; stepDefs.forEach((s,i)=>{ const ok=s.check(currentExample()); if(!ok) all=false; stepFeedback(i,ok?'Correct.':'Not quite yet. Use the prompt or hint and check your choices.',ok?'good':'bad'); });
+ document.getElementById('globalFeedback').style.display='block'; document.getElementById('globalFeedback').className='feedback '+(all?'good':'warn'); document.getElementById('globalFeedback').textContent=all?'Excellent. You have completed a correct full solution.':'Some steps still need attention. Look for the red cards.';
+}
+function resetCurrentExample() { renderBuilder(); document.getElementById('globalFeedback').style.display='block'; document.getElementById('globalFeedback').className='feedback warn'; document.getElementById('globalFeedback').textContent='This example has been reset.'; }
+function openMathsScratchpad(template,subtitle) { document.getElementById('neoScratchpadOverlay').hidden=false; document.getElementById('neoScratchpadSubtitle').textContent=subtitle||'A space to predict, sketch, test and revise.'; document.body.style.overflow='hidden'; }
+function closeMathsScratchpad() { document.getElementById('neoScratchpadOverlay').hidden=true; document.body.style.overflow=''; }
+function openPractice() { document.getElementById('lessonView').hidden=true; document.getElementById('practiceView').hidden=false; window.scrollTo({top:0,behavior:'smooth'}); }
+function returnLesson() { document.getElementById('practiceView').hidden=true; document.getElementById('lessonView').hidden=false; window.scrollTo({top:0,behavior:'smooth'}); }
+
+function renderAll() {
+  renderWarmup();
+  renderBuilder();
+}
+
+renderAll();
+</script>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_pythagoras_hypotenuse_v08";
+
+  function status(msg, col){
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = col || "#e5edf4";
+    box.textContent = msg;
+  }
+  function point(e){
+    const r = canvas.getBoundingClientRect();
+    return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height };
+  }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.fillStyle = "#fff";
+    bg.fillRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.save();
+    bg.lineWidth = 1;
+    bg.strokeStyle = "#e6dccb";
+
+    if(template === "square-grid" || template === "coordinate-grid"){
+      for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); }
+      for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); }
+    }
+    if(template === "coordinate-grid"){
+      bg.strokeStyle = "#9fb2bd";
+      bg.lineWidth = 2;
+      bg.beginPath();
+      bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height);
+      bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2);
+      bg.stroke();
+    }
+    if(template === "ratio-table"){
+      bg.strokeStyle = "#cdbfa9";
+      bg.lineWidth = 1.5;
+      for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); }
+      for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); }
+      bg.font = "18px Arial";
+      bg.fillStyle = "#5c6b4f";
+      bg.fillText("Value",100,105); bg.fillText("Square",100,175); bg.fillText("Sum / root",100,245);
+    }
+    if(template === "double-number-line"){
+      bg.strokeStyle = "#315d72";
+      bg.lineWidth = 3;
+      [210,350].forEach(function(y){
+        bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke();
+        for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); }
+      });
+      bg.font = "18px Arial";
+      bg.fillStyle = "#315d72";
+      bg.fillText("Line 1",90,185); bg.fillText("Line 2",90,325);
+    }
+    bg.restore();
+  }
+  function drawStroke(s){
+    if(!s || !s.points || !s.points.length) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    if(s.tool === "eraser"){
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.strokeStyle = "rgba(0,0,0,1)";
+      ctx.lineWidth = Math.max(18, s.width * 5);
+    } else {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.strokeStyle = s.colour;
+      ctx.lineWidth = s.width;
+    }
+    const pts = s.points;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    if(s.tool === "line"){
+      const last = pts[pts.length-1];
+      ctx.lineTo(last.x, last.y);
+    } else {
+      pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); });
+      if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+  function renderInk(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    strokes.forEach(drawStroke);
+  }
+  function renderNotes(){
+    stickyLayer.innerHTML = "";
+    notes.forEach(function(note, i){
+      const card = document.createElement("div");
+      card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;";
+      const bar = document.createElement("div");
+      bar.textContent = "Sticky note";
+      bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;";
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;";
+      remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); };
+      bar.appendChild(remove);
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought...";
+      area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;";
+      area.oninput = function(){ note.text = area.value; store(); };
+      let drag = null;
+      bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); };
+      bar.onpointermove = function(e){
+        if(!drag) return;
+        const r = stickyLayer.getBoundingClientRect();
+        note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100));
+        note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100));
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+      };
+      bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} };
+      card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card);
+    });
+  }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){
+    try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){}
+  }
+  function restore(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if(!saved) return;
+      template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || [];
+      colour = saved.colour || colour; width = saved.width || width;
+      document.getElementById("scratchTemplate").value = template;
+      document.getElementById("scratchColour").value = colour;
+      document.getElementById("scratchWidth").value = String(width);
+    }catch(err){}
+  }
+  function updateButtons(){
+    document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff";
+    document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff";
+    document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff";
+    canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair";
+  }
+
+  canvas.addEventListener("pointerdown", function(e){
+    if(tool === "note"){
+      const r = canvas.getBoundingClientRect();
+      notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""});
+      renderNotes(); window.setScratchTool("pen");
+      status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+      store(); e.preventDefault(); return;
+    }
+    drawing = true;
+    canvas.setPointerCapture(e.pointerId);
+    const p = point(e);
+    current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]};
+    strokes.push(current); redo = [];
+    renderInk(); e.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function(e){
+    if(!drawing || !current) return;
+    const p = point(e);
+    if(current.tool === "line") current.points[1] = p; else current.points.push(p);
+    renderInk(); e.preventDefault();
+  });
+  function finish(e){
+    if(!drawing) return;
+    drawing = false; current = null;
+    try{ canvas.releasePointerCapture(e.pointerId); }catch(err){}
+    store(); e.preventDefault();
+  }
+  canvas.addEventListener("pointerup", finish);
+  canvas.addEventListener("pointercancel", finish);
+
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){
+    if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; }
+    subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise.";
+    overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch();
+  };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){
+    tool = t; updateButtons();
+    if(t === "line") status("Line tool: press at the start point, drag to the end point, then release.");
+    if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){
+    if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started.");
+  };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){
+    if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf");
+  };
+  window.downloadScratchImage = function(){
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = canvas.width; exportCanvas.height = canvas.height;
+    const ex = exportCanvas.getContext("2d");
+    ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0);
+    notes.forEach(function(note){
+      const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height;
+      ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110);
+      ex.fillStyle="#2f3429"; ex.font="14px Arial";
+      const words=(note.text||"").split(/\s+/); let line="", yy=y+24;
+      words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; });
+      ex.fillText(line,x+10,yy);
+    });
+    const link=document.createElement("a"); link.download="NEO_Maths_Hypotenuse_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click();
+    status("Scratchpad image saved.", "#e3f0df");
+  };
+
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+</body>
+</html>

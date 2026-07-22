@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics KS3 - Ratio and Proportion</title>
+</head>
+<body style="margin:0; background:#efe9df;">
+<div id="lessonView">
+<div style="font-family:Arial,sans-serif; max-width:1000px; margin:auto; padding:22px; background:#f7f3ea; color:#2f3429; line-height:1.55; border-radius:18px;">
+<h1 style="margin-bottom:6px;color:#3f5f45;">NEO Mathematics KS3: Ratio and Proportion</h1>
+<h2 style="margin-top:0;color:#6a7f4e;font-size:1.35em;">Driving Question: <em>Can maths help us share, scale and sustain things fairly?</em></h2>
+<div style="background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0;">
+<p><strong>Lesson focus:</strong> scaling recipes, equivalent ratios, ratio tables and proportional reasoning.</p>
+<p><strong>Stepping Stones:</strong> use ratio notation; recognise equivalent ratios; solve direct proportion problems; use multiplicative reasoning; and explain why quantities scale by the same factor.</p>
+<p><strong>NEO Cornerstones:</strong> Connection, Movement, Creativity, Reflection, Rest and Nutrition.</p>
+</div>
+
+    <div style="background:#eef3e8; padding:14px; border-radius:12px; margin:16px 0;">
+      <h3 style="margin-top:0; color:#46533d;">📚 Lesson Guides and Scratchpad</h3>
+      <p>Choose the support that is useful to you. The Scratchpad stays inside this lesson.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <a href="NEO_Maths_Ratio_Proportion_Learner_Guide.pdf" target="_blank" rel="noopener"
+           style="display:inline-block; padding:11px 18px; background:#6a7f4e; color:#ffffff; text-decoration:none; border-radius:9px; font-weight:bold;">
+          🌱 Open Learner Guide
+        </a>
+        <a href="NEO_Maths_Ratio_Proportion_Lesson_Guidance.pdf" target="_blank" rel="noopener"
+           style="display:inline-block; padding:11px 18px; background:#5c6b4f; color:#ffffff; text-decoration:none; border-radius:9px; font-weight:bold;">
+          📘 Open Supporting Adult Guidance
+        </a>
+        <button type="button" onclick="openMathsScratchpad('blank')"
+                style="padding:11px 18px; background:#365a68; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+          ✏️ Open Maths Scratchpad
+        </button>
+      </div>
+    </div>
+
+<details open style="background:#e8f0e3;padding:15px;margin:12px 0;border-radius:14px;">
+<summary style="font-size:1.25em;font-weight:bold;">🌿 Connection - What is connected to what?</summary>
+<h3>Ratio shows a relationship</h3>
+<p>A ratio compares quantities. In a recipe, ingredients are connected. When the number of people changes, each ingredient must change by the same multiplier.</p>
+<p style="background:#fffaf0;padding:12px;border-radius:10px;"><strong>Base smoothie recipe for 2 people:</strong><br>1 banana : 200 ml milk : 80 g oats : 2 tsp honey</p>
+<p><strong>Try this:</strong> before using the scaler, predict the amounts for 6 people.</p>
+<button type="button" onclick="openMathsScratchpad('double-number-line','Predict how the quantities scale before testing them.')"
+style="padding:10px 14px;background:#365a68;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">✏️ Sketch a prediction</button>
+</details>
+
+<details style="background:#e5eef2;padding:15px;margin:12px 0;border-radius:14px;">
+<summary style="font-size:1.25em;font-weight:bold;">🚶 Movement - How does the recipe scale?</summary>
+<h3>Interactive investigation 1: Recipe Scaler</h3>
+<p>Choose a group size. Watch every ingredient move by the same scale factor.</p>
+<div style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+<label for="ratioServes"><strong>Number of people</strong></label>
+<input id="ratioServes" type="range" min="1" max="12" step="1" value="2" oninput="updateRatioScaler()" style="width:100%;">
+<div style="background:#fff;padding:10px;border-radius:9px;margin:8px 0;text-align:center;"><strong id="ratioServesLabel">2 people</strong> &nbsp; | &nbsp; Scale factor <strong id="ratioFactor">×1</strong></div>
+<div id="ratioRecipeTable"></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+<button onclick="randomRatioServes()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">🎲 Random group</button>
+<button onclick="openMathsScratchpad('double-number-line','Use matching positions to show how people and ingredients scale together.')" style="padding:9px 13px;background:#365a68;color:#fff;border:none;border-radius:8px;cursor:pointer;">✏️ Open double number line</button>
+</div>
+<label for="ratioNotice" style="display:block;margin:14px 0 6px;"><strong>What stays the same?</strong></label>
+<textarea id="ratioNotice" rows="3" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px;"></textarea>
+<button onclick="checkRatioNotice()" style="margin-top:10px;padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">✅ Check reflection</button>
+<div id="ratioNoticeFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold;"></div>
+</div>
+</details>
+
+<details style="background:#ece7f2;padding:15px;margin:12px 0;border-radius:14px;">
+<summary style="font-size:1.25em;font-weight:bold;">🪞 Reflection - Can I build and check a ratio table?</summary>
+<h3>Interactive investigation 2: Ratio Table Builder</h3>
+<div style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+<p id="ratioBuilderLabel" style="font-weight:bold;color:#604f75;"></p>
+<div id="ratioBuilderQuestion" style="background:#fff;padding:12px;border-radius:9px;"></div>
+<div style="overflow-x:auto;margin-top:12px;">
+<table style="width:100%;min-width:720px;border-collapse:collapse;background:#fff;">
+<tr><th style="border:1px solid #b9b09f;padding:8px;">People</th><th style="border:1px solid #b9b09f;padding:8px;">Bananas</th><th style="border:1px solid #b9b09f;padding:8px;">Milk</th><th style="border:1px solid #b9b09f;padding:8px;">Oats</th><th style="border:1px solid #b9b09f;padding:8px;">Honey</th></tr>
+<tr><td style="border:1px solid #b9b09f;padding:8px;">2</td><td style="border:1px solid #b9b09f;padding:8px;">1</td><td style="border:1px solid #b9b09f;padding:8px;">200</td><td style="border:1px solid #b9b09f;padding:8px;">80</td><td style="border:1px solid #b9b09f;padding:8px;">2</td></tr>
+<tr><td id="rbPeople" style="border:1px solid #b9b09f;padding:8px;font-weight:bold;"></td>
+<td style="border:1px solid #b9b09f;padding:8px;"><input id="rbB" style="width:100%;box-sizing:border-box;padding:8px;"></td>
+<td style="border:1px solid #b9b09f;padding:8px;"><input id="rbM" style="width:100%;box-sizing:border-box;padding:8px;"></td>
+<td style="border:1px solid #b9b09f;padding:8px;"><input id="rbO" style="width:100%;box-sizing:border-box;padding:8px;"></td>
+<td style="border:1px solid #b9b09f;padding:8px;"><input id="rbH" style="width:100%;box-sizing:border-box;padding:8px;"></td></tr>
+</table></div>
+<label for="rbFactor" style="display:block;margin:12px 0 5px;"><strong>Scale factor from 2 people</strong></label>
+<input id="rbFactor" style="width:100%;box-sizing:border-box;padding:10px;">
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+<button onclick="ratioBuilderPrompt()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;">🤔 Socratic prompt</button>
+<button onclick="ratioBuilderHint()" style="padding:9px 13px;background:#f8f1d8;border:1px solid #8a7932;border-radius:8px;">💡 Hint</button>
+<button onclick="ratioBuilderCheck()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;">✅ Check row</button>
+<button onclick="openMathsScratchpad('ratio-table','Build the row visually before checking it.')" style="padding:9px 13px;background:#365a68;color:#fff;border:none;border-radius:8px;">✏️ Open ratio table</button>
+</div>
+<div id="rbSupport" style="display:none;margin-top:10px;background:#f7f2e9;padding:10px;border-radius:8px;"></div>
+<div id="rbFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold;"></div>
+<div style="display:flex;justify-content:space-between;margin-top:12px;"><button onclick="rbPrev()" id="rbPrev">← Previous</button><button onclick="rbNext()" id="rbNext">Next →</button></div>
+</div>
+</details>
+
+<details style="background:#f1e9dc;padding:15px;margin:12px 0;border-radius:14px;">
+<summary style="font-size:1.25em;font-weight:bold;">🎨 Creativity - What can I make with ratio?</summary>
+<h3>Interactive investigation 3: Smoothie Design Challenge</h3>
+<div style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+<label><strong>Smoothie name</strong></label><input id="smName" oninput="updateSmoothie()" style="width:100%;box-sizing:border-box;padding:10px;margin:5px 0 10px;">
+<label><strong>Group size</strong></label><input id="smPeople" type="number" min="1" value="8" oninput="updateSmoothie()" style="width:100%;box-sizing:border-box;padding:10px;margin:5px 0 10px;">
+<div style="display:flex;flex-wrap:wrap;gap:10px;">
+<div style="flex:1;min-width:190px;"><label><strong>Fruit</strong></label><select id="smFruit" onchange="updateSmoothie()" style="width:100%;padding:10px;"><option>banana</option><option>berries</option><option>mango</option><option>apple</option></select></div>
+<div style="flex:1;min-width:190px;"><label><strong>Liquid</strong></label><select id="smLiquid" onchange="updateSmoothie()" style="width:100%;padding:10px;"><option>milk</option><option>oat milk</option><option>water</option><option>coconut water</option></select></div>
+<div style="flex:1;min-width:190px;"><label><strong>Thickener</strong></label><select id="smThick" onchange="updateSmoothie()" style="width:100%;padding:10px;"><option>oats</option><option>yoghurt</option><option>ice</option><option>avocado</option></select></div>
+</div>
+<p><strong>Base amounts for 2 people</strong></p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;">
+<label>Fruit <input id="smFA" type="number" step="0.5" value="1" oninput="updateSmoothie()" style="width:100%;padding:8px;box-sizing:border-box;"></label>
+<label>Liquid ml <input id="smLA" type="number" value="200" oninput="updateSmoothie()" style="width:100%;padding:8px;box-sizing:border-box;"></label>
+<label>Thickener g <input id="smTA" type="number" value="80" oninput="updateSmoothie()" style="width:100%;padding:8px;box-sizing:border-box;"></label>
+<label>Extra tsp <input id="smEA" type="number" step="0.5" value="2" oninput="updateSmoothie()" style="width:100%;padding:8px;box-sizing:border-box;"></label>
+</div>
+<label for="smExplain" style="display:block;margin:12px 0 5px;"><strong>Explain your ratio reasoning</strong></label>
+<textarea id="smExplain" rows="3" oninput="updateSmoothie()" style="width:100%;box-sizing:border-box;padding:10px;"></textarea>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button onclick="updateSmoothie()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;">🧾 Generate card</button><button onclick="checkSmoothie()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;">✅ Review design</button><button onclick="openMathsScratchpad('blank','Sketch or annotate your smoothie ratio idea.')" style="padding:9px 13px;background:#365a68;color:#fff;border:none;border-radius:8px;">✏️ Sketch idea</button></div>
+<div id="smPreview" style="background:#fff;padding:12px;border-radius:9px;margin-top:12px;"></div><div id="smFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold;"></div>
+</div>
+</details>
+
+<details style="background:#eef0df;padding:15px;margin:12px 0;border-radius:14px;">
+<summary style="font-size:1.25em;font-weight:bold;">🌙 Rest - Where is the pause?</summary>
+<h3>Calm proportional reasoning routine</h3>
+<ol><li>Find the starting amount.</li><li>Find the new amount.</li><li>Work out the multiplier.</li><li>Use that multiplier for every connected quantity.</li><li>Check whether the relationship still makes sense.</li></ol>
+<p style="background:#fffaf0;padding:12px;border-radius:10px;"><strong>Helpful self-talk:</strong> “I do not need to solve the whole recipe at once. I can find the multiplier first.”</p>
+</details>
+
+<details style="background:#e7efe8;padding:15px;margin:12px 0;border-radius:14px;">
+<summary style="font-size:1.25em;font-weight:bold;">🥣 Nutrition - How does this maths help us sustain life?</summary>
+<p>Ratio can support decisions about quantities, access, cost and preparing enough for a group. Maths helps us compare and plan; people still make the human judgement.</p>
+<p style="background:#fffaf0;padding:12px;border-radius:10px;"><strong>Reflect:</strong> Ratio helps with fair planning because...</p>
+</details>
+
+<details style="background:#f3eadc;padding:15px;margin:12px 0;border-radius:14px;">
+<summary style="font-size:1.25em;font-weight:bold;">🛠 Final Task - Smoothie Ratio Portfolio Piece</summary>
+<p>Create a portfolio piece including your group size, base recipe, scale factor, scaled recipe, ratio table, proportional explanation and one reflection on fairness, cost, taste, health or sustainability.</p>
+<p><strong>Filename:</strong> <code>NEO_Maths_Ratio_Smoothie_[FirstName]_[Date]</code></p>
+<div style="overflow-x:auto;"><table style="width:100%;min-width:850px;border-collapse:collapse;background:#fffaf0;">
+<tr><th style="border:1px solid #c8b99a;padding:8px;">Criteria</th><th style="border:1px solid #c8b99a;padding:8px;">Emerging</th><th style="border:1px solid #c8b99a;padding:8px;">Developing</th><th style="border:1px solid #c8b99a;padding:8px;">Secure</th><th style="border:1px solid #c8b99a;padding:8px;">Mastering</th></tr>
+<tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Understanding</b></td><td style="border:1px solid #c8b99a;padding:8px;">Notice connected quantities.</td><td style="border:1px solid #c8b99a;padding:8px;">Use ratio language with support.</td><td style="border:1px solid #c8b99a;padding:8px;">Explain proportional relationships.</td><td style="border:1px solid #c8b99a;padding:8px;">Generalise across contexts.</td></tr>
+<tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Application</b></td><td style="border:1px solid #c8b99a;padding:8px;">Scale some values with support.</td><td style="border:1px solid #c8b99a;padding:8px;">Use a given multiplier.</td><td style="border:1px solid #c8b99a;padding:8px;">Use scale factors accurately.</td><td style="border:1px solid #c8b99a;padding:8px;">Choose efficient methods independently.</td></tr>
+<tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Communication</b></td><td style="border:1px solid #c8b99a;padding:8px;">Show some working.</td><td style="border:1px solid #c8b99a;padding:8px;">Give a partial explanation.</td><td style="border:1px solid #c8b99a;padding:8px;">Explain using ratio vocabulary.</td><td style="border:1px solid #c8b99a;padding:8px;">Communicate precise reasoning.</td></tr>
+<tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Reflection</b></td><td style="border:1px solid #c8b99a;padding:8px;">Identify one thing noticed.</td><td style="border:1px solid #c8b99a;padding:8px;">Describe ease or difficulty.</td><td style="border:1px solid #c8b99a;padding:8px;">Connect ratio to a real decision.</td><td style="border:1px solid #c8b99a;padding:8px;">Reflect using mathematical evidence.</td></tr>
+</table></div>
+</details>
+
+<div style="background:#fffaf0;padding:20px;margin-top:22px;border-left:6px solid #5c6b4f;border-radius:14px;text-align:center;">
+<h2 style="margin-top:0;color:#46533d;font-size:1.35em;">✏️ Ready to strengthen your skills?</h2>
+<p>Open eight progressive questions. You can return to the lesson or Scratchpad whenever you need them.</p>
+<button onclick="openPracticeSession()" style="padding:13px 22px;background:#5c6b4f;color:#fff;border:none;border-radius:10px;font-weight:bold;font-size:1.05em;">Open Practice Activity →</button>
+</div>
+</div></div>
+
+<div id="practiceView" hidden>
+<div style="font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;color:#2f2f2f;line-height:1.55;border-radius:18px;">
+<h1>Ratio and Proportion Practice</h1><button onclick="returnToLesson()" style="padding:10px 16px;background:#fff;border:1px solid #315d72;border-radius:9px;">← Return to the Lesson</button>
+<div style="background:#e5edf4;border-left:6px solid #315d72;padding:18px;border-radius:12px;margin:22px 0;">Use support in this order: <b>🤔 prompt, 💡 hint, ✅ check, 👀 worked solution</b>.</div>
+<div id="practiceDots" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"></div>
+<div style="background:#fff;border:1px solid #cdbfa9;border-radius:12px;padding:22px;">
+<p id="practiceLabel" style="text-transform:uppercase;color:#8a6d43;font-weight:bold;"></p><div id="practiceQuestion" style="font-size:1.15em;margin-bottom:16px;"></div>
+<label>Your working</label><textarea id="practiceWorking" rows="4" style="width:100%;box-sizing:border-box;padding:10px;"></textarea>
+<label style="display:block;margin-top:12px;">Your final answer</label><input id="practiceAnswer" style="width:100%;box-sizing:border-box;padding:10px;">
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"><button onclick="practicePrompt()">🤔 Socratic prompt</button><button onclick="practiceHint()">💡 Hint</button><button onclick="practiceCheck()">✅ Check my answer</button><button id="practiceSolutionButton" onclick="practiceSolution()" disabled>👀 Worked solution</button><button onclick="openMathsScratchpad('ratio-table','Use the Scratchpad to organise your proportional reasoning.')">✏️ Scratchpad</button></div>
+<div id="practiceSupport" style="display:none;margin-top:12px;background:#f7f2e9;padding:12px;border-radius:8px;"></div><div id="practiceFeedback" style="display:none;margin-top:12px;padding:12px;border-radius:8px;font-weight:bold;"></div>
+</div>
+<div style="display:flex;justify-content:space-between;margin-top:14px;"><button id="practicePrevious" onclick="practicePrev()">← Previous</button><button id="practiceNext" onclick="practiceNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad -->
+<div id="neoScratchpadOverlay" hidden
+     style="position:fixed; inset:0; z-index:9999; background:rgba(39,45,35,0.70); padding:16px; overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle"
+       style="max-width:980px; margin:10px auto; background:#f7f3ea; border-radius:18px; box-shadow:0 12px 40px rgba(0,0,0,0.28); padding:16px; font-family:Arial,sans-serif; color:#2f3429;">
+    <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0; color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0; color:#5c6b4f;">A space to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()"
+              style="padding:9px 13px; background:#ffffff; border:1px solid #7d8875; border-radius:9px; font-weight:bold; cursor:pointer;">
+        × Close
+      </button>
+    </div>
+
+    <p style="background:#fffaf0; padding:10px; border-radius:10px; margin:14px 0;">
+      You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:10px; font-size:0.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')"
+              style="padding:7px 10px; border:1px solid #4d6b47; background:#e5f0e2; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ✏️ Pen
+      </button>
+
+      <label for="scratchColour" style="font-weight:bold; white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:115px;">
+        <option value="#2f3429">Charcoal</option>
+        <option value="#315d72">Ocean blue</option>
+        <option value="#5c6b4f">Moss green</option>
+        <option value="#70466b">Plum</option>
+        <option value="#9a5f3f">Earth brown</option>
+        <option value="#b24c4c">Berry red</option>
+      </select>
+
+      <label for="scratchWidth" style="font-weight:bold; white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:92px;">
+        <option value="2">Thin</option>
+        <option value="4" selected>Medium</option>
+        <option value="7">Thick</option>
+      </select>
+
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')"
+              style="padding:7px 10px; border:1px solid #7d8875; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🧽 Eraser
+      </button>
+
+      <button type="button" onclick="scratchUndo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↶ Undo
+      </button>
+
+      <button type="button" onclick="scratchRedo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↷ Redo
+      </button>
+
+      <button type="button" onclick="setScratchTool('note')"
+              style="padding:7px 10px; border:1px solid #8a7932; background:#fff7c7; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🗒 Sticky Note
+      </button>
+
+      <span style="display:inline-flex; align-items:center; gap:6px; white-space:nowrap; flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold; white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)"
+                style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:145px;">
+          <option value="blank">Blank</option>
+          <option value="square-grid">Square grid</option>
+          <option value="coordinate-grid">Coordinate grid</option>
+          <option value="ratio-table">Ratio table</option>
+          <option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+
+    <div id="neoScratchCanvasWrap"
+         style="position:relative; background:#ffffff; border:1px solid #cdbfa9; border-radius:12px; overflow:hidden; touch-action:none;">
+      <canvas id="neoScratchCanvas" width="920" height="560"
+              style="display:block; width:100%; height:auto; background:#ffffff; touch-action:none; cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer"
+           aria-label="Scratchpad sticky notes"
+           style="position:absolute; inset:0; pointer-events:none;"></div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px; background:#fffaf0; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">🗑 Clear board</button>
+    </div>
+
+    <div id="scratchStatus" aria-live="polite"
+         style="display:none; margin-top:10px; padding:10px; border-radius:9px; background:#e5edf4;"></div>
+  </div>
+</div>
+
+
+<script>
+function openPracticeSession() {
+  document.getElementById("lessonView").hidden = true;
+  document.getElementById("practiceView").hidden = false;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function returnToLesson() {
+  document.getElementById("practiceView").hidden = true;
+  document.getElementById("lessonView").hidden = false;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function normaliseText(value) {
+  return String(value).toLowerCase().replace(/£/g,"").replace(/,/g,"").replace(/\s+/g," ").trim();
+}
+function numberFrom(value) {
+  const cleaned = normaliseText(value).replace(/[a-z]/g,"").replace(/×/g,"").replace(/x/g,"").trim();
+  if (cleaned.includes("/")) {
+    const parts = cleaned.split("/");
+    if (parts.length === 2 && Number(parts[1]) !== 0) return Number(parts[0]) / Number(parts[1]);
+  }
+  return Number(cleaned);
+}
+function closeOtherPanels(current) {
+  document.querySelectorAll("#lessonView details").forEach(function(d) {
+    if (d !== current && d.dataset.keepOpen !== "true") d.open = false;
+  });
+}
+document.querySelectorAll("#lessonView details").forEach(function(d) {
+  d.addEventListener("toggle", function(){ if (d.open) closeOtherPanels(d); });
+});
+</script>
+
+<script>
+function fmt(v){return Number.isInteger(v)?String(v):String(Math.round(v*100)/100);}
+function updateRatioScaler(){
+ const people=Number(document.getElementById("ratioServes").value), f=people/2;
+ document.getElementById("ratioServesLabel").textContent=people+(people===1?" person":" people");
+ document.getElementById("ratioFactor").textContent="×"+fmt(f);
+ const rows=[["Bananas",1,"banana"],["Milk",200,"ml"],["Oats",80,"g"],["Honey",2,"tsp"]];
+ let h="<table style='width:100%;border-collapse:collapse;background:#fff'><tr><th style='border:1px solid #b9b09f;padding:8px'>Ingredient</th><th style='border:1px solid #b9b09f;padding:8px'>Base</th><th style='border:1px solid #b9b09f;padding:8px'>Scaled</th><th style='border:1px solid #b9b09f;padding:8px'>Reasoning</th></tr>";
+ rows.forEach(r=>{h+=`<tr><td style="border:1px solid #b9b09f;padding:8px">${r[0]}</td><td style="border:1px solid #b9b09f;padding:8px">${r[1]} ${r[2]}</td><td style="border:1px solid #b9b09f;padding:8px"><b>${fmt(r[1]*f)} ${r[2]}</b></td><td style="border:1px solid #b9b09f;padding:8px">${r[1]} × ${fmt(f)}</td></tr>`;});
+ document.getElementById("ratioRecipeTable").innerHTML=h+"</table>";
+}
+function randomRatioServes(){document.getElementById("ratioServes").value=1+Math.floor(Math.random()*12);updateRatioScaler();}
+function checkRatioNotice(){
+ const t=normaliseText(document.getElementById("ratioNotice").value),b=document.getElementById("ratioNoticeFeedback");b.style.display="block";
+ if(t.length<15){b.style.background="#fff1cf";b.textContent="Write a little more about the multiplier or the ratio.";}
+ else if((t.includes("same")||t.includes("ratio"))&&(t.includes("multiply")||t.includes("factor")||t.includes("scale"))){b.style.background="#e3f0df";b.textContent="Strong reflection. You connected sameness with scaling.";}
+ else{b.style.background="#fff1cf";b.textContent="Good start. Can you explain that every connected quantity uses the same multiplier?";}
+}
+updateRatioScaler();
+
+const rbRows=[
+{people:4,f:2,b:2,m:400,o:160,h:4,p:"How do you get from 2 people to 4 people?",hint:"The number of people doubles."},
+{people:6,f:3,b:3,m:600,o:240,h:6,p:"What multiplier changes 2 into 6?",hint:"2 × 3 = 6."},
+{people:8,f:4,b:4,m:800,o:320,h:8,p:"How many groups of 2 are in 8?",hint:"8 ÷ 2 = 4."},
+{people:1,f:.5,b:.5,m:100,o:40,h:1,p:"How do you get from 2 people to 1 person?",hint:"Use half of every amount."},
+{people:10,f:5,b:5,m:1000,o:400,h:10,p:"How many groups of 2 are in 10?",hint:"10 ÷ 2 = 5."}
+]; let rbIndex=0; const rbSaved=rbRows.map(()=>({b:"",m:"",o:"",h:"",f:""}));
+function rbSave(){rbSaved[rbIndex]={b:rbB.value,m:rbM.value,o:rbO.value,h:rbH.value,f:rbFactor.value};}
+function rbRender(){
+ const q=rbRows[rbIndex],s=rbSaved[rbIndex]; ratioBuilderLabel.textContent=`Ratio table row ${rbIndex+1} of ${rbRows.length}`;ratioBuilderQuestion.innerHTML=`Complete the row for <b>${q.people} people</b>.`;
+ rbPeople.textContent=q.people;rbB.value=s.b;rbM.value=s.m;rbO.value=s.o;rbH.value=s.h;rbFactor.value=s.f;rbSupport.style.display="none";rbFeedback.style.display="none";rbPrev.disabled=rbIndex===0;rbNext.textContent=rbIndex===rbRows.length-1?"Finish":"Next →";
+}
+function ratioBuilderPrompt(){rbSupport.style.display="block";rbSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+rbRows[rbIndex].p;}
+function ratioBuilderHint(){rbSupport.style.display="block";rbSupport.innerHTML="<b>💡 Hint:</b> "+rbRows[rbIndex].hint;}
+function ratioBuilderCheck(){rbSave();const q=rbRows[rbIndex],s=rbSaved[rbIndex],vals=[numberFrom(s.b),numberFrom(s.m),numberFrom(s.o),numberFrom(s.h),numberFrom(s.f)],exp=[q.b,q.m,q.o,q.h,q.f];rbFeedback.style.display="block";if(vals.some(v=>!Number.isFinite(v))){rbFeedback.style.background="#fff1cf";rbFeedback.textContent="Complete every number first.";return;}if(vals.every((v,i)=>Math.abs(v-exp[i])<1e-8)){rbFeedback.style.background="#e3f0df";rbFeedback.textContent="Correct. Every quantity uses the same scale factor.";}else{rbFeedback.style.background="#f6dddd";rbFeedback.textContent="Not quite yet. Find the scale factor first, then use it for every ingredient.";}}
+function rbPrev(){if(rbIndex>0){rbSave();rbIndex--;rbRender();}} function rbNext(){rbSave();if(rbIndex<rbRows.length-1){rbIndex++;rbRender();}else{rbFeedback.style.display="block";rbFeedback.style.background="#e5edf4";rbFeedback.textContent="You have reached the end of the Ratio Table Builder.";}} rbRender();
+
+function updateSmoothie(){
+ const n=smName.value.trim()||"My Smoothie",p=Number(smPeople.value),f=p/2,fa=Number(smFA.value),la=Number(smLA.value),ta=Number(smTA.value),ea=Number(smEA.value);
+ if(![p,fa,la,ta,ea].every(Number.isFinite)||p<=0){smPreview.innerHTML="<b>Enter valid amounts.</b>";return;}
+ smPreview.innerHTML=`<h3 style="color:#7a5a2e">${n}</h3><p><b>Serves:</b> ${p} | <b>Scale factor:</b> ×${fmt(f)}</p><table style="width:100%;border-collapse:collapse;background:#fffaf0"><tr><th style="border:1px solid #c8b99a;padding:7px">Ingredient</th><th style="border:1px solid #c8b99a;padding:7px">Base</th><th style="border:1px solid #c8b99a;padding:7px">Scaled</th></tr><tr><td style="border:1px solid #c8b99a;padding:7px">${smFruit.value}</td><td style="border:1px solid #c8b99a;padding:7px">${fa}</td><td style="border:1px solid #c8b99a;padding:7px"><b>${fmt(fa*f)}</b></td></tr><tr><td style="border:1px solid #c8b99a;padding:7px">${smLiquid.value}</td><td style="border:1px solid #c8b99a;padding:7px">${la} ml</td><td style="border:1px solid #c8b99a;padding:7px"><b>${fmt(la*f)} ml</b></td></tr><tr><td style="border:1px solid #c8b99a;padding:7px">${smThick.value}</td><td style="border:1px solid #c8b99a;padding:7px">${ta} g</td><td style="border:1px solid #c8b99a;padding:7px"><b>${fmt(ta*f)} g</b></td></tr></table><p><b>My reasoning:</b> ${smExplain.value.trim()||"Add your explanation above."}</p>`;
+}
+function checkSmoothie(){const b=smFeedback;b.style.display="block";if(!smName.value.trim()){b.style.background="#fff1cf";b.textContent="Give your smoothie a name.";}else if(smExplain.value.trim().length<25){b.style.background="#fff1cf";b.textContent="Add a fuller explanation of your scale factor or ratio.";}else{b.style.background="#e3f0df";b.textContent="Strong design. Your proportional model and explanation are ready to refine.";}} updateSmoothie();
+
+const ratioPractice=[
+{l:"1 of 8 · Simple scaling",q:"2 people need <b>1 banana</b>. How many for <b>4 people</b>?",a:["2","2 bananas"],p:"How does 2 change to 4?",h:"Multiply by 2.",s:"1 × 2 = 2 bananas."},
+{l:"2 of 8 · Milk scaling",q:"2 people need <b>200 ml</b> milk. How much for <b>6 people</b>?",a:["600","600 ml"],p:"What multiplier changes 2 to 6?",h:"Use ×3.",s:"200 × 3 = 600 ml."},
+{l:"3 of 8 · Scale down",q:"2 people need <b>80 g</b> oats. How much for <b>1 person</b>?",a:["40","40 g"],p:"One person is what fraction of two?",h:"Divide by 2.",s:"80 ÷ 2 = 40 g."},
+{l:"4 of 8 · Find the factor",q:"A recipe changes from <b>2 people</b> to <b>10 people</b>. What is the scale factor?",a:["5","x5","×5"],p:"2 multiplied by what gives 10?",h:"10 ÷ 2.",s:"The scale factor is ×5."},
+{l:"5 of 8 · Ratio table",q:"3 people need <b>150 g</b> strawberries. How much for <b>12 people</b>?",a:["600","600 g"],p:"How does 3 change to 12?",h:"Use ×4.",s:"150 × 4 = 600 g."},
+{l:"6 of 8 · Repair a mistake",q:"A learner says 6 people need 5 bananas because 2 people need 1. What is the correct number?",a:["3","3 bananas"],p:"Should the relationship be additive or multiplicative?",h:"2 to 6 is ×3.",s:"1 × 3 = 3 bananas."},
+{l:"7 of 8 · Unit amount",q:"4 people need <b>1000 ml</b> juice. How much for <b>1 person</b>?",a:["250","250 ml"],p:"Scale from 4 to 1.",h:"Divide by 4.",s:"1000 ÷ 4 = 250 ml."},
+{l:"8 of 8 · Challenge",q:"5 people need <b>300 g</b> yoghurt. How much for <b>8 people</b>?",a:["480","480 g"],p:"Find the amount for one person first.",h:"300 ÷ 5 = 60.",s:"60 × 8 = 480 g."}
+];
+let pIndex=0;const pSaved=ratioPractice.map(()=>({w:"",a:""})),pAttempts=ratioPractice.map(()=>0),pDone=ratioPractice.map(()=>false);
+function pSave(){pSaved[pIndex]={w:practiceWorking.value,a:practiceAnswer.value};}
+function pRender(){const q=ratioPractice[pIndex],s=pSaved[pIndex];practiceLabel.textContent="Question "+q.l;practiceQuestion.innerHTML=q.q;practiceWorking.value=s.w;practiceAnswer.value=s.a;practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrevious.disabled=pIndex===0;practiceNext.textContent=pIndex===ratioPractice.length-1?"Finish":"Next →";practiceSolutionButton.disabled=pAttempts[pIndex]<1;practiceDots.innerHTML="";ratioPractice.forEach((_,i)=>{const d=document.createElement("span");d.textContent=i+1;d.style.cssText="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:"+(pDone[i]?"#e3f0df":i===pIndex?"#e5edf4":"#fff");practiceDots.appendChild(d);});}
+function practicePrompt(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+ratioPractice[pIndex].p;}function practiceHint(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+ratioPractice[pIndex].h;}
+function practiceCheck(){pSave();pAttempts[pIndex]++;const learner=normaliseText(pSaved[pIndex].a),ok=ratioPractice[pIndex].a.some(x=>normaliseText(x)===learner);pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your proportional reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the multiplier first.";}}
+function practiceSolution(){pAttempts[pIndex]++;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+ratioPractice[pIndex].s;practiceSolutionButton.disabled=false;}
+function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function practiceNext(){pSave();if(pIndex<ratioPractice.length-1){pIndex++;pRender();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. You have ${pDone.filter(Boolean).length} of 8 correct so far.`;}}pRender();
+</script>
+
+<script>
+(function () {
+  const canvas = document.getElementById("neoScratchCanvas");
+  const ctx = canvas.getContext("2d");
+  let tool = "pen";
+  let drawing = false;
+  let lineWidth = 4;
+  let penColour = "#2f3429";
+  let template = "blank";
+  let strokes = [];
+  let stickyNotes = [];
+  let redoStack = [];
+  let currentStroke = null;
+  let activeNoteId = null;
+  let noteDragOffset = { x: 0, y: 0 };
+  const storageKey = "neoMathsScratchpadWorkingPage";
+
+  function canvasPoint(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX - rect.left) * (canvas.width / rect.width),
+      y: (event.clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  function drawBackground() {
+    ctx.save();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (template === "square-grid" || template === "coordinate-grid") {
+      ctx.strokeStyle = "#e2ded4";
+      ctx.lineWidth = 1;
+      for (let x = 20; x < canvas.width; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 20; y < canvas.height; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+    }
+
+    if (template === "coordinate-grid") {
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      ctx.strokeStyle = "#4f5b45";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
+      ctx.fillStyle = "#4f5b45";
+      ctx.font = "15px Arial";
+      ctx.fillText("x", canvas.width - 22, oy - 8);
+      ctx.fillText("y", ox + 8, 18);
+      ctx.font = "11px Arial";
+      for (let i = -10; i <= 10; i++) {
+        if (i === 0) continue;
+        const x = ox + i * 40;
+        if (x > 0 && x < canvas.width) ctx.fillText(String(i), x - 4, oy + 15);
+      }
+      for (let i = -6; i <= 6; i++) {
+        if (i === 0) continue;
+        const y = oy - i * 40;
+        if (y > 0 && y < canvas.height) ctx.fillText(String(i), ox + 6, y + 4);
+      }
+    }
+
+    if (template === "ratio-table") {
+      ctx.fillStyle = "#3f5f45";
+      ctx.font = "bold 20px Arial";
+      ctx.fillText("Ratio Table", 35, 42);
+      const left = 40, top = 80, rowH = 82, colW = 205;
+      const labels = ["People", "Quantity A", "Quantity B"];
+      ctx.font = "bold 16px Arial";
+      ctx.strokeStyle = "#8fae7e"; ctx.lineWidth = 2;
+      for (let r = 0; r <= 3; r++) {
+        ctx.beginPath(); ctx.moveTo(left, top + r*rowH); ctx.lineTo(left + colW*4, top + r*rowH); ctx.stroke();
+      }
+      for (let c = 0; c <= 4; c++) {
+        ctx.beginPath(); ctx.moveTo(left + c*colW, top); ctx.lineTo(left + c*colW, top + rowH*3); ctx.stroke();
+      }
+      labels.forEach((label, i) => ctx.fillText(label, left + 12, top + 50 + i*rowH));
+      ctx.font = "14px Arial";
+      ctx.fillText("Write a starting ratio in the first number column, then scale it.", 40, 360);
+    }
+
+    if (template === "double-number-line") {
+      ctx.fillStyle = "#3f5f45";
+      ctx.font = "bold 20px Arial";
+      ctx.fillText("Double Number Line", 35, 42);
+      const xs = [90, 250, 410, 570, 730, 890];
+      ctx.strokeStyle = "#54718a"; ctx.lineWidth = 3;
+      [180, 350].forEach(y => {
+        ctx.beginPath(); ctx.moveTo(70, y); ctx.lineTo(900, y); ctx.stroke();
+        xs.forEach(x => { ctx.beginPath(); ctx.moveTo(x, y-10); ctx.lineTo(x, y+10); ctx.stroke(); });
+      });
+      ctx.fillStyle = "#365a68"; ctx.font = "bold 16px Arial";
+      ctx.fillText("Quantity A", 70, 145);
+      ctx.fillText("Quantity B", 70, 315);
+      ctx.font = "14px Arial";
+      ctx.fillText("Mark matching values on both lines. What multiplier connects them?", 70, 455);
+    }
+
+    ctx.restore();
+  }
+
+  function drawStroke(stroke) {
+    if (!stroke || stroke.points.length < 1) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = stroke.tool === "eraser" ? "#ffffff" : (stroke.colour || "#2f3429");
+    ctx.lineWidth = stroke.tool === "eraser" ? Math.max(18, stroke.width * 5) : stroke.width;
+    ctx.beginPath();
+    ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+    stroke.points.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+    if (stroke.points.length === 1) ctx.lineTo(stroke.points[0].x + 0.1, stroke.points[0].y + 0.1);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderStickyNotes() {
+    const layer = document.getElementById("neoStickyLayer");
+    layer.innerHTML = "";
+
+    stickyNotes.forEach(function (note) {
+      const card = document.createElement("div");
+      card.dataset.noteId = note.id;
+      card.style.position = "absolute";
+      card.style.left = note.x + "%";
+      card.style.top = note.y + "%";
+      card.style.width = "180px";
+      card.style.minHeight = "120px";
+      card.style.background = note.colour || "#fff7c7";
+      card.style.border = "1px solid #b9a85b";
+      card.style.borderRadius = "8px";
+      card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.16)";
+      card.style.pointerEvents = "auto";
+      card.style.touchAction = "none";
+
+      const bar = document.createElement("div");
+      bar.style.display = "flex";
+      bar.style.justifyContent = "space-between";
+      bar.style.alignItems = "center";
+      bar.style.padding = "5px 7px";
+      bar.style.cursor = "move";
+      bar.style.background = "rgba(255,255,255,0.35)";
+      bar.style.borderBottom = "1px solid rgba(120,100,40,0.25)";
+      bar.innerHTML = "<strong style='font-size:12px;'>Sticky note</strong>";
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.setAttribute("aria-label", "Delete sticky note");
+      remove.style.border = "none";
+      remove.style.background = "transparent";
+      remove.style.fontWeight = "bold";
+      remove.style.cursor = "pointer";
+      remove.addEventListener("click", function (event) {
+        event.stopPropagation();
+        stickyNotes = stickyNotes.filter(function (n) { return n.id !== note.id; });
+        renderStickyNotes();
+        autoStore();
+      });
+      bar.appendChild(remove);
+
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought, question or reminder...";
+      area.style.width = "100%";
+      area.style.height = "92px";
+      area.style.boxSizing = "border-box";
+      area.style.border = "none";
+      area.style.background = "transparent";
+      area.style.resize = "none";
+      area.style.padding = "8px";
+      area.style.font = "14px Arial";
+      area.style.color = "#2f3429";
+      area.addEventListener("input", function () {
+        note.text = area.value;
+        autoStore();
+      });
+
+      bar.addEventListener("pointerdown", function (event) {
+        activeNoteId = note.id;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        noteDragOffset.x = event.clientX - cardRect.left;
+        noteDragOffset.y = event.clientY - cardRect.top;
+        bar.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      bar.addEventListener("pointermove", function (event) {
+        if (activeNoteId !== note.id) return;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const leftPx = Math.max(0, Math.min(wrap.width - card.offsetWidth, event.clientX - wrap.left - noteDragOffset.x));
+        const topPx = Math.max(0, Math.min(wrap.height - card.offsetHeight, event.clientY - wrap.top - noteDragOffset.y));
+        note.x = (leftPx / wrap.width) * 100;
+        note.y = (topPx / wrap.height) * 100;
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+        event.preventDefault();
+      });
+
+      function endNoteDrag(event) {
+        if (activeNoteId !== note.id) return;
+        activeNoteId = null;
+        try { bar.releasePointerCapture(event.pointerId); } catch (e) {}
+        autoStore();
+      }
+
+      bar.addEventListener("pointerup", endNoteDrag);
+      bar.addEventListener("pointercancel", endNoteDrag);
+
+      card.appendChild(bar);
+      card.appendChild(area);
+      layer.appendChild(card);
+    });
+  }
+
+  function addStickyNote(x, y) {
+    const noteColours = ["#fff7c7", "#e8f0e3", "#e5eef2", "#ece7f2", "#f1e9dc"];
+    stickyNotes.push({
+      id: "note-" + Date.now() + "-" + Math.floor(Math.random() * 10000),
+      x: Math.max(0, Math.min(78, x)),
+      y: Math.max(0, Math.min(72, y)),
+      text: "",
+      colour: noteColours[stickyNotes.length % noteColours.length]
+    });
+    renderStickyNotes();
+    autoStore();
+    status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+  }
+
+  function renderScratchpad() {
+    drawBackground();
+    strokes.forEach(drawStroke);
+    renderStickyNotes();
+  }
+
+  function status(message, bg) {
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = bg || "#e5edf4";
+    box.textContent = message;
+  }
+
+  canvas.addEventListener("pointerdown", function (event) {
+    if (tool === "note") {
+      const rect = canvas.getBoundingClientRect();
+      const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+      addStickyNote(xPercent, yPercent);
+      setScratchTool("pen");
+      event.preventDefault();
+      return;
+    }
+
+    drawing = true;
+    canvas.setPointerCapture(event.pointerId);
+    currentStroke = { tool, width: lineWidth, colour: penColour, points: [canvasPoint(event)] };
+    strokes.push(currentStroke);
+    redoStack = [];
+    drawStroke(currentStroke);
+    event.preventDefault();
+  });
+
+  canvas.addEventListener("pointermove", function (event) {
+    if (!drawing || !currentStroke) return;
+    currentStroke.points.push(canvasPoint(event));
+    renderScratchpad();
+    event.preventDefault();
+  });
+
+  function finishDrawing(event) {
+    if (!drawing) return;
+    drawing = false;
+    currentStroke = null;
+    try { canvas.releasePointerCapture(event.pointerId); } catch (e) {}
+    autoStore();
+    event.preventDefault();
+  }
+  canvas.addEventListener("pointerup", finishDrawing);
+  canvas.addEventListener("pointercancel", finishDrawing);
+  canvas.addEventListener("pointerleave", function (event) {
+    if (drawing && event.pointerType === "mouse") finishDrawing(event);
+  });
+
+  function autoStore() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({ template, strokes, stickyNotes, penColour }));
+    } catch (e) {}
+  }
+
+  function restoreStored() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if (saved && Array.isArray(saved.strokes)) {
+        template = saved.template || "blank";
+        strokes = saved.strokes;
+        stickyNotes = Array.isArray(saved.stickyNotes) ? saved.stickyNotes : [];
+        penColour = saved.penColour || "#2f3429";
+        document.getElementById("scratchTemplate").value = template;
+        document.getElementById("scratchColour").value = penColour;
+      }
+    } catch (e) {}
+    renderScratchpad();
+  }
+
+  window.openMathsScratchpad = function (requestedTemplate, subtitle) {
+    if (requestedTemplate) {
+      template = requestedTemplate;
+      document.getElementById("scratchTemplate").value = template;
+    }
+    document.getElementById("neoScratchpadSubtitle").textContent =
+      subtitle || "A space to predict, sketch, test and revise.";
+    document.getElementById("neoScratchpadOverlay").hidden = false;
+    document.body.style.overflow = "hidden";
+    renderScratchpad();
+  };
+
+  window.closeMathsScratchpad = function () {
+    autoStore();
+    document.getElementById("neoScratchpadOverlay").hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  window.setScratchTool = function (selected) {
+    tool = selected;
+    document.getElementById("scratchPenBtn").style.background = selected === "pen" ? "#e5f0e2" : "#ffffff";
+    document.getElementById("scratchEraserBtn").style.background = selected === "eraser" ? "#e5f0e2" : "#ffffff";
+    canvas.style.cursor = selected === "eraser" ? "cell" : (selected === "note" ? "copy" : "crosshair");
+    if (selected === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+
+  window.updateScratchWidth = function () {
+    lineWidth = Number(document.getElementById("scratchWidth").value);
+  };
+
+  window.updateScratchColour = function () {
+    penColour = document.getElementById("scratchColour").value;
+    setScratchTool("pen");
+    autoStore();
+    status("Pen colour changed.", "#e5edf4");
+  };
+
+  window.changeScratchTemplate = function (selected) {
+    template = selected;
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.scratchUndo = function () {
+    if (!strokes.length) return status("Nothing to undo yet.", "#fff1cf");
+    redoStack.push(strokes.pop());
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.scratchRedo = function () {
+    if (!redoStack.length) return status("Nothing to redo yet.", "#fff1cf");
+    strokes.push(redoStack.pop());
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.newScratchPage = function () {
+    if (strokes.length && !confirm("Start a new Scratchpad page? Save the current page first if you want to keep it.")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("New Scratchpad page ready.", "#e5edf4");
+  };
+
+  window.saveScratchPage = function () {
+    autoStore();
+    status("Working page saved in this browser for this lesson environment.", "#e3f0df");
+  };
+
+  window.clearScratchpad = function () {
+    if (!confirm("Clear every mark from this Scratchpad page?")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("Scratchpad cleared.", "#e5edf4");
+  };
+
+  window.downloadScratchImage = function () {
+    renderScratchpad();
+    canvas.toBlob(function (blob) {
+      if (!blob) return status("The image could not be prepared in this browser.", "#f6dddd");
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "NEO_Maths_Scratchpad.png";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      status("Scratchpad image prepared.", "#e3f0df");
+    }, "image/png");
+  };
+
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !document.getElementById("neoScratchpadOverlay").hidden) {
+      closeMathsScratchpad();
+    }
+  });
+
+  restoreStored();
+})();
+</script>
+
+
+<script src="../../assets/progress.js"></script>
+<script>NEOProgress.autoTrack('ks3-ratio-and-proportion');</script>
+</body></html>

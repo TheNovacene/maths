@@ -1,0 +1,156 @@
+/* NEO Maths GreenPrint — shared styles
+   Nudge Education Online · Nudge Education Ltd
+   Design language carried forward from neo-maths v1 */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal-deep:   #1A2E3B;
+  --teal-mid:    #1F8E7F;
+  --teal-light:  #2AB3A0;
+  --cream:       #F7F7F5;
+  --ink:         #2D3436;
+  --muted:       #6B7B8D;
+  --border:      #E8ECEF;
+  --card-bg:     rgba(255,255,255,0.82);
+  --radius:      16px;
+  --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Six Cornerstones accents */
+  --cs-connection: #2AB3A0;
+  --cs-movement:   #e8923a;
+  --cs-creativity: #8b6bc4;
+  --cs-reflection: #5a9fd4;
+  --cs-rest:       #5a7a5a;
+  --cs-nutrition:  #d4a017;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(42,179,160,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 80%, rgba(26,46,59,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+header.site { position: relative; z-index: 10; padding: 3rem 2rem 1.5rem; text-align: center; }
+
+.wordmark {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--teal-mid);
+  margin-bottom: 1.5rem;
+}
+.wordmark a { color: inherit; text-decoration: none; }
+
+h1.display {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--teal-deep);
+}
+h1.display em { font-style: italic; color: var(--teal-light); }
+
+.tagline {
+  margin: 1rem auto 1.5rem;
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, var(--teal-deep), var(--teal-light));
+  margin: 1.5rem auto; border-radius: 2px;
+}
+
+main { position: relative; z-index: 5; max-width: 1080px; margin: 0 auto; padding: 1rem 2rem 4rem; }
+
+nav.crumbs { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+nav.crumbs a { color: var(--teal-mid); text-decoration: none; }
+nav.crumbs a:hover { text-decoration: underline; }
+
+section.unit { margin-bottom: 3rem; }
+
+h2.unit-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: var(--teal-deep);
+  margin-bottom: 0.35rem;
+}
+.unit-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; }
+
+.lesson-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+
+.lesson-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-left: 4px solid var(--teal-light);
+}
+.lesson-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,46,59,0.12); }
+.lesson-card .num { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.lesson-card .name { font-family: 'Fraunces', serif; font-size: 1.12rem; font-weight: 500; line-height: 1.3; color: var(--teal-deep); }
+.lesson-card .badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.25rem; }
+
+.badge {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em;
+  padding: 0.18rem 0.55rem; border-radius: 999px;
+  background: rgba(42,179,160,0.12); color: var(--teal-mid);
+}
+.badge.cs-connection { background: rgba(42,179,160,0.14); color: #177567; }
+.badge.cs-movement   { background: rgba(232,146,58,0.14); color: #a15c14; }
+.badge.cs-creativity { background: rgba(139,107,196,0.14); color: #5f4494; }
+.badge.cs-reflection { background: rgba(90,159,212,0.16); color: #2d6ca3; }
+.badge.cs-rest       { background: rgba(90,122,90,0.16);  color: #3f5a3f; }
+.badge.cs-nutrition  { background: rgba(212,160,23,0.16); color: #8a6a0d; }
+
+.progress-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+.progress-dot.started  { background: #d4a017; }
+.progress-dot.complete { background: var(--teal-light); }
+.card-top { display: flex; justify-content: space-between; align-items: center; }
+
+.pending { opacity: 0.55; pointer-events: none; }
+.pending .name::after { content: ' · coming soon'; font-size: 0.75rem; color: var(--muted); font-style: italic; }
+
+footer.site {
+  position: relative; z-index: 5;
+  text-align: center; padding: 2.5rem 2rem 3rem;
+  font-size: 0.8rem; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+footer.site .neo-mark { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--teal-deep); }
+footer.site .neo-mark span { color: var(--teal-light); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .lesson-card { transition: none; }
+}

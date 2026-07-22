@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Using Index Laws v0.1</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.mathsvg{width:100%;max-width:600px;background:#fff;border-radius:10px;border:1px solid #cdbfa9}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.tabs button.active,.stepbtn.active{background:#dce8ef;border-color:#365a68}
+.stepbtn.done{background:#e3f0df;border-color:#5c6b4f}
+.stepline{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:12px;font-size:1.15em;line-height:1.55}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.practice-svg{width:100%;max-width:520px;background:#fff;border:1px solid #cdbfa9;border-radius:10px}
+.small{font-size:.95em;color:#4f554b}
+.solution-reveal{display:none}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.digitline{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;font:700 clamp(2.1rem,7vw,4.2rem)/1 Arial,sans-serif;margin:18px 0}
+.digit{min-width:.72em;text-align:center;padding:7px 4px;border-bottom:7px solid transparent;border-radius:7px 7px 0 0}.digit.keep{background:#dfeeda;border-color:#4e744d}.digit.decide{background:#fae4b8;border-color:#b77814}.digit.drop{background:#ededeb;border-color:#a9aaa5;color:#777}.digit.locator{background:#e5eef2;border-color:#66879a;color:#365a68}.digit.mark{min-width:.2em}
+.lenscontrols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.lenscontrols input,.lenscontrols select,textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px;background:#fff}
+.numberline{margin:34px 12px 12px;padding-top:28px}.track{height:7px;background:#365a68;position:relative;border-radius:10px}.track:before,.track:after{content:"";position:absolute;top:-8px;width:3px;height:23px;background:#365a68}.track:before{left:0}.track:after{right:0}.mid{position:absolute;left:50%;top:-9px;width:3px;height:25px;background:#b77814}.marker{position:absolute;top:-34px;transform:translateX(-50%);white-space:nowrap;color:#70466b;font-weight:bold}.marker:after{content:"";display:block;width:13px;height:13px;border-radius:50%;background:#70466b;margin:5px auto}
+.linelabels{display:grid;grid-template-columns:1fr 1fr 1fr;font-weight:bold;font-size:.9em;margin-top:14px}.linelabels span:nth-child(2){text-align:center;color:#835d1d}.linelabels span:last-child{text-align:right}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Accuracy, Powers and Scale</h1>
+<h2>Using Index Laws</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can patterns help us simplify powers without expanding every factor?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Index Law Detective, Exponent Pattern Machine and supported practice.</p>
+<p><b>Stepping Stone:</b> use the multiplication, division and power-of-a-power index laws and explain why they work.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 18 · Practise 10 · Reflect/Create 5 · Rest/Nourish 2 · Evidence 2</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to Using Index Laws.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_03_Learner_Guidance.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_03_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('index-organiser','Record the original expression, check the base, name the operation, apply the exponent rule and simplify.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<details class="kw" open>
+<summary>🌿 Connection — Index Law Detective</summary>
+<p><b>What to do:</b> inspect the three claims. Choose the one that correctly simplifies the expression.</p>
+<p><b>What you are trying to notice:</b> when multiplying powers with the same base, the repeated factors join together.</p>
+<div class="toolbox">
+<div class="card" style="text-align:center"><p class="small">Expression</p><p style="font-size:2.2em;font-weight:bold;margin:.2em">2<sup>3</sup> × 2<sup>4</sup></p></div>
+<div class="buttonrow" role="group" aria-label="Possible simplifications"><button onclick="checkDetective('add')">2<sup>7</sup></button><button onclick="checkDetective('base')">4<sup>7</sup></button><button onclick="checkDetective('multiply')">2<sup>12</sup></button></div>
+<div id="detectiveFeedback" class="feedback"></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('index-organiser','Expand 2³ and 2⁴ as repeated multiplication. Count the total number of factors of 2.')">✏️ Investigate on the Scratchpad</button>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> check the base first; then let the operation tell you what happens to the exponents.</div>
+</details>
+
+<details class="hs">
+<summary>🚶 Movement — Exponent Pattern Machine</summary>
+<p><b>What to do:</b> choose a base, an operation and two exponents. Predict the resulting exponent before asking the machine to reveal the pattern.</p>
+<p><b>What you are trying to notice:</b> the law is a compact description of repeated factors, not a disconnected rule.</p>
+<div class="toolbox">
+<h3>⚙️ Exponent Pattern Machine</h3>
+<div class="lenscontrols"><label><b>Base</b><input id="machineBase" value="2" inputmode="numeric" oninput="resetMachine()"></label><label><b>Operation</b><select id="machineOp" onchange="resetMachine()"><option value="multiply">multiply powers</option><option value="divide">divide powers</option><option value="power">power of a power</option></select></label><label><b>First exponent</b><input id="machineM" value="3" inputmode="numeric" oninput="resetMachine()"></label><label><b>Second exponent</b><input id="machineN" value="4" inputmode="numeric" oninput="resetMachine()"></label></div>
+<div class="buttonrow"><button onclick="setMachine(2,'multiply',3,4)">2³ × 2⁴</button><button onclick="setMachine(5,'divide',8,3)">5⁸ ÷ 5³</button><button onclick="setMachine(3,'power',2,4)">(3²)⁴</button></div>
+<div id="machineExpression" class="readout" aria-live="polite"></div>
+<label><b>My predicted resulting exponent</b><input id="machinePrediction" inputmode="numeric" placeholder="Enter the exponent only"></label>
+<div class="buttonrow"><button onclick="checkMachine()">✅ Check my exponent</button><button onclick="revealMachine()">👀 Reveal the repeated-factor pattern</button><button class="scratchbtn" onclick="openMathsScratchpad('index-organiser','Record the original expression, operation, exponent rule and simplified power.')">✏️ Scratchpad</button></div>
+<div id="machineFeedback" class="feedback"></div><div id="machineResult" class="readout" style="display:none"></div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> same base → identify the operation → transform the exponents.</div>
+</details>
+
+<details class="dw">
+<summary>🪞 Reflection — Which law, and why?</summary>
+<p><b>What to do:</b> choose the law needed for <strong>(x<sup>3</sup>)<sup>5</sup></strong>, then explain what the two exponents mean.</p>
+<div class="toolbox"><div class="buttonrow"><button onclick="checkLaw('add')">Add: 3 + 5</button><button onclick="checkLaw('subtract')">Subtract: 3 − 5</button><button onclick="checkLaw('multiply')">Multiply: 3 × 5</button></div><div id="lawFeedback" class="feedback"></div></div>
+<div class="card"><p><b>This law makes sense because...</b></p><textarea rows="4" placeholder="The exponent 3 means... Repeating that group 5 times means..."></textarea></div>
+<p><b>What you are trying to notice:</b> choosing a law comes before performing it.</p>
+</details>
+
+<details class="es">
+<summary>🎨 Creativity — Build an Index Puzzle</summary>
+<p><b>What to do:</b> create three different expressions that all simplify to the same target power.</p>
+<ol><li>Choose a target, such as <strong>q<sup>12</sup></strong>.</li><li>Create one multiplication expression.</li><li>Create one division expression.</li><li>Create one power-of-a-power expression.</li><li>Explain why every expression reaches the target.</li></ol>
+<button class="scratchbtn" onclick="openMathsScratchpad('index-organiser','Create three different index-law expressions that simplify to the same target power.')">✏️ Build my puzzle</button>
+</details>
+
+<details class="lb">
+<summary>🌙 Rest — What is the calm three-step route?</summary>
+<div class="card"><p>Look away from the screen, then retrieve this route in your own words:</p><p style="font-size:1.3em;font-weight:bold;text-align:center">same base → operation → exponent rule</p></div>
+</details>
+
+<details class="nt">
+<summary>🥣 Nutrition — What is this lesson nourishing?</summary>
+<p>This lesson uses <strong>intellectual nourishment</strong>. It nourishes pattern recognition: replacing a long string of repeated factors with a compact statement that still preserves the mathematical structure.</p>
+<div class="twocol"><div class="card">🌱 <b>Structure</b><br>I check whether the bases match.</div><div class="card">🌱 <b>Reasoning</b><br>I connect each law to repeated factors.</div><div class="card">🌱 <b>Efficiency</b><br>I simplify without expanding every factor.</div><div class="card">🌱 <b>Precision</b><br>I change the exponent, not the base.</div></div>
+</details>
+
+<details class="ft">
+<summary>🛠 Final Task — Become an Index Law Designer</summary>
+<h3>Design and explain an index-law pathway</h3>
+<p><b>What to do:</b> create a four-step pathway that uses multiplication, division and a power of a power. For each step:</p>
+<ul><li>record the original expression;</li><li>identify the common base;</li><li>name the operation and the matching exponent rule;</li><li>write the simplified power; and</li><li>justify one step using repeated factors.</li></ul>
+<p><b>Filename pattern:</b> <code>NEO_MATH_INDEX_LAWS_FirstName_Date</code></p>
+<table><tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr><tr><td><b>Understanding</b></td><td>Identifies a base or exponent.</td><td>Recognises one familiar law.</td><td>Explains all three core laws.</td><td>Derives a law from repeated factors.</td></tr><tr><td><b>Application</b></td><td>Begins a simplification.</td><td>Uses one law with support.</td><td>Selects and applies the correct law.</td><td>Combines laws accurately in an unfamiliar expression.</td></tr><tr><td><b>Communication</b></td><td>Records part of an expression.</td><td>Shows a rule or result.</td><td>Makes each transformation clear.</td><td>Creates an explanation another learner could use.</td></tr><tr><td><b>Reflection</b></td><td>Notices whether bases match.</td><td>Checks one exponent operation.</td><td>Explains why a chosen law fits.</td><td>Diagnoses and repairs a convincing misconception.</td></tr></table>
+</details>
+</div></div>
+
+<div id="practiceView" hidden><div class="practice"><h1>Using Index Laws — Practice Companion</h1><button onclick="returnLesson()">← Return to lesson</button><p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 👀 <b>worked solution</b>.</p><p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p><div id="practiceDots" class="buttonrow"></div><div class="toolbox"><p id="practiceLabel"></p><div class="twocol"><svg id="practiceSvg" viewBox="0 0 520 360" class="practice-svg" aria-label="Index laws practice focus"></svg><div><div id="practiceQuestion" class="readout"></div><input id="practiceAnswer" placeholder="Enter the resulting exponent"><div class="buttonrow"><button onclick="pPrompt()">🤔 Socratic prompt</button><button onclick="pHint()">💡 Hint</button><button onclick="pCheck()">✅ Check</button><button id="practiceWorkedBtn" onclick="pSolution()">👀 Worked solution</button><button class="scratchbtn" onclick="openMathsScratchpad('index-organiser','Record the expression, operation, exponent rule and simplified power.')">✏️ Scratchpad</button></div><div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div><div id="practiceSupport" class="readout" style="display:none"></div><div id="practiceFeedback" class="feedback"></div></div></div></div><div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div></div></div>
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+<div role="dialog" aria-modal="true" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+<div><h2 style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2><p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p></div>
+<button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+</div>
+<p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+<button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+<button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+<label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+<select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;"><option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option></select>
+<label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+<select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;"><option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option></select>
+<button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+<button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+<button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;"><label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label><select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;"><option value="index-organiser" selected>Index-law organiser</option><option value="place-value">Place-value chart</option><option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option></select></span>
+</div>
+<div style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+<canvas id="neoScratchBackgroundCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+<canvas id="neoScratchCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+<div id="neoStickyLayer" style="position:absolute;inset:0;pointer-events:none;"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+<button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+<button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+<button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+</div>
+<div id="scratchStatus" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+</div>
+</div>
+
+<script>
+function clean(v){return String(v).replace(/,/g,'').trim();}
+function num(v){const n=Number(clean(v));return Number.isFinite(n)?n:NaN;}
+function almost(a,b){return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9;}
+function superscript(n){const map={'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return String(n).split('').map(x=>map[x]||x).join('');}
+function checkDetective(choice){detectiveFeedback.style.display='block';if(choice==='add'){detectiveFeedback.className='feedback good';detectiveFeedback.innerHTML='<b>Correct.</b> Three factors of 2 join four more factors of 2, making seven factors: 2³ × 2⁴ = 2⁷.';}else{detectiveFeedback.className='feedback bad';detectiveFeedback.innerHTML='<b>Not quite yet.</b> Keep the base 2 and count how many factors of 2 appear altogether.';}}
+function currentMachine(){return {base:Math.trunc(num(machineBase.value)),op:machineOp.value,m:Math.trunc(num(machineM.value)),n:Math.trunc(num(machineN.value))};}
+function machineData(){const d=currentMachine();let exponent=d.op==='multiply'?d.m+d.n:d.op==='divide'?d.m-d.n:d.m*d.n;return {...d,exponent};}
+function machineNotation(d){return d.op==='multiply'?d.base+superscript(d.m)+' × '+d.base+superscript(d.n):d.op==='divide'?d.base+superscript(d.m)+' ÷ '+d.base+superscript(d.n):'('+d.base+superscript(d.m)+')'+superscript(d.n);}
+function validMachine(d){return Number.isInteger(d.base)&&d.base>0&&Number.isInteger(d.m)&&d.m>=0&&Number.isInteger(d.n)&&d.n>=0&&d.m<=12&&d.n<=12;}
+function resetMachine(){machinePrediction.value='';machineFeedback.style.display='none';machineResult.style.display='none';const d=machineData();machineExpression.innerHTML=validMachine(d)?'<b>Current expression:</b> '+machineNotation(d):'Use a positive whole-number base and exponents from 0 to 12.';}
+function setMachine(base,op,m,n){machineBase.value=base;machineOp.value=op;machineM.value=m;machineN.value=n;resetMachine();}
+function checkMachine(){const d=machineData(),answer=num(machinePrediction.value);machineFeedback.style.display='block';if(!validMachine(d)){machineFeedback.className='feedback bad';machineFeedback.textContent='Adjust the inputs first.';return;}if(almost(answer,d.exponent)){machineFeedback.className='feedback good';machineFeedback.innerHTML='<b>Yes.</b> The resulting exponent is '+d.exponent+'. Now reveal the repeated-factor pattern.';}else{machineFeedback.className='feedback bad';machineFeedback.innerHTML='<b>Not quite yet.</b> Check the operation: multiply powers → add exponents; divide powers → subtract; power of a power → multiply.';}}
+function revealMachine(){const d=machineData();machineResult.style.display='block';if(!validMachine(d)){machineResult.textContent='Adjust the inputs first.';return;}let rule=d.op==='multiply'?d.m+' + '+d.n:d.op==='divide'?d.m+' − '+d.n:d.m+' × '+d.n;let why=d.op==='multiply'?'The two groups of repeated factors join.':d.op==='divide'?'Matching factors cancel from numerator and denominator.':'A group of '+d.m+' factors is repeated '+d.n+' times.';machineResult.innerHTML='<b>'+machineNotation(d)+' = '+d.base+superscript(d.exponent)+'</b><br><b>Exponent calculation:</b> '+rule+' = '+d.exponent+'<br><span class="small">'+why+'</span>';}
+function checkLaw(choice){lawFeedback.style.display='block';if(choice==='multiply'){lawFeedback.className='feedback good';lawFeedback.innerHTML='<b>Correct.</b> A group of three factors is repeated five times, so 3 × 5 = 15 and (x³)⁵ = x¹⁵.';}else{lawFeedback.className='feedback bad';lawFeedback.innerHTML='<b>Try again.</b> A power of a power repeats an entire group. How many factors are in five groups of three?';}}
+
+const RECONNECT={
+ multiplication:{title:'Multiplication',prompt:'Calculate 4 × 3.',answer:12,hint:'Four groups of three contain twelve altogether.'},
+ powers:{title:'Powers as repeated multiplication',prompt:'Calculate 3⁴.',answer:81,hint:'3⁴ means 3 × 3 × 3 × 3.'},
+ language:{title:'Base and exponent',prompt:'In 5³, what is the exponent?',answer:3,hint:'The exponent is the small raised number. It tells you how many factors of 5 are used.'},
+ operations:{title:'Operation symbols',prompt:'Calculate 18 ÷ 3.',answer:6,hint:'Division asks how many groups of 3 fit into 18.'}
+};
+function openReconnect(){reconnectionPanel.style.display='block';reconnectionPanel.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson.</p><div class="buttonrow"><button onclick="showReconnect(\'multiplication\')">Multiplication</button><button onclick="showReconnect(\'powers\')">Powers</button><button onclick="showReconnect(\'language\')">Base and exponent</button><button onclick="showReconnect(\'operations\')">Operation symbols</button><button onclick="closeReconnect()">Return to Using Index Laws</button></div><div id="reconnectTask"></div>';}
+function showReconnect(key){const r=RECONNECT[key];reconnectTask.innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p><input id="reconnectAnswer" inputmode="decimal" placeholder="Your answer"><div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to Using Index Laws</button></div><div id="reconnectFeedback" class="feedback"></div></div>';}
+function checkReconnect(key){const r=RECONNECT[key],ok=almost(num(reconnectAnswer.value),r.answer);reconnectFeedback.style.display='block';reconnectFeedback.className='feedback '+(ok?'good':'bad');reconnectFeedback.textContent=ok?'Ready to return. This idea is secure enough for the current lesson.':'Not yet. Use the hint or record the place value on the Scratchpad.';}
+function reconnectHint(key){reconnectFeedback.style.display='block';reconnectFeedback.className='feedback warn';reconnectFeedback.textContent=RECONNECT[key].hint;}
+function closeReconnect(){reconnectionPanel.style.display='none';}
+
+const PRACTICE=[
+ {title:'Multiply powers',question:'Simplify 5³ × 5⁴. Enter the resulting exponent.',answer:7,prompt:'Do the two powers have the same base? How many factors of 5 are there altogether?',hint:'For multiplication with the same base, add the exponents: 3 + 4.',solution:'5³ × 5⁴ = 5^(3+4) = 5⁷. The resulting exponent is 7.'},
+ {title:'Divide powers',question:'Simplify 2⁹ ÷ 2³. Enter the resulting exponent.',answer:6,prompt:'How many of the nine factors of 2 cancel with the three below?',hint:'For division with the same base, subtract the exponents: 9 − 3.',solution:'2⁹ ÷ 2³ = 2^(9−3) = 2⁶. The resulting exponent is 6.'},
+ {title:'Power of a power',question:'Simplify (3²)⁵. Enter the resulting exponent.',answer:10,prompt:'How many factors are in five groups of two?',hint:'For a power of a power, multiply the exponents: 2 × 5.',solution:'(3²)⁵ = 3^(2×5) = 3¹⁰. The resulting exponent is 10.'},
+ {title:'Missing exponent',question:'7⁴ × 7? = 7¹¹. Enter the missing exponent.',answer:7,prompt:'What number added to 4 gives 11?',hint:'Multiplication adds the exponents, so solve 4 + ? = 11.',solution:'4 + 7 = 11, so 7⁴ × 7⁷ = 7¹¹. The missing exponent is 7.'},
+ {title:'Repair the misconception',question:'A learner writes (x³)⁴ = x⁷. Enter the correct resulting exponent.',answer:12,prompt:'Is this multiplying powers or raising a power to another power?',hint:'A power of a power multiplies the exponents: 3 × 4.',solution:'(x³)⁴ = x^(3×4) = x¹². The correct resulting exponent is 12.'},
+ {title:'Zero index pattern',question:'Simplify 9⁶ ÷ 9⁶. Enter the resulting exponent.',answer:0,prompt:'What is 6 − 6? What non-zero number divided by itself equals?',hint:'Division subtracts the exponents: 6 − 6.',solution:'9⁶ ÷ 9⁶ = 9^(6−6) = 9⁰. The exponent is 0, and 9⁰ = 1.'}
+];
+let practiceIndex=0,done={};
+function openPractice(){lessonView.hidden=true;practiceView.hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
+function returnLesson(){practiceView.hidden=true;lessonView.hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+function renderPractice(){const p=PRACTICE[practiceIndex];practiceLabel.textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;practiceQuestion.textContent=p.question;practiceAnswer.value='';practiceSupport.style.display='none';practiceFeedback.style.display='none';practicePrev.disabled=practiceIndex===0;practiceNext.textContent=practiceIndex===PRACTICE.length-1?'Finish':'Next →';renderPracticeDotsOnly();drawPracticeDiagram(p);}
+function drawPracticeDiagram(p){const svg=practiceSvg;svg.innerHTML='';svg.innerHTML='<rect x="55" y="55" width="430" height="250" rx="18" fill="#fffaf0" stroke="#cdbfa9" stroke-width="2"/><text x="270" y="135" text-anchor="middle" font-size="22" font-weight="700" fill="#3f5f45">'+p.title+'</text><text x="270" y="195" text-anchor="middle" font-size="18" fill="#365a68">Same base • Operation • Exponent rule</text><text x="270" y="245" text-anchor="middle" font-size="16" fill="#2f3429">Enter the resulting exponent only.</text>';}
+function pPrompt(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>🤔 Socratic prompt:</b> '+PRACTICE[practiceIndex].prompt;}
+function pHint(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>💡 Hint:</b> '+PRACTICE[practiceIndex].hint;}
+function pSolution(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>👀 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
+function pCheck(){const p=PRACTICE[practiceIndex],ok=almost(num(practiceAnswer.value),p.answer);practiceFeedback.style.display='block';if(ok){done[practiceIndex]=true;practiceFeedback.className='feedback good';practiceFeedback.textContent='Correct. Keep the base and exponent operation visible.';}else{practiceFeedback.className='feedback bad';practiceFeedback.textContent='Not quite yet. Use the prompt or hint, then try again.';}renderPracticeDotsOnly();}
+function renderPracticeDotsOnly(){practiceDots.innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ':'')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');}
+function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
+function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{practiceFeedback.style.display='block';practiceFeedback.className='feedback good';practiceFeedback.textContent='Practice complete. Choose one law to explain using repeated factors in the Final Task.';}}
+
+// Scratchpad
+(function(){
+const overlay=document.getElementById('neoScratchpadOverlay'),subtitle=document.getElementById('neoScratchpadSubtitle'),canvas=document.getElementById('neoScratchCanvas'),bgCanvas=document.getElementById('neoScratchBackgroundCanvas'),stickyLayer=document.getElementById('neoStickyLayer'),ctx=canvas.getContext('2d'),bg=bgCanvas.getContext('2d');
+let tool='pen',colour='#2f3429',width=4,template='index-organiser',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_index_laws_v01';
+function status(msg,col){const box=document.getElementById('scratchStatus');box.style.display='block';box.style.background=col||'#e5edf4';box.textContent=msg;}
+function pt(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+function drawBackground(){bg.clearRect(0,0,920,560);bg.fillStyle='#fff';bg.fillRect(0,0,920,560);bg.save();if(template==='index-organiser'){const labels=['Original expression','Same base?','Operation','Exponent rule','Simplified power'];const w=920/5;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 14px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();const words=label.split(' ');words.forEach((word,j)=>bg.fillText(word,i*w+w/2,36+j*18));});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}if(template==='place-value'){const labels=['Millions','Hundred thousands','Ten thousands','Thousands','Hundreds','Tens','Ones','Tenths','Hundredths'];const w=920/labels.length;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 13px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();const words=label.split(' ');words.forEach((word,j)=>bg.fillText(word,i*w+w/2,34+j*18));});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}bg.lineWidth=1;bg.strokeStyle='#e6dccb';if(template==='square-grid'||template==='coordinate-grid'){for(let x=0;x<=920;x+=28){bg.beginPath();bg.moveTo(x,0);bg.lineTo(x,560);bg.stroke();}for(let y=0;y<=560;y+=28){bg.beginPath();bg.moveTo(0,y);bg.lineTo(920,y);bg.stroke();}}if(template==='coordinate-grid'){bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(460,0);bg.lineTo(460,560);bg.moveTo(0,280);bg.lineTo(920,280);bg.stroke();}if(template==='ratio-table'){bg.strokeStyle='#cdbfa9';for(let x=80;x<=840;x+=190){bg.beginPath();bg.moveTo(x,70);bg.lineTo(x,490);bg.stroke();}for(let y=70;y<=490;y+=70){bg.beginPath();bg.moveTo(80,y);bg.lineTo(840,y);bg.stroke();}}if(template==='double-number-line'){bg.strokeStyle='#315d72';bg.lineWidth=3;[210,350].forEach(y=>{bg.beginPath();bg.moveTo(90,y);bg.lineTo(830,y);bg.stroke();for(let x=90;x<=830;x+=74){bg.beginPath();bg.moveTo(x,y-10);bg.lineTo(x,y+10);bg.stroke();}});}bg.restore();}
+function drawStroke(s){if(!s||!s.points.length)return;ctx.save();ctx.lineCap='round';ctx.lineJoin='round';if(s.tool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=Math.max(18,s.width*5);}else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=s.colour;ctx.lineWidth=s.width;}const pts=s.points;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);if(s.tool==='line'){const last=pts[pts.length-1];ctx.lineTo(last.x,last.y);}else{pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));if(pts.length===1)ctx.lineTo(pts[0].x+.1,pts[0].y+.1);}ctx.stroke();ctx.restore();}
+function renderInk(){ctx.clearRect(0,0,920,560);strokes.forEach(drawStroke);}
+function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText=`position:absolute;left:${note.x}%;top:${note.y}%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;`;const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
+function render(){drawBackground();renderInk();renderNotes();}
+function store(){try{localStorage.setItem(storageKey,JSON.stringify({template,strokes,redo,notes,colour,width}));}catch(err){}}
+function restore(){try{const s=JSON.parse(localStorage.getItem(storageKey)||'null');if(!s)return;template=s.template||template;strokes=s.strokes||[];redo=s.redo||[];notes=s.notes||[];colour=s.colour||colour;width=s.width||width;scratchTemplate.value=template;scratchColour.value=colour;scratchWidth.value=String(width);}catch(err){}}
+function updateButtons(){scratchPenBtn.style.background=tool==='pen'?'#e5f0e2':'#fff';scratchLineBtn.style.background=tool==='line'?'#e5edf4':'#fff';scratchEraserBtn.style.background=tool==='eraser'?'#e5f0e2':'#fff';canvas.style.cursor=tool==='eraser'?'cell':tool==='note'?'copy':'crosshair';}
+canvas.addEventListener('pointerdown',e=>{if(tool==='note'){const r=canvas.getBoundingClientRect();notes.push({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100,text:''});renderNotes();setScratchTool('pen');status('Sticky note added.','#fff7c7');store();e.preventDefault();return;}drawing=true;canvas.setPointerCapture(e.pointerId);const p=pt(e);current={tool,width,colour,points:tool==='line'?[p,p]:[p]};strokes.push(current);redo=[];renderInk();e.preventDefault();});
+canvas.addEventListener('pointermove',e=>{if(!drawing||!current)return;const p=pt(e);if(current.tool==='line')current.points[1]=p;else current.points.push(p);renderInk();e.preventDefault();});
+function finish(e){if(!drawing)return;drawing=false;current=null;try{canvas.releasePointerCapture(e.pointerId);}catch(err){}store();e.preventDefault();}
+canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',finish);
+window.openMathsScratchpad=function(t,sub){if(t){template=t;scratchTemplate.value=t;}subtitle.textContent=sub||'Use the Scratchpad to predict, sketch, test and revise.';overlay.hidden=false;document.body.style.overflow='hidden';render();};
+window.closeMathsScratchpad=function(){store();overlay.hidden=true;document.body.style.overflow='';};
+window.setScratchTool=function(t){tool=t;updateButtons();if(t==='line')status('Line tool: press at the start point, drag to the end point, then release.');if(t==='note')status('Click anywhere on the Scratchpad to place a sticky note.','#fff7c7');};
+window.updateScratchColour=function(){colour=scratchColour.value;store();};
+window.updateScratchWidth=function(){width=Number(scratchWidth.value);store();};
+window.changeScratchTemplate=function(v){template=v;drawBackground();store();status('Background changed. Your drawing marks are unchanged.','#e3f0df');};
+window.scratchUndo=function(){if(!strokes.length){status('Nothing to undo yet.','#fff1cf');return;}redo.push(strokes.pop());renderInk();store();};
+window.scratchRedo=function(){if(!redo.length){status('Nothing to redo yet.','#fff1cf');return;}strokes.push(redo.pop());renderInk();store();};
+window.newScratchPage=function(){if((strokes.length||notes.length)&&!confirm('Start a new Scratchpad page?'))return;strokes=[];redo=[];notes=[];render();store();status('New Scratchpad page started.');};
+window.saveScratchPage=function(){store();status('Working page saved in this browser.','#e3f0df');};
+window.clearScratchpad=function(){if(!confirm('Clear learner marks and sticky notes? The selected background will remain.'))return;strokes=[];redo=[];notes=[];render();store();status('Learner marks cleared. Background preserved.','#fff1cf');};
+window.downloadScratchImage=function(){const ex=document.createElement('canvas');ex.width=920;ex.height=560;const ec=ex.getContext('2d');ec.drawImage(bgCanvas,0,0);ec.drawImage(canvas,0,0);const link=document.createElement('a');link.download='NEO_Maths_Index_Laws_Scratchpad.png';link.href=ex.toDataURL('image/png');link.click();};
+restore();updateButtons();render();
+})();
+resetMachine();
+</script>
+
+<script id="practiceWorkedUnlockWrapper">
+// GreenPrint compliance patch; internal lesson version v0.1.
+(function(){
+  if (window.__neoWorkedUnlockInstalled) return;
+  window.__neoWorkedUnlockInstalled = true;
+  const promptSeen = Array(PRACTICE.length).fill(false);
+  const hintSeen = Array(PRACTICE.length).fill(false);
+  const attempts = Array(PRACTICE.length).fill(0);
+
+  function currentIdx(){ return practiceIndex; }
+  function workedUnlocked(i){
+    return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
+  }
+  function button(){
+    return document.getElementById('practiceWorkedBtn');
+  }
+  function notice(){
+    return document.getElementById('practiceWorkedNotice');
+  }
+  function lockMessage(i){
+    const parts = [];
+    if (!promptSeen[i]) parts.push('use the Socratic prompt');
+    if (!hintSeen[i]) parts.push('use the hint');
+    const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
+    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+  }
+  function updateWorkedButton(){
+    const i = currentIdx();
+    const btn = button();
+    if (!btn) return;
+    const unlocked = workedUnlocked(i);
+    btn.disabled = !unlocked;
+    btn.style.opacity = unlocked ? '1' : '.5';
+    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+    const n = notice();
+    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+  }
+
+  const oldRender = renderPractice;
+  renderPractice = function(){
+    oldRender();
+    updateWorkedButton();
+  };
+
+  const oldPrompt = pPrompt;
+  pPrompt = function(){
+    promptSeen[currentIdx()] = true;
+    oldPrompt();
+    updateWorkedButton();
+  };
+
+  const oldHint = pHint;
+  pHint = function(){
+    hintSeen[currentIdx()] = true;
+    oldHint();
+    updateWorkedButton();
+  };
+
+  const oldCheck = pCheck;
+  pCheck = function(){
+    const answer = document.getElementById('practiceAnswer');
+    if (answer && answer.value.trim()) {
+      attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
+    }
+    oldCheck();
+    updateWorkedButton();
+  };
+
+  const oldSolution = pSolution;
+  pSolution = function(){
+    const i = currentIdx();
+    if (!workedUnlocked(i)) {
+      const fb = document.getElementById('practiceFeedback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.className = 'feedback';
+        fb.textContent = lockMessage(i);
+      }
+      updateWorkedButton();
+      return;
+    }
+    oldSolution();
+    updateWorkedButton();
+  };
+
+  updateWorkedButton();
+})();
+</script>
+
+
+<script src="../../assets/progress.js"></script>
+<script>NEOProgress.autoTrack('aps-03-using-index-laws');</script>
+</body>
+</html>

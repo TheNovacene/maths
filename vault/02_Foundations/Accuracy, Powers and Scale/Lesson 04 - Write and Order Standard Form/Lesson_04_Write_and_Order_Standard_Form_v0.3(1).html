@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Write and Order Standard Form v0.3</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.practice-svg{width:100%;max-width:520px;background:#fff;border:1px solid #cdbfa9;border-radius:10px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.lenscontrols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.lenscontrols input,.lenscontrols select,textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px;background:#fff}
+.bignum{font-size:1.9em;font-weight:bold;text-align:center;margin:.2em}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Accuracy, Powers and Scale</h1>
+<h2>Write and Order Standard Form</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What changes when I adjust one part of a number in standard form?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Micro-to-Macro Scale Explorer and supported practice.</p>
+<p><b>Stepping Stones:</b> write large and small numbers in standard form; convert between ordinary and standard form; order numbers written in standard form; explain what changing the exponent does compared with changing the coefficient.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Creativity · Reflection · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 5 · Explore 20 · Create or Apply 12 · Reflect 8</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to Write and Order Standard Form.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_04_Learner_Guidance.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_04_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('powers-ladder','Mark where your numbers live on the powers-of-ten ladder. Predict, place, then check.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<details class="kw" open>
+<summary>🌿 Connection — One number, three costumes</summary>
+<p><b>What to do:</b> all three cards below equal 4500. Choose the one written in <em>standard form</em>.</p>
+<p><b>What you are trying to notice:</b> standard form always keeps the coefficient at least 1 but less than 10 — that shared convention is what lets us compare numbers at a glance.</p>
+<div class="toolbox">
+<div class="card" style="text-align:center"><p class="small">The same number, three ways</p><p class="bignum">45 × 10² &nbsp;·&nbsp; 4.5 × 10³ &nbsp;·&nbsp; 0.45 × 10⁴</p></div>
+<div class="buttonrow" role="group" aria-label="Possible standard forms"><button onclick="checkCostume('a')">45 × 10²</button><button onclick="checkCostume('b')">4.5 × 10³</button><button onclick="checkCostume('c')">0.45 × 10⁴</button></div>
+<div id="costumeFeedback" class="feedback"></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('powers-ladder','Write 4500 three ways. Circle the version whose first part is at least 1 but less than 10.')">✏️ Investigate on the Scratchpad</button>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> coefficient between 1 and 10, then a power of ten. The exponent does the heavy lifting.</div>
+</details>
+
+<details class="hs">
+<summary>🚶 Movement — Micro-to-Macro Scale Explorer</summary>
+<p><b>What to do:</b> set a coefficient and an exponent, or start from a preset. Predict the ordinary number before checking, then try one change at a time and watch what moves.</p>
+<p><b>What you are trying to notice:</b> the exponent decides where the number lives on the scale ladder; the coefficient only fine-tunes within one power of ten.</p>
+<div class="toolbox">
+<h3>🔭 Micro-to-Macro Scale Explorer</h3>
+<div class="lenscontrols"><label><b>Coefficient (1 to 9.9)</b><input id="scaleCoeff" value="4.5" inputmode="decimal" oninput="resetScale()"></label><label><b>Exponent (−9 to 12)</b><input id="scaleExp" value="3" inputmode="numeric" oninput="resetScale()"></label></div>
+<div class="buttonrow"><button onclick="setScale(1,-7)">Virus</button><button onclick="setScale(7,-5)">Width of a hair</button><button onclick="setScale(8.8,3)">Height of Everest</button><button onclick="setScale(1.3,7)">Earth's diameter</button><button onclick="setScale(1.5,11)">Earth to Sun</button></div>
+<div id="scaleExpression" class="readout" aria-live="polite"></div>
+<label><b>My prediction of the ordinary number</b><input id="scalePrediction" inputmode="decimal" placeholder="Write the number in full, e.g. 4500 or 0.00001"></label>
+<div class="buttonrow"><button onclick="checkScale()">✅ Check my ordinary number</button><button onclick="revealScale()">👀 Reveal the digit-shift pattern</button><button class="scratchbtn" onclick="openMathsScratchpad('powers-ladder','Mark this number on the ladder. Then mark where it would move if the exponent grew by 1.')">✏️ Scratchpad</button></div>
+<div id="scaleFeedback" class="feedback"></div><div id="scaleResult" class="readout" style="display:none"></div>
+<div class="card">
+<p><b>Try one change.</b> Predict the new ordinary number first, then apply the change.</p>
+<label><b>My prediction after the change</b><input id="changePrediction" inputmode="decimal" placeholder="Predicted new ordinary number"></label>
+<div class="buttonrow"><button onclick="applyChange(1)">⬆ Exponent + 1 (×10)</button><button onclick="applyChange(-1)">⬇ Exponent − 1 (÷10)</button></div>
+<div id="changeFeedback" class="feedback"></div>
+</div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> one step of the exponent moves the whole number one rung up or down the ladder — the decimal point stays still, and it is the digits that slide across the place-value columns.</div>
+</details>
+
+<details class="dw">
+<summary>🪞 Reflection — Which part moves a number furthest?</summary>
+<p><b>What to do:</b> start from <strong>3.2 × 10⁴</strong>. Decide which single change produces the larger number, then explain why.</p>
+<div class="toolbox"><div class="buttonrow"><button onclick="checkMover('coeff')">Coefficient: 3.2 → 9.9</button><button onclick="checkMover('exp')">Exponent: 4 → 5</button></div><div id="moverFeedback" class="feedback"></div></div>
+<div class="card"><p><b>This makes sense because...</b></p><textarea rows="4" placeholder="Raising the exponent by 1 multiplies the number by... Changing the coefficient can multiply it by at most..."></textarea></div>
+<p><b>What you are trying to notice:</b> to order numbers in standard form, compare exponents first; only compare coefficients when the exponents are equal.</p>
+</details>
+
+<details class="es">
+<summary>🎨 Creativity — Design a Scale Postcard</summary>
+<p><b>What to do:</b> draft a postcard that compares two real things from very different scales.</p>
+<ol><li>Choose two objects — one tiny, one vast (a virus and a mountain; a hair and a planet).</li><li>Write each size in standard form <em>and</em> as an ordinary number.</li><li>Use last lesson's division law to find how many times bigger one is: divide the coefficients, subtract the exponents.</li><li>Add one sentence that would make a reader gasp.</li></ol>
+<button class="scratchbtn" onclick="openMathsScratchpad('powers-ladder','Draft your Scale Postcard: two objects, both sizes in standard form, and the how-many-times-bigger calculation.')">✏️ Draft my postcard</button>
+<div class="card"><strong>Carry this idea forward:</strong> your draft becomes the Final Task — the exponent subtraction is Lesson 03's index law working for you.</div>
+</details>
+
+<details class="lb">
+<summary>🌙 Rest — What is the calm three-step route?</summary>
+<div class="card"><p>Look away from the screen, then retrieve this route in your own words:</p><p style="font-size:1.3em;font-weight:bold;text-align:center">coefficient between 1 and 10 → count the digit shifts → the exponent records the shifts</p><p class="small" style="text-align:center">Notice the resting point of the ladder: 10⁰ = 1, the scale of your own hands.</p></div>
+</details>
+
+<details class="nt">
+<summary>🥣 Nutrition — What is this lesson nourishing?</summary>
+<p>This lesson uses <strong>intellectual nourishment</strong>. It nourishes a felt sense of magnitude: the confidence to read a huge or tiny number and know immediately where it lives.</p>
+<div class="twocol"><div class="card">🌱 <b>Magnitude sense</b><br>I can place any number on the powers-of-ten ladder.</div><div class="card">🌱 <b>Precision</b><br>I keep the coefficient between 1 and 10 so my writing follows the shared convention.</div><div class="card">🌱 <b>Connection</b><br>I reuse the index laws instead of counting zeros one by one.</div><div class="card">🌱 <b>Judgement</b><br>I compare exponents first when ordering.</div></div>
+<div class="card"><p class="small">Carry one idea forward: which of these four feels stronger than it did at the start of the lesson?</p></div>
+</details>
+
+<details class="ft">
+<summary>🛠 Final Task — Publish your Scale Postcard</summary>
+<h3>A postcard from two ends of the universe</h3>
+<p><b>What to do:</b> turn your Creativity draft into a finished postcard (Scratchpad export, paper, poster or slide). It must include:</p>
+<ul><li>two real objects from different scales, each size written in standard form <em>and</em> as an ordinary number;</li><li>both objects placed on a powers-of-ten ladder;</li><li>a "how many times bigger" calculation showing the coefficients divided and the exponents subtracted; and</li><li>one sentence explaining why standard form was the better costume for this job.</li></ul>
+<p><b>Filename pattern:</b> <code>NEO_MATH_STANDARD_FORM_FirstName_Date</code></p>
+<table><tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr><tr><td><b>Understanding</b></td><td>Recognises a power of ten.</td><td>Writes one number in standard form with support.</td><td>Converts accurately in both directions.</td><td>Explains why the coefficient convention makes comparison possible.</td></tr><tr><td><b>Application</b></td><td>Places one number on the ladder.</td><td>Writes both sizes with one slip.</td><td>Writes, orders and compares both sizes correctly.</td><td>Uses index laws to compare scales in an unfamiliar context.</td></tr><tr><td><b>Communication</b></td><td>Records part of a comparison.</td><td>Shows both numbers.</td><td>Makes the conversion and comparison clear to a reader.</td><td>Creates a postcard another learner could learn from.</td></tr><tr><td><b>Reflection</b></td><td>Notices which number is bigger.</td><td>Checks one conversion.</td><td>Explains the exponent-first ordering rule.</td><td>Diagnoses and repairs a convincing standard-form misconception.</td></tr></table>
+</details>
+</div></div>
+
+<div id="practiceView" hidden><div class="practice"><h1>Write and Order Standard Form — Practice Companion</h1><button onclick="returnLesson()">← Return to lesson</button><p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 👀 <b>worked solution</b>.</p><p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p><div id="practiceDots" class="buttonrow"></div><div class="toolbox"><p id="practiceLabel"></p><div class="twocol"><svg id="practiceSvg" viewBox="0 0 520 360" class="practice-svg" aria-label="Standard form practice focus"></svg><div><div id="practiceQuestion" class="readout"></div><input id="practiceAnswer" placeholder="Enter your answer"><div class="buttonrow"><button onclick="pPrompt()">🤔 Socratic prompt</button><button onclick="pHint()">💡 Hint</button><button onclick="pCheck()">✅ Check</button><button id="practiceWorkedBtn" onclick="pSolution()">👀 Worked solution</button><button class="scratchbtn" onclick="openMathsScratchpad('powers-ladder','Mark the numbers on the ladder before you decide.')">✏️ Scratchpad</button></div><div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div><div id="practiceSupport" class="readout" style="display:none"></div><div id="practiceFeedback" class="feedback"></div></div></div></div><div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div></div></div>
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+<div role="dialog" aria-modal="true" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+<div><h2 style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2><p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p></div>
+<button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+</div>
+<p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+<button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+<button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+<label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+<select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;"><option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option></select>
+<label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+<select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;"><option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option></select>
+<button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+<button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+<button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;"><label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label><select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;"><option value="powers-ladder" selected>Powers-of-ten ladder</option><option value="place-value">Place-value chart</option><option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option></select></span>
+</div>
+<div style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+<canvas id="neoScratchBackgroundCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+<canvas id="neoScratchCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+<div id="neoStickyLayer" style="position:absolute;inset:0;pointer-events:none;"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+<button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+<button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+<button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+</div>
+<div id="scratchStatus" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+</div>
+</div>
+
+<script>
+function clean(v){return String(v).replace(/,/g,'').trim();}
+function num(v){const n=Number(clean(v));return Number.isFinite(n)?n:NaN;}
+function almostRel(a,b){if(!Number.isFinite(a)||!Number.isFinite(b))return false;const scale=Math.max(Math.abs(a),Math.abs(b),1e-12);return Math.abs(a-b)/scale<=1e-9;}
+function almost(a,b){return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9;}
+function superscript(n){const map={'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return String(n).split('').map(x=>map[x]||x).join('');}
+function withCommas(intPart){return intPart.replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function coeffLabel(c){return c%10===0?String(c/10):(c/10).toFixed(1);}
+function toOrdinary(c,n){let digits=String(c);const pos=1+n;let s;if(pos>=digits.length){s=digits+'0'.repeat(pos-digits.length);}else if(pos<=0){s='0.'+'0'.repeat(-pos)+digits;}else{s=digits.slice(0,pos)+'.'+digits.slice(pos);}
+if(s.includes('.')){s=s.replace(/0+$/,'').replace(/\.$/,'');}
+const parts=s.split('.');parts[0]=withCommas(parts[0]);return parts.join('.');}
+function standardNotation(c,n){return coeffLabel(c)+' × 10'+superscript(n);}
+
+function checkCostume(choice){costumeFeedback.style.display='block';if(choice==='b'){costumeFeedback.className='feedback good';costumeFeedback.innerHTML='<b>Correct.</b> 4.5 is at least 1 and less than 10, so 4.5 × 10³ is the standard form of 4500. The other two are equal in value but break the convention.';}else{costumeFeedback.className='feedback bad';costumeFeedback.innerHTML='<b>Not quite yet.</b> Check the first part: is it at least 1 <em>and</em> less than 10?';}}
+
+const ANCHORS=[[-9,'the width of a DNA strand'],[-7,'a virus'],[-5,'the width of a human hair'],[-3,'a grain of sand'],[-1,'the width of a hand'],[0,'a doorway'],[2,'a football pitch'],[4,'the deepest ocean'],[6,'the length of Great Britain'],[7,"Earth's diameter"],[9,"the Sun's diameter"],[11,'the distance from Earth to the Sun']];
+function nearestAnchor(c,n){const m=Math.log10(c/10)+n;let best=ANCHORS[0];for(const a of ANCHORS){if(Math.abs(a[0]-m)<Math.abs(best[0]-m))best=a;}return best;}
+function currentScale(){const c=Math.round(num(scaleCoeff.value)*10),n=Math.trunc(num(scaleExp.value));return {c,n};}
+function validScale(d){return Number.isInteger(d.c)&&d.c>=10&&d.c<=99&&Number.isInteger(d.n)&&d.n>=-9&&d.n<=12;}
+function scaleValue(d){return (d.c/10)*Math.pow(10,d.n);}
+function resetScale(){scalePrediction.value='';changePrediction.value='';scaleFeedback.style.display='none';changeFeedback.style.display='none';scaleResult.style.display='none';const d=currentScale();if(validScale(d)){const a=nearestAnchor(d.c,d.n);scaleExpression.innerHTML='<b>Current number:</b> '+standardNotation(d.c,d.n)+' &nbsp;·&nbsp; <span class="small">In metres, that is roughly the scale of '+a[1]+' (about 10'+superscript(a[0])+' m).</span>';}else{scaleExpression.innerHTML='Use a coefficient from 1 to 9.9 and a whole-number exponent from −9 to 12.';}}
+function setScale(coeff,exp){scaleCoeff.value=coeff;scaleExp.value=exp;resetScale();}
+function checkScale(){const d=currentScale(),answer=num(scalePrediction.value);scaleFeedback.style.display='block';if(!validScale(d)){scaleFeedback.className='feedback bad';scaleFeedback.textContent='Adjust the inputs first.';return;}if(almostRel(answer,scaleValue(d))){scaleFeedback.className='feedback good';scaleFeedback.innerHTML='<b>Yes.</b> '+standardNotation(d.c,d.n)+' = '+toOrdinary(d.c,d.n)+'. Now reveal the digit-shift pattern, or try one change below.';}else{scaleFeedback.className='feedback bad';scaleFeedback.innerHTML='<b>Not quite yet.</b> Start from '+coeffLabel(d.c)+' and slide the digits '+Math.abs(d.n)+' place'+(Math.abs(d.n)===1?'':'s')+' to the '+(d.n>=0?'left':'right')+' — the decimal point stays where it is.';}}
+function revealScale(){const d=currentScale();scaleResult.style.display='block';if(!validScale(d)){scaleResult.textContent='Adjust the inputs first.';return;}const dir=d.n>=0?'left':'right';scaleResult.innerHTML='<b>'+standardNotation(d.c,d.n)+' = '+toOrdinary(d.c,d.n)+'</b><br><b>Digit shift:</b> start at '+coeffLabel(d.c)+' and slide the digits '+Math.abs(d.n)+' place'+(Math.abs(d.n)===1?'':'s')+' to the '+dir+'.<br><span class="small">The decimal point never moves — it is only a separator. The digits slide across the place-value columns, and the exponent '+d.n+' records exactly how many places.</span>';}
+function applyChange(step){const d=currentScale();changeFeedback.style.display='block';if(!validScale(d)){changeFeedback.className='feedback bad';changeFeedback.textContent='Adjust the inputs first.';return;}const newN=d.n+step;if(newN<-9||newN>12){changeFeedback.className='feedback warn';changeFeedback.textContent='That change would leave the ladder (exponent must stay between −9 and 12).';return;}const before=toOrdinary(d.c,d.n),afterVal=(d.c/10)*Math.pow(10,newN),after=toOrdinary(d.c,newN);const predicted=num(changePrediction.value);let verdict;if(changePrediction.value.trim()===''){verdict='<b>Try predicting first next time.</b> ';}else if(almostRel(predicted,afterVal)){verdict='<b>Your prediction was right.</b> ';}else{verdict='<b>Compare your prediction with what happened.</b> ';}scaleExp.value=newN;changeFeedback.className='feedback '+(changePrediction.value.trim()===''?'warn':almostRel(predicted,afterVal)?'good':'bad');changeFeedback.innerHTML=verdict+'Before: '+before+'. After: '+after+'. One exponent step '+(step>0?'multiplied':'divided')+' the number by 10 — the decimal point stayed still while the digits slid one place to the '+(step>0?'left':'right')+'.';const a=nearestAnchor(d.c,newN);scaleExpression.innerHTML='<b>Current number:</b> '+standardNotation(d.c,newN)+' &nbsp;·&nbsp; <span class="small">Now roughly the scale of '+a[1]+' (about 10'+superscript(a[0])+' m).</span>';scaleResult.style.display='none';scalePrediction.value='';}
+
+function checkMover(choice){moverFeedback.style.display='block';if(choice==='exp'){moverFeedback.className='feedback good';moverFeedback.innerHTML='<b>Correct.</b> 9.9 × 10⁴ = 99,000 but 3.2 × 10⁵ = 320,000. Raising the exponent by 1 multiplies by 10; the coefficient can stretch a number by less than 10 at most. That is why ordering compares exponents first.';}else{moverFeedback.className='feedback bad';moverFeedback.innerHTML='<b>Check by converting both.</b> 9.9 × 10⁴ = 99,000, while 3.2 × 10⁵ = 320,000. Which single change carried the number further?';}}
+
+const RECONNECT={
+ placevalue:{title:'Place value and magnitude',prompt:'Which is larger: 0.045 or 0.0045? Enter the larger number.',answer:0.045,hint:'Compare digit by digit after the decimal point. The first non-zero digit of 0.045 arrives one place earlier.'},
+ powersten:{title:'Powers of ten',prompt:'Calculate 10³.',answer:1000,hint:'10³ means 10 × 10 × 10.'},
+ indexlaws:{title:'Index laws (last lesson)',prompt:'Simplify 10⁵ ÷ 10². Enter the resulting exponent.',answer:3,hint:'Division with the same base subtracts the exponents: 5 − 2.'},
+ timesten:{title:'Multiplying by 10',prompt:'Calculate 3.6 × 10.',answer:36,hint:'Every digit moves one place to the left: 3.6 becomes 36.'}
+};
+function openReconnect(){reconnectionPanel.style.display='block';reconnectionPanel.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson.</p><div class="buttonrow"><button onclick="showReconnect(\'placevalue\')">Place value</button><button onclick="showReconnect(\'powersten\')">Powers of ten</button><button onclick="showReconnect(\'indexlaws\')">Index laws</button><button onclick="showReconnect(\'timesten\')">Multiplying by 10</button><button onclick="closeReconnect()">Return to Write and Order Standard Form</button></div><div id="reconnectTask"></div>';}
+function showReconnect(key){const r=RECONNECT[key];reconnectTask.innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p><input id="reconnectAnswer" inputmode="decimal" placeholder="Your answer"><div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to Write and Order Standard Form</button></div><div id="reconnectFeedback" class="feedback"></div></div>';}
+function checkReconnect(key){const r=RECONNECT[key],ok=almost(num(reconnectAnswer.value),r.answer);reconnectFeedback.style.display='block';reconnectFeedback.className='feedback '+(ok?'good':'bad');reconnectFeedback.textContent=ok?'Ready to return. This idea is secure enough for the current lesson.':'Not yet. Use the hint or mark the numbers on the Scratchpad ladder.';}
+function reconnectHint(key){reconnectFeedback.style.display='block';reconnectFeedback.className='feedback warn';reconnectFeedback.textContent=RECONNECT[key].hint;}
+function closeReconnect(){reconnectionPanel.style.display='none';}
+
+const PRACTICE=[
+ {title:'Write a large number',question:'Everest is about 8850 m tall. When 8850 is written in standard form, enter the exponent.',answer:3,prompt:'Where must the digits sit so the coefficient is at least 1 but less than 10?',hint:'8850 = 8.85 × 10^?. Count how many places the digits slide to the left from 8.85 to 8850.',solution:'8850 = 8.85 × 10³. The digits slide 3 places to the left past the fixed decimal point, so the exponent is 3.'},
+ {title:'Write a small number',question:'A red blood cell is about 0.0000078 m wide. In standard form this is 7.8 × 10^?. Enter the exponent.',answer:-6,prompt:'Do the digits slide left or right to turn 7.8 into 0.0000078?',hint:'Count the slides: 7.8 → 0.0000078 slides the digits 6 places to the right, so the exponent is negative.',solution:'0.0000078 = 7.8 × 10⁻⁶. The digits slide 6 places to the right past the fixed decimal point, giving the exponent −6.'},
+ {title:'Convert back',question:'Write 3.05 × 10⁴ as an ordinary number.',answer:30500,prompt:'How many places do the digits slide, and in which direction?',hint:'Slide the digits of 3.05 four places to the left, filling the gaps with zeros.',solution:'3.05 × 10⁴ = 30,500. Every digit slides four places to the left past the fixed decimal point, and the gaps fill with zeros.'},
+ {title:'Order by exponent',question:'Which is larger: 9.8 × 10⁵ or 2.1 × 10⁶? Enter the exponent of the larger number.',answer:6,prompt:'When two numbers are in standard form, which part do you compare first?',hint:'Compare exponents first: 10⁶ beats 10⁵ regardless of the coefficients.',solution:'2.1 × 10⁶ = 2,100,000 is larger than 9.8 × 10⁵ = 980,000. The larger exponent is 6.'},
+ {title:'Repair the misconception',question:'A learner writes 45,000 = 45 × 10³. Enter the exponent of the correct standard form.',answer:4,prompt:'Is 45 allowed as the coefficient in standard form?',hint:'The coefficient must be at least 1 but less than 10, so rewrite 45 as 4.5 and adjust the power.',solution:'45,000 = 4.5 × 10⁴. Rewriting 45 as 4.5 costs one factor of 10, so the exponent rises from 3 to 4.'},
+ {title:'Compare two scales',question:'How many times wider is a hair (8 × 10⁻⁵ m) than a virus (2 × 10⁻⁷ m)? Enter the ordinary number.',answer:400,prompt:'Divide the coefficients and subtract the exponents — which index law is this?',hint:'8 ÷ 2 = 4 and 10⁻⁵ ÷ 10⁻⁷ = 10². So the answer is 4 × 10².',solution:'(8 × 10⁻⁵) ÷ (2 × 10⁻⁷) = 4 × 10² = 400. The hair is 400 times wider — the division index law from last lesson.'}
+];
+let practiceIndex=0,done={};
+function openPractice(){lessonView.hidden=true;practiceView.hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
+function returnLesson(){practiceView.hidden=true;lessonView.hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+function renderPractice(){const p=PRACTICE[practiceIndex];practiceLabel.textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;practiceQuestion.textContent=p.question;practiceAnswer.value='';practiceSupport.style.display='none';practiceFeedback.style.display='none';practicePrev.disabled=practiceIndex===0;practiceNext.textContent=practiceIndex===PRACTICE.length-1?'Finish':'Next →';renderPracticeDotsOnly();drawPracticeDiagram(p);}
+function drawPracticeDiagram(p){const svg=practiceSvg;svg.innerHTML='<rect x="55" y="55" width="430" height="250" rx="18" fill="#fffaf0" stroke="#cdbfa9" stroke-width="2"/><text x="270" y="135" text-anchor="middle" font-size="22" font-weight="700" fill="#3f5f45">'+p.title+'</text><text x="270" y="195" text-anchor="middle" font-size="18" fill="#365a68">Coefficient 1–10 • Digit shifts • Exponent</text><text x="270" y="245" text-anchor="middle" font-size="16" fill="#2f3429">Compare exponents first when ordering.</text>';}
+function pPrompt(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>🤔 Socratic prompt:</b> '+PRACTICE[practiceIndex].prompt;}
+function pHint(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>💡 Hint:</b> '+PRACTICE[practiceIndex].hint;}
+function pSolution(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>👀 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
+function pCheck(){const p=PRACTICE[practiceIndex],ok=almostRel(num(practiceAnswer.value),p.answer);practiceFeedback.style.display='block';if(ok){done[practiceIndex]=true;practiceFeedback.className='feedback good';practiceFeedback.textContent='Correct. Keep the coefficient convention and the exponent-first ordering rule visible.';}else{practiceFeedback.className='feedback bad';practiceFeedback.textContent='Not quite yet. Use the prompt or hint, then try again.';}renderPracticeDotsOnly();}
+function renderPracticeDotsOnly(){practiceDots.innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ':'')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');}
+function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
+function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{practiceFeedback.style.display='block';practiceFeedback.className='feedback good';practiceFeedback.textContent='Practice complete. Take your two favourite scales into the Final Task postcard.';}}
+
+// Scratchpad
+(function(){
+const overlay=document.getElementById('neoScratchpadOverlay'),subtitle=document.getElementById('neoScratchpadSubtitle'),canvas=document.getElementById('neoScratchCanvas'),bgCanvas=document.getElementById('neoScratchBackgroundCanvas'),stickyLayer=document.getElementById('neoStickyLayer'),ctx=canvas.getContext('2d'),bg=bgCanvas.getContext('2d');
+let tool='pen',colour='#2f3429',width=4,template='powers-ladder',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_standard_form_v01';
+function status(msg,col){const box=document.getElementById('scratchStatus');box.style.display='block';box.style.background=col||'#e5edf4';box.textContent=msg;}
+function pt(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+function drawBackground(){bg.clearRect(0,0,920,560);bg.fillStyle='#fff';bg.fillRect(0,0,920,560);bg.save();
+if(template==='powers-ladder'){const rungs=[['10¹¹','Earth to Sun'],['10⁹',"Sun's diameter"],['10⁷',"Earth's diameter"],['10⁴','deepest ocean'],['10²','football pitch'],['10⁰','a doorway'],['10⁻³','grain of sand'],['10⁻⁵','width of a hair'],['10⁻⁷','virus'],['10⁻⁹','DNA strand']];bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,52);bg.fillStyle='#3f5f45';bg.font='bold 16px Arial';bg.textAlign='left';bg.fillText('Powers-of-ten ladder (metres) — mark your numbers where they live',18,32);bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(120,70);bg.lineTo(120,540);bg.stroke();bg.font='bold 15px Arial';rungs.forEach((r,i)=>{const y=86+i*49;bg.strokeStyle='#cdbfa9';bg.lineWidth=1;bg.beginPath();bg.moveTo(120,y);bg.lineTo(900,y);bg.stroke();bg.fillStyle='#365a68';bg.textAlign='right';bg.fillText(r[0],108,y+5);bg.fillStyle='#7a806f';bg.font='13px Arial';bg.textAlign='left';bg.fillText(r[1],130,y-6);bg.font='bold 15px Arial';});}
+if(template==='place-value'){const labels=['Millions','Hundred thousands','Ten thousands','Thousands','Hundreds','Tens','Ones','Tenths','Hundredths'];const w=920/labels.length;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 13px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();const words=label.split(' ');words.forEach((word,j)=>bg.fillText(word,i*w+w/2,34+j*18));});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}
+bg.lineWidth=1;bg.strokeStyle='#e6dccb';if(template==='square-grid'||template==='coordinate-grid'){for(let x=0;x<=920;x+=28){bg.beginPath();bg.moveTo(x,0);bg.lineTo(x,560);bg.stroke();}for(let y=0;y<=560;y+=28){bg.beginPath();bg.moveTo(0,y);bg.lineTo(920,y);bg.stroke();}}
+if(template==='coordinate-grid'){bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(460,0);bg.lineTo(460,560);bg.moveTo(0,280);bg.lineTo(920,280);bg.stroke();}
+if(template==='ratio-table'){bg.strokeStyle='#cdbfa9';for(let x=80;x<=840;x+=190){bg.beginPath();bg.moveTo(x,70);bg.lineTo(x,490);bg.stroke();}for(let y=70;y<=490;y+=70){bg.beginPath();bg.moveTo(80,y);bg.lineTo(840,y);bg.stroke();}}
+if(template==='double-number-line'){bg.strokeStyle='#315d72';bg.lineWidth=3;[210,350].forEach(y=>{bg.beginPath();bg.moveTo(90,y);bg.lineTo(830,y);bg.stroke();for(let x=90;x<=830;x+=74){bg.beginPath();bg.moveTo(x,y-10);bg.lineTo(x,y+10);bg.stroke();}});}
+bg.restore();}
+function drawStroke(s){if(!s||!s.points.length)return;ctx.save();ctx.lineCap='round';ctx.lineJoin='round';if(s.tool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=Math.max(18,s.width*5);}else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=s.colour;ctx.lineWidth=s.width;}const pts=s.points;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);if(s.tool==='line'){const last=pts[pts.length-1];ctx.lineTo(last.x,last.y);}else{pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));if(pts.length===1)ctx.lineTo(pts[0].x+.1,pts[0].y+.1);}ctx.stroke();ctx.restore();}
+function renderInk(){ctx.clearRect(0,0,920,560);strokes.forEach(drawStroke);}
+function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText=`position:absolute;left:${note.x}%;top:${note.y}%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;`;const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
+function render(){drawBackground();renderInk();renderNotes();}
+function store(){try{localStorage.setItem(storageKey,JSON.stringify({template,strokes,redo,notes,colour,width}));}catch(err){}}
+function restore(){try{const s=JSON.parse(localStorage.getItem(storageKey)||'null');if(!s)return;template=s.template||template;strokes=s.strokes||[];redo=s.redo||[];notes=s.notes||[];colour=s.colour||colour;width=s.width||width;scratchTemplate.value=template;scratchColour.value=colour;scratchWidth.value=String(width);}catch(err){}}
+function updateButtons(){scratchPenBtn.style.background=tool==='pen'?'#e5f0e2':'#fff';scratchLineBtn.style.background=tool==='line'?'#e5edf4':'#fff';scratchEraserBtn.style.background=tool==='eraser'?'#e5f0e2':'#fff';canvas.style.cursor=tool==='eraser'?'cell':tool==='note'?'copy':'crosshair';}
+canvas.addEventListener('pointerdown',e=>{if(tool==='note'){const r=canvas.getBoundingClientRect();notes.push({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100,text:''});renderNotes();setScratchTool('pen');status('Sticky note added.','#fff7c7');store();e.preventDefault();return;}drawing=true;canvas.setPointerCapture(e.pointerId);const p=pt(e);current={tool,width,colour,points:tool==='line'?[p,p]:[p]};strokes.push(current);redo=[];renderInk();e.preventDefault();});
+canvas.addEventListener('pointermove',e=>{if(!drawing||!current)return;const p=pt(e);if(current.tool==='line')current.points[1]=p;else current.points.push(p);renderInk();e.preventDefault();});
+function finish(e){if(!drawing)return;drawing=false;current=null;try{canvas.releasePointerCapture(e.pointerId);}catch(err){}store();e.preventDefault();}
+canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',finish);
+window.openMathsScratchpad=function(t,sub){if(t){template=t;scratchTemplate.value=t;}subtitle.textContent=sub||'Use the Scratchpad to predict, sketch, test and revise.';overlay.hidden=false;document.body.style.overflow='hidden';render();};
+window.closeMathsScratchpad=function(){store();overlay.hidden=true;document.body.style.overflow='';};
+window.setScratchTool=function(t){tool=t;updateButtons();if(t==='line')status('Line tool: press at the start point, drag to the end point, then release.');if(t==='note')status('Click anywhere on the Scratchpad to place a sticky note.','#fff7c7');};
+window.updateScratchColour=function(){colour=scratchColour.value;store();};
+window.updateScratchWidth=function(){width=Number(scratchWidth.value);store();};
+window.changeScratchTemplate=function(v){template=v;drawBackground();store();status('Background changed. Your drawing marks are unchanged.','#e3f0df');};
+window.scratchUndo=function(){if(!strokes.length){status('Nothing to undo yet.','#fff1cf');return;}redo.push(strokes.pop());renderInk();store();};
+window.scratchRedo=function(){if(!redo.length){status('Nothing to redo yet.','#fff1cf');return;}strokes.push(redo.pop());renderInk();store();};
+window.newScratchPage=function(){if((strokes.length||notes.length)&&!confirm('Start a new Scratchpad page?'))return;strokes=[];redo=[];notes=[];render();store();status('New Scratchpad page started.');};
+window.saveScratchPage=function(){store();status('Working page saved in this browser.','#e3f0df');};
+window.clearScratchpad=function(){if(!confirm('Clear learner marks and sticky notes? The selected background will remain.'))return;strokes=[];redo=[];notes=[];render();store();status('Learner marks cleared. Background preserved.','#fff1cf');};
+window.downloadScratchImage=function(){const ex=document.createElement('canvas');ex.width=920;ex.height=560;const ec=ex.getContext('2d');ec.drawImage(bgCanvas,0,0);ec.drawImage(canvas,0,0);const link=document.createElement('a');link.download='NEO_Maths_Standard_Form_Scratchpad.png';link.href=ex.toDataURL('image/png');link.click();};
+restore();updateButtons();render();
+})();
+resetScale();
+</script>
+
+<script id="practiceWorkedUnlockWrapper">
+// GreenPrint compliance patch; internal lesson version v0.3.
+(function(){
+  if (window.__neoWorkedUnlockInstalled) return;
+  window.__neoWorkedUnlockInstalled = true;
+  const promptSeen = Array(PRACTICE.length).fill(false);
+  const hintSeen = Array(PRACTICE.length).fill(false);
+  const attempts = Array(PRACTICE.length).fill(0);
+
+  function currentIdx(){ return practiceIndex; }
+  function workedUnlocked(i){
+    return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
+  }
+  function button(){ return document.getElementById('practiceWorkedBtn'); }
+  function notice(){ return document.getElementById('practiceWorkedNotice'); }
+  function lockMessage(i){
+    const parts = [];
+    if (!promptSeen[i]) parts.push('use the Socratic prompt');
+    if (!hintSeen[i]) parts.push('use the hint');
+    const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
+    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+  }
+  function updateWorkedButton(){
+    const i = currentIdx();
+    const btn = button();
+    if (!btn) return;
+    const unlocked = workedUnlocked(i);
+    btn.disabled = !unlocked;
+    btn.style.opacity = unlocked ? '1' : '.5';
+    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+    const n = notice();
+    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+  }
+
+  const oldRender = renderPractice;
+  renderPractice = function(){ oldRender(); updateWorkedButton(); };
+
+  const oldPrompt = pPrompt;
+  pPrompt = function(){ promptSeen[currentIdx()] = true; oldPrompt(); updateWorkedButton(); };
+
+  const oldHint = pHint;
+  pHint = function(){ hintSeen[currentIdx()] = true; oldHint(); updateWorkedButton(); };
+
+  const oldCheck = pCheck;
+  pCheck = function(){
+    const answer = document.getElementById('practiceAnswer');
+    if (answer && answer.value.trim()) {
+      attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
+    }
+    oldCheck();
+    updateWorkedButton();
+  };
+
+  const oldSolution = pSolution;
+  pSolution = function(){
+    const i = currentIdx();
+    if (!workedUnlocked(i)) {
+      const fb = document.getElementById('practiceFeedback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.className = 'feedback';
+        fb.textContent = lockMessage(i);
+      }
+      updateWorkedButton();
+      return;
+    }
+    oldSolution();
+    updateWorkedButton();
+  };
+
+  updateWorkedButton();
+})();
+</script>
+
+</body>
+</html>

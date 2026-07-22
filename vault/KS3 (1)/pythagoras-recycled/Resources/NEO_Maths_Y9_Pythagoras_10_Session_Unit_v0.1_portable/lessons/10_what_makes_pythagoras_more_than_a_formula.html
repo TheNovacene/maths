@@ -1,0 +1,1420 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Maths Y9 Pythagoras S10: What makes Pythagoras more than a formula?</title><style>
+:root{
+ --bg:#f5f1e7;--ink:#2f3429;--green:#dfead7;--green2:#cbdcbe;--blue:#dfeaf2;
+ --purple:#ece3ef;--rose:#f0dfdb;--gold:#f4e9c9;--rest:#eef0e4;--nutrition:#f4ead8;
+ --border:#c9bda9;--accent:#3f5f45;--shadow:0 7px 20px rgba(50,45,35,.10);
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.55}
+main{max-width:1120px;margin:auto;padding:22px}
+.hero{background:#fffaf0;border:1px solid var(--border);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+h1,h2,h3{color:#3f5f45} .dq{font-size:1.5em;font-weight:800;margin:12px 0;color:#315d72}
+.stones{background:#eef4e8;border-left:5px solid #6b8a5d;padding:12px 14px;border-radius:10px;margin-top:14px}
+details{margin:12px 0;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+summary{font-size:1.25em;font-weight:bold;padding:15px 18px;cursor:pointer}
+details>div.panel{padding:16px 18px;background:#fffdf8}
+.conn summary{background:var(--green)} .move summary{background:var(--blue)} .create summary{background:var(--purple)}
+.reflect summary{background:var(--rose)} .rest summary{background:var(--rest)} .nutrition summary{background:var(--nutrition)}
+.final summary{background:var(--gold)}
+.task,.notice,.bridge,.card{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;background:#fff}
+.task{border-left:5px solid #54718a}.notice{border-left:5px solid #8b6d8d}.bridge{border-left:5px solid #a07837;background:#fffaf0}
+.step-title{font-weight:800;color:#315d72}.tool{background:#fbfaf6;border:1px solid #c9bda9;border-radius:14px;padding:14px;margin:14px 0}
+button,.btn{padding:9px 13px;border:1px solid #54718a;border-radius:9px;background:#fff;cursor:pointer;font-weight:700;color:#2f3429}
+button:hover,.btn:hover{background:#eef4e8}.primary{background:#dfead7;border-color:#4d6b47}
+.top-actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.badge{display:inline-block;padding:4px 9px;border-radius:999px;background:#e5edf4;margin:3px;font-size:.92em}
+.progress{height:10px;background:#e8e2d7;border-radius:8px;overflow:hidden}.progress>div{height:100%;background:#6f8d62}
+input,select,textarea{font:inherit;padding:8px;border:1px solid #bcae98;border-radius:8px;background:#fff}
+textarea{width:100%;min-height:100px}
+.video-wrap{background:#222;border-radius:14px;padding:8px}.video-wrap video{width:100%;display:block;border-radius:10px}
+svg{max-width:100%;height:auto}
+.math{font-family:Georgia,serif;font-size:1.1em}
+.rubric{width:100%;border-collapse:collapse}.rubric th,.rubric td{border:1px solid #bcae98;padding:8px;vertical-align:top}.rubric th{background:#f3ead5}
+.practice-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin:12px 0}
+.hidden{display:none!important}
+@media(max-width:700px){main{padding:10px}.dq{font-size:1.25em}.rubric{font-size:.84em}}
+</style></head><body>
+<div id="lessonView"><main>
+<div class="hero"><div class="badge">NEO Mathematics · Year 9</div><div class="badge">Pythagoras and the Hidden Length · Session 10/10</div>
+<h1>What makes Pythagoras more than a formula?</h1><div class="dq">Driving Question: What should someone understand about Pythagoras beyond the formula?</div>
+<div class="stones"><b>Stepping Stones</b><ul><li>connect the theorem's human and mathematical story</li><li>select and organise evidence from across the unit</li><li>communicate relationship, proof, disruption and utility</li></ul></div>
+<div class="top-actions"><a class="btn" href="../guidance/NEO_Maths_Y9_Pythagoras_Learner_Guide.pdf">📘 Learner Guide</a>
+<a class="btn" href="../guidance/NEO_Maths_Y9_Pythagoras_Supporting_Adult_Guidance.pdf">🤝 Supporting Adult Guidance</a>
+<button onclick="openMathsScratchpad('blank','A space to predict, sketch, test and revise.')">✏️ Scratchpad</button>
+<button class="primary" onclick="openPracticeSession()">Open Practice Companion →</button></div></div>
+<details class="conn"><summary>🌿 Connection — See the whole journey</summary><div class="panel">
+    <div class="task"><div class="step-title">What to do</div><ol><li>Read the ten-session journey below.</li><li>Choose three moments that changed or enlarged your view of Pythagoras.</li><li>Put them in the order that makes sense to you.</li></ol></div>
+    <div class="notice"><div class="step-title">What you are trying to notice</div><p>The unit has connected wonder, utility, proof, disruption, pattern and generalisation.</p></div>
+    <div class="bridge"><div class="step-title">What to carry forward</div><p>Your final evidence should tell a mathematical story, not repeat ten lesson summaries.</p></div>
+    <div class='card'>Harmony → three squares → hidden lengths → practice → modelling → proof → √2 → triples → other shapes → meaning</div></div></details><details class="move"><summary>🚶 Movement — Move evidence into a story</summary><div class="panel">
+    <div class="task"><div class="step-title">What to do</div><ol><li>Open the Scratchpad.</li><li>Create five zones titled Harmony, Relationship, Proof, Disruption, Utility.</li><li>Move or rewrite one piece of evidence into each zone.</li><li>Add arrows where two zones connect.</li></ol></div>
+    <div class="notice"><div class="step-title">What you are trying to notice</div><p>A portfolio explanation is designed by organising evidence, not by copying everything.</p></div>
+    <div class="bridge"><div class="step-title">What to carry forward</div><p>Your arrows will become the structure of the final product.</p></div>
+    <button onclick="openMathsScratchpad('blank','Create five evidence zones: Harmony, Relationship, Proof, Disruption, Utility. Add connecting arrows.')">✏️ Build my evidence map</button></div></details><details class="create"><summary>🎨 Creativity — Choose a final form</summary><div class="panel">
+    <div class="task"><div class="step-title">What to do</div><ol><li>Choose one final format: annotated visual essay, narrated slides/video, proof gallery, mathematical story map or written explanation.</li><li>Use your five evidence zones as sections.</li><li>Create the product for a real audience: a learner who thinks Pythagoras is only a formula.</li></ol></div>
+    <div class="notice"><div class="step-title">What you are trying to notice</div><p>Communication is part of mathematical understanding.</p></div>
+    <div class="bridge"><div class="step-title">What to carry forward</div><p>Your product should help another person see more than a calculation rule.</p></div>
+    <div class='grid3'><div class='card'>🖼 Visual essay</div><div class='card'>🎙 Narrated explanation</div><div class='card'>🧩 Proof gallery</div><div class='card'>🗺 Story map</div><div class='card'>✍️ Written explanation</div></div></div></details><details class="reflect"><summary>🪞 Reflection — Compare Session 1 with now</summary><div class="panel">
+    <div class="task"><div class="step-title">What to do</div><ol><li>Return to your Session 1 connection map.</li><li>Compare it with your evidence map now.</li><li>Name one connection that became clearer.</li><li>Name one idea that became more complicated.</li></ol></div>
+    <div class="notice"><div class="step-title">What you are trying to notice</div><p>Learning can increase clarity and complexity at the same time.</p></div>
+    <div class="bridge"><div class="step-title">What to carry forward</div><p>Reflection should use evidence from your own journey.</p></div>
+    <div class='grid2'><textarea placeholder='A connection that became clearer...'></textarea><textarea placeholder='An idea that became more complicated...'></textarea></div></div></details><details class="rest"><summary>🌙 Rest — Build the exhibition in small moves</summary><div class="panel">
+    <div class="task"><div class="step-title">What to do</div><ol><li>Choose the smallest next action: title, one diagram, one proof sentence or one application example.</li><li>Complete only that action.</li><li>Pause and choose the next smallest action.</li></ol></div>
+    <div class="notice"><div class="step-title">What you are trying to notice</div><p>A substantial final product can be built through small, visible moves.</p></div>
+    <div class="bridge"><div class="step-title">What to carry forward</div><p>You do not need to hold the whole exhibition in your head.</p></div>
+    <div class='card'>Next smallest action: <input placeholder='title / diagram / proof sentence / example...'></div></div></details><details class="nutrition"><summary>🥣 Nutrition — What has this unit nourished?</summary><div class="panel">
+    <div class="task"><div class="step-title">What to do</div><ol><li>Answer: What has this unit nourished mathematically?</li><li>Choose one practical, physical or intellectual capacity.</li><li>Use one piece of unit evidence to support your answer.</li></ol></div>
+    <div class="notice"><div class="step-title">What you are trying to notice</div><p>Nutrition is explicit in the final reflection.</p></div>
+    <div class="bridge"><div class="step-title">What to carry forward</div><p>Nourishment should be grounded in what became more possible, clearer or more dependable.</p></div>
+    <textarea placeholder='This unit nourished... I can see that because...'></textarea></div></details><details class="final"><summary>🛠 Final Task — Pythagoras Evidence Exhibition</summary><div class="panel">
+    <div class="task"><div class="step-title">What to do</div><ol><li>Create a product titled <b>What makes Pythagoras more than a formula?</b></li><li>Include: Harmony, Relationship, Proof, Disruption and Utility.</li><li>Use at least one diagram, one symbolic statement and one justified calculation.</li><li>Distinguish mathematical proof from historical legend when discussing Hippasus.</li><li>End with one question or connection worth carrying forward.</li></ol></div>
+    <div class="notice"><div class="step-title">What you are trying to notice</div><p>This is the unit portfolio evidence. It should communicate the theorem as a mathematical and human story.</p></div>
+    <div class="bridge"><div class="step-title">What to carry forward</div><p>Submit one coherent final product in your chosen format.</p></div>
+    
+<table class="rubric">
+<tr><th>Criterion</th><th>1 Emerging</th><th>2 Developing</th><th>3 Secure</th><th>4 Mastering</th></tr>
+<tr><td>Understanding</td><td>I can identify part of the idea with support.</td><td>I can describe the main idea.</td><td>I explain the mathematics accurately.</td><td>I connect and justify the mathematics deeply.</td></tr>
+<tr><td>Application</td><td>I begin a relevant method.</td><td>I use a method with some support.</td><td>I apply the mathematics accurately.</td><td>I adapt the mathematics to an unfamiliar case.</td></tr>
+<tr><td>Communication</td><td>My evidence is partly clear.</td><td>I show some steps or labels.</td><td>My reasoning is clear and well organised.</td><td>My communication helps another person see why.</td></tr>
+<tr><td>Reflection</td><td>I name one thing I noticed.</td><td>I describe what changed in my thinking.</td><td>I use evidence to reflect on my strategy.</td><td>I identify a new question or connection worth pursuing.</td></tr>
+</table><p><b>Filename:</b> NEO_MATH_PYTH_UNIT_FirstName_Date</p><h3>Success criteria</h3><p>I explain the theorem geometrically; show why proof matters; explain why √2 disrupted a rational-number worldview; use Pythagoras accurately in a genuine right-triangle situation; communicate clearly and reflect on my mathematical learning.</p></div></details>
+</main></div>
+
+<div id="practiceView" hidden>
+  <main>
+   <div class="hero"><button onclick="returnToLesson()">← Return to Lesson</button>
+   <h1>Practice Companion</h1><p>Work one question at a time. Use the Socratic prompt first; open a hint only when it helps.</p>
+   <div class="progress"><div id="pcBar" style="width:0%"></div></div><p id="pcCount"></p>
+   <div id="pcHost"></div>
+   <div class="top-actions"><button id="pcPrev" onclick="pcMove(-1)">← Previous</button><button id="pcNext" class="primary" onclick="pcMove(1)">Next →</button>
+   <button onclick="openMathsScratchpad('square-grid','Use the Scratchpad to sketch, calculate, compare or explain this practice question.')">✏️ Scratchpad</button></div>
+   <button onclick="returnToLesson()">← Return to Lesson</button>
+   </div>
+  </main>
+</div>
+<script>
+const PCQ=[{"q": "What is the strongest piece of evidence for your Relationship section?", "prompt": "Choose geometry before calculation.", "hint": "Three square areas.", "check": "A clear area relationship.", "worked": "An annotated three-square diagram can show that the two smaller square areas combine to equal the hypotenuse-square area."}, {"q": "What distinguishes proof from testing?", "prompt": "Think guarantee.", "hint": "Finite examples versus general reason.", "check": "Proof rules out valid counterexamples under its conditions.", "worked": "Testing gives evidence from cases; proof explains why every right triangle in the general argument must obey the theorem."}, {"q": "Why does \u221a2 belong in the unit story?", "prompt": "Return to the unit square.", "hint": "The trusted theorem produces it.", "check": "It challenges rational-only number models.", "worked": "Pythagoras gives the unit-square diagonal as \u221a2, forcing a length that cannot be expressed as a ratio of integers."}, {"q": "What makes an application genuinely Pythagorean?", "prompt": "Name the condition.", "hint": "Right angle.", "check": "A justified right triangle.", "worked": "The situation must contain or be modelled by a right-angled triangle whose relevant lengths match the theorem's side roles."}]; let pcIndex=0;
+function pcRender(){
+ const q=PCQ[pcIndex]; const pct=((pcIndex+1)/PCQ.length)*100;
+ document.getElementById('pcBar').style.width=pct+'%';
+ document.getElementById('pcCount').textContent='Question '+(pcIndex+1)+' of '+PCQ.length;
+ document.getElementById('pcHost').innerHTML=`<div class="practice-card"><h2>${q.q}</h2>
+ <p><b>Socratic prompt:</b> ${q.prompt}</p>
+ <textarea placeholder="Record your thinking here if useful."></textarea>
+ <details><summary>💡 Hint</summary><div class="panel"><p>${q.hint}</p></div></details>
+ <details><summary>✅ Check</summary><div class="panel"><p>${q.check}</p></div></details>
+ <details><summary>🧭 Worked solution</summary><div class="panel"><p>${q.worked}</p></div></details></div>`;
+ document.getElementById('pcPrev').disabled=pcIndex===0; document.getElementById('pcNext').disabled=pcIndex===PCQ.length-1;
+}
+function pcMove(d){pcIndex=Math.max(0,Math.min(PCQ.length-1,pcIndex+d));pcRender();window.scrollTo({top:0,behavior:'smooth'})}
+function openPracticeSession(){document.getElementById('lessonView').hidden=true;document.getElementById('practiceView').hidden=false;pcRender();window.scrollTo({top:0,behavior:'smooth'})}
+function returnToLesson(){document.getElementById('practiceView').hidden=true;document.getElementById('lessonView').hidden=false;window.scrollTo({top:0,behavior:'smooth'})}
+</script>
+
+<!-- NEO Maths Scratchpad -->
+<div id="neoScratchpadOverlay" hidden
+     style="position:fixed; inset:0; z-index:9999; background:rgba(39,45,35,0.70); padding:16px; overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle"
+       style="max-width:980px; margin:10px auto; background:#f7f3ea; border-radius:18px; box-shadow:0 12px 40px rgba(0,0,0,0.28); padding:16px; font-family:Arial,sans-serif; color:#2f3429;">
+    <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0; color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0; color:#5c6b4f;">A space to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()"
+              style="padding:9px 13px; background:#ffffff; border:1px solid #7d8875; border-radius:9px; font-weight:bold; cursor:pointer;">
+        × Close
+      </button>
+    </div>
+
+    <p style="background:#fffaf0; padding:10px; border-radius:10px; margin:14px 0;">
+      You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:10px; font-size:0.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')"
+              style="padding:7px 10px; border:1px solid #4d6b47; background:#e5f0e2; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ✏️ Pen
+      </button>
+
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')"
+              style="padding:7px 10px; border:1px solid #54718a; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        📏 Line
+      </button>
+
+      <label for="scratchColour" style="font-weight:bold; white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:115px;">
+        <option value="#2f3429">Charcoal</option>
+        <option value="#315d72">Ocean blue</option>
+        <option value="#5c6b4f">Moss green</option>
+        <option value="#70466b">Plum</option>
+        <option value="#9a5f3f">Earth brown</option>
+        <option value="#b24c4c">Berry red</option>
+      </select>
+
+      <label for="scratchWidth" style="font-weight:bold; white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:92px;">
+        <option value="2">Thin</option>
+        <option value="4" selected>Medium</option>
+        <option value="7">Thick</option>
+      </select>
+
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')"
+              style="padding:7px 10px; border:1px solid #7d8875; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🧽 Eraser
+      </button>
+
+      <button type="button" onclick="scratchUndo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↶ Undo
+      </button>
+
+      <button type="button" onclick="scratchRedo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↷ Redo
+      </button>
+
+      <button type="button" onclick="setScratchTool('note')"
+              style="padding:7px 10px; border:1px solid #8a7932; background:#fff7c7; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🗒 Sticky Note
+      </button>
+
+      <span style="display:inline-flex; align-items:center; gap:6px; white-space:nowrap; flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold; white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)"
+                style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:145px;">
+          <option value="blank">Blank</option>
+          <option value="square-grid">Square grid</option>
+          <option value="coordinate-grid">Coordinate grid</option>
+          <option value="ratio-table">Ratio table</option>
+          <option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+
+    <div id="neoScratchCanvasWrap"
+         style="position:relative; background:#ffffff; border:1px solid #cdbfa9; border-radius:12px; overflow:hidden; touch-action:none; aspect-ratio:920 / 560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true"
+              style="position:absolute; inset:0; display:block; width:100%; height:100%; background:#ffffff; pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560"
+              aria-label="Scratchpad drawing layer"
+              style="position:absolute; inset:0; display:block; width:100%; height:100%; background:transparent; touch-action:none; cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer"
+           aria-label="Scratchpad sticky notes"
+           style="position:absolute; inset:0; pointer-events:none;"></div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px; background:#fffaf0; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">🗑 Clear board</button>
+    </div>
+
+    <div id="scratchStatus" aria-live="polite"
+         style="display:none; margin-top:10px; padding:10px; border-radius:9px; background:#e5edf4;"></div>
+  </div>
+</div>
+
+
+<script>
+function openPracticeSession() {
+  document.getElementById("lessonView").hidden = true;
+  document.getElementById("practiceView").hidden = false;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function returnToLesson() {
+  document.getElementById("practiceView").hidden = true;
+  document.getElementById("lessonView").hidden = false;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function normaliseText(value) {
+  return String(value).toLowerCase().replace(/£/g,"").replace(/,/g,"").replace(/\s+/g," ").trim();
+}
+function numberFrom(value) {
+  const cleaned = normaliseText(value).replace(/[a-z]/g,"").replace(/×/g,"").replace(/x/g,"").trim();
+  if (cleaned.includes("/")) {
+    const parts = cleaned.split("/");
+    if (parts.length === 2 && Number(parts[1]) !== 0) return Number(parts[0]) / Number(parts[1]);
+  }
+  return Number(cleaned);
+}
+function closeOtherPanels(current) {
+  document.querySelectorAll("#lessonView details").forEach(function(d) {
+    if (d !== current && d.dataset.keepOpen !== "true") d.open = false;
+  });
+}
+document.querySelectorAll("#lessonView details").forEach(function(d) {
+  d.addEventListener("toggle", function(){ if (d.open) closeOtherPanels(d); });
+});
+</script>
+
+<script>
+function fmt(v){return Number.isInteger(v)?String(v):String(Math.round(v*100)/100);}
+function updateRatioScaler(){
+ const people=Number(document.getElementById("ratioServes").value), f=people/2;
+ document.getElementById("ratioServesLabel").textContent=people+(people===1?" person":" people");
+ document.getElementById("ratioFactor").textContent="×"+fmt(f);
+ const rows=[["Bananas",1,"banana"],["Milk",200,"ml"],["Oats",80,"g"],["Honey",2,"tsp"]];
+ let h="<table style='width:100%;border-collapse:collapse;background:#fff'><tr><th style='border:1px solid #b9b09f;padding:8px'>Ingredient</th><th style='border:1px solid #b9b09f;padding:8px'>Base</th><th style='border:1px solid #b9b09f;padding:8px'>Scaled</th><th style='border:1px solid #b9b09f;padding:8px'>Reasoning</th></tr>";
+ rows.forEach(r=>{h+=`<tr><td style="border:1px solid #b9b09f;padding:8px">${r[0]}</td><td style="border:1px solid #b9b09f;padding:8px">${r[1]} ${r[2]}</td><td style="border:1px solid #b9b09f;padding:8px"><b>${fmt(r[1]*f)} ${r[2]}</b></td><td style="border:1px solid #b9b09f;padding:8px">${r[1]} × ${fmt(f)}</td></tr>`;});
+ document.getElementById("ratioRecipeTable").innerHTML=h+"</table>";
+}
+function randomRatioServes(){document.getElementById("ratioServes").value=1+Math.floor(Math.random()*12);updateRatioScaler();}
+function checkRatioNotice(){
+ const t=normaliseText(document.getElementById("ratioNotice").value),b=document.getElementById("ratioNoticeFeedback");b.style.display="block";
+ if(t.length<15){b.style.background="#fff1cf";b.textContent="Write a little more about the multiplier or the ratio.";}
+ else if((t.includes("same")||t.includes("ratio"))&&(t.includes("multiply")||t.includes("factor")||t.includes("scale"))){b.style.background="#e3f0df";b.textContent="Strong reflection. You connected sameness with scaling.";}
+ else{b.style.background="#fff1cf";b.textContent="Good start. Can you explain that every connected quantity uses the same multiplier?";}
+}
+updateRatioScaler();
+
+const rbRows=[
+{people:4,f:2,b:2,m:400,o:160,h:4,p:"How do you get from 2 people to 4 people?",hint:"The number of people doubles."},
+{people:6,f:3,b:3,m:600,o:240,h:6,p:"What multiplier changes 2 into 6?",hint:"2 × 3 = 6."},
+{people:8,f:4,b:4,m:800,o:320,h:8,p:"How many groups of 2 are in 8?",hint:"8 ÷ 2 = 4."},
+{people:1,f:.5,b:.5,m:100,o:40,h:1,p:"How do you get from 2 people to 1 person?",hint:"Use half of every amount."},
+{people:10,f:5,b:5,m:1000,o:400,h:10,p:"How many groups of 2 are in 10?",hint:"10 ÷ 2 = 5."}
+]; let rbIndex=0; const rbSaved=rbRows.map(()=>({b:"",m:"",o:"",h:"",f:""}));
+function rbSave(){rbSaved[rbIndex]={b:rbB.value,m:rbM.value,o:rbO.value,h:rbH.value,f:rbFactor.value};}
+function rbRender(){
+ const q=rbRows[rbIndex],s=rbSaved[rbIndex]; ratioBuilderLabel.textContent=`Ratio table row ${rbIndex+1} of ${rbRows.length}`;ratioBuilderQuestion.innerHTML=`Complete the row for <b>${q.people} people</b>.`;
+ rbPeople.textContent=q.people;rbB.value=s.b;rbM.value=s.m;rbO.value=s.o;rbH.value=s.h;rbFactor.value=s.f;rbSupport.style.display="none";rbFeedback.style.display="none";rbPrev.disabled=rbIndex===0;rbNext.textContent=rbIndex===rbRows.length-1?"Finish":"Next →";
+}
+function ratioBuilderPrompt(){rbSupport.style.display="block";rbSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+rbRows[rbIndex].p;}
+function ratioBuilderHint(){rbSupport.style.display="block";rbSupport.innerHTML="<b>💡 Hint:</b> "+rbRows[rbIndex].hint;}
+function ratioBuilderCheck(){rbSave();const q=rbRows[rbIndex],s=rbSaved[rbIndex],vals=[numberFrom(s.b),numberFrom(s.m),numberFrom(s.o),numberFrom(s.h),numberFrom(s.f)],exp=[q.b,q.m,q.o,q.h,q.f];rbFeedback.style.display="block";if(vals.some(v=>!Number.isFinite(v))){rbFeedback.style.background="#fff1cf";rbFeedback.textContent="Complete every number first.";return;}if(vals.every((v,i)=>Math.abs(v-exp[i])<1e-8)){rbFeedback.style.background="#e3f0df";rbFeedback.textContent="Correct. Every quantity uses the same scale factor.";}else{rbFeedback.style.background="#f6dddd";rbFeedback.textContent="Not quite yet. Find the scale factor first, then use it for every ingredient.";}}
+function rbPrev(){if(rbIndex>0){rbSave();rbIndex--;rbRender();}} function rbNext(){rbSave();if(rbIndex<rbRows.length-1){rbIndex++;rbRender();}else{rbFeedback.style.display="block";rbFeedback.style.background="#e5edf4";rbFeedback.textContent="You have reached the end of the Ratio Table Builder.";}} rbRender();
+
+function updateSmoothie(){
+ const n=smName.value.trim()||"My Smoothie",p=Number(smPeople.value),f=p/2,fa=Number(smFA.value),la=Number(smLA.value),ta=Number(smTA.value),ea=Number(smEA.value);
+ if(![p,fa,la,ta,ea].every(Number.isFinite)||p<=0){smPreview.innerHTML="<b>Enter valid amounts.</b>";return;}
+ smPreview.innerHTML=`<h3 style="color:#7a5a2e">${n}</h3><p><b>Serves:</b> ${p} | <b>Scale factor:</b> ×${fmt(f)}</p><table style="width:100%;border-collapse:collapse;background:#fffaf0"><tr><th style="border:1px solid #c8b99a;padding:7px">Ingredient</th><th style="border:1px solid #c8b99a;padding:7px">Base</th><th style="border:1px solid #c8b99a;padding:7px">Scaled</th></tr><tr><td style="border:1px solid #c8b99a;padding:7px">${smFruit.value}</td><td style="border:1px solid #c8b99a;padding:7px">${fa}</td><td style="border:1px solid #c8b99a;padding:7px"><b>${fmt(fa*f)}</b></td></tr><tr><td style="border:1px solid #c8b99a;padding:7px">${smLiquid.value}</td><td style="border:1px solid #c8b99a;padding:7px">${la} ml</td><td style="border:1px solid #c8b99a;padding:7px"><b>${fmt(la*f)} ml</b></td></tr><tr><td style="border:1px solid #c8b99a;padding:7px">${smThick.value}</td><td style="border:1px solid #c8b99a;padding:7px">${ta} g</td><td style="border:1px solid #c8b99a;padding:7px"><b>${fmt(ta*f)} g</b></td></tr></table><p><b>My reasoning:</b> ${smExplain.value.trim()||"Add your explanation above."}</p>`;
+}
+function checkSmoothie(){const b=smFeedback;b.style.display="block";if(!smName.value.trim()){b.style.background="#fff1cf";b.textContent="Give your smoothie a name.";}else if(smExplain.value.trim().length<25){b.style.background="#fff1cf";b.textContent="Add a fuller explanation of your scale factor or ratio.";}else{b.style.background="#e3f0df";b.textContent="Strong design. Your proportional model and explanation are ready to refine.";}} updateSmoothie();
+
+const ratioPractice=[
+{l:"1 of 8 · Simple scaling",q:"2 people need <b>1 banana</b>. How many for <b>4 people</b>?",a:["2","2 bananas"],p:"How does 2 change to 4?",h:"Multiply by 2.",s:"1 × 2 = 2 bananas."},
+{l:"2 of 8 · Milk scaling",q:"2 people need <b>200 ml</b> milk. How much for <b>6 people</b>?",a:["600","600 ml"],p:"What multiplier changes 2 to 6?",h:"Use ×3.",s:"200 × 3 = 600 ml."},
+{l:"3 of 8 · Scale down",q:"2 people need <b>80 g</b> oats. How much for <b>1 person</b>?",a:["40","40 g"],p:"One person is what fraction of two?",h:"Divide by 2.",s:"80 ÷ 2 = 40 g."},
+{l:"4 of 8 · Find the factor",q:"A recipe changes from <b>2 people</b> to <b>10 people</b>. What is the scale factor?",a:["5","x5","×5"],p:"2 multiplied by what gives 10?",h:"10 ÷ 2.",s:"The scale factor is ×5."},
+{l:"5 of 8 · Ratio table",q:"3 people need <b>150 g</b> strawberries. How much for <b>12 people</b>?",a:["600","600 g"],p:"How does 3 change to 12?",h:"Use ×4.",s:"150 × 4 = 600 g."},
+{l:"6 of 8 · Repair a mistake",q:"A learner says 6 people need 5 bananas because 2 people need 1. What is the correct number?",a:["3","3 bananas"],p:"Should the relationship be additive or multiplicative?",h:"2 to 6 is ×3.",s:"1 × 3 = 3 bananas."},
+{l:"7 of 8 · Unit amount",q:"4 people need <b>1000 ml</b> juice. How much for <b>1 person</b>?",a:["250","250 ml"],p:"Scale from 4 to 1.",h:"Divide by 4.",s:"1000 ÷ 4 = 250 ml."},
+{l:"8 of 8 · Challenge",q:"5 people need <b>300 g</b> yoghurt. How much for <b>8 people</b>?",a:["480","480 g"],p:"Find the amount for one person first.",h:"300 ÷ 5 = 60.",s:"60 × 8 = 480 g."}
+];
+let pIndex=0;const pSaved=ratioPractice.map(()=>({w:"",a:""})),pAttempts=ratioPractice.map(()=>0),pDone=ratioPractice.map(()=>false);
+function pSave(){pSaved[pIndex]={w:practiceWorking.value,a:practiceAnswer.value};}
+function pRender(){const q=ratioPractice[pIndex],s=pSaved[pIndex];practiceLabel.textContent="Question "+q.l;practiceQuestion.innerHTML=q.q;practiceWorking.value=s.w;practiceAnswer.value=s.a;practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrevious.disabled=pIndex===0;practiceNext.textContent=pIndex===ratioPractice.length-1?"Finish":"Next →";practiceSolutionButton.disabled=pAttempts[pIndex]<1;practiceDots.innerHTML="";ratioPractice.forEach((_,i)=>{const d=document.createElement("span");d.textContent=i+1;d.style.cssText="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:"+(pDone[i]?"#e3f0df":i===pIndex?"#e5edf4":"#fff");practiceDots.appendChild(d);});}
+function practicePrompt(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+ratioPractice[pIndex].p;}function practiceHint(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+ratioPractice[pIndex].h;}
+function practiceCheck(){pSave();pAttempts[pIndex]++;const learner=normaliseText(pSaved[pIndex].a),ok=ratioPractice[pIndex].a.some(x=>normaliseText(x)===learner);pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your proportional reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the multiplier first.";}}
+function practiceSolution(){pAttempts[pIndex]++;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+ratioPractice[pIndex].s;practiceSolutionButton.disabled=false;}
+function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function practiceNext(){pSave();if(pIndex<ratioPractice.length-1){pIndex++;pRender();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. You have ${pDone.filter(Boolean).length} of 8 correct so far.`;}}pRender();
+</script>
+
+
+<script>const PRACTICE=[["Capital letter A labels a vertex. Which side length is labelled a?", "The side opposite A.", "opposite", "Lower-case a matches capital A, but it labels the opposite side length.", "Side a is the length of the side opposite vertex A."], ["Angle C is 90°. Which labelled side is the hypotenuse?", "c", "c", "The hypotenuse lies opposite the right angle. Which side is opposite C?", "Side c is opposite angle C, so c is the hypotenuse length."], ["A square has side length b. What is its area?", "b²", "b", "Area of a square is side × side.", "b × b = b²."], ["In this diagram C is the right angle, so c is the hypotenuse. Build the symbolic area relationship.", "a²+b²=c²", "a²+b²=c²", "The square on the hypotenuse equals the sum of the squares on the other two sides.", "Because c is the hypotenuse length here, the relationship is a² + b² = c²."]];</script>
+
+<script>
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function norm(v){return String(v).toLowerCase().replace(/\s+/g," ").replace(/[°£]/g,"").trim();}
+let practiceIndex=0, attempts=[0,0,0,0], done=[false,false,false,false];
+function renderPractice(){const q=PRACTICE[practiceIndex];practiceLabel.textContent=`Question ${practiceIndex+1} of ${PRACTICE.length}`;practiceQuestion.innerHTML=q[0];practiceAnswer.value="";practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrev.disabled=practiceIndex===0;practiceNext.textContent=practiceIndex===PRACTICE.length-1?"Finish":"Next →";practiceSolution.disabled=attempts[practiceIndex]<1;practiceDots.innerHTML=PRACTICE.map((_,i)=>`<span style="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:${done[i]?"#e3f0df":i===practiceIndex?"#e5edf4":"#fff"}">${i+1}</span>`).join("");}
+function pPrompt(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[practiceIndex][3];}
+function pHint(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+PRACTICE[practiceIndex][3];}
+function pCheck(){attempts[practiceIndex]++;const learner=norm(practiceAnswer.value),target=norm(PRACTICE[practiceIndex][2]),ok=learner.includes(target)||target.includes(learner)&&learner.length>1;renderPractice();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter an answer first.";}else if(ok){done[practiceIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Keep the mathematical reason visible."; }else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Use the prompt or Scratchpad, then try again.";}}
+function pSolution(){attempts[practiceIndex]++;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[practiceIndex][4];practiceSolution.disabled=false;}
+function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
+function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. ${done.filter(Boolean).length} of ${PRACTICE.length} are secure so far. Return to any question or the lesson.`;}}
+</script>
+
+<script>
+const toolFeedback = () => document.getElementById("toolFeedback");
+function feedback(msg, ok=false){ const b=toolFeedback(); if(!b)return; b.style.display="block"; b.style.background=ok?"#e3f0df":"#fff1cf"; b.textContent=msg; }
+function n(v){ return Number(v); }
+function near(a,b,t=0.12){ return Math.abs(a-b)<=t; }
+let triIndex=0;
+const triData=[{right:[80,190],pts:[[80,40],[80,190],[310,190]],correct:"C"},{right:[300,190],pts:[[70,190],[300,190],[300,55]],correct:"A"},{right:[95,70],pts:[[95,70],[95,220],[330,70]],correct:"B"}];
+function renderTriangle(){if(!document.getElementById("triSvg"))return;const d=triData[triIndex],svg=triSvg;svg.innerHTML="";const ns="http://www.w3.org/2000/svg";const p=document.createElementNS(ns,"polygon");p.setAttribute("points",d.pts.map(x=>x.join(",")).join(" "));p.setAttribute("fill","#e5eef2");p.setAttribute("stroke","#315d72");p.setAttribute("stroke-width","3");svg.appendChild(p);["A","B","C"].forEach((lab,i)=>{let t=document.createElementNS(ns,"text");t.setAttribute("x",d.pts[i][0]+6);t.setAttribute("y",d.pts[i][1]-6);t.setAttribute("font-size","18");t.textContent=lab;svg.appendChild(t)});triChoices.innerHTML=["A","B","C"].map(x=>`<button onclick="chooseTri('${x}')">Side opposite vertex ${x}</button>`).join("");}
+function chooseTri(x){const ok=x===triData[triIndex].correct;feedback(ok?"Correct. You identified the side opposite the right angle.":"Not yet. Locate the right angle first, then look directly opposite.",ok);}
+function nextTriangle(){triIndex=(triIndex+1)%triData.length;renderTriangle();feedback("New triangle loaded.");}
+let squareReveal=false;function updateSquares(){if(!document.getElementById("sqA"))return;const a=n(sqA.value),b=n(sqB.value),c2=a*a+b*b;sqReadout.innerHTML=`a=${a}, b=${b}<br>Square areas: <b>${a*a}</b> and <b>${b*b}</b>${squareReveal?`<br>Combined area = <b>${c2}</b>, so c = √${c2} ≈ <b>${Math.sqrt(c2).toFixed(2)}</b>`:"<br><em>Predict the combined area before revealing.</em>"}`;}
+function revealSquareRelationship(){squareReveal=true;updateSquares();feedback("Notice: the two smaller square areas combine before the square root gives a length.",true);}
+let areaOrigin={x:330,y:500};
+let areaLegB=300;
+let areaLegC=300;
+let areaDragTarget=null;
+let areaPanLast=null;
+let areaSumVisible=false;
+
+function getAreaPoints(){
+  return {
+    A:{x:areaOrigin.x,y:areaOrigin.y},
+    B:{x:areaOrigin.x+areaLegB,y:areaOrigin.y},
+    C:{x:areaOrigin.x,y:areaOrigin.y-areaLegC}
+  };
+}
+
+function areaSvgEl(name, attrs){
+  const el=document.createElementNS("http://www.w3.org/2000/svg",name);
+  Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,String(v)));
+  return el;
+}
+
+function areaDist(p,q){
+  return Math.hypot(q.x-p.x,q.y-p.y);
+}
+
+function outwardSquare(p,q,third){
+  const dx=q.x-p.x, dy=q.y-p.y;
+  const len=Math.hypot(dx,dy);
+  if(!len) return [p,q,q,p];
+
+  let nx=-dy/len, ny=dx/len;
+  const mid={x:(p.x+q.x)/2,y:(p.y+q.y)/2};
+  const toward=(third.x-mid.x)*nx+(third.y-mid.y)*ny;
+
+  // Choose the normal that points away from the triangle interior.
+  if(toward>0){ nx=-nx; ny=-ny; }
+
+  return [
+    p,
+    q,
+    {x:q.x+nx*len,y:q.y+ny*len},
+    {x:p.x+nx*len,y:p.y+ny*len}
+  ];
+}
+
+function polygonPoints(points){
+  return points.map(p=>`${p.x},${p.y}`).join(" ");
+}
+
+function addAreaPolygon(svg,points,fill,stroke){
+  const poly=areaSvgEl("polygon",{
+    points:polygonPoints(points),
+    fill:fill,
+    "fill-opacity":"0.46",
+    stroke:stroke,
+    "stroke-width":"3",
+    "stroke-linejoin":"round",
+    "data-pan":"shape",
+    style:"cursor:grab"
+  });
+  svg.appendChild(poly);
+}
+
+function addAreaLabel(svg,x,y,text,fill="#2f3429",size=18,weight="600"){
+  const t=areaSvgEl("text",{x,y,fill,"font-size":size,"font-weight":weight,"font-family":"Arial, sans-serif"});
+  t.textContent=text;
+  svg.appendChild(t);
+}
+
+function drawRightAngleMarker(svg,areaPointA){
+  const s=18;
+  const pts=[
+    {x:areaPointA.x,y:areaPointA.y},
+    {x:areaPointA.x+s,y:areaPointA.y},
+    {x:areaPointA.x+s,y:areaPointA.y-s},
+    {x:areaPointA.x,y:areaPointA.y-s}
+  ];
+  const marker=areaSvgEl("polyline",{
+    points:polygonPoints(pts),
+    fill:"none",
+    stroke:"#5c6b4f",
+    "stroke-width":"3"
+  });
+  svg.appendChild(marker);
+}
+
+function drawAreaHandle(svg,p,fill,label,dx,dy,id){
+  const c=areaSvgEl("circle",{
+    cx:p.x,cy:p.y,r:11,fill,stroke:"#ffffff","stroke-width":"4",
+    "data-drag":id,style:"cursor:grab"
+  });
+  svg.appendChild(c);
+  addAreaLabel(svg,p.x+dx,p.y+dy,label,"#2f3429",20,"700");
+}
+
+function renderAreaGeometry(){
+  const svg=document.getElementById("pythAreaSvg");
+  if(!svg) return;
+  svg.innerHTML="";
+
+  const pts=getAreaPoints();
+  const areaPointA=pts.A;
+  const areaPointB=pts.B;
+  const areaPointC=pts.C;
+
+  const sqAB=outwardSquare(areaPointA,areaPointB,areaPointC);
+  const sqAC=outwardSquare(areaPointC,areaPointA,areaPointB);
+  const sqBC=outwardSquare(areaPointB,areaPointC,areaPointA);
+
+  // Squares first, then triangle on top.
+  addAreaPolygon(svg,sqAB,"#d95f59","#a74642");   // red square on AB
+  addAreaPolygon(svg,sqAC,"#6fa8dc","#315d72");   // blue square on AC
+  addAreaPolygon(svg,sqBC,"#8fbc72","#5c7f49");   // green square on hypotenuse BC
+
+  const tri=areaSvgEl("polygon",{
+    points:polygonPoints([areaPointA,areaPointB,areaPointC]),
+    fill:"#f4d98b","fill-opacity":"0.75",
+    stroke:"#365a68","stroke-width":"4","stroke-linejoin":"round",
+    "data-pan":"shape",
+    style:"cursor:grab"
+  });
+  svg.appendChild(tri);
+
+  drawRightAngleMarker(svg,areaPointA);
+
+  drawAreaHandle(svg,areaPointB,"#b24c4c","B",14,25,"B");
+  drawAreaHandle(svg,areaPointC,"#315d72","C",-28,-16,"C");
+  addAreaLabel(svg,areaPointA.x-28,areaPointA.y+27,"A","#2f3429",20,"700");
+
+  const a=areaDist(areaPointA,areaPointC);
+  const b=areaDist(areaPointA,areaPointB);
+  const c=areaDist(areaPointB,areaPointC);
+  const scale=40;
+  const aUnits=a/scale, bUnits=b/scale, cUnits=c/scale;
+  const blueArea=aUnits*aUnits;
+  const redArea=bUnits*bUnits;
+  const greenArea=cUnits*cUnits;
+
+  document.getElementById("pythAreaMeasures").innerHTML=`
+    <p><span style="display:inline-block;width:14px;height:14px;background:#6fa8dc;border:1px solid #315d72;margin-right:6px;"></span>
+    Blue square area = <strong>${blueArea.toFixed(2)}</strong> square units</p>
+    <p><span style="display:inline-block;width:14px;height:14px;background:#d95f59;border:1px solid #a74642;margin-right:6px;"></span>
+    Red square area = <strong>${redArea.toFixed(2)}</strong> square units</p>
+    <p><span style="display:inline-block;width:14px;height:14px;background:#8fbc72;border:1px solid #5c7f49;margin-right:6px;"></span>
+    Green square area = <strong>${greenArea.toFixed(2)}</strong> square units</p>
+  `;
+
+  const sum=document.getElementById("areaSumReadout");
+  if(areaSumVisible){
+    sum.style.display="block";
+    sum.innerHTML=`
+      Blue + Red = <strong>${blueArea.toFixed(2)} + ${redArea.toFixed(2)} = ${(blueArea+redArea).toFixed(2)}</strong><br>
+      Green = <strong>${greenArea.toFixed(2)}</strong><br>
+      <span style="color:#3f5f45;font-weight:bold;">Compare those two results.</span>
+    `;
+  } else {
+    sum.style.display="none";
+  }
+}
+
+function svgAreaPoint(event){
+  const svg=document.getElementById("pythAreaSvg");
+  const pt=svg.createSVGPoint();
+  pt.x=event.clientX;
+  pt.y=event.clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+function startAreaDrag(event){
+  const handle=event.target.closest("[data-drag]");
+  const panTarget=event.target.closest("[data-pan]");
+
+  if(handle){
+    areaDragTarget=handle.getAttribute("data-drag");
+    areaPanLast=null;
+    document.getElementById("pythAreaSvg").setPointerCapture(event.pointerId);
+    document.getElementById("pythAreaSvg").style.cursor="grabbing";
+    event.preventDefault();
+    return;
+  }
+
+  if(panTarget){
+    areaDragTarget="PAN";
+    areaPanLast=svgAreaPoint(event);
+    document.getElementById("pythAreaSvg").setPointerCapture(event.pointerId);
+    document.getElementById("pythAreaSvg").style.cursor="grabbing";
+    event.preventDefault();
+  }
+}
+
+function moveAreaDrag(event){
+  if(!areaDragTarget) return;
+  const p=svgAreaPoint(event);
+
+  if(areaDragTarget==="B"){
+    areaLegB=Math.max(160,Math.min(430,p.x-areaOrigin.x));
+  } else if(areaDragTarget==="C"){
+    areaLegC=Math.max(160,Math.min(430,areaOrigin.y-p.y));
+  } else if(areaDragTarget==="PAN"){
+    if(!areaPanLast){
+      areaPanLast=p;
+      return;
+    }
+
+    const dx=p.x-areaPanLast.x;
+    const dy=p.y-areaPanLast.y;
+
+    areaOrigin.x+=dx;
+    areaOrigin.y+=dy;
+    areaPanLast=p;
+  }
+
+  renderAreaGeometry();
+  event.preventDefault();
+}
+
+function endAreaDrag(event){
+  if(!areaDragTarget) return;
+  areaDragTarget=null;
+  areaPanLast=null;
+  const svg=document.getElementById("pythAreaSvg");
+  svg.style.cursor="grab";
+  try{svg.releasePointerCapture(event.pointerId);}catch(e){}
+}
+
+function toggleAreaSum(){
+  areaSumVisible=!areaSumVisible;
+  document.getElementById("areaSumButton").textContent=
+    areaSumVisible ? "Hide: blue area + red area" : "Reveal: blue area + red area";
+  renderAreaGeometry();
+}
+
+function randomiseAreaTriangle(){
+  areaLegB=190+Math.random()*220;
+  areaLegC=190+Math.random()*220;
+  renderAreaGeometry();
+  const box=document.getElementById("areaConjectureFeedback");
+  box.style.display="block";
+  box.style.background="#e5edf4";
+  box.textContent="New right-angled triangle loaded. Compare the three square areas again.";
+}
+
+function centreAreaConstruction(){
+  areaOrigin={x:330,y:500};
+  renderAreaGeometry();
+  const box=document.getElementById("areaConjectureFeedback");
+  box.style.display="block";
+  box.style.background="#e5edf4";
+  box.textContent="Construction centred. You can still drag the whole shape to a different part of the workspace.";
+}
+
+function resetAreaTriangle(){
+  areaOrigin={x:330,y:500};
+  areaLegB=300;
+  areaLegC=300;
+  areaSumVisible=false;
+  document.getElementById("areaSumButton").textContent="Reveal: blue area + red area";
+  renderAreaGeometry();
+}
+
+function reviewAreaConjecture(){
+  const raw=document.getElementById("areaConjecture").value.trim();
+  const t=raw.toLowerCase();
+  const box=document.getElementById("areaConjectureFeedback");
+  box.style.display="block";
+
+  if(raw.length<25){
+    box.style.background="#fff1cf";
+    box.textContent="Write a little more. Try to describe how the two smaller square areas compare with the square on the longest side.";
+    return;
+  }
+
+  const hasArea=t.includes("area") || t.includes("square");
+  const hasCombine=t.includes("add") || t.includes("sum") || t.includes("combined") || t.includes("together") || t.includes("equal");
+  const hasHyp=t.includes("hypotenuse") || t.includes("longest") || t.includes("green");
+
+  if(hasArea && hasCombine && hasHyp){
+    box.style.background="#e3f0df";
+    box.innerHTML="<strong>Strong conjecture.</strong> You have described the area relationship. Keep your wording: the next mathematical step is to compress that relationship into symbols.";
+  } else {
+    box.style.background="#fff1cf";
+    box.textContent="You are noticing a pattern. Can you make the relationship more precise by naming the two smaller square areas and the square on the hypotenuse?";
+  }
+}
+
+const areaSvg=document.getElementById("pythAreaSvg");
+if(areaSvg){
+  areaSvg.addEventListener("pointerdown",startAreaDrag);
+  areaSvg.addEventListener("pointermove",moveAreaDrag);
+  areaSvg.addEventListener("pointerup",endAreaDrag);
+  areaSvg.addEventListener("pointercancel",endAreaDrag);
+  renderAreaGeometry();
+}
+function updateRoot(){if(!document.getElementById("rootN"))return;const v=n(rootN.value),r=Math.sqrt(v),lo=Math.floor(r),hi=Math.ceil(r);rootReadout.innerHTML=`Number: <b>${v}</b><br>${lo}²=${lo*lo} and ${hi}²=${hi*hi}<br>So √${v} is between <b>${lo}</b> and <b>${hi}</b>.`;}
+
+function updateRoot(){if(!document.getElementById("rootN"))return;const v=n(rootN.value),r=Math.sqrt(v),lo=Math.floor(r),hi=Math.ceil(r);rootReadout.innerHTML=`Number: <b>${v}</b><br>${lo}²=${lo*lo} and ${hi}²=${hi*hi}<br>So √${v} is between <b>${lo}</b> and <b>${hi}</b>.`;}
+function checkRootEstimate(){const v=n(rootN.value),e=n(rootEstimate.value);feedback(near(e,Math.sqrt(v),0.15)?`Good estimate. √${v} ≈ ${Math.sqrt(v).toFixed(2)}.`:`Try again using the nearby perfect squares. √${v} ≈ ${Math.sqrt(v).toFixed(2)}.`,near(e,Math.sqrt(v),0.15));}
+
+let theoremStage=0;
+let notationCheckIndex=0;
+let builtFormula=[];
+const formulaTokens=["c²","b²","=","a²","+"];
+
+const notationChecks=[
+  {q:"Which lower-case side label is opposite vertex A?", correct:"a", choices:["a","b","c"]},
+  {q:"Which lower-case side label is opposite vertex B?", correct:"b", choices:["a","b","c"]},
+  {q:"Angle C is 90°. Which lower-case side label is opposite C and therefore names the hypotenuse length?", correct:"c", choices:["a","b","c"]}
+];
+
+function theoremSvgEl(name,attrs){
+  const el=document.createElementNS("http://www.w3.org/2000/svg",name);
+  Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,String(v)));
+  return el;
+}
+
+function theoremText(svg,x,y,text,opts={}){
+  const t=theoremSvgEl("text",{
+    x,y,
+    fill:opts.fill||"#2f3429",
+    "font-size":opts.size||20,
+    "font-weight":opts.weight||"600",
+    "font-family":"Arial, sans-serif",
+    "text-anchor":opts.anchor||"start"
+  });
+  t.textContent=text;
+  svg.appendChild(t);
+}
+
+function theoremSquare(p,q,third){
+  const dx=q.x-p.x,dy=q.y-p.y,len=Math.hypot(dx,dy);
+  let nx=-dy/len,ny=dx/len;
+  const mid={x:(p.x+q.x)/2,y:(p.y+q.y)/2};
+  if((third.x-mid.x)*nx+(third.y-mid.y)*ny>0){nx=-nx;ny=-ny;}
+  return [p,q,{x:q.x+nx*len,y:q.y+ny*len},{x:p.x+nx*len,y:p.y+ny*len}];
+}
+
+function theoremPoly(svg,pts,fill,stroke,opacity=0.45){
+  const p=theoremSvgEl("polygon",{
+    points:pts.map(v=>`${v.x},${v.y}`).join(" "),
+    fill,"fill-opacity":opacity,stroke,"stroke-width":"3","stroke-linejoin":"round"
+  });
+  svg.appendChild(p);
+}
+
+function renderTheoremBuilder(){
+  const svg=document.getElementById("theoremBuildSvg");
+  if(!svg) return;
+  svg.innerHTML="";
+
+  /*
+    Correct labelled convention:
+    - C is the right-angle vertex.
+    - side c is opposite C, so c is the hypotenuse.
+    - side a is opposite A.
+    - side b is opposite B.
+
+    The triangle is deliberately smaller and centred so all three
+    constructed squares remain visible within the application window.
+  */
+  const C={x:320,y:490};
+  const A={x:320,y:290};
+  const B={x:580,y:490};
+
+  if(theoremStage>=2){
+    theoremPoly(svg,theoremSquare(B,C,A),"#d95f59","#a74642");   // square on BC = a
+    theoremPoly(svg,theoremSquare(C,A,B),"#8fbc72","#5c7f49");   // square on CA = b
+    theoremPoly(svg,theoremSquare(A,B,C),"#6fa8dc","#315d72");   // square on AB = c
+  }
+
+  theoremPoly(svg,[A,C,B],"#f4d98b","#365a68",0.78);
+
+  // Right-angle square INSIDE the triangle at vertex C.
+  const s=20;
+  const marker=theoremSvgEl("polyline",{
+    points:`${C.x},${C.y} ${C.x},${C.y-s} ${C.x+s},${C.y-s} ${C.x+s},${C.y}`,
+    fill:"none",
+    stroke:"#5c6b4f",
+    "stroke-width":"3"
+  });
+  svg.appendChild(marker);
+
+  // Capital vertex labels outside the triangle.
+  theoremText(svg,A.x-28,A.y-10,"A");
+  theoremText(svg,B.x+14,B.y+26,"B");
+  theoremText(svg,C.x-30,C.y+28,"C");
+
+  if(theoremStage>=1){
+    // Lower-case side-length labels opposite corresponding capitals.
+    // a is opposite A -> side BC
+    theoremText(svg,455,514,"a",{fill:"#70466b",size:22,weight:"700"});
+    // b is opposite B -> side AC
+    theoremText(svg,296,395,"b",{fill:"#70466b",size:22,weight:"700"});
+    // c is opposite C -> side AB (hypotenuse)
+    theoremText(svg,465,376,"c",{fill:"#70466b",size:22,weight:"700"});
+  }
+
+  if(theoremStage>=3){
+    // Square-area labels centred in the three constructed squares.
+    theoremText(svg,450,650,"a²",{fill:"#a74642",size:25,weight:"700",anchor:"middle"});
+    theoremText(svg,215,390,"b²",{fill:"#5c7f49",size:25,weight:"700",anchor:"middle"});
+    theoremText(svg,540,120,"c²",{fill:"#315d72",size:25,weight:"700",anchor:"middle"});
+  }
+}
+
+function unlockTheoremButton(stage){
+  const next=document.getElementById("stageBtn"+(stage+1));
+  if(next) next.disabled=false;
+}
+
+function showTheoremStage(stage){
+  if(stage>theoremStage+1) return;
+  theoremStage=Math.max(theoremStage,stage);
+  renderTheoremBuilder();
+
+  const box=document.getElementById("theoremStageText");
+  const notation=document.getElementById("notationCheck");
+  const verbal=document.getElementById("verbalRelationshipBox");
+  const formula=document.getElementById("formulaBuilderBox");
+  const generality=document.getElementById("notationGenerality");
+
+  if(stage===1){
+    box.innerHTML=`
+      <strong>Stage 1: label the side lengths.</strong>
+      <p>Side <b>a</b> is opposite A, side <b>b</b> is opposite B, and side <b>c</b> is opposite C.</p>
+      <p>Because <b>angle C is the right angle</b>, side <b>c</b> lies opposite C and is therefore the hypotenuse.</p>`;
+    notation.style.display="block";
+    notationCheckIndex=0;
+    renderNotationCheck();
+  }
+
+  if(stage===2){
+    box.innerHTML=`
+      <strong>Stage 2: construct a square on every side.</strong>
+      <p>The side length of each triangle side becomes the side length of its square.</p>`;
+  }
+
+  if(stage===3){
+    box.innerHTML=`
+      <strong>Stage 3: name the square areas.</strong>
+      <p>A square with side length <b>a</b> has area <b>a²</b>; similarly the other square areas are <b>b²</b> and <b>c²</b>.</p>`;
+  }
+
+  if(stage===4){
+    box.innerHTML=`
+      <strong>Stage 4: return to your Lesson 2 conjecture.</strong>
+      <p>Describe the area relationship in words before using an equation.</p>`;
+    verbal.style.display="block";
+  }
+
+  if(stage===5){
+    box.innerHTML=`
+      <strong>Stage 5: compress the geometry into symbols.</strong>
+      <p>The symbol tiles are deliberately mixed. Use the geometry and your verbal statement to decide the correct order.</p>`;
+    formula.style.display="block";
+    renderFormulaTiles();
+  }
+
+  unlockTheoremButton(stage);
+}
+
+function renderNotationCheck(){
+  const q=notationChecks[notationCheckIndex];
+  notationQuestion.textContent=q.q;
+  notationChoices.innerHTML=q.choices.map(v=>`<button onclick="answerNotationCheck('${v}')">${v}</button>`).join("");
+  notationFeedback.style.display="none";
+}
+
+function answerNotationCheck(value){
+  const q=notationChecks[notationCheckIndex];
+  notationFeedback.style.display="block";
+
+  if(value===q.correct){
+    notationFeedback.style.background="#e3f0df";
+    notationFeedback.textContent="Correct. The lower-case side label matches the opposite capital vertex.";
+    if(notationCheckIndex<notationChecks.length-1){
+      notationCheckIndex++;
+      setTimeout(renderNotationCheck,450);
+    }else{
+      notationFeedback.textContent="Correct. Because C is 90°, side c is opposite the right angle and is the hypotenuse.";
+    }
+  }else{
+    notationFeedback.style.background="#fff1cf";
+    notationFeedback.textContent="Look across the triangle to the side that does not touch that vertex.";
+  }
+}
+
+function checkVerbalRelationship(){
+  const raw=verbalRelationship.value.trim();
+  const t=raw.toLowerCase();
+  const box=verbalRelationshipFeedback;
+  box.style.display="block";
+
+  if(raw.length<25){
+    box.style.background="#fff1cf";
+    box.textContent="Write a little more. Name the hypotenuse square and the two other square areas.";
+    return;
+  }
+
+  const hasHyp=t.includes("hypotenuse")||t.includes("c")||t.includes("c²");
+  const hasOther=t.includes("other two")||t.includes("smaller")||t.includes("a")&&t.includes("b");
+  const hasRelation=t.includes("sum")||t.includes("add")||t.includes("equal")||t.includes("together");
+
+  if(hasHyp&&hasOther&&hasRelation){
+    box.style.background="#e3f0df";
+    box.innerHTML="<strong>Strong statement.</strong> Your words now contain the relationship needed to build the formula.";
+    document.getElementById("stageBtn5").disabled=false;
+  }else{
+    box.style.background="#fff1cf";
+    box.textContent="Make the comparison more precise: how does the square on the hypotenuse compare with the squares on the other two sides?";
+  }
+}
+
+function renderFormulaTiles(){
+  formulaTiles.innerHTML=formulaTokens.map((token,i)=>`<button onclick="addFormulaToken(${i})">${token}</button>`).join("");
+  renderBuiltFormula();
+}
+
+function addFormulaToken(index){
+  builtFormula.push(formulaTokens[index]);
+  renderBuiltFormula();
+}
+
+function renderBuiltFormula(){
+  formulaSlots.innerHTML=builtFormula.length
+    ? builtFormula.map(v=>`<span style="background:#fff;border:1px solid #c8b99a;border-radius:8px;padding:7px 10px;">${v}</span>`).join("")
+    : '<span style="color:#7d8875;">Your formula will appear here...</span>';
+}
+
+function clearBuiltFormula(){
+  builtFormula=[];
+  renderBuiltFormula();
+  formulaFeedback.style.display="none";
+}
+
+function checkBuiltFormula(){
+  const built=builtFormula.join("");
+  const accepted=["a²+b²=c²","b²+a²=c²"];
+  formulaFeedback.style.display="block";
+
+  if(accepted.includes(built)){
+    formulaFeedback.style.background="#e3f0df";
+    formulaFeedback.innerHTML=`
+      <strong>You built the formula from the geometry.</strong><br>
+      In this labelled triangle, C is 90°, so c is the hypotenuse length. Therefore
+      <strong>a² + b² = c²</strong>.`;
+    notationGenerality.style.display="block";
+  }else{
+    formulaFeedback.style.background="#fff1cf";
+    formulaFeedback.textContent="Return to your verbal statement. Which square area is the sum of the other two?";
+  }
+}
+
+renderTheoremBuilder();
+
+let eqIndex=0;const eqs=[{s:"Shorter sides 3 and 4; hypotenuse c.",a:"3² + 4² = c²",opts:["3² + 4² = c²","3² + c² = 4²","3 + 4 = c²"]},{s:"Shorter sides x and 7; hypotenuse 10.",a:"x² + 7² = 10²",opts:["x² + 7² = 10²","x² + 10² = 7²","x + 7 = 10"]},{s:"Shorter sides a and b; hypotenuse 13.",a:"a² + b² = 13²",opts:["a² + b² = 13²","a² + 13² = b²","a + b = 13²"]}];
+function renderEq(){if(!document.getElementById("eqScenario"))return;const q=eqs[eqIndex];eqScenario.innerHTML=q.s;eqChoice.innerHTML="<option value=''>Choose</option>"+q.opts.map(o=>`<option>${o}</option>`).join("");}
+function checkEquationMatch(){feedback(eqChoice.value===eqs[eqIndex].a?"Correct. The hypotenuse is the c-position in the relationship.":"Recheck which side is the hypotenuse.",eqChoice.value===eqs[eqIndex].a);}
+function nextEquation(){eqIndex=(eqIndex+1)%eqs.length;renderEq();feedback("New diagram description loaded.");}
+function updateHyp(){if(!document.getElementById("hypA"))return;const a=n(hypA.value),b=n(hypB.value);hypSteps.innerHTML=`a=${a}, b=${b}<br>a²=${a*a}, b²=${b*b}<br>a²+b²=${a*a+b*b}<br><em>Now take the square root.</em>`;}
+function checkHyp(){const a=n(hypA.value),b=n(hypB.value),ans=n(hypAnswer.value),c=Math.sqrt(a*a+b*b);feedback(near(ans,c,0.05)?`Correct. c ≈ ${c.toFixed(2)} and it is longer than both shorter sides.`:`Not yet. √(${a*a+b*b}) ≈ ${c.toFixed(2)}.`,near(ans,c,0.05));}
+let legIndex=0;const legs=[{c:13,k:5,a:12},{c:10,k:6,a:8},{c:17,k:8,a:15}];
+function renderLeg(){if(!document.getElementById("legScenario"))return;const q=legs[legIndex];legScenario.innerHTML=`Hypotenuse c=<b>${q.c}</b>, known shorter side=<b>${q.k}</b>. Find the other shorter side.`;legOperation.value="";legAnswer.value="";}
+function checkLeg(){const q=legs[legIndex],ok=legOperation.value==="subtract"&&near(n(legAnswer.value),q.a,0.05);feedback(ok?"Correct. Remove the known smaller square area from c², then take the root.":"Use c² − known² before taking the square root.",ok);}
+function nextLeg(){legIndex=(legIndex+1)%legs.length;renderLeg();feedback("New missing-side problem loaded.");}
+let gateIndex=0;const gates=[{s:"Legs 6 and 8. Candidate hypotenuse: 5.",ok:false},{s:"Legs 6 and 8. Candidate hypotenuse: 10.",ok:true},{s:"Hypotenuse 10, one leg 8. Candidate other leg: 14.",ok:false},{s:"Hypotenuse 13, one leg 5. Candidate other leg: 12.",ok:true}];
+function renderGate(){if(!document.getElementById("gateScenario"))return;const q=gates[gateIndex];gateScenario.innerHTML=q.s;gateChoices.innerHTML=`<button onclick="chooseGate(true)">Possible</button><button onclick="chooseGate(false)">Impossible</button>`;}
+function chooseGate(v){feedback(v===gates[gateIndex].ok?(v?"Accepted with good structural judgement.":"Rejected with good structural judgement."):"Recheck the relative sizes of the hypotenuse and legs.",v===gates[gateIndex].ok);}
+function nextGate(){gateIndex=(gateIndex+1)%gates.length;renderGate();feedback("New candidate loaded.");}
+let angleIndex=0;const angles=[{a:90,b:35,x:55},{a:70,b:20,x:90},{a:60,b:60,x:60}];
+function renderAngle(){if(!document.getElementById("angleScenario"))return;const q=angles[angleIndex];angleScenario.innerHTML=`Two angles are <b>${q.a}°</b> and <b>${q.b}°</b>. Find the third angle.`;angleAnswer.value="";}
+function checkAngle(){const ok=near(n(angleAnswer.value),angles[angleIndex].x,0.01);feedback(ok?`Correct. The third angle is ${angles[angleIndex].x}°.`:"Use 180° minus the two known angles.",ok);}
+function nextAngle(){angleIndex=(angleIndex+1)%angles.length;renderAngle();feedback("New angle set loaded.");}
+let allowIndex=0;const allows=[{s:"A rectangle has a diagonal drawn.",ok:true},{s:"A triangle has angles 70°, 60°, 50°.",ok:false},{s:"A triangle is marked with a 90° angle.",ok:true},{s:"A triangle only looks almost right-angled.",ok:false}];
+function renderAllowed(){if(!document.getElementById("allowScenario"))return;allowScenario.innerHTML=allows[allowIndex].s;}
+function chooseAllowed(v){feedback(v===allows[allowIndex].ok?"Good method selection. You used evidence about the right angle.":"Not yet. Ask: where is the proven 90° angle?",v===allows[allowIndex].ok);}
+function nextAllowed(){allowIndex=(allowIndex+1)%allows.length;renderAllowed();feedback("New scenario loaded.");}
+const scenarios={ladder:{a:3,b:4,label:"Wall height 3 m and ground distance 4 m. Find ladder length.",ans:5},ramp:{a:1.2,b:4,label:"Rise 1.2 m and horizontal run 4 m. Find ramp length.",ans:Math.sqrt(1.44+16)},screen:{a:9,b:16,label:"Screen height 9 units and width 16 units. Find diagonal.",ans:Math.sqrt(337)},route:{a:6,b:8,label:"Perpendicular route segments 6 km and 8 km. Find direct distance.",ans:10}};
+function updateScenario(){if(!document.getElementById("scenarioChoice"))return;scenarioReadout.textContent=scenarios[scenarioChoice.value].label;}
+function checkScenario(){const q=scenarios[scenarioChoice.value],ok=near(n(scenarioAnswer.value),q.ans,0.12);feedback(ok?`Correct. Hidden length ≈ ${q.ans.toFixed(2)}.`:`Model the right triangle, then calculate √(${q.a}²+${q.b}²).`,ok);}
+function checkStrategy(){const ok=strategyChoice.value&&strategyReason.value.trim().length>20;feedback(ok?"Strong comparison. You chose and justified a route rather than copying one.":"Choose a route and explain why it is clear or useful for you.",ok);}
+let shapeSelected="";function highlightShape(x){shapeSelected=x;shapeReadout.innerHTML=x==="rectangle"?"A 6 × 8 rectangle. Its diagonal reveals a right triangle with legs 6 and 8.":"This choice does not yet reveal the intended 6–8 right triangle.";feedback(x==="rectangle"?"You found the hidden right triangle.":"Look for perpendicular sides and a diagonal.",x==="rectangle");}
+function checkShape(){const ok=shapeSelected==="rectangle"&&near(n(shapeAnswer.value),10,0.05);feedback(ok?"Correct. The hidden triangle is 6–8–10.":"Highlight the rectangle first, then use √(6²+8²).",ok);}
+function update3D(){if(!document.getElementById("dReadout"))return;dReadout.innerHTML=`Cuboid dimensions: ${dL.value} × ${dW.value} × ${dH.value}.<br><em>Predict which diagonal should be found first.</em>`;}
+function reveal3D(){const l=n(dL.value),w=n(dW.value),h=n(dH.value),face=Math.sqrt(l*l+w*w),space=Math.sqrt(face*face+h*h);dReadout.innerHTML=`Stage 1: face diagonal = √(${l}²+${w}²) = <b>${face.toFixed(2)}</b><br>Stage 2: space diagonal = √(${face.toFixed(2)}²+${h}²) = <b>${space.toFixed(2)}</b>`;feedback("The intermediate face diagonal becomes a side of the second right triangle.",true);}
+function renderMastery(){if(!document.getElementById("masteryItems"))return;const items=["I can identify the hypotenuse.","I can decide whether Pythagoras is valid.","I can find a hypotenuse.","I can find a shorter side.","I can check whether an answer is reasonable.","I can explain the area relationship."];masteryItems.innerHTML=items.map((x,i)=>`<label class="masteryrow">${x}<select id="m${i}"><option value="0">Not yet</option><option value="1">With support</option><option value="2">Secure today</option></select></label>`).join("");}
+function reviewMastery(){let scores=[0,1,2,3,4,5].map(i=>n(document.getElementById("m"+i).value)),min=Math.min(...scores),idx=scores.indexOf(min);const routes=["PY-01 / hypotenuse recognition","PY-07 / theorem selection","PY-04 / hypotenuse calculation","PY-05 / shorter-side calculation","PY-06 / reasonableness","PY-02 / area relationship"];feedback(min===2?"Your self-review suggests the core connections are secure. Consider the portfolio investigation.":"A useful next route may be "+routes[idx]+".",min===2);}
+function buildInvestigation(){const a=n(invA.value),b=n(invB.value),title=invTitle.value.trim(),ass=invAssumption.value.trim(),lim=invLimit.value.trim();if(!title||!Number.isFinite(a)||!Number.isFinite(b)||a<=0||b<=0||ass.length<10||lim.length<10){feedback("Complete the question, two known sides, an assumption and a limitation.");return;}const c=Math.sqrt(a*a+b*b);invCard.innerHTML=`<h4>${title}</h4><p><b>Context:</b> ${invContext.value}</p><p><b>Model:</b> right triangle with shorter sides ${a} and ${b}</p><p><b>Calculation:</b> √(${a}²+${b}²) ≈ <b>${c.toFixed(2)}</b></p><p><b>Assumption:</b> ${ass}</p><p><b>Limitation:</b> ${lim}</p>`;feedback("Your model card is ready to refine and save as portfolio evidence.",true);}
+renderTriangle();updateSquares();updateRoot();renderEq();updateHyp();renderLeg();renderGate();renderAngle();renderAllowed();updateScenario();update3D();renderMastery();
+</script>
+
+<script>
+document.querySelectorAll('#lessonView details').forEach(function(d){d.addEventListener('toggle',function(){if(d.open)document.querySelectorAll('#lessonView details').forEach(function(o){if(o!==d)o.open=false})})}); 
+
+</script>
+<script>
+(function () {
+  const canvas = document.getElementById("neoScratchCanvas");
+  const ctx = canvas.getContext("2d");
+  const backgroundCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const bgCtx = backgroundCanvas.getContext("2d");
+
+  let tool = "pen";
+  let drawing = false;
+  let lineWidth = 4;
+  let penColour = "#2f3429";
+  let template = "blank";
+  let strokes = [];
+  let stickyNotes = [];
+  let redoStack = [];
+  let currentStroke = null;
+  let activeNoteId = null;
+  let noteDragOffset = { x: 0, y: 0 };
+  const storageKey = "neoMathsScratchpadWorkingPage_pythagoras_s10";
+
+  function canvasPoint(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX - rect.left) * (canvas.width / rect.width),
+      y: (event.clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  function drawBackground() {
+    bgCtx.save();
+    bgCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+    bgCtx.fillStyle = "#ffffff";
+    bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+
+    if (template === "square-grid" || template === "coordinate-grid") {
+      bgCtx.strokeStyle = "#e2ded4";
+      bgCtx.lineWidth = 1;
+      for (let x = 20; x < backgroundCanvas.width; x += 40) {
+        bgCtx.beginPath(); bgCtx.moveTo(x, 0); bgCtx.lineTo(x, backgroundCanvas.height); bgCtx.stroke();
+      }
+      for (let y = 20; y < backgroundCanvas.height; y += 40) {
+        bgCtx.beginPath(); bgCtx.moveTo(0, y); bgCtx.lineTo(backgroundCanvas.width, y); bgCtx.stroke();
+      }
+    }
+
+    if (template === "coordinate-grid") {
+      const ox = backgroundCanvas.width / 2;
+      const oy = backgroundCanvas.height / 2;
+      bgCtx.strokeStyle = "#4f5b45";
+      bgCtx.lineWidth = 2;
+      bgCtx.beginPath(); bgCtx.moveTo(0, oy); bgCtx.lineTo(backgroundCanvas.width, oy); bgCtx.stroke();
+      bgCtx.beginPath(); bgCtx.moveTo(ox, 0); bgCtx.lineTo(ox, backgroundCanvas.height); bgCtx.stroke();
+      bgCtx.fillStyle = "#4f5b45";
+      bgCtx.font = "15px Arial";
+      bgCtx.fillText("x", backgroundCanvas.width - 22, oy - 8);
+      bgCtx.fillText("y", ox + 8, 18);
+      bgCtx.font = "11px Arial";
+      for (let i = -10; i <= 10; i++) {
+        if (i === 0) continue;
+        const x = ox + i * 40;
+        if (x > 0 && x < backgroundCanvas.width) bgCtx.fillText(String(i), x - 4, oy + 15);
+      }
+      for (let i = -6; i <= 6; i++) {
+        if (i === 0) continue;
+        const y = oy - i * 40;
+        if (y > 0 && y < backgroundCanvas.height) bgCtx.fillText(String(i), ox + 6, y + 4);
+      }
+    }
+
+    if (template === "ratio-table") {
+      bgCtx.fillStyle = "#3f5f45";
+      bgCtx.font = "bold 20px Arial";
+      bgCtx.fillText("Ratio Table", 35, 42);
+      const left = 40, top = 80, rowH = 82, colW = 205;
+      const labels = ["People", "Quantity A", "Quantity B"];
+      bgCtx.font = "bold 16px Arial";
+      bgCtx.strokeStyle = "#8fae7e"; bgCtx.lineWidth = 2;
+      for (let r = 0; r <= 3; r++) {
+        bgCtx.beginPath(); bgCtx.moveTo(left, top + r*rowH); bgCtx.lineTo(left + colW*4, top + r*rowH); bgCtx.stroke();
+      }
+      for (let c = 0; c <= 4; c++) {
+        bgCtx.beginPath(); bgCtx.moveTo(left + c*colW, top); bgCtx.lineTo(left + c*colW, top + rowH*3); bgCtx.stroke();
+      }
+      labels.forEach((label, i) => bgCtx.fillText(label, left + 12, top + 50 + i*rowH));
+      bgCtx.font = "14px Arial";
+      bgCtx.fillText("Write a starting ratio in the first number column, then scale it.", 40, 360);
+    }
+
+    if (template === "double-number-line") {
+      bgCtx.fillStyle = "#3f5f45";
+      bgCtx.font = "bold 20px Arial";
+      bgCtx.fillText("Double Number Line", 35, 42);
+      const xs = [90, 250, 410, 570, 730, 890];
+      bgCtx.strokeStyle = "#54718a"; bgCtx.lineWidth = 3;
+      [180, 350].forEach(y => {
+        bgCtx.beginPath(); bgCtx.moveTo(70, y); bgCtx.lineTo(900, y); bgCtx.stroke();
+        xs.forEach(x => { bgCtx.beginPath(); bgCtx.moveTo(x, y-10); bgCtx.lineTo(x, y+10); bgCtx.stroke(); });
+      });
+      bgCtx.fillStyle = "#365a68"; bgCtx.font = "bold 16px Arial";
+      bgCtx.fillText("Quantity A", 70, 145);
+      bgCtx.fillText("Quantity B", 70, 315);
+      bgCtx.font = "14px Arial";
+      bgCtx.fillText("Mark matching values on both lines. What multiplier connects them?", 70, 455);
+    }
+
+    bgCtx.restore();
+  }
+
+  function drawStroke(stroke) {
+    if (!stroke || !Array.isArray(stroke.points) || stroke.points.length < 1) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    if (stroke.tool === "eraser") {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.strokeStyle = "rgba(0,0,0,1)";
+      ctx.lineWidth = Math.max(18, stroke.width * 5);
+    } else {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.strokeStyle = stroke.colour || "#2f3429";
+      ctx.lineWidth = stroke.width || 4;
+    }
+
+    ctx.beginPath();
+    const first = stroke.points[0];
+    ctx.moveTo(first.x, first.y);
+
+    if (stroke.tool === "line") {
+      const last = stroke.points[stroke.points.length - 1] || first;
+      ctx.lineTo(last.x, last.y);
+    } else {
+      stroke.points.slice(1).forEach(function (p) { ctx.lineTo(p.x, p.y); });
+      if (stroke.points.length === 1) ctx.lineTo(first.x + 0.1, first.y + 0.1);
+    }
+
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderStickyNotes() {
+    const layer = document.getElementById("neoStickyLayer");
+    layer.innerHTML = "";
+
+    stickyNotes.forEach(function (note) {
+      const card = document.createElement("div");
+      card.dataset.noteId = note.id;
+      card.style.position = "absolute";
+      card.style.left = note.x + "%";
+      card.style.top = note.y + "%";
+      card.style.width = "180px";
+      card.style.minHeight = "120px";
+      card.style.background = note.colour || "#fff7c7";
+      card.style.border = "1px solid #b9a85b";
+      card.style.borderRadius = "8px";
+      card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.16)";
+      card.style.pointerEvents = "auto";
+      card.style.touchAction = "none";
+
+      const bar = document.createElement("div");
+      bar.style.display = "flex";
+      bar.style.justifyContent = "space-between";
+      bar.style.alignItems = "center";
+      bar.style.padding = "5px 7px";
+      bar.style.cursor = "move";
+      bar.style.background = "rgba(255,255,255,0.35)";
+      bar.style.borderBottom = "1px solid rgba(120,100,40,0.25)";
+      bar.innerHTML = "<strong style='font-size:12px;'>Sticky note</strong>";
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.setAttribute("aria-label", "Delete sticky note");
+      remove.style.border = "none";
+      remove.style.background = "transparent";
+      remove.style.fontWeight = "bold";
+      remove.style.cursor = "pointer";
+      remove.addEventListener("click", function (event) {
+        event.stopPropagation();
+        stickyNotes = stickyNotes.filter(function (n) { return n.id !== note.id; });
+        renderStickyNotes();
+        autoStore();
+      });
+      bar.appendChild(remove);
+
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought, question or reminder...";
+      area.style.width = "100%";
+      area.style.height = "92px";
+      area.style.boxSizing = "border-box";
+      area.style.border = "none";
+      area.style.background = "transparent";
+      area.style.resize = "none";
+      area.style.padding = "8px";
+      area.style.font = "14px Arial";
+      area.style.color = "#2f3429";
+      area.addEventListener("input", function () {
+        note.text = area.value;
+        autoStore();
+      });
+
+      bar.addEventListener("pointerdown", function (event) {
+        activeNoteId = note.id;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        noteDragOffset.x = event.clientX - cardRect.left;
+        noteDragOffset.y = event.clientY - cardRect.top;
+        bar.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      bar.addEventListener("pointermove", function (event) {
+        if (activeNoteId !== note.id) return;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const leftPx = Math.max(0, Math.min(wrap.width - card.offsetWidth, event.clientX - wrap.left - noteDragOffset.x));
+        const topPx = Math.max(0, Math.min(wrap.height - card.offsetHeight, event.clientY - wrap.top - noteDragOffset.y));
+        note.x = (leftPx / wrap.width) * 100;
+        note.y = (topPx / wrap.height) * 100;
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+        event.preventDefault();
+      });
+
+      function endNoteDrag(event) {
+        if (activeNoteId !== note.id) return;
+        activeNoteId = null;
+        try { bar.releasePointerCapture(event.pointerId); } catch (e) {}
+        autoStore();
+      }
+
+      bar.addEventListener("pointerup", endNoteDrag);
+      bar.addEventListener("pointercancel", endNoteDrag);
+
+      card.appendChild(bar);
+      card.appendChild(area);
+      layer.appendChild(card);
+    });
+  }
+
+  function addStickyNote(x, y) {
+    const noteColours = ["#fff7c7", "#e8f0e3", "#e5eef2", "#ece7f2", "#f1e9dc"];
+    stickyNotes.push({
+      id: "note-" + Date.now() + "-" + Math.floor(Math.random() * 10000),
+      x: Math.max(0, Math.min(78, x)),
+      y: Math.max(0, Math.min(72, y)),
+      text: "",
+      colour: noteColours[stickyNotes.length % noteColours.length]
+    });
+    renderStickyNotes();
+    autoStore();
+    status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+  }
+
+  function renderInk() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    strokes.forEach(drawStroke);
+  }
+
+  function renderScratchpad() {
+    drawBackground();
+    renderInk();
+    renderStickyNotes();
+  }
+
+  function status(message, bg) {
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = bg || "#e5edf4";
+    box.textContent = message;
+  }
+
+  canvas.addEventListener("pointerdown", function (event) {
+    if (tool === "note") {
+      const rect = canvas.getBoundingClientRect();
+      const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+      addStickyNote(xPercent, yPercent);
+      setScratchTool("pen");
+      event.preventDefault();
+      return;
+    }
+
+    drawing = true;
+    canvas.setPointerCapture(event.pointerId);
+    const start = canvasPoint(event);
+    currentStroke = {
+      tool: tool,
+      width: lineWidth,
+      colour: penColour,
+      points: tool === "line" ? [start, start] : [start]
+    };
+    strokes.push(currentStroke);
+    redoStack = [];
+    renderInk();
+    event.preventDefault();
+  });
+
+  canvas.addEventListener("pointermove", function (event) {
+    if (!drawing || !currentStroke) return;
+    const point = canvasPoint(event);
+
+    if (currentStroke.tool === "line") {
+      currentStroke.points[1] = point;
+    } else {
+      currentStroke.points.push(point);
+    }
+
+    renderInk();
+    event.preventDefault();
+  });
+
+  function finishDrawing(event) {
+    if (!drawing) return;
+    drawing = false;
+    currentStroke = null;
+    try { canvas.releasePointerCapture(event.pointerId); } catch (e) {}
+    autoStore();
+    event.preventDefault();
+  }
+
+  canvas.addEventListener("pointerup", finishDrawing);
+  canvas.addEventListener("pointercancel", finishDrawing);
+  canvas.addEventListener("pointerleave", function (event) {
+    if (drawing && event.pointerType === "mouse") finishDrawing(event);
+  });
+
+  function autoStore() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({
+        template: template,
+        strokes: strokes,
+        stickyNotes: stickyNotes,
+        penColour: penColour,
+        lineWidth: lineWidth
+      }));
+    } catch (e) {}
+  }
+
+  function restoreStored() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if (saved && Array.isArray(saved.strokes)) {
+        template = saved.template || "blank";
+        strokes = saved.strokes;
+        stickyNotes = Array.isArray(saved.stickyNotes) ? saved.stickyNotes : [];
+        penColour = saved.penColour || "#2f3429";
+        lineWidth = Number(saved.lineWidth) || 4;
+        document.getElementById("scratchTemplate").value = template;
+        document.getElementById("scratchColour").value = penColour;
+        document.getElementById("scratchWidth").value = String(lineWidth);
+      }
+    } catch (e) {}
+    renderScratchpad();
+  }
+
+  window.openMathsScratchpad = function (requestedTemplate, subtitle) {
+    if (requestedTemplate) {
+      template = requestedTemplate;
+      document.getElementById("scratchTemplate").value = template;
+    }
+    document.getElementById("neoScratchpadSubtitle").textContent =
+      subtitle || "A space to predict, sketch, test and revise.";
+    document.getElementById("neoScratchpadOverlay").hidden = false;
+    document.body.style.overflow = "hidden";
+    renderScratchpad();
+  };
+
+  window.closeMathsScratchpad = function () {
+    autoStore();
+    document.getElementById("neoScratchpadOverlay").hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  window.setScratchTool = function (selected) {
+    tool = selected;
+    document.getElementById("scratchPenBtn").style.background = selected === "pen" ? "#e5f0e2" : "#ffffff";
+    document.getElementById("scratchLineBtn").style.background = selected === "line" ? "#e5edf4" : "#ffffff";
+    document.getElementById("scratchEraserBtn").style.background = selected === "eraser" ? "#e5f0e2" : "#ffffff";
+
+    if (selected === "eraser") canvas.style.cursor = "cell";
+    else if (selected === "note") canvas.style.cursor = "copy";
+    else canvas.style.cursor = "crosshair";
+
+    if (selected === "line") status("Line tool selected. Press at the start point, drag to the end point, then release.", "#e5edf4");
+    if (selected === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+
+  window.updateScratchWidth = function () {
+    lineWidth = Number(document.getElementById("scratchWidth").value);
+    autoStore();
+  };
+
+  window.updateScratchColour = function () {
+    penColour = document.getElementById("scratchColour").value;
+    if (tool !== "line") setScratchTool("pen");
+    autoStore();
+    status(tool === "line" ? "Line colour changed." : "Pen colour changed.", "#e5edf4");
+  };
+
+  window.changeScratchTemplate = function (selected) {
+    template = selected;
+    drawBackground();
+    autoStore();
+    status("Background changed. Your drawing marks are unchanged.", "#e3f0df");
+  };
+
+  window.scratchUndo = function () {
+    if (!strokes.length) return status("Nothing to undo yet.", "#fff1cf");
+    redoStack.push(strokes.pop());
+    renderInk();
+    autoStore();
+  };
+
+  window.scratchRedo = function () {
+    if (!redoStack.length) return status("Nothing to redo yet.", "#fff1cf");
+    strokes.push(redoStack.pop());
+    renderInk();
+    autoStore();
+  };
+
+  window.newScratchPage = function () {
+    if ((strokes.length || stickyNotes.length) && !confirm("Start a new Scratchpad page? Save the current page first if you want to keep it.")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("New Scratchpad page ready.", "#e5edf4");
+  };
+
+  window.saveScratchPage = function () {
+    autoStore();
+    status("Working page saved in this browser for this lesson environment.", "#e3f0df");
+  };
+
+  window.clearScratchpad = function () {
+    if (!confirm("Clear every learner mark and sticky note from this Scratchpad page? The background will remain.")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("Learner marks cleared. The background remains.", "#e5edf4");
+  };
+
+  window.downloadScratchImage = function () {
+    renderScratchpad();
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = canvas.width;
+    exportCanvas.height = canvas.height;
+    const exportCtx = exportCanvas.getContext("2d");
+    exportCtx.drawImage(backgroundCanvas, 0, 0);
+    exportCtx.drawImage(canvas, 0, 0);
+
+    exportCanvas.toBlob(function (blob) {
+      if (!blob) return status("The image could not be prepared in this browser.", "#f6dddd");
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "NEO_Maths_Scratchpad.png";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      status("Scratchpad image prepared with the selected background.", "#e3f0df");
+    }, "image/png");
+  };
+
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !document.getElementById("neoScratchpadOverlay").hidden) {
+      closeMathsScratchpad();
+    }
+  });
+
+  restoreStored();
+})();
+</script>
+</body></html>

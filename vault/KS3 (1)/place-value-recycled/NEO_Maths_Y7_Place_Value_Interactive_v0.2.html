@@ -1,0 +1,2528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>NEO Mathematics — How Much Is a Digit Worth?</title>
+  <style>
+    html {
+      background: #f7f3ea;
+    }
+    body {
+      margin: 0;
+      padding: 18px 0;
+      background: #f7f3ea;
+      min-height: 100vh;
+    }
+    button, input, select, textarea {
+      font: inherit;
+    }
+  
+    .neo-guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+    .neo-buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+    .neo-guidebtn,.neo-scratchbtn{padding:10px 14px;border-radius:9px;border:none;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block;font-family:Arial,sans-serif}
+    .neo-guidebtn{background:#5c6b4f;color:#fff}
+    .neo-scratchbtn{background:#365a68;color:#fff}
+
+  </style>
+</head>
+<body>
+<!-- NEO Mathematics legacy migration pilot v0.1
+     Foundations · Place Value: How Much Is a Digit Worth?
+     Migrated from the Verse-al five-Ways architecture using the NEO Legacy Lesson Translation Matrix.
+     NEO block mapping:
+     • Connection: core place-value relationships
+     • Movement: Place-Value Chart + Digit Value Magnifier
+     • Connection: Community Budget Digit Detective
+     • Reflection: Find and Fix the Place-Value Mistake
+     • Creativity: Build a Place-Value Museum
+     • Rest: one-column-at-a-time pause route
+     • Reflection: confidence, representation choice and next-step noticing
+     • Final Task + Emerging | Developing | Secure | Mastering rubric
+     • Progressive in-page Practice Companion retained
+     • Nutrition: Mode B (intellectual) — names what place-value work feeds (v1.6)
+-->
+
+<div id="lessonView">
+
+  <div style="font-family:Arial, sans-serif; max-width:1000px; margin:auto; padding:20px; background:#f7f3ea; color:#2f2f2f; line-height:1.55; border-radius:18px;">
+
+    <h1 style="margin-bottom:6px;">
+      NEO Mathematics: How Much Is a Digit Worth?
+    </h1>
+
+    <h2 style="margin-top:0; color:#5c6b4f; font-size:1.4em;">
+      Driving Question:
+      <em>Can the same digit represent completely different amounts?</em>
+    </h2>
+
+    <div style="background:#fffaf0; padding:14px; border-left:6px solid #d8b26e; border-radius:12px; margin:18px 0;">
+
+      <p style="margin-top:0;">
+        <strong>Foundations:</strong>
+        Number Sense &amp; Operations — place value, estimation and integers.
+      </p>
+
+      <p>
+        <strong>Stepping Stones:</strong>
+        extend place-value understanding beyond earlier stages; recognise the tenfold relationship between neighbouring columns;
+        interpret placeholder zeros; partition and recombine numbers; and move fluently between numerals, words, expanded form and visual representations.
+      </p>
+
+      <p>
+        <strong>Curriculum connection:</strong>
+        understand and use place value for decimals, measures and integers of any size;
+        order numbers; move between numerical representations; and select appropriate representations to support reasoning and problem-solving.
+      </p>
+
+      <p style="margin-bottom:0;">
+        <strong>NEO Cornerstones in this lesson:</strong>
+        🌿 Connection · 🚶 Movement · 🪞 Reflection · 🎨 Creativity · 🌙 Rest · 🍎 Nutrition
+        <br>
+        <em>Nutrition here is intellectual (Mode B): this lesson feeds precision with number, a clear sense of column structure, and confidence working across very large and very small scales.</em>
+      </p>
+
+    </div>
+
+    <div class="neo-guides">
+      <h3 style="margin-top:0;">📚 Lesson Guides and Scratchpad</h3>
+      <p>Choose the support that is useful today. The Scratchpad stays inside this lesson and is optional.</p>
+      <div class="neo-buttonrow">
+        <a class="neo-guidebtn" href="NEO_Maths_Y7_Place_Value_Learner_Guide.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+        <a class="neo-guidebtn" href="NEO_Maths_Y7_Place_Value_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+        <button class="neo-scratchbtn" type="button" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to locate digits, sketch place-value columns, predict and revise.')">✏️ Open Maths Scratchpad</button>
+      </div>
+    </div>
+
+
+
+    <details style="background:#e8f0e3; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌿 Connection — What relationships give a digit its value?
+      </summary>
+
+      <h3>What gives a digit its value?</h3>
+
+      <p>
+        A digit’s value depends on its position. Each place-value column is ten times the value of the column immediately to its right.
+      </p>
+
+      <div style="overflow-x:auto;">
+        <table style="width:100%; min-width:900px; border-collapse:collapse; background:#fffaf0;">
+          <tr>
+            <th style="border:1px solid #b9b09f; padding:8px;">Millions</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Hundred thousands</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Ten thousands</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Thousands</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Hundreds</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Tens</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Ones</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">.</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Tenths</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Hundredths</th>
+            <th style="border:1px solid #b9b09f; padding:8px;">Thousandths</th>
+          </tr>
+        </table>
+      </div>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        In <strong>4,070,205.036</strong>, the first 4 represents four million.
+        The 7 represents seventy thousand, the 2 represents two hundred,
+        the 3 represents three hundredths and the 6 represents six thousandths.
+      </p>
+
+      <h3>Placeholder zeros</h3>
+
+      <p>
+        A zero can show that a particular place-value column contains no units.
+        Removing it can change the number completely.
+      </p>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <strong>4.08</strong> is not the same as <strong>4.8</strong>.<br>
+        The zero in 4.08 keeps the 8 in the hundredths column.
+      </p>
+
+      <h3>Key vocabulary</h3>
+
+      <p>
+        <strong>digit, value, place value, integer, decimal, placeholder, partition, recombine, expanded form, ten times, one tenth</strong>
+      </p>
+
+
+    </details>
+
+    <details style="background:#f1e6d2; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌿 Connection — Who depends on accurate place value?
+      </summary>
+
+      <h3>Place value and responsible budgeting</h3>
+
+      <p>
+        Community organisations depend on accurate budgets. A misplaced digit or missing zero could change a cost by ten, one hundred or even one thousand times.
+      </p>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        A cost entered as <strong>£4,205.70</strong> is very different from <strong>£420.57</strong>.
+        In the first number, the digit 2 represents £200. In the second, it represents £20.
+      </p>
+
+      <h3>Connect the mathematics to decisions and responsibility</h3>
+
+      <ul>
+        <li>Who might be affected by a place-value error in a budget?</li>
+        <li>Why should numerical information be checked before decisions are made?</li>
+        <li>How could clear place-value notation support trust?</li>
+      </ul>
+
+      <h3>Interactive investigation: Community Budget Digit Detective</h3>
+
+      <div id="budgetDetectiveApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <p id="budgetLabel" style="color:#82683f; font-weight:bold; text-transform:uppercase;"></p>
+
+        <div id="budgetQuestion" style="font-size:1.1em;"></div>
+
+        <label for="budgetDigitValue" style="display:block; margin:14px 0 6px;">
+          <strong>Value of the highlighted digit</strong>
+        </label>
+
+        <input id="budgetDigitValue"
+               type="text"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <label for="budgetDecision" style="display:block; margin:14px 0 6px;">
+          <strong>Is the budget entry accurate?</strong>
+        </label>
+
+        <select id="budgetDecision"
+                style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          <option value="">Choose</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="budgetCorrection" style="display:block; margin:14px 0 6px;">
+          <strong>Correction, if needed</strong>
+        </label>
+
+        <input id="budgetCorrection"
+               type="text"
+               placeholder="Write the corrected entry, or type no correction"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <label for="budgetReason" style="display:block; margin:14px 0 6px;">
+          <strong>Explain the possible impact of the error</strong>
+        </label>
+
+        <textarea id="budgetReason"
+                  rows="3"
+                  style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="showBudgetPrompt()"
+                  style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">
+            🤔 Socratic prompt
+          </button>
+
+          <button type="button"
+                  onclick="showBudgetHint()"
+                  style="padding:9px 13px; background:#f8f1d8; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            💡 Hint
+          </button>
+
+          <button type="button"
+                  onclick="checkBudgetAnswer()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check My Answer
+          </button>
+
+        </div>
+
+        <div id="budgetSupport"
+             aria-live="polite"
+             style="display:none; margin-top:14px; background:#f7f2e9; padding:12px; border-radius:9px;"></div>
+
+        <div id="budgetFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:14px;">
+
+          <button id="budgetPrevious"
+                  type="button"
+                  onclick="previousBudgetQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #738697; border-radius:8px; cursor:pointer;">
+            ← Previous
+          </button>
+
+          <button id="budgetNext"
+                  type="button"
+                  onclick="nextBudgetQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #54718a; border-radius:8px; cursor:pointer;">
+            Next →
+          </button>
+
+        </div>
+
+      </div>
+
+    </details>
+
+    <details style="background:#e4edf5; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🚶 Movement — What changes when a digit moves?
+      </summary>
+
+      <p>
+        Place value is a relationship you can move through. Change a digit or move it between columns,
+        then watch the numerical value respond. Predict before you reveal whenever you can.
+      </p>
+      <button class="neo-scratchbtn" type="button" onclick="openMathsScratchpad('place-value','Sketch the columns or record your prediction before moving the digit.')">✏️ Predict on the Scratchpad</button>
+
+      <h3>Interactive investigation 1: Drag-and-Drop Place-Value Chart</h3>
+
+      <p>
+        Build a number by choosing a digit for each place-value column.
+        Then identify the value of a selected digit.
+      </p>
+
+      <div id="placeValueChartApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <div style="overflow-x:auto;">
+
+          <table style="width:100%; min-width:940px; border-collapse:collapse; background:#ffffff;">
+
+            <tr>
+              <th style="border:1px solid #b9b09f; padding:7px;">Millions</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Hundred thousands</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Ten thousands</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Thousands</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Hundreds</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Tens</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Ones</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">.</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Tenths</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Hundredths</th>
+              <th style="border:1px solid #b9b09f; padding:7px;">Thousandths</th>
+            </tr>
+
+            <tr>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvMillions" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvHundredThousands" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvTenThousands" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvThousands" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvHundreds" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvTens" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvOnes" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px; text-align:center; font-size:1.5em;">.</td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvTenths" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvHundredths" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+              <td style="border:1px solid #b9b09f; padding:6px;"><select id="pvThousandths" onchange="updatePlaceValueChart()" style="width:100%; padding:6px;"></select></td>
+            </tr>
+
+          </table>
+
+        </div>
+
+        <div style="background:#fffaf0; margin-top:14px; padding:14px; border-radius:10px; text-align:center;">
+          <strong>Your number:</strong>
+          <span id="placeValueNumber" style="font-size:1.45em; margin-left:8px;">0.000</span>
+        </div>
+
+        <label for="placeValueFocus" style="display:block; margin:14px 0 6px;">
+          <strong>Choose a column to investigate</strong>
+        </label>
+
+        <select id="placeValueFocus"
+                onchange="updatePlaceValueQuestion()"
+                style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          <option value="millions">Millions</option>
+          <option value="hundredThousands">Hundred thousands</option>
+          <option value="tenThousands">Ten thousands</option>
+          <option value="thousands">Thousands</option>
+          <option value="hundreds">Hundreds</option>
+          <option value="tens">Tens</option>
+          <option value="ones">Ones</option>
+          <option value="tenths">Tenths</option>
+          <option value="hundredths">Hundredths</option>
+          <option value="thousandths">Thousandths</option>
+        </select>
+
+        <p id="placeValueQuestion" style="font-weight:bold;"></p>
+
+        <input id="placeValueAnswer"
+               type="text"
+               placeholder="Type the value of the selected digit"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="randomisePlaceValueChart()"
+                  style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            🎲 Random Number
+          </button>
+
+          <button type="button"
+                  onclick="showPlaceValueHint()"
+                  style="padding:9px 13px; background:#f8f1d8; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            💡 Hint
+          </button>
+
+          <button type="button"
+                  onclick="checkPlaceValueAnswer()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check My Answer
+          </button>
+
+        </div>
+
+        <div id="placeValueFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:13px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+      </div>
+
+
+      <h3>Interactive investigation 2: Digit Value Magnifier</h3>
+
+      <p>
+        Choose a digit and starting place. Move it left or right and predict its new value.
+      </p>
+
+      <div id="digitMagnifierApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px; margin-top:16px;">
+
+        <label for="magnifierDigit" style="display:block; margin-bottom:6px;">
+          <strong>Choose a digit</strong>
+        </label>
+
+        <select id="magnifierDigit" style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5" selected>5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+
+        <label for="magnifierStart" style="display:block; margin:14px 0 6px;">
+          <strong>Starting column</strong>
+        </label>
+
+        <select id="magnifierStart" style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          <option value="1000">Thousands</option>
+          <option value="100">Hundreds</option>
+          <option value="10">Tens</option>
+          <option value="1" selected>Ones</option>
+          <option value="0.1">Tenths</option>
+          <option value="0.01">Hundredths</option>
+          <option value="0.001">Thousandths</option>
+        </select>
+
+        <label for="magnifierMove" style="display:block; margin:14px 0 6px;">
+          <strong>Transformation</strong>
+        </label>
+
+        <select id="magnifierMove" style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          <option value="10">Move one column left</option>
+          <option value="100">Move two columns left</option>
+          <option value="0.1">Move one column right</option>
+          <option value="0.01">Move two columns right</option>
+        </select>
+
+        <label for="magnifierPrediction" style="display:block; margin:14px 0 6px;">
+          <strong>Predict the new value</strong>
+        </label>
+
+        <input id="magnifierPrediction"
+               type="text"
+               inputmode="decimal"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <button type="button"
+                onclick="runDigitMagnifier()"
+                style="margin-top:14px; padding:10px 15px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+          🔍 Magnify the Digit
+        </button>
+
+        <div id="magnifierVisual"
+             style="display:none; margin-top:16px; background:#ffffff; padding:14px; border-radius:10px;"></div>
+
+        <div id="magnifierFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+      </div>
+
+      <h3>Think and explain</h3>
+
+      <ul>
+        <li>How is the value of a digit related to the column immediately to its right?</li>
+        <li>What happens to a digit’s value when it moves two columns left?</li>
+        <li>Why can removing a zero change the value of other digits?</li>
+      </ul>
+
+    </details>
+
+    <details style="background:#e4edf5; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🪞 Reflection — What can a mistake reveal about the mathematics?
+      </summary>
+
+      <h3>Interactive investigation: Find and Fix the Place-Value Mistake</h3>
+      <button class="neo-scratchbtn" type="button" onclick="openMathsScratchpad('square-grid','Record the misconception, repair it, and annotate why the correction works.')">✏️ Repair the thinking on the Scratchpad</button>
+
+      <p>
+        Identify whether each statement is correct, repair any error and explain the misconception in your own words.
+      </p>
+
+      <div id="placeValueMistakeApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <p id="mistakeLabel" style="color:#587088; font-weight:bold; text-transform:uppercase;"></p>
+
+        <div id="mistakeQuestion"
+             style="font-size:1.1em; background:#ffffff; padding:14px; border-radius:10px;"></div>
+
+        <label for="mistakeDecision" style="display:block; margin:14px 0 6px;">
+          <strong>Is the statement correct?</strong>
+        </label>
+
+        <select id="mistakeDecision"
+                style="width:100%; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+          <option value="">Choose</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="mistakeCorrection" style="display:block; margin:14px 0 6px;">
+          <strong>Write the corrected statement or value</strong>
+        </label>
+
+        <input id="mistakeCorrection"
+               type="text"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <label for="mistakeExplanation" style="display:block; margin:14px 0 6px;">
+          <strong>Explain the mistake in your own words</strong>
+        </label>
+
+        <textarea id="mistakeExplanation"
+                  rows="4"
+                  style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="showMistakePrompt()"
+                  style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">
+            🤔 Socratic prompt
+          </button>
+
+          <button type="button"
+                  onclick="showMistakeHint()"
+                  style="padding:9px 13px; background:#f8f1d8; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            💡 Hint
+          </button>
+
+          <button type="button"
+                  onclick="checkMistakeAnswer()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Check My Correction
+          </button>
+
+        </div>
+
+        <div id="mistakeSupport"
+             aria-live="polite"
+             style="display:none; margin-top:14px; background:#f7f2e9; padding:12px; border-radius:9px;"></div>
+
+        <div id="mistakeFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:12px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:14px;">
+
+          <button id="mistakePrevious"
+                  type="button"
+                  onclick="previousMistakeQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #738697; border-radius:8px; cursor:pointer;">
+            ← Previous
+          </button>
+
+          <button id="mistakeNext"
+                  type="button"
+                  onclick="nextMistakeQuestion()"
+                  style="padding:9px 14px; background:#ffffff; border:1px solid #54718a; border-radius:8px; cursor:pointer;">
+            Next →
+          </button>
+
+        </div>
+
+      </div>
+
+      <h3>Choose how to communicate your repaired thinking</h3>
+
+      <p>
+        Choose one misconception and present the correction as a short teaching note, annotated diagram,
+        comic, voice explanation or warning poster.
+      </p>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        Sentence stem:
+        <strong>“The digit itself has not changed, but its value is different because…”</strong>
+      </p>
+
+    </details>
+
+    <details style="background:#ece6f3; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🪞 Reflection — What changed in my place-value thinking?
+      </summary>
+
+      <p>
+        Notice the connections you can now explain. This is not a score; it is a way to choose a useful next step.
+      </p>
+
+      <h3>Notice what feels more secure</h3>
+
+      <ul>
+        <li>“I can name the place of a digit.”</li>
+        <li>“I can state the value of a digit in an integer or decimal.”</li>
+        <li>“I can explain why placeholder zeros matter.”</li>
+      </ul>
+
+      <h3>Reflection prompts</h3>
+
+      <ul>
+        <li>A placeholder zero I understand better is...</li>
+        <li>A tenfold relationship I noticed was...</li>
+        <li>A misconception I can now correct is...</li>
+        <li>The representation or activity that helped me most was... because...</li>
+      </ul>
+
+      <p>
+        You may respond with a sentence, sketch, annotated number, teaching note or spoken explanation.
+      </p>
+
+    </details>
+
+    <details style="background:#efe4f2; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🎨 Creativity — What can I make that reveals place-value relationships?
+      </summary>
+
+      <h3>Interactive design challenge: Build a Place-Value Museum</h3>
+      <button class="neo-scratchbtn" type="button" onclick="openMathsScratchpad('blank','Plan a museum exhibit, sketch an annotated number or draft a curator explanation.')">✏️ Plan an exhibit on the Scratchpad</button>
+
+      <p>
+        Create a digital museum display that teaches visitors about large integers, decimals, placeholder zeros and expanded form.
+      </p>
+
+      <div id="placeValueMuseumApp" style="background:#f8f4ee; border:1px solid #cdbfa9; padding:18px; border-radius:14px;">
+
+        <label for="museumName" style="display:block; margin-bottom:6px;">
+          <strong>Name your museum</strong>
+        </label>
+
+        <input id="museumName"
+               type="text"
+               placeholder="Example: The Museum of Powerful Digits"
+               style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;">
+
+        <div id="museumExhibits" style="margin-top:15px;"></div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:14px;">
+
+          <button type="button"
+                  onclick="addMuseumExhibit()"
+                  style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">
+            + Add Exhibit
+          </button>
+
+          <button type="button"
+                  onclick="checkMuseum()"
+                  style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">
+            ✅ Review My Museum
+          </button>
+
+          <button type="button"
+                  onclick="resetMuseum()"
+                  style="padding:9px 13px; background:#fffaf0; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">
+            Reset Museum
+          </button>
+
+        </div>
+
+        <label for="museumCuratorNote" style="display:block; margin:14px 0 6px;">
+          <strong>Curator’s explanation</strong>
+        </label>
+
+        <textarea id="museumCuratorNote"
+                  rows="4"
+                  placeholder="Explain what visitors should learn about place value."
+                  style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #bcae98; border-radius:8px;"></textarea>
+
+        <div id="museumPreview"
+             style="margin-top:18px; background:#ffffff; padding:14px; border-radius:10px;"></div>
+
+        <div id="museumFeedback"
+             aria-live="polite"
+             style="display:none; margin-top:13px; padding:12px; border-radius:9px; font-weight:bold;"></div>
+
+      </div>
+
+      <h3>Museum requirements</h3>
+
+      <ul>
+        <li>One large integer.</li>
+        <li>One decimal with at least three decimal places.</li>
+        <li>One number containing a meaningful placeholder zero.</li>
+        <li>Two examples containing the same digit with different values.</li>
+        <li>One expanded-form exhibit.</li>
+        <li>One deliberate misconception for visitors to correct.</li>
+        <li>A clear curator’s explanation.</li>
+      </ul>
+
+    </details>
+
+    <details style="background:#eef0df; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🌙 Rest — How can I make a crowded number small enough to enter?
+      </summary>
+
+      <h3>Pause and locate the digit</h3>
+
+      <p>
+        Large numbers can feel crowded. You do not need to process the whole number at once.
+        Slow the number down and inspect one column at a time.
+      </p>
+
+      <ol>
+        <li>Locate the decimal point.</li>
+        <li>Find the selected digit.</li>
+        <li>Name its place-value column.</li>
+        <li>State its value.</li>
+        <li>Check one neighbouring column for the tenfold relationship.</li>
+      </ol>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <strong>Helpful self-talk:</strong>
+        “I do not need to understand the whole number at once. I can locate one digit and reason from its column.”
+      </p>
+
+      <p>
+        You may pause here, close the other panels, use paper or the Scratchpad if available,
+        and return with just one digit in focus.
+      </p>
+      <button class="neo-scratchbtn" type="button" onclick="openMathsScratchpad('place-value','Use one row or one place-value column at a time. You do not need to process the whole number at once.')">✏️ Focus on one digit</button>
+
+    </details>
+
+    <details style="background:#f3eadc; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🍎 Nutrition — What does this place-value work feed?
+      </summary>
+
+      <h3>Mode B: intellectual nourishment</h3>
+
+      <p>
+        There is no honest food, body or health context inside place value, so we do not invent one.
+        What this lesson feeds instead is the way you think about number: <strong>precision</strong> (knowing
+        exactly what each digit is worth), <strong>a sense of structure</strong> (seeing the columns as a
+        repeating tenfold pattern rather than a row of separate symbols), and <strong>confidence with scale</strong>
+        (staying calm whether a number is in the millions or the thousandths).
+      </p>
+
+      <p style="background:#fffaf0; padding:12px; border-radius:10px;">
+        <strong>Notice, gently:</strong> after today, does a long number feel a little less crowded than it did?
+        Can you locate a single digit and say what it is worth without re-reading the whole number? If so, that is
+        the nourishment — clearer thinking you can carry into every later topic that uses number.
+      </p>
+
+      <p>
+        <strong>Carry one idea forward:</strong> every column is ten times the one to its right. Hold on to that one
+        relationship and much of the rest of number will keep making sense.
+      </p>
+
+    </details>
+
+    <details style="background:#f3eadc; padding:15px; margin:12px 0; border-radius:14px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        🛠 Final Task
+      </summary>
+
+      <h3>Assignment: Curate a Place-Value Exhibition</h3>
+
+      <p>
+        Design a poster, slide, report or digital exhibition that teaches another learner how digit value works across integers and decimals.
+      </p>
+
+      <p>Your final product must include:</p>
+
+      <ul>
+        <li>a large integer containing at least six digits</li>
+        <li>a decimal containing at least three decimal places</li>
+        <li>the value of at least six selected digits</li>
+        <li>one meaningful placeholder zero</li>
+        <li>one number written in expanded form</li>
+        <li>one number partitioned in two different ways</li>
+        <li>two examples showing the same digit with different values</li>
+        <li>one corrected misconception</li>
+        <li>one real-life example where a place-value error would matter</li>
+        <li>a reflection explaining which representation was most helpful</li>
+      </ul>
+
+      <h3>Stepping Stone evidence</h3>
+
+      <p>
+        This portfolio piece shows whether you can interpret digit value across integers and decimals,
+        reason multiplicatively about neighbouring place-value columns, explain placeholder zeros,
+        repair a misconception and move between numerical representations.
+      </p>
+
+      <h3>Mastery rubric</h3>
+
+      <div style="overflow-x:auto;">
+
+        <table style="width:100%; min-width:900px; border-collapse:collapse; background:#fffaf0;">
+
+          <tr>
+            <th style="border:1px solid #c8b99a; padding:8px;">Criteria</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Emerging</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Developing</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Secure</th>
+            <th style="border:1px solid #c8b99a; padding:8px;">Mastering</th>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Conceptual Understanding</strong>
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can identify some place-value columns using support.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can explain the value of digits in familiar integers and decimals.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can explain tenfold relationships, placeholder zeros and equivalent representations.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can generalise place-value relationships, justify flexible partitioning and make connections between several representations.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Fluency &amp; Accuracy</strong>
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can read or write some large numbers and decimals with support.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can identify digit values, though I may make occasional placeholder errors.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can accurately read, write, partition and recombine integers and decimals.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can work efficiently with unfamiliar values, verify representations independently and correct subtle place-value errors.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Application to Problems</strong>
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can attempt a familiar place-value problem when a model is provided.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can apply place value in familiar money or measure contexts with some support.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can apply place-value reasoning to budgets, data and error-checking problems.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can design, evaluate and refine place-value examples using meaningful constraints and unfamiliar contexts.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              <strong>Independence &amp; Reflection</strong>
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can begin with support and identify when I need help.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can use a place-value chart and respond to feedback.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can choose a representation, check my work and explain what helped me learn.
+            </td>
+
+            <td style="border:1px solid #c8b99a; padding:8px;">
+              I can work independently, refine an explanation, compare valid representations and justify which is most effective.
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+
+      <p style="margin-top:14px;">
+        <strong>Exit question:</strong>
+        How can the same digit represent values that are thousands of times apart?
+      </p>
+
+    </details>
+
+    <div style="text-align:center; margin-top:20px;">
+
+      <button type="button"
+              onclick="openPracticeSession()"
+              style="padding:13px 22px; background:#5c6b4f; color:#ffffff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">
+        Open Practice Companion →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="practiceView" hidden>
+
+  <div style="font-family:Georgia, 'Times New Roman', serif; max-width:960px; margin:auto; padding:24px; background:#f8f4ee; color:#2f2f2f; line-height:1.55; border-radius:18px;">
+
+    <h1 style="margin-bottom:5px;">
+      Place Value Practice
+    </h1>
+
+    <h2 style="margin-top:0; color:#66605a; font-size:1.2em;">
+      NEO Mathematics · Progressive Practice
+    </h2>
+
+    <button type="button"
+            onclick="returnToLesson()"
+            style="padding:10px 16px; background:#ffffff; color:#315d72; border:1px solid #315d72; border-radius:9px; font-weight:bold; cursor:pointer;">
+      ← Return to the Lesson
+    </button>
+
+    <div style="background:#e5edf4; border-left:6px solid #315d72; padding:18px; border-radius:12px; margin:22px 0;">
+
+      <p style="margin-top:0;">
+        Work through eight questions involving digit value, placeholder zeros, expanded form and tenfold relationships.
+      </p>
+
+      <p style="margin-bottom:0;">
+        Use support in this order:
+        <strong>🤔 Socratic prompt</strong>,
+        <strong>💡 Hint</strong>,
+        <strong>✅ Check my answer</strong>,
+        then <strong>👀 Worked solution</strong>.
+      </p>
+
+    </div>
+
+    <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:18px;">
+      <strong>Progress:</strong>
+      <div id="practiceDots" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+    </div>
+
+    <div style="background:#ffffff; border:1px solid #cdbfa9; border-radius:12px; padding:22px;">
+
+      <p id="practiceLabel" style="text-transform:uppercase; color:#8a6d43; letter-spacing:1px; font-weight:bold;"></p>
+
+      <div id="practiceQuestion" style="font-size:1.15em; margin-bottom:16px;"></div>
+
+      <label for="practiceWorking" style="display:block; margin-bottom:6px;">
+        Your working:
+      </label>
+
+      <textarea id="practiceWorking"
+                rows="4"
+                style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #cdbfa9; border-radius:8px; font:inherit;"></textarea>
+
+      <label for="practiceAnswer" style="display:block; margin:14px 0 6px;">
+        Your final answer:
+      </label>
+
+      <input id="practiceAnswer"
+             type="text"
+             autocomplete="off"
+             style="width:100%; box-sizing:border-box; padding:10px; border:1px solid #cdbfa9; border-radius:8px; font:inherit;">
+
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;">
+
+        <button type="button"
+                onclick="showPracticePrompt()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #70466b; background:#f3e6f1; cursor:pointer;">
+          🤔 Socratic prompt
+        </button>
+
+        <button type="button"
+                onclick="showPracticeHint()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #8a7932; background:#f8f1d8; cursor:pointer;">
+          💡 Hint
+        </button>
+
+        <button type="button"
+                onclick="checkPracticeAnswer()"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #4d6b47; background:#e5f0e2; cursor:pointer;">
+          ✅ Check my answer
+        </button>
+
+        <button id="practiceSolutionButton"
+                type="button"
+                onclick="showPracticeSolution()"
+                aria-disabled="true"
+                style="padding:10px 14px; border-radius:8px; border:1px solid #aaa29a; background:#eeeae5; color:#9a938b; cursor:not-allowed;">
+          👀 Worked solution
+        </button>
+
+        <button class="neo-scratchbtn"
+                type="button"
+                onclick="openMathsScratchpad('square-grid','Use the Scratchpad to organise your place-value working or draw a place-value chart.')">
+          ✏️ Scratchpad
+        </button>
+
+      </div>
+
+      <div id="practiceSupport"
+           aria-live="polite"
+           style="display:none; margin-top:16px; background:#f7f2e9; padding:14px; border-radius:10px;"></div>
+
+      <div id="practiceFeedback"
+           aria-live="polite"
+           style="display:none; margin-top:12px; padding:14px; border-radius:10px; font-weight:bold;"></div>
+
+    </div>
+
+    <div style="display:flex; justify-content:space-between; gap:12px; margin-top:16px;">
+
+      <button id="practicePrevious"
+              type="button"
+              onclick="previousPracticeQuestion()"
+              style="padding:10px 16px; border-radius:8px; border:1px solid #8c9cab; background:#ffffff; cursor:pointer;">
+        ← Previous
+      </button>
+
+      <button id="practiceNext"
+              type="button"
+              onclick="nextPracticeQuestion()"
+              style="padding:10px 16px; border-radius:8px; border:1px solid #54718a; background:#ffffff; cursor:pointer;">
+        Next →
+      </button>
+
+    </div>
+
+    <details style="background:#f5edcf; border-left:6px solid #9d8530; padding:16px; border-radius:12px; margin-top:24px;">
+
+      <summary style="font-size:1.25em; font-weight:bold;">
+        💛 Reflection
+      </summary>
+
+      <ul>
+        <li>A placeholder zero I noticed was...</li>
+        <li>A tenfold relationship I used was...</li>
+        <li>An expanded form that helped me was...</li>
+        <li>A question I would like to revisit is...</li>
+      </ul>
+
+    </details>
+
+    <div style="text-align:center; margin-top:20px;">
+
+      <button type="button"
+              onclick="returnToLesson()"
+              style="padding:11px 18px; background:#315d72; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+        ← Return to the Lesson
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<script>
+  function openPracticeSession() {
+    document.getElementById("lessonView").hidden = true;
+    document.getElementById("practiceView").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function returnToLesson() {
+    document.getElementById("practiceView").hidden = true;
+    document.getElementById("lessonView").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function normaliseText(value) {
+    return value
+      .toLowerCase()
+      .replace(/£/g, "")
+      .replace(/,/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+</script>
+
+
+<script>
+  const placeValueColumns = {
+    millions: { id: "pvMillions", value: 1000000, label: "millions" },
+    hundredThousands: { id: "pvHundredThousands", value: 100000, label: "hundred thousands" },
+    tenThousands: { id: "pvTenThousands", value: 10000, label: "ten thousands" },
+    thousands: { id: "pvThousands", value: 1000, label: "thousands" },
+    hundreds: { id: "pvHundreds", value: 100, label: "hundreds" },
+    tens: { id: "pvTens", value: 10, label: "tens" },
+    ones: { id: "pvOnes", value: 1, label: "ones" },
+    tenths: { id: "pvTenths", value: 0.1, label: "tenths" },
+    hundredths: { id: "pvHundredths", value: 0.01, label: "hundredths" },
+    thousandths: { id: "pvThousandths", value: 0.001, label: "thousandths" }
+  };
+
+  function populatePlaceValueSelects() {
+    Object.keys(placeValueColumns).forEach(function (key) {
+      const select = document.getElementById(placeValueColumns[key].id);
+      select.innerHTML = "";
+
+      for (let digit = 0; digit <= 9; digit++) {
+        const option = document.createElement("option");
+        option.value = digit;
+        option.textContent = digit;
+        select.appendChild(option);
+      }
+    });
+
+    document.getElementById("pvMillions").value = "4";
+    document.getElementById("pvTenThousands").value = "7";
+    document.getElementById("pvHundreds").value = "2";
+    document.getElementById("pvOnes").value = "5";
+    document.getElementById("pvHundredths").value = "3";
+    document.getElementById("pvThousandths").value = "6";
+  }
+
+  function getPlaceValueNumber() {
+    let total = 0;
+
+    Object.keys(placeValueColumns).forEach(function (key) {
+      const data = placeValueColumns[key];
+      const digit = Number(document.getElementById(data.id).value);
+      total += digit * data.value;
+    });
+
+    return total;
+  }
+
+  function formatPlaceValueNumber(number) {
+    const fixed = number.toFixed(3);
+    const parts = fixed.split(".");
+    const whole = Number(parts[0]).toLocaleString("en-GB");
+    return whole + "." + parts[1];
+  }
+
+  function updatePlaceValueChart() {
+    document.getElementById("placeValueNumber").textContent =
+      formatPlaceValueNumber(getPlaceValueNumber());
+
+    updatePlaceValueQuestion();
+    document.getElementById("placeValueFeedback").style.display = "none";
+  }
+
+  function updatePlaceValueQuestion() {
+    const key = document.getElementById("placeValueFocus").value;
+    const data = placeValueColumns[key];
+    const digit = document.getElementById(data.id).value;
+
+    document.getElementById("placeValueQuestion").textContent =
+      "What is the value of the digit " + digit + " in the " + data.label + " column?";
+  }
+
+  function randomisePlaceValueChart() {
+    Object.keys(placeValueColumns).forEach(function (key) {
+      document.getElementById(placeValueColumns[key].id).value =
+        String(Math.floor(Math.random() * 10));
+    });
+
+    updatePlaceValueChart();
+  }
+
+  function showPlaceValueHint() {
+    const key = document.getElementById("placeValueFocus").value;
+    const data = placeValueColumns[key];
+    const feedback = document.getElementById("placeValueFeedback");
+
+    feedback.style.display = "block";
+    feedback.style.background = "#fff1cf";
+    feedback.textContent =
+      "Hint: multiply the digit by the value of one " + data.label + " place.";
+  }
+
+  function checkPlaceValueAnswer() {
+    const key = document.getElementById("placeValueFocus").value;
+    const data = placeValueColumns[key];
+    const digit = Number(document.getElementById(data.id).value);
+    const expected = digit * data.value;
+    const learner = Number(normaliseText(document.getElementById("placeValueAnswer").value));
+    const feedback = document.getElementById("placeValueFeedback");
+
+    feedback.style.display = "block";
+
+    if (!Number.isFinite(learner)) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Enter a valid numerical value.";
+    } else if (Math.abs(learner - expected) < 0.0000001) {
+      feedback.style.background = "#e3f0df";
+      feedback.textContent =
+        "Correct. You matched the digit to its place-value column.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent =
+        "Not quite yet. Name the column first, then state the value represented by the digit.";
+    }
+  }
+
+  populatePlaceValueSelects();
+  updatePlaceValueChart();
+</script>
+
+
+<script>
+  function runDigitMagnifier() {
+    const digit = Number(document.getElementById("magnifierDigit").value);
+    const startPlace = Number(document.getElementById("magnifierStart").value);
+    const movement = Number(document.getElementById("magnifierMove").value);
+    const prediction = Number(document.getElementById("magnifierPrediction").value);
+
+    const originalValue = digit * startPlace;
+    const newValue = originalValue * movement;
+
+    const feedback = document.getElementById("magnifierFeedback");
+    const visual = document.getElementById("magnifierVisual");
+
+    feedback.style.display = "block";
+
+    if (!Number.isFinite(prediction)) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Enter a numerical prediction before magnifying.";
+      visual.style.display = "none";
+      return;
+    }
+
+    let relationship = "";
+
+    if (movement === 10) relationship = "ten times greater";
+    if (movement === 100) relationship = "one hundred times greater";
+    if (movement === 0.1) relationship = "one tenth of the original value";
+    if (movement === 0.01) relationship = "one hundredth of the original value";
+
+    visual.style.display = "block";
+    visual.innerHTML =
+      "<p><strong>Original digit value:</strong> " + originalValue + "</p>" +
+      "<p><strong>New digit value:</strong> " + newValue + "</p>" +
+      "<p>The new value is <strong>" + relationship + "</strong>.</p>";
+
+    if (Math.abs(prediction - newValue) < 0.0000001) {
+      feedback.style.background = "#e3f0df";
+      feedback.textContent =
+        "Correct. You used the tenfold relationship between place-value columns.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent =
+        "Not quite yet. Count how many columns the digit moves and apply a factor of 10 for each column.";
+    }
+  }
+</script>
+
+
+<script>
+(function () {
+  const questions = [
+    {
+      label: "Budget investigation 1 of 4",
+      question:
+        "A community centre budget lists equipment costing <strong>£4,205.70</strong>. What is the value of the digit <strong>2</strong>? The invoice confirms the entry is accurate.",
+      value: "200",
+      decision: "yes",
+      correction: ["no correction", "none"],
+      prompt: "Which column contains the digit 2?",
+      hint: "The 2 is in the hundreds column."
+    },
+    {
+      label: "Budget investigation 2 of 4",
+      question:
+        "A repair costing <strong>£420.57</strong> was entered as <strong>£4,205.70</strong>. What is the value of the digit <strong>2</strong> in the correct amount? Is the budget entry accurate?",
+      value: "20",
+      decision: "no",
+      correction: ["420.57", "£420.57"],
+      prompt: "Compare the positions of the digits in the invoice and the budget.",
+      hint: "The correct amount is ten times smaller than £4,205.70."
+    },
+    {
+      label: "Budget investigation 3 of 4",
+      question:
+        "A payment of <strong>£3,007</strong> was entered as <strong>£307</strong>. What is the value of the digit <strong>3</strong> in the correct amount? Is the entry accurate?",
+      value: "3000",
+      decision: "no",
+      correction: ["3007", "£3007", "£3,007", "3,007"],
+      prompt: "What role do the two zeros play?",
+      hint: "The zeros keep the 3 in the thousands column."
+    },
+    {
+      label: "Budget investigation 4 of 4",
+      question:
+        "A materials cost of <strong>£60.09</strong> appears as <strong>£60.90</strong>. What is the value of the digit <strong>9</strong> in the correct amount? Is the entry accurate?",
+      value: "0.09",
+      decision: "no",
+      correction: ["60.09", "£60.09"],
+      prompt: "Is the 9 in the tenths or hundredths column?",
+      hint: "In £60.09, the 9 represents nine hundredths."
+    }
+  ];
+
+  let current = 0;
+  const savedValues = new Array(questions.length).fill("");
+  const savedDecisions = new Array(questions.length).fill("");
+  const savedCorrections = new Array(questions.length).fill("");
+  const savedReasons = new Array(questions.length).fill("");
+  const completed = new Array(questions.length).fill(false);
+
+  function saveCurrent() {
+    savedValues[current] = document.getElementById("budgetDigitValue").value;
+    savedDecisions[current] = document.getElementById("budgetDecision").value;
+    savedCorrections[current] = document.getElementById("budgetCorrection").value;
+    savedReasons[current] = document.getElementById("budgetReason").value;
+  }
+
+  function renderQuestion() {
+    document.getElementById("budgetLabel").textContent = questions[current].label;
+    document.getElementById("budgetQuestion").innerHTML = questions[current].question;
+    document.getElementById("budgetDigitValue").value = savedValues[current];
+    document.getElementById("budgetDecision").value = savedDecisions[current];
+    document.getElementById("budgetCorrection").value = savedCorrections[current];
+    document.getElementById("budgetReason").value = savedReasons[current];
+
+    document.getElementById("budgetSupport").style.display = "none";
+    document.getElementById("budgetFeedback").style.display = "none";
+
+    const previous = document.getElementById("budgetPrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("budgetNext").textContent =
+      current === questions.length - 1 ? "Finish" : "Next →";
+  }
+
+  window.showBudgetPrompt = function () {
+    const box = document.getElementById("budgetSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>🤔 Socratic prompt:</strong> " + questions[current].prompt;
+  };
+
+  window.showBudgetHint = function () {
+    const box = document.getElementById("budgetSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>💡 Hint:</strong> " + questions[current].hint;
+  };
+
+  window.checkBudgetAnswer = function () {
+    saveCurrent();
+
+    const feedback = document.getElementById("budgetFeedback");
+    feedback.style.display = "block";
+
+    const valueCorrect =
+      Number(normaliseText(savedValues[current])) ===
+      Number(normaliseText(questions[current].value));
+
+    const decisionCorrect =
+      savedDecisions[current] === questions[current].decision;
+
+    const correctionCorrect =
+      questions[current].correction.some(function (answer) {
+        return normaliseText(answer) === normaliseText(savedCorrections[current]);
+      });
+
+    if (
+      !savedValues[current].trim() ||
+      !savedDecisions[current] ||
+      !savedCorrections[current].trim() ||
+      savedReasons[current].trim().length < 10
+    ) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent =
+        "Complete the digit value, decision, correction and impact explanation.";
+    } else if (valueCorrect && decisionCorrect && correctionCorrect) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent =
+        "Correct. You identified the digit value and checked the budget entry accurately.";
+    } else if (valueCorrect && decisionCorrect) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent =
+        "Your digit value and decision are correct. Recheck the corrected entry.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent =
+        "Not quite yet. Align the digits by place-value column and compare the entries carefully.";
+    }
+  };
+
+  window.previousBudgetQuestion = function () {
+    if (current === 0) return;
+    saveCurrent();
+    current--;
+    renderQuestion();
+  };
+
+  window.nextBudgetQuestion = function () {
+    saveCurrent();
+
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      const feedback = document.getElementById("budgetFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "You have completed " +
+        completed.filter(Boolean).length +
+        " of 4 budget investigations correctly.";
+    }
+  };
+
+  renderQuestion();
+})();
+</script>
+
+
+<script>
+(function () {
+  const questions = [
+    {
+      label: "Misconception 1 of 4",
+      question:
+        "A learner says: <strong>“The 6 in 6,204 is worth 6.”</strong>",
+      decision: "no",
+      corrections: ["6000", "6,000", "the 6 is worth 6000"],
+      prompt: "Which column contains the digit 6?",
+      hint: "It is in the thousands column."
+    },
+    {
+      label: "Misconception 2 of 4",
+      question:
+        "A learner reads <strong>4.08</strong> as <strong>four point eight</strong>.",
+      decision: "no",
+      corrections: ["four point zero eight", "4.08"],
+      prompt: "What does the zero show?",
+      hint: "The zero keeps the 8 in the hundredths column."
+    },
+    {
+      label: "Misconception 3 of 4",
+      question:
+        "A learner says: <strong>“0.52 is smaller than 0.506 because it has fewer digits.”</strong>",
+      decision: "no",
+      corrections: ["0.52 > 0.506", "0.520 > 0.506", "0.52 is greater"],
+      prompt: "Could 0.52 be written with three decimal places?",
+      hint: "0.52 = 0.520."
+    },
+    {
+      label: "Misconception 4 of 4",
+      question:
+        "A learner writes: <strong>5,040 = 5,000 + 40 tens</strong>.",
+      decision: "no",
+      corrections: ["5000 + 40", "5,000 + 40", "5040 = 5000 + 40"],
+      prompt: "How much is 40 tens?",
+      hint: "40 tens equals 400, not 40."
+    }
+  ];
+
+  let current = 0;
+  const decisions = new Array(questions.length).fill("");
+  const corrections = new Array(questions.length).fill("");
+  const explanations = new Array(questions.length).fill("");
+  const completed = new Array(questions.length).fill(false);
+
+  function saveCurrent() {
+    decisions[current] = document.getElementById("mistakeDecision").value;
+    corrections[current] = document.getElementById("mistakeCorrection").value;
+    explanations[current] = document.getElementById("mistakeExplanation").value;
+  }
+
+  function renderQuestion() {
+    document.getElementById("mistakeLabel").textContent = questions[current].label;
+    document.getElementById("mistakeQuestion").innerHTML = questions[current].question;
+    document.getElementById("mistakeDecision").value = decisions[current];
+    document.getElementById("mistakeCorrection").value = corrections[current];
+    document.getElementById("mistakeExplanation").value = explanations[current];
+
+    document.getElementById("mistakeSupport").style.display = "none";
+    document.getElementById("mistakeFeedback").style.display = "none";
+
+    const previous = document.getElementById("mistakePrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("mistakeNext").textContent =
+      current === questions.length - 1 ? "Finish" : "Next →";
+  }
+
+  window.showMistakePrompt = function () {
+    const box = document.getElementById("mistakeSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>🤔 Socratic prompt:</strong> " + questions[current].prompt;
+  };
+
+  window.showMistakeHint = function () {
+    const box = document.getElementById("mistakeSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>💡 Hint:</strong> " + questions[current].hint;
+  };
+
+  window.checkMistakeAnswer = function () {
+    saveCurrent();
+
+    const feedback = document.getElementById("mistakeFeedback");
+    feedback.style.display = "block";
+
+    const decisionCorrect = decisions[current] === questions[current].decision;
+
+    const correctionCorrect =
+      questions[current].corrections.some(function (answer) {
+        return normaliseText(answer) === normaliseText(corrections[current]);
+      });
+
+    if (
+      !decisions[current] ||
+      !corrections[current].trim() ||
+      explanations[current].trim().length < 12
+    ) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent =
+        "Choose a decision, write a correction and explain the place-value misconception.";
+    } else if (decisionCorrect && correctionCorrect) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent =
+        "Correct. You repaired the statement and explained the place-value reasoning.";
+    } else if (decisionCorrect) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent =
+        "You correctly identified the statement as incorrect. Recheck the correction.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent =
+        "Look again at the position of each digit and the role of any placeholder zeros.";
+    }
+  };
+
+  window.previousMistakeQuestion = function () {
+    if (current === 0) return;
+    saveCurrent();
+    current--;
+    renderQuestion();
+  };
+
+  window.nextMistakeQuestion = function () {
+    saveCurrent();
+
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      const feedback = document.getElementById("mistakeFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "You have completed " +
+        completed.filter(Boolean).length +
+        " of 4 misconception investigations correctly.";
+    }
+  };
+
+  renderQuestion();
+})();
+</script>
+
+
+<script>
+  let museumExhibitCount = 0;
+
+  function addMuseumExhibit() {
+    museumExhibitCount++;
+
+    const holder = document.getElementById("museumExhibits");
+    const row = document.createElement("div");
+
+    row.className = "museum-exhibit";
+    row.style.background = "#ffffff";
+    row.style.padding = "12px";
+    row.style.borderRadius = "10px";
+    row.style.marginBottom = "11px";
+
+    row.innerHTML =
+      '<label><strong>Exhibit type</strong></label>' +
+      '<select class="museum-type" style="width:100%; padding:8px; margin:5px 0 9px; border:1px solid #bcae98; border-radius:7px;">' +
+        '<option value="integer">Large integer</option>' +
+        '<option value="decimal">Decimal</option>' +
+        '<option value="placeholder">Placeholder zero</option>' +
+        '<option value="sameDigit">Same digit, different value</option>' +
+        '<option value="expanded">Expanded form</option>' +
+        '<option value="misconception">Misconception</option>' +
+      '</select>' +
+      '<label><strong>Number or statement</strong></label>' +
+      '<input class="museum-number" type="text" style="width:100%; box-sizing:border-box; padding:8px; margin:5px 0 9px; border:1px solid #bcae98; border-radius:7px;">' +
+      '<label><strong>Exhibit label</strong></label>' +
+      '<textarea class="museum-label" rows="2" style="width:100%; box-sizing:border-box; padding:8px; margin-top:5px; border:1px solid #bcae98; border-radius:7px;"></textarea>';
+
+    holder.appendChild(row);
+    renderMuseumPreview();
+  }
+
+  function renderMuseumPreview() {
+    const preview = document.getElementById("museumPreview");
+    const museumName =
+      document.getElementById("museumName").value.trim() ||
+      "Your Place-Value Museum";
+
+    const exhibits = Array.from(
+      document.querySelectorAll(".museum-exhibit")
+    );
+
+    let html = "<h3 style='margin-top:0;'>" + museumName + "</h3>";
+
+    exhibits.forEach(function (exhibit, index) {
+      const type = exhibit.querySelector(".museum-type").value;
+      const number = exhibit.querySelector(".museum-number").value || "Number not entered";
+      const label = exhibit.querySelector(".museum-label").value || "Label not entered";
+
+      html +=
+        "<div style='border-left:4px solid #8b8f75; padding-left:10px; margin-bottom:12px;'>" +
+        "<strong>Exhibit " + (index + 1) + " — " + type + "</strong><br>" +
+        number + "<br><em>" + label + "</em></div>";
+    });
+
+    preview.innerHTML = html;
+  }
+
+  function checkMuseum() {
+    renderMuseumPreview();
+
+    const exhibits = Array.from(
+      document.querySelectorAll(".museum-exhibit")
+    );
+
+    const note = document.getElementById("museumCuratorNote").value.trim();
+    const feedback = document.getElementById("museumFeedback");
+
+    feedback.style.display = "block";
+
+    if (exhibits.length < 6) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent =
+        "Add at least six exhibits so that every required place-value idea can be represented.";
+      return;
+    }
+
+    const types = exhibits.map(function (exhibit) {
+      return exhibit.querySelector(".museum-type").value;
+    });
+
+    const allComplete = exhibits.every(function (exhibit) {
+      return (
+        exhibit.querySelector(".museum-number").value.trim().length > 0 &&
+        exhibit.querySelector(".museum-label").value.trim().length >= 10
+      );
+    });
+
+    const requirementsMet =
+      types.indexOf("integer") !== -1 &&
+      types.indexOf("decimal") !== -1 &&
+      types.indexOf("placeholder") !== -1 &&
+      types.indexOf("sameDigit") !== -1 &&
+      types.indexOf("expanded") !== -1 &&
+      types.indexOf("misconception") !== -1;
+
+    if (note.length < 25) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent =
+        "Add a fuller curator’s explanation describing what visitors should learn.";
+    } else if (allComplete && requirementsMet) {
+      feedback.style.background = "#e3f0df";
+      feedback.textContent =
+        "Your museum includes all required exhibit types and clear mathematical labels.";
+    } else if (allComplete) {
+      feedback.style.background = "#fff1cf";
+      feedback.textContent =
+        "Your exhibits are complete. Check that every required exhibit type has been included.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent =
+        "Some exhibits need a number or a clearer mathematical label.";
+    }
+  }
+
+  function resetMuseum() {
+    document.getElementById("museumName").value = "";
+    document.getElementById("museumCuratorNote").value = "";
+    document.getElementById("museumExhibits").innerHTML = "";
+    document.getElementById("museumPreview").innerHTML = "";
+    document.getElementById("museumFeedback").style.display = "none";
+    museumExhibitCount = 0;
+
+    for (let index = 0; index < 6; index++) {
+      addMuseumExhibit();
+    }
+  }
+
+  document
+    .getElementById("museumName")
+    .addEventListener("input", renderMuseumPreview);
+
+  document
+    .getElementById("museumExhibits")
+    .addEventListener("input", renderMuseumPreview);
+
+  resetMuseum();
+</script>
+
+
+<script>
+(function () {
+  const questions = [
+    {
+      label: "Question 1 of 8 · Integer digit value",
+      text: "What is the value of the digit <strong>7</strong> in <strong>472,615</strong>?",
+      answers: ["70000", "70,000"],
+      prompt: "Which column contains the digit 7?",
+      hint: "The 7 is in the ten-thousands column.",
+      solution: "The digit 7 represents 70,000."
+    },
+    {
+      label: "Question 2 of 8 · Decimal digit value",
+      text: "What is the value of the digit <strong>6</strong> in <strong>3.064</strong>?",
+      answers: ["0.06", "6/100", "six hundredths"],
+      prompt: "Count the places to the right of the decimal point.",
+      hint: "The 6 is in the hundredths column.",
+      solution: "The digit 6 represents 0.06."
+    },
+    {
+      label: "Question 3 of 8 · Placeholder zero",
+      text: "Explain the role of the zero in <strong>5.08</strong>. Type the place occupied by the zero.",
+      answers: ["tenths", "tenths place", "tenths column"],
+      prompt: "Which place is immediately to the right of the decimal point?",
+      hint: "The zero keeps the 8 in the hundredths column.",
+      solution: "The zero occupies the tenths column."
+    },
+    {
+      label: "Question 4 of 8 · Expanded form",
+      text: "Write <strong>43,205.08</strong> in expanded form.",
+      answers: [
+        "40000 + 3000 + 200 + 5 + 0.08",
+        "40,000 + 3,000 + 200 + 5 + 0.08"
+      ],
+      prompt: "Which place-value columns contain non-zero digits?",
+      hint: "Use ten-thousands, thousands, hundreds, ones and hundredths.",
+      solution: "43,205.08 = 40,000 + 3,000 + 200 + 5 + 0.08."
+    },
+    {
+      label: "Question 5 of 8 · Tenfold relationship",
+      text: "How many times greater is the value of the 5 in <strong>5,000</strong> than the 5 in <strong>50</strong>?",
+      answers: ["100", "100 times", "one hundred times"],
+      prompt: "How many place-value columns separate thousands and tens?",
+      hint: "Moving two columns left multiplies the value by 100.",
+      solution: "5,000 is 100 times greater than 50."
+    },
+    {
+      label: "Question 6 of 8 · Decimal comparison",
+      text: "Insert <strong>&lt;</strong>, <strong>&gt;</strong> or <strong>=</strong>:<br><strong>0.52 ___ 0.506</strong>",
+      answers: [">"],
+      prompt: "Could 0.52 be written using three decimal places?",
+      hint: "0.52 = 0.520.",
+      solution: "0.520 is greater than 0.506, so 0.52 > 0.506."
+    },
+    {
+      label: "Question 7 of 8 · Recombining",
+      text: "What number is represented by <strong>60,000 + 900 + 4 + 0.02</strong>?",
+      answers: ["60904.02", "60,904.02"],
+      prompt: "Which place-value columns are empty?",
+      hint: "Use zeros as placeholders in the thousands, tens and tenths columns.",
+      solution: "The number is 60,904.02."
+    },
+    {
+      label: "Question 8 of 8 · Reasoning challenge",
+      text: "The digit <strong>8</strong> has a value of <strong>0.008</strong> in one number and <strong>800</strong> in another. How many times greater is 800 than 0.008?",
+      answers: ["100000", "100,000", "100000 times"],
+      prompt: "How many place-value steps separate thousandths and hundreds?",
+      hint: "Each step multiplies the value by 10.",
+      solution: "There are five place-value steps, so 800 is 100,000 times greater than 0.008."
+    }
+  ];
+
+  let current = 0;
+  const attempts = new Array(questions.length).fill(0);
+  const promptUsed = new Array(questions.length).fill(false);
+  const hintUsed = new Array(questions.length).fill(false);
+  const completed = new Array(questions.length).fill(false);
+  const answers = new Array(questions.length).fill("");
+  const workings = new Array(questions.length).fill("");
+
+  // v1.0 worked-solution unlock (item 75): per question, unlocks only after the
+  // Socratic prompt is used, the hint is used, and two non-empty answers are checked.
+  function solutionUnlocked(i) {
+    return promptUsed[i] && hintUsed[i] && attempts[i] >= 2;
+  }
+
+  function updateSolutionLock() {
+    const solution = document.getElementById("practiceSolutionButton");
+    if (!solution) return;
+    const open = solutionUnlocked(current);
+    solution.setAttribute("aria-disabled", open ? "false" : "true");
+    solution.style.background = open ? "#f5efe8" : "#eeeae5";
+    solution.style.color = open ? "#403d39" : "#9a938b";
+    solution.style.cursor = open ? "pointer" : "not-allowed";
+  }
+
+  function normalise(value) {
+    return value
+      .toLowerCase()
+      .replace(/,/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function saveCurrent() {
+    answers[current] = document.getElementById("practiceAnswer").value;
+    workings[current] = document.getElementById("practiceWorking").value;
+  }
+
+  function renderDots() {
+    const holder = document.getElementById("practiceDots");
+    holder.innerHTML = "";
+
+    questions.forEach(function (_, index) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = index + 1;
+      button.style.width = "34px";
+      button.style.height = "34px";
+      button.style.borderRadius = "50%";
+      button.style.cursor = "pointer";
+      button.style.fontWeight = "bold";
+
+      if (completed[index]) {
+        button.style.background = "#dcebd8";
+        button.style.border = "2px solid #4d6b47";
+      } else if (index === current) {
+        button.style.background = "#f5f0e6";
+        button.style.border = "2px solid #315d72";
+      } else {
+        button.style.background = "#ded9cf";
+        button.style.border = "1px solid #ded9cf";
+      }
+
+      button.onclick = function () {
+        saveCurrent();
+        current = index;
+        renderQuestion();
+      };
+
+      holder.appendChild(button);
+    });
+  }
+
+  function renderQuestion() {
+    const question = questions[current];
+
+    document.getElementById("practiceLabel").innerHTML = question.label;
+    document.getElementById("practiceQuestion").innerHTML = question.text;
+    document.getElementById("practiceAnswer").value = answers[current];
+    document.getElementById("practiceWorking").value = workings[current];
+
+    document.getElementById("practiceSupport").style.display = "none";
+    document.getElementById("practiceFeedback").style.display = "none";
+
+    const previous = document.getElementById("practicePrevious");
+    previous.disabled = current === 0;
+    previous.style.opacity = current === 0 ? "0.45" : "1";
+
+    document.getElementById("practiceNext").textContent =
+      current === questions.length - 1 ? "Finish" : "Next →";
+
+    updateSolutionLock();
+
+    renderDots();
+  }
+
+  window.showPracticePrompt = function () {
+    promptUsed[current] = true;
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>🤔 Socratic prompt:</strong> " + questions[current].prompt;
+    updateSolutionLock();
+  };
+
+  window.showPracticeHint = function () {
+    hintUsed[current] = true;
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+    box.innerHTML =
+      "<strong>💡 Hint:</strong> " + questions[current].hint;
+    updateSolutionLock();
+  };
+
+  window.checkPracticeAnswer = function () {
+    saveCurrent();
+
+    const response = normalise(answers[current]);
+    const feedback = document.getElementById("practiceFeedback");
+
+    if (!response) {
+      feedback.style.display = "block";
+      feedback.style.background = "#fff1cf";
+      feedback.textContent = "Type an answer before checking.";
+      return;
+    }
+
+    attempts[current]++;
+
+    const correct = questions[current].answers.some(function (answer) {
+      return normalise(answer) === response;
+    });
+
+    feedback.style.display = "block";
+
+    if (correct) {
+      completed[current] = true;
+      feedback.style.background = "#e3f0df";
+      feedback.textContent =
+        "Correct. Your place-value reasoning is accurate.";
+    } else if (attempts[current] === 1) {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent =
+        "Not quite yet. Locate the digit, name its column and use placeholder zeros carefully.";
+    } else {
+      feedback.style.background = "#f6dddd";
+      feedback.textContent =
+        "That is still not correct. Use the Socratic prompt and the hint, then check each place-value column carefully.";
+    }
+
+    updateSolutionLock();
+
+    renderDots();
+  };
+
+  window.showPracticeSolution = function () {
+    const box = document.getElementById("practiceSupport");
+    box.style.display = "block";
+
+    if (!solutionUnlocked(current)) {
+      const remaining = [];
+      if (!promptUsed[current]) remaining.push("use the Socratic prompt");
+      if (!hintUsed[current]) remaining.push("use the hint");
+      const triesLeft = Math.max(0, 2 - attempts[current]);
+      if (triesLeft === 2) remaining.push("check two answers");
+      else if (triesLeft === 1) remaining.push("check one more answer");
+      box.innerHTML =
+        "<strong>🔒 Worked solution locked.</strong> Still to do: " +
+        remaining.join(", ") + ".";
+      return;
+    }
+
+    box.innerHTML =
+      "<strong>👀 Worked solution:</strong> " + questions[current].solution;
+  };
+
+  window.previousPracticeQuestion = function () {
+    if (current === 0) return;
+
+    saveCurrent();
+    current--;
+    renderQuestion();
+  };
+
+  window.nextPracticeQuestion = function () {
+    saveCurrent();
+
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      const feedback = document.getElementById("practiceFeedback");
+      feedback.style.display = "block";
+      feedback.style.background = "#e5edf4";
+      feedback.textContent =
+        "You have completed " +
+        completed.filter(Boolean).length +
+        " of 8 questions correctly. Review any unfinished questions, then complete the reflection.";
+    }
+  };
+
+  renderQuestion();
+})();
+</script>
+<!-- NEO Maths Scratchpad -->
+<div id="neoScratchpadOverlay" hidden
+     style="position:fixed; inset:0; z-index:9999; background:rgba(39,45,35,0.70); padding:16px; overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle"
+       style="max-width:980px; margin:10px auto; background:#f7f3ea; border-radius:18px; box-shadow:0 12px 40px rgba(0,0,0,0.28); padding:16px; font-family:Arial,sans-serif; color:#2f3429;">
+    <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0; color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0; color:#5c6b4f;">A space to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()"
+              style="padding:9px 13px; background:#ffffff; border:1px solid #7d8875; border-radius:9px; font-weight:bold; cursor:pointer;">
+        × Close
+      </button>
+    </div>
+
+    <p style="background:#fffaf0; padding:10px; border-radius:10px; margin:14px 0;">
+      You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:10px; font-size:0.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')"
+              style="padding:7px 10px; border:1px solid #4d6b47; background:#e5f0e2; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ✏️ Pen
+      </button>
+
+      <label for="scratchColour" style="font-weight:bold; white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:115px;">
+        <option value="#2f3429">Charcoal</option>
+        <option value="#315d72">Ocean blue</option>
+        <option value="#5c6b4f">Moss green</option>
+        <option value="#70466b">Plum</option>
+        <option value="#9a5f3f">Earth brown</option>
+        <option value="#b24c4c">Berry red</option>
+      </select>
+
+      <label for="scratchWidth" style="font-weight:bold; white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:92px;">
+        <option value="2">Thin</option>
+        <option value="4" selected>Medium</option>
+        <option value="7">Thick</option>
+      </select>
+
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')"
+              style="padding:7px 10px; border:1px solid #7d8875; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🧽 Eraser
+      </button>
+
+      <button type="button" onclick="scratchUndo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↶ Undo
+      </button>
+
+      <button type="button" onclick="scratchRedo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↷ Redo
+      </button>
+
+      <button type="button" onclick="setScratchTool('note')"
+              style="padding:7px 10px; border:1px solid #8a7932; background:#fff7c7; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🗒 Sticky Note
+      </button>
+
+      <span style="display:inline-flex; align-items:center; gap:6px; white-space:nowrap; flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold; white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)"
+                style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:145px;">
+          <option value="blank">Blank</option>
+          <option value="square-grid">Square grid</option>
+          <option value="coordinate-grid">Coordinate grid</option>
+          <option value="ratio-table">Ratio table</option>
+          <option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+
+    <div id="neoScratchCanvasWrap"
+         style="position:relative; background:#ffffff; border:1px solid #cdbfa9; border-radius:12px; overflow:hidden; touch-action:none;">
+      <canvas id="neoScratchCanvas" width="920" height="560"
+              style="display:block; width:100%; height:auto; background:#ffffff; touch-action:none; cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer"
+           aria-label="Scratchpad sticky notes"
+           style="position:absolute; inset:0; pointer-events:none;"></div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px; background:#fffaf0; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">🗑 Clear board</button>
+    </div>
+
+    <div id="scratchStatus" aria-live="polite"
+         style="display:none; margin-top:10px; padding:10px; border-radius:9px; background:#e5edf4;"></div>
+  </div>
+</div>
+
+
+
+<script>
+(function () {
+  const canvas = document.getElementById("neoScratchCanvas");
+  const ctx = canvas.getContext("2d");
+  let tool = "pen";
+  let drawing = false;
+  let lineWidth = 4;
+  let penColour = "#2f3429";
+  let template = "blank";
+  let strokes = [];
+  let stickyNotes = [];
+  let redoStack = [];
+  let currentStroke = null;
+  let activeNoteId = null;
+  let noteDragOffset = { x: 0, y: 0 };
+  const storageKey = "neoMathsScratchpadWorkingPage_Y7_PlaceValue";
+
+  function canvasPoint(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX - rect.left) * (canvas.width / rect.width),
+      y: (event.clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  function drawBackground() {
+    ctx.save();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (template === "square-grid" || template === "coordinate-grid") {
+      ctx.strokeStyle = "#e2ded4";
+      ctx.lineWidth = 1;
+      for (let x = 20; x < canvas.width; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 20; y < canvas.height; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+    }
+
+    if (template === "coordinate-grid") {
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      ctx.strokeStyle = "#4f5b45";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
+      ctx.fillStyle = "#4f5b45";
+      ctx.font = "15px Arial";
+      ctx.fillText("x", canvas.width - 22, oy - 8);
+      ctx.fillText("y", ox + 8, 18);
+      ctx.font = "11px Arial";
+      for (let i = -10; i <= 10; i++) {
+        if (i === 0) continue;
+        const x = ox + i * 40;
+        if (x > 0 && x < canvas.width) ctx.fillText(String(i), x - 4, oy + 15);
+      }
+      for (let i = -6; i <= 6; i++) {
+        if (i === 0) continue;
+        const y = oy - i * 40;
+        if (y > 0 && y < canvas.height) ctx.fillText(String(i), ox + 6, y + 4);
+      }
+    }
+
+    if (template === "ratio-table") {
+      ctx.fillStyle = "#3f5f45";
+      ctx.font = "bold 20px Arial";
+      ctx.fillText("Ratio Table", 35, 42);
+      const left = 40, top = 80, rowH = 82, colW = 205;
+      const labels = ["People", "Quantity A", "Quantity B"];
+      ctx.font = "bold 16px Arial";
+      ctx.strokeStyle = "#8fae7e"; ctx.lineWidth = 2;
+      for (let r = 0; r <= 3; r++) {
+        ctx.beginPath(); ctx.moveTo(left, top + r*rowH); ctx.lineTo(left + colW*4, top + r*rowH); ctx.stroke();
+      }
+      for (let c = 0; c <= 4; c++) {
+        ctx.beginPath(); ctx.moveTo(left + c*colW, top); ctx.lineTo(left + c*colW, top + rowH*3); ctx.stroke();
+      }
+      labels.forEach((label, i) => ctx.fillText(label, left + 12, top + 50 + i*rowH));
+      ctx.font = "14px Arial";
+      ctx.fillText("Write a starting ratio in the first number column, then scale it.", 40, 360);
+    }
+
+    if (template === "double-number-line") {
+      ctx.fillStyle = "#3f5f45";
+      ctx.font = "bold 20px Arial";
+      ctx.fillText("Double Number Line", 35, 42);
+      const xs = [90, 250, 410, 570, 730, 890];
+      ctx.strokeStyle = "#54718a"; ctx.lineWidth = 3;
+      [180, 350].forEach(y => {
+        ctx.beginPath(); ctx.moveTo(70, y); ctx.lineTo(900, y); ctx.stroke();
+        xs.forEach(x => { ctx.beginPath(); ctx.moveTo(x, y-10); ctx.lineTo(x, y+10); ctx.stroke(); });
+      });
+      ctx.fillStyle = "#365a68"; ctx.font = "bold 16px Arial";
+      ctx.fillText("Quantity A", 70, 145);
+      ctx.fillText("Quantity B", 70, 315);
+      ctx.font = "14px Arial";
+      ctx.fillText("Mark matching values on both lines. What multiplier connects them?", 70, 455);
+    }
+
+    ctx.restore();
+  }
+
+  function drawStroke(stroke) {
+    if (!stroke || stroke.points.length < 1) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = stroke.tool === "eraser" ? "#ffffff" : (stroke.colour || "#2f3429");
+    ctx.lineWidth = stroke.tool === "eraser" ? Math.max(18, stroke.width * 5) : stroke.width;
+    ctx.beginPath();
+    ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+    stroke.points.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+    if (stroke.points.length === 1) ctx.lineTo(stroke.points[0].x + 0.1, stroke.points[0].y + 0.1);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderStickyNotes() {
+    const layer = document.getElementById("neoStickyLayer");
+    layer.innerHTML = "";
+
+    stickyNotes.forEach(function (note) {
+      const card = document.createElement("div");
+      card.dataset.noteId = note.id;
+      card.style.position = "absolute";
+      card.style.left = note.x + "%";
+      card.style.top = note.y + "%";
+      card.style.width = "180px";
+      card.style.minHeight = "120px";
+      card.style.background = note.colour || "#fff7c7";
+      card.style.border = "1px solid #b9a85b";
+      card.style.borderRadius = "8px";
+      card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.16)";
+      card.style.pointerEvents = "auto";
+      card.style.touchAction = "none";
+
+      const bar = document.createElement("div");
+      bar.style.display = "flex";
+      bar.style.justifyContent = "space-between";
+      bar.style.alignItems = "center";
+      bar.style.padding = "5px 7px";
+      bar.style.cursor = "move";
+      bar.style.background = "rgba(255,255,255,0.35)";
+      bar.style.borderBottom = "1px solid rgba(120,100,40,0.25)";
+      bar.innerHTML = "<strong style='font-size:12px;'>Sticky note</strong>";
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.setAttribute("aria-label", "Delete sticky note");
+      remove.style.border = "none";
+      remove.style.background = "transparent";
+      remove.style.fontWeight = "bold";
+      remove.style.cursor = "pointer";
+      remove.addEventListener("click", function (event) {
+        event.stopPropagation();
+        stickyNotes = stickyNotes.filter(function (n) { return n.id !== note.id; });
+        renderStickyNotes();
+        autoStore();
+      });
+      bar.appendChild(remove);
+
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought, question or reminder...";
+      area.style.width = "100%";
+      area.style.height = "92px";
+      area.style.boxSizing = "border-box";
+      area.style.border = "none";
+      area.style.background = "transparent";
+      area.style.resize = "none";
+      area.style.padding = "8px";
+      area.style.font = "14px Arial";
+      area.style.color = "#2f3429";
+      area.addEventListener("input", function () {
+        note.text = area.value;
+        autoStore();
+      });
+
+      bar.addEventListener("pointerdown", function (event) {
+        activeNoteId = note.id;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        noteDragOffset.x = event.clientX - cardRect.left;
+        noteDragOffset.y = event.clientY - cardRect.top;
+        bar.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      bar.addEventListener("pointermove", function (event) {
+        if (activeNoteId !== note.id) return;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const leftPx = Math.max(0, Math.min(wrap.width - card.offsetWidth, event.clientX - wrap.left - noteDragOffset.x));
+        const topPx = Math.max(0, Math.min(wrap.height - card.offsetHeight, event.clientY - wrap.top - noteDragOffset.y));
+        note.x = (leftPx / wrap.width) * 100;
+        note.y = (topPx / wrap.height) * 100;
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+        event.preventDefault();
+      });
+
+      function endNoteDrag(event) {
+        if (activeNoteId !== note.id) return;
+        activeNoteId = null;
+        try { bar.releasePointerCapture(event.pointerId); } catch (e) {}
+        autoStore();
+      }
+
+      bar.addEventListener("pointerup", endNoteDrag);
+      bar.addEventListener("pointercancel", endNoteDrag);
+
+      card.appendChild(bar);
+      card.appendChild(area);
+      layer.appendChild(card);
+    });
+  }
+
+  function addStickyNote(x, y) {
+    const noteColours = ["#fff7c7", "#e8f0e3", "#e5eef2", "#ece7f2", "#f1e9dc"];
+    stickyNotes.push({
+      id: "note-" + Date.now() + "-" + Math.floor(Math.random() * 10000),
+      x: Math.max(0, Math.min(78, x)),
+      y: Math.max(0, Math.min(72, y)),
+      text: "",
+      colour: noteColours[stickyNotes.length % noteColours.length]
+    });
+    renderStickyNotes();
+    autoStore();
+    status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+  }
+
+  function renderScratchpad() {
+    drawBackground();
+    strokes.forEach(drawStroke);
+    renderStickyNotes();
+  }
+
+  function status(message, bg) {
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = bg || "#e5edf4";
+    box.textContent = message;
+  }
+
+  canvas.addEventListener("pointerdown", function (event) {
+    if (tool === "note") {
+      const rect = canvas.getBoundingClientRect();
+      const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+      addStickyNote(xPercent, yPercent);
+      setScratchTool("pen");
+      event.preventDefault();
+      return;
+    }
+
+    drawing = true;
+    canvas.setPointerCapture(event.pointerId);
+    currentStroke = { tool, width: lineWidth, colour: penColour, points: [canvasPoint(event)] };
+    strokes.push(currentStroke);
+    redoStack = [];
+    drawStroke(currentStroke);
+    event.preventDefault();
+  });
+
+  canvas.addEventListener("pointermove", function (event) {
+    if (!drawing || !currentStroke) return;
+    currentStroke.points.push(canvasPoint(event));
+    renderScratchpad();
+    event.preventDefault();
+  });
+
+  function finishDrawing(event) {
+    if (!drawing) return;
+    drawing = false;
+    currentStroke = null;
+    try { canvas.releasePointerCapture(event.pointerId); } catch (e) {}
+    autoStore();
+    event.preventDefault();
+  }
+  canvas.addEventListener("pointerup", finishDrawing);
+  canvas.addEventListener("pointercancel", finishDrawing);
+  canvas.addEventListener("pointerleave", function (event) {
+    if (drawing && event.pointerType === "mouse") finishDrawing(event);
+  });
+
+  function autoStore() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({ template, strokes, stickyNotes, penColour }));
+    } catch (e) {}
+  }
+
+  function restoreStored() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if (saved && Array.isArray(saved.strokes)) {
+        template = saved.template || "blank";
+        strokes = saved.strokes;
+        stickyNotes = Array.isArray(saved.stickyNotes) ? saved.stickyNotes : [];
+        penColour = saved.penColour || "#2f3429";
+        document.getElementById("scratchTemplate").value = template;
+        document.getElementById("scratchColour").value = penColour;
+      }
+    } catch (e) {}
+    renderScratchpad();
+  }
+
+  window.openMathsScratchpad = function (requestedTemplate, subtitle) {
+    if (requestedTemplate) {
+      template = requestedTemplate;
+      document.getElementById("scratchTemplate").value = template;
+    }
+    document.getElementById("neoScratchpadSubtitle").textContent =
+      subtitle || "A space to predict, sketch, test and revise.";
+    document.getElementById("neoScratchpadOverlay").hidden = false;
+    document.body.style.overflow = "hidden";
+    renderScratchpad();
+  };
+
+  window.closeMathsScratchpad = function () {
+    autoStore();
+    document.getElementById("neoScratchpadOverlay").hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  window.setScratchTool = function (selected) {
+    tool = selected;
+    document.getElementById("scratchPenBtn").style.background = selected === "pen" ? "#e5f0e2" : "#ffffff";
+    document.getElementById("scratchEraserBtn").style.background = selected === "eraser" ? "#e5f0e2" : "#ffffff";
+    canvas.style.cursor = selected === "eraser" ? "cell" : (selected === "note" ? "copy" : "crosshair");
+    if (selected === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+
+  window.updateScratchWidth = function () {
+    lineWidth = Number(document.getElementById("scratchWidth").value);
+  };
+
+  window.updateScratchColour = function () {
+    penColour = document.getElementById("scratchColour").value;
+    setScratchTool("pen");
+    autoStore();
+    status("Pen colour changed.", "#e5edf4");
+  };
+
+  window.changeScratchTemplate = function (selected) {
+    template = selected;
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.scratchUndo = function () {
+    if (!strokes.length) return status("Nothing to undo yet.", "#fff1cf");
+    redoStack.push(strokes.pop());
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.scratchRedo = function () {
+    if (!redoStack.length) return status("Nothing to redo yet.", "#fff1cf");
+    strokes.push(redoStack.pop());
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.newScratchPage = function () {
+    if (strokes.length && !confirm("Start a new Scratchpad page? Save the current page first if you want to keep it.")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("New Scratchpad page ready.", "#e5edf4");
+  };
+
+  window.saveScratchPage = function () {
+    autoStore();
+    status("Working page saved in this browser for this lesson environment.", "#e3f0df");
+  };
+
+  window.clearScratchpad = function () {
+    if (!confirm("Clear every mark from this Scratchpad page?")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("Scratchpad cleared.", "#e5edf4");
+  };
+
+  window.downloadScratchImage = function () {
+    renderScratchpad();
+    canvas.toBlob(function (blob) {
+      if (!blob) return status("The image could not be prepared in this browser.", "#f6dddd");
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "NEO_Maths_Scratchpad.png";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      status("Scratchpad image prepared.", "#e3f0df");
+    }, "image/png");
+  };
+
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !document.getElementById("neoScratchpadOverlay").hidden) {
+      closeMathsScratchpad();
+    }
+  });
+
+  restoreStored();
+})();
+</script>
+</body>
+</html>

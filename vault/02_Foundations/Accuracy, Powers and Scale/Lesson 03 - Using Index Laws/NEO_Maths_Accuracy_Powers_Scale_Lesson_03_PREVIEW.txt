@@ -1,0 +1,21 @@
+NEO Mathematics - Accuracy, Powers and Scale
+Lesson 03 - Using Index Laws
+
+Live lesson:
+https://neo-foundations-index-laws.jinxy2358.chatgpt.site
+
+This lesson uses the established NEO reference shell and includes:
+- all six Cornerstones in the locked order;
+- Index Law Detective;
+- Exponent Pattern Machine;
+- Which Law, and Why? reflection;
+- Build an Index Puzzle;
+- six-question Practice Companion;
+- Index-law Organiser Scratchpad;
+- Learner and Supporting Adult Guidance;
+- Reconnection Routes with an explicit return to the lesson; and
+- the universal independent worked-solution release rule.
+
+Internal curriculum tag: Y9
+Learner-facing pathway: Foundations
+Status: Preview-ready

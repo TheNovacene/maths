@@ -1,0 +1,21 @@
+NEO Mathematics - Accuracy, Powers and Scale
+Lesson 04 - Write and Order Standard Form
+
+This lesson uses the established NEO reference shell and includes:
+- all six Cornerstones in the locked order;
+- One Number, Three Costumes (standard-form convention);
+- Micro-to-Macro Scale Explorer with predict-first "try one change" controls;
+- Which Part Moves a Number Furthest? reflection;
+- Design a Scale Postcard (Creativity), published in the Final Task;
+- six-question Practice Companion;
+- Powers-of-ten Ladder Scratchpad background;
+- Learner and Supporting Adult Guidance;
+- Reconnection Routes (place value, powers of ten, index laws, multiplying by 10)
+  with an explicit return to the lesson; and
+- the universal independent worked-solution release rule; and
+- GreenPrint digit-shift language: the decimal point is a fixed separator,
+  the digits move across the place-value columns.
+
+Internal curriculum tag: Y9 (NEO-MATH-Y9-005, unit session 4)
+Learner-facing pathway: Foundations
+Status: Preview-ready (v0.3 accepted by curriculum lead 18 July 2026)

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Applying Pythagoras to Geometrical Problems v0.2</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.mathsvg{width:100%;max-width:600px;background:#fff;border-radius:10px;border:1px solid #cdbfa9}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.tabs button.active,.stepbtn.active{background:#dce8ef;border-color:#365a68}
+.stepbtn.done{background:#e3f0df;border-color:#5c6b4f}
+.stepline{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:12px;font-size:1.15em;line-height:1.55}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.practice-svg{width:100%;max-width:520px;background:#fff;border:1px solid #cdbfa9;border-radius:10px}
+.small{font-size:.95em;color:#4f554b}
+.solution-reveal{display:none}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Pythagoras' Theorem</h1>
+<h2>Using Pythagoras to solve geometrical problems</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can a hidden right triangle unlock a geometry problem?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Step-reveal worked example and geometry problem solving.</p>
+<p><b>Stepping Stones:</b> identify where a right triangle is hidden; decide which length is the hypotenuse; choose whether to add or subtract square areas; calculate carefully; interpret the answer in the original geometry problem.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 22 · Practise 10 · Reflect/Create 3 · Evidence 2</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support and Scratchpad</h3>
+<p>Use the same lesson shell. For this review version, the guidance buttons open short draft guidance; PDF guidance can be created after the lesson is approved.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Pythagoras_Lesson_04_Learner_Guide_v0.4.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Pythagoras_Lesson_04_Supporting_Adult_Guidance_v0.4.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to sketch the hidden right triangle and organise the calculation.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="guideBox" class="card" style="display:none"></div>
+</div>
+
+<details class="kw" open>
+<summary>🌿 Connection — Where is the right triangle hiding?</summary>
+<p><b>What to do:</b> look at the isosceles triangle. Before pressing any solution buttons, decide what extra line could turn the problem into a right-triangle problem.</p>
+<p><b>What you are trying to notice:</b> Pythagoras is not always shown directly. Sometimes you have to create or notice a right triangle inside a larger shape.</p>
+<div class="toolbox">
+<div class="twocol">
+<svg id="connectionSvg" viewBox="0 0 620 430" class="mathsvg" aria-label="Isosceles triangle with equal sides and base"></svg>
+<div class="card">
+<h3>Problem</h3>
+<p>An isosceles triangle has equal sides of <b>6.62 cm</b> and base <b>8.22 cm</b>.</p>
+<p><b>Question:</b> What is the height of the triangle?</p>
+<p class="small">Try to predict the hidden right triangle before opening the Movement section.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the isosceles triangle. Where could the right triangle be hidden?')">✏️ Sketch my prediction</button>
+</div>
+</div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> to use Pythagoras in a geometry problem, first locate or create a right-angled triangle.</div>
+</details>
+
+<details class="hs">
+<summary>🚶 Movement — How is the solution built step by step?</summary>
+<p><b>What to do:</b> press the reveal buttons in order. After each step, look back at the diagram and explain what changed.</p>
+<p><b>What you are trying to notice:</b> the height of the isosceles triangle becomes one side of a right triangle after the base is split in half.</p>
+<div class="toolbox">
+<h3>🧭 Step-Reveal Worked Example: Height of an Isosceles Triangle</h3>
+<div class="buttonrow" id="stepButtons"></div>
+<div class="twocol">
+<svg id="solutionSvg" viewBox="0 0 620 430" class="mathsvg" aria-label="Step-reveal isosceles triangle solution"></svg>
+<div>
+<div class="card">
+<div class="buttonrow">
+<button onclick="previousSolutionStep()">← Previous</button>
+<button onclick="nextSolutionStep()">Next step →</button>
+<button onclick="resetSolutionSteps()">Reset</button>
+<button onclick="revealAllSolutionSteps()">Reveal all</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Copy the current step and explain why it is valid.')">✏️ Scratchpad</button>
+</div>
+</div>
+<div id="solutionReadout" class="card"></div>
+</div>
+</div>
+</div>
+<div class="card"><strong>Carry this idea forward:</strong> the formula is not the first step. The first step is seeing the right triangle clearly.</div>
+</details>
+
+<details class="dw">
+<summary>🪞 Reflection — What decisions made the method work?</summary>
+<p><b>What to do:</b> complete the reflection sentence after using the step-reveal interactive.</p>
+<div class="card">
+<p><b>The key decision in this problem was...</b></p>
+<textarea rows="4" style="width:100%;padding:10px;border:1px solid #bcae98;border-radius:8px" placeholder="The key decision was..."></textarea>
+</div>
+<p><b>What you are trying to notice:</b> the calculation only makes sense because the altitude splits the isosceles triangle into two congruent right triangles.</p>
+</details>
+
+<details class="es">
+<summary>🎨 Creativity — Can I make the hidden triangle visible?</summary>
+<p><b>What to do:</b> create a mini teaching diagram for this problem.</p>
+<ol>
+<li>Draw the original isosceles triangle.</li>
+<li>Add the height.</li>
+<li>Label the half-base.</li>
+<li>Circle the right triangle you used.</li>
+<li>Write one sentence explaining why Pythagoras is allowed.</li>
+</ol>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Make a mini teaching diagram showing the hidden right triangle.')">✏️ Create my teaching diagram</button>
+</details>
+
+<details class="lb">
+<summary>🌙 Rest — How can I reduce the problem to one right triangle?</summary>
+<div class="card">
+<p>Use this quiet route:</p>
+<p style="font-size:1.3em;font-weight:bold;text-align:center">whole shape → hidden right triangle → known sides → add or subtract → answer in context</p>
+</div>
+</details>
+
+<details class="nt">
+<summary>🥣 Nutrition — What is this problem nourishing?</summary>
+<p>This lesson uses <strong>intellectual nourishment</strong>. It nourishes the habit of looking for structure before calculating.</p>
+<div class="twocol">
+<div class="card">🌱 <b>Geometric noticing</b><br>I can find a useful right triangle inside a larger shape.</div>
+<div class="card">🌱 <b>Decision-making</b><br>I choose add or subtract from the role of the unknown side.</div>
+<div class="card">🌱 <b>Interpretation</b><br>I return the answer to the original problem.</div>
+<div class="card">🌱 <b>Confidence</b><br>I can solve a problem even when Pythagoras is not obvious at first.</div>
+</div>
+</details>
+
+<details class="ft">
+<summary>🛠 Final Task — Solve one geometry problem using Pythagoras</summary>
+<h3>Build one clear geometry solution</h3>
+<p><b>What to do:</b> choose one problem from the Practice Companion and create a clear worked solution with a diagram.</p>
+<ul>
+<li>show where the right triangle is hidden;</li>
+<li>label the known lengths;</li>
+<li>identify whether the unknown is the hypotenuse or a shorter side;</li>
+<li>write the correct Pythagoras equation;</li>
+<li>calculate accurately;</li>
+<li>state the answer in the context of the original problem.</li>
+</ul>
+<p><b>Filename pattern:</b> <code>NEO_MATH_PYTH_GEOMETRY_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Identifies some lengths.</td><td>Finds a right triangle with support.</td><td>Explains why Pythagoras is allowed.</td><td>Explains the hidden structure clearly and independently.</td></tr>
+<tr><td><b>Application</b></td><td>Begins a calculation.</td><td>Uses some correct steps.</td><td>Completes an accurate Pythagoras solution.</td><td>Chooses the correct route in a less obvious geometry problem.</td></tr>
+<tr><td><b>Communication</b></td><td>Shows limited working.</td><td>Shows a diagram or some calculation.</td><td>Shows a clear diagram and method.</td><td>Creates a solution another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Identifies a useful step.</td><td>Explains a key decision in the method.</td><td>Anticipates and avoids a likely misconception.</td></tr>
+</table>
+</details>
+</div>
+</div>
+
+<div id="practiceView" hidden>
+<div class="practice">
+<h1>Pythagoras' Theorem — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 👀 <b>worked solution</b>.</p>
+<p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel"></p>
+<div class="twocol">
+<svg id="practiceSvg" viewBox="0 0 520 360" class="practice-svg" aria-label="Practice problem diagram"></svg>
+<div>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceWorkedBtn" onclick="pSolution()">👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to make the hidden right triangle visible.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+</div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div>
+</div>
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+<div role="dialog" aria-modal="true" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+<div><h2 style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2><p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p></div>
+<button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+</div>
+<p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+<button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+<button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+<label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+<select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;"><option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option></select>
+<label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+<select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;"><option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option></select>
+<button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+<button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+<button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;"><label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label><select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;"><option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option></select></span>
+</div>
+<div style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+<canvas id="neoScratchBackgroundCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+<canvas id="neoScratchCanvas" width="920" height="560" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+<div id="neoStickyLayer" style="position:absolute;inset:0;pointer-events:none;"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+<button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+<button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+<button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+</div>
+<div id="scratchStatus" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+</div>
+</div>
+
+<script>
+const calc = {"half_base": 4.11, "side_sq": 43.824400000000004, "half_sq": 16.892100000000003, "diff": 26.9323, "height": 5.189633898455651};
+const solutionSteps = [
+{title:'Step 1: Read the whole shape',text:'The triangle is isosceles. The two equal sides are 6.62 cm and the base is 8.22 cm. We need the height.',equation:''},
+{title:'Step 2: Add the height',text:'Draw the height from the top vertex to the base. In an isosceles triangle, this height splits the base into two equal halves.',equation:'8.22 ÷ 2 = 4.11 cm'},
+{title:'Step 3: Focus on one right triangle',text:'One half of the triangle is now a right triangle. Its hypotenuse is 6.62 cm, one shorter side is 4.11 cm, and the missing shorter side is h.',equation:''},
+{title:'Step 4: Choose the route',text:'The unknown is a shorter side, not the hypotenuse. So we subtract the known shorter-side square from the hypotenuse square.',equation:'h² = 6.62² − 4.11²'},
+{title:'Step 5: Calculate the square areas',text:'Square each known length before subtracting.',equation:'h² = 43.8244 − 16.8921'},
+{title:'Step 6: Subtract',text:'The missing height squared is the difference between those two square areas.',equation:'h² = 26.9323'},
+{title:'Step 7: Square root and interpret',text:'The height is about 5.19 cm. This is the vertical height of the original isosceles triangle.',equation:'h = √26.9323 ≈ 5.19 cm'}
+];
+let solutionStep = 0;
+
+function svgEl(n,a){const e=document.createElementNS('http://www.w3.org/2000/svg',n);Object.entries(a||{}).forEach(([k,v])=>e.setAttribute(k,String(v)));return e;}
+function labelText(svg,x,y,text,opts={}){
+ const size=opts.size||20, fill=opts.fill||'#375b77', weight=opts.weight||700, anchor=opts.anchor||'middle';
+ const back=svgEl('text',{x,y,'font-size':size,'font-weight':weight,fill:'#fff','stroke':'#fff','stroke-width':6,'stroke-linejoin':'round','text-anchor':anchor,'dominant-baseline':'middle'});
+ back.textContent=text; svg.appendChild(back);
+ const front=svgEl('text',{x,y,'font-size':size,'font-weight':weight,fill,'text-anchor':anchor,'dominant-baseline':'middle'});
+ front.textContent=text; svg.appendChild(front);
+ return front;
+}
+function drawIso(svgId,step){
+ const svg=document.getElementById(svgId); svg.innerHTML='';
+ const L={x:110,y:335}, R={x:510,y:335}, T={x:310,y:70}, F={x:310,y:335};
+ if(step>=3){svg.appendChild(svgEl('polygon',{points:`${T.x},${T.y} ${R.x},${R.y} ${F.x},${F.y}`,fill:'#dce8ef',stroke:'none'}));}
+ svg.appendChild(svgEl('polygon',{points:`${L.x},${L.y} ${T.x},${T.y} ${R.x},${R.y}`,fill:'#efdeaa',stroke:'#365a68','stroke-width':5,'stroke-linejoin':'round'}));
+ labelText(svg,155,190,'6.62 cm',{size:20,anchor:'middle'});
+ labelText(svg,465,190,'6.62 cm',{size:20,anchor:'middle'});
+ labelText(svg,310,385,'8.22 cm',{size:20,anchor:'middle'});
+ if(step>=2){
+   svg.appendChild(svgEl('line',{x1:T.x,y1:T.y,x2:F.x,y2:F.y,stroke:'#74447f','stroke-width':4,'stroke-dasharray':step>=3?'0':'8 7'}));
+   labelText(svg,335,215,'h',{size:22,fill:'#74447f'});
+   svg.appendChild(svgEl('polyline',{points:`${F.x},${F.y-24} ${F.x+24},${F.y-24} ${F.x+24},${F.y}`,fill:'none',stroke:'#556b53','stroke-width':4}));
+   labelText(svg,210,312,'4.11 cm',{size:18});
+   labelText(svg,410,312,'4.11 cm',{size:18});
+ }
+ if(step>=4){
+   svg.appendChild(svgEl('line',{x1:T.x,y1:T.y,x2:R.x,y2:R.y,stroke:'#b24c4c','stroke-width':7,'stroke-linecap':'round','opacity':.45}));
+   svg.appendChild(svgEl('line',{x1:F.x,y1:F.y,x2:R.x,y2:R.y,stroke:'#b24c4c','stroke-width':7,'stroke-linecap':'round','opacity':.45}));
+   svg.appendChild(svgEl('line',{x1:T.x,y1:T.y,x2:F.x,y2:F.y,stroke:'#b24c4c','stroke-width':7,'stroke-linecap':'round','opacity':.45}));
+ }
+ ['L','R','T'].forEach(k=>{
+   const p=k==='L'?L:k==='R'?R:T;
+   svg.appendChild(svgEl('circle',{cx:p.x,cy:p.y,r:6,fill:'#2f3429'}));
+ });
+}
+function renderSolution(){
+ drawIso('connectionSvg',1);
+ drawIso('solutionSvg',solutionStep+1);
+ stepButtons.innerHTML=solutionSteps.map((s,i)=>'<button class="stepbtn '+(i===solutionStep?'active ':'')+(i<solutionStep?'done':'')+'" onclick="setSolutionStep('+i+')">'+(i+1)+'</button>').join('');
+ const s=solutionSteps[solutionStep];
+ solutionReadout.innerHTML='<h3>'+s.title+'</h3><p>'+s.text+'</p>'+(s.equation?'<div class="stepline"><b>'+s.equation+'</b></div>':'');
+}
+function setSolutionStep(i){solutionStep=i;renderSolution();}
+function nextSolutionStep(){solutionStep=Math.min(solutionSteps.length-1,solutionStep+1);renderSolution();}
+function previousSolutionStep(){solutionStep=Math.max(0,solutionStep-1);renderSolution();}
+function resetSolutionSteps(){solutionStep=0;renderSolution();}
+function revealAllSolutionSteps(){solutionStep=solutionSteps.length-1;renderSolution();}
+
+const PRACTICE = [{"label": "1", "title": "Rectangle diagonal", "type": "rectangle", "question": "A rectangular garden is 6 m wide and 8 m long. What is the length of the diagonal path across the garden?", "answers": [10], "unit": "m", "prompt": "What right triangle is hidden inside the rectangle?", "hint": "The width and length are the shorter sides of a right triangle. Use d\u00b2 = 6\u00b2 + 8\u00b2.", "solution": "The diagonal is the hypotenuse of a right triangle. d\u00b2 = 6\u00b2 + 8\u00b2 = 36 + 64 = 100, so d = \u221a100 = 10 m."}, {"label": "2", "title": "Square diagonal", "type": "square", "question": "A square tile has one side labelled 5 cm. Use the properties of a square to find the diagonal, giving an exact value and a decimal to 2 d.p.", "answers": [7.07], "exact": ["5\u221a2", "5 sqrt 2", "sqrt50", "\u221a50"], "unit": "cm", "prompt": "What do you know about all four sides of a square if one side is 5 cm?", "hint": "The diagonal is the hypotenuse. Use d\u00b2 = 5\u00b2 + 5\u00b2.", "solution": "d\u00b2 = 5\u00b2 + 5\u00b2 = 25 + 25 = 50. So d = \u221a50 = 5\u221a2 \u2248 7.07 cm."}, {"label": "3", "title": "Isosceles triangle height", "type": "isoscelesPractice", "question": "An isosceles triangle has equal sides of 10 cm and a base of 12 cm. Find its height.", "answers": [8], "unit": "cm", "prompt": "What happens to the base when the height is drawn from the top vertex?", "hint": "The height splits the base into two equal parts: 6 cm and 6 cm. Then use the equal side as the hypotenuse.", "solution": "The height splits the 12 cm base into two 6 cm halves. h\u00b2 + 6\u00b2 = 10\u00b2, so h\u00b2 = 100 \u2212 36 = 64, and h = 8 cm."}, {"label": "4", "title": "Ramp length", "type": "ramp", "question": "A ramp rises 1.2 m over a horizontal distance of 4 m. Find the ramp length to 2 d.p.", "answers": [4.18], "unit": "m", "prompt": "Which side of the right triangle is the ramp itself?", "hint": "The ramp is the hypotenuse. Use r\u00b2 = 4\u00b2 + 1.2\u00b2.", "solution": "r\u00b2 = 4\u00b2 + 1.2\u00b2 = 16 + 1.44 = 17.44. So r = \u221a17.44 \u2248 4.18 m."}, {"label": "5", "title": "Doorway diagonal", "type": "door", "question": "A rectangular doorway is 0.9 m wide and 2.1 m high. Draw your own diagram on the Scratchpad, then find the diagonal distance across the doorway to 2 d.p.", "answers": [2.28], "unit": "m", "prompt": "Before calculating, draw a rectangle on the Scratchpad. Where would the diagonal go?", "hint": "The diagonal is the hypotenuse. Use d\u00b2 = 0.9\u00b2 + 2.1\u00b2.", "solution": "d\u00b2 = 0.9\u00b2 + 2.1\u00b2 = 0.81 + 4.41 = 5.22. So d = \u221a5.22 \u2248 2.28 m."}];
+let practiceIndex=0, done={};
+
+function openLessonGuide(){
+ guideBox.style.display=guideBox.style.display==='none'?'block':'none';
+ guideBox.innerHTML='<h3>🌱 Draft Learner Guide</h3><p>Start by finding or creating a right triangle. Decide whether the unknown is the hypotenuse or a shorter side. That decision tells you whether to add or subtract square areas.</p>';
+}
+function openAdultGuide(){
+ guideBox.style.display=guideBox.style.display==='none'?'block':'none';
+ guideBox.innerHTML='<h3>📘 Draft Supporting Adult Guidance</h3><p><b>Connection before curriculum. Always.</b> Ask the learner where the right triangle is hidden before asking for a calculation. If they are stuck, invite them to draw one helpful line.</p>';
+}
+function openPractice(){lessonView.hidden=true;practiceView.hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
+function returnLesson(){practiceView.hidden=true;lessonView.hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+function norm(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/cm|m|≈|=|about/g,'').trim();}
+function numFrom(s){const m=String(s).match(/-?\d+(\.\d+)?/);return m?Number(m[0]):NaN;}
+function renderPractice(){
+ const p=PRACTICE[practiceIndex];
+ practiceLabel.textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;
+ practiceQuestion.innerHTML=p.question;
+ practiceAnswer.value='';
+ practiceSupport.style.display='none'; practiceFeedback.style.display='none';
+ practicePrev.disabled=practiceIndex===0;
+ practiceNext.textContent=practiceIndex===PRACTICE.length-1?'Finish':'Next →';
+ practiceDots.innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ': '')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');
+ drawPracticeDiagram(p);
+}
+function drawPracticeDiagram(p){
+ const svg=practiceSvg; svg.innerHTML='';
+ if(p.type==='rectangle'){
+  svg.appendChild(svgEl('rect',{x:90,y:90,width:300,height:190,fill:'#efdeaa',stroke:'#365a68','stroke-width':4}));
+  svg.appendChild(svgEl('line',{x1:90,y1:280,x2:390,y2:90,stroke:'#74447f','stroke-width':4,'stroke-dasharray':'8 7'}));
+  labelText(svg,240,326,'8 m',{size:18});
+  labelText(svg,42,190,'6 m',{size:18,anchor:'middle'});
+  labelText(svg,255,170,'d',{size:20,fill:'#74447f'});
+ }
+ if(p.type==='square'){
+  svg.appendChild(svgEl('rect',{x:145,y:70,width:220,height:220,fill:'#efdeaa',stroke:'#365a68','stroke-width':4}));
+  svg.appendChild(svgEl('line',{x1:145,y1:290,x2:365,y2:70,stroke:'#74447f','stroke-width':4,'stroke-dasharray':'8 7'}));
+  labelText(svg,255,330,'5 cm',{size:18});
+  labelText(svg,275,165,'d',{size:20,fill:'#74447f'});
+  labelText(svg,255,40,'Only one side length is given',{size:16,fill:'#5c6b4f'});
+ }
+ if(p.type==='isoscelesPractice'){
+  const L={x:105,y:300},R={x:415,y:300},T={x:260,y:80};
+  svg.appendChild(svgEl('polygon',{points:`${L.x},${L.y} ${T.x},${T.y} ${R.x},${R.y}`,fill:'#efdeaa',stroke:'#365a68','stroke-width':4,'stroke-linejoin':'round'}));
+  labelText(svg,135,190,'10 cm',{size:18});
+  labelText(svg,385,190,'10 cm',{size:18});
+  labelText(svg,260,338,'12 cm',{size:18});
+ }
+ if(p.type==='ramp'){
+  svg.appendChild(svgEl('polygon',{points:'95,280 420,280 420,180',fill:'#efdeaa',stroke:'#365a68','stroke-width':4,'stroke-linejoin':'round'}));
+  svg.appendChild(svgEl('line',{x1:95,y1:280,x2:420,y2:180,stroke:'#74447f','stroke-width':5}));
+  labelText(svg,255,318,'4 m',{size:18});
+  labelText(svg,458,235,'1.2 m',{size:18});
+  labelText(svg,250,210,'r',{size:20,fill:'#74447f'});
+ }
+ if(p.type==='door'){
+  const card=svgEl('rect',{x:55,y:65,width:430,height:250,rx:16,fill:'#fffaf0',stroke:'#cdbfa9','stroke-width':2});
+  svg.appendChild(card);
+  labelText(svg,270,125,'No diagram is given for this one.',{size:20,fill:'#3f5f45'});
+  labelText(svg,270,178,'Draw the doorway on the Scratchpad.',{size:18,fill:'#365a68'});
+  labelText(svg,270,228,'Use width 0.9 m and height 2.1 m,',{size:16,fill:'#2f3429'});
+  labelText(svg,270,255,'then add the diagonal you need to find.',{size:16,fill:'#2f3429'});
+ }
+}
+function pPrompt(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>🤔 Socratic prompt:</b> '+PRACTICE[practiceIndex].prompt;}
+function pHint(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>💡 Hint:</b> '+PRACTICE[practiceIndex].hint;}
+function pSolution(){practiceSupport.style.display='block';practiceSupport.innerHTML='<b>👀 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
+function pCheck(){
+ const p=PRACTICE[practiceIndex], ans=practiceAnswer.value, n=numFrom(ans); let ok=false;
+ if(p.answers && p.answers.some(a=>!Number.isNaN(n) && Math.abs(n-a)<=0.03)) ok=true;
+ if(p.exact && p.exact.some(x=>norm(ans).includes(norm(x)))) ok=true;
+ practiceFeedback.style.display='block';
+ if(ok){done[practiceIndex]=true;practiceFeedback.className='feedback good';practiceFeedback.textContent='Correct. Keep the diagram and reasoning visible.';}
+ else{practiceFeedback.className='feedback bad';practiceFeedback.textContent='Not quite yet. Use the prompt or hint, then try again.';}
+ renderPracticeDotsOnly();
+}
+function renderPracticeDotsOnly(){practiceDots.innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ': '')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');}
+function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
+function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{practiceFeedback.style.display='block';practiceFeedback.className='feedback good';practiceFeedback.textContent='Practice complete. Choose one problem for the Final Task.';}}
+
+// Scratchpad
+(function(){
+const overlay=document.getElementById('neoScratchpadOverlay'),subtitle=document.getElementById('neoScratchpadSubtitle'),canvas=document.getElementById('neoScratchCanvas'),bgCanvas=document.getElementById('neoScratchBackgroundCanvas'),stickyLayer=document.getElementById('neoStickyLayer'),ctx=canvas.getContext('2d'),bg=bgCanvas.getContext('2d');
+let tool='pen',colour='#2f3429',width=4,template='blank',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_geometry_v01';
+function status(msg,col){const box=document.getElementById('scratchStatus');box.style.display='block';box.style.background=col||'#e5edf4';box.textContent=msg;}
+function pt(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+function drawBackground(){bg.clearRect(0,0,920,560);bg.fillStyle='#fff';bg.fillRect(0,0,920,560);bg.save();bg.lineWidth=1;bg.strokeStyle='#e6dccb';if(template==='square-grid'||template==='coordinate-grid'){for(let x=0;x<=920;x+=28){bg.beginPath();bg.moveTo(x,0);bg.lineTo(x,560);bg.stroke();}for(let y=0;y<=560;y+=28){bg.beginPath();bg.moveTo(0,y);bg.lineTo(920,y);bg.stroke();}}if(template==='coordinate-grid'){bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(460,0);bg.lineTo(460,560);bg.moveTo(0,280);bg.lineTo(920,280);bg.stroke();}if(template==='ratio-table'){bg.strokeStyle='#cdbfa9';for(let x=80;x<=840;x+=190){bg.beginPath();bg.moveTo(x,70);bg.lineTo(x,490);bg.stroke();}for(let y=70;y<=490;y+=70){bg.beginPath();bg.moveTo(80,y);bg.lineTo(840,y);bg.stroke();}}if(template==='double-number-line'){bg.strokeStyle='#315d72';bg.lineWidth=3;[210,350].forEach(y=>{bg.beginPath();bg.moveTo(90,y);bg.lineTo(830,y);bg.stroke();for(let x=90;x<=830;x+=74){bg.beginPath();bg.moveTo(x,y-10);bg.lineTo(x,y+10);bg.stroke();}});}bg.restore();}
+function drawStroke(s){if(!s||!s.points.length)return;ctx.save();ctx.lineCap='round';ctx.lineJoin='round';if(s.tool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=Math.max(18,s.width*5);}else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=s.colour;ctx.lineWidth=s.width;}const pts=s.points;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);if(s.tool==='line'){const last=pts[pts.length-1];ctx.lineTo(last.x,last.y);}else{pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));if(pts.length===1)ctx.lineTo(pts[0].x+.1,pts[0].y+.1);}ctx.stroke();ctx.restore();}
+function renderInk(){ctx.clearRect(0,0,920,560);strokes.forEach(drawStroke);}
+function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText=`position:absolute;left:${note.x}%;top:${note.y}%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;`;const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
+function render(){drawBackground();renderInk();renderNotes();}
+function store(){try{localStorage.setItem(storageKey,JSON.stringify({template,strokes,redo,notes,colour,width}));}catch(err){}}
+function restore(){try{const s=JSON.parse(localStorage.getItem(storageKey)||'null');if(!s)return;template=s.template||template;strokes=s.strokes||[];redo=s.redo||[];notes=s.notes||[];colour=s.colour||colour;width=s.width||width;scratchTemplate.value=template;scratchColour.value=colour;scratchWidth.value=String(width);}catch(err){}}
+function updateButtons(){scratchPenBtn.style.background=tool==='pen'?'#e5f0e2':'#fff';scratchLineBtn.style.background=tool==='line'?'#e5edf4':'#fff';scratchEraserBtn.style.background=tool==='eraser'?'#e5f0e2':'#fff';canvas.style.cursor=tool==='eraser'?'cell':tool==='note'?'copy':'crosshair';}
+canvas.addEventListener('pointerdown',e=>{if(tool==='note'){const r=canvas.getBoundingClientRect();notes.push({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100,text:''});renderNotes();setScratchTool('pen');status('Sticky note added.','#fff7c7');store();e.preventDefault();return;}drawing=true;canvas.setPointerCapture(e.pointerId);const p=pt(e);current={tool,width,colour,points:tool==='line'?[p,p]:[p]};strokes.push(current);redo=[];renderInk();e.preventDefault();});
+canvas.addEventListener('pointermove',e=>{if(!drawing||!current)return;const p=pt(e);if(current.tool==='line')current.points[1]=p;else current.points.push(p);renderInk();e.preventDefault();});
+function finish(e){if(!drawing)return;drawing=false;current=null;try{canvas.releasePointerCapture(e.pointerId);}catch(err){}store();e.preventDefault();}
+canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',finish);
+window.openMathsScratchpad=function(t,sub){if(t){template=t;scratchTemplate.value=t;}subtitle.textContent=sub||'Use the Scratchpad to predict, sketch, test and revise.';overlay.hidden=false;document.body.style.overflow='hidden';render();};
+window.closeMathsScratchpad=function(){store();overlay.hidden=true;document.body.style.overflow='';};
+window.setScratchTool=function(t){tool=t;updateButtons();if(t==='line')status('Line tool: press at the start point, drag to the end point, then release.');if(t==='note')status('Click anywhere on the Scratchpad to place a sticky note.','#fff7c7');};
+window.updateScratchColour=function(){colour=scratchColour.value;store();};
+window.updateScratchWidth=function(){width=Number(scratchWidth.value);store();};
+window.changeScratchTemplate=function(v){template=v;drawBackground();store();status('Background changed. Your drawing marks are unchanged.','#e3f0df');};
+window.scratchUndo=function(){if(!strokes.length){status('Nothing to undo yet.','#fff1cf');return;}redo.push(strokes.pop());renderInk();store();};
+window.scratchRedo=function(){if(!redo.length){status('Nothing to redo yet.','#fff1cf');return;}strokes.push(redo.pop());renderInk();store();};
+window.newScratchPage=function(){if((strokes.length||notes.length)&&!confirm('Start a new Scratchpad page?'))return;strokes=[];redo=[];notes=[];render();store();status('New Scratchpad page started.');};
+window.saveScratchPage=function(){store();status('Working page saved in this browser.','#e3f0df');};
+window.clearScratchpad=function(){if(!confirm('Clear learner marks and sticky notes? The selected background will remain.'))return;strokes=[];redo=[];notes=[];render();store();status('Learner marks cleared. Background preserved.','#fff1cf');};
+window.downloadScratchImage=function(){const ex=document.createElement('canvas');ex.width=920;ex.height=560;const ec=ex.getContext('2d');ec.drawImage(bgCanvas,0,0);ec.drawImage(canvas,0,0);const link=document.createElement('a');link.download='NEO_Maths_Geometry_Scratchpad.png';link.href=ex.toDataURL('image/png');link.click();};
+restore();updateButtons();render();
+})();
+renderSolution();
+</script>
+
+<script id="practiceWorkedUnlockWrapper">
+// GreenPrint v1.1 compliance patch; internal lesson version v0.5.
+(function(){
+  if (window.__neoWorkedUnlockInstalled) return;
+  window.__neoWorkedUnlockInstalled = true;
+  const promptSeen = Array(PRACTICE.length).fill(false);
+  const hintSeen = Array(PRACTICE.length).fill(false);
+  const attempts = Array(PRACTICE.length).fill(0);
+
+  function currentIdx(){ return practiceIndex; }
+  function workedUnlocked(i){
+    return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
+  }
+  function button(){
+    return document.getElementById('practiceWorkedBtn');
+  }
+  function notice(){
+    return document.getElementById('practiceWorkedNotice');
+  }
+  function lockMessage(i){
+    const parts = [];
+    if (!promptSeen[i]) parts.push('use the Socratic prompt');
+    if (!hintSeen[i]) parts.push('use the hint');
+    const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
+    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+  }
+  function updateWorkedButton(){
+    const i = currentIdx();
+    const btn = button();
+    if (!btn) return;
+    const unlocked = workedUnlocked(i);
+    btn.disabled = !unlocked;
+    btn.style.opacity = unlocked ? '1' : '.5';
+    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+    const n = notice();
+    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+  }
+
+  const oldRender = renderPractice;
+  renderPractice = function(){
+    oldRender();
+    updateWorkedButton();
+  };
+
+  const oldPrompt = pPrompt;
+  pPrompt = function(){
+    promptSeen[currentIdx()] = true;
+    oldPrompt();
+    updateWorkedButton();
+  };
+
+  const oldHint = pHint;
+  pHint = function(){
+    hintSeen[currentIdx()] = true;
+    oldHint();
+    updateWorkedButton();
+  };
+
+  const oldCheck = pCheck;
+  pCheck = function(){
+    const answer = document.getElementById('practiceAnswer');
+    if (answer && answer.value.trim()) {
+      attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
+    }
+    oldCheck();
+    updateWorkedButton();
+  };
+
+  const oldSolution = pSolution;
+  pSolution = function(){
+    const i = currentIdx();
+    if (!workedUnlocked(i)) {
+      const fb = document.getElementById('practiceFeedback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.className = 'feedback';
+        fb.textContent = lockMessage(i);
+      }
+      updateWorkedButton();
+      return;
+    }
+    oldSolution();
+    updateWorkedButton();
+  };
+
+  updateWorkedButton();
+})();
+</script>
+
+</body>
+</html>

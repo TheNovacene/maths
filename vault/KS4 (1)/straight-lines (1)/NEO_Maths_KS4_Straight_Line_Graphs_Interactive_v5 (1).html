@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEO Mathematics KS4 - Straight-Line Graphs</title></head>
+<body style="margin:0;background:#efe9df;">
+<div id="lessonView"><div style="font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;color:#2f3429;line-height:1.55;border-radius:18px;">
+<h1 style="margin-bottom:6px;color:#3f5f45;">NEO Mathematics KS4: Straight-Line Graphs</h1>
+<h2 style="margin-top:0;color:#6a7f4e;font-size:1.35em;">Driving Question: <em>Can a line tell the story of change?</em></h2>
+<div style="background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0;">
+<p><strong>Lesson focus:</strong> interpreting and drawing straight-line graphs using <strong>y = mx + c</strong>.</p>
+<p><strong>Stepping Stones:</strong> connect equations, tables and graphs; identify gradient as rate of change; identify the y-intercept as starting value; interpret positive, negative and zero gradients; write equations of straight lines; and explain linear models in context.</p>
+<p><strong>NEO Cornerstones:</strong> Connection, Movement, Creativity, Reflection, Rest and Nutrition.</p>
+</div>
+
+    <div style="background:#eef3e8; padding:14px; border-radius:12px; margin:16px 0;">
+      <h3 style="margin-top:0; color:#46533d;">📚 Lesson Guides and Scratchpad</h3>
+      <p>Choose the support that is useful to you. The Scratchpad stays inside this lesson.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <a href="NEO_Maths_Straight_Line_Graphs_Learner_Guide.pdf" target="_blank" rel="noopener"
+           style="display:inline-block; padding:11px 18px; background:#6a7f4e; color:#ffffff; text-decoration:none; border-radius:9px; font-weight:bold;">
+          🌱 Open Learner Guide
+        </a>
+        <a href="NEO_Maths_Straight_Line_Graphs_Lesson_Guidance.pdf" target="_blank" rel="noopener"
+           style="display:inline-block; padding:11px 18px; background:#5c6b4f; color:#ffffff; text-decoration:none; border-radius:9px; font-weight:bold;">
+          📘 Open Supporting Adult Guidance
+        </a>
+        <button type="button" onclick="openMathsScratchpad('blank')"
+                style="padding:11px 18px; background:#365a68; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+          ✏️ Open Maths Scratchpad
+        </button>
+      </div>
+    </div>
+
+<details open style="background:#e8f0e3;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🌿 Connection - How are equation, table and graph connected?</summary>
+<p style="font-size:1.45em;text-align:center;background:#fffaf0;padding:12px;border-radius:10px;"><strong>y = mx + c</strong></p>
+<ul><li><b>m</b> is the gradient: the change in y for each increase of 1 in x.</li><li><b>c</b> is the y-intercept: the value of y when x = 0.</li></ul>
+<p><b>Start + Change</b> is a useful way to read a line.</p>
+</details>
+
+<details style="background:#e5eef2;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🚶 Movement - How does a line move when m and c change?</summary>
+<h3>Interactive investigation 1: Gradient and Intercept Explorer</h3>
+<div style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+<p><b>Inquiry move:</b> choose m and c, sketch your prediction, then reveal the graph.</p>
+<div style="display:flex;flex-wrap:wrap;gap:14px;"><div style="flex:1;min-width:220px;"><label><b>Gradient m</b></label><input id="mSlider" type="range" min="-5" max="5" value="2" oninput="previewEquation()" style="width:100%;"><div>m = <b id="mValue">2</b></div></div><div style="flex:1;min-width:220px;"><label><b>Intercept c</b></label><input id="cSlider" type="range" min="-5" max="5" value="3" oninput="previewEquation()" style="width:100%;"><div>c = <b id="cValue">3</b></div></div></div>
+<div style="background:#fffaf0;padding:12px;border-radius:9px;text-align:center;margin:12px 0;"><b id="lineEquation">y = 2x + 3</b></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;"><button onclick="openMathsScratchpad('coordinate-grid','Sketch the line you expect before revealing it.')" style="padding:9px 13px;background:#365a68;color:#fff;border:none;border-radius:8px;">✏️ Sketch prediction</button><button onclick="showExplorerGraph()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;">📈 Reveal / update graph</button><button onclick="randomExplorer()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;">🎲 Random line</button></div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:320px;background:#fff;padding:10px;border-radius:10px;"><svg id="lineGraph" width="420" height="420" viewBox="0 0 420 420" style="width:100%;display:block;"></svg></div><div style="flex:1;min-width:260px;"><div id="lineTable"></div><div id="lineMeaning" style="background:#fff;padding:12px;border-radius:9px;margin-top:10px;"></div></div></div>
+</div></details>
+
+<details style="background:#e8f0e3;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🌿 Connection - Can I match the equation, table, graph and story?</summary>
+<h3>Interactive investigation 2: Representation Matcher</h3>
+<div style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+<p id="matchLabel" style="font-weight:bold;color:#3f5f45;"></p><div id="matchStory" style="background:#fff;padding:12px;border-radius:9px;"></div>
+<label style="display:block;margin-top:12px;"><b>Equation</b></label><select id="matchEq" style="width:100%;padding:10px;"></select>
+<label style="display:block;margin-top:12px;"><b>Table description</b></label><select id="matchTable" style="width:100%;padding:10px;"></select>
+<label style="display:block;margin-top:12px;"><b>Graph description</b></label><select id="matchGraph" style="width:100%;padding:10px;"></select>
+<label style="display:block;margin-top:12px;"><b>Explain your match</b></label><textarea id="matchReason" rows="3" style="width:100%;box-sizing:border-box;padding:10px;"></textarea>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"><button onclick="matcherPrompt()">🤔 Socratic prompt</button><button onclick="matcherHint()">💡 Hint</button><button onclick="matcherCheck()">✅ Check match</button><button onclick="matcherSolution()">👀 Worked solution</button></div>
+<div id="matchSupport" style="display:none;margin-top:10px;background:#f7f2e9;padding:10px;border-radius:8px;"></div><div id="matchFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold;"></div>
+<div style="display:flex;justify-content:space-between;margin-top:12px;"><button id="matchPrev" onclick="matcherPrev()">← Previous</button><button id="matchNext" onclick="matcherNext()">Next →</button></div>
+</div></details>
+
+<details style="background:#ece7f2;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🪞 Reflection - Can I become a line detective?</summary>
+<h3>Interactive investigation 3: Line Detective</h3>
+<div style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+<p id="detLabel" style="font-weight:bold;color:#604f75;"></p><div id="detQuestion" style="background:#fff;padding:12px;border-radius:9px;"></div>
+<label style="display:block;margin-top:12px;"><b>Gradient m</b></label><input id="detM" style="width:100%;box-sizing:border-box;padding:10px;">
+<label style="display:block;margin-top:12px;"><b>Y-intercept c</b></label><input id="detC" style="width:100%;box-sizing:border-box;padding:10px;">
+<label style="display:block;margin-top:12px;"><b>Equation</b></label><input id="detEq" placeholder="y = 2x + 3" style="width:100%;box-sizing:border-box;padding:10px;">
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"><button onclick="detPrompt()">🤔 Socratic prompt</button><button onclick="detHint()">💡 Hint</button><button onclick="detCheck()">✅ Check line</button><button onclick="detSolution()">👀 Worked solution</button><button onclick="openMathsScratchpad('coordinate-grid','Plot the clues or draw a gradient triangle.')" style="background:#365a68;color:#fff;border:none;padding:9px 13px;border-radius:8px;">✏️ Coordinate Scratchpad</button></div>
+<div id="detSupport" style="display:none;margin-top:10px;background:#f7f2e9;padding:10px;border-radius:8px;"></div><div id="detFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold;"></div>
+<div style="display:flex;justify-content:space-between;margin-top:12px;"><button id="detPrev" onclick="detPrevFn()">← Previous</button><button id="detNext" onclick="detNextFn()">Next →</button></div>
+</div></details>
+
+<details style="background:#f1e9dc;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🎨 Creativity - Can I create a human story for a graph?</summary>
+<h3>Interactive investigation 4: Human Graph Story Builder</h3>
+<div style="background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px;">
+<label><b>Model title</b></label><input id="storyTitle" value="Saving money" oninput="updateStory()" style="width:100%;box-sizing:border-box;padding:10px;margin-bottom:10px;">
+<div style="display:flex;flex-wrap:wrap;gap:10px;"><label style="flex:1;min-width:210px;"><b>x represents</b><input id="storyX" value="number of weeks" oninput="updateStory()" style="width:100%;box-sizing:border-box;padding:10px;"></label><label style="flex:1;min-width:210px;"><b>y represents</b><input id="storyY" value="total money saved in pounds" oninput="updateStory()" style="width:100%;box-sizing:border-box;padding:10px;"></label></div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;"><label style="flex:1;"><b>m</b><input id="storyM" type="number" value="5" oninput="updateStory()" style="width:100%;box-sizing:border-box;padding:10px;"></label><label style="flex:1;"><b>c</b><input id="storyC" type="number" value="10" oninput="updateStory()" style="width:100%;box-sizing:border-box;padding:10px;"></label></div>
+<label style="display:block;margin-top:12px;"><b>Tell the story</b></label><textarea id="storyExplain" rows="3" oninput="updateStory()" style="width:100%;box-sizing:border-box;padding:10px;"></textarea>
+<label style="display:block;margin-top:12px;"><b>Where might the model stop making sense?</b></label><textarea id="storyLimit" rows="3" oninput="updateStory()" style="width:100%;box-sizing:border-box;padding:10px;"></textarea>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"><button onclick="updateStory()">🧾 Generate model card</button><button onclick="checkStory()">✅ Review model</button><button onclick="openMathsScratchpad('coordinate-grid','Sketch your model and annotate what m and c mean.')" style="background:#365a68;color:#fff;border:none;padding:9px 13px;border-radius:8px;">✏️ Sketch model</button></div>
+<div id="storyPreview" style="background:#fff;padding:12px;border-radius:9px;margin-top:12px;"></div><div id="storyFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold;"></div>
+</div></details>
+
+<details style="background:#eef0df;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🌙 Rest - Where is the pause?</summary><h3>Start. Change. Check.</h3><ol><li><b>Start:</b> find c and the y-intercept.</li><li><b>Change:</b> find m and the rate of change.</li><li><b>Check:</b> use a table, point or story to test the relationship.</li></ol><p style="background:#fffaf0;padding:12px;border-radius:10px;"><b>Helpful self-talk:</b> “I do not need to understand the whole graph at once. I can find the start, then find the change.”</p></details>
+<details style="background:#e7efe8;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🥣 Nutrition - How can linear models support real choices?</summary><p>A community lunch might have a fixed room cost and a cost per person. The gradient can represent cost per person; the intercept can represent the fixed cost. The line supports planning, but people still decide what is fair and realistic.</p></details>
+<details style="background:#f3eadc;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🛠 Final Task - Linear Model Portfolio Piece</summary>
+<p>Create a real or invented linear model with x and y defined, an equation <b>y = mx + c</b>, a table of at least five values, a graph or sketch, an explanation of gradient and intercept, and a reflection on usefulness and limitations.</p><p><b>Filename:</b> <code>NEO_Maths_StraightLineGraphs_[FirstName]_[Date]</code></p>
+<div style="overflow-x:auto;"><table style="width:100%;min-width:850px;border-collapse:collapse;background:#fffaf0;"><tr><th style="border:1px solid #c8b99a;padding:8px;">Criteria</th><th style="border:1px solid #c8b99a;padding:8px;">Emerging</th><th style="border:1px solid #c8b99a;padding:8px;">Developing</th><th style="border:1px solid #c8b99a;padding:8px;">Secure</th><th style="border:1px solid #c8b99a;padding:8px;">Mastering</th></tr><tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Understanding</b></td><td style="border:1px solid #c8b99a;padding:8px;">Identify parts with support.</td><td style="border:1px solid #c8b99a;padding:8px;">Identify m and c in familiar examples.</td><td style="border:1px solid #c8b99a;padding:8px;">Explain how m and c affect a line.</td><td style="border:1px solid #c8b99a;padding:8px;">Connect representations fluently.</td></tr><tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Application</b></td><td style="border:1px solid #c8b99a;padding:8px;">Read or plot some points.</td><td style="border:1px solid #c8b99a;padding:8px;">Complete tables and draw simple lines.</td><td style="border:1px solid #c8b99a;padding:8px;">Form and interpret equations.</td><td style="border:1px solid #c8b99a;padding:8px;">Create and evaluate models.</td></tr><tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Communication</b></td><td style="border:1px solid #c8b99a;padding:8px;">Label features.</td><td style="border:1px solid #c8b99a;padding:8px;">Describe the graph.</td><td style="border:1px solid #c8b99a;padding:8px;">Explain gradient and intercept.</td><td style="border:1px solid #c8b99a;padding:8px;">Compare representations clearly.</td></tr><tr><td style="border:1px solid #c8b99a;padding:8px;"><b>Reflection</b></td><td style="border:1px solid #c8b99a;padding:8px;">Say one thing noticed.</td><td style="border:1px solid #c8b99a;padding:8px;">Describe what helped.</td><td style="border:1px solid #c8b99a;padding:8px;">Reflect on what the model shows.</td><td style="border:1px solid #c8b99a;padding:8px;">Evaluate usefulness and limits.</td></tr></table></div>
+</details>
+<div style="background:#fffaf0;padding:20px;margin-top:22px;border-left:6px solid #5c6b4f;border-radius:14px;text-align:center;"><h2>✏️ Ready to strengthen your skills?</h2><p>Open eight progressive questions. Return to the lesson or coordinate Scratchpad whenever you need them.</p><button onclick="openPracticeSession()" style="padding:13px 22px;background:#5c6b4f;color:#fff;border:none;border-radius:10px;font-weight:bold;">Open Practice Activity →</button></div>
+</div></div>
+
+<div id="practiceView" hidden><div style="font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;color:#2f2f2f;line-height:1.55;border-radius:18px;"><h1>Straight-Line Graphs Practice</h1><button onclick="returnToLesson()">← Return to the Lesson</button><div style="background:#e5edf4;border-left:6px solid #315d72;padding:18px;border-radius:12px;margin:22px 0;">Use support in this order: <b>🤔 prompt, 💡 hint, ✅ check, 👀 worked solution</b>.</div><div id="practiceDots" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"></div><div style="background:#fff;border:1px solid #cdbfa9;border-radius:12px;padding:22px;"><p id="practiceLabel" style="text-transform:uppercase;color:#8a6d43;font-weight:bold;"></p><div id="practiceQuestion" style="font-size:1.15em;margin-bottom:16px;"></div><label>Your working</label><textarea id="practiceWorking" rows="4" style="width:100%;box-sizing:border-box;padding:10px;"></textarea><label style="display:block;margin-top:12px;">Your final answer</label><input id="practiceAnswer" style="width:100%;box-sizing:border-box;padding:10px;"><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"><button onclick="practicePrompt()">🤔 Socratic prompt</button><button onclick="practiceHint()">💡 Hint</button><button onclick="practiceCheck()">✅ Check my answer</button><button id="practiceSolutionButton" onclick="practiceSolution()" disabled>👀 Worked solution</button><button onclick="openMathsScratchpad('coordinate-grid','Use the coordinate Scratchpad to test the graph or equation.')">✏️ Scratchpad</button></div><div id="practiceSupport" style="display:none;margin-top:12px;background:#f7f2e9;padding:12px;border-radius:8px;"></div><div id="practiceFeedback" style="display:none;margin-top:12px;padding:12px;border-radius:8px;font-weight:bold;"></div></div><div style="display:flex;justify-content:space-between;margin-top:14px;"><button id="practicePrevious" onclick="practicePrev()">← Previous</button><button id="practiceNext" onclick="practiceNext()">Next →</button></div></div></div>
+
+<!-- NEO Maths Scratchpad -->
+<div id="neoScratchpadOverlay" hidden
+     style="position:fixed; inset:0; z-index:9999; background:rgba(39,45,35,0.70); padding:16px; overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle"
+       style="max-width:980px; margin:10px auto; background:#f7f3ea; border-radius:18px; box-shadow:0 12px 40px rgba(0,0,0,0.28); padding:16px; font-family:Arial,sans-serif; color:#2f3429;">
+    <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0; color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0; color:#5c6b4f;">A space to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()"
+              style="padding:9px 13px; background:#ffffff; border:1px solid #7d8875; border-radius:9px; font-weight:bold; cursor:pointer;">
+        × Close
+      </button>
+    </div>
+
+    <p style="background:#fffaf0; padding:10px; border-radius:10px; margin:14px 0;">
+      You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:10px; font-size:0.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')"
+              style="padding:7px 10px; border:1px solid #4d6b47; background:#e5f0e2; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ✏️ Pen
+      </button>
+
+      <label for="scratchColour" style="font-weight:bold; white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:115px;">
+        <option value="#2f3429">Charcoal</option>
+        <option value="#315d72">Ocean blue</option>
+        <option value="#5c6b4f">Moss green</option>
+        <option value="#70466b">Plum</option>
+        <option value="#9a5f3f">Earth brown</option>
+        <option value="#b24c4c">Berry red</option>
+      </select>
+
+      <label for="scratchWidth" style="font-weight:bold; white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()"
+              style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:92px;">
+        <option value="2">Thin</option>
+        <option value="4" selected>Medium</option>
+        <option value="7">Thick</option>
+      </select>
+
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')"
+              style="padding:7px 10px; border:1px solid #7d8875; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🧽 Eraser
+      </button>
+
+      <button type="button" onclick="scratchUndo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↶ Undo
+      </button>
+
+      <button type="button" onclick="scratchRedo()"
+              style="padding:7px 10px; border:1px solid #738697; background:#ffffff; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        ↷ Redo
+      </button>
+
+      <button type="button" onclick="setScratchTool('note')"
+              style="padding:7px 10px; border:1px solid #8a7932; background:#fff7c7; border-radius:8px; cursor:pointer; white-space:nowrap;">
+        🗒 Sticky Note
+      </button>
+
+      <span style="display:inline-flex; align-items:center; gap:6px; white-space:nowrap; flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold; white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)"
+                style="padding:7px 8px; border:1px solid #bcae98; border-radius:8px; min-width:145px;">
+          <option value="blank">Blank</option>
+          <option value="square-grid">Square grid</option>
+          <option value="coordinate-grid">Coordinate grid</option>
+          <option value="ratio-table">Ratio table</option>
+          <option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+
+    <div id="neoScratchCanvasWrap"
+         style="position:relative; background:#ffffff; border:1px solid #cdbfa9; border-radius:12px; overflow:hidden; touch-action:none;">
+      <canvas id="neoScratchCanvas" width="920" height="560"
+              style="display:block; width:100%; height:auto; background:#ffffff; touch-action:none; cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer"
+           aria-label="Scratchpad sticky notes"
+           style="position:absolute; inset:0; pointer-events:none;"></div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px; background:#e5edf4; border:1px solid #315d72; border-radius:8px; cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px; background:#e5f0e2; border:1px solid #4d6b47; border-radius:8px; cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px; background:#f3e6f1; border:1px solid #70466b; border-radius:8px; cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px; background:#fffaf0; border:1px solid #8a7932; border-radius:8px; cursor:pointer;">🗑 Clear board</button>
+    </div>
+
+    <div id="scratchStatus" aria-live="polite"
+         style="display:none; margin-top:10px; padding:10px; border-radius:9px; background:#e5edf4;"></div>
+  </div>
+</div>
+
+
+<script>
+function openPracticeSession() {
+  document.getElementById("lessonView").hidden = true;
+  document.getElementById("practiceView").hidden = false;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function returnToLesson() {
+  document.getElementById("practiceView").hidden = true;
+  document.getElementById("lessonView").hidden = false;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function normaliseText(value) {
+  return String(value).toLowerCase().replace(/£/g,"").replace(/,/g,"").replace(/\s+/g," ").trim();
+}
+function numberFrom(value) {
+  const cleaned = normaliseText(value).replace(/[a-z]/g,"").replace(/×/g,"").replace(/x/g,"").trim();
+  if (cleaned.includes("/")) {
+    const parts = cleaned.split("/");
+    if (parts.length === 2 && Number(parts[1]) !== 0) return Number(parts[0]) / Number(parts[1]);
+  }
+  return Number(cleaned);
+}
+function closeOtherPanels(current) {
+  document.querySelectorAll("#lessonView details").forEach(function(d) {
+    if (d !== current && d.dataset.keepOpen !== "true") d.open = false;
+  });
+}
+document.querySelectorAll("#lessonView details").forEach(function(d) {
+  d.addEventListener("toggle", function(){ if (d.open) closeOtherPanels(d); });
+});
+</script>
+
+<script>
+function eqString(m,c){let mp=m===1?"x":m===-1?"-x":m+"x";return c===0?"y = "+mp:"y = "+mp+(c>0?" + "+c:" - "+Math.abs(c));}
+function previewEquation(){mValue.textContent=mSlider.value;cValue.textContent=cSlider.value;lineEquation.textContent=eqString(Number(mSlider.value),Number(cSlider.value));}
+function drawGraph(m,c){
+ const svg=lineGraph,size=420,scale=32,origin=size/2;svg.innerHTML="";const sx=x=>origin+x*scale,sy=y=>origin-y*scale;
+ for(let i=-6;i<=6;i++){let v=document.createElementNS("http://www.w3.org/2000/svg","line");v.setAttribute("x1",sx(i));v.setAttribute("y1",0);v.setAttribute("x2",sx(i));v.setAttribute("y2",size);v.setAttribute("stroke",i===0?"#4f5b45":"#e0dbcf");v.setAttribute("stroke-width",i===0?"2":"1");svg.appendChild(v);let h=v.cloneNode();h.setAttribute("x1",0);h.setAttribute("y1",sy(i));h.setAttribute("x2",size);h.setAttribute("y2",sy(i));svg.appendChild(h);}
+ let line=document.createElementNS("http://www.w3.org/2000/svg","line"),x1=-7,x2=7;line.setAttribute("x1",sx(x1));line.setAttribute("y1",sy(m*x1+c));line.setAttribute("x2",sx(x2));line.setAttribute("y2",sy(m*x2+c));line.setAttribute("stroke","#315d72");line.setAttribute("stroke-width","3");svg.appendChild(line);
+ [-2,-1,0,1,2].forEach(x=>{const y=m*x+c;if(y>=-7&&y<=7){let d=document.createElementNS("http://www.w3.org/2000/svg","circle");d.setAttribute("cx",sx(x));d.setAttribute("cy",sy(y));d.setAttribute("r","5");d.setAttribute("fill","#7a5a2e");svg.appendChild(d);}});
+}
+function showExplorerGraph(){const m=Number(mSlider.value),c=Number(cSlider.value);drawGraph(m,c);let h="<table style='width:100%;border-collapse:collapse;background:#fff'><tr><th style='border:1px solid #b9b09f;padding:7px'>x</th><th style='border:1px solid #b9b09f;padding:7px'>y</th></tr>";[-2,-1,0,1,2].forEach(x=>h+=`<tr><td style="border:1px solid #b9b09f;padding:7px;text-align:center">${x}</td><td style="border:1px solid #b9b09f;padding:7px;text-align:center">${m*x+c}</td></tr>`);lineTable.innerHTML=h+"</table>";lineMeaning.innerHTML=`<p><b>Start:</b> c = ${c}, so the line crosses at (0, ${c}).</p><p><b>Change:</b> m = ${m}, so y changes by ${m} for each 1 in x.</p>`;}
+function randomExplorer(){mSlider.value=Math.floor(Math.random()*9)-4;cSlider.value=Math.floor(Math.random()*9)-4;previewEquation();showExplorerGraph();} previewEquation();showExplorerGraph();
+
+const matches=[
+{story:"A taxi costs £3 before the journey starts, then £2 per mile.",eq:"y = 2x + 3",table:"0→3, 1→5, 2→7",graph:"Crosses at 3 and rises by 2",p:"Which number is the starting cost?",h:"Fixed cost is c; cost per mile is m."},
+{story:"A tank starts with 10 litres and loses 1 litre each minute.",eq:"y = -x + 10",table:"0→10, 1→9, 2→8",graph:"Crosses at 10 and falls by 1",p:"Is the amount increasing or decreasing?",h:"Losing water gives a negative gradient."},
+{story:"A learner has 5 points and gains 4 per challenge.",eq:"y = 4x + 5",table:"0→5, 1→9, 2→13",graph:"Crosses at 5 and rises by 4",p:"What exists before any new challenge?",h:"Already has means starting value."},
+{story:"A candle is 12 cm tall and burns down by 2 cm each hour.",eq:"y = -2x + 12",table:"0→12, 1→10, 2→8",graph:"Crosses at 12 and falls by 2",p:"What is the starting height and hourly change?",h:"Burns down means the gradient is negative."}
+];const eqOpts=matches.map(x=>x.eq),tableOpts=matches.map(x=>x.table),graphOpts=matches.map(x=>x.graph);let matchIndex=0;const matchSaved=matches.map(()=>({eq:"",table:"",graph:"",reason:""}));
+function fillSel(el,opts){el.innerHTML="<option value=''>Choose</option>"+opts.map(o=>`<option>${o}</option>`).join("");}
+function matcherSave(){matchSaved[matchIndex]={eq:matchEq.value,table:matchTable.value,graph:matchGraph.value,reason:matchReason.value};}
+function matcherRender(){fillSel(matchEq,eqOpts);fillSel(matchTable,tableOpts);fillSel(matchGraph,graphOpts);const q=matches[matchIndex],s=matchSaved[matchIndex];matchLabel.textContent=`Match ${matchIndex+1} of ${matches.length}`;matchStory.innerHTML="<b>Story:</b> "+q.story;matchEq.value=s.eq;matchTable.value=s.table;matchGraph.value=s.graph;matchReason.value=s.reason;matchSupport.style.display="none";matchFeedback.style.display="none";matchPrev.disabled=matchIndex===0;matchNext.textContent=matchIndex===matches.length-1?"Finish":"Next →";}
+function matcherPrompt(){matchSupport.style.display="block";matchSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+matches[matchIndex].p;}function matcherHint(){matchSupport.style.display="block";matchSupport.innerHTML="<b>💡 Hint:</b> "+matches[matchIndex].h;}function matcherSolution(){const q=matches[matchIndex];matchSupport.style.display="block";matchSupport.innerHTML=`<b>👀 Worked solution:</b><br>${q.eq}<br>${q.table}<br>${q.graph}`;}
+function matcherCheck(){matcherSave();const q=matches[matchIndex],s=matchSaved[matchIndex];matchFeedback.style.display="block";if(!s.eq||!s.table||!s.graph||s.reason.trim().length<10){matchFeedback.style.background="#fff1cf";matchFeedback.textContent="Complete the three matches and add a short reason.";}else if(s.eq===q.eq&&s.table===q.table&&s.graph===q.graph){matchFeedback.style.background="#e3f0df";matchFeedback.textContent="Correct. You matched start and change across representations.";}else{matchFeedback.style.background="#f6dddd";matchFeedback.textContent="Not quite yet. Find the starting value first, then the change each step.";}}
+function matcherPrev(){if(matchIndex>0){matcherSave();matchIndex--;matcherRender();}}function matcherNext(){matcherSave();if(matchIndex<matches.length-1){matchIndex++;matcherRender();}else{matchFeedback.style.display="block";matchFeedback.style.background="#e5edf4";matchFeedback.textContent="You have reached the end of the Representation Matcher.";}}matcherRender();
+
+const dets=[{q:"Crosses the y-axis at <b>3</b>. y rises by <b>2</b> when x rises by 1.",m:2,c:3,p:"Which clue gives c and which gives m?",h:"Crosses the y-axis gives c."},{q:"Crosses at <b>5</b>. y decreases by <b>1</b> for each 1 in x.",m:-1,c:5,p:"What sign should the gradient have?",h:"A falling line has negative gradient."},{q:"Passes through <b>(0,-2)</b> and <b>(1,2)</b>.",m:4,c:-2,p:"Which point gives the intercept directly?",h:"When x=0, y=c."},{q:"Passes through <b>(0,4)</b> and <b>(2,-2)</b>.",m:-3,c:4,p:"Find change in y divided by change in x.",h:"(-2-4)/(2-0) = -6/2."}];let detIndex=0;const detSaved=dets.map(()=>({m:"",c:"",eq:""}));
+function normEq(v){return String(v).toLowerCase().replace(/\s+/g,"").replace(/−/g,"-");}function detSave(){detSaved[detIndex]={m:detM.value,c:detC.value,eq:detEq.value};}function detRender(){const q=dets[detIndex],s=detSaved[detIndex];detLabel.textContent=`Line Detective ${detIndex+1} of ${dets.length}`;detQuestion.innerHTML=q.q;detM.value=s.m;detC.value=s.c;detEq.value=s.eq;detSupport.style.display="none";detFeedback.style.display="none";detPrev.disabled=detIndex===0;detNext.textContent=detIndex===dets.length-1?"Finish":"Next →";}
+function detPrompt(){detSupport.style.display="block";detSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+dets[detIndex].p;}function detHint(){detSupport.style.display="block";detSupport.innerHTML="<b>💡 Hint:</b> "+dets[detIndex].h;}function detSolution(){const q=dets[detIndex];detSupport.style.display="block";detSupport.innerHTML=`<b>👀 Worked solution:</b> m=${q.m}, c=${q.c}, ${eqString(q.m,q.c)}`;}
+function detCheck(){detSave();const q=dets[detIndex],s=detSaved[detIndex],m=Number(s.m),c=Number(s.c),eq=normEq(s.eq),expected=normEq(eqString(q.m,q.c));detFeedback.style.display="block";if(!Number.isFinite(m)||!Number.isFinite(c)||!eq){detFeedback.style.background="#fff1cf";detFeedback.textContent="Enter m, c and the equation.";}else if(m===q.m&&c===q.c&&eq===expected){detFeedback.style.background="#e3f0df";detFeedback.textContent="Correct. You identified start, change and equation.";}else if(m===q.m&&c===q.c){detFeedback.style.background="#fff1cf";detFeedback.textContent="m and c are correct. Recheck the equation format.";}else{detFeedback.style.background="#f6dddd";detFeedback.textContent="Not quite yet. Find the start, then the change.";}}
+function detPrevFn(){if(detIndex>0){detSave();detIndex--;detRender();}}function detNextFn(){detSave();if(detIndex<dets.length-1){detIndex++;detRender();}else{detFeedback.style.display="block";detFeedback.style.background="#e5edf4";detFeedback.textContent="You have reached the end of Line Detective.";}}detRender();
+
+function updateStory(){const m=Number(storyM.value),c=Number(storyC.value),title=storyTitle.value.trim()||"My Linear Model",x=storyX.value.trim()||"x",y=storyY.value.trim()||"y";if(!Number.isFinite(m)||!Number.isFinite(c)){storyPreview.innerHTML="<b>Enter valid m and c values.</b>";return;}let t="<table style='width:100%;border-collapse:collapse;background:#fffaf0'><tr><th style='border:1px solid #c8b99a;padding:7px'>x</th><th style='border:1px solid #c8b99a;padding:7px'>y</th></tr>";[0,1,2,3,4].forEach(v=>t+=`<tr><td style="border:1px solid #c8b99a;padding:7px;text-align:center">${v}</td><td style="border:1px solid #c8b99a;padding:7px;text-align:center">${m*v+c}</td></tr>`);storyPreview.innerHTML=`<h3 style="color:#7a5a2e">${title}</h3><p><b>Equation:</b> ${eqString(m,c)}</p><p><b>x:</b> ${x} | <b>y:</b> ${y}</p><p><b>Gradient meaning:</b> y changes by ${m} for each 1 more ${x}.</p><p><b>Intercept meaning:</b> when x=0, y=${c}.</p>${t}</table><p><b>Story:</b> ${storyExplain.value.trim()||"Add your story above."}</p><p><b>Limitation:</b> ${storyLimit.value.trim()||"Add a limitation above."}</p>`;}
+function checkStory(){storyFeedback.style.display="block";if(storyExplain.value.trim().length<25){storyFeedback.style.background="#fff1cf";storyFeedback.textContent="Add a fuller story explaining the start and change.";}else if(storyLimit.value.trim().length<15){storyFeedback.style.background="#fff1cf";storyFeedback.textContent="Add where the model may stop making sense.";}else{storyFeedback.style.background="#e3f0df";storyFeedback.textContent="Strong model. You connected equation, meaning and limitation.";}}updateStory();
+
+const graphPractice=[{l:"1 of 8 · Gradient",q:"In <b>y = 3x + 2</b>, what is the gradient?",a:["3"],p:"Which part multiplies x?",h:"m is the gradient.",s:"The gradient is 3."},{l:"2 of 8 · Intercept",q:"In <b>y = -2x + 5</b>, what is the y-intercept?",a:["5"],p:"Which value is c?",h:"The intercept is c.",s:"c=5, so the intercept is 5."},{l:"3 of 8 · Substitute",q:"For <b>y = 2x + 1</b>, what is y when x=4?",a:["9"],p:"Substitute x=4.",h:"2×4+1.",s:"y=9."},{l:"4 of 8 · Starting value",q:"For <b>y = 4x + 10</b> in a savings model, how much was there at the start?",a:["10","£10"],p:"At the start means x=0.",h:"Look at c.",s:"The start is £10."},{l:"5 of 8 · Direction",q:"A line falls from left to right. Is its gradient positive, negative or zero?",a:["negative"],p:"As x increases, what happens to y?",h:"Falling means decreasing.",s:"The gradient is negative."},{l:"6 of 8 · Equation",q:"A line has gradient 5 and y-intercept -1. Write its equation.",a:["y=5x-1"],p:"Use y=mx+c.",h:"m=5, c=-1.",s:"y=5x-1."},{l:"7 of 8 · Two points",q:"A line passes through (0,2) and (1,6). What is the gradient?",a:["4"],p:"How much does y change?",h:"6-2=4 while x changes by 1.",s:"Gradient = 4/1 = 4."},{l:"8 of 8 · Context",q:"A lunch model is <b>y = 6x + 30</b>. What does the 6 mean?",a:["cost per person","£6 per person","6 per person","six pounds per person"],p:"Which part shows repeated change?",h:"m is the cost added for each person.",s:"The cost increases by £6 per person."}];
+let pIndex=0;const pSaved=graphPractice.map(()=>({w:"",a:""})),pAttempts=graphPractice.map(()=>0),pDone=graphPractice.map(()=>false);
+function pSave(){pSaved[pIndex]={w:practiceWorking.value,a:practiceAnswer.value};}function pRender(){const q=graphPractice[pIndex],s=pSaved[pIndex];practiceLabel.textContent="Question "+q.l;practiceQuestion.innerHTML=q.q;practiceWorking.value=s.w;practiceAnswer.value=s.a;practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrevious.disabled=pIndex===0;practiceNext.textContent=pIndex===graphPractice.length-1?"Finish":"Next →";practiceSolutionButton.disabled=pAttempts[pIndex]<1;practiceDots.innerHTML="";graphPractice.forEach((_,i)=>{const d=document.createElement("span");d.textContent=i+1;d.style.cssText="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:"+(pDone[i]?"#e3f0df":i===pIndex?"#e5edf4":"#fff");practiceDots.appendChild(d);});}
+function practicePrompt(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+graphPractice[pIndex].p;}function practiceHint(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+graphPractice[pIndex].h;}
+function practiceCheck(){pSave();pAttempts[pIndex]++;const learner=normEq(pSaved[pIndex].a),ok=graphPractice[pIndex].a.some(x=>normEq(x)===learner);pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your straight-line reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the start or the change and test it.";}}
+function practiceSolution(){pAttempts[pIndex]++;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+graphPractice[pIndex].s;practiceSolutionButton.disabled=false;}
+function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function practiceNext(){pSave();if(pIndex<graphPractice.length-1){pIndex++;pRender();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. You have ${pDone.filter(Boolean).length} of 8 correct so far.`;}}pRender();
+</script>
+
+<script>
+(function () {
+  const canvas = document.getElementById("neoScratchCanvas");
+  const ctx = canvas.getContext("2d");
+  let tool = "pen";
+  let drawing = false;
+  let lineWidth = 4;
+  let penColour = "#2f3429";
+  let template = "blank";
+  let strokes = [];
+  let stickyNotes = [];
+  let redoStack = [];
+  let currentStroke = null;
+  let activeNoteId = null;
+  let noteDragOffset = { x: 0, y: 0 };
+  const storageKey = "neoMathsScratchpadWorkingPage";
+
+  function canvasPoint(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX - rect.left) * (canvas.width / rect.width),
+      y: (event.clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  function drawBackground() {
+    ctx.save();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (template === "square-grid" || template === "coordinate-grid") {
+      ctx.strokeStyle = "#e2ded4";
+      ctx.lineWidth = 1;
+      for (let x = 20; x < canvas.width; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 20; y < canvas.height; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+    }
+
+    if (template === "coordinate-grid") {
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      ctx.strokeStyle = "#4f5b45";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
+      ctx.fillStyle = "#4f5b45";
+      ctx.font = "15px Arial";
+      ctx.fillText("x", canvas.width - 22, oy - 8);
+      ctx.fillText("y", ox + 8, 18);
+      ctx.font = "11px Arial";
+      for (let i = -10; i <= 10; i++) {
+        if (i === 0) continue;
+        const x = ox + i * 40;
+        if (x > 0 && x < canvas.width) ctx.fillText(String(i), x - 4, oy + 15);
+      }
+      for (let i = -6; i <= 6; i++) {
+        if (i === 0) continue;
+        const y = oy - i * 40;
+        if (y > 0 && y < canvas.height) ctx.fillText(String(i), ox + 6, y + 4);
+      }
+    }
+
+    if (template === "ratio-table") {
+      ctx.fillStyle = "#3f5f45";
+      ctx.font = "bold 20px Arial";
+      ctx.fillText("Ratio Table", 35, 42);
+      const left = 40, top = 80, rowH = 82, colW = 205;
+      const labels = ["People", "Quantity A", "Quantity B"];
+      ctx.font = "bold 16px Arial";
+      ctx.strokeStyle = "#8fae7e"; ctx.lineWidth = 2;
+      for (let r = 0; r <= 3; r++) {
+        ctx.beginPath(); ctx.moveTo(left, top + r*rowH); ctx.lineTo(left + colW*4, top + r*rowH); ctx.stroke();
+      }
+      for (let c = 0; c <= 4; c++) {
+        ctx.beginPath(); ctx.moveTo(left + c*colW, top); ctx.lineTo(left + c*colW, top + rowH*3); ctx.stroke();
+      }
+      labels.forEach((label, i) => ctx.fillText(label, left + 12, top + 50 + i*rowH));
+      ctx.font = "14px Arial";
+      ctx.fillText("Write a starting ratio in the first number column, then scale it.", 40, 360);
+    }
+
+    if (template === "double-number-line") {
+      ctx.fillStyle = "#3f5f45";
+      ctx.font = "bold 20px Arial";
+      ctx.fillText("Double Number Line", 35, 42);
+      const xs = [90, 250, 410, 570, 730, 890];
+      ctx.strokeStyle = "#54718a"; ctx.lineWidth = 3;
+      [180, 350].forEach(y => {
+        ctx.beginPath(); ctx.moveTo(70, y); ctx.lineTo(900, y); ctx.stroke();
+        xs.forEach(x => { ctx.beginPath(); ctx.moveTo(x, y-10); ctx.lineTo(x, y+10); ctx.stroke(); });
+      });
+      ctx.fillStyle = "#365a68"; ctx.font = "bold 16px Arial";
+      ctx.fillText("Quantity A", 70, 145);
+      ctx.fillText("Quantity B", 70, 315);
+      ctx.font = "14px Arial";
+      ctx.fillText("Mark matching values on both lines. What multiplier connects them?", 70, 455);
+    }
+
+    ctx.restore();
+  }
+
+  function drawStroke(stroke) {
+    if (!stroke || stroke.points.length < 1) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = stroke.tool === "eraser" ? "#ffffff" : (stroke.colour || "#2f3429");
+    ctx.lineWidth = stroke.tool === "eraser" ? Math.max(18, stroke.width * 5) : stroke.width;
+    ctx.beginPath();
+    ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+    stroke.points.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+    if (stroke.points.length === 1) ctx.lineTo(stroke.points[0].x + 0.1, stroke.points[0].y + 0.1);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderStickyNotes() {
+    const layer = document.getElementById("neoStickyLayer");
+    layer.innerHTML = "";
+
+    stickyNotes.forEach(function (note) {
+      const card = document.createElement("div");
+      card.dataset.noteId = note.id;
+      card.style.position = "absolute";
+      card.style.left = note.x + "%";
+      card.style.top = note.y + "%";
+      card.style.width = "180px";
+      card.style.minHeight = "120px";
+      card.style.background = note.colour || "#fff7c7";
+      card.style.border = "1px solid #b9a85b";
+      card.style.borderRadius = "8px";
+      card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.16)";
+      card.style.pointerEvents = "auto";
+      card.style.touchAction = "none";
+
+      const bar = document.createElement("div");
+      bar.style.display = "flex";
+      bar.style.justifyContent = "space-between";
+      bar.style.alignItems = "center";
+      bar.style.padding = "5px 7px";
+      bar.style.cursor = "move";
+      bar.style.background = "rgba(255,255,255,0.35)";
+      bar.style.borderBottom = "1px solid rgba(120,100,40,0.25)";
+      bar.innerHTML = "<strong style='font-size:12px;'>Sticky note</strong>";
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.setAttribute("aria-label", "Delete sticky note");
+      remove.style.border = "none";
+      remove.style.background = "transparent";
+      remove.style.fontWeight = "bold";
+      remove.style.cursor = "pointer";
+      remove.addEventListener("click", function (event) {
+        event.stopPropagation();
+        stickyNotes = stickyNotes.filter(function (n) { return n.id !== note.id; });
+        renderStickyNotes();
+        autoStore();
+      });
+      bar.appendChild(remove);
+
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought, question or reminder...";
+      area.style.width = "100%";
+      area.style.height = "92px";
+      area.style.boxSizing = "border-box";
+      area.style.border = "none";
+      area.style.background = "transparent";
+      area.style.resize = "none";
+      area.style.padding = "8px";
+      area.style.font = "14px Arial";
+      area.style.color = "#2f3429";
+      area.addEventListener("input", function () {
+        note.text = area.value;
+        autoStore();
+      });
+
+      bar.addEventListener("pointerdown", function (event) {
+        activeNoteId = note.id;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        noteDragOffset.x = event.clientX - cardRect.left;
+        noteDragOffset.y = event.clientY - cardRect.top;
+        bar.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      bar.addEventListener("pointermove", function (event) {
+        if (activeNoteId !== note.id) return;
+        const wrap = document.getElementById("neoScratchCanvasWrap").getBoundingClientRect();
+        const leftPx = Math.max(0, Math.min(wrap.width - card.offsetWidth, event.clientX - wrap.left - noteDragOffset.x));
+        const topPx = Math.max(0, Math.min(wrap.height - card.offsetHeight, event.clientY - wrap.top - noteDragOffset.y));
+        note.x = (leftPx / wrap.width) * 100;
+        note.y = (topPx / wrap.height) * 100;
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+        event.preventDefault();
+      });
+
+      function endNoteDrag(event) {
+        if (activeNoteId !== note.id) return;
+        activeNoteId = null;
+        try { bar.releasePointerCapture(event.pointerId); } catch (e) {}
+        autoStore();
+      }
+
+      bar.addEventListener("pointerup", endNoteDrag);
+      bar.addEventListener("pointercancel", endNoteDrag);
+
+      card.appendChild(bar);
+      card.appendChild(area);
+      layer.appendChild(card);
+    });
+  }
+
+  function addStickyNote(x, y) {
+    const noteColours = ["#fff7c7", "#e8f0e3", "#e5eef2", "#ece7f2", "#f1e9dc"];
+    stickyNotes.push({
+      id: "note-" + Date.now() + "-" + Math.floor(Math.random() * 10000),
+      x: Math.max(0, Math.min(78, x)),
+      y: Math.max(0, Math.min(72, y)),
+      text: "",
+      colour: noteColours[stickyNotes.length % noteColours.length]
+    });
+    renderStickyNotes();
+    autoStore();
+    status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+  }
+
+  function renderScratchpad() {
+    drawBackground();
+    strokes.forEach(drawStroke);
+    renderStickyNotes();
+  }
+
+  function status(message, bg) {
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = bg || "#e5edf4";
+    box.textContent = message;
+  }
+
+  canvas.addEventListener("pointerdown", function (event) {
+    if (tool === "note") {
+      const rect = canvas.getBoundingClientRect();
+      const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+      addStickyNote(xPercent, yPercent);
+      setScratchTool("pen");
+      event.preventDefault();
+      return;
+    }
+
+    drawing = true;
+    canvas.setPointerCapture(event.pointerId);
+    currentStroke = { tool, width: lineWidth, colour: penColour, points: [canvasPoint(event)] };
+    strokes.push(currentStroke);
+    redoStack = [];
+    drawStroke(currentStroke);
+    event.preventDefault();
+  });
+
+  canvas.addEventListener("pointermove", function (event) {
+    if (!drawing || !currentStroke) return;
+    currentStroke.points.push(canvasPoint(event));
+    renderScratchpad();
+    event.preventDefault();
+  });
+
+  function finishDrawing(event) {
+    if (!drawing) return;
+    drawing = false;
+    currentStroke = null;
+    try { canvas.releasePointerCapture(event.pointerId); } catch (e) {}
+    autoStore();
+    event.preventDefault();
+  }
+  canvas.addEventListener("pointerup", finishDrawing);
+  canvas.addEventListener("pointercancel", finishDrawing);
+  canvas.addEventListener("pointerleave", function (event) {
+    if (drawing && event.pointerType === "mouse") finishDrawing(event);
+  });
+
+  function autoStore() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({ template, strokes, stickyNotes, penColour }));
+    } catch (e) {}
+  }
+
+  function restoreStored() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if (saved && Array.isArray(saved.strokes)) {
+        template = saved.template || "blank";
+        strokes = saved.strokes;
+        stickyNotes = Array.isArray(saved.stickyNotes) ? saved.stickyNotes : [];
+        penColour = saved.penColour || "#2f3429";
+        document.getElementById("scratchTemplate").value = template;
+        document.getElementById("scratchColour").value = penColour;
+      }
+    } catch (e) {}
+    renderScratchpad();
+  }
+
+  window.openMathsScratchpad = function (requestedTemplate, subtitle) {
+    if (requestedTemplate) {
+      template = requestedTemplate;
+      document.getElementById("scratchTemplate").value = template;
+    }
+    document.getElementById("neoScratchpadSubtitle").textContent =
+      subtitle || "A space to predict, sketch, test and revise.";
+    document.getElementById("neoScratchpadOverlay").hidden = false;
+    document.body.style.overflow = "hidden";
+    renderScratchpad();
+  };
+
+  window.closeMathsScratchpad = function () {
+    autoStore();
+    document.getElementById("neoScratchpadOverlay").hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  window.setScratchTool = function (selected) {
+    tool = selected;
+    document.getElementById("scratchPenBtn").style.background = selected === "pen" ? "#e5f0e2" : "#ffffff";
+    document.getElementById("scratchEraserBtn").style.background = selected === "eraser" ? "#e5f0e2" : "#ffffff";
+    canvas.style.cursor = selected === "eraser" ? "cell" : (selected === "note" ? "copy" : "crosshair");
+    if (selected === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+
+  window.updateScratchWidth = function () {
+    lineWidth = Number(document.getElementById("scratchWidth").value);
+  };
+
+  window.updateScratchColour = function () {
+    penColour = document.getElementById("scratchColour").value;
+    setScratchTool("pen");
+    autoStore();
+    status("Pen colour changed.", "#e5edf4");
+  };
+
+  window.changeScratchTemplate = function (selected) {
+    template = selected;
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.scratchUndo = function () {
+    if (!strokes.length) return status("Nothing to undo yet.", "#fff1cf");
+    redoStack.push(strokes.pop());
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.scratchRedo = function () {
+    if (!redoStack.length) return status("Nothing to redo yet.", "#fff1cf");
+    strokes.push(redoStack.pop());
+    renderScratchpad();
+    autoStore();
+  };
+
+  window.newScratchPage = function () {
+    if (strokes.length && !confirm("Start a new Scratchpad page? Save the current page first if you want to keep it.")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("New Scratchpad page ready.", "#e5edf4");
+  };
+
+  window.saveScratchPage = function () {
+    autoStore();
+    status("Working page saved in this browser for this lesson environment.", "#e3f0df");
+  };
+
+  window.clearScratchpad = function () {
+    if (!confirm("Clear every mark from this Scratchpad page?")) return;
+    strokes = [];
+    stickyNotes = [];
+    redoStack = [];
+    renderScratchpad();
+    autoStore();
+    status("Scratchpad cleared.", "#e5edf4");
+  };
+
+  window.downloadScratchImage = function () {
+    renderScratchpad();
+    canvas.toBlob(function (blob) {
+      if (!blob) return status("The image could not be prepared in this browser.", "#f6dddd");
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "NEO_Maths_Scratchpad.png";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      status("Scratchpad image prepared.", "#e3f0df");
+    }, "image/png");
+  };
+
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !document.getElementById("neoScratchpadOverlay").hidden) {
+      closeMathsScratchpad();
+    }
+  });
+
+  restoreStored();
+})();
+</script>
+
+</body></html>
