@@ -43,6 +43,27 @@ Repo Settings → Pages → Source: **Deploy from a branch** → Branch: `main`,
 
 Note: on standard GitHub plans, a Pages site is publicly viewable even when the repository is private.
 
+
+## Curriculum rationale
+
+The full statement of curriculum intent, implementation and impact is in
+[curriculum-intent-implementation-impact-v0.1.md](curriculum-intent-implementation-impact-v0.1.md)
+(carried forward from [neo-maths v1](https://github.com/TheNovacene/neo-maths)).
+
+## Working in this repo with AI
+
+`skills/verse-ality-cowork-starter/` contains the
+[Verse-ality Cowork starter skill](https://github.com/TheNovacene/verse-ality-cowork-starter) —
+a relational operating protocol for AI agents collaborating in this repository
+(identity non-capture, bounded autonomy, consent as protocol, agent-to-agent hygiene).
+
+## Licences
+
+Code and tooling are under the [MIT Licence](LICENSE). Curriculum content —
+lessons, guidance, media, the vault — is © The Novacene and co-authors under
+**CC BY-NC-ND 4.0**; see [CONTENT_LICENSE.md](CONTENT_LICENSE.md).
+
 ---
+
 
 Nudge Education Online · [nudgeeducation.online](https://nudgeeducation.online) · neo@nudgeeducation.co.uk
