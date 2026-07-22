@@ -53,6 +53,58 @@ SNIPPET = (
     '\n<script>NEOProgress.autoTrack({lesson_id!r});</script>\n'
 )
 
+CHROME_STYLE = """
+<style>
+  .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
+  .neo-chrome-header { background: #1A2E3B; color: #F7F7F5; padding: 0.6rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .neo-chrome-header a.neo-home { color: #2AB3A0; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
+  .neo-chrome-header a.neo-home:hover { text-decoration: underline; }
+  .neo-chrome-header .neo-crumb { font-size: 0.8rem; color: rgba(247,247,245,0.85); text-align: right; }
+  .neo-chrome-header .neo-crumb strong { color: #FFFFFF; font-weight: 600; }
+  .neo-chrome-footer { background: #1A2E3B; color: rgba(247,247,245,0.85); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.8rem; margin-top: 2rem; }
+  .neo-chrome-footer a { color: #2AB3A0; text-decoration: none; margin: 0 0.6rem; }
+  .neo-chrome-footer a:hover { text-decoration: underline; }
+  .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
+</style>
+"""
+
+CHROME_HEADER = (
+    '<div class="neo-chrome neo-chrome-header">'
+    '<a class="neo-home" href="{rel}index.html">&larr; NEO Maths home</a>'
+    '<div class="neo-crumb">{unit} &middot; <strong>{num} &mdash; {title}</strong></div>'
+    '</div>'
+)
+
+CHROME_FOOTER = (
+    '<div class="neo-chrome neo-chrome-footer">'
+    '<div class="neo-mark">NE<span>O</span> by Nudge Education</div>'
+    '<div>'
+    '<a href="{rel}index.html">All lessons</a>'
+    '<a href="{rel}cornerstones.html">The Six Cornerstones</a>'
+    '<a href="{rel}curriculum.html">Our curriculum</a>'
+    '</div>'
+    '</div>'
+)
+
+
+def inject_chrome(html: str, unit: str, num: str, title: str, depth: int) -> str:
+    if "neo-chrome" in html:
+        return html
+    rel = "../" * depth
+    header = CHROME_STYLE + CHROME_HEADER.format(rel=rel, unit=unit, num=num, title=title)
+    footer = CHROME_FOOTER.format(rel=rel)
+    m = re.search(r"<body[^>]*>", html, re.IGNORECASE)
+    if m:
+        html = html[: m.end()] + "\n" + header + "\n" + html[m.end() :]
+    else:
+        html = header + "\n" + html
+    if re.search(r"</body>", html, re.IGNORECASE):
+        html = re.sub(r"</body>", footer + "\n</body>", html, count=1, flags=re.IGNORECASE)
+    else:
+        html = html + footer
+    return html
+
 
 def inject_progress(html: str, lesson_id: str, depth: int) -> str:
     rel = "../" * depth
@@ -82,7 +134,9 @@ def main() -> None:
             dest.parent.mkdir(parents=True, exist_ok=True)
             html = src.read_text(encoding="utf-8", errors="replace")
             depth = len(Path(lesson["file"]).parents) - 1
-            dest.write_text(inject_progress(html, lesson["id"], depth), encoding="utf-8")
+            html = inject_progress(html, lesson["id"], depth)
+            html = inject_chrome(html, unit["title"], lesson["num"], lesson["title"], depth)
+            dest.write_text(html, encoding="utf-8")
             lesson["status"] = "live"
             live.append(lesson["id"])
 
