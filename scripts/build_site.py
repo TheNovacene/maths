@@ -21,11 +21,11 @@ CURRICULUM = DOCS / "data" / "curriculum.json"
 # lesson id -> newest source file in the vault (update when versions move on)
 SOURCES = {
     "aps-01-rounding-to-significant-figures":
-        "02_Foundations/Accuracy, Powers and Scale/Lesson 01 - Rounding to Significant Figures/Lesson_01_Rounding_to_Significant_Figures_v0.2.html",
+        "02_Foundations/Accuracy, Powers and Scale/Lesson 01 - Rounding to Significant Figures/Lesson_01_Rounding_to_Significant_Figures_v0.3.html",
     "aps-02-estimation":
         "02_Foundations/Accuracy, Powers and Scale/Lesson 02 - Estimation/Lesson_02_Estimation_v0.1.html",
     "aps-03-using-index-laws":
-        "02_Foundations/Accuracy, Powers and Scale/Lesson 03 - Using Index Laws/Lesson_03_Using_Index_Laws.html",
+        "02_Foundations/Accuracy, Powers and Scale/Lesson 03 - Using Index Laws/Lesson_03_Using_Index_Laws_v0.2.html",
     "aps-04-write-and-order-standard-form":
         "02_Foundations/Accuracy, Powers and Scale/Lesson 04 - Write and Order Standard Form/Lesson_04_Write_and_Order_Standard_Form_v0.3.html",
     "aps-05-calculating-with-standard-form":
@@ -39,11 +39,11 @@ SOURCES = {
     "pyth-04-geometrical-problems":
         "02_Foundations/01_Lessons/Pythagorean_Theorem/Lesson_04_Geometrical_Problems/NEO_Maths_Y9_Pythagoras_Lesson_04_Geometrical_Problems_v0.5.html",
     "ks3-ratio-and-proportion":
-        "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v5 (1).html",
+        "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
         "KS3 (1)/place-value-recycled/NEO_Maths_Y7_Place_Value_Interactive_v0.2.html",
     "ks4-straight-line-graphs":
-        "KS4 (1)/straight-lines (1)/NEO_Maths_KS4_Straight_Line_Graphs_Interactive_v5 (1).html",
+        "KS4 (1)/straight-lines (1)/NEO_Maths_KS4_Straight_Line_Graphs_Interactive_v6.html",
     "ks4-equation-of-a-straight-line":
         "KS4 (1)/Example Lesson - Straight Lines (1)/equation-of-a-straight-line (1).html",
 }

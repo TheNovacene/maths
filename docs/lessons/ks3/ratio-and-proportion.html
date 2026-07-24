@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics KS3 - Ratio and Proportion</title>
+<title>NEO Mathematics — Ratio and Proportion</title>
 </head>
 <body style="margin:0; background:#efe9df;">
 
@@ -24,7 +24,7 @@
 
 <div id="lessonView">
 <div style="font-family:Arial,sans-serif; max-width:1000px; margin:auto; padding:22px; background:#f7f3ea; color:#2f3429; line-height:1.55; border-radius:18px;">
-<h1 style="margin-bottom:6px;color:#3f5f45;">NEO Mathematics KS3: Ratio and Proportion</h1>
+<h1 style="margin-bottom:6px;color:#3f5f45;">NEO Mathematics: Ratio and Proportion</h1>
 <h2 style="margin-top:0;color:#6a7f4e;font-size:1.35em;">Driving Question: <em>Can maths help us share, scale and sustain things fairly?</em></h2>
 <div style="background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0;">
 <p><strong>Lesson focus:</strong> scaling recipes, equivalent ratios, ratio tables and proportional reasoning.</p>
@@ -178,7 +178,7 @@ style="padding:10px 14px;background:#365a68;color:#fff;border:none;border-radius
 <p id="practiceLabel" style="text-transform:uppercase;color:#8a6d43;font-weight:bold;"></p><div id="practiceQuestion" style="font-size:1.15em;margin-bottom:16px;"></div>
 <label>Your working</label><textarea id="practiceWorking" rows="4" style="width:100%;box-sizing:border-box;padding:10px;"></textarea>
 <label style="display:block;margin-top:12px;">Your final answer</label><input id="practiceAnswer" style="width:100%;box-sizing:border-box;padding:10px;">
-<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"><button onclick="practicePrompt()">🤔 Socratic prompt</button><button onclick="practiceHint()">💡 Hint</button><button onclick="practiceCheck()">✅ Check my answer</button><button id="practiceSolutionButton" onclick="practiceSolution()" disabled>👀 Worked solution</button><button onclick="openMathsScratchpad('ratio-table','Use the Scratchpad to organise your proportional reasoning.')">✏️ Scratchpad</button></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"><button onclick="practicePrompt()">🤔 Socratic prompt</button><button onclick="practiceHint()">💡 Hint</button><button onclick="practiceCheck()">✅ Check my answer</button><button id="practiceSolutionButton" onclick="practiceSolution()" aria-disabled="true" style="opacity:0.5;cursor:not-allowed;">👀 Worked solution</button><button onclick="openMathsScratchpad('ratio-table','Use the Scratchpad to organise your proportional reasoning.')">✏️ Scratchpad</button></div>
 <div id="practiceSupport" style="display:none;margin-top:12px;background:#f7f2e9;padding:12px;border-radius:8px;"></div><div id="practiceFeedback" style="display:none;margin-top:12px;padding:12px;border-radius:8px;font-weight:bold;"></div>
 </div>
 <div style="display:flex;justify-content:space-between;margin-top:14px;"><button id="practicePrevious" onclick="practicePrev()">← Previous</button><button id="practiceNext" onclick="practiceNext()">Next →</button></div>
@@ -371,12 +371,15 @@ const ratioPractice=[
 {l:"7 of 8 · Unit amount",q:"4 people need <b>1000 ml</b> juice. How much for <b>1 person</b>?",a:["250","250 ml"],p:"Scale from 4 to 1.",h:"Divide by 4.",s:"1000 ÷ 4 = 250 ml."},
 {l:"8 of 8 · Challenge",q:"5 people need <b>300 g</b> yoghurt. How much for <b>8 people</b>?",a:["480","480 g"],p:"Find the amount for one person first.",h:"300 ÷ 5 = 60.",s:"60 × 8 = 480 g."}
 ];
-let pIndex=0;const pSaved=ratioPractice.map(()=>({w:"",a:""})),pAttempts=ratioPractice.map(()=>0),pDone=ratioPractice.map(()=>false);
+let pIndex=0;const pSaved=ratioPractice.map(()=>({w:"",a:""})),pAttempts=ratioPractice.map(()=>0),pDone=ratioPractice.map(()=>false),pPrompt=ratioPractice.map(()=>false),pHint=ratioPractice.map(()=>false);
+/* v1.0 worked-solution unlock (item 75): per question, needs Socratic prompt + hint + two checked answers */
+function pUnlocked(i){return pPrompt[i]&&pHint[i]&&pAttempts[i]>=2;}
+function pLock(){const b=practiceSolutionButton,o=pUnlocked(pIndex);b.setAttribute("aria-disabled",o?"false":"true");b.style.opacity=o?"1":"0.5";b.style.cursor=o?"pointer":"not-allowed";}
 function pSave(){pSaved[pIndex]={w:practiceWorking.value,a:practiceAnswer.value};}
-function pRender(){const q=ratioPractice[pIndex],s=pSaved[pIndex];practiceLabel.textContent="Question "+q.l;practiceQuestion.innerHTML=q.q;practiceWorking.value=s.w;practiceAnswer.value=s.a;practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrevious.disabled=pIndex===0;practiceNext.textContent=pIndex===ratioPractice.length-1?"Finish":"Next →";practiceSolutionButton.disabled=pAttempts[pIndex]<1;practiceDots.innerHTML="";ratioPractice.forEach((_,i)=>{const d=document.createElement("span");d.textContent=i+1;d.style.cssText="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:"+(pDone[i]?"#e3f0df":i===pIndex?"#e5edf4":"#fff");practiceDots.appendChild(d);});}
-function practicePrompt(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+ratioPractice[pIndex].p;}function practiceHint(){practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+ratioPractice[pIndex].h;}
+function pRender(){const q=ratioPractice[pIndex],s=pSaved[pIndex];practiceLabel.textContent="Question "+q.l;practiceQuestion.innerHTML=q.q;practiceWorking.value=s.w;practiceAnswer.value=s.a;practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrevious.disabled=pIndex===0;practiceNext.textContent=pIndex===ratioPractice.length-1?"Finish":"Next →";pLock();practiceDots.innerHTML="";ratioPractice.forEach((_,i)=>{const d=document.createElement("span");d.textContent=i+1;d.style.cssText="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:"+(pDone[i]?"#e3f0df":i===pIndex?"#e5edf4":"#fff");practiceDots.appendChild(d);});}
+function practicePrompt(){pPrompt[pIndex]=true;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+ratioPractice[pIndex].p;pLock();}function practiceHint(){pHint[pIndex]=true;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+ratioPractice[pIndex].h;pLock();}
 function practiceCheck(){pSave();pAttempts[pIndex]++;const learner=normaliseText(pSaved[pIndex].a),ok=ratioPractice[pIndex].a.some(x=>normaliseText(x)===learner);pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your proportional reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the multiplier first.";}}
-function practiceSolution(){pAttempts[pIndex]++;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+ratioPractice[pIndex].s;practiceSolutionButton.disabled=false;}
+function practiceSolution(){practiceSupport.style.display="block";if(!pUnlocked(pIndex)){const r=[];if(!pPrompt[pIndex])r.push("use the Socratic prompt");if(!pHint[pIndex])r.push("use the hint");const t=Math.max(0,2-pAttempts[pIndex]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");practiceSupport.innerHTML="<b>🔒 Worked solution locked.</b> Still to do: "+r.join(", ")+".";return;}practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+ratioPractice[pIndex].s;}
 function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function practiceNext(){pSave();if(pIndex<ratioPractice.length-1){pIndex++;pRender();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. You have ${pDone.filter(Boolean).length} of 8 correct so far.`;}}pRender();
 </script>
 

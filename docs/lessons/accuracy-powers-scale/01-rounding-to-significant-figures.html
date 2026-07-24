@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: Rounding to Significant Figures v0.2</title>
+<title>NEO Mathematics: Rounding to Significant Figures v0.3</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -30,6 +30,7 @@ details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;f
 .progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
 .practice-svg{width:100%;max-width:520px;background:#fff;border:1px solid #cdbfa9;border-radius:10px}
 .small{font-size:.95em;color:#4f554b}
+.muted{font-size:.95em;color:#4f554b}
 .solution-reveal{display:none}
 table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
 .digitline{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;font:700 clamp(2.1rem,7vw,4.2rem)/1 Arial,sans-serif;margin:18px 0}
@@ -37,6 +38,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 .lenscontrols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.lenscontrols input,.lenscontrols select,textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #bcae98;border-radius:8px;background:#fff}
 .numberline{margin:34px 12px 12px;padding-top:28px}.track{height:7px;background:#365a68;position:relative;border-radius:10px}.track:before,.track:after{content:"";position:absolute;top:-8px;width:3px;height:23px;background:#365a68}.track:before{left:0}.track:after{right:0}.mid{position:absolute;left:50%;top:-9px;width:3px;height:25px;background:#b77814}.marker{position:absolute;top:-34px;transform:translateX(-50%);white-space:nowrap;color:#70466b;font-weight:bold}.marker:after{content:"";display:block;width:13px;height:13px;border-radius:50%;background:#70466b;margin:5px auto}
 .linelabels{display:grid;grid-template-columns:1fr 1fr 1fr;font-weight:bold;font-size:.9em;margin-top:14px}.linelabels span:nth-child(2){text-align:center;color:#835d1d}.linelabels span:last-child{text-align:right}
+.columnnote{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px;margin-top:10px}
 @media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
 </style>
 </head>
@@ -71,14 +73,16 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 </div>
 
 <div class="guides">
-<h3>📚 Lesson Support and Scratchpad</h3>
-<p>Use the familiar lesson shell. Guidance opens separately so that you can keep your place.</p>
+<h3>📘 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to Rounding to Significant Figures.</p>
 <div class="buttonrow">
 <a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_01_Learner_Guidance.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
 <a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_01_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
 <button class="scratchbtn" onclick="openMathsScratchpad('place-value','Use the Scratchpad to align digits, mark the first significant digit and record your rounding decision.')">✏️ Open Maths Scratchpad</button>
 <button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
 </div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
 <div id="guideBox" class="card" style="display:none"></div>
 </div>
 
@@ -110,17 +114,17 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div class="buttonrow"><button onclick="setLensNumber('48271')">48,271</button><button onclick="setLensNumber('0.006473')">0.006473</button><button onclick="setLensNumber('90521')">90,521</button><button onclick="setLensNumber('769500')">769,500</button></div>
 <div id="lensDigits" class="digitline" aria-live="polite"></div>
 <label><b>My rounded value</b><input id="lensPrediction" inputmode="decimal" placeholder="Enter your prediction"></label>
-<div class="buttonrow"><button onclick="checkLens()">✅ Check my prediction</button><button onclick="revealLens()">👀 Reveal the lens</button><button class="scratchbtn" onclick="openMathsScratchpad('place-value','Mark the kept digits and the deciding digit.')">✏️ Scratchpad</button></div>
+<div class="buttonrow"><button onclick="checkLens()">✅ Check my prediction</button><button onclick="revealLens()">🔍 Reveal the lens</button><button class="scratchbtn" onclick="openMathsScratchpad('place-value','Mark the kept digits and the deciding digit. Then check which columns the kept digits occupy.')">✏️ Scratchpad</button></div>
 <div id="lensFeedback" class="feedback"></div>
 <div id="lensResult" class="readout" style="display:none"></div>
 </div>
-<div class="card"><strong>Carry this idea forward:</strong> find → keep → decide → restore place value.</div>
+<div class="card"><strong>Carry this idea forward:</strong> find → keep → decide → check the columns. The kept digits must stay in the columns they started in, so any whole-number column they leave behind is held by a zero.</div>
 </details>
 
 <details class="dw">
 <summary>🪞 Reflection — Why does the deciding digit work?</summary>
 <p><b>What to do:</b> use the Boundary Explorer, then complete the reflection sentence.</p>
-<div class="toolbox"><button onclick="showBoundary()">🔎 Show boundary evidence for the current number</button><div id="boundaryBox" style="display:none"></div></div>
+<div class="toolbox"><button onclick="showBoundary()">🔍 Show boundary evidence for the current number</button><div id="boundaryBox" style="display:none"></div></div>
 <div class="card">
 <p><b>A zero is significant when...</b></p>
 <textarea rows="4" placeholder="A zero is significant when..."></textarea>
@@ -132,7 +136,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <summary>🎨 Creativity — Can I make the rounding decision visible?</summary>
 <p><b>What to do:</b> create a mini teaching card for one whole number and one decimal.</p>
 <ol>
-<li>Write the original number.</li><li>Mark the first significant digit.</li><li>Underline the kept digits.</li><li>Circle the deciding digit.</li><li>Write the rounded value and explain why it is sensible.</li>
+<li>Write the original number.</li><li>Mark the first significant digit.</li><li>Underline the kept digits.</li><li>Circle the deciding digit.</li><li>Name the column each kept digit sits in.</li><li>Write the rounded value and explain why it is sensible.</li>
 </ol>
 <button class="scratchbtn" onclick="openMathsScratchpad('place-value','Create a teaching card that makes the rounding decision visible.')">✏️ Create my teaching card</button>
 </details>
@@ -141,7 +145,8 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <summary>🌙 Rest — How can I reduce the process to four calm actions?</summary>
 <div class="card">
 <p>Use this quiet route. Look away from the screen, then retrieve it in your own words:</p>
-<p style="font-size:1.3em;font-weight:bold;text-align:center">find → keep → decide → restore place value</p>
+<p style="font-size:1.3em;font-weight:bold;text-align:center">find → keep → decide → check the columns</p>
+<p class="small" style="text-align:center">The last step asks one question: are my kept digits still in the columns they started in?</p>
 </div>
 </details>
 
@@ -154,11 +159,11 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 </details>
 
 <details class="ft">
-<summary>🛠 Final Task — Build a Precision Explainer</summary>
+<summary>🏠 Final Task — Build a Precision Explainer</summary>
 <h3>Make one rounding decision clear</h3>
 <p><b>What to do:</b> choose one whole number and one decimal and create a clear explanation for each.</p>
 <ul>
-<li>identify the first significant digit;</li><li>state the chosen precision;</li><li>mark the deciding digit;</li><li>write the rounded value;</li><li>explain why the answer is sensible.</li>
+<li>identify the first significant digit;</li><li>state the chosen precision;</li><li>mark the deciding digit;</li><li>name the column each kept digit occupies;</li><li>write the rounded value;</li><li>explain why the answer is sensible.</li>
 </ul>
 <p><b>Filename pattern:</b> <code>NEO_MATH_PRECISION_FirstName_Date</code></p>
 <table>
@@ -176,7 +181,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div class="practice">
 <h1>Rounding to Significant Figures — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
-<p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 👀 <b>worked solution</b>.</p>
+<p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 📖 <b>worked solution</b>.</p>
 <p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p>
 <div id="practiceDots" class="buttonrow"></div>
 <div class="toolbox">
@@ -190,7 +195,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pPrompt()">🤔 Socratic prompt</button>
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
-<button id="practiceWorkedBtn" onclick="pSolution()">👀 Worked solution</button>
+<button id="practiceWorkedBtn" onclick="pSolution()">📖 Worked solution</button>
 <button class="scratchbtn" onclick="openMathsScratchpad('place-value','Use the Scratchpad to align digits and mark the rounding decision.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div>
@@ -221,7 +226,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
 <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
 <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
-<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+<button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">📝 Sticky Note</button>
 <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;"><label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label><select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;"><option value="place-value" selected>Place-value chart</option><option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option></select></span>
 </div>
 <div style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
@@ -233,7 +238,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
 <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
 <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
-<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+<button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🧹 Clear board</button>
 </div>
 <div id="scratchStatus" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
 </div>
@@ -241,108 +246,188 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <script>
 const LENS_EXAMPLES = [
-  {number:'48,763', sf:2},
-  {number:'0.006847', sf:2},
-  {number:'72.45', sf:3},
-  {number:'905,200', sf:3}
+ {number:'48,763', sf:2},
+ {number:'0.006847', sf:2},
+ {number:'72.45', sf:3},
+ {number:'905,200', sf:3}
 ];
 
 function cleanNumber(v){return String(v).replace(/,/g,'').trim();}
 function numeric(v){const n=Number(cleanNumber(v));return Number.isFinite(n)?n:NaN;}
-function expandedDigits(value){
-  const raw=cleanNumber(value).toLowerCase();
-  if(!raw || raw.includes('e')) return raw;
-  return raw.replace(/^[-+]/,'').replace('.','').split('');
-}
 function digitRoles(value,sf){
-  const raw=cleanNumber(value).replace(/^[-+]/,'');
-  const chars=raw.split('');
-  let significant=0, started=false, roundingReached=false;
-  return chars.map((ch)=>{
-    if(ch==='.') return {ch,role:'point'};
-    if(!started && ch==='0') return {ch,role:'leading'};
-    started=true;
-    significant++;
-    if(significant<sf) return {ch,role:'keep'};
-    if(significant===sf) return {ch,role:'last'};
-    if(!roundingReached){roundingReached=true;return {ch,role:'decide'};}
-    return {ch,role:'drop'};
-  });
+ const raw=cleanNumber(value).replace(/^[-+]/,'');
+ const chars=raw.split('');
+ let significant=0, started=false, roundingReached=false;
+ return chars.map((ch)=>{
+  if(ch==='.') return {ch,role:'point'};
+  if(!started && ch==='0') return {ch,role:'leading'};
+  started=true;
+  significant++;
+  if(significant<sf) return {ch,role:'keep'};
+  if(significant===sf) return {ch,role:'last'};
+  if(!roundingReached){roundingReached=true;return {ch,role:'decide'};}
+  return {ch,role:'drop'};
+ });
 }
 function roundToSf(value,sf){
-  const n=numeric(value);
-  if(!Number.isFinite(n)||n===0) return n;
-  const power=sf-1-Math.floor(Math.log10(Math.abs(n)));
-  const factor=10**power;
-  return Math.round((n+Number.EPSILON)*factor)/factor;
+ const n=numeric(value);
+ if(!Number.isFinite(n)||n===0) return n;
+ const power=sf-1-Math.floor(Math.log10(Math.abs(n)));
+ const factor=10**power;
+ return Math.round((n+Number.EPSILON)*factor)/factor;
 }
 function formatRounded(value,sf){
-  const n=roundToSf(value,sf);
-  if(!Number.isFinite(n)) return '';
-  if(n===0) return '0';
-  const places=Math.max(0,sf-1-Math.floor(Math.log10(Math.abs(n))));
-  return n.toLocaleString('en-GB',{minimumFractionDigits:places,maximumFractionDigits:places});
+ const n=roundToSf(value,sf);
+ if(!Number.isFinite(n)) return '';
+ if(n===0) return '0';
+ const places=Math.max(0,sf-1-Math.floor(Math.log10(Math.abs(n))));
+ return n.toLocaleString('en-GB',{minimumFractionDigits:places,maximumFractionDigits:places});
+}
+// Names the place-value column a digit occupies, so the final step can be justified
+// rather than labelled. GreenPrint v1.5 section 9.1.
+function columnName(exponent){
+ const names={6:'millions',5:'hundred-thousands',4:'ten-thousands',3:'thousands',2:'hundreds',1:'tens',0:'ones',
+  '-1':'tenths','-2':'hundredths','-3':'thousandths','-4':'ten-thousandths','-5':'hundred-thousandths','-6':'millionths'};
+ return names[exponent]||('10^'+exponent+' column');
+}
+function leadColumn(value,sf){
+ const n=roundToSf(value,sf);
+ if(!Number.isFinite(n)||n===0) return null;
+ return Math.floor(Math.log10(Math.abs(n)));
 }
 function currentLens(){
-  return {number:document.getElementById('lensNumber').value,sf:Number(document.getElementById('lensSf').value)};
+ return {number:document.getElementById('lensNumber').value,sf:Number(document.getElementById('lensSf').value)};
 }
 function renderLens(showResult){
-  const {number,sf}=currentLens();
-  const roles=digitRoles(number,sf);
-  const colours={leading:'#8d8d86',keep:'#315d72',last:'#3f5f45',decide:'#9b5a2e',drop:'#8d8d86',point:'#2f3429'};
-  document.getElementById('lensDigits').innerHTML=roles.map(r=>'<span class="digit '+r.role+'" style="color:'+colours[r.role]+'">'+r.ch+'</span>').join('');
-  const last=roles.findIndex(r=>r.role==='last'), decide=roles.findIndex(r=>r.role==='decide');
-  const lastText=last>=0?'The green digit is the last digit to keep.':'Choose a valid number and accuracy.';
-  const decideText=decide>=0?' The orange digit decides whether it stays or rounds up.':'';
-  document.getElementById('lensFeedback').textContent=lastText+decideText;
-  const result=document.getElementById('lensResult');
-  if(showResult){result.style.display='block';result.innerHTML='<b>Rounded value:</b> '+formatRounded(number,sf)+' <span class="muted">('+sf+' significant figure'+(sf===1?'':'s')+')</span>';}
-  else result.style.display='none';
+ const {number,sf}=currentLens();
+ const roles=digitRoles(number,sf);
+ const colours={leading:'#8d8d86',keep:'#315d72',last:'#3f5f45',decide:'#9b5a2e',drop:'#8d8d86',point:'#2f3429'};
+ document.getElementById('lensDigits').innerHTML=roles.map(r=>'<span class="digit '+r.role+'" style="color:'+colours[r.role]+'">'+r.ch+'</span>').join('');
+ const last=roles.findIndex(r=>r.role==='last'), decide=roles.findIndex(r=>r.role==='decide');
+ const lastText=last>=0?'The green digit is the last digit to keep.':'Choose a valid number and accuracy.';
+ const decideText=decide>=0?' The orange digit decides whether it stays or rounds up.':'';
+ document.getElementById('lensFeedback').textContent=lastText+decideText;
+ const result=document.getElementById('lensResult');
+ if(showResult){
+  const col=leadColumn(number,sf);
+  let why='';
+  if(col!==null){
+   why='<div class="columnnote">The first kept digit sits in the <b>'+columnName(col)+'</b> column. Every column below it that no longer holds a kept digit is held by a zero, so the number keeps its size.</div>';
+  }
+  result.style.display='block';
+  result.innerHTML='<b>Rounded value:</b> '+formatRounded(number,sf)+' <span class="muted">('+sf+' significant figure'+(sf===1?'':'s')+')</span>'+why;
+ }
+ else result.style.display='none';
 }
 function resetLens(){
-  document.getElementById('lensNumber').value='48,763';
-  document.getElementById('lensSf').value='2';
-  document.getElementById('lensPrediction').value='';
-  renderLens(false);
+ document.getElementById('lensNumber').value='48,763';
+ document.getElementById('lensSf').value='2';
+ document.getElementById('lensPrediction').value='';
+ renderLens(false);
 }
 function setLensNumber(value,sf){
-  document.getElementById('lensNumber').value=value;
-  if(sf) document.getElementById('lensSf').value=String(sf);
-  document.getElementById('lensPrediction').value='';
-  renderLens(false);
+ document.getElementById('lensNumber').value=value;
+ if(sf) document.getElementById('lensSf').value=String(sf);
+ document.getElementById('lensPrediction').value='';
+ renderLens(false);
 }
 function revealLens(){renderLens(true);}
 function almostEqual(a,b){return Math.abs(a-b)<=Math.max(1e-12,Math.abs(b)*1e-9);}
+// True when two values share their significant digits but sit in different columns —
+// for example 49 entered instead of 49,000. Used to give a column-specific response.
+function powerOfTenApart(a,b){
+ if(!Number.isFinite(a)||!Number.isFinite(b)||a===0||b===0) return false;
+ if(Math.sign(a)!==Math.sign(b)) return false;
+ const l=Math.log10(Math.abs(b/a));
+ return Math.abs(l-Math.round(l))<1e-9 && Math.round(l)!==0;
+}
 function checkLens(){
-  const {number,sf}=currentLens(), answer=numeric(document.getElementById('lensPrediction').value), expected=roundToSf(number,sf);
-  const box=document.getElementById('lensResult'); box.style.display='block';
-  if(Number.isFinite(answer)&&almostEqual(answer,expected)){box.className='feedback good';box.innerHTML='<b>Yes.</b> '+formatRounded(number,sf)+' is correct. Say which digit you kept and which digit decided.';}
-  else{box.className='feedback bad';box.innerHTML='<b>Not quite yet.</b> Find the first non-zero digit, count to the last digit you need, then look one place to the right.';}
+ const {number,sf}=currentLens(), answer=numeric(document.getElementById('lensPrediction').value), expected=roundToSf(number,sf);
+ const box=document.getElementById('lensResult'); box.style.display='block';
+ if(Number.isFinite(answer)&&almostEqual(answer,expected)){box.className='feedback good';box.innerHTML='<b>Yes.</b> '+formatRounded(number,sf)+' is correct. Say which digit you kept, which digit decided, and which column your first kept digit sits in.';}
+ else if(powerOfTenApart(answer,expected)){box.className='feedback bad';box.innerHTML='<b>Close — check the columns.</b> Your digits are right, but they are not in the columns they started in. Which column does the first kept digit belong in, and what holds the columns below it?';}
+ else{box.className='feedback bad';box.innerHTML='<b>Not quite yet.</b> Find the first non-zero digit, count to the last digit you need, then look one place to the right.';}
 }
 function boundaryData(number,sf){
-  const n=numeric(number), rounded=roundToSf(number,sf);
-  const unit=10**(Math.floor(Math.log10(Math.abs(n)))-sf+1);
-  return {n,rounded,lower:rounded-unit/2,upper:rounded+unit/2,unit};
+ const n=numeric(number), rounded=roundToSf(number,sf);
+ const unit=10**(Math.floor(Math.log10(Math.abs(n)))-sf+1);
+ return {n,rounded,lower:rounded-unit/2,upper:rounded+unit/2,unit};
 }
 function boundaryLabel(n,unit){
-  const dp=Math.max(0,-Math.floor(Math.log10(unit))+1);
-  return n.toLocaleString('en-GB',{maximumFractionDigits:dp});
+ const dp=Math.max(0,-Math.floor(Math.log10(unit))+1);
+ return n.toLocaleString('en-GB',{maximumFractionDigits:dp});
 }
 function showBoundary(){
-  const {number,sf}=currentLens(), d=boundaryData(number,sf), box=document.getElementById('boundaryBox');
-  box.style.display='block';
-  if(!Number.isFinite(d.n)||d.n===0){box.innerHTML='<p>Please choose a non-zero number first.</p>';return;}
-  const proportion=Math.max(0,Math.min(1,(d.n-d.lower)/(d.upper-d.lower)))*100;
-  box.innerHTML='<p><b>'+cleanNumber(number)+'</b> lies between the two halfway boundaries for <b>'+formatRounded(number,sf)+'</b>.</p><div class="numberline"><div class="track"><span class="mid"></span><span class="marker" style="left:'+proportion+'%"></span></div><div class="linelabels"><span>'+boundaryLabel(d.lower,d.unit)+'</span><span>'+formatRounded(number,sf)+'</span><span>'+boundaryLabel(d.upper,d.unit)+'</span></div></div><p class="muted">Values from the lower boundary up to, but not including, the upper boundary round to this value.</p>';
+ const {number,sf}=currentLens(), d=boundaryData(number,sf), box=document.getElementById('boundaryBox');
+ box.style.display='block';
+ if(!Number.isFinite(d.n)||d.n===0){box.innerHTML='<p>Please choose a non-zero number first.</p>';return;}
+ const proportion=Math.max(0,Math.min(1,(d.n-d.lower)/(d.upper-d.lower)))*100;
+ box.innerHTML='<p><b>'+cleanNumber(number)+'</b> lies between the two halfway boundaries for <b>'+formatRounded(number,sf)+'</b>.</p><div class="numberline"><div class="track"><span class="mid"></span><span class="marker" style="left:'+proportion+'%"></span></div><div class="linelabels"><span>'+boundaryLabel(d.lower,d.unit)+'</span><span>'+formatRounded(number,sf)+'</span><span>'+boundaryLabel(d.upper,d.unit)+'</span></div></div><p class="muted">Values from the lower boundary up to, but not including, the upper boundary round to this value.</p>';
 }
 
+/* Reconnection Routes — GreenPrint v1.3 access and return standard.
+   Only prerequisites that genuinely block this lesson are offered. */
+const RECONNECT={
+ digitvalue:{title:'The value of a digit',prompt:'In 4,208, what is the value of the digit 2?',answer:200,hint:'The 2 sits in the hundreds column, so it is worth 2 hundreds.'},
+ timesten:{title:'Multiplying by ten',prompt:'Calculate 36 × 10.',answer:360,hint:'Every digit slides one place to the left. The 3 moves from tens to hundreds and the 6 from ones to tens, so a zero holds the ones column.'},
+ dividten:{title:'Dividing by ten',prompt:'Calculate 45 ÷ 10.',answer:4.5,hint:'Every digit slides one place to the right. The 4 moves from tens to ones and the 5 from ones to tenths.'},
+ magnitude:{title:'Comparing size',prompt:'Which is larger, 0.0072 or 0.017? Enter your answer as a number.',answer:0.017,hint:'Compare the columns. 0.017 has a digit in the hundredths column; 0.0072 does not.'}
+};
+function openReconnect(){
+ const panel=document.getElementById('reconnectionPanel');
+ panel.style.display='block';
+ panel.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow"><button onclick="showReconnect(\'digitvalue\')">Value of a digit</button><button onclick="showReconnect(\'timesten\')">Multiplying by ten</button><button onclick="showReconnect(\'dividten\')">Dividing by ten</button><button onclick="showReconnect(\'magnitude\')">Comparing size</button><button onclick="closeReconnect()">Return to Rounding to Significant Figures</button></div><div id="reconnectTask"></div>';
+}
+function showReconnect(key){
+ const r=RECONNECT[key];
+ document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p><input id="reconnectAnswer" inputmode="decimal" placeholder="Your answer"><div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button class="scratchbtn" onclick="openMathsScratchpad(\'place-value\',\'Use the place-value chart to work this through.\')">✏️ Scratchpad</button><button onclick="closeReconnect()">Return to Rounding to Significant Figures</button></div><div id="reconnectFeedback" class="feedback"></div></div>';
+}
+function checkReconnect(key){
+ const r=RECONNECT[key], box=document.getElementById('reconnectFeedback');
+ const ok=almostEqual(numeric(document.getElementById('reconnectAnswer').value),r.answer);
+ box.style.display='block';
+ box.className='feedback '+(ok?'good':'bad');
+ box.textContent=ok?'Ready to return. This idea is secure enough for the current lesson.':'Not yet. Use the hint, or set the number out in the place-value chart on the Scratchpad.';
+}
+function reconnectHint(key){
+ const box=document.getElementById('reconnectFeedback');
+ box.style.display='block';
+ box.className='feedback warn';
+ box.textContent=RECONNECT[key].hint;
+}
+function closeReconnect(){document.getElementById('reconnectionPanel').style.display='none';}
+
 const PRACTICE = [
- {label:'1',title:'Whole number',question:'Round 48,763 to 2 significant figures.',answers:[49000],prompt:'Which is the first non-zero digit, and which digit is second?',hint:'Keep 4 and 8. The next digit is 7, so the 8 rounds up.',solution:'The first two significant digits are 4 and 8. The deciding digit is 7, so 48 rounds to 49. Restore the remaining places with zeros: 49,000.'},
- {label:'2',title:'Small decimal',question:'Round 0.006847 to 2 significant figures.',answers:[0.0068],prompt:'Which zeros only locate the decimal point, and where does significance begin?',hint:'The first significant digit is 6 and the second is 8. The next digit is 4.',solution:'Ignore the leading zeros when counting. Keep 6 and 8; 4 does not round the 8 up. The answer is 0.0068.'},
- {label:'3',title:'Rounding up',question:'Round 72.45 to 3 significant figures.',answers:[72.5],prompt:'Count three significant digits from the 7. Which digit decides?',hint:'Keep 7, 2 and 4. The deciding digit is 5.',solution:'The first three significant digits are 7, 2 and 4. Since the next digit is 5, the 4 rounds up: 72.5.'},
- {label:'4',title:'Showing accuracy',question:'Round 3.996 to 3 significant figures. Write the answer so that its accuracy is clear.',answers:[4],exact:'4.00',prompt:'What happens when the third significant digit rounds past 9?',hint:'3.996 rounds up to 4, but three significant figures must still be shown.',solution:'Keep 3, 9 and 9. The next digit is 6, so rounding carries through to 4. To show three significant figures, write 4.00.'},
- {label:'5',title:'Measurement',question:'A distance is 0.09476 km. Round it to 3 significant figures.',answers:[0.0948],prompt:'Where is the first non-zero digit?',hint:'Keep 9, 4 and 7. The next digit is 6.',solution:'The first three significant digits are 9, 4 and 7. Since the next digit is 6, round the 7 up: 0.0948 km.'},
- {label:'6',title:'Explain the decision',question:'A learner says 905,200 rounded to 3 significant figures is 905. Are they correct? Give the corrected rounded value.',answers:[905000],prompt:'Are the zeros between 9 and 5 place-holders or significant digits?',hint:'The zero between non-zero digits is significant. Keep 9, 0 and 5, then restore place value.',solution:'The learner is not correct. The zero between 9 and 5 counts. The next digit is 2, so the kept digits do not change. Restoring place value gives 905,000.'}
+ {label:'1',title:'Whole number',question:'Round 48,763 to 2 significant figures.',answers:[49000],
+  prompt:'Which is the first non-zero digit, and which digit is second?',
+  hint:'Keep 4 and 8. The next digit is 7, so the 8 rounds up.',
+  wrong:'Check two things: which digits you kept, and which columns they sit in. The first kept digit belongs in the ten-thousands column.',
+  solution:'The first two significant digits are 4 and 8. The deciding digit is 7, which is past halfway, so the 8 rounds up to 9. The 4 sits in the ten-thousands column and the 9 in the thousands column, so the hundreds, tens and ones columns must be held by zeros for the number to keep its size: 49,000. Writing 49 would give a number a thousand times smaller.'},
+ {label:'2',title:'Small decimal',question:'Round 0.006847 to 2 significant figures.',answers:[0.0068],
+  prompt:'Which zeros only locate the first significant digit, and where does significance begin?',
+  hint:'The first significant digit is 6 and the second is 8. The next digit is 4.',
+  wrong:'The leading zeros are not significant digits, but they cannot be removed either. What are they holding in place?',
+  solution:'The leading zeros locate the first significant digit; they are not counted. Keep 6, which sits in the thousandths column, and 8 in the ten-thousandths column. The deciding digit is 4, which is below halfway, so the 8 stays. The leading zeros remain because they hold the 6 in the thousandths column: 0.0068.'},
+ {label:'3',title:'Rounding up',question:'Round 72.45 to 3 significant figures.',answers:[72.5],
+  prompt:'Count three significant digits from the 7. Which digit decides?',
+  hint:'Keep 7, 2 and 4. The deciding digit is 5.',
+  wrong:'Count the significant digits again from the first non-zero digit, then look at exactly one digit beyond the last one you keep.',
+  solution:'The first three significant digits are 7, 2 and 4, sitting in the tens, ones and tenths columns. The deciding digit is 5, which is at least halfway, so the 4 rounds up to 5. No whole-number column is emptied, so no zeros are needed: 72.5.'},
+ {label:'4',title:'Showing accuracy',question:'Round 3.996 to 3 significant figures. Write the answer so that its accuracy is clear.',answers:[4],exact:'4.00',
+  prompt:'What happens when the third significant digit rounds past 9?',
+  hint:'3.996 rounds up to 4, but three significant figures must still be shown.',
+  wrong:'The value is right if you have 4, but the writing is not finished. How does a reader know you worked to three significant figures?',
+  solution:'Keep 3, 9 and 9. The deciding digit is 6, so the last kept 9 rounds up. That carry runs through both nines and into the ones column, giving 4. The answer must still show three significant figures, so the tenths and hundredths columns are held by zeros: 4.00. Writing 4 alone would claim only one significant figure.'},
+ {label:'5',title:'Measurement',question:'A distance is 0.09476 km. Round it to 3 significant figures.',answers:[0.0948],
+  prompt:'Where is the first non-zero digit?',
+  hint:'Keep 9, 4 and 7. The next digit is 6.',
+  wrong:'Start counting at the first non-zero digit, not at the decimal point. The leading zeros locate it rather than count towards it.',
+  solution:'The leading zeros locate the first significant digit. Keep 9 in the hundredths column, 4 in the thousandths and 7 in the ten-thousandths. The deciding digit is 6, which is past halfway, so the 7 rounds up to 8: 0.0948 km.'},
+ {label:'6',title:'Explain the decision',question:'A learner says 905,200 rounded to 3 significant figures is 905. Are they correct? Give the corrected rounded value.',answers:[905000],
+  prompt:'Are the zeros between 9 and 5 place-holders or significant digits?',
+  hint:'A zero between two non-zero digits is significant. Keep 9, 0 and 5, then check the columns.',
+  wrong:'The three digits 9, 0 and 5 are right. Now ask which column the 9 belongs in — and what must hold the columns below it.',
+  solution:'The learner is not correct. The zero between 9 and 5 counts, because it holds the ten-thousands column between two significant digits. Keep 9, 0 and 5. The deciding digit is 2, below halfway, so the kept digits do not change. The 9 sits in the hundred-thousands column, so the three remaining whole-number columns are held by zeros: 905,000. The answer 905 is a thousand times too small.'}
 ];
 let practiceIndex=0, done={};
 
@@ -365,18 +450,18 @@ function drawPracticeDiagram(p){
  const svg=document.getElementById('practiceSvg');svg.innerHTML='';
  const card=document.createElementNS('http://www.w3.org/2000/svg','rect');card.setAttribute('x','55');card.setAttribute('y','55');card.setAttribute('width','430');card.setAttribute('height','250');card.setAttribute('rx','18');card.setAttribute('fill','#fffaf0');card.setAttribute('stroke','#cdbfa9');card.setAttribute('stroke-width','2');svg.appendChild(card);
  const title=document.createElementNS('http://www.w3.org/2000/svg','text');title.setAttribute('x','270');title.setAttribute('y','135');title.setAttribute('text-anchor','middle');title.setAttribute('font-size','22');title.setAttribute('font-weight','700');title.setAttribute('fill','#3f5f45');title.textContent=p.title;svg.appendChild(title);
- const reminder=document.createElementNS('http://www.w3.org/2000/svg','text');reminder.setAttribute('x','270');reminder.setAttribute('y','195');reminder.setAttribute('text-anchor','middle');reminder.setAttribute('font-size','18');reminder.setAttribute('fill','#365a68');reminder.textContent='Find • Keep • Decide • Restore';svg.appendChild(reminder);
+ const reminder=document.createElementNS('http://www.w3.org/2000/svg','text');reminder.setAttribute('x','270');reminder.setAttribute('y','195');reminder.setAttribute('text-anchor','middle');reminder.setAttribute('font-size','18');reminder.setAttribute('fill','#365a68');reminder.textContent='Find • Keep • Decide • Check the columns';svg.appendChild(reminder);
  const note=document.createElementNS('http://www.w3.org/2000/svg','text');note.setAttribute('x','270');note.setAttribute('y','245');note.setAttribute('text-anchor','middle');note.setAttribute('font-size','16');note.setAttribute('fill','#2f3429');note.textContent='Use the Scratchpad if you want to mark the digits.';svg.appendChild(note);
 }
 function pPrompt(){const box=document.getElementById('practiceSupport');box.style.display='block';box.innerHTML='<b>🤔 Socratic prompt:</b> '+PRACTICE[practiceIndex].prompt;}
 function pHint(){const box=document.getElementById('practiceSupport');box.style.display='block';box.innerHTML='<b>💡 Hint:</b> '+PRACTICE[practiceIndex].hint;}
-function pSolution(){const box=document.getElementById('practiceSupport');box.style.display='block';box.innerHTML='<b>👀 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
+function pSolution(){const box=document.getElementById('practiceSupport');box.style.display='block';box.innerHTML='<b>📖 Worked solution:</b> '+PRACTICE[practiceIndex].solution;}
 function pCheck(){
  const p=PRACTICE[practiceIndex], raw=document.getElementById('practiceAnswer').value.trim(), n=numFrom(raw);
  const ok=p.exact ? raw.replace(/\s/g,'')===p.exact : p.answers.some(a=>Number.isFinite(n)&&almostEqual(n,a));
  const box=document.getElementById('practiceFeedback');box.style.display='block';
  if(ok){done[practiceIndex]=true;box.className='feedback good';box.textContent='Correct. Keep the place-value reasoning visible.';}
- else{box.className='feedback bad';box.textContent='Not quite yet. Use the prompt or hint, then try again.';}
+ else{box.className='feedback bad';box.textContent=p.wrong||'Not quite yet. Use the prompt or hint, then try again.';}
  renderPracticeDotsOnly();
 }
 function renderPracticeDotsOnly(){document.getElementById('practiceDots').innerHTML=PRACTICE.map((q,i)=>'<span class="progress-dot '+(done[i]?'done ':'')+(i===practiceIndex?'active':'')+'">'+(i+1)+'</span>').join('');}
@@ -386,13 +471,13 @@ function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPract
 // Scratchpad
 (function(){
 const overlay=document.getElementById('neoScratchpadOverlay'),subtitle=document.getElementById('neoScratchpadSubtitle'),canvas=document.getElementById('neoScratchCanvas'),bgCanvas=document.getElementById('neoScratchBackgroundCanvas'),stickyLayer=document.getElementById('neoStickyLayer'),ctx=canvas.getContext('2d'),bg=bgCanvas.getContext('2d');
-let tool='pen',colour='#2f3429',width=4,template='place-value',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_rounding_sf_v01';
+let tool='pen',colour='#2f3429',width=4,template='place-value',drawing=false,current=null,strokes=[],redo=[],notes=[]; const storageKey='neoMathsScratchpad_rounding_sf_v03';
 function status(msg,col){const box=document.getElementById('scratchStatus');box.style.display='block';box.style.background=col||'#e5edf4';box.textContent=msg;}
 function pt(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
 function drawBackground(){bg.clearRect(0,0,920,560);bg.fillStyle='#fff';bg.fillRect(0,0,920,560);bg.save();if(template==='place-value'){const labels=['Millions','Hundred thousands','Ten thousands','Thousands','Hundreds','Tens','Ones','Tenths','Hundredths'];const w=920/labels.length;bg.fillStyle='#eef3e8';bg.fillRect(0,0,920,86);bg.strokeStyle='#bcae98';bg.lineWidth=1;bg.font='bold 13px Arial';bg.textAlign='center';bg.fillStyle='#3f5f45';labels.forEach((label,i)=>{bg.beginPath();bg.moveTo(i*w,0);bg.lineTo(i*w,560);bg.stroke();const words=label.split(' ');words.forEach((word,j)=>bg.fillText(word,i*w+w/2,34+j*18));});bg.beginPath();bg.moveTo(0,86);bg.lineTo(920,86);bg.stroke();}bg.lineWidth=1;bg.strokeStyle='#e6dccb';if(template==='square-grid'||template==='coordinate-grid'){for(let x=0;x<=920;x+=28){bg.beginPath();bg.moveTo(x,0);bg.lineTo(x,560);bg.stroke();}for(let y=0;y<=560;y+=28){bg.beginPath();bg.moveTo(0,y);bg.lineTo(920,y);bg.stroke();}}if(template==='coordinate-grid'){bg.strokeStyle='#9fb2bd';bg.lineWidth=2;bg.beginPath();bg.moveTo(460,0);bg.lineTo(460,560);bg.moveTo(0,280);bg.lineTo(920,280);bg.stroke();}if(template==='ratio-table'){bg.strokeStyle='#cdbfa9';for(let x=80;x<=840;x+=190){bg.beginPath();bg.moveTo(x,70);bg.lineTo(x,490);bg.stroke();}for(let y=70;y<=490;y+=70){bg.beginPath();bg.moveTo(80,y);bg.lineTo(840,y);bg.stroke();}}if(template==='double-number-line'){bg.strokeStyle='#315d72';bg.lineWidth=3;[210,350].forEach(y=>{bg.beginPath();bg.moveTo(90,y);bg.lineTo(830,y);bg.stroke();for(let x=90;x<=830;x+=74){bg.beginPath();bg.moveTo(x,y-10);bg.lineTo(x,y+10);bg.stroke();}});}bg.restore();}
 function drawStroke(s){if(!s||!s.points.length)return;ctx.save();ctx.lineCap='round';ctx.lineJoin='round';if(s.tool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=Math.max(18,s.width*5);}else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=s.colour;ctx.lineWidth=s.width;}const pts=s.points;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);if(s.tool==='line'){const last=pts[pts.length-1];ctx.lineTo(last.x,last.y);}else{pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));if(pts.length===1)ctx.lineTo(pts[0].x+.1,pts[0].y+.1);}ctx.stroke();ctx.restore();}
 function renderInk(){ctx.clearRect(0,0,920,560);strokes.forEach(drawStroke);}
-function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText=`position:absolute;left:${note.x}%;top:${note.y}%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;`;const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
+function renderNotes(){stickyLayer.innerHTML='';notes.forEach((note,i)=>{const card=document.createElement('div');card.style.cssText='position:absolute;left:'+note.x+'%;top:'+note.y+'%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;';const area=document.createElement('textarea');area.value=note.text||'';area.placeholder='Type a thought...';area.style.cssText='width:100%;height:110px;border:none;background:transparent;padding:8px;resize:none;outline:none;';area.oninput=()=>{note.text=area.value;store();};card.appendChild(area);stickyLayer.appendChild(card);});}
 function render(){drawBackground();renderInk();renderNotes();}
 function store(){try{localStorage.setItem(storageKey,JSON.stringify({template,strokes,redo,notes,colour,width}));}catch(err){}}
 function restore(){try{const s=JSON.parse(localStorage.getItem(storageKey)||'null');if(!s)return;template=s.template||template;strokes=s.strokes||[];redo=s.redo||[];notes=s.notes||[];colour=s.colour||colour;width=s.width||width;scratchTemplate.value=template;scratchColour.value=colour;scratchWidth.value=String(width);}catch(err){}}
@@ -419,96 +504,95 @@ renderLens(false);
 </script>
 
 <script id="practiceWorkedUnlockWrapper">
-// GreenPrint compliance patch; internal lesson version v0.2.
+// GreenPrint compliance patch; internal lesson version v0.3.
 (function(){
-  if (window.__neoWorkedUnlockInstalled) return;
-  window.__neoWorkedUnlockInstalled = true;
-  const promptSeen = Array(PRACTICE.length).fill(false);
-  const hintSeen = Array(PRACTICE.length).fill(false);
-  const attempts = Array(PRACTICE.length).fill(0);
+ if (window.__neoWorkedUnlockInstalled) return;
+ window.__neoWorkedUnlockInstalled = true;
+ const promptSeen = Array(PRACTICE.length).fill(false);
+ const hintSeen = Array(PRACTICE.length).fill(false);
+ const attempts = Array(PRACTICE.length).fill(0);
 
-  function currentIdx(){ return practiceIndex; }
-  function workedUnlocked(i){
-    return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
-  }
-  function button(){
-    return document.getElementById('practiceWorkedBtn');
-  }
-  function notice(){
-    return document.getElementById('practiceWorkedNotice');
-  }
-  function lockMessage(i){
-    const parts = [];
-    if (!promptSeen[i]) parts.push('use the Socratic prompt');
-    if (!hintSeen[i]) parts.push('use the hint');
-    const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
-    if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
-    return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
-  }
-  function updateWorkedButton(){
-    const i = currentIdx();
-    const btn = button();
-    if (!btn) return;
-    const unlocked = workedUnlocked(i);
-    btn.disabled = !unlocked;
-    btn.style.opacity = unlocked ? '1' : '.5';
-    btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
-    btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
-    const n = notice();
-    if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
-  }
+ function currentIdx(){ return practiceIndex; }
+ function workedUnlocked(i){
+  return !!(promptSeen[i] && hintSeen[i] && (attempts[i] || 0) >= 2);
+ }
+ function button(){
+  return document.getElementById('practiceWorkedBtn');
+ }
+ function notice(){
+  return document.getElementById('practiceWorkedNotice');
+ }
+ function lockMessage(i){
+  const parts = [];
+  if (!promptSeen[i]) parts.push('use the Socratic prompt');
+  if (!hintSeen[i]) parts.push('use the hint');
+  const triesLeft = Math.max(0, 2 - (attempts[i] || 0));
+  if (triesLeft > 0) parts.push(triesLeft === 1 ? 'have one more try' : 'have two tries');
+  return 'Worked solution unlocks after you ' + parts.join(', ') + '.';
+ }
+ function updateWorkedButton(){
+  const i = currentIdx();
+  const btn = button();
+  if (!btn) return;
+  const unlocked = workedUnlocked(i);
+  btn.disabled = !unlocked;
+  btn.style.opacity = unlocked ? '1' : '.5';
+  btn.style.cursor = unlocked ? 'pointer' : 'not-allowed';
+  btn.title = unlocked ? 'Worked solution is now available.' : lockMessage(i);
+  const n = notice();
+  if (n) n.textContent = unlocked ? 'Worked solution unlocked.' : lockMessage(i);
+ }
 
-  const oldRender = renderPractice;
-  renderPractice = function(){
-    oldRender();
-    updateWorkedButton();
-  };
-
-  const oldPrompt = pPrompt;
-  pPrompt = function(){
-    promptSeen[currentIdx()] = true;
-    oldPrompt();
-    updateWorkedButton();
-  };
-
-  const oldHint = pHint;
-  pHint = function(){
-    hintSeen[currentIdx()] = true;
-    oldHint();
-    updateWorkedButton();
-  };
-
-  const oldCheck = pCheck;
-  pCheck = function(){
-    const answer = document.getElementById('practiceAnswer');
-    if (answer && answer.value.trim()) {
-      attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
-    }
-    oldCheck();
-    updateWorkedButton();
-  };
-
-  const oldSolution = pSolution;
-  pSolution = function(){
-    const i = currentIdx();
-    if (!workedUnlocked(i)) {
-      const fb = document.getElementById('practiceFeedback');
-      if (fb) {
-        fb.style.display = 'block';
-        fb.className = 'feedback';
-        fb.textContent = lockMessage(i);
-      }
-      updateWorkedButton();
-      return;
-    }
-    oldSolution();
-    updateWorkedButton();
-  };
-
+ const oldRender = renderPractice;
+ renderPractice = function(){
+  oldRender();
   updateWorkedButton();
+ };
+
+ const oldPrompt = pPrompt;
+ pPrompt = function(){
+  promptSeen[currentIdx()] = true;
+  oldPrompt();
+  updateWorkedButton();
+ };
+
+ const oldHint = pHint;
+ pHint = function(){
+  hintSeen[currentIdx()] = true;
+  oldHint();
+  updateWorkedButton();
+ };
+
+ const oldCheck = pCheck;
+ pCheck = function(){
+  const answer = document.getElementById('practiceAnswer');
+  if (answer && answer.value.trim()) {
+   attempts[currentIdx()] = (attempts[currentIdx()] || 0) + 1;
+  }
+  oldCheck();
+  updateWorkedButton();
+ };
+
+ const oldSolution = pSolution;
+ pSolution = function(){
+  const i = currentIdx();
+  if (!workedUnlocked(i)) {
+   const fb = document.getElementById('practiceFeedback');
+   if (fb) {
+    fb.style.display = 'block';
+    fb.className = 'feedback';
+    fb.textContent = lockMessage(i);
+   }
+   updateWorkedButton();
+   return;
+  }
+  oldSolution();
+  updateWorkedButton();
+ };
+
+ updateWorkedButton();
 })();
 </script>
-
 
 <script src="../../assets/progress.js"></script>
 <script>NEOProgress.autoTrack('aps-01-rounding-to-significant-figures');</script>
