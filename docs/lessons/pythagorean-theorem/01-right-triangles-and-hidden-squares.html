@@ -94,7 +94,10 @@ details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;f
 <div class="buttonrow"><a class="guidebtn" href="../../../guidance/2-pythagoras-trig/pythagoras-theorem-learner-guide.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
 <a class="guidebtn" href="../../../guidance/2-pythagoras-trig/pythagoras-theorem-supporting-adult-guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to predict, sketch, test and revise.')">✏️ Open Maths Scratchpad</button>
-</div></div>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
 <details class="kw" open>
 <summary>🌿 Connection — What relationship survives when the triangle changes?</summary>
 <p><b>What to do:</b> drag point B or C to change the right-angled triangle. You can also drag the whole construction to reposition it. Try at least four different triangles.</p>
@@ -432,7 +435,7 @@ details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;f
 <tr><td style="border:1px solid #cdbfa9;padding:8px"><b>Reflection</b></td><td style="border:1px solid #cdbfa9;padding:8px">Names one thing noticed.</td><td style="border:1px solid #cdbfa9;padding:8px">Identifies one changed idea.</td><td style="border:1px solid #cdbfa9;padding:8px">Explains what helped the theorem make more sense.</td><td style="border:1px solid #cdbfa9;padding:8px">Identifies a nourishing mathematical habit and a precise next connection.</td></tr>
 </table>
 </details>
-<div class="guides"><div class="buttonrow"><a class="guidebtn" href="03_Reconnection_squares,_roots_and_number_structure.html">← Previous route</a><button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button><a class="guidebtn" href="05_Finding_the_longest_side.html">Next route →</a></div></div>
+<div class="guides"><div class="buttonrow"><button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button></div></div>
 </div></div>
 <div id="practiceView" hidden><div class="practice"><h1>Pythagoras' Theorem — Practice Companion</h1><button onclick="returnLesson()">← Return to lesson</button><p>Use support in this order: <b>🤔 prompt → 💡 hint → ✅ check → 👀 worked solution</b>.</p><div id="practiceDots" class="buttonrow"></div><div class="toolbox"><p id="practiceLabel"></p><div id="practiceQuestion" class="readout"></div><input id="practiceAnswer" placeholder="Your answer"><div class="buttonrow"><button onclick="pPrompt()">🤔 Socratic prompt</button><button onclick="pHint()">💡 Hint</button><button onclick="pCheck()">✅ Check</button><button id="practiceSolution" onclick="pSolution()" disabled>👀 Worked solution</button><button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to organise your working.')">✏️ Scratchpad</button></div><div id="practiceSupport" class="readout" style="display:none"></div><div id="practiceFeedback" class="feedback"></div></div><div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div></div></div>
 <!-- NEO Maths Scratchpad -->
@@ -653,6 +656,63 @@ function pCheck(){attempts[practiceIndex]++;const learner=norm(practiceAnswer.va
 function pSolution(){attempts[practiceIndex]++;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[practiceIndex][4];practiceSolution.disabled=false;}
 function pPrev(){if(practiceIndex>0){practiceIndex--;renderPractice();}}
 function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPractice();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. ${done.filter(Boolean).length} of ${PRACTICE.length} are secure so far. Return to any question or the lesson.`;}}
+</script>
+
+<script>
+/* Reconnection Routes (GreenPrint E2/§19). Prerequisites for Lesson 01 only: square
+   numbers, square roots, right angles. The control is recurring support-area furniture;
+   each route offers one short recap that returns the learner to the lesson in place. */
+(function(){
+  var RECONNECT={
+    squares:{title:'Square numbers',prompt:'A square has a side length of 6 units. What is its area, in square units?',answer:36,hint:'The area of a square is side × side, so 6 × 6.'},
+    roots:{title:'Square roots',prompt:'A square has an area of 49 square units. What is its side length?',answer:7,hint:'Ask: what number multiplied by itself gives 49?'},
+    right:{title:'Right angles',prompt:'How many degrees are in a right angle?',answer:90,hint:'A right angle is a quarter turn — look for the small square marker in the corner.'}
+  };
+  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
+  function matches(r,v){
+    var n=parseNum(v);
+    if(!isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001))return true;
+    return normText(v)===normText(r.answer);
+  }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+      +'<div class="buttonrow">'
+      +'<button class="guidebtn" onclick="showReconnect(\'squares\')">Square numbers</button>'
+      +'<button class="guidebtn" onclick="showReconnect(\'roots\')">Square roots</button>'
+      +'<button class="guidebtn" onclick="showReconnect(\'right\')">Right angles</button>'
+      +'<button onclick="closeReconnect()">Return to Lesson 01</button>'
+      +'</div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+      +'<input id="reconnectAnswer" inputmode="decimal" placeholder="Your answer">'
+      +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button>'
+      +'<button onclick="reconnectHint(\''+key+'\')">Hint</button>'
+      +'<button onclick="closeReconnect()">Return to Lesson 01</button></div>'
+      +'<div id="reconnectFeedback" class="feedback" style="display:none"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback');
+    var val=document.getElementById('reconnectAnswer').value;
+    fb.style.display='block';
+    if(!val.trim()){fb.style.background='#fff1cf';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,val)){fb.style.background='#e3f0df';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.style.background='#f6dddd';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){
+    var fb=document.getElementById('reconnectFeedback');
+    fb.style.display='block';fb.style.background='#fff1cf';
+    fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;
+  };
+  window.closeReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='none';p.innerHTML='';
+  };
+})();
 </script>
 
 <script>
