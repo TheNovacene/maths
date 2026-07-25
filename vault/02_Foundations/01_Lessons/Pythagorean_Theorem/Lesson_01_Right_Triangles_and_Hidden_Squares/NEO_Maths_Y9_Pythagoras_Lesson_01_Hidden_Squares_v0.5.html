@@ -60,7 +60,8 @@ details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;f
   <div style="display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,0.75fr);gap:16px;align-items:start;">
     <div style="background:#ffffff;border:1px solid #cdbfa9;border-radius:12px;padding:8px;overflow:hidden;">
       <svg id="pythAreaSvg"
-           viewBox="0 0 980 720"
+           viewBox="0 0 1500 1500"
+           preserveAspectRatio="xMidYMid meet"
            aria-label="Dynamic right-angled triangle with a square constructed on each side"
            style="width:100%;height:auto;display:block;touch-action:none;user-select:none;cursor:grab;">
       </svg>
@@ -611,9 +612,25 @@ function chooseTri(x){const ok=x===triData[triIndex].correct;feedback(ok?"Correc
 function nextTriangle(){triIndex=(triIndex+1)%triData.length;renderTriangle();feedback("New triangle loaded.");}
 let squareReveal=false;function updateSquares(){if(!document.getElementById("sqA"))return;const a=n(sqA.value),b=n(sqB.value),c2=a*a+b*b;sqReadout.innerHTML=`a=${a}, b=${b}<br>Square areas: <b>${a*a}</b> and <b>${b*b}</b>${squareReveal?`<br>Combined area = <b>${c2}</b>, so c = √${c2} ≈ <b>${Math.sqrt(c2).toFixed(2)}</b>`:"<br><em>Predict the combined area before revealing.</em>"}`;}
 function revealSquareRelationship(){squareReveal=true;updateSquares();feedback("Notice: the two smaller square areas combine before the square root gives a length.",true);}
-let areaOrigin={x:330,y:500};
+// Visual containment (GreenPrint D7/§17): the viewBox (1500x1500) is sized from the
+// whole construction across the full drag range, not the triangle alone. The green
+// square on the hypotenuse reaches (Ox+legB+legC, Oy-legB-legC); the red square reaches
+// y=Oy+legB; the blue square reaches x=Ox-legC. clampAreaOrigin keeps the complete
+// bounding box (plus label/handle padding and a margin) inside the frame at every size
+// and while panning, so nothing is ever cropped.
+const AREA_VB=1500, AREA_MARGIN=48, AREA_LABEL_PAD=34;
+let areaOrigin={x:620,y:880};
 let areaLegB=300;
 let areaLegC=300;
+
+function clampAreaOrigin(){
+  const loX=AREA_MARGIN+areaLegC+AREA_LABEL_PAD;
+  const hiX=AREA_VB-AREA_MARGIN-(areaLegB+areaLegC);
+  const loY=AREA_MARGIN+areaLegB+areaLegC;
+  const hiY=AREA_VB-AREA_MARGIN-(areaLegB+AREA_LABEL_PAD);
+  areaOrigin.x=Math.min(Math.max(areaOrigin.x,loX),Math.max(loX,hiX));
+  areaOrigin.y=Math.min(Math.max(areaOrigin.y,loY),Math.max(loY,hiY));
+}
 let areaDragTarget=null;
 let areaPanLast=null;
 let areaSumVisible=false;
@@ -711,6 +728,7 @@ function renderAreaGeometry(){
   if(!svg) return;
   svg.innerHTML="";
 
+  clampAreaOrigin();
   const pts=getAreaPoints();
   const areaPointA=pts.A;
   const areaPointB=pts.B;
@@ -854,7 +872,7 @@ function randomiseAreaTriangle(){
 }
 
 function centreAreaConstruction(){
-  areaOrigin={x:330,y:500};
+  areaOrigin={x:620,y:880};
   renderAreaGeometry();
   const box=document.getElementById("areaConjectureFeedback");
   box.style.display="block";
@@ -863,7 +881,7 @@ function centreAreaConstruction(){
 }
 
 function resetAreaTriangle(){
-  areaOrigin={x:330,y:500};
+  areaOrigin={x:620,y:880};
   areaLegB=300;
   areaLegC=300;
   areaSumVisible=false;

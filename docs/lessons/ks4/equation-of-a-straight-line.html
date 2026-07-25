@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 
 <style>
   .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
@@ -839,6 +840,8 @@
         <strong>💡 Hint</strong>,
         <strong>✅ Check my answer</strong>,
         then <strong>👀 Worked solution</strong>.
+        The worked solution unlocks separately for each question, once you have used
+        the prompt, used the hint and checked two answers.
       </p>
 
     </div>
@@ -1696,7 +1699,41 @@
   const savedWorking = new Array(questions.length).fill("");
   const savedAnswers = new Array(questions.length).fill("");
   const attempts = new Array(questions.length).fill(0);
+  const promptUsed = new Array(questions.length).fill(false);
+  const hintUsed = new Array(questions.length).fill(false);
   const completed = new Array(questions.length).fill(false);
+
+  // GreenPrint v1.0 worked-solution unlock (item 75): per question, the worked
+  // solution unlocks only after the Socratic prompt is used, the hint is used,
+  // and two non-empty answers have been checked. State is per question, never inherited.
+  function solutionUnlocked(i) {
+    return promptUsed[i] && hintUsed[i] && attempts[i] >= 2;
+  }
+  function solutionLockMessage(i) {
+    const remaining = [];
+    if (!promptUsed[i]) remaining.push("use the Socratic prompt");
+    if (!hintUsed[i]) remaining.push("use the hint");
+    const triesLeft = Math.max(0, 2 - attempts[i]);
+    if (triesLeft === 2) remaining.push("check two answers");
+    else if (triesLeft === 1) remaining.push("check one more answer");
+    return remaining.length
+      ? "Worked solution unlocks after you " + remaining.join(", ") + "."
+      : "Worked solution unlocked.";
+  }
+  function updateSolutionLock() {
+    const solutionButton = document.getElementById("practiceSolutionButton");
+    if (!solutionButton) return;
+    const unlocked = solutionUnlocked(current);
+    solutionButton.disabled = !unlocked;
+    solutionButton.setAttribute("aria-disabled", String(!unlocked));
+    solutionButton.style.cursor = unlocked ? "pointer" : "not-allowed";
+    solutionButton.style.background = unlocked ? "#e5edf4" : "#eeeae5";
+    solutionButton.style.color = unlocked ? "#2f2f2f" : "#9a938b";
+    solutionButton.style.borderColor = unlocked ? "#315d72" : "#aaa29a";
+    solutionButton.title = unlocked
+      ? "Worked solution is now available."
+      : solutionLockMessage(current);
+  }
 
   function saveCurrentPractice() {
     savedWorking[current] = document.getElementById("practiceWorking").value;
@@ -1742,12 +1779,7 @@
     document.getElementById("practiceSupport").style.display = "none";
     document.getElementById("practiceFeedback").style.display = "none";
 
-    const solutionButton = document.getElementById("practiceSolutionButton");
-    solutionButton.disabled = attempts[current] < 1;
-    solutionButton.style.cursor = attempts[current] < 1 ? "not-allowed" : "pointer";
-    solutionButton.style.background = attempts[current] < 1 ? "#eeeae5" : "#e5edf4";
-    solutionButton.style.color = attempts[current] < 1 ? "#9a938b" : "#2f2f2f";
-    solutionButton.style.borderColor = attempts[current] < 1 ? "#aaa29a" : "#315d72";
+    updateSolutionLock();
 
     const previous = document.getElementById("practicePrevious");
     previous.disabled = current === 0;
@@ -1760,15 +1792,19 @@
   }
 
   window.showPracticePrompt = function () {
+    promptUsed[current] = true;
     const box = document.getElementById("practiceSupport");
     box.style.display = "block";
     box.innerHTML = "<strong>🤔 Socratic prompt:</strong> " + questions[current].prompt;
+    updateSolutionLock();
   };
 
   window.showPracticeHint = function () {
+    hintUsed[current] = true;
     const box = document.getElementById("practiceSupport");
     box.style.display = "block";
     box.innerHTML = "<strong>💡 Hint:</strong> " + questions[current].hint;
+    updateSolutionLock();
   };
 
   window.checkPracticeAnswer = function () {
@@ -1778,7 +1814,7 @@
     const feedback = document.getElementById("practiceFeedback");
     feedback.style.display = "block";
 
-    attempts[current]++;
+    if (learner) attempts[current]++;
 
     const correct = questions[current].answers.some(function (answer) {
       return normaliseEquation(answer) === learner;
@@ -1812,13 +1848,14 @@
   };
 
   window.showPracticeSolution = function () {
-    attempts[current]++;
     const box = document.getElementById("practiceSupport");
     box.style.display = "block";
+    if (!solutionUnlocked(current)) {
+      box.innerHTML = "<strong>🔒 Worked solution locked.</strong> " + solutionLockMessage(current);
+      updateSolutionLock();
+      return;
+    }
     box.innerHTML = "<strong>👀 Worked solution:</strong> " + questions[current].solution;
-    renderPracticeQuestion();
-    document.getElementById("practiceSupport").style.display = "block";
-    document.getElementById("practiceSupport").innerHTML = "<strong>👀 Worked solution:</strong> " + questions[current].solution;
   };
 
   window.previousPracticeQuestion = function () {

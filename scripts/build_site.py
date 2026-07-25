@@ -206,6 +206,21 @@ def inject_chrome(html: str, unit: str, num: str, title: str, depth: int) -> str
     return html
 
 
+def ensure_charset(html: str) -> str:
+    """Guarantee a UTF-8 declaration in the first bytes of the page.
+
+    Most lessons are full documents that already declare <meta charset="utf-8">
+    in their <head>. A few (e.g. the Straight-Line equation lesson) are bare
+    fragments with no <head> at all; without a charset the local server serves
+    them with no encoding and the browser falls back to Windows-1252, rendering
+    UTF-8 emoji and dashes as mojibake. This is a no-op when a charset is
+    already present.
+    """
+    if re.search(r"<meta[^>]+charset", html, re.IGNORECASE):
+        return html
+    return '<meta charset="utf-8">\n' + html
+
+
 def inject_progress(html: str, lesson_id: str, depth: int) -> str:
     rel = "../" * depth
     snippet = SNIPPET.format(rel=rel, lesson_id=lesson_id)
@@ -236,6 +251,7 @@ def main() -> None:
             depth = len(Path(lesson["file"]).parents) - 1
             html = inject_progress(html, lesson["id"], depth)
             html = inject_chrome(html, unit["title"], lesson["num"], lesson["title"], depth)
+            html = ensure_charset(html)
             dest.write_text(html, encoding="utf-8")
             lesson["status"] = "live"
             live.append(lesson["id"])
