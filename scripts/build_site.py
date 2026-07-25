@@ -84,6 +84,11 @@ CHROME_STYLE = """
   html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
   html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
   @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+  .mathpalette{margin:6px 0}
+  .palette-toggle{background:#365a68;color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+  .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .palette-keys[hidden]{display:none}
+  .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
 </style>
 """
 
@@ -122,6 +127,28 @@ COMFORT_PANEL = (
     '</div>'
 )
 
+
+PALETTE_SCRIPT = """
+<script>
+/* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */
+(function(){
+  if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
+  var DEFAULT=["a","b","c","x","y","\u00b2","\u00b3","\u221a","\u03c0","+","-","\u00d7","\u00f7","=","\u2248","\u00b0"];
+  function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
+  function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
+  function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
+    var w=document.createElement("div"); w.className="mathpalette";
+    var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="\u221a Symbols";
+    var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
+    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);}); k.appendChild(b); });
+    t.addEventListener("click",function(){ k.hidden=!k.hidden; });
+    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w);
+  }
+  function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
+})();
+</script>
+"""
 
 ACCORDION_SCRIPT = """
 <script>
@@ -166,7 +193,7 @@ def inject_chrome(html: str, unit: str, num: str, title: str, depth: int) -> str
         return html
     rel = "../" * depth
     header = CHROME_STYLE + CHROME_HEADER.format(rel=rel, unit=unit, num=num, title=title) + COMFORT_PANEL + COMFORT_SCRIPT + '<div class="neo-lesson-root">'
-    footer = ACCORDION_SCRIPT + "</div>" + CHROME_FOOTER.format(rel=rel)
+    footer = PALETTE_SCRIPT + ACCORDION_SCRIPT + "</div>" + CHROME_FOOTER.format(rel=rel)
     m = re.search(r"<body[^>]*>", html, re.IGNORECASE)
     if m:
         html = html[: m.end()] + "\n" + header + "\n" + html[m.end() :]
