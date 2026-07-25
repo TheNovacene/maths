@@ -122,6 +122,26 @@ COMFORT_PANEL = (
     '</div>'
 )
 
+
+ACCORDION_SCRIPT = """
+<script>
+/* Single-open accordion: opening one panel closes the others (data-keep-open opts out). */
+(function(){
+  if(window.__neoAccordionInstalled)return; window.__neoAccordionInstalled=true;
+  function closeOthers(cur){
+    var scope=cur.closest("#lessonView")||document;
+    scope.querySelectorAll("details").forEach(function(d){
+      if(d!==cur && !d.contains(cur) && d.dataset.keepOpen!=="true") d.open=false;
+    });
+  }
+  document.addEventListener("toggle",function(e){
+    var d=e.target;
+    if(d && d.tagName==="DETAILS" && d.open && (d.closest("#lessonView")||d.closest(".neo-lesson-root"))) closeOthers(d);
+  },true);
+})();
+</script>
+"""
+
 COMFORT_SCRIPT = """
 <script>
 (function(){
@@ -146,7 +166,7 @@ def inject_chrome(html: str, unit: str, num: str, title: str, depth: int) -> str
         return html
     rel = "../" * depth
     header = CHROME_STYLE + CHROME_HEADER.format(rel=rel, unit=unit, num=num, title=title) + COMFORT_PANEL + COMFORT_SCRIPT + '<div class="neo-lesson-root">'
-    footer = "</div>" + CHROME_FOOTER.format(rel=rel)
+    footer = ACCORDION_SCRIPT + "</div>" + CHROME_FOOTER.format(rel=rel)
     m = re.search(r"<body[^>]*>", html, re.IGNORECASE)
     if m:
         html = html[: m.end()] + "\n" + header + "\n" + html[m.end() :]
