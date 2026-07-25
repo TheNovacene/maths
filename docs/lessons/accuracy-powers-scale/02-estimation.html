@@ -54,8 +54,42 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   .neo-chrome-footer a:hover { text-decoration: underline; }
   .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
   .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
+  /* --- Comfort & Access --- */
+  .neo-comfort-btn{background:#2AB3A0;color:#08312b;border:none;border-radius:8px;padding:0.35rem 0.7rem;font-weight:700;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;white-space:nowrap}
+  .neo-comfort-btn:hover{filter:brightness(1.06)}
+  .neo-comfort-panel{background:#12242e;color:#F7F7F5;padding:0.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;border-top:1px solid rgba(255,255,255,0.12);font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
+  .neo-comfort-panel[hidden]{display:none}
+  .neo-comfort-group{display:flex;flex-direction:column;gap:0.35rem}
+  .neo-comfort-group>span{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(247,247,245,0.65)}
+  .neo-comfort-row{display:flex;gap:0.4rem}
+  .neo-comfort-panel button.opt{background:rgba(255,255,255,0.10);color:#F7F7F5;border:1px solid rgba(255,255,255,0.25);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem}
+  .neo-comfort-panel button.opt[aria-pressed="true"]{background:#2AB3A0;color:#08312b;border-color:#2AB3A0;font-weight:700}
+  .neo-comfort-reset{margin-left:auto;align-self:center;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(247,247,245,0.85);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem}
+  html[data-neo-text="large"]{font-size:112.5%}
+  html[data-neo-text="larger"]{font-size:125%}
+  html[data-neo-spacing="on"] .neo-lesson-root{letter-spacing:0.012em}
+  html[data-neo-spacing="on"] .neo-lesson-root p,html[data-neo-spacing="on"] .neo-lesson-root li,html[data-neo-spacing="on"] .neo-lesson-root summary,html[data-neo-spacing="on"] .neo-lesson-root h2,html[data-neo-spacing="on"] .neo-lesson-root h3,html[data-neo-spacing="on"] .neo-lesson-root label{line-height:1.9!important;margin-bottom:0.7em!important}
+  html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
+  html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
 </style>
-<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Accuracy, Powers and Scale &middot; <strong>Lesson 02 &mdash; Estimation</strong></div></div>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Accuracy, Powers and Scale &middot; <strong>Lesson 02 &mdash; Estimation</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<script>
+(function(){
+ var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
+ try{var sv=JSON.parse(localStorage.getItem(KEY)||"null");if(sv)st=Object.assign(st,sv);}catch(e){}
+ function apply(){d.setAttribute("data-neo-text",st.text);st.spacing?d.setAttribute("data-neo-spacing","on"):d.removeAttribute("data-neo-spacing");st.calm?d.setAttribute("data-neo-calm","on"):d.removeAttribute("data-neo-calm");st.motion?d.setAttribute("data-neo-motion","reduced"):d.removeAttribute("data-neo-motion");}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+ function sync(){var ps=document.querySelectorAll("#neoComfortPanel .opt");for(var i=0;i<ps.length;i++){var b=ps[i],k=b.getAttribute("data-k");if(k==="text"){b.setAttribute("aria-pressed",st.text===b.getAttribute("data-v")?"true":"false");}else{b.setAttribute("aria-pressed",st[k]?"true":"false");}}}
+ window.neoComfortToggle=function(){var p=document.getElementById("neoComfortPanel"),btn=document.querySelector(".neo-comfort-btn"),willOpen=p.hasAttribute("hidden");willOpen?p.removeAttribute("hidden"):p.setAttribute("hidden","");if(btn)btn.setAttribute("aria-expanded",willOpen?"true":"false");};
+ window.neoComfortSet=function(k,v){st[k]=v;apply();save();sync();};
+ window.neoComfortToggleOpt=function(k){st[k]=!st[k];apply();save();sync();};
+ window.neoComfortReset=function(){st={text:"normal",spacing:false,calm:false,motion:false};apply();save();sync();};
+ apply();
+ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
+})();
+</script>
+<div class="neo-lesson-root">
 
 <div id="lessonView">
 <div class="neo">
@@ -365,6 +399,6 @@ resetLab();
 
 <script src="../../assets/progress.js"></script>
 <script>NEOProgress.autoTrack('aps-02-estimation');</script>
-<div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a></div></div>
+</div><div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a></div></div>
 </body>
 </html>
