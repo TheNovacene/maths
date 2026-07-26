@@ -33,6 +33,18 @@ scripts/
 3. Run `python3 scripts/build_site.py` from the repo root.
 4. Commit and push (or commit + push in GitHub Desktop). Pages redeploys automatically.
 
+## Local preview
+
+To preview the built site before pushing, serve `docs/` **from the repo root** — no need to `cd` into it:
+
+```
+python3 -m http.server 8000 --directory docs
+```
+
+Then open http://localhost:8000. The `--directory` flag (Python 3.7+) keeps you in the repo root, so the same working directory runs both the build and the server.
+
+A two-tab workflow keeps this frictionless: leave the server running in one terminal tab (it serves files live — no restart needed after a rebuild) and use a second tab for `python3 scripts/build_site.py`, then hard-refresh the browser (Cmd+Shift+R) to see the change.
+
 ## Progress tracking
 
 Every lesson page loads `assets/progress.js` (injected at build time). Today it records opened/completed state in the learner's own browser only — no accounts, no data leaves the device. The module has a single narrow interface (`NEOProgress`), so real-time progress tracking can be added later by implementing a remote backend and calling `NEOProgress.setBackend(...)` — no lesson needs to change.
