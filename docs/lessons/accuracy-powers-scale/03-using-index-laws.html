@@ -132,7 +132,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <a class="guidebtn" href="NEO_Maths_Accuracy_Powers_Scale_Lesson_03_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
 <button class="scratchbtn" onclick="openMathsScratchpad('lines-of-working','Write each line of your working, with your reason beside it.')">✏️ Open Maths Scratchpad</button>
-<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
 </div>
@@ -217,7 +217,9 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <tr><td><b>Communication</b></td><td>Records part of an expression.</td><td>Shows a rule or result.</td><td>Gives a reason for each line.</td><td>Creates an explanation another learner could use.</td></tr>
 <tr><td><b>Reflection</b></td><td>Notices whether bases match.</td><td>Checks one exponent operation.</td><td>Explains why a chosen law fits.</td><td>Diagnoses and repairs a convincing misconception.</td></tr></table>
 </details>
-</div></div>
+</div>
+<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
+</div>
 
 <div id="practiceView" hidden><div class="practice"><h1>Using Index Laws — Practice Companion</h1><button onclick="returnLesson()">← Return to lesson</button><p>Use support in this order: 🤔 <b>prompt</b> → 💡 <b>hint</b> → ✅ <b>check</b> → 📖 <b>worked solution</b>.</p><p style="margin-top:-4px;color:#5f5a4f;"><b>Worked solution rule:</b> the worked solution stays locked until the learner has used the Socratic prompt, used the hint, and had <b>two tries</b>.</p><div id="practiceDots" class="buttonrow"></div><div class="toolbox"><p id="practiceLabel"></p><div class="twocol"><svg id="practiceSvg" viewBox="0 0 520 360" class="practice-svg" aria-label="Index laws practice focus"></svg><div><div id="practiceQuestion" class="readout"></div><input id="practiceAnswer" placeholder="Enter the resulting exponent"><div class="buttonrow"><button onclick="pPrompt()">🤔 Socratic prompt</button><button onclick="pHint()">💡 Hint</button><button onclick="pCheck()">✅ Check</button><button id="practiceWorkedBtn" onclick="pSolution()">📖 Worked solution</button><button class="scratchbtn" onclick="openMathsScratchpad('lines-of-working','Write each line of your working, with your reason beside it.')">✏️ Scratchpad</button></div><div id="practiceWorkedNotice" style="margin-top:10px;font-size:.95em;color:#5f5a4f;">Worked solution unlocks after prompt + hint + two tries.</div><div id="practiceSupport" class="readout" style="display:none"></div><div id="practiceFeedback" class="feedback"></div></div></div></div><div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div></div></div>
 

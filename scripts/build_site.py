@@ -221,6 +221,69 @@ def ensure_charset(html: str) -> str:
     return '<meta charset="utf-8">\n' + html
 
 
+PRACTICE_CARD = (
+    '\n<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px;'
+    ' border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;">'
+    '<h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2>'
+    '<button type="button" onclick="{fn}()" style="padding:13px 22px; background:#5c6b4f; color:#fff;'
+    ' border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">'
+    'Open Practice Companion</button></div>\n'
+)
+
+
+def inject_practice_card(html: str) -> str:
+    """Standardise the Practice Companion trigger across every lesson.
+
+    Each lesson has exactly one practice trigger — a plain button (near the top in most
+    lessons) or an older "Ready to strengthen your skills?" card at the bottom in a few.
+    Remove whichever it is and drop one consistent card at the bottom of the lesson view,
+    calling that lesson's own open-function. Runs on the raw lesson HTML before the shared
+    chrome is added. No-op if it can't find the trigger or the anchor, so a lesson is never
+    left in a broken state.
+    """
+    if "neo-practice-cta" in html:
+        return html
+    if 'onclick="openPracticeSession()"' in html:
+        fn = "openPracticeSession"
+    elif 'onclick="openPractice()"' in html:
+        fn = "openPractice"
+    else:
+        return html
+
+    # Remove the existing trigger: an older "Ready to strengthen" card first, else the button.
+    card_re = re.compile(
+        r"<div\b[^>]*>(?:(?!</div>).)*?Ready to strengthen(?:(?!</div>).)*?"
+        r'onclick="openPractice(?:Session)?\(\)"(?:(?!</div>).)*?</div>',
+        re.IGNORECASE | re.DOTALL,
+    )
+    stripped, n = card_re.subn("", html, count=1)
+    if n == 0:
+        btn_re = re.compile(
+            r'<button\b[^>]*onclick="openPractice(?:Session)?\(\)"[^>]*>'
+            r"(?:(?!</button>).)*?</button>",
+            re.IGNORECASE | re.DOTALL,
+        )
+        stripped, n = btn_re.subn("", html, count=1)
+        if n == 0:
+            return html
+        # Tidy an empty support box the removed button may have left behind.
+        stripped = re.sub(
+            r'<div class="guides"><div class="buttonrow">\s*</div></div>', "", stripped
+        )
+
+    card = PRACTICE_CARD.format(fn=fn)
+    placed, m = re.subn(
+        r'(</div>)(\s*(?:<!--.*?-->\s*)?<div id="practiceView")',
+        card + r"\1\2",
+        stripped,
+        count=1,
+        flags=re.DOTALL,
+    )
+    if m == 0:
+        return html
+    return placed
+
+
 def inject_progress(html: str, lesson_id: str, depth: int) -> str:
     rel = "../" * depth
     snippet = SNIPPET.format(rel=rel, lesson_id=lesson_id)
@@ -249,6 +312,7 @@ def main() -> None:
             dest.parent.mkdir(parents=True, exist_ok=True)
             html = src.read_text(encoding="utf-8", errors="replace")
             depth = len(Path(lesson["file"]).parents) - 1
+            html = inject_practice_card(html)
             html = inject_progress(html, lesson["id"], depth)
             html = inject_chrome(html, unit["title"], lesson["num"], lesson["title"], depth)
             html = ensure_charset(html)

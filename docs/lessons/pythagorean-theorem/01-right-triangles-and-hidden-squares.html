@@ -435,8 +435,10 @@ details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;f
 <tr><td style="border:1px solid #cdbfa9;padding:8px"><b>Reflection</b></td><td style="border:1px solid #cdbfa9;padding:8px">Names one thing noticed.</td><td style="border:1px solid #cdbfa9;padding:8px">Identifies one changed idea.</td><td style="border:1px solid #cdbfa9;padding:8px">Explains what helped the theorem make more sense.</td><td style="border:1px solid #cdbfa9;padding:8px">Identifies a nourishing mathematical habit and a precise next connection.</td></tr>
 </table>
 </details>
-<div class="guides"><div class="buttonrow"><button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button></div></div>
-</div></div>
+
+</div>
+<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
+</div>
 <div id="practiceView" hidden><div class="practice"><h1>Pythagoras' Theorem — Practice Companion</h1><button onclick="returnLesson()">← Return to lesson</button><p>Use support in this order: <b>🤔 prompt → 💡 hint → ✅ check → 👀 worked solution</b>.</p><div id="practiceDots" class="buttonrow"></div><div class="toolbox"><p id="practiceLabel"></p><div id="practiceQuestion" class="readout"></div><input id="practiceAnswer" placeholder="Your answer"><div class="buttonrow"><button onclick="pPrompt()">🤔 Socratic prompt</button><button onclick="pHint()">💡 Hint</button><button onclick="pCheck()">✅ Check</button><button id="practiceSolution" onclick="pSolution()" disabled>👀 Worked solution</button><button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to organise your working.')">✏️ Scratchpad</button></div><div id="practiceSupport" class="readout" style="display:none"></div><div id="practiceFeedback" class="feedback"></div></div><div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div></div></div>
 <!-- NEO Maths Scratchpad -->
 <div id="neoScratchpadOverlay" hidden
