@@ -32,7 +32,12 @@
                 style="padding:11px 18px; background:#365a68; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
           ✏️ Open Maths Scratchpad
         </button>
+        <button type="button" onclick="openReconnect()"
+                style="padding:11px 18px; background:#6a7f4e; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+          🧭 Reconnection Routes
+        </button>
       </div>
+      <div id="reconnectionPanel" aria-live="polite" style="display:none; background:#f7f3ea; border:1px solid #cdbfa9; padding:14px; border-radius:12px; margin-top:12px;"></div>
     </div>
 
 <details open style="background:#e8f0e3;padding:15px;margin:12px 0;border-radius:14px;">
@@ -362,7 +367,7 @@ function pLock(){const b=practiceSolutionButton,o=pUnlocked(pIndex);b.setAttribu
 function pSave(){pSaved[pIndex]={w:practiceWorking.value,a:practiceAnswer.value};}
 function pRender(){const q=ratioPractice[pIndex],s=pSaved[pIndex];practiceLabel.textContent="Question "+q.l;practiceQuestion.innerHTML=q.q;practiceWorking.value=s.w;practiceAnswer.value=s.a;practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrevious.disabled=pIndex===0;practiceNext.textContent=pIndex===ratioPractice.length-1?"Finish":"Next →";pLock();practiceDots.innerHTML="";ratioPractice.forEach((_,i)=>{const d=document.createElement("span");d.textContent=i+1;d.style.cssText="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:"+(pDone[i]?"#e3f0df":i===pIndex?"#e5edf4":"#fff");practiceDots.appendChild(d);});}
 function practicePrompt(){pPrompt[pIndex]=true;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+ratioPractice[pIndex].p;pLock();}function practiceHint(){pHint[pIndex]=true;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+ratioPractice[pIndex].h;pLock();}
-function practiceCheck(){pSave();pAttempts[pIndex]++;const learner=normaliseText(pSaved[pIndex].a),ok=ratioPractice[pIndex].a.some(x=>normaliseText(x)===learner);pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your proportional reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the multiplier first.";}}
+function practiceCheck(){pSave();const learner=normaliseText(pSaved[pIndex].a),ok=ratioPractice[pIndex].a.some(x=>normaliseText(x)===learner);if(learner)pAttempts[pIndex]++;pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your proportional reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the multiplier first.";}}
 function practiceSolution(){practiceSupport.style.display="block";if(!pUnlocked(pIndex)){const r=[];if(!pPrompt[pIndex])r.push("use the Socratic prompt");if(!pHint[pIndex])r.push("use the hint");const t=Math.max(0,2-pAttempts[pIndex]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");practiceSupport.innerHTML="<b>🔒 Worked solution locked.</b> Still to do: "+r.join(", ")+".";return;}practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+ratioPractice[pIndex].s;}
 function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function practiceNext(){pSave();if(pIndex<ratioPractice.length-1){pIndex++;pRender();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. You have ${pDone.filter(Boolean).length} of 8 correct so far.`;}}pRender();
 </script>
@@ -784,4 +789,64 @@ function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function pract
 })();
 </script>
 
+<script>
+/* Reconnection Routes (GreenPrint E2/§19). Prerequisites for Ratio and Proportion:
+   scaling by a multiplier, equivalent fractions, and sharing into parts. Inline-styled to
+   match this lesson's shell. Each route returns the learner to the lesson in place. */
+(function(){
+  var BTN='padding:10px 14px;background:#6a7f4e;color:#fff;border:none;border-radius:9px;font-weight:bold;cursor:pointer;';
+  var BTN2='padding:10px 14px;background:#8a8f7a;color:#fff;border:none;border-radius:9px;font-weight:bold;cursor:pointer;';
+  var RECONNECT={
+    scale:{title:'Scaling by a multiplier',prompt:'To scale a recipe from 2 people up to 6 people, what number do you multiply each amount by?',answer:3,hint:'How many times does 2 go into 6?'},
+    equiv:{title:'Equivalent fractions',prompt:'Complete the equivalent fraction: 1/2 = ?/4. What number replaces the ?',answer:2,hint:'The bottom doubled (2 → 4) — so what must happen to the top?'},
+    share:{title:'Sharing into parts',prompt:'To share an amount in the ratio 1 : 2, how many equal parts do you split it into altogether?',answer:3,hint:'Add the numbers in the ratio together.'}
+  };
+  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
+  function matches(r,v){
+    if(typeof r.answer==='number'){var n=parseNum(v);return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);}
+    var learner=normText(v);return String(r.answer).split('|').some(function(k){return learner.includes(normText(k));});
+  }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='block';
+    p.innerHTML='<h3 style="margin-top:0;color:#46533d;">🧭 Reconnection Routes</h3>'
+      +'<p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:8px;">'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'scale\')">Scaling by a multiplier</button>'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'equiv\')">Equivalent fractions</button>'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'share\')">Sharing into parts</button>'
+      +'<button type="button" style="'+BTN2+'" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectTask" style="margin-top:12px;"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div style="background:#eef3e8;padding:12px;border-radius:10px;">'
+      +'<h4 style="margin-top:0;">'+r.title+'</h4><p>'+r.prompt+'</p>'
+      +'<input id="reconnectAnswer" placeholder="Your answer" style="padding:10px;border:1px solid #cdbfa9;border-radius:8px;font:inherit;">'
+      +'<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">'
+      +'<button type="button" style="'+BTN+'" onclick="checkReconnect(\''+key+'\')">Check</button>'
+      +'<button type="button" style="'+BTN+'" onclick="reconnectHint(\''+key+'\')">Hint</button>'
+      +'<button type="button" style="'+BTN2+'" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback');
+    var val=document.getElementById('reconnectAnswer').value;
+    fb.style.display='block';
+    if(!val.trim()){fb.style.background='#fff1cf';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,val)){fb.style.background='#e3f0df';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.style.background='#f6dddd';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){
+    var fb=document.getElementById('reconnectFeedback');
+    fb.style.display='block';fb.style.background='#fff1cf';
+    fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;
+  };
+  window.closeReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='none';p.innerHTML='';
+  };
+})();
+</script>
 </body></html>
