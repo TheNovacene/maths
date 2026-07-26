@@ -294,9 +294,29 @@ def inject_progress(html: str, lesson_id: str, depth: int) -> str:
     return html + snippet
 
 
+def copy_lesson_assets(html: str, src: Path, dest: Path) -> list:
+    """Copy a lesson's guidance PDFs into docs/ next to its built page.
+
+    Lessons link their Learner and Supporting Adult guidance by bare filename (same
+    folder as the page), e.g. href="NEO_..._Learner_Guide.pdf". The build otherwise copies
+    only the HTML, so those links 404 on the live site. Copy each referenced same-folder
+    PDF that exists in the vault lesson folder into the built page's folder. Returns the
+    list of guidance filenames the page references but that are still missing.
+    """
+    missing = []
+    for name in sorted(set(re.findall(r'href="([^"/]+\.pdf)"', html))):
+        pdf = src.parent / name
+        if pdf.exists():
+            shutil.copy2(pdf, dest.parent / name)
+        else:
+            missing.append(name)
+    return missing
+
+
 def main() -> None:
     data = json.loads(CURRICULUM.read_text(encoding="utf-8"))
     live, missing = [], []
+    missing_guides = []
 
     for unit in data["units"]:
         for lesson in unit["lessons"]:
@@ -317,11 +337,17 @@ def main() -> None:
             html = inject_chrome(html, unit["title"], lesson["num"], lesson["title"], depth)
             html = ensure_charset(html)
             dest.write_text(html, encoding="utf-8")
+            for gap in copy_lesson_assets(html, src, dest):
+                missing_guides.append(f"{lesson['id']}: {gap}")
             lesson["status"] = "live"
             live.append(lesson["id"])
 
     CURRICULUM.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"live: {len(live)}  missing: {len(missing)}")
+    if missing_guides:
+        print(f"guidance PDFs referenced but not found ({len(missing_guides)}):")
+        for g in missing_guides:
+            print(f"  {g}")
     for m in missing:
         print(f"  missing source: {m}")
 
