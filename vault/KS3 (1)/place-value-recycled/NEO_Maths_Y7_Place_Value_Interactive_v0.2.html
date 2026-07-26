@@ -92,7 +92,9 @@
         <a class="neo-guidebtn" href="NEO_Maths_Y7_Place_Value_Learner_Guide.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
         <a class="neo-guidebtn" href="NEO_Maths_Y7_Place_Value_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
         <button class="neo-scratchbtn" type="button" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to locate digits, sketch place-value columns, predict and revise.')">✏️ Open Maths Scratchpad</button>
+        <button class="neo-guidebtn" type="button" onclick="openReconnect()">🧭 Reconnection Routes</button>
       </div>
+      <div id="reconnectionPanel" aria-live="polite" style="display:none; background:#f7f3ea; border:1px solid #cdbfa9; padding:14px; border-radius:12px; margin-top:12px;"></div>
     </div>
 
 
@@ -2522,6 +2524,65 @@
   });
 
   restoreStored();
+})();
+</script>
+
+<script>
+/* Reconnection Routes (GreenPrint E2/§19). Prerequisites for Place Value: value of a
+   digit, bundling in tens, and partitioning. Uses the lesson's own neo- button styling.
+   Each route returns the learner to the lesson in place. */
+(function(){
+  var RECONNECT={
+    digit:{title:'Value of a digit',prompt:'What is the value of the 7 in 372?',answer:70,hint:'The 7 is in the tens column — what is the value of 7 lots of tens?'},
+    bundle:{title:'Bundling in tens',prompt:'How many tens make one hundred?',answer:10,hint:'Count up in tens: 10, 20, 30 … how many steps to reach 100?'},
+    partition:{title:'Partitioning',prompt:'Partition 58 into tens and ones: 58 = 50 + ?',answer:8,hint:'Split 58 into its tens part and its ones part.'}
+  };
+  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
+  function matches(r,v){
+    if(typeof r.answer==='number'){var n=parseNum(v);return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);}
+    var learner=normText(v);return String(r.answer).split('|').some(function(k){return learner.includes(normText(k));});
+  }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='block';
+    p.innerHTML='<h3 style="margin-top:0;">🧭 Reconnection Routes</h3>'
+      +'<p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+      +'<div class="neo-buttonrow">'
+      +'<button class="neo-guidebtn" type="button" onclick="showReconnect(\'digit\')">Value of a digit</button>'
+      +'<button class="neo-guidebtn" type="button" onclick="showReconnect(\'bundle\')">Bundling in tens</button>'
+      +'<button class="neo-guidebtn" type="button" onclick="showReconnect(\'partition\')">Partitioning</button>'
+      +'<button class="neo-guidebtn" type="button" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectTask" style="margin-top:12px;"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div style="background:#eef3e8;padding:12px;border-radius:10px;">'
+      +'<h4 style="margin-top:0;">'+r.title+'</h4><p>'+r.prompt+'</p>'
+      +'<input id="reconnectAnswer" placeholder="Your answer" style="padding:10px;border:1px solid #cdbfa9;border-radius:8px;font:inherit;">'
+      +'<div class="neo-buttonrow" style="margin-top:10px;">'
+      +'<button class="neo-guidebtn" type="button" onclick="checkReconnect(\''+key+'\')">Check</button>'
+      +'<button class="neo-guidebtn" type="button" onclick="reconnectHint(\''+key+'\')">Hint</button>'
+      +'<button class="neo-guidebtn" type="button" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback');
+    var val=document.getElementById('reconnectAnswer').value;
+    fb.style.display='block';
+    if(!val.trim()){fb.style.background='#fff1cf';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,val)){fb.style.background='#e3f0df';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.style.background='#f6dddd';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){
+    var fb=document.getElementById('reconnectFeedback');
+    fb.style.display='block';fb.style.background='#fff1cf';
+    fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;
+  };
+  window.closeReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='none';p.innerHTML='';
+  };
 })();
 </script>
 </body>
