@@ -53,8 +53,10 @@ details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;f
 <a class="guidebtn" href="NEO_Maths_Y9_Pythagoras_Lesson_02_Learner_Guide_v0.8.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
 <a class="guidebtn" href="NEO_Maths_Y9_Pythagoras_Lesson_02_Supporting_Adult_Guidance_v0.8.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use the Scratchpad to mark the right angle, trace to the opposite side, and build the worked solution step by step.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
 <button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
 </div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
 </div>
 
 <details class="kw" open>
@@ -750,6 +752,66 @@ renderAll();
     update();
   };
   renderPractice();
+})();
+</script>
+
+<script>
+/* Reconnection Routes (GreenPrint E2/§19). Prerequisites for Lesson 02 (Finding the
+   Hypotenuse): squaring, square roots, and identifying the hypotenuse. The control is
+   recurring support-area furniture; each route offers one short recap that returns the
+   learner to the lesson in place. */
+(function(){
+  var RECONNECT={
+    squares:{title:'Square numbers',prompt:'What is 12² (12 squared)?',answer:144,hint:'12² means 12 × 12.'},
+    roots:{title:'Square roots',prompt:'What is √169?',answer:13,hint:'Ask: what number multiplied by itself gives 169? Try 13 × 13.'},
+    hyp:{title:'The hypotenuse',prompt:'In a right-angled triangle, is the hypotenuse the longest side or one of the shorter sides?',answer:'longest',hint:'The hypotenuse is opposite the right angle, which is the largest angle in the triangle.'}
+  };
+  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
+  function matches(r,v){
+    if(typeof r.answer==='number'){
+      var n=parseNum(v);
+      return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);
+    }
+    return normText(v).includes(normText(r.answer));
+  }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+      +'<div class="buttonrow">'
+      +'<button class="guidebtn" onclick="showReconnect(\'squares\')">Square numbers</button>'
+      +'<button class="guidebtn" onclick="showReconnect(\'roots\')">Square roots</button>'
+      +'<button class="guidebtn" onclick="showReconnect(\'hyp\')">The hypotenuse</button>'
+      +'<button onclick="closeReconnect()">Return to Lesson 02</button>'
+      +'</div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+      +'<input id="reconnectAnswer" placeholder="Your answer">'
+      +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button>'
+      +'<button onclick="reconnectHint(\''+key+'\')">Hint</button>'
+      +'<button onclick="closeReconnect()">Return to Lesson 02</button></div>'
+      +'<div id="reconnectFeedback" class="feedback" style="display:none"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback');
+    var val=document.getElementById('reconnectAnswer').value;
+    fb.style.display='block';
+    if(!val.trim()){fb.style.background='#fff1cf';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,val)){fb.style.background='#e3f0df';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.style.background='#f6dddd';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){
+    var fb=document.getElementById('reconnectFeedback');
+    fb.style.display='block';fb.style.background='#fff1cf';
+    fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;
+  };
+  window.closeReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='none';p.innerHTML='';
+  };
 })();
 </script>
 </body>
