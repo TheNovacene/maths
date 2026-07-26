@@ -82,7 +82,12 @@
                 style="padding:11px 18px; background:#365a68; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
           ✏️ Open Maths Scratchpad
         </button>
+        <button type="button" onclick="openReconnect()"
+                style="padding:11px 18px; background:#6a7f4e; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+          🧭 Reconnection Routes
+        </button>
       </div>
+      <div id="reconnectionPanel" aria-live="polite" style="display:none; background:#f7f3ea; border:1px solid #cdbfa9; padding:14px; border-radius:12px; margin-top:12px;"></div>
     </div>
 
 <details open style="background:#e8f0e3;padding:15px;margin:12px 0;border-radius:14px;"><summary style="font-size:1.25em;font-weight:bold;">🌿 Connection - How are equation, table and graph connected?</summary>
@@ -322,7 +327,7 @@ function pUnlocked(i){return pPrompt[i]&&pHint[i]&&pAttempts[i]>=2;}
 function pLock(){const b=practiceSolutionButton,o=pUnlocked(pIndex);b.setAttribute("aria-disabled",o?"false":"true");b.style.opacity=o?"1":"0.5";b.style.cursor=o?"pointer":"not-allowed";}
 function pSave(){pSaved[pIndex]={w:practiceWorking.value,a:practiceAnswer.value};}function pRender(){const q=graphPractice[pIndex],s=pSaved[pIndex];practiceLabel.textContent="Question "+q.l;practiceQuestion.innerHTML=q.q;practiceWorking.value=s.w;practiceAnswer.value=s.a;practiceSupport.style.display="none";practiceFeedback.style.display="none";practicePrevious.disabled=pIndex===0;practiceNext.textContent=pIndex===graphPractice.length-1?"Finish":"Next →";pLock();practiceDots.innerHTML="";graphPractice.forEach((_,i)=>{const d=document.createElement("span");d.textContent=i+1;d.style.cssText="display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:"+(pDone[i]?"#e3f0df":i===pIndex?"#e5edf4":"#fff");practiceDots.appendChild(d);});}
 function practicePrompt(){pPrompt[pIndex]=true;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>🤔 Socratic prompt:</b> "+graphPractice[pIndex].p;pLock();}function practiceHint(){pHint[pIndex]=true;practiceSupport.style.display="block";practiceSupport.innerHTML="<b>💡 Hint:</b> "+graphPractice[pIndex].h;pLock();}
-function practiceCheck(){pSave();pAttempts[pIndex]++;const learner=normEq(pSaved[pIndex].a),ok=graphPractice[pIndex].a.some(x=>normEq(x)===learner);pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your straight-line reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the start or the change and test it.";}}
+function practiceCheck(){pSave();const learner=normEq(pSaved[pIndex].a),ok=graphPractice[pIndex].a.some(x=>normEq(x)===learner);if(learner)pAttempts[pIndex]++;pRender();practiceFeedback.style.display="block";if(!learner){practiceFeedback.style.background="#fff1cf";practiceFeedback.textContent="Enter a final answer first.";}else if(ok){pDone[pIndex]=true;practiceFeedback.style.background="#e3f0df";practiceFeedback.textContent="Correct. Your straight-line reasoning is working.";}else{practiceFeedback.style.background="#f6dddd";practiceFeedback.textContent="Not quite yet. Find the start or the change and test it.";}}
 function practiceSolution(){practiceSupport.style.display="block";if(!pUnlocked(pIndex)){const r=[];if(!pPrompt[pIndex])r.push("use the Socratic prompt");if(!pHint[pIndex])r.push("use the hint");const t=Math.max(0,2-pAttempts[pIndex]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");practiceSupport.innerHTML="<b>🔒 Worked solution locked.</b> Still to do: "+r.join(", ")+".";return;}practiceSupport.innerHTML="<b>👀 Worked solution:</b> "+graphPractice[pIndex].s;}
 function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function practiceNext(){pSave();if(pIndex<graphPractice.length-1){pIndex++;pRender();}else{practiceFeedback.style.display="block";practiceFeedback.style.background="#e5edf4";practiceFeedback.textContent=`Practice complete. You have ${pDone.filter(Boolean).length} of 8 correct so far.`;}}pRender();
 </script>
@@ -744,6 +749,66 @@ function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function pract
 })();
 </script>
 
+<script>
+/* Reconnection Routes (GreenPrint E2/§19). Prerequisites for Straight-Line Graphs:
+   coordinates, substitution, and finding a change. Inline-styled to match this lesson's
+   shell. Each route returns the learner to the lesson in place. */
+(function(){
+  var BTN='padding:10px 14px;background:#6a7f4e;color:#fff;border:none;border-radius:9px;font-weight:bold;cursor:pointer;';
+  var BTN2='padding:10px 14px;background:#8a8f7a;color:#fff;border:none;border-radius:9px;font-weight:bold;cursor:pointer;';
+  var RECONNECT={
+    coords:{title:'Coordinates',prompt:'In the coordinate point (4, 7), what is the x-coordinate?',answer:4,hint:'Coordinates are written (x, y) — which one comes first?'},
+    subst:{title:'Substitution',prompt:'If x = 3, what is the value of 2x?',answer:6,hint:'2x means 2 lots of x.'},
+    change:{title:'Finding a change',prompt:'Moving along a line, y goes from 2 up to 6. By how much has y increased?',answer:4,hint:'Find the difference between the two y-values.'}
+  };
+  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
+  function matches(r,v){
+    if(typeof r.answer==='number'){var n=parseNum(v);return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);}
+    var learner=normText(v);return String(r.answer).split('|').some(function(k){return learner.includes(normText(k));});
+  }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='block';
+    p.innerHTML='<h3 style="margin-top:0;color:#46533d;">🧭 Reconnection Routes</h3>'
+      +'<p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:8px;">'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'coords\')">Coordinates</button>'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'subst\')">Substitution</button>'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'change\')">Finding a change</button>'
+      +'<button type="button" style="'+BTN2+'" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectTask" style="margin-top:12px;"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div style="background:#eef3e8;padding:12px;border-radius:10px;">'
+      +'<h4 style="margin-top:0;">'+r.title+'</h4><p>'+r.prompt+'</p>'
+      +'<input id="reconnectAnswer" placeholder="Your answer" style="padding:10px;border:1px solid #cdbfa9;border-radius:8px;font:inherit;">'
+      +'<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">'
+      +'<button type="button" style="'+BTN+'" onclick="checkReconnect(\''+key+'\')">Check</button>'
+      +'<button type="button" style="'+BTN+'" onclick="reconnectHint(\''+key+'\')">Hint</button>'
+      +'<button type="button" style="'+BTN2+'" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback');
+    var val=document.getElementById('reconnectAnswer').value;
+    fb.style.display='block';
+    if(!val.trim()){fb.style.background='#fff1cf';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,val)){fb.style.background='#e3f0df';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.style.background='#f6dddd';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){
+    var fb=document.getElementById('reconnectFeedback');
+    fb.style.display='block';fb.style.background='#fff1cf';
+    fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;
+  };
+  window.closeReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='none';p.innerHTML='';
+  };
+})();
+</script>
 
 <script src="../../assets/progress.js"></script>
 <script>NEOProgress.autoTrack('ks4-straight-line-graphs');</script>
