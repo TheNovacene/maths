@@ -98,6 +98,30 @@
 
     </div>
 
+    <div style="background:#eef3e8; padding:14px; border-radius:12px; margin:16px 0;">
+      <h3 style="margin-top:0; color:#46533d;">📚 Lesson Guides and Scratchpad</h3>
+      <p>Choose the support that is useful to you. The Scratchpad stays inside this lesson.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <a href="NEO_Maths_Equation_of_a_Straight_Line_Learner_Guide.pdf" target="_blank" rel="noopener"
+           style="display:inline-block; padding:11px 18px; background:#6a7f4e; color:#ffffff; text-decoration:none; border-radius:9px; font-weight:bold;">
+          🌱 Open Learner Guide
+        </a>
+        <a href="NEO_Maths_Equation_of_a_Straight_Line_Supporting_Adult_Guidance.pdf" target="_blank" rel="noopener"
+           style="display:inline-block; padding:11px 18px; background:#5c6b4f; color:#ffffff; text-decoration:none; border-radius:9px; font-weight:bold;">
+          📘 Open Supporting Adult Guidance
+        </a>
+        <button type="button" onclick="openMathsScratchpad('coordinate-grid','Use the Scratchpad to plot points, sketch the line and read the gradient and intercept.')"
+                style="padding:11px 18px; background:#365a68; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+          ✏️ Open Maths Scratchpad
+        </button>
+        <button type="button" onclick="openReconnect()"
+                style="padding:11px 18px; background:#6a7f4e; color:#ffffff; border:none; border-radius:9px; font-weight:bold; cursor:pointer;">
+          🧭 Reconnection Routes
+        </button>
+      </div>
+      <div id="reconnectionPanel" aria-live="polite" style="display:none; background:#f7f3ea; border:1px solid #cdbfa9; padding:14px; border-radius:12px; margin-top:12px;"></div>
+    </div>
+
 
     <details open style="background:#e8f0e3; padding:15px; margin:12px 0; border-radius:14px;">
 
@@ -1883,6 +1907,344 @@
   };
 
   renderPracticeQuestion();
+})();
+</script>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_pythagoras_hypotenuse_v08";
+
+  function status(msg, col){
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = col || "#e5edf4";
+    box.textContent = msg;
+  }
+  function point(e){
+    const r = canvas.getBoundingClientRect();
+    return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height };
+  }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.fillStyle = "#fff";
+    bg.fillRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.save();
+    bg.lineWidth = 1;
+    bg.strokeStyle = "#e6dccb";
+
+    if(template === "square-grid" || template === "coordinate-grid"){
+      for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); }
+      for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); }
+    }
+    if(template === "coordinate-grid"){
+      bg.strokeStyle = "#9fb2bd";
+      bg.lineWidth = 2;
+      bg.beginPath();
+      bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height);
+      bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2);
+      bg.stroke();
+    }
+    if(template === "ratio-table"){
+      bg.strokeStyle = "#cdbfa9";
+      bg.lineWidth = 1.5;
+      for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); }
+      for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); }
+      bg.font = "18px Arial";
+      bg.fillStyle = "#5c6b4f";
+      bg.fillText("Value",100,105); bg.fillText("Square",100,175); bg.fillText("Sum / root",100,245);
+    }
+    if(template === "double-number-line"){
+      bg.strokeStyle = "#315d72";
+      bg.lineWidth = 3;
+      [210,350].forEach(function(y){
+        bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke();
+        for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); }
+      });
+      bg.font = "18px Arial";
+      bg.fillStyle = "#315d72";
+      bg.fillText("Line 1",90,185); bg.fillText("Line 2",90,325);
+    }
+    bg.restore();
+  }
+  function drawStroke(s){
+    if(!s || !s.points || !s.points.length) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    if(s.tool === "eraser"){
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.strokeStyle = "rgba(0,0,0,1)";
+      ctx.lineWidth = Math.max(18, s.width * 5);
+    } else {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.strokeStyle = s.colour;
+      ctx.lineWidth = s.width;
+    }
+    const pts = s.points;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    if(s.tool === "line"){
+      const last = pts[pts.length-1];
+      ctx.lineTo(last.x, last.y);
+    } else {
+      pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); });
+      if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+  function renderInk(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    strokes.forEach(drawStroke);
+  }
+  function renderNotes(){
+    stickyLayer.innerHTML = "";
+    notes.forEach(function(note, i){
+      const card = document.createElement("div");
+      card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;";
+      const bar = document.createElement("div");
+      bar.textContent = "Sticky note";
+      bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;";
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;";
+      remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); };
+      bar.appendChild(remove);
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought...";
+      area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;";
+      area.oninput = function(){ note.text = area.value; store(); };
+      let drag = null;
+      bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); };
+      bar.onpointermove = function(e){
+        if(!drag) return;
+        const r = stickyLayer.getBoundingClientRect();
+        note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100));
+        note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100));
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+      };
+      bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} };
+      card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card);
+    });
+  }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){
+    try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){}
+  }
+  function restore(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if(!saved) return;
+      template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || [];
+      colour = saved.colour || colour; width = saved.width || width;
+      document.getElementById("scratchTemplate").value = template;
+      document.getElementById("scratchColour").value = colour;
+      document.getElementById("scratchWidth").value = String(width);
+    }catch(err){}
+  }
+  function updateButtons(){
+    document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff";
+    document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff";
+    document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff";
+    canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair";
+  }
+
+  canvas.addEventListener("pointerdown", function(e){
+    if(tool === "note"){
+      const r = canvas.getBoundingClientRect();
+      notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""});
+      renderNotes(); window.setScratchTool("pen");
+      status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+      store(); e.preventDefault(); return;
+    }
+    drawing = true;
+    canvas.setPointerCapture(e.pointerId);
+    const p = point(e);
+    current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]};
+    strokes.push(current); redo = [];
+    renderInk(); e.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function(e){
+    if(!drawing || !current) return;
+    const p = point(e);
+    if(current.tool === "line") current.points[1] = p; else current.points.push(p);
+    renderInk(); e.preventDefault();
+  });
+  function finish(e){
+    if(!drawing) return;
+    drawing = false; current = null;
+    try{ canvas.releasePointerCapture(e.pointerId); }catch(err){}
+    store(); e.preventDefault();
+  }
+  canvas.addEventListener("pointerup", finish);
+  canvas.addEventListener("pointercancel", finish);
+
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){
+    if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; }
+    subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise.";
+    overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch();
+  };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){
+    tool = t; updateButtons();
+    if(t === "line") status("Line tool: press at the start point, drag to the end point, then release.");
+    if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){
+    if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started.");
+  };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){
+    if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf");
+  };
+  window.downloadScratchImage = function(){
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = canvas.width; exportCanvas.height = canvas.height;
+    const ex = exportCanvas.getContext("2d");
+    ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0);
+    notes.forEach(function(note){
+      const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height;
+      ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110);
+      ex.fillStyle="#2f3429"; ex.font="14px Arial";
+      const words=(note.text||"").split(/\s+/); let line="", yy=y+24;
+      words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; });
+      ex.fillText(line,x+10,yy);
+    });
+    const link=document.createElement("a"); link.download="NEO_Maths_Hypotenuse_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click();
+    status("Scratchpad image saved.", "#e3f0df");
+  };
+
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+<script>
+/* Reconnection Routes (GreenPrint E2/§19). Prerequisites for Equation of a Straight Line:
+   negative numbers, the y-axis (x = 0), and substitution. Inline-styled to match this
+   lesson's shell. Each route returns the learner to the lesson in place. */
+(function(){
+  var BTN='padding:10px 14px;background:#6a7f4e;color:#fff;border:none;border-radius:9px;font-weight:bold;cursor:pointer;';
+  var BTN2='padding:10px 14px;background:#8a8f7a;color:#fff;border:none;border-radius:9px;font-weight:bold;cursor:pointer;';
+  var RECONNECT={
+    neg:{title:'Negative numbers',prompt:'What is 3 × (−2)?',answer:-6,hint:'A positive multiplied by a negative gives a negative.'},
+    yaxis:{title:'The y-axis',prompt:'Every point on the y-axis has the same x-coordinate. What is it?',answer:0,hint:'The y-axis is the vertical line where x is 0.'},
+    subst:{title:'Substitution',prompt:'If m = 2 and x = 4, what is m × x?',answer:8,hint:'Multiply the gradient by x: 2 × 4.'}
+  };
+  function parseNum(v){var s=String(v).replace(/−/g,'-').replace(/[,\s]/g,'');var m=s.match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
+  function matches(r,v){
+    if(typeof r.answer==='number'){var n=parseNum(v);return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);}
+    var learner=normText(v);return String(r.answer).split('|').some(function(k){return learner.includes(normText(k));});
+  }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='block';
+    p.innerHTML='<h3 style="margin-top:0;color:#46533d;">🧭 Reconnection Routes</h3>'
+      +'<p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:8px;">'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'neg\')">Negative numbers</button>'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'yaxis\')">The y-axis</button>'
+      +'<button type="button" style="'+BTN+'" onclick="showReconnect(\'subst\')">Substitution</button>'
+      +'<button type="button" style="'+BTN2+'" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectTask" style="margin-top:12px;"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div style="background:#eef3e8;padding:12px;border-radius:10px;">'
+      +'<h4 style="margin-top:0;">'+r.title+'</h4><p>'+r.prompt+'</p>'
+      +'<input id="reconnectAnswer" placeholder="Your answer" style="padding:10px;border:1px solid #cdbfa9;border-radius:8px;font:inherit;">'
+      +'<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">'
+      +'<button type="button" style="'+BTN+'" onclick="checkReconnect(\''+key+'\')">Check</button>'
+      +'<button type="button" style="'+BTN+'" onclick="reconnectHint(\''+key+'\')">Hint</button>'
+      +'<button type="button" style="'+BTN2+'" onclick="closeReconnect()">Return to the lesson</button>'
+      +'</div><div id="reconnectFeedback" style="display:none;margin-top:10px;padding:10px;border-radius:8px;"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback');
+    var val=document.getElementById('reconnectAnswer').value;
+    fb.style.display='block';
+    if(!val.trim()){fb.style.background='#fff1cf';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,val)){fb.style.background='#e3f0df';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.style.background='#f6dddd';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){
+    var fb=document.getElementById('reconnectFeedback');
+    fb.style.display='block';fb.style.background='#fff1cf';
+    fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;
+  };
+  window.closeReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');
+    p.style.display='none';p.innerHTML='';
+  };
 })();
 </script>
 <script src="../../assets/progress.js"></script>
