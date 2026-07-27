@@ -38,6 +38,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/Pythagorean_Theorem/Lesson_03_Finding_a_Shorter_Side/NEO_Maths_Y9_Pythagoras_Lesson_03_Finding_a_Shorter_Side_v0.3.html",
     "pyth-04-geometrical-problems":
         "02_Foundations/01_Lessons/Pythagorean_Theorem/Lesson_04_Geometrical_Problems/NEO_Maths_Y9_Pythagoras_Lesson_04_Geometrical_Problems_v0.5.html",
+    "shapes-01-analysing-properties":
+        "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_01_Analysing_2D_and_3D_Properties/NEO_Maths_Y9_Shapes_Lesson_01_Analysing_Properties_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
@@ -273,7 +275,7 @@ def inject_practice_card(html: str) -> str:
 
     card = PRACTICE_CARD.format(fn=fn)
     placed, m = re.subn(
-        r'(</div>)(\s*(?:<!--.*?-->\s*)?<div id="practiceView")',
+        r'(</div>)(\s*(?:<!--(?:(?!-->).)*?-->\s*)?<div id="practiceView")',
         card + r"\1\2",
         stripped,
         count=1,

@@ -94,6 +94,23 @@
       ]
     },
     {
+      "id": "2d-and-3d-shapes",
+      "title": "2D and 3D Shapes",
+      "stage": "Foundations",
+      "strand": "Geometry",
+      "source": "vault/02_Foundations/01_Lessons/2D_and_3D_Shapes",
+      "lessons": [
+        {
+          "id": "shapes-01-analysing-properties",
+          "num": "Lesson 01",
+          "title": "Analysing 2D and 3D Properties",
+          "file": "lessons/2d-and-3d-shapes/01-analysing-properties.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
       "id": "ks3-interactive-library",
       "title": "KS3 Interactive Library",
       "stage": "Key Stage 3",

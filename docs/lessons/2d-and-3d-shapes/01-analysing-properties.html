@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Analysing 2D and 3D Properties</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.shapesvg{width:100%;max-width:420px;background:#fff;border:1px solid #cdbfa9;border-radius:10px;display:block}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.fev{font-size:1.15em}
+.fev td{text-align:center}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+
+<style>
+  .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
+  .neo-chrome-header { background: #1A2E3B; color: #F7F7F5; padding: 0.6rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .neo-chrome-header a.neo-home { color: #2AB3A0; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
+  .neo-chrome-header a.neo-home:hover { text-decoration: underline; }
+  .neo-chrome-header .neo-crumb { font-size: 0.8rem; color: rgba(247,247,245,0.85); text-align: right; }
+  .neo-chrome-header .neo-crumb strong { color: #FFFFFF; font-weight: 600; }
+  .neo-chrome-footer { background: #1A2E3B; color: rgba(247,247,245,0.85); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.8rem; margin-top: 2rem; }
+  .neo-chrome-footer a { color: #2AB3A0; text-decoration: none; margin: 0 0.6rem; }
+  .neo-chrome-footer a:hover { text-decoration: underline; }
+  .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
+  /* --- Comfort & Access --- */
+  .neo-comfort-btn{background:#2AB3A0;color:#08312b;border:none;border-radius:8px;padding:0.35rem 0.7rem;font-weight:700;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;white-space:nowrap}
+  .neo-comfort-btn:hover{filter:brightness(1.06)}
+  .neo-comfort-panel{background:#12242e;color:#F7F7F5;padding:0.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;border-top:1px solid rgba(255,255,255,0.12);font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
+  .neo-comfort-panel[hidden]{display:none}
+  .neo-comfort-group{display:flex;flex-direction:column;gap:0.35rem}
+  .neo-comfort-group>span{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(247,247,245,0.65)}
+  .neo-comfort-row{display:flex;gap:0.4rem}
+  .neo-comfort-panel button.opt{background:rgba(255,255,255,0.10);color:#F7F7F5;border:1px solid rgba(255,255,255,0.25);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem}
+  .neo-comfort-panel button.opt[aria-pressed="true"]{background:#2AB3A0;color:#08312b;border-color:#2AB3A0;font-weight:700}
+  .neo-comfort-reset{margin-left:auto;align-self:center;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(247,247,245,0.85);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem}
+  html[data-neo-text="large"]{font-size:112.5%}
+  html[data-neo-text="larger"]{font-size:125%}
+  html[data-neo-spacing="on"] .neo-lesson-root{letter-spacing:0.012em}
+  html[data-neo-spacing="on"] .neo-lesson-root p,html[data-neo-spacing="on"] .neo-lesson-root li,html[data-neo-spacing="on"] .neo-lesson-root summary,html[data-neo-spacing="on"] .neo-lesson-root h2,html[data-neo-spacing="on"] .neo-lesson-root h3,html[data-neo-spacing="on"] .neo-lesson-root label{line-height:1.9!important;margin-bottom:0.7em!important}
+  html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
+  html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+  .mathpalette{margin:6px 0}
+  .palette-toggle{background:#365a68;color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+  .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .palette-keys[hidden]{display:none}
+  .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
+</style>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">2D and 3D Shapes &middot; <strong>Lesson 01 &mdash; Analysing 2D and 3D Properties</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<script>
+(function(){
+ var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
+ try{var sv=JSON.parse(localStorage.getItem(KEY)||"null");if(sv)st=Object.assign(st,sv);}catch(e){}
+ function apply(){d.setAttribute("data-neo-text",st.text);st.spacing?d.setAttribute("data-neo-spacing","on"):d.removeAttribute("data-neo-spacing");st.calm?d.setAttribute("data-neo-calm","on"):d.removeAttribute("data-neo-calm");st.motion?d.setAttribute("data-neo-motion","reduced"):d.removeAttribute("data-neo-motion");}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+ function sync(){var ps=document.querySelectorAll("#neoComfortPanel .opt");for(var i=0;i<ps.length;i++){var b=ps[i],k=b.getAttribute("data-k");if(k==="text"){b.setAttribute("aria-pressed",st.text===b.getAttribute("data-v")?"true":"false");}else{b.setAttribute("aria-pressed",st[k]?"true":"false");}}}
+ window.neoComfortToggle=function(){var p=document.getElementById("neoComfortPanel"),btn=document.querySelector(".neo-comfort-btn"),willOpen=p.hasAttribute("hidden");willOpen?p.removeAttribute("hidden"):p.setAttribute("hidden","");if(btn)btn.setAttribute("aria-expanded",willOpen?"true":"false");};
+ window.neoComfortSet=function(k,v){st[k]=v;apply();save();sync();};
+ window.neoComfortToggleOpt=function(k){st[k]=!st[k];apply();save();sync();};
+ window.neoComfortReset=function(){st={text:"normal",spacing:false,calm:false,motion:false};apply();save();sync();};
+ apply();
+ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
+})();
+</script>
+<div class="neo-lesson-root">
+
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: 2D and 3D Shapes</h1>
+<h2>Analysing 2D and 3D Properties</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What stays true about a shape, however we turn or draw it?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Property investigation — describing 2D shapes and 3D solids by what is countable and certain.</p>
+<p><b>Stepping Stone:</b> analyse the properties of 2D and 3D shapes; describe a solid by its faces, edges and vertices, and recognise the structure a family of solids shares.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 15 · Move 8 · Reflect 10 · Create 5 · Rest/Nourish 4 · Evidence 3</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_01_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_01_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch shapes, count faces, edges and vertices, and note what stays the same.')">✏️ Open Maths Scratchpad</button>
+
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — How is a prism built, and what does its base decide?</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words: faces, edges and vertices</h3>
+<div class="twocol" style="align-items:center">
+<div style="text-align:center">
+<svg viewBox="0 0 330 235" class="shapesvg" style="max-width:330px" role="img" aria-label="A cube with a face, an edge and a vertex labelled">
+<polygon points="120,160 200,160 200,80 120,80" fill="#eef3ef" stroke="#8aa0ad" stroke-width="2"/>
+<line x1="80" y1="200" x2="120" y2="160" stroke="#8aa0ad" stroke-width="2"/>
+<line x1="160" y1="200" x2="200" y2="160" stroke="#8aa0ad" stroke-width="2"/>
+<line x1="160" y1="120" x2="200" y2="80" stroke="#8aa0ad" stroke-width="2"/>
+<line x1="80" y1="120" x2="120" y2="80" stroke="#8aa0ad" stroke-width="2"/>
+<polygon points="80,200 160,200 160,120 80,120" fill="#2ab3a0" fill-opacity="0.28" stroke="#3f5f45" stroke-width="2.5"/>
+<line x1="80" y1="120" x2="160" y2="120" stroke="#b77814" stroke-width="6" stroke-linecap="round"/>
+<circle cx="160" cy="200" r="6.5" fill="#70466b"/>
+<line x1="120" y1="165" x2="226" y2="170" stroke="#3f5f45" stroke-width="1"/>
+<text x="230" y="174" font-size="14" font-weight="700" fill="#3f5f45">Face</text>
+<line x1="118" y1="120" x2="226" y2="96" stroke="#b77814" stroke-width="1"/>
+<text x="230" y="100" font-size="14" font-weight="700" fill="#b77814">Edge</text>
+<line x1="162" y1="200" x2="226" y2="214" stroke="#70466b" stroke-width="1"/>
+<text x="230" y="218" font-size="14" font-weight="700" fill="#70466b">Vertex</text>
+</svg>
+</div>
+<div>
+<p style="margin-top:0">Every solid can be described with three words:</p>
+<p><b style="color:#3f5f45">Face</b> — a flat surface of the solid.<br>
+<b style="color:#b77814">Edge</b> — a straight line where two faces meet.<br>
+<b style="color:#70466b">Vertex</b> — a corner where edges meet. (More than one are called <b>vertices</b>.)</p>
+<p class="small">Keep these three words handy — you will count them for every solid in this unit.</p>
+</div>
+</div>
+</div>
+<p><b>What to do:</b> choose a base for the prism, then <b>predict</b> how many faces, edges and vertices it will have before you reveal the counts.</p>
+<p><b>What you are trying to notice:</b> a prism is built from its base — change the base and the whole structure changes with it in a predictable way.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📐 Prism Family Pattern Explorer</h3>
+<p class="small">Change the base polygon. The picture and the counts update together. Try to see the rule that links the base to the faces, edges and vertices.</p>
+<div id="prismChips" class="buttonrow" style="justify-content:center"></div>
+<div class="twocol">
+<div class="card" style="text-align:center">
+<svg id="prismSvg" class="shapesvg" viewBox="0 0 420 300" role="img" aria-label="A prism drawn from a chosen base polygon"></svg>
+<p id="prismName" class="small" style="font-weight:bold"></p>
+</div>
+<div class="card">
+<p class="small" style="margin-top:0">Predict for this prism, then check:</p>
+<div class="buttonrow"><label>Faces <input id="predF" inputmode="numeric" style="width:70px" placeholder="?"></label>
+<label>Edges <input id="predE" inputmode="numeric" style="width:70px" placeholder="?"></label>
+<label>Vertices <input id="predV" inputmode="numeric" style="width:70px" placeholder="?"></label></div>
+<div class="buttonrow"><button onclick="prismCheck()">✅ Check my prediction</button><button onclick="prismReveal()">👀 Reveal the counts</button></div>
+<div id="prismFeedback" class="feedback"></div>
+<table class="fev" id="prismTable" style="display:none;margin-top:10px">
+<tr><th>Base sides (n)</th><th>Faces</th><th>Edges</th><th>Vertices</th></tr>
+<tr><td id="tn"></td><td id="tf"></td><td id="te"></td><td id="tv"></td></tr>
+</table>
+<p id="prismRule" class="small" style="display:none"></p>
+</div>
+</div>
+<p><b>Carry this forward:</b> the base decides everything about a prism. Next you will see that same base <em>sweeping</em> through space to build the solid.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — How does a flat shape become a solid?</summary>
+<p><b>What to do:</b> use the slider to <b>sweep</b> the base polygon through space. Watch a flat shape turn into a solid prism.</p>
+<p><b>What you are trying to notice:</b> a prism is a base carried a certain distance — the flat cross-section is the same all the way along.</p>
+<div class="toolbox">
+<label class="small" for="sweep">Sweep distance</label>
+<input id="sweep" type="range" min="0" max="120" value="70" style="width:100%" oninput="drawSweep()">
+<div class="card" style="text-align:center"><svg id="sweepSvg" class="shapesvg" viewBox="0 0 420 260" role="img" aria-label="A polygon swept into a prism"></svg></div>
+<p id="sweepNote" class="small"></p>
+<p><b>Carry this forward:</b> because the cross-section stays the same all the way along, later we will measure a prism by its cross-section — for its surface and its volume.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Can you become a shape detective?</summary>
+<p><b>What to do:</b> read the clues one at a time. Decide which solid fits — or reveal another clue first. Each clue is a property, so you are reasoning, not guessing.</p>
+<p><b>What you are trying to notice:</b> a few well-chosen properties are enough to identify a solid exactly.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 Shape Detective</h3>
+<div id="detectiveClues"></div>
+<div class="buttonrow"><button onclick="detectiveNextClue()">➕ Reveal next clue</button><button onclick="detectiveNewCase()">🔄 New case</button></div>
+<p class="small">Which solid is it?</p>
+<div id="detectiveChoices" class="buttonrow"></div>
+<div id="detectiveFeedback" class="feedback"></div>
+<p><b>Carry this forward:</b> the properties you used — faces, edges, vertices, curved or flat — are exactly the language you will use to describe every solid in this unit.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Can you design a solid from a set of faces?</summary>
+<p><b>What to do:</b> choose a set of flat faces and see which solid they would make. Then invent your own on the Scratchpad.</p>
+<p><b>What you are trying to notice:</b> a solid is decided by which faces meet, and how many.</p>
+<div class="toolbox">
+<p class="small" style="margin-top:0">Pick the faces, then check what they build:</p>
+<div id="faceChips" class="buttonrow"></div>
+<div class="buttonrow"><button onclick="buildFromFaces()">🧱 What does this build?</button><button onclick="clearFaces()">Clear</button></div>
+<div id="buildFeedback" class="feedback"></div>
+<p><b>Make it your own:</b> on the Scratchpad, sketch a solid of your own and label its faces, edges and vertices — then challenge someone to name it from three clues.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Design a solid: sketch it, label faces, edges and vertices, and write three clues.')">✏️ Design on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let the structure settle</summary>
+<p>Naming what stays the same is quiet, patient work. Before moving on, take a slow breath and let one idea settle.</p>
+<div class="card">
+<p><b>Notice one thing:</b> of everything you have looked at, which single property did you find most useful for telling two solids apart? There is no right answer — just the one that helped <em>you</em>.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What is this lesson feeding?</summary>
+<p><b>Mode: intellectual.</b> This lesson does not sit in a food or body context, and we will not pretend it does. What it feeds is your <b>spatial reasoning</b> — the ability to see structure, to describe it precisely, and to trust a property you can count.</p>
+<div class="card">
+<p><b>Carry one idea forward:</b> "A shape's properties stay true however I turn or draw it." That steadiness is what makes measurement possible later in the unit.</p>
+<p class="small">Which felt stronger for you today — <em>seeing</em> the structure, or <em>describing</em> it in words? Noticing that helps you choose how to show your thinking next time.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> describe three different solids by their properties, and state the rule linking a prism's base to its faces, edges and vertices.</p>
+<ul>
+<li>For three solids of your choice, record: name, number of faces, edges and vertices, and whether any surface is curved.</li>
+<li>Complete this sentence in your own words: "A prism with an n-sided base always has ___ faces, ___ edges and ___ vertices, because…"</li>
+<li>Choose one solid and write three clues that would let a shape detective identify it.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a short written table, a labelled poster, or a spoken/video walkthrough with a labelled sketch.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SHAPES_PROPERTIES_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Names some properties of a solid.</td><td>Counts faces, edges and vertices with some support.</td><td>Describes a solid fully and correctly by its properties.</td><td>Explains the structure a family of solids shares and why it holds.</td></tr>
+<tr><td><b>Application</b></td><td>Identifies a solid from a picture.</td><td>Uses the prism pattern for a familiar base.</td><td>Uses the n-sided rule to predict counts for a new base.</td><td>Generalises and justifies the rule for any base polygon.</td></tr>
+<tr><td><b>Communication</b></td><td>Records an idea with limited labelling.</td><td>Uses some correct property language.</td><td>Communicates a clear, well-labelled description.</td><td>Writes clues precise enough to identify a solid uniquely.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Identifies one property that helped.</td><td>Explains which properties best distinguish solids.</td><td>Reflects on how seeing and describing supported each other.</td></tr>
+</table>
+</details>
+
+</div>
+<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
+</div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>2D and 3D Shapes — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the solid and count carefully before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_pythagoras_hypotenuse_v08";
+
+  function status(msg, col){
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = col || "#e5edf4";
+    box.textContent = msg;
+  }
+  function point(e){
+    const r = canvas.getBoundingClientRect();
+    return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height };
+  }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.fillStyle = "#fff";
+    bg.fillRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.save();
+    bg.lineWidth = 1;
+    bg.strokeStyle = "#e6dccb";
+
+    if(template === "square-grid" || template === "coordinate-grid"){
+      for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); }
+      for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); }
+    }
+    if(template === "coordinate-grid"){
+      bg.strokeStyle = "#9fb2bd";
+      bg.lineWidth = 2;
+      bg.beginPath();
+      bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height);
+      bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2);
+      bg.stroke();
+    }
+    if(template === "ratio-table"){
+      bg.strokeStyle = "#cdbfa9";
+      bg.lineWidth = 1.5;
+      for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); }
+      for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); }
+      bg.font = "18px Arial";
+      bg.fillStyle = "#5c6b4f";
+      bg.fillText("Value",100,105); bg.fillText("Square",100,175); bg.fillText("Sum / root",100,245);
+    }
+    if(template === "double-number-line"){
+      bg.strokeStyle = "#315d72";
+      bg.lineWidth = 3;
+      [210,350].forEach(function(y){
+        bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke();
+        for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); }
+      });
+      bg.font = "18px Arial";
+      bg.fillStyle = "#315d72";
+      bg.fillText("Line 1",90,185); bg.fillText("Line 2",90,325);
+    }
+    bg.restore();
+  }
+  function drawStroke(s){
+    if(!s || !s.points || !s.points.length) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    if(s.tool === "eraser"){
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.strokeStyle = "rgba(0,0,0,1)";
+      ctx.lineWidth = Math.max(18, s.width * 5);
+    } else {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.strokeStyle = s.colour;
+      ctx.lineWidth = s.width;
+    }
+    const pts = s.points;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    if(s.tool === "line"){
+      const last = pts[pts.length-1];
+      ctx.lineTo(last.x, last.y);
+    } else {
+      pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); });
+      if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+  function renderInk(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    strokes.forEach(drawStroke);
+  }
+  function renderNotes(){
+    stickyLayer.innerHTML = "";
+    notes.forEach(function(note, i){
+      const card = document.createElement("div");
+      card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;";
+      const bar = document.createElement("div");
+      bar.textContent = "Sticky note";
+      bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;";
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;";
+      remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); };
+      bar.appendChild(remove);
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought...";
+      area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;";
+      area.oninput = function(){ note.text = area.value; store(); };
+      let drag = null;
+      bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); };
+      bar.onpointermove = function(e){
+        if(!drag) return;
+        const r = stickyLayer.getBoundingClientRect();
+        note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100));
+        note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100));
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+      };
+      bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} };
+      card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card);
+    });
+  }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){
+    try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){}
+  }
+  function restore(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if(!saved) return;
+      template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || [];
+      colour = saved.colour || colour; width = saved.width || width;
+      document.getElementById("scratchTemplate").value = template;
+      document.getElementById("scratchColour").value = colour;
+      document.getElementById("scratchWidth").value = String(width);
+    }catch(err){}
+  }
+  function updateButtons(){
+    document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff";
+    document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff";
+    document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff";
+    canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair";
+  }
+
+  canvas.addEventListener("pointerdown", function(e){
+    if(tool === "note"){
+      const r = canvas.getBoundingClientRect();
+      notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""});
+      renderNotes(); window.setScratchTool("pen");
+      status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+      store(); e.preventDefault(); return;
+    }
+    drawing = true;
+    canvas.setPointerCapture(e.pointerId);
+    const p = point(e);
+    current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]};
+    strokes.push(current); redo = [];
+    renderInk(); e.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function(e){
+    if(!drawing || !current) return;
+    const p = point(e);
+    if(current.tool === "line") current.points[1] = p; else current.points.push(p);
+    renderInk(); e.preventDefault();
+  });
+  function finish(e){
+    if(!drawing) return;
+    drawing = false; current = null;
+    try{ canvas.releasePointerCapture(e.pointerId); }catch(err){}
+    store(); e.preventDefault();
+  }
+  canvas.addEventListener("pointerup", finish);
+  canvas.addEventListener("pointercancel", finish);
+
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){
+    if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; }
+    subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise.";
+    overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch();
+  };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){
+    tool = t; updateButtons();
+    if(t === "line") status("Line tool: press at the start point, drag to the end point, then release.");
+    if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){
+    if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started.");
+  };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){
+    if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf");
+  };
+  window.downloadScratchImage = function(){
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = canvas.width; exportCanvas.height = canvas.height;
+    const ex = exportCanvas.getContext("2d");
+    ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0);
+    notes.forEach(function(note){
+      const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height;
+      ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110);
+      ex.fillStyle="#2f3429"; ex.font="14px Arial";
+      const words=(note.text||"").split(/\s+/); let line="", yy=y+24;
+      words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; });
+      ex.fillText(line,x+10,yy);
+    });
+    const link=document.createElement("a"); link.download="NEO_Maths_Hypotenuse_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click();
+    status("Scratchpad image saved.", "#e3f0df");
+  };
+
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+
+<script>
+/* ---------------- View switching ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+
+/* ---------------- CONNECTION: Prism Family Pattern Explorer ---------------- */
+var prismN=4;
+var BASE_LABEL={3:"Triangular",4:"Square",5:"Pentagonal",6:"Hexagonal",8:"Octagonal"};
+var POLY={3:"triangular",4:"square-based",5:"pentagonal",6:"hexagonal",8:"octagonal"};
+function prismChips(){
+  var order=[3,4,5,6,8];
+  document.getElementById("prismChips").innerHTML=order.map(function(n){
+    return '<span class="chip'+(n===prismN?' active':'')+'" onclick="setPrism('+n+')">'+BASE_LABEL[n]+' base</span>';}).join("");
+}
+function setPrism(n){prismN=n;prismChips();drawPrism();resetPrismCheck();}
+function polygonPts(cx,cy,r,n,rot){var p=[];for(var i=0;i<n;i++){var a=rot+i*2*Math.PI/n;p.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]);}return p;}
+function drawPrism(){
+  var svg=document.getElementById("prismSvg");if(!svg)return;
+  var n=prismN,r=52,rot=-Math.PI/2+ (n%2?0:Math.PI/n);
+  var front=polygonPts(150,190,r,n,rot), back=front.map(function(p){return [p[0]+95,p[1]-70];});
+  function poly(pts,fill,stroke,op){return '<polygon points="'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ')+'" fill="'+fill+'" fill-opacity="'+op+'" stroke="'+stroke+'" stroke-width="2.5" stroke-linejoin="round"/>';}
+  var s="";
+  // connecting edges (rectangles hinted)
+  for(var i=0;i<n;i++){ s+='<line x1="'+front[i][0].toFixed(1)+'" y1="'+front[i][1].toFixed(1)+'" x2="'+back[i][0].toFixed(1)+'" y2="'+back[i][1].toFixed(1)+'" stroke="#8aa0ad" stroke-width="2"/>'; }
+  s+=poly(back,"#dfe9ef","#3a5c6b",0.75);
+  s+=poly(front,"#e8f0e3","#5c7f49",0.85);
+  svg.innerHTML=s;
+  document.getElementById("prismName").textContent="A "+(POLY[n]||n+"-sided")+" prism"+(n===4?" (a cuboid)":"");
+}
+function resetPrismCheck(){["predF","predE","predV"].forEach(function(id){document.getElementById(id).value="";});document.getElementById("prismFeedback").style.display="none";document.getElementById("prismTable").style.display="none";document.getElementById("prismRule").style.display="none";}
+function prismCounts(n){return {f:n+2,e:3*n,v:2*n};}
+function prismCheck(){
+  var n=prismN,c=prismCounts(n),fb=document.getElementById("prismFeedback");
+  var f=num(document.getElementById("predF").value),e=num(document.getElementById("predE").value),v=num(document.getElementById("predV").value);
+  fb.style.display="block";
+  if(isNaN(f)&&isNaN(e)&&isNaN(v)){fb.className="feedback warn";fb.textContent="Put a prediction in at least one box, then check.";return;}
+  var right=[]; var near=[];
+  [["Faces",f,c.f],["Edges",e,c.e],["Vertices",v,c.v]].forEach(function(x){ if(x[1]===x[2])right.push(x[0]); else if(!isNaN(x[1]))near.push(x[0]); });
+  if(right.length===3){fb.className="feedback good";fb.textContent="All three correct. Reveal the counts to see the pattern that links them to the base.";}
+  else if(right.length){fb.className="feedback warn";fb.textContent=right.join(" and ")+" correct. Look again at "+near.join(", ")+": count around the base carefully.";}
+  else{fb.className="feedback warn";fb.textContent="Not yet. Try counting one thing at a time — how many corners has the base? Each becomes two vertices.";}
+}
+function prismReveal(){
+  var n=prismN,c=prismCounts(n);
+  document.getElementById("tn").textContent=n;document.getElementById("tf").textContent=c.f;document.getElementById("te").textContent=c.e;document.getElementById("tv").textContent=c.v;
+  document.getElementById("prismTable").style.display="";
+  var rule=document.getElementById("prismRule");rule.style.display="";
+  rule.innerHTML="<b>The pattern:</b> a prism with an n-sided base has <b>n + 2</b> faces (the two bases and n rectangles), <b>3n</b> edges and <b>2n</b> vertices. Check: faces + vertices − edges = "+(c.f+c.v-c.e)+" for every prism.";
+}
+
+/* ---------------- MOVEMENT: sweep a polygon into a prism ---------------- */
+function drawSweep(){
+  var svg=document.getElementById("sweepSvg");if(!svg)return;
+  var d=Number(document.getElementById("sweep").value);
+  var n=5,r=46,front=polygonPts(150,175,r,n,-Math.PI/2), back=front.map(function(p){return [p[0]+d*0.9,p[1]-d*0.6];});
+  function poly(pts,fill,stroke,op){return '<polygon points="'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ')+'" fill="'+fill+'" fill-opacity="'+op+'" stroke="'+stroke+'" stroke-width="2.5" stroke-linejoin="round"/>';}
+  var s="";for(var i=0;i<n;i++){s+='<line x1="'+front[i][0].toFixed(1)+'" y1="'+front[i][1].toFixed(1)+'" x2="'+back[i][0].toFixed(1)+'" y2="'+back[i][1].toFixed(1)+'" stroke="#8aa0ad" stroke-width="2"/>';}
+  if(d>4)s+=poly(back,"#dfe9ef","#3a5c6b",0.7);
+  s+=poly(front,"#e8f0e3","#5c7f49",0.9);
+  svg.innerHTML=s;
+  var note=document.getElementById("sweepNote");
+  note.textContent = d<5 ? "Right now it is a flat pentagon — a 2D shape with no depth." : "The same pentagon is carried through space. Every slice across the solid is the identical pentagon — that is what makes it a prism.";
+}
+
+/* ---------------- REFLECTION: Shape Detective ---------------- */
+var SOLIDS={
+  cube:{name:"Cube",faces:6,edges:12,vertices:8,curved:false,allFacesSame:true,apex:false,ends:"square"},
+  cuboid:{name:"Cuboid",faces:6,edges:12,vertices:8,curved:false,allFacesSame:false,apex:false,ends:"rectangle"},
+  triPrism:{name:"Triangular prism",faces:5,edges:9,vertices:6,curved:false,allFacesSame:false,apex:false,ends:"triangle"},
+  sqPyramid:{name:"Square-based pyramid",faces:5,edges:8,vertices:5,curved:false,allFacesSame:false,apex:true,ends:"none"},
+  cylinder:{name:"Cylinder",faces:3,edges:2,vertices:0,curved:true,allFacesSame:false,apex:false,ends:"circle"},
+  cone:{name:"Cone",faces:2,edges:1,vertices:1,curved:true,allFacesSame:false,apex:true,ends:"circle"},
+  sphere:{name:"Sphere",faces:1,edges:0,vertices:0,curved:true,allFacesSame:false,apex:false,ends:"none"}
+};
+var CASES=[
+ {target:"cube",clues:[
+   {t:"I am a solid with only flat faces.",test:function(s){return !s.curved;}},
+   {t:"I have 6 faces.",test:function(s){return s.faces===6;}},
+   {t:"All of my faces are identical squares.",test:function(s){return s.allFacesSame&&s.ends==="square";}},
+   {t:"I have 12 edges and 8 vertices.",test:function(s){return s.edges===12&&s.vertices===8;}}]},
+ {target:"triPrism",clues:[
+   {t:"I have flat faces and two identical ends.",test:function(s){return !s.curved&&s.ends!=="none"&&!s.apex;}},
+   {t:"My two ends are triangles.",test:function(s){return s.ends==="triangle";}},
+   {t:"My other faces are rectangles.",test:function(s){return s.ends==="triangle";}},
+   {t:"I have 5 faces, 9 edges and 6 vertices.",test:function(s){return s.faces===5&&s.edges===9;}}]},
+ {target:"sqPyramid",clues:[
+   {t:"My faces are flat, and they rise to a single point at the top.",test:function(s){return !s.curved&&s.apex;}},
+   {t:"My base is a square.",test:function(s){return s.ends==="none"&&s.apex&&s.faces===5;}},
+   {t:"I have 5 faces and 5 vertices.",test:function(s){return s.faces===5&&s.vertices===5;}}]},
+ {target:"cylinder",clues:[
+   {t:"I have a curved surface.",test:function(s){return s.curved;}},
+   {t:"I also have two flat faces.",test:function(s){return s.curved&&s.faces===3;}},
+   {t:"My two flat faces are circles, and I have no vertices.",test:function(s){return s.ends==="circle"&&s.vertices===0&&s.faces===3;}}]},
+ {target:"sphere",clues:[
+   {t:"My whole surface is curved.",test:function(s){return s.curved;}},
+   {t:"I have no flat faces, no edges and no vertices.",test:function(s){return s.faces===1&&s.edges===0&&s.vertices===0;}}]}
+];
+var detCase=0,detShown=1;
+function detectiveRender(){
+  var c=CASES[detCase];
+  document.getElementById("detectiveClues").innerHTML=c.clues.slice(0,detShown).map(function(cl,i){return '<div class="clue"><b>Clue '+(i+1)+':</b> '+cl.t+'</div>';}).join("");
+  var keys=Object.keys(SOLIDS);
+  document.getElementById("detectiveChoices").innerHTML=keys.map(function(k){return '<button onclick="detectiveGuess(\''+k+'\')">'+SOLIDS[k].name+'</button>';}).join("");
+  document.getElementById("detectiveFeedback").style.display="none";
+}
+function detectiveNextClue(){var c=CASES[detCase];if(detShown<c.clues.length){detShown++;detectiveRender();}else{var fb=document.getElementById("detectiveFeedback");fb.style.display="block";fb.className="feedback warn";fb.textContent="That is every clue — you have enough to be certain now.";}}
+function detectiveNewCase(){detCase=(detCase+1)%CASES.length;detShown=1;detectiveRender();}
+function detectiveGuess(k){
+  var c=CASES[detCase],s=SOLIDS[k],fb=document.getElementById("detectiveFeedback");fb.style.display="block";
+  if(k===c.target){fb.className="feedback good";fb.textContent="Correct — it is a "+SOLIDS[c.target].name+". You reasoned it from properties, not a guess. Try a new case?";return;}
+  // find first shown clue this guess fails
+  var bad=-1;for(var i=0;i<detShown;i++){if(!c.clues[i].test(s)){bad=i;break;}}
+  if(bad>=0){fb.className="feedback bad";fb.textContent="Not this one: a "+s.name+" does not fit Clue "+(bad+1)+" ("+c.clues[bad].t.replace(/^I /,'“I ').replace(/\.$/,'”')+"). Look again.";}
+  else{fb.className="feedback warn";fb.textContent="A "+s.name+" fits the clues so far — but they are not specific enough yet. Reveal the next clue to be sure.";}
+}
+
+/* ---------------- CREATIVITY: build from faces ---------------- */
+var FACES={square:0,rectangle:0,triangle:0,circle:0};
+function faceChips(){
+  document.getElementById("faceChips").innerHTML=Object.keys(FACES).map(function(f){
+    return '<span class="chip" onclick="pickFace(\''+f+'\')">'+f+' <b id="fc_'+f+'">'+FACES[f]+'</b></span>';}).join("");
+}
+function pickFace(f){FACES[f]++;document.getElementById("fc_"+f).textContent=FACES[f];}
+function clearFaces(){for(var k in FACES)FACES[k]=0;faceChips();document.getElementById("buildFeedback").style.display="none";}
+function buildFromFaces(){
+  var f=FACES,fb=document.getElementById("buildFeedback");fb.style.display="block";
+  var msg;
+  if(f.square===6&&!f.rectangle&&!f.triangle&&!f.circle)msg="Six identical squares build a <b>cube</b>.";
+  else if((f.square+f.rectangle)===6&&!f.triangle&&!f.circle&&(f.rectangle>0))msg="Six rectangles (or squares and rectangles) build a <b>cuboid</b>.";
+  else if(f.triangle===2&&f.rectangle===3&&!f.square&&!f.circle)msg="Two triangles and three rectangles build a <b>triangular prism</b>.";
+  else if(f.square===1&&f.triangle===4&&!f.rectangle&&!f.circle)msg="One square and four triangles meeting at a point build a <b>square-based pyramid</b>.";
+  else if(f.circle===2&&!f.square&&!f.rectangle&&!f.triangle)msg="Two circles need a curved surface to join them — that makes a <b>cylinder</b> (its side is not a flat face).";
+  else if(f.triangle===4&&!f.square&&!f.rectangle&&!f.circle)msg="Four triangles meeting build a <b>tetrahedron</b> (a triangle-based pyramid).";
+  else msg="That set does not close up into a common solid yet. Try, for example, 6 squares, or 2 triangles + 3 rectangles.";
+  fb.className="feedback warn";fb.innerHTML=msg;
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    names:{title:'Naming 2D shapes',prompt:'A flat shape has 5 straight sides. What is it called?',answer:'pentagon',hint:'Count the sides: 3 triangle, 4 quadrilateral, 5 …'},
+    right:{title:'Right angles',prompt:'How many degrees are in a right angle?',answer:90,hint:'A right angle is a quarter turn — look for the small square marker in a corner.'},
+    faces:{title:'Faces of a solid',prompt:'A cube is made of flat squares. How many faces (flat surfaces) does a cube have?',answer:6,hint:'Think of a dice — count the number of flat sides.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} return normText(v).includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'names\')">Naming 2D shapes</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'right\')">Right angles</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'faces\')">Faces of a solid</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · Retrieval",q:"How many faces does a cube have?",a:["6","six"],prompt:"Picture a dice. Each flat side is a face.",hint:"A cube has a top, a bottom and four sides.",sol:"A cube has 6 faces."},
+ {label:"2 of 6 · Retrieval",q:"How many edges does a triangular prism have?",a:["9","nine"],prompt:"Count the edges of one triangle, then the other, then the joins.",hint:"3 on each triangle end, plus 3 joining them: 3 + 3 + 3.",sol:"A triangular prism has 9 edges (3 + 3 + 3)."},
+ {label:"3 of 6 · Apply the pattern",q:"A prism has a hexagonal (6-sided) base. How many faces does it have?",a:["8","eight"],prompt:"A prism's faces are its two bases plus one rectangle per base side.",hint:"Faces = n + 2, with n = 6.",sol:"Faces = n + 2 = 6 + 2 = 8."},
+ {label:"4 of 6 · Apply the pattern",q:"A prism has a pentagonal (5-sided) base. How many vertices does it have?",a:["10","ten"],prompt:"Each corner of the base appears twice — once on each end.",hint:"Vertices = 2n, with n = 5.",sol:"Vertices = 2n = 2 × 5 = 10."},
+ {label:"5 of 6 · Reason from properties",q:"A solid has 5 faces, 5 vertices and 8 edges, and its faces rise to a single point. What is it?",a:["square-based pyramid","square based pyramid","pyramid"],prompt:"A single top point (apex) means a pyramid. What base gives 5 vertices?",hint:"4 base corners + 1 apex = 5 vertices; a square base gives 5 faces.",sol:"It is a square-based pyramid: a square base plus four triangles meeting at an apex."},
+ {label:"6 of 6 · Generalise",q:"A prism has an n-sided base. Write an expression for the number of edges.",a:["3n","3*n","3 n","3×n","3 x n"],prompt:"Count edges in three groups: one base, the other base, and the joins.",hint:"n on each base and n joining them: n + n + n.",sol:"Edges = 3n (n on each base, plus n joining the two bases)."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), ok=q.a.some(function(x){return normText(x)===learner||learner===normText(x);});
+  if(!ok){ // numeric tolerance
+    var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;});
+  }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct. Keep the reasoning visible — you counted or used the pattern.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Try counting one part at a time, or use the prompt and hint.";}
+  renderPractice();document.getElementById("practiceFeedback").style.display="block";document.getElementById("practiceFeedback").className=fb.className;document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){prismChips();drawPrism();drawSweep();detectiveRender();faceChips();renderPractice();}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+
+<script src="../../assets/progress.js"></script>
+<script>NEOProgress.autoTrack('shapes-01-analysing-properties');</script>
+
+<script>
+/* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */
+(function(){
+  if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
+  var DEFAULT=["a","b","c","x","y","²","³","√","π","+","-","×","÷","=","≈","°"];
+  function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
+  function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
+  function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
+    var w=document.createElement("div"); w.className="mathpalette";
+    var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="√ Symbols";
+    var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
+    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);}); k.appendChild(b); });
+    t.addEventListener("click",function(){ k.hidden=!k.hidden; });
+    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w);
+  }
+  function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
+})();
+</script>
+
+<script>
+/* Single-open accordion: opening one panel closes the others (data-keep-open opts out). */
+(function(){
+  if(window.__neoAccordionInstalled)return; window.__neoAccordionInstalled=true;
+  function closeOthers(cur){
+    var scope=cur.closest("#lessonView")||document;
+    scope.querySelectorAll("details").forEach(function(d){
+      if(d!==cur && !d.contains(cur) && d.dataset.keepOpen!=="true") d.open=false;
+    });
+  }
+  document.addEventListener("toggle",function(e){
+    var d=e.target;
+    if(d && d.tagName==="DETAILS" && d.open && (d.closest("#lessonView")||d.closest(".neo-lesson-root"))) closeOthers(d);
+  },true);
+})();
+</script>
+</div><div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a></div></div>
+</body>
+</html>

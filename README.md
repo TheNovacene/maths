@@ -45,6 +45,12 @@ Then open http://localhost:8000. The `--directory` flag (Python 3.7+) keeps you 
 
 A two-tab workflow keeps this frictionless: leave the server running in one terminal tab (it serves files live — no restart needed after a rebuild) and use a second tab for `python3 scripts/build_site.py`, then hard-refresh the browser (Cmd+Shift+R) to see the change.
 
+### Preview the *built* lesson, not the raw source file
+
+Several site-wide features are added to every lesson **at build time** by `scripts/build_site.py`, not stored in the lesson source: the shared header/footer, the **Comfort & Access** control, the maths **symbol palette**, the **single-open accordion**, the standard **Practice Companion** card, and the UTF-8 charset. So if you open a lesson file directly from `vault/` (or double-click a `docs/lessons/...` file), those features will appear to be missing — that is expected.
+
+Always review a lesson via the **built** page on `http://localhost:8000` after running `python3 scripts/build_site.py`. Two things are written into each lesson's own source and *do* show even in the raw file: the six Cornerstone panels with their interactives, the Reconnection Routes control, and the worked-solution unlock gate.
+
 ## Progress tracking
 
 Every lesson page loads `assets/progress.js` (injected at build time). Today it records opened/completed state in the learner's own browser only — no accounts, no data leaves the device. The module has a single narrow interface (`NEOProgress`), so real-time progress tracking can be added later by implementing a remote backend and calling `NEOProgress.setBackend(...)` — no lesson needs to change.
