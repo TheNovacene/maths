@@ -62,9 +62,23 @@ areas and decomposition). Any new standalone Reconnection-Route environments thi
 (e.g. angle facts, area of basic shapes) are commissioned via the Stage 2 option-bank process,
 not pre-built here.
 
+## Interactive environments
+
+A reusable, self-contained **CSS-3D solids component** (draggable prisms, any base polygon; no
+external calls) is filed at `vault/05_Lesson_Templates/NEO_3D_Solids_Component_CSS3D_v0.1.html`
+and endorsed by GreenPrint entry v1.9. It is adopted for the two lessons where rotation most
+deepens understanding:
+
+- **Lesson 5 — Reasoning from nets:** fold a flat net up into the solid in 3D.
+- **Lesson 7 — Cross-sections:** slice a solid and view the cross-section face-on.
+
+Each use must stay optional with a 2D fallback, honour Reduce motion, and keep the construction
+contained. Curved-solid lessons (circles, and any cylinder work) stay 2D or use a small inline
+canvas projector. Lesson 1 keeps its clean 2D Prism Family Explorer.
+
 ## Build note
 
 This blueprint fixes the *story and sequence*, not the interactives. Each lesson is framed and
 built one at a time: Stage 1 (frame) → Stage 2 (interactive option bank, chosen by the
 curriculum lead) → Stage 4 (build the full ecosystem) → Stage 6 (QA, then review). Lesson 1 is
-framed first.
+built; Lesson 2 is framed next.

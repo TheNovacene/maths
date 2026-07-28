@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Maths — 3D Proof of Concept (CSS 3D, no external calls)</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429;font-family:Arial,sans-serif}
+.neo{max-width:820px;margin:auto;padding:22px;background:#f7f3ea;border-radius:18px;line-height:1.55}
+h1{color:#3f5f45;margin-bottom:4px;font-size:1.5em}h2{color:#6a7f4e;font-size:1.05em;margin-top:0}
+.note{background:#fffaf0;border-left:6px solid #d8b26e;border-radius:12px;padding:12px 15px;margin:14px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.chip{padding:8px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;color:#2f3429}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.stage{background:#fff;border:1px solid #cdbfa9;border-radius:14px;padding:8px;margin:12px 0}
+.viewport{perspective:1000px;width:100%;max-width:440px;height:360px;margin:auto;touch-action:none;cursor:grab}
+.viewport:active{cursor:grabbing}
+.scene{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .04s linear}
+.face{position:absolute;left:50%;top:50%;box-sizing:border-box}
+.face.end{background:rgba(90,127,73,.30);border:2px solid #3f5f45}
+.face.side{background:rgba(58,92,107,.24);border:2px solid #3a5c6b}
+.vtx{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#70466b;border:2px solid #fff}
+.fev{display:inline-flex;gap:14px;font-weight:bold;color:#3f5f45}
+.small{font-size:.92em;color:#4f554b}
+@media (prefers-reduced-motion: reduce){.scene{transition:none}}
+</style>
+</head>
+<body>
+<div class="neo">
+<h1>NEO Maths — 3D proof of concept</h1>
+<h2>Draggable solids in pure CSS 3D · no libraries · no external calls</h2>
+
+<div class="note">
+<b>Try it:</b> drag on the shape to rotate it. Notice you can see the faces, edges and vertices at the <em>back</em> too — the whole reason 3D helps in this unit. Switch the base to see the same prism structure change. <b>Nothing here is fetched from the internet</b> — view source and you'll find every line inline.
+</div>
+
+<div class="buttonrow">
+<span class="chip active" data-shape="cube" onclick="pick(this,'cube')">Cube</span>
+<span class="chip" data-shape="tri" onclick="pick(this,'tri')">Triangular prism</span>
+<span class="chip" data-shape="pent" onclick="pick(this,'pent')">Pentagonal prism</span>
+<span class="chip" data-shape="hex" onclick="pick(this,'hex')">Hexagonal prism</span>
+</div>
+<div class="buttonrow">
+<button onclick="toggleSpin()" id="spinBtn">▶ Auto-rotate</button>
+<button onclick="toggleVerts()" id="vtxBtn">Hide vertices</button>
+<button onclick="resetView()">Reset view</button>
+<span class="fev" id="fev"></span>
+</div>
+
+<div class="stage">
+<div class="viewport" id="viewport">
+<div class="scene" id="scene"></div>
+</div>
+</div>
+<p class="small" id="caption"></p>
+<p class="small">Built for NEO by Nudge Education · a technical demo, not a lesson. Curriculum by Gerry Docherty.</p>
+</div>
+
+<script>
+/* ---- Parametric prism builder: any n-gon base, in CSS 3D ---- */
+var SHAPES={
+  cube:{n:4,r:95,depth:134,label:"Cube (square base, equal depth)"},
+  tri: {n:3,r:105,depth:150,label:"Triangular prism"},
+  pent:{n:5,r:92,depth:140,label:"Pentagonal prism"},
+  hex: {n:6,r:88,depth:130,label:"Hexagonal prism"}
+};
+var current="cube", showVerts=true, rotX=-22, rotY=-32, spinning=false, spinTimer=null;
+
+function baseVerts(n,r){
+  var v=[], rot=-Math.PI/2 + (n%2?0:Math.PI/n);
+  for(var i=0;i<n;i++){var a=rot+i*2*Math.PI/n; v.push([r*Math.cos(a), r*Math.sin(a)]);}
+  return v;
+}
+function build(shape){
+  var s=SHAPES[shape], n=s.n, verts=baseVerts(n,s.r), D=s.depth;
+  var xs=verts.map(function(p){return p[0];}), ys=verts.map(function(p){return p[1];});
+  var minx=Math.min.apply(0,xs),maxx=Math.max.apply(0,xs),miny=Math.min.apply(0,ys),maxy=Math.max.apply(0,ys);
+  var bw=maxx-minx, bh=maxy-miny;
+  var cx=(minx+maxx)/2, cy=(miny+maxy)/2;   // bounding-box centre (NOT the origin for odd polygons)
+  var clip="polygon("+verts.map(function(p){return ((p[0]-minx)/bw*100).toFixed(2)+"% "+((p[1]-miny)/bh*100).toFixed(2)+"%";}).join(", ")+")";
+  var html="";
+  // two end faces (front/back) via clip-path, placed at the true bounding-box centre so
+  // their corners coincide with the vertices and the side faces for any base polygon
+  [D/2,-D/2].forEach(function(z){
+    html+='<div class="face end" style="width:'+bw+'px;height:'+bh+'px;margin:'+(-bh/2)+'px 0 0 '+(-bw/2)+'px;'
+      +'transform:translate3d('+cx.toFixed(2)+'px,'+cy.toFixed(2)+'px,'+z+'px);clip-path:'+clip+';-webkit-clip-path:'+clip+'"></div>';
+  });
+  // n rectangular side faces: each is the edge (P1->P2) extruded along Z
+  for(var i=0;i<n;i++){
+    var p1=verts[i], p2=verts[(i+1)%n];
+    var len=Math.hypot(p2[0]-p1[0],p2[1]-p1[1]);
+    var phi=Math.atan2(p2[1]-p1[1],p2[0]-p1[0])*180/Math.PI;
+    var mx=(p1[0]+p2[0])/2, my=(p1[1]+p2[1])/2;
+    html+='<div class="face side" style="width:'+len+'px;height:'+D+'px;margin:'+(-D/2)+'px 0 0 '+(-len/2)+'px;'
+      +'transform:translate3d('+mx.toFixed(1)+'px,'+my.toFixed(1)+'px,0) rotateZ('+phi.toFixed(2)+'deg) rotateX(90deg)"></div>';
+  }
+  // vertices: each base corner at z=+/-D/2
+  if(showVerts){
+    verts.forEach(function(p){
+      [D/2,-D/2].forEach(function(z){
+        html+='<div class="vtx" style="transform:translate3d('+p[0].toFixed(1)+'px,'+p[1].toFixed(1)+'px,'+z+'px)"></div>';
+      });
+    });
+  }
+  document.getElementById("scene").innerHTML=html;
+  document.getElementById("fev").innerHTML="<span>Faces "+(n+2)+"</span><span>Edges "+(3*n)+"</span><span>Vertices "+(2*n)+"</span>";
+  document.getElementById("caption").textContent=s.label+" — an n-sided base gives n + 2 faces, 3n edges and 2n vertices.";
+  apply();
+}
+function apply(){document.getElementById("scene").style.transform="translateZ(-40px) rotateX("+rotX+"deg) rotateY("+rotY+"deg)";}
+function pick(el,shape){document.querySelectorAll(".chip").forEach(function(c){c.classList.remove("active");});el.classList.add("active");current=shape;build(shape);}
+function toggleVerts(){showVerts=!showVerts;document.getElementById("vtxBtn").textContent=showVerts?"Hide vertices":"Show vertices";build(current);}
+function resetView(){rotX=-22;rotY=-32;apply();}
+function toggleSpin(){
+  spinning=!spinning;document.getElementById("spinBtn").textContent=spinning?"⏸ Stop rotating":"▶ Auto-rotate";
+  if(spinning){spinTimer=setInterval(function(){rotY+=0.6;apply();},16);}else{clearInterval(spinTimer);}
+}
+/* Respect reduced-motion: no auto-spin offered, gentler */
+if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  var b=document.getElementById("spinBtn"); if(b){b.disabled=true;b.title="Auto-rotate is off because your system prefers reduced motion.";}
+}
+/* ---- drag to rotate (mouse + touch) ---- */
+(function(){
+  var vp=document.getElementById("viewport"),dragging=false,lx=0,ly=0;
+  function down(x,y){dragging=true;lx=x;ly=y;if(spinning)toggleSpin();}
+  function move(x,y){if(!dragging)return;rotY+=(x-lx)*0.5;rotX-=(y-ly)*0.5;rotX=Math.max(-89,Math.min(89,rotX));lx=x;ly=y;apply();}
+  function up(){dragging=false;}
+  vp.addEventListener("mousedown",function(e){down(e.clientX,e.clientY);e.preventDefault();});
+  window.addEventListener("mousemove",function(e){move(e.clientX,e.clientY);});
+  window.addEventListener("mouseup",up);
+  vp.addEventListener("touchstart",function(e){var t=e.touches[0];down(t.clientX,t.clientY);},{passive:true});
+  vp.addEventListener("touchmove",function(e){var t=e.touches[0];move(t.clientX,t.clientY);e.preventDefault();},{passive:false});
+  vp.addEventListener("touchend",up);
+})();
+build("cube");
+</script>
+</body>
+</html>
