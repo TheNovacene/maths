@@ -80,5 +80,5 @@ canvas projector. Lesson 1 keeps its clean 2D Prism Family Explorer.
 
 This blueprint fixes the *story and sequence*, not the interactives. Each lesson is framed and
 built one at a time: Stage 1 (frame) → Stage 2 (interactive option bank, chosen by the
-curriculum lead) → Stage 4 (build the full ecosystem) → Stage 6 (QA, then review). Lesson 1 is
-built; Lesson 2 is framed next.
+curriculum lead) → Stage 4 (build the full ecosystem) → Stage 6 (QA, then review). Lessons 1–2
+are built; Lesson 3 (Circumference of a circle) is framed next.

@@ -107,6 +107,14 @@
           "file": "lessons/2d-and-3d-shapes/01-analysing-properties.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-02-angles-in-polygons",
+          "num": "Lesson 02",
+          "title": "Angles in Polygons",
+          "file": "lessons/2d-and-3d-shapes/02-angles-in-polygons.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

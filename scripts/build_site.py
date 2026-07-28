@@ -40,6 +40,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/Pythagorean_Theorem/Lesson_04_Geometrical_Problems/NEO_Maths_Y9_Pythagoras_Lesson_04_Geometrical_Problems_v0.5.html",
     "shapes-01-analysing-properties":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_01_Analysing_2D_and_3D_Properties/NEO_Maths_Y9_Shapes_Lesson_01_Analysing_Properties_v0.1.html",
+    "shapes-02-angles-in-polygons":
+        "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_02_Angles_in_Polygons/NEO_Maths_Y9_Shapes_Lesson_02_Angles_in_Polygons_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
