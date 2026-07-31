@@ -115,6 +115,14 @@
           "file": "lessons/2d-and-3d-shapes/02-angles-in-polygons.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-03-circumference-of-a-circle",
+          "num": "Lesson 03",
+          "title": "Circumference of a Circle",
+          "file": "lessons/2d-and-3d-shapes/03-circumference-of-a-circle.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

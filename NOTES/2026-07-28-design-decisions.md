@@ -85,3 +85,31 @@ Guidance PDFs (Learner + Supporting Adult) still to be generated after Gerry acc
 Re-verified with the jsdom harness (48/48), including the widened formula checker (accept + reject +
 junk-rejection), the walk's per-corner wedges / dashed lines / dial states, and the investigator's
 drag/tap logic, capping, record table and reveal.
+
+## Lesson 3 (Circumference of a Circle) built — 29 July
+
+Framed and built one at a time. Interactives chosen by the curriculum lead (Gerry), inspired by
+his Geometer's Sketchpad (d, C) sketch:
+
+- **Connection — the (d, C) Plotter.** Learner changes the diameter; a live point G = (d, C) rides
+  along the (hidden) line while a table of points builds. "Draw the line" reveals C = π d through the
+  origin. Two discovery inputs let the learner find it themselves: the **gradient** (accepts a number
+  near π, or "pi"/"π") and the **equation** (a `circEquiv` checker that evaluates the expression on
+  d = 1…10 vs π d, so πd, pi*d, 3.14d, 3.142·d, d×π, C=πd all pass; 3d, 2πd and anything in r are
+  rejected). Self-contained SVG — no GeoGebra/Sketchpad dependency; stays 2D (curved shape).
+- **Movement — Rolling Wheel.** A slider rolls the wheel one full turn along a track marked in
+  diameters (0, 1d, 2d, 3d, πd); the rolled distance lands just past the 3d mark — π diameters.
+  Slider-driven, so nothing to gate under Reduce motion.
+- **Reflection — Circle Reasoner** (true/false + why), incl. the "exactly 3× the diameter" trap.
+- **Creativity — Estimate then check:** predict the circumference of real objects (coin → Moon),
+  check within tolerance, reveal C = π d; plus a "π tape" Scratchpad nudge (the string-wrap idea).
+- **Nutrition Mode A:** the tin label — a label must be as long as the tin's circumference (packaging).
+
+Practice Companion: six questions with the v1.0 unlock gate; numeric questions use tolerance `eq`
+functions, and Q2/Q6 reuse `circEquiv` / π-acceptance. Reconnection Routes: multiplying by a decimal,
+"times bigger" ratio, naming parts of a circle. Verified with a jsdom harness (43/43), including the
+plotter/table/graph, the gradient and equation checkers (accept + reject + junk), the wheel's π-diameter
+readout, reflection, the estimator tolerances, routes, and the per-question gate. Built page clean:
+one Practice card at the bottom, support-row trigger stripped, charset + chrome present.
+
+Guidance PDFs to follow after Gerry signs off. Next: Lesson 4 — Area of a circle.
