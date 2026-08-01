@@ -202,3 +202,68 @@ the wrong way. Everything non-3D is proven. Guidance PDFs after sign-off.
 
 jsdom harness 38/38 (incl. the 35-hexomino / 11-cube-net theorem, PF-nets-all-valid guard, and the dynamic
 folder). Guidance PDFs built with the DejaVuSans π/superscript template. Next: Lesson 6 — Surface Area.
+
+## Lesson 6 (Platonic Solids) built — the flagship 3D lesson (Sun)
+
+Numbering corrected: Platonic Solids is **L6** (Gerry flagged my earlier "L6 = Surface Area" slip);
+blueprint renumbered (Surface area→L7, Cross-sections→L8, Volume→L9, Converting units→L10).
+
+Cornerstones as chosen: Connection = Euler film + F+V−E=2 table; Movement = **Fold & Rotate**;
+Reflection = "why exactly five?" Corner Investigator; Creativity = Solid Detective + Duals;
+Nutrition Mode A = dice (d4/d6/d8/d12/d20 are the five Platonic solids).
+
+**Geometry engine (prototyped + verified before embedding):** tetra/cube/octa hardcoded; icosahedron
+faces computed as 3-cliques of the min-distance graph; **dodecahedron built as the dual of the
+icosahedron** (face-centroids → 20 vertices; 12 pentagons ordered around each icosa vertex). Verified
+numerically: all five give Euler = 2, equal edge lengths, planar + regular faces. The **generic
+hinge-tree fold** (BFS spanning tree; each hinge folds by the signed angle that makes the child
+coplanar with its parent) reproduces each solid exactly at t=1 and lays a perfectly flat net at t=0 —
+proven for all five (matchErr 0, net-planarErr ~1e-15). So the whole Movement engine is
+mathematically guaranteed even though I can't see the render.
+
+Movement renders via an SVG orthographic projector (fold t + drag view, painter's depth sort,
+auto-fit). Euler video embedded with `<video controls preload=metadata poster>` + caption `<track default>`
+from `docs/assets/media/` (paths `../../assets/media/…` resolve in the built page), no autoplay.
+Practice (6, gate) incl. Euler-formula rearrange and the "3 hexagons = 360° so no solid" reasoning.
+jsdom harness 43/43 (geometry + fold both re-verified against the in-page code, plus every panel).
+
+**Needs Gerry's eye:** the 3D render itself (projection/occlusion look) can't be seen from the sandbox —
+maths is guaranteed, visuals to confirm. Caption timings still approximate (flagged in the .vtt).
+Guidance PDFs after sign-off.
+
+### Lesson 6 review round 1 (Gerry) — captions + accessibility visuals
+
+Driven by the NEO priority: these learners may be out of formal schooling and/or neurodivergent, so
+abstract-number-only activities cause confusion and lose them. Fixes:
+
+- **Captions rebuilt** from Gerry's updated micro-beat script (14 beats; 20 cues), replacing the older
+  mismatched dialogue. Timings at ~10s beats, flagged approximate/nudgeable in the .vtt NOTE.
+- **New Words card** opening Connection: five small solid icons (rendered by the verified projector at
+  fold=1), each labelled with faces + Plato's element (fire/earth/air/water/cosmos), plus the origins
+  note (Plato ~360 BC; Euler's F+V−E=2).
+- **Reflection now has a picture:** the Corner Investigator draws the actual regular polygons meeting at
+  one corner (2D fan, congruent polygons sharing the centre), shades the **gap** wedge when the angle
+  sum < 360°, and shows a **mini 3D model of the solid it folds into** beside it. So "270° leaves a gap →
+  the cube" is seen, not just stated. =360° shows no gap (tiling); >360° shows overlap.
+- **Creativity Duals now has a picture:** a rotatable viewer draws the chosen solid faint, with **blue
+  dots at every face-centre** joined by **red edges** to reveal the dual skeleton inside (cube→octahedron
+  = 6 dots/12 edges; dodeca→icosa = 12 dots). Drag to rotate.
+
+All new visuals reuse the numerically-verified geometry. jsdom harness 56/56 (adds icon/fan/mini-solid/
+dual checks). Still needs Gerry's eye on the 3D render look. Guidance PDFs after sign-off.
+
+### Lesson 6 — captions, article-tolerance, guidance
+
+- **Captions (round 2):** the real cause was two uploaded scripts sharing a name — I'd read the *old*
+  one. Rebuilt from the correct updated script (1a "Leonard Euler… Come with me to follow his thread",
+  new 4a/5a, "taught"/"sine curve"/"Years of study dimmed his eyes…", Catherine "welcomed reason").
+  Then Gerry reported the timings lagged; my sandbox couldn't reach a speech-to-text model (HuggingFace
+  403 through the SOCKS proxy) and silence-detection failed under the music bed, so **Gerry supplied the
+  18 line start-times**. Cue starts set to those; ends trimmed to each line's speech. Served as a fresh
+  filename each revision (…_v2 → …_v3) to defeat the browser's very sticky WebVTT track cache. Confirmed
+  the film has no burned-in dialogue captions (only an opening title), so the .vtt is the sole source.
+- **Article-tolerance:** Practice answer-matching now strips a leading "a/an/the", so "A Cube" /
+  "An octahedron" / "the octahedron" pass. Applied to ALL SIX 2D-and-3D-Shapes lessons (L1–L6). The
+  older Pythagoras/ratio/place-value/straight-line lessons have only numeric or number-with-unit answers,
+  so it doesn't apply there. Regression suites all green (L2 48, L3 45, L4 48, L5 38, L6 61).
+- **Guidance PDFs** generated (DejaVu template; F + V − E = 2 renders cleanly). Lesson 6 complete.

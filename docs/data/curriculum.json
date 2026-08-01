@@ -139,6 +139,14 @@
           "file": "lessons/2d-and-3d-shapes/05-reasoning-from-nets.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-06-platonic-solids",
+          "num": "Lesson 06",
+          "title": "Platonic Solids",
+          "file": "lessons/2d-and-3d-shapes/06-platonic-solids.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

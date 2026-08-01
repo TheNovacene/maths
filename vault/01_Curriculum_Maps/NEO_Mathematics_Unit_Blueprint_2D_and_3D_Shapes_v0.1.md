@@ -27,10 +27,11 @@ Analyse 2D/3D properties · use polygon angles · work with circles (circumferen
 reason from nets · calculate surface area and volume · use cross-sections · convert spatial
 units.
 
-## Session sequence (nine 45-minute lessons)
+## Session sequence (ten 45-minute lessons)
 
 Ordered by conceptual dependency, so each lesson feeds the next. "Skin then structure":
-nets → surface area, then cross-sections → volume.
+nets → surface area, then cross-sections → volume. A **Platonic Solids** enrichment lesson (L6)
+follows nets, pulling together angles (L2), Euler's F + V − E = 2 (L1) and nets (L5).
 
 | # | Lesson | Stepping Stone | Mathematical noticing goal | Likely Reconnection Routes |
 |---|--------|----------------|----------------------------|----------------------------|
@@ -39,10 +40,11 @@ nets → surface area, then cross-sections → volume.
 | 3 | Circumference of a circle | circles | The distance around every circle is the same multiple (π) of its diameter | multiplication; measuring; ratio |
 | 4 | Area of a circle | circles | The area within a circle is π × r²; the same π governs both distance around and area within | square numbers (REC-NUM-04); area concept |
 | 5 | Reasoning from nets | nets | A flat net folds into a solid; each 2D face maps to a face of the 3D shape (the 2D→3D bridge) | 2D shape properties (L1); area of rectangles/triangles |
-| 6 | Surface area | surface area/volume | A solid's surface area is the total area of its net — the sum of its 2D faces (including circles for cylinders) | area of rectangles/triangles; circle area (L4); nets (L5) |
-| 7 | Cross-sections | cross-sections | A prism is a constant cross-section carried along its length; slicing a solid reveals a 2D shape | 2D shape properties (L1); area |
-| 8 | Volume | surface area/volume | Volume is cross-sectional area × length; the same idea covers cuboids, prisms and cylinders | area (L4/L6); cross-sections (L7); multiplication |
-| 9 | Converting spatial units | convert spatial units | Length units scale by 10, but *area* units scale by 100 and *volume* units by 1000 — a consequence of powers of ten | place value / powers of ten (REC-NUM-01/02) |
+| 6 | Platonic solids (enrichment) | regular polyhedra | There are exactly five regular solids, because the angles at a corner must total less than 360° to fold into 3D; every convex polyhedron obeys Euler's F + V − E = 2 | F/V/E of a solid (L1); interior angle of a regular polygon (L2); angles around a point |
+| 7 | Surface area | surface area/volume | A solid's surface area is the total area of its net — the sum of its 2D faces (including circles for cylinders) | area of rectangles/triangles; circle area (L4); nets (L5) |
+| 8 | Cross-sections | cross-sections | A prism is a constant cross-section carried along its length; slicing a solid reveals a 2D shape | 2D shape properties (L1); area |
+| 9 | Volume | surface area/volume | Volume is cross-sectional area × length; the same idea covers cuboids, prisms and cylinders | area (L4/L7); cross-sections (L8); multiplication |
+| 10 | Converting spatial units | convert spatial units | Length units scale by 10, but *area* units scale by 100 and *volume* units by 1000 — a consequence of powers of ten | place value / powers of ten (REC-NUM-01/02) |
 
 ## Cornerstone emphasis across the unit
 
@@ -70,7 +72,8 @@ and endorsed by GreenPrint entry v1.9. It is adopted for the two lessons where r
 deepens understanding:
 
 - **Lesson 5 — Reasoning from nets:** fold a flat net up into the solid in 3D.
-- **Lesson 7 — Cross-sections:** slice a solid and view the cross-section face-on.
+- **Lesson 6 — Platonic solids:** fold each regular solid from its net and rotate it (SVG projector driven by verified 3D coordinates).
+- **Lesson 8 — Cross-sections:** slice a solid and view the cross-section face-on.
 
 Each use must stay optional with a 2D fallback, honour Reduce motion, and keep the construction
 contained. Curved-solid lessons (circles, and any cylinder work) stay 2D or use a small inline
@@ -80,5 +83,5 @@ canvas projector. Lesson 1 keeps its clean 2D Prism Family Explorer.
 
 This blueprint fixes the *story and sequence*, not the interactives. Each lesson is framed and
 built one at a time: Stage 1 (frame) → Stage 2 (interactive option bank, chosen by the
-curriculum lead) → Stage 4 (build the full ecosystem) → Stage 6 (QA, then review). Lessons 1–2
-are built; Lesson 3 (Circumference of a circle) is framed next.
+curriculum lead) → Stage 4 (build the full ecosystem) → Stage 6 (QA, then review). Lessons 1–6
+are built (through Platonic Solids); Lesson 7 (Surface area) is next.

@@ -671,7 +671,8 @@ function pCheck(){
   fb.style.display="block";
   if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
   pAttempts[pIndex]++;
-  var learner=normText(val), ok=q.a.some(function(x){return normText(x)===learner||learner===normText(x);});
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=q.a.some(function(x){var nx=normText(x);return nx===learner||nx===stripped;});
   if(!ok && q.eq){ ok = q.eq(val)===true; }
   if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct. You reasoned from the net to the solid.";}
