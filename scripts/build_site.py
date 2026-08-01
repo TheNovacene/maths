@@ -46,6 +46,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_03_Circumference_of_a_Circle/NEO_Maths_Y9_Shapes_Lesson_03_Circumference_of_a_Circle_v0.1.html",
     "shapes-04-area-of-a-circle":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_04_Area_of_a_Circle/NEO_Maths_Y9_Shapes_Lesson_04_Area_of_a_Circle_v0.1.html",
+    "shapes-05-reasoning-from-nets":
+        "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_05_Reasoning_from_Nets/NEO_Maths_Y9_Shapes_Lesson_05_Reasoning_from_Nets_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

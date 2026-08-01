@@ -131,6 +131,14 @@
           "file": "lessons/2d-and-3d-shapes/04-area-of-a-circle.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-05-reasoning-from-nets",
+          "num": "Lesson 05",
+          "title": "Reasoning from Nets",
+          "file": "lessons/2d-and-3d-shapes/05-reasoning-from-nets.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

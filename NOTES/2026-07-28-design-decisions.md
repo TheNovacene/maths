@@ -155,3 +155,50 @@ r² in their content (L3 gen: dropped the pi→word substitution; L4 gen: conten
 "pizza" left intact). L3 and L4 guides regenerated and verified (π renders in DejaVuSans, superscript-2
 present, no broken "»", no "pi"/"r squared" words). Future lessons should just use real π/² in guide
 content — the template handles rendering. (Earlier note to spell "pi" as a word no longer applies.)
+
+## Lesson 5 (Reasoning from Nets) built — first CSS-3D lesson (Sat)
+
+Cornerstones as Gerry chose: Movement = Net Folder (CSS-3D), Connection = Predict & Fold,
+Reflection = "Will it close?" Net Investigator, Creativity = Design-a-Net.
+
+- **Shared engine `foldSim(cells)`** — rolls a virtual cube along a polyomino to test whether six
+  edge-joined squares fold into a cube (each cell → the cube face that rolls to the bottom; valid iff
+  all six faces distinct and connected). Brute-force verified in the harness: exactly **35 free
+  hexominoes, 11 fold into a cube** — the known theorem. This one function powers Reflection and
+  Creativity (and the opposite-face logic in Connection), so all the net reasoning is provably correct.
+- **Connection — Predict & Fold:** a numbered cube net with one face shaded; learner predicts the solid
+  and which face lands *opposite* the shaded one (opposite = OPP of its rolled face). Carry-forward gated.
+- **Movement — Net Folder (CSS-3D):** nested hinged `<div>` faces; a fold slider rotates each face about
+  its hinge (data-axis/data-angle × fraction); drag to rotate the scene. Four solids: cube, cuboid,
+  triangular prism (side flaps 120°, triangle caps), square pyramid (flaps ~122° = 180−acos((S/2)/m)).
+  Reduce-motion friendly (slider-driven; flat 0% and solid 100% are static). 2D fallback = the flat net itself.
+- **Reflection — Will it close?** six preset arrangements classified live by foldSim; learner guesses, score shown.
+- **Creativity — Design-a-Net:** 5×5 grid, place six squares, fold-test via foldSim; tracks distinct nets found (of 11).
+
+Practice (6, unlock gate) incl. opposite-faces-of-a-dice and net-area = surface-area (Q6 bridges to L6).
+Reconnection Routes: faces of a solid, naming 2D shapes, area of a rectangle. Vocab card (net, face, edge,
+opposite faces). jsdom harness 33/33.
+
+**Not yet visually verified:** the CSS-3D fold direction/signs cannot be seen in the jsdom sandbox, and
+Claude-in-Chrome was not connected this session. The transforms were reasoned carefully but the fold may
+need a sign/angle tweak once viewed. FLAGGED FOR GERRY to preview on localhost; iterate if any face folds
+the wrong way. Everything non-3D is proven. Guidance PDFs after sign-off.
+
+### Lesson 5 review rounds (Gerry) + guidance
+
+- **Net Folder fixes:** faces used a 2px *border* which shifted every nested face (accumulating gaps/
+  overlaps) — switched to `box-shadow: inset` (no layout offset) so faces meet exactly. Flat net now
+  sits face-on: the 3D tilt ramps with the fold fraction (0% = face-on, 100% = tilted), drag adds on top.
+  Triangular-prism cap clips were flipped (apex at hinge) — corrected so the triangle's base sits on the
+  hinge and the apex points outward, folding up to cap the prism.
+- **Invalid Predict&Fold net (Gerry spotted):** one hand-picked net covered only 5 cube faces. Replaced
+  with a verified "T" net AND the PF list now `.filter`s through `foldSim` so only genuine cube nets can
+  ever appear. Harness asserts all PF nets valid.
+- **Isometric grid** added to the Scratchpad background options (vertical + ±30° lines) — for 3D sketching.
+  Currently in L5 only; offer to add to the shared Scratchpad and retrofit L1–L4.
+- **Design-a-Net now folds up:** on a valid net, a mini 3D viewer builds the learner's OWN net as a hinge
+  spanning-tree (each shared edge a 90° fold) and animates it closed (drag to rotate; snaps closed under
+  Reduce motion; degrades to instant if requestAnimationFrame is unavailable).
+
+jsdom harness 38/38 (incl. the 35-hexomino / 11-cube-net theorem, PF-nets-all-valid guard, and the dynamic
+folder). Guidance PDFs built with the DejaVuSans π/superscript template. Next: Lesson 6 — Surface Area.

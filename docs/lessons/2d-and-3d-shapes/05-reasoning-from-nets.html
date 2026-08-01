@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Reasoning from Nets</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+/* ---- CSS-3D net folder ---- */
+.viewport{perspective:900px;width:100%;max-width:420px;height:320px;margin:auto;touch-action:none;cursor:grab}
+.viewport:active{cursor:grabbing}
+.scene{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+.fface{position:absolute;box-sizing:border-box;box-shadow:inset 0 0 0 2px rgba(47,52,41,.55);display:flex;align-items:center;justify-content:center;font-weight:bold;color:#2f3429;transform-style:preserve-3d;backface-visibility:visible}
+.netgrid{display:inline-grid;gap:3px;background:#e8e0d0;padding:3px;border-radius:6px}
+.netcell{width:34px;height:34px;border-radius:4px;background:#fff;border:1px solid #cdbfa9;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.9em}
+.netcell.on{background:#dbe8d3;border-color:#5c7f49}
+@media (prefers-reduced-motion: reduce){.scene{transition:none}}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+
+<style>
+  .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
+  .neo-chrome-header { background: #1A2E3B; color: #F7F7F5; padding: 0.6rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .neo-chrome-header a.neo-home { color: #2AB3A0; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
+  .neo-chrome-header a.neo-home:hover { text-decoration: underline; }
+  .neo-chrome-header .neo-crumb { font-size: 0.8rem; color: rgba(247,247,245,0.85); text-align: right; }
+  .neo-chrome-header .neo-crumb strong { color: #FFFFFF; font-weight: 600; }
+  .neo-chrome-footer { background: #1A2E3B; color: rgba(247,247,245,0.85); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.8rem; margin-top: 2rem; }
+  .neo-chrome-footer a { color: #2AB3A0; text-decoration: none; margin: 0 0.6rem; }
+  .neo-chrome-footer a:hover { text-decoration: underline; }
+  .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
+  /* --- Comfort & Access --- */
+  .neo-comfort-btn{background:#2AB3A0;color:#08312b;border:none;border-radius:8px;padding:0.35rem 0.7rem;font-weight:700;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;white-space:nowrap}
+  .neo-comfort-btn:hover{filter:brightness(1.06)}
+  .neo-comfort-panel{background:#12242e;color:#F7F7F5;padding:0.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;border-top:1px solid rgba(255,255,255,0.12);font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
+  .neo-comfort-panel[hidden]{display:none}
+  .neo-comfort-group{display:flex;flex-direction:column;gap:0.35rem}
+  .neo-comfort-group>span{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(247,247,245,0.65)}
+  .neo-comfort-row{display:flex;gap:0.4rem}
+  .neo-comfort-panel button.opt{background:rgba(255,255,255,0.10);color:#F7F7F5;border:1px solid rgba(255,255,255,0.25);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem}
+  .neo-comfort-panel button.opt[aria-pressed="true"]{background:#2AB3A0;color:#08312b;border-color:#2AB3A0;font-weight:700}
+  .neo-comfort-reset{margin-left:auto;align-self:center;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(247,247,245,0.85);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem}
+  html[data-neo-text="large"]{font-size:112.5%}
+  html[data-neo-text="larger"]{font-size:125%}
+  html[data-neo-spacing="on"] .neo-lesson-root{letter-spacing:0.012em}
+  html[data-neo-spacing="on"] .neo-lesson-root p,html[data-neo-spacing="on"] .neo-lesson-root li,html[data-neo-spacing="on"] .neo-lesson-root summary,html[data-neo-spacing="on"] .neo-lesson-root h2,html[data-neo-spacing="on"] .neo-lesson-root h3,html[data-neo-spacing="on"] .neo-lesson-root label{line-height:1.9!important;margin-bottom:0.7em!important}
+  html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
+  html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+  .mathpalette{margin:6px 0}
+  .palette-toggle{background:#365a68;color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+  .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .palette-keys[hidden]{display:none}
+  .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
+</style>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">2D and 3D Shapes &middot; <strong>Lesson 05 &mdash; Reasoning from Nets</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<script>
+(function(){
+ var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
+ try{var sv=JSON.parse(localStorage.getItem(KEY)||"null");if(sv)st=Object.assign(st,sv);}catch(e){}
+ function apply(){d.setAttribute("data-neo-text",st.text);st.spacing?d.setAttribute("data-neo-spacing","on"):d.removeAttribute("data-neo-spacing");st.calm?d.setAttribute("data-neo-calm","on"):d.removeAttribute("data-neo-calm");st.motion?d.setAttribute("data-neo-motion","reduced"):d.removeAttribute("data-neo-motion");}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+ function sync(){var ps=document.querySelectorAll("#neoComfortPanel .opt");for(var i=0;i<ps.length;i++){var b=ps[i],k=b.getAttribute("data-k");if(k==="text"){b.setAttribute("aria-pressed",st.text===b.getAttribute("data-v")?"true":"false");}else{b.setAttribute("aria-pressed",st[k]?"true":"false");}}}
+ window.neoComfortToggle=function(){var p=document.getElementById("neoComfortPanel"),btn=document.querySelector(".neo-comfort-btn"),willOpen=p.hasAttribute("hidden");willOpen?p.removeAttribute("hidden"):p.setAttribute("hidden","");if(btn)btn.setAttribute("aria-expanded",willOpen?"true":"false");};
+ window.neoComfortSet=function(k,v){st[k]=v;apply();save();sync();};
+ window.neoComfortToggleOpt=function(k){st[k]=!st[k];apply();save();sync();};
+ window.neoComfortReset=function(){st={text:"normal",spacing:false,calm:false,motion:false};apply();save();sync();};
+ apply();
+ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
+})();
+</script>
+<div class="neo-lesson-root">
+
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: 2D and 3D Shapes</h1>
+<h2>Reasoning from Nets</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How does a flat shape fold up into a solid — and which flat shapes will?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Spatial reasoning — moving between a flat net and the 3D solid it folds into.</p>
+<p><b>Stepping Stone:</b> reason from nets — recognise that a flat net folds into a solid, that each 2D face of the net becomes a face of the 3D shape, and identify and construct the nets of common solids.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 15 · Move 8 · Reflect 10 · Create 5 · Rest/Nourish 4 · Evidence 3</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_05_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_05_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch nets on the grid, label the faces, and test whether they fold into a solid.')">✏️ Open Maths Scratchpad</button>
+
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Which face lands where?</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Net</b> — a flat shape that folds up to make a solid, with every face laid out and joined along edges.<br>
+<b style="color:#2b3d78">Face</b> — one flat surface of the solid; each face of the net becomes a face of the solid.<br>
+<b style="color:#b0651f">Edge</b> — a line where two faces meet; folding happens along edges.<br>
+<b style="color:#70466b">Opposite faces</b> — two faces that end up on opposite sides of the solid, never touching.</p>
+</div>
+<p><b>What to do:</b> look at the net below. Predict which solid it folds into, and which numbered face will end up <b>opposite</b> the shaded one. Then fold it in Movement to check.</p>
+<p><b>What you are trying to notice:</b> every face of the net has a fixed destination on the solid — the fold is not a mystery, it is a mapping you can reason out.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔮 Predict &amp; Fold</h3>
+<div class="twocol">
+<div class="card" style="text-align:center">
+<svg id="pfNet" viewBox="0 0 260 340" style="width:100%;max-width:230px" role="img" aria-label="A cube net with six numbered faces, one shaded"></svg>
+<p class="small">The shaded face is <b>Face <span id="pfTarget">2</span></b>.</p>
+</div>
+<div class="card">
+<p class="small" style="margin-top:0"><b>1. Which solid does this net fold into?</b></p>
+<div id="pfSolidChips" class="buttonrow"></div>
+<p class="small" style="margin:10px 0 4px"><b>2. Which face lands opposite the shaded face?</b></p>
+<div id="pfOppChips" class="buttonrow"></div>
+<div id="pfFeedback" class="feedback"></div>
+<div class="buttonrow"><button onclick="pfNew()">🔁 New net</button></div>
+</div>
+</div>
+<div id="connCarry" style="display:none"><p><b>Carry this forward:</b> a net records every face of a solid and exactly how they join. That is why, in the next lesson, a net is the key to a solid's <em>surface area</em> — it lays every face out flat to measure.</p></div>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Fold the net into a solid</summary>
+<p><b>What to do:</b> choose a solid, then drag the <b>fold</b> slider from flat to folded and watch the net rise into shape. Drag on the shape itself to rotate it and see the back.</p>
+<p><b>What you are trying to notice:</b> each flat face swings up along an edge and meets its neighbours — the flat net and the solid are the same faces, just arranged in 2D or in 3D.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📦 Net Folder <span class="small">(pure 3D in your browser — nothing is downloaded)</span></h3>
+<div id="foldChips" class="buttonrow" style="justify-content:center"></div>
+<div class="viewport" id="foldVp"><div class="scene" id="foldScene"></div></div>
+<label class="small" for="foldRange"><b>Fold:</b> flat <span id="foldPct">0%</span> folded</label>
+<input id="foldRange" type="range" min="0" max="100" value="0" style="width:100%" oninput="onFold()">
+<div class="buttonrow"><button onclick="foldReset()">↺ Reset view</button><button onclick="foldSetAll(0)">🔓 Unfold to net</button><button onclick="foldSetAll(100)">🧊 Fold to solid</button></div>
+<p id="foldCaption" class="small"></p>
+<p class="small" style="font-style:italic">Tip: if you prefer no movement, leave the slider where you like — the flat net (0%) and the finished solid (100%) are both still pictures.</p>
+<p><b>Carry this forward:</b> because folding just swings each face along an edge, the faces never change size — so the area of the net and the surface area of the solid are exactly the same. Hold onto that for Lesson 6.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Will it close into a cube?</summary>
+<p><b>What to do:</b> each arrangement below is six squares joined edge to edge. Decide whether it will fold into a closed cube, then check. Look for what the ones that work have in common.</p>
+<p><b>What you are trying to notice:</b> not every arrangement of six squares is a cube net — the faces have to be placed so that, when folded, they cover all six sides with none overlapping.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧩 Will it close?</h3>
+<div class="card" style="text-align:center"><div id="riGrid" style="display:inline-block"></div></div>
+<p class="small" style="text-align:center">Arrangement <span id="riNum">1</span> of <span id="riTot">6</span></p>
+<div class="buttonrow" style="justify-content:center"><button onclick="riGuess(true)">✅ Folds into a cube</button><button onclick="riGuess(false)">❌ Does not</button></div>
+<div id="riFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="riNext()">➡️ Next arrangement</button></div>
+<p class="small" id="riScore" style="text-align:center"></p>
+<p><b>Carry this forward:</b> there are exactly <b>eleven</b> different nets of a cube. Knowing which arrangements close, and why, is the same reasoning you will use to check a net before you build any solid.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Design your own cube net</summary>
+<p><b>What to do:</b> tap squares on the grid to design your own net of a cube — you need exactly six, joined edge to edge. Then fold-test it. Can you find nets nobody else would think of?</p>
+<p><b>What you are trying to notice:</b> there is more than one right answer — eleven, in fact — so designing a net is a genuine act of creation, not copying.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">✏️ Design-a-Net</h3>
+<div class="card" style="text-align:center"><div id="dnGrid" class="netgrid"></div></div>
+<p class="small" style="text-align:center">Squares placed: <b><span id="dnCount">0</span></b> of 6</p>
+<div class="buttonrow" style="justify-content:center"><button onclick="dnTest()">🧊 Fold-test my net</button><button onclick="dnClear()">🗑 Clear</button></div>
+<div id="dnFeedback" class="feedback"></div>
+<p class="small" id="dnFound" style="text-align:center"></p>
+<div id="dnFolderWrap" style="display:none">
+<p class="small" style="text-align:center;margin:8px 0 2px"><b>Watch your net fold into a cube</b> — drag to rotate it.</p>
+<div class="viewport" id="dnVp" style="height:240px;max-width:300px"><div class="scene" id="dnScene"></div></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="dnReplay()">▶ Fold again</button></div>
+</div>
+<p><b>Make it your own:</b> found a cube net? Try designing a net for a different solid on the Scratchpad — a cuboid box, a triangular prism (like a Toblerone), or a pyramid.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Design a net for a solid of your choice — count the faces, and check the edges match up.')">✏️ Design on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause between flat and solid</summary>
+<p>Holding a flat shape and a solid in mind at the same time — seeing one become the other — is real spatial thinking. It is tiring, good work. Take a slow breath.</p>
+<div class="card">
+<p><b>Notice one thing:</b> when you folded the net, which single face were you most sure about, and which did you have to think hardest to place? There is no right answer — just what your own mind found easy and hard.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
+<p><b>Mode: contextual.</b> This lesson is hiding in your kitchen cupboard: every <b>cardboard box</b> is a net folded into a solid.</p>
+<div class="card">
+<p><b>Why it matters:</b> a cereal box is the net of a cuboid; a Toblerone box is the net of a triangular prism. A packaging designer draws the <em>flat net</em> first — faces, flaps and fold lines — then it is cut, creased and folded by machine. Getting the net right means no gaps, no overlaps and the least cardboard used. The reasoning you did today is exactly a packaging designer's job.</p>
+<p class="small">Look at a food box before you recycle it: can you spot the fold lines, and picture it flat as a net?</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> show that you can move between a net and its solid, both ways.</p>
+<ul>
+<li>Draw the net of a cube and of one other solid (a cuboid, a triangular prism, or a square-based pyramid). Label how many faces each has.</li>
+<li>On your cube net, mark two pairs of faces that will end up <em>opposite</em> each other when folded.</li>
+<li>Explain, in your own words, why the area of a net and the surface area of the solid it makes are always the same.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photo of a net you have drawn or folded, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SHAPES_NETS_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows a net folds into a solid.</td><td>Identifies the solid a given net makes, with support.</td><td>Draws a correct net of a cube and one other solid.</td><td>Explains the face-to-face mapping, including opposite faces.</td></tr>
+<tr><td><b>Application</b></td><td>Recognises a familiar net.</td><td>Tests whether an arrangement folds into a cube.</td><td>Constructs valid nets and checks them.</td><td>Designs nets for several solids and justifies why they close.</td></tr>
+<tr><td><b>Communication</b></td><td>Records a net with limited labelling.</td><td>Labels some faces or edges.</td><td>Communicates a clear, well-labelled net.</td><td>Explains net ↔ solid so another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Identifies a feature that makes a net close.</td><td>Explains why the net's area equals the surface area.</td><td>Connects nets to surface area and to real packaging.</td></tr>
+</table>
+</details>
+
+</div>
+<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
+</div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Reasoning from Nets — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the net and count the faces before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_nets_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Nets_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["²","×","=","cm"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+var REDUCED = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+/* ============ Shared: does a set of 6 cells fold into a cube? ============ */
+function foldSim(cells){
+  if(!cells || cells.length!==6) return {valid:false, faceOf:{}, connected:false};
+  var key=function(r,c){return r+","+c;}, set={};
+  cells.forEach(function(p){set[key(p[0],p[1])]=true;});
+  function roll(o,dir){ var n={up:o.up,down:o.down,north:o.north,south:o.south,east:o.east,west:o.west};
+    if(dir==='N'){n.down=o.north;n.north=o.up;n.up=o.south;n.south=o.down;}
+    if(dir==='S'){n.down=o.south;n.south=o.up;n.up=o.north;n.north=o.down;}
+    if(dir==='E'){n.down=o.east;n.east=o.up;n.up=o.west;n.west=o.down;}
+    if(dir==='W'){n.down=o.west;n.west=o.up;n.up=o.east;n.east=o.down;}
+    return n; }
+  var visited={}, faceOf={}, usedDown={}, ok=true, count=0;
+  var stack=[[cells[0],{up:0,down:1,north:2,south:3,east:4,west:5}]];
+  while(stack.length){
+    var it=stack.pop(), cell=it[0], o=it[1], k=key(cell[0],cell[1]);
+    if(visited[k]) continue; visited[k]=true; count++;
+    if(usedDown[o.down]!==undefined) ok=false;
+    usedDown[o.down]=k; faceOf[k]=o.down;
+    [['N',-1,0],['S',1,0],['E',0,1],['W',0,-1]].forEach(function(dd){
+      var nr=cell[0]+dd[1], nc=cell[1]+dd[2], nk=key(nr,nc);
+      if(set[nk] && !visited[nk]) stack.push([[nr,nc], roll(o,dd[0])]);
+    });
+  }
+  var distinct=Object.keys(usedDown).length;
+  return {valid: ok && count===6 && distinct===6, faceOf:faceOf, connected:count===6};
+}
+var OPP={0:1,1:0,2:3,3:2,4:5,5:4};
+
+/* ============ CONNECTION: Predict & Fold ============ */
+var PF_NETS=[
+  {cells:[[0,1],[1,1],[2,1],[3,1],[1,0],[1,2]], labels:{}},   /* Latin cross — verified valid */
+  {cells:[[0,1],[1,0],[1,1],[1,2],[1,3],[2,1]], labels:{}},   /* T with long arm — verified valid */
+  {cells:[[0,0],[1,0],[1,1],[2,1],[2,2],[3,2]], labels:{}}    /* diagonal staircase — verified valid */
+].filter(function(net){ return foldSim(net.cells).valid; });   /* safety: only genuine cube nets survive */
+var pfIndex=0, pfTargetCell=null, pfOppCell=null, pfSolidPicked=null, pfOppPicked=null;
+function pfLabelCells(net){ /* number cells 1..6 in reading order */ var s=net.cells.slice().sort(function(a,b){return a[0]-b[0]||a[1]-b[1];}); var lab={}; s.forEach(function(c,i){lab[c[0]+","+c[1]]=i+1;}); return lab; }
+function pfSetup(){
+  var net=PF_NETS[pfIndex]; net.labels=pfLabelCells(net);
+  var sim=foldSim(net.cells);
+  var cellsByFace={}; net.cells.forEach(function(c){cellsByFace[sim.faceOf[c[0]+","+c[1]]]=c[0]+","+c[1];});
+  /* pick a target cell whose opposite is also present (always true for a valid cube net) */
+  var keys=net.cells.map(function(c){return c[0]+","+c[1];});
+  pfTargetCell=keys[1];
+  var tFace=sim.faceOf[pfTargetCell]; pfOppCell=cellsByFace[OPP[tFace]];
+  document.getElementById("pfTarget").textContent=net.labels[pfTargetCell];
+  pfSolidPicked=null; pfOppPicked=null;
+  drawPfNet(); pfRenderChips();
+  document.getElementById("pfFeedback").style.display="none";
+}
+function drawPfNet(){
+  var net=PF_NETS[pfIndex], svg=document.getElementById("pfNet");
+  var rs=net.cells.map(function(c){return c[0];}), cs=net.cells.map(function(c){return c[1];});
+  var minR=Math.min.apply(0,rs), minC=Math.min.apply(0,cs), maxR=Math.max.apply(0,rs), maxC=Math.max.apply(0,cs);
+  var S=48, ox=(260-(maxC-minC+1)*S)/2, oy=(340-(maxR-minR+1)*S)/2, s="";
+  var cols=["#e8f0e3","#dfe9ef","#f1e9dc","#ece7f2","#e7efe8","#fbeee0"];
+  net.cells.forEach(function(c){
+    var x=ox+(c[1]-minC)*S, y=oy+(c[0]-minR)*S, k=c[0]+","+c[1], n=net.labels[k];
+    var fill = (k===pfTargetCell)?"#3f7a45":cols[(n-1)%cols.length];
+    var tc = (k===pfTargetCell)?"#fff":"#2f3429";
+    s+='<rect x="'+x+'" y="'+y+'" width="'+S+'" height="'+S+'" fill="'+fill+'" stroke="#2f3429" stroke-width="1.5"/>';
+    s+='<text x="'+(x+S/2)+'" y="'+(y+S/2+5)+'" font-size="17" font-weight="700" fill="'+tc+'" text-anchor="middle">'+n+'</text>';
+  });
+  svg.innerHTML=s;
+}
+function pfRenderChips(){
+  var solids=["Cube","Cuboid","Triangular prism","Square pyramid"];
+  document.getElementById("pfSolidChips").innerHTML=solids.map(function(s){return '<span class="chip'+(pfSolidPicked===s?' active':'')+'" onclick="pfPickSolid(\''+s+'\')">'+s+'</span>';}).join("");
+  var net=PF_NETS[pfIndex];
+  var nums=net.cells.map(function(c){return net.labels[c[0]+","+c[1]];}).filter(function(n){return net.labels[pfTargetCell]!==n;}).sort(function(a,b){return a-b;});
+  document.getElementById("pfOppChips").innerHTML=nums.map(function(n){return '<span class="chip'+(pfOppPicked===n?' active':'')+'" onclick="pfPickOpp('+n+')">Face '+n+'</span>';}).join("");
+}
+function pfPickSolid(s){pfSolidPicked=s;pfRenderChips();pfCheck();}
+function pfPickOpp(n){pfOppPicked=n;pfRenderChips();pfCheck();}
+function pfCheck(){
+  if(pfSolidPicked===null||pfOppPicked===null) return;
+  var net=PF_NETS[pfIndex], fb=document.getElementById("pfFeedback"); fb.style.display="block";
+  var solidOK=(pfSolidPicked==="Cube"), oppOK=(pfOppPicked===net.labels[pfOppCell]);
+  if(solidOK&&oppOK){fb.className="feedback good";fb.innerHTML="Both right! It folds into a <b>cube</b>, and Face "+net.labels[pfOppCell]+" lands opposite the shaded face. You reasoned the mapping, not guessed it.";revealConnCarry();}
+  else if(!solidOK){fb.className="feedback warn";fb.textContent="Look at the faces: six equal squares joined edge to edge. What solid has six square faces?";}
+  else {fb.className="feedback warn";fb.textContent="Not that one. Trace the fold: the shaded face's opposite is the face that never shares an edge with it and ends up two folds away.";}
+}
+function revealConnCarry(){var el=document.getElementById("connCarry");if(el)el.style.display="";}
+function pfNew(){pfIndex=(pfIndex+1)%PF_NETS.length;pfSetup();}
+
+/* ============ MOVEMENT: CSS-3D Net Folder ============ */
+var P6=["#e07a5f","#3d8bcd","#5aa469","#e0a13b","#b5679f","#6b8f3a"];
+function netSpec(shape){
+  if(shape==="cube"){var S=78;return {w:S,h:S,bg:P6[0],label:"",axis:"X",angle:0,left:0,top:0,origin:"50% 50%",children:[
+     {w:S,h:S,bg:P6[1],axis:"X",angle:-90,left:0,top:-S,origin:"50% 100%",children:[
+        {w:S,h:S,bg:P6[5],axis:"X",angle:-90,left:0,top:-S,origin:"50% 100%"}]},
+     {w:S,h:S,bg:P6[2],axis:"X",angle:90,left:0,top:S,origin:"50% 0%"},
+     {w:S,h:S,bg:P6[3],axis:"Y",angle:-90,left:S,top:0,origin:"0% 50%"},
+     {w:S,h:S,bg:P6[4],axis:"Y",angle:90,left:-S,top:0,origin:"100% 50%"}]};
+  }
+  if(shape==="cuboid"){var W=104,D=64,H=64;return {w:W,h:D,bg:P6[0],axis:"X",angle:0,left:0,top:0,origin:"50% 50%",children:[
+     {w:W,h:H,bg:P6[1],axis:"X",angle:-90,left:0,top:-H,origin:"50% 100%",children:[
+        {w:W,h:D,bg:P6[5],axis:"X",angle:-90,left:0,top:-D,origin:"50% 100%"}]},
+     {w:W,h:H,bg:P6[2],axis:"X",angle:90,left:0,top:D,origin:"50% 0%"},
+     {w:H,h:D,bg:P6[3],axis:"Y",angle:-90,left:W,top:0,origin:"0% 50%"},
+     {w:H,h:D,bg:P6[4],axis:"Y",angle:90,left:-H,top:0,origin:"100% 50%"}]};
+  }
+  if(shape==="tri"){var A=86,L=104,ht=Math.round(A*Math.sqrt(3)/2);
+    var triUp="polygon(50% 0,0 100%,100% 100%)", triDn="polygon(50% 100%,0 0,100% 0)";
+    return {w:A,h:L,bg:P6[0],axis:"X",angle:0,left:0,top:0,origin:"50% 50%",children:[
+      {w:A,h:L,bg:P6[1],axis:"Y",angle:120,left:-A,top:0,origin:"100% 50%"},
+      {w:A,h:L,bg:P6[2],axis:"Y",angle:-120,left:A,top:0,origin:"0% 50%"},
+      {w:A,h:ht,bg:P6[3],axis:"X",angle:90,left:0,top:L,origin:"50% 0%",clip:triDn},
+      {w:A,h:ht,bg:P6[4],axis:"X",angle:-90,left:0,top:-ht,origin:"50% 100%",clip:triUp}]};
+  }
+  /* square pyramid */
+  var S=90,m=82,ang=Math.round(180-Math.acos((S/2)/m)*180/Math.PI); /* ~122 */
+  var apUp="polygon(50% 0,0 100%,100% 100%)", apDn="polygon(50% 100%,0 0,100% 0)", apR="polygon(100% 50%,0 0,0 100%)", apL="polygon(0 50%,100% 0,100% 100%)";
+  return {w:S,h:S,bg:P6[0],axis:"X",angle:0,left:0,top:0,origin:"50% 50%",children:[
+    {w:S,h:m,bg:P6[1],axis:"X",angle:-ang,left:0,top:-m,origin:"50% 100%",clip:apUp},
+    {w:S,h:m,bg:P6[2],axis:"X",angle:ang,left:0,top:S,origin:"50% 0%",clip:apDn},
+    {w:m,h:S,bg:P6[3],axis:"Y",angle:-ang,left:S,top:0,origin:"0% 50%",clip:apR},
+    {w:m,h:S,bg:P6[4],axis:"Y",angle:ang,left:-m,top:0,origin:"100% 50%",clip:apL}]};
+}
+var foldShape="cube";
+function buildFace(spec, parent, isRoot){
+  var d=document.createElement("div"); d.className="fface";
+  d.style.width=spec.w+"px"; d.style.height=spec.h+"px"; d.style.background=spec.bg;
+  d.style.transformOrigin=spec.origin;
+  d.setAttribute("data-axis",spec.axis); d.setAttribute("data-angle",spec.angle);
+  if(spec.clip){ d.style.clipPath=spec.clip; d.style.webkitClipPath=spec.clip; d.style.border="none"; }
+  if(isRoot){ d.style.left="50%"; d.style.top="50%"; d.style.marginLeft=(-spec.w/2)+"px"; d.style.marginTop=(-spec.h/2)+"px"; }
+  else { d.style.left=spec.left+"px"; d.style.top=spec.top+"px"; }
+  parent.appendChild(d);
+  (spec.children||[]).forEach(function(ch){ buildFace(ch, d, false); });
+  return d;
+}
+function buildNet(){
+  var scene=document.getElementById("foldScene"); if(!scene) return;
+  scene.innerHTML=""; buildFace(netSpec(foldShape), scene, true);
+  applyFoldView(); onFold();
+}
+function onFold(){
+  var t=Number(document.getElementById("foldRange").value)/100;
+  document.querySelectorAll("#foldScene .fface").forEach(function(f){
+    var ang=parseFloat(f.getAttribute("data-angle"))||0, axis=f.getAttribute("data-axis")||"X";
+    f.style.transform="rotate"+axis+"("+(ang*t)+"deg)";
+  });
+  document.getElementById("foldPct").textContent=Math.round(t*100)+"%";
+  applyFoldView();
+  var cap=document.getElementById("foldCaption");
+  if(t<0.02) cap.innerHTML="<b>Flat net.</b> Every face is laid out in 2D, joined along its edges.";
+  else if(t>0.98) cap.innerHTML="<b>Folded solid.</b> Each face has swung up along an edge to its place — same faces, now in 3D. Drag to see the back.";
+  else cap.textContent="Folding… watch each face swing up along its edge.";
+}
+var foldRotX=0, foldRotY=0; /* drag offsets; the base tilt grows with the fold so a flat net sits face-on */
+function applyFoldView(){var t=Number(document.getElementById("foldRange").value)/100;var rx=-22*t+foldRotX, ry=-30*t+foldRotY;document.getElementById("foldScene").style.transform="translateZ(-30px) rotateX("+rx+"deg) rotateY("+ry+"deg)";}
+function foldReset(){foldRotX=0;foldRotY=0;applyFoldView();}
+function foldSetAll(v){document.getElementById("foldRange").value=v;onFold();}
+function pickFold(el,shape){document.querySelectorAll("#foldChips .chip").forEach(function(c){c.classList.remove("active");});el.classList.add("active");foldShape=shape;buildNet();}
+function foldChipsRender(){
+  var opts=[["cube","Cube"],["cuboid","Cuboid"],["tri","Triangular prism"],["pyr","Square pyramid"]];
+  document.getElementById("foldChips").innerHTML=opts.map(function(o){return '<span class="chip'+(o[0]===foldShape?' active':'')+'" onclick="pickFold(this,\''+o[0]+'\')">'+o[1]+'</span>';}).join("");
+}
+(function(){ /* drag to rotate the fold scene */
+  var attach=function(){
+    var vp=document.getElementById("foldVp"); if(!vp) return; var dragging=false,lx=0,ly=0;
+    function down(x,y){dragging=true;lx=x;ly=y;} function up(){dragging=false;}
+    function move(x,y){if(!dragging)return;foldRotY+=(x-lx)*0.5;foldRotX-=(y-ly)*0.5;foldRotX=Math.max(-89,Math.min(89,foldRotX));lx=x;ly=y;applyFoldView();}
+    vp.addEventListener("mousedown",function(e){down(e.clientX,e.clientY);e.preventDefault();});
+    window.addEventListener("mousemove",function(e){move(e.clientX,e.clientY);});
+    window.addEventListener("mouseup",up);
+    vp.addEventListener("touchstart",function(e){var t=e.touches[0];down(t.clientX,t.clientY);},{passive:true});
+    vp.addEventListener("touchmove",function(e){var t=e.touches[0];move(t.clientX,t.clientY);e.preventDefault();},{passive:false});
+    vp.addEventListener("touchend",up);
+  };
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",attach);else attach();
+})();
+
+/* ============ REFLECTION: Will it close? ============ */
+var RI=[
+  [[0,1],[1,1],[2,1],[3,1],[1,0],[1,2]],   /* cross — valid */
+  [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2]],   /* 2x3 block — invalid */
+  [[0,0],[1,0],[1,1],[2,1],[2,2],[3,2]],   /* staircase — valid */
+  [[0,0],[0,1],[1,1],[1,2],[2,2],[2,3]],   /* long zigzag — invalid */
+  [[0,1],[1,0],[1,1],[1,2],[1,3],[2,1]],   /* T with long arm — valid */
+  [[0,0],[0,1],[1,1],[2,1],[2,0],[1,0]]    /* 2x2 + 2 — invalid (contains 2x2) */
+];
+var riIndex=0, riRight=0, riDone=0;
+function drawRiGrid(cells){
+  var rs=cells.map(function(c){return c[0];}), cs=cells.map(function(c){return c[1];});
+  var minR=Math.min.apply(0,rs), minC=Math.min.apply(0,cs), maxR=Math.max.apply(0,rs), maxC=Math.max.apply(0,cs);
+  var S=40, w=(maxC-minC+1)*S, h=(maxR-minR+1)*S, s='<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">';
+  cells.forEach(function(c){ var x=(c[1]-minC)*S, y=(c[0]-minR)*S; s+='<rect x="'+x+'" y="'+y+'" width="'+S+'" height="'+S+'" fill="#dbe8d3" stroke="#3f5f45" stroke-width="1.5"/>'; });
+  s+='</svg>'; return s;
+}
+function riRender(){
+  document.getElementById("riGrid").innerHTML=drawRiGrid(RI[riIndex]);
+  document.getElementById("riNum").textContent=riIndex+1; document.getElementById("riTot").textContent=RI.length;
+  document.getElementById("riFeedback").style.display="none";
+}
+function riGuess(ans){
+  var res=foldSim(RI[riIndex]).valid, fb=document.getElementById("riFeedback"); fb.style.display="block"; riDone++;
+  if(ans===res){ riRight++; fb.className="feedback good"; fb.innerHTML=res?"Correct — this one <b>folds into a cube</b>. All six faces land on different sides.":"Correct — this one <b>does not</b> close. Some faces would overlap or leave a side open."; }
+  else { fb.className="feedback warn"; fb.innerHTML=res?"Look again — this one <b>does</b> fold into a cube. Try folding it in your mind, one square at a time.":"Look again — this one <b>does not</b> close. Two faces would land on the same side."; }
+  document.getElementById("riScore").textContent="Correct so far: "+riRight+" of "+riDone+".";
+}
+function riNext(){ riIndex=(riIndex+1)%RI.length; riRender(); }
+
+/* ============ CREATIVITY: Design-a-Net ============ */
+var DN_ROWS=5, DN_COLS=5, dnOn={}, dnFound={};
+function dnRender(){
+  var g=document.getElementById("dnGrid"); g.style.gridTemplateColumns="repeat("+DN_COLS+",34px)";
+  var html="";
+  for(var r=0;r<DN_ROWS;r++)for(var c=0;c<DN_COLS;c++){ var k=r+","+c; html+='<div class="netcell'+(dnOn[k]?' on':'')+'" onclick="dnToggle('+r+','+c+')"></div>'; }
+  g.innerHTML=html;
+  document.getElementById("dnCount").textContent=Object.keys(dnOn).length;
+}
+function dnToggle(r,c){ var k=r+","+c; if(dnOn[k]) delete dnOn[k]; else { if(Object.keys(dnOn).length>=6){ var fb=document.getElementById("dnFeedback"); fb.style.display="block"; fb.className="feedback warn"; fb.textContent="You already have six squares — a cube net needs exactly six. Remove one first."; return;} dnOn[k]=true; } dnRender(); document.getElementById("dnFeedback").style.display="none"; }
+function dnCanon(cells){ /* normalise to a canonical key up to translation + 8 symmetries */
+  function norm(cs){ var mr=Math.min.apply(0,cs.map(function(p){return p[0];})), mc=Math.min.apply(0,cs.map(function(p){return p[1];})); return cs.map(function(p){return [p[0]-mr,p[1]-mc];}); }
+  function key(cs){ return norm(cs).map(function(p){return p[0]+","+p[1];}).sort().join(";"); }
+  var best=null;
+  for(var t=0;t<8;t++){ var cs=cells.map(function(p){var r=p[0],c=p[1]; if(t&1){var tmp=r;r=c;c=tmp;} if(t&2)r=-r; if(t&4)c=-c; return [r,c];}); var k=key(cs); if(best===null||k<best) best=k; }
+  return best;
+}
+function dnTest(){
+  var cells=Object.keys(dnOn).map(function(k){return k.split(",").map(Number);}), fb=document.getElementById("dnFeedback"); fb.style.display="block";
+  document.getElementById("dnFolderWrap").style.display="none";
+  if(cells.length!==6){ fb.className="feedback warn"; fb.textContent="A cube net needs exactly six squares — you have "+cells.length+"."; return; }
+  var res=foldSim(cells);
+  if(!res.connected){ fb.className="feedback warn"; fb.textContent="The squares must all be joined edge to edge in one piece. Yours are in separate parts."; return; }
+  if(res.valid){ fb.className="feedback good"; fb.innerHTML="🎉 Yes! This folds into a <b>cube</b> — watch it below. That is one of the eleven cube nets."; dnFound[dnCanon(cells)]=true; document.getElementById("dnFound").innerHTML="Different cube nets you have found: <b>"+Object.keys(dnFound).length+"</b> of 11."; document.getElementById("dnFolderWrap").style.display=""; dnBuildFolder(cells); dnAnimate(); }
+  else { fb.className="feedback warn"; fb.textContent="Close — but this arrangement does not close into a cube (some faces would overlap). Try moving one square."; }
+}
+function dnClear(){ dnOn={}; dnRender(); document.getElementById("dnFeedback").style.display="none"; document.getElementById("dnFolderWrap").style.display="none"; }
+/* ---- Dynamic folder: fold the learner's OWN net into a cube ---- */
+var dnDragX=0, dnDragY=0, dnT=0;
+function dnBuildFolder(cells){
+  var scene=document.getElementById("dnScene"); if(!scene) return; scene.innerHTML="";
+  var S=46, key=function(r,c){return r+","+c;}, byKey={}; cells.forEach(function(p){byKey[key(p[0],p[1])]=p;});
+  var P6c=["#e07a5f","#3d8bcd","#5aa469","#e0a13b","#b5679f","#6b8f3a"], idx=0;
+  function mk(parentEl,dir){
+    var d=document.createElement("div"); d.className="fface"; d.style.width=S+"px"; d.style.height=S+"px"; d.style.background=P6c[(idx++)%6];
+    if(!parentEl){ d.style.left="50%"; d.style.top="50%"; d.style.marginLeft=(-S/2)+"px"; d.style.marginTop=(-S/2)+"px"; d.setAttribute("data-axis","X"); d.setAttribute("data-angle","0"); scene.appendChild(d); }
+    else {
+      if(dir==="E"){ d.style.left=S+"px"; d.style.top="0"; d.style.transformOrigin="0% 50%"; d.setAttribute("data-axis","Y"); d.setAttribute("data-angle","-90"); }
+      if(dir==="W"){ d.style.left=(-S)+"px"; d.style.top="0"; d.style.transformOrigin="100% 50%"; d.setAttribute("data-axis","Y"); d.setAttribute("data-angle","90"); }
+      if(dir==="S"){ d.style.left="0"; d.style.top=S+"px"; d.style.transformOrigin="50% 0%"; d.setAttribute("data-axis","X"); d.setAttribute("data-angle","90"); }
+      if(dir==="N"){ d.style.left="0"; d.style.top=(-S)+"px"; d.style.transformOrigin="50% 100%"; d.setAttribute("data-axis","X"); d.setAttribute("data-angle","-90"); }
+      parentEl.appendChild(d);
+    }
+    return d;
+  }
+  var visited={}, rootEl=mk(null,null); visited[key(cells[0][0],cells[0][1])]=true;
+  var queue=[[cells[0],rootEl]], dirs=[["N",-1,0],["S",1,0],["E",0,1],["W",0,-1]];
+  while(queue.length){ var it=queue.shift(), cell=it[0], el=it[1];
+    dirs.forEach(function(dd){ var nr=cell[0]+dd[1], nc=cell[1]+dd[2], nk=key(nr,nc);
+      if(byKey[nk] && !visited[nk]){ visited[nk]=true; var ce=mk(el,dd[0]); queue.push([[nr,nc],ce]); } });
+  }
+}
+function dnApplyView(){ var sc=document.getElementById("dnScene"); if(!sc)return; var rx=-20*dnT+dnDragX, ry=-30*dnT+dnDragY; sc.style.transform="translateZ(-20px) rotateX("+rx+"deg) rotateY("+ry+"deg)"; }
+function dnFold(t){ dnT=t; document.querySelectorAll("#dnScene .fface").forEach(function(f){ var a=parseFloat(f.getAttribute("data-angle"))||0, ax=f.getAttribute("data-axis")||"X"; f.style.transform="rotate"+ax+"("+(a*t)+"deg)"; }); dnApplyView(); }
+function dnAnimate(){ dnDragX=0; dnDragY=0; if(REDUCED || typeof requestAnimationFrame!=="function"){ dnFold(1); return; } var start=null; function step(ts){ if(start===null)start=ts; var p=Math.min(1,(ts-start)/1300); dnFold(p*p*(3-2*p)); if(p<1) requestAnimationFrame(step); } requestAnimationFrame(step); }
+function dnReplay(){ dnAnimate(); }
+(function(){ function attach(){ var vp=document.getElementById("dnVp"); if(!vp)return; var dg=false,lx=0,ly=0;
+    function dn(x,y){dg=true;lx=x;ly=y;} function up(){dg=false;}
+    function mv(x,y){if(!dg)return;dnDragY+=(x-lx)*0.5;dnDragX-=(y-ly)*0.5;dnDragX=Math.max(-89,Math.min(89,dnDragX));lx=x;ly=y;dnApplyView();}
+    vp.addEventListener("mousedown",function(e){dn(e.clientX,e.clientY);e.preventDefault();});
+    window.addEventListener("mousemove",function(e){mv(e.clientX,e.clientY);});
+    window.addEventListener("mouseup",up);
+    vp.addEventListener("touchstart",function(e){var t=e.touches[0];dn(t.clientX,t.clientY);},{passive:true});
+    vp.addEventListener("touchmove",function(e){var t=e.touches[0];mv(t.clientX,t.clientY);e.preventDefault();},{passive:false});
+    vp.addEventListener("touchend",up);
+  } if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",attach);else attach();
+})();
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    faces:{title:'Faces of a solid',prompt:'How many faces (flat surfaces) does a cube have?',answer:6,hint:'Think of a dice — count the flat sides, including the ones you cannot see.'},
+    name2d:{title:'Naming 2D shapes',prompt:'A flat shape has 3 straight sides. What is it called?',answer:'triangle',hint:'3 sides … tri- means three.'},
+    rect:{title:'Area of a rectangle',prompt:'A rectangle is 5 cm by 3 cm. What is its area, in cm²?',answer:15,hint:'Area of a rectangle = length × width.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.05;} return normText(v).includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'faces\')">Faces of a solid</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'name2d\')">Naming 2D shapes</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'rect\')">Area of a rectangle</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · Retrieval",q:"A net folds up to make a solid. How many faces does the net of a cube have?",a:["6","six"],prompt:"Each face of the net becomes one face of the solid.",hint:"A cube has six square faces, so its net has six squares.",sol:"Six — a cube has six faces, so its net is made of six squares."},
+ {label:"2 of 6 · Identify the solid",q:"A net is made of two triangles and three rectangles. Which solid does it fold into?",a:["triangular prism","triangle prism","prism"],prompt:"The two identical ends tell you the cross-section.",hint:"Two triangular ends joined by three rectangles is a prism with a triangle cross-section.",sol:"A triangular prism — two triangular ends and three rectangular faces."},
+ {label:"3 of 6 · Count the faces",q:"How many faces does the net of a square-based pyramid have?",a:["5","five"],prompt:"One base, plus one triangle for each side of the base.",hint:"A square base (1 face) plus four triangles = 1 + 4.",sol:"Five — one square base and four triangular faces."},
+ {label:"4 of 6 · Opposite faces",q:"On a standard dice, opposite faces add up to 7. If one face shows 2, what number is on the opposite face?",a:["5","five"],prompt:"Opposite faces of this dice always total 7.",hint:"7 − 2 = ?",sol:"5, because opposite faces add to 7 (7 − 2 = 5)."},
+ {label:"5 of 6 · Reason about nets",q:"True or false: every arrangement of six squares joined edge to edge folds into a cube. Answer true or false.",a:["false","no"],prompt:"Try to picture a 2-by-3 block of squares folding up.",hint:"A 2×3 block of six squares does NOT close into a cube — so not every arrangement works.",sol:"False. Only eleven of the arrangements of six squares fold into a cube."},
+ {label:"6 of 6 · Net and surface",q:"A cube net is made of six 2 cm by 2 cm squares. What is the total area of the net, in cm²? (This is also the cube's surface area.)",a:[],eq:function(v){var n=num(v);return !isNaN(n)&&Math.abs(n-24)<0.001;},prompt:"Find the area of one square, then multiply by how many faces.",hint:"One square is 2 × 2 = 4 cm²; there are six of them.",sol:"6 × (2 × 2) = 6 × 4 = 24 cm² — the net's area equals the cube's surface area."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), ok=q.a.some(function(x){return normText(x)===learner||learner===normText(x);});
+  if(!ok && q.eq){ ok = q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct. You reasoned from the net to the solid.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Picture the net folding, or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  pfSetup();
+  foldChipsRender(); buildNet();
+  riRender();
+  dnRender();
+  renderPractice();
+  if(REDUCED){ var fc=document.getElementById("foldCaption"); }
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+
+<script src="../../assets/progress.js"></script>
+<script>NEOProgress.autoTrack('shapes-05-reasoning-from-nets');</script>
+
+<script>
+/* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */
+(function(){
+  if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
+  var DEFAULT=["a","b","c","x","y","²","³","√","π","+","-","×","÷","=","≈","°"];
+  function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
+  function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
+  function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
+    var w=document.createElement("div"); w.className="mathpalette";
+    var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="√ Symbols";
+    var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
+    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);}); k.appendChild(b); });
+    t.addEventListener("click",function(){ k.hidden=!k.hidden; });
+    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w);
+  }
+  function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
+})();
+</script>
+
+<script>
+/* Single-open accordion: opening one panel closes the others (data-keep-open opts out). */
+(function(){
+  if(window.__neoAccordionInstalled)return; window.__neoAccordionInstalled=true;
+  function closeOthers(cur){
+    var scope=cur.closest("#lessonView")||document;
+    scope.querySelectorAll("details").forEach(function(d){
+      if(d!==cur && !d.contains(cur) && d.dataset.keepOpen!=="true") d.open=false;
+    });
+  }
+  document.addEventListener("toggle",function(e){
+    var d=e.target;
+    if(d && d.tagName==="DETAILS" && d.open && (d.closest("#lessonView")||d.closest(".neo-lesson-root"))) closeOthers(d);
+  },true);
+})();
+</script>
+</div><div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a></div></div>
+</body>
+</html>
