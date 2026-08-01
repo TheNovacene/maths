@@ -113,3 +113,45 @@ readout, reflection, the estimator tolerances, routes, and the per-question gate
 one Practice card at the bottom, support-row trigger stripped, charset + chrome present.
 
 Guidance PDFs to follow after Gerry signs off. Next: Lesson 4 — Area of a circle.
+
+## Lesson 4 (Area of a Circle) built — 31 July
+
+Framed one at a time; interactives from Gerry's two Novacene sketches, with a Cornerstone swap he
+requested (derive first, then explore the linear relationship):
+
+- **Connection — Circle to Parallelogram** (his activity 2). A slider raises the number of sectors;
+  the circle's slices rearrange into an (approximate) parallelogram of base ≈ π r and height ≈ r.
+  Two dropdown steps let the learner *derive* the formula: complete the statement
+  (parallelogram / height r / half the circumference), then Area ≈ base × height = π r × r = π r².
+  The carry-forward is gated until the derivation is correct. Justified as Connection: the deep link
+  between the circle's area and the parallelogram's area.
+- **Movement — the (r², A) Plotter** (his activity 1). Change the radius; point G = (r², A) plots and
+  a table builds. Putting **r²** on the x-axis makes it linear, so the points fall on A = π r² through
+  the origin. Discovery inputs for gradient (π) and equation (`areaEquiv` — accepts πr², pi*r^2,
+  3.14r², π×r², A=πr², 3.142*r*r; rejects πr, 2πr², πd); carry-forward gated. Justified as Movement:
+  the variable point tracing the line as the circle changes.
+- **Reflection — Circle-Area Reasoner** (true/false + why), centred on "doubling the radius quadruples
+  the area" (area ∝ r²).
+- **Creativity — Estimate then check** (coin → pizza → pond); investigate the pizza/plate doubling.
+- **Nutrition Mode A:** pizza — a 12-inch has four times the area of a 6-inch, because area ∝ r².
+
+Practice Companion: six questions with the v1.0 gate; numeric tolerances via `eq`, Q1 reuses
+`areaEquiv`, Q6 is the doubling-quadruples reasoning. Reconnection Routes: squaring, area of a
+parallelogram, parts of a circle. Vocab card (area, radius, r², sector) opens Connection. Focused
+palette π, r, ², ×, =, ≈ on the discovery + practice fields. Verified with a jsdom harness (41/41),
+plus a built-page check (card at bottom, palette with π and ² attached to the discovery fields).
+
+Guidance PDFs to follow after sign-off (remember: spell "pi" as a word — the PDF font lacks the
+Greek glyph; use r*r or "r squared" rather than r² for the same reason). Next: Lesson 5 — Reasoning
+from nets (first CSS-3D lesson).
+
+## Guidance PDFs now render real π and superscript ² (supersedes earlier "spell pi" note)
+
+The PDF generator (`_guides_template.py`) now registers **DejaVuSans** and routes all text through a
+`fix()` helper: it wraps the maths glyphs Helvetica lacks (π, ≈, ≤, ≥, √, ≠, ±, ∞) in DejaVuSans so
+they render as real symbols, and converts ² / ³ into true `<super>2</super>` / `<super>3</super>`
+superscripts. Body text stays Helvetica, matching the earlier guides. Generators now write real π and
+r² in their content (L3 gen: dropped the pi→word substitution; L4 gen: content rewritten with π and ²,
+"pizza" left intact). L3 and L4 guides regenerated and verified (π renders in DejaVuSans, superscript-2
+present, no broken "»", no "pi"/"r squared" words). Future lessons should just use real π/² in guide
+content — the template handles rendering. (Earlier note to spell "pi" as a word no longer applies.)

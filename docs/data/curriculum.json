@@ -123,6 +123,14 @@
           "file": "lessons/2d-and-3d-shapes/03-circumference-of-a-circle.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-04-area-of-a-circle",
+          "num": "Lesson 04",
+          "title": "Area of a Circle",
+          "file": "lessons/2d-and-3d-shapes/04-area-of-a-circle.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

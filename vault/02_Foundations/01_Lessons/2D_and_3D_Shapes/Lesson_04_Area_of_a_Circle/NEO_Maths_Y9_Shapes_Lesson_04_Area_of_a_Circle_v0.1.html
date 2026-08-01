@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Area of a Circle</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.shapesvg{width:100%;max-width:340px;background:#fff;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:auto}
+.graphsvg{width:100%;max-width:380px;background:#fff;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:auto}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.invtab td,.invtab th{text-align:center}
+.bignum{font-size:1.3em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.readgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.derive select{padding:6px 8px;border:1px solid #bcae98;border-radius:7px;font-size:1em;margin:2px}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: 2D and 3D Shapes</h1>
+<h2>Area of a Circle</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How much space is inside a circle — and how does it depend on the radius?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Relationship investigation — discovering where the area formula of a circle comes from, and how the area depends on the radius.</p>
+<p><b>Stepping Stone:</b> work with circles — find the area of a circle using A = π r², and understand π as the constant of proportionality between area and the square of the radius.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 15 · Move 8 · Reflect 10 · Create 5 · Rest/Nourish 4 · Evidence 3</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_04_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_04_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Rearrange sectors, plot (r squared, A) points, and note the ratio A ÷ r squared.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Where does the area formula come from?</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Area (A)</b> — the amount of flat space inside the circle, measured in square units (cm², m²).<br>
+<b style="color:#b0651f">Radius (r)</b> — the distance from the centre to the edge.<br>
+<b style="color:#70466b">Radius squared (r²)</b> — the radius multiplied by itself, r × r.<br>
+<b style="color:#2b3d78">Sector</b> — a "pizza slice" of a circle, between two radii.<br>
+<b style="color:#c0392b">Arc</b> — the curved part of the circle's edge that bounds a sector.</p>
+</div>
+<p><b>What to do:</b> slide the number of sectors up. Watch the slices rearrange into a shape you already know how to measure — and use it to <em>build</em> the area formula for yourself.</p>
+<p><b>What you are trying to notice:</b> a circle can be rearranged into a <b>parallelogram</b> whose <b>perpendicular height</b> is the radius and whose base is half the circumference (π r). The pieces are sectors bounded by curved arcs, so the shape only becomes a true parallelogram as the number of sectors grows — then the area is π r × r = π r².</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🍕 Circle to Parallelogram</h3>
+<label class="small" for="secN"><b>Number of sectors:</b> <span id="secNval">10</span></label>
+<input id="secN" type="range" min="6" max="40" step="2" value="10" style="width:100%" oninput="setSecN(this.value)">
+<div class="card" style="text-align:center">
+<svg id="secCombined" class="graphsvg" style="max-width:460px" viewBox="0 0 460 200" role="img" aria-label="A circle cut into sectors, then the same congruent sectors rearranged into a leaning parallelogram with curved arcs and the perpendicular height marked"></svg>
+</div>
+<p id="secNote" class="small" style="text-align:center;background:#eef3e8;border-radius:8px;padding:8px;margin:6px 0"></p>
+<div class="card derive">
+<p style="margin-top:0"><b>1. Complete the statement.</b> As the number of sectors increases, the shape approaches a
+<select id="s1"><option value="">Select…</option><option>parallelogram</option><option>triangle</option><option>square</option></select>
+with perpendicular height =
+<select id="s2"><option value="">Select…</option><option>r</option><option>2r</option><option>πr</option></select>
+and base ≈ half the
+<select id="s3"><option value="">Select…</option><option>circumference</option><option>diameter</option><option>radius</option></select>.</p>
+<div class="buttonrow"><button onclick="secCheckStatement()">Check my statement</button></div>
+<div id="secStFeedback" class="feedback"></div>
+</div>
+<div class="card derive" style="background:#fdf3e0">
+<p style="margin-top:0"><b>2. Derive the area formula.</b> &nbsp; Area ≈ base × perpendicular height =
+<select id="f1"><option value="">Select…</option><option>πr</option><option>2πr</option><option>πr²</option></select>
+×
+<select id="f2"><option value="">Select…</option><option>r</option><option>πr</option><option>2r</option></select>
+=
+<select id="f3"><option value="">Select…</option><option>πr²</option><option>2πr²</option><option>πr</option></select>.</p>
+<div class="buttonrow"><button onclick="secCheckFormula()">Check my formula</button></div>
+<div id="secFmFeedback" class="feedback"></div>
+</div>
+<div id="connCarry" style="display:none"><p><b>Carry this forward:</b> you have built the formula yourself — the area of a circle is <b>A = π r²</b>. Next, in Movement, you will see this relationship as a straight line, and meet π again as its gradient.</p></div>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — How does the area depend on the radius?</summary>
+<p><b>What to do:</b> change the radius, then <b>plot the point G = (r², A)</b>. Plot several and watch where they land. Try to find the gradient of the line and its equation <em>before</em> you reveal them.</p>
+<p><b>What you are trying to notice:</b> plotting area against <em>r²</em> (not r) gives a straight line through the origin — so the area is proportional to the square of the radius, and the gradient is π.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📈 The (r², A) Plotter</h3>
+<div class="twocol">
+<div>
+<div class="card" style="text-align:center">
+<svg id="areaMini" class="shapesvg" viewBox="0 0 300 170" role="img" aria-label="A circle with its radius marked from the centre O to A"></svg>
+<div style="text-align:left">
+<label class="small" for="areaR"><b>Radius (r)</b></label>
+<input id="areaR" type="range" min="1" max="5" step="0.1" value="2" style="width:100%" oninput="setAR(this.value)">
+<p class="small" style="margin:4px 0"><b>r =</b> <span id="rVal">2.00</span> cm &nbsp;·&nbsp; <b>r² =</b> <span id="r2Val">4.00</span> cm² &nbsp;·&nbsp; <b>A =</b> <span id="aVal">12.57</span> cm²</p>
+<div class="buttonrow"><button onclick="plotA()">📍 Plot point G</button><button onclick="clearPlotA()">↺ Clear points</button></div>
+</div>
+</div>
+<div class="card">
+<p class="small" style="margin-top:0"><b>Your points (r², A)</b></p>
+<table class="invtab"><tr><th>Radius² (r²)</th><th>Area (A)</th></tr><tbody id="plotABody"></tbody></table>
+</div>
+</div>
+<div>
+<div class="card" style="text-align:center">
+<svg id="areaGraph" class="graphsvg" viewBox="0 0 350 350" role="img" aria-label="A graph of area against radius squared, with point G"></svg>
+<div class="buttonrow" style="justify-content:center"><button onclick="toggleALine()">📏 Draw the line through the points</button></div>
+</div>
+<div class="card" style="background:#fdf3e0">
+<p style="margin-top:0"><b>Discover it yourself.</b></p>
+<p class="small" style="margin:4px 0"><b>1. The gradient.</b> Divide any area by its r². What number do you get each time?</p>
+<div class="buttonrow"><input id="gradAIn" class="neo-mathfield" placeholder="A ÷ r² = ?" oninput="clearGradA()" style="flex:1;min-width:120px;padding:9px;border:1px solid #bcae98;border-radius:8px"><button onclick="checkGradA()">Check</button></div>
+<div id="gradAFeedback" class="feedback"></div>
+<p class="small" style="margin:10px 0 4px"><b>2. The equation.</b> Write a formula for the area A in terms of the radius r.</p>
+<div class="buttonrow"><input id="eqAIn" class="neo-mathfield" placeholder="A = ?" oninput="clearEqA()" style="flex:1;min-width:120px;padding:9px;border:1px solid #bcae98;border-radius:8px"><button onclick="checkEquationA()">Check</button></div>
+<div id="eqAFeedback" class="feedback"></div>
+</div>
+</div>
+</div>
+<div id="moveCarry" style="display:none"><p><b>Carry this forward:</b> area against r² is a straight line of gradient π — so A = π r². Because the area depends on r², doubling the radius makes the area <em>four</em> times as big, not twice.</p></div>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — True or false, and how do you know?</summary>
+<p><b>What to do:</b> decide whether each statement is true or false, then reveal the reasoning. You are being asked to <em>justify</em>, not just answer.</p>
+<p><b>What you are trying to notice:</b> because area depends on r², squaring the radius is the key to every claim about the area of a circle.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">⚖️ Circle-Area Reasoner</h3>
+<div id="reflClue" class="clue"></div>
+<div class="buttonrow"><button onclick="reflGuess(true)">✅ True</button><button onclick="reflGuess(false)">❌ False</button></div>
+<div id="reflFeedback" class="feedback"></div>
+<div class="buttonrow"><button onclick="reflNext()">➡️ Next statement</button></div>
+<p class="small" id="reflProgress"></p>
+<p><b>Carry this forward:</b> the surprise that doubling the radius quadruples the area comes straight from the r² — a small change in radius makes a big change in area.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Can you estimate the space inside real things?</summary>
+<p><b>What to do:</b> pick a round object, read its radius, and <b>predict its area</b> before you check with A = π r².</p>
+<p><b>What you are trying to notice:</b> the same rule, A = π r², measures the space inside a coin, a pizza and a pond alike — and a small change in radius makes a surprisingly large change in area.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🍕 Estimate then check</h3>
+<div id="objChips" class="buttonrow" style="justify-content:center"></div>
+<div class="card">
+<p style="margin-top:0"><b id="objName">A £1 coin</b> — radius <b><span id="objR">1.15</span> <span id="objUnit">cm</span></b>.</p>
+<div class="buttonrow"><input id="objGuess" placeholder="Your estimate of the area" oninput="clearObj()" style="flex:1;min-width:160px;padding:9px;border:1px solid #bcae98;border-radius:8px"><button onclick="checkObj()">Check</button><button onclick="revealObj()">Reveal</button></div>
+<div id="objFeedback" class="feedback"></div>
+</div>
+<p><b>Investigate:</b> the pizza is twice the radius of the tea plate — is its area twice as big, or more? Try both and compare.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Estimate the area of a round object by counting squares, then check with A = pi r squared.')">✏️ Estimate on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let the formula settle</summary>
+<p>You have not just used a formula today — you have built it, by rearranging a circle into a shape you already understood. That is quiet, powerful work.</p>
+<div class="card">
+<p><b>Notice one thing:</b> which made A = π r² feel true for you — watching the sectors become a parallelogram, or seeing the points line up on the graph? There is no right answer; just the one that convinced <em>you</em>.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
+<p><b>Mode: contextual.</b> This lesson reaches something you can hold — and eat: the <b>pizza</b>. The amount of pizza is its area, A = π r².</p>
+<div class="card">
+<p><b>Why it matters:</b> a 12-inch pizza is twice the width of a 6-inch one — but it has <b>four</b> times the pizza, because area depends on r². So one large pizza usually gives far more for your money than two small ones. The r² you met today is the reason.</p>
+<p class="small">Where else does area decide "how much" — turf for a round lawn, paint for a circular table, dough for a pie?</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> find some areas, and explain where the formula comes from.</p>
+<ul>
+<li>For three circles of your choice, record: the radius, the radius squared (r²), and the area (using A = π r², with π ≈ 3.14).</li>
+<li>Explain, in your own words, how rearranging a circle into a parallelogram shows that A = π r². (What is the base? What is the height?)</li>
+<li>Answer: if you double the radius of a circle, how many times bigger is the area — and why?</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a short written table, a labelled poster, or a spoken/video walkthrough with a labelled sketch.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SHAPES_AREA_CIRCLE_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows the area is the space inside.</td><td>Finds an area with support, using A = π r².</td><td>Finds the area from the radius correctly.</td><td>Explains why A = π r² from the parallelogram rearrangement.</td></tr>
+<tr><td><b>Application</b></td><td>Works with a given radius.</td><td>Uses A = π r² for a familiar case.</td><td>Finds A from r or d, and finds r from A.</td><td>Reasons about proportion, including doubling the radius.</td></tr>
+<tr><td><b>Communication</b></td><td>Records an answer with limited labelling.</td><td>Uses some correct area language and units.</td><td>Communicates a clear, well-labelled solution with cm².</td><td>Explains the derivation another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Identifies that A ÷ r² is roughly constant.</td><td>Explains that the area depends on r², not r.</td><td>Connects the parallelogram, the ratio and the graph's gradient.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Area of a Circle — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Write down r, square it, then multiply by pi (about 3.14) before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_area_circle_v01";
+
+  function status(msg, col){
+    const box = document.getElementById("scratchStatus");
+    box.style.display = "block";
+    box.style.background = col || "#e5edf4";
+    box.textContent = msg;
+  }
+  function point(e){
+    const r = canvas.getBoundingClientRect();
+    return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height };
+  }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.fillStyle = "#fff";
+    bg.fillRect(0,0,bgCanvas.width,bgCanvas.height);
+    bg.save();
+    bg.lineWidth = 1;
+    bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){
+      for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); }
+      for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); }
+    }
+    if(template === "coordinate-grid"){
+      bg.strokeStyle = "#9fb2bd";
+      bg.lineWidth = 2;
+      bg.beginPath();
+      bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height);
+      bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2);
+      bg.stroke();
+    }
+    if(template === "ratio-table"){
+      bg.strokeStyle = "#cdbfa9";
+      bg.lineWidth = 1.5;
+      for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); }
+      for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); }
+      bg.font = "18px Arial";
+      bg.fillStyle = "#5c6b4f";
+      bg.fillText("Radius",100,105); bg.fillText("Radius²",100,175); bg.fillText("Area",100,245);
+    }
+    if(template === "double-number-line"){
+      bg.strokeStyle = "#315d72";
+      bg.lineWidth = 3;
+      [210,350].forEach(function(y){
+        bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke();
+        for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); }
+      });
+      bg.font = "18px Arial";
+      bg.fillStyle = "#315d72";
+      bg.fillText("Line 1",90,185); bg.fillText("Line 2",90,325);
+    }
+    bg.restore();
+  }
+  function drawStroke(s){
+    if(!s || !s.points || !s.points.length) return;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    if(s.tool === "eraser"){
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.strokeStyle = "rgba(0,0,0,1)";
+      ctx.lineWidth = Math.max(18, s.width * 5);
+    } else {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.strokeStyle = s.colour;
+      ctx.lineWidth = s.width;
+    }
+    const pts = s.points;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    if(s.tool === "line"){
+      const last = pts[pts.length-1];
+      ctx.lineTo(last.x, last.y);
+    } else {
+      pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); });
+      if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+  function renderInk(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    strokes.forEach(drawStroke);
+  }
+  function renderNotes(){
+    stickyLayer.innerHTML = "";
+    notes.forEach(function(note, i){
+      const card = document.createElement("div");
+      card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;";
+      const bar = document.createElement("div");
+      bar.textContent = "Sticky note";
+      bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;";
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "×";
+      remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;";
+      remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); };
+      bar.appendChild(remove);
+      const area = document.createElement("textarea");
+      area.value = note.text || "";
+      area.placeholder = "Type a thought...";
+      area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;";
+      area.oninput = function(){ note.text = area.value; store(); };
+      let drag = null;
+      bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); };
+      bar.onpointermove = function(e){
+        if(!drag) return;
+        const r = stickyLayer.getBoundingClientRect();
+        note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100));
+        note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100));
+        card.style.left = note.x + "%";
+        card.style.top = note.y + "%";
+      };
+      bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} };
+      card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card);
+    });
+  }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){
+    try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){}
+  }
+  function restore(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if(!saved) return;
+      template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || [];
+      colour = saved.colour || colour; width = saved.width || width;
+      document.getElementById("scratchTemplate").value = template;
+      document.getElementById("scratchColour").value = colour;
+      document.getElementById("scratchWidth").value = String(width);
+    }catch(err){}
+  }
+  function updateButtons(){
+    document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff";
+    document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff";
+    document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff";
+    canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair";
+  }
+
+  canvas.addEventListener("pointerdown", function(e){
+    if(tool === "note"){
+      const r = canvas.getBoundingClientRect();
+      notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""});
+      renderNotes(); window.setScratchTool("pen");
+      status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7");
+      store(); e.preventDefault(); return;
+    }
+    drawing = true;
+    canvas.setPointerCapture(e.pointerId);
+    const p = point(e);
+    current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]};
+    strokes.push(current); redo = [];
+    renderInk(); e.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function(e){
+    if(!drawing || !current) return;
+    const p = point(e);
+    if(current.tool === "line") current.points[1] = p; else current.points.push(p);
+    renderInk(); e.preventDefault();
+  });
+  function finish(e){
+    if(!drawing) return;
+    drawing = false; current = null;
+    try{ canvas.releasePointerCapture(e.pointerId); }catch(err){}
+    store(); e.preventDefault();
+  }
+  canvas.addEventListener("pointerup", finish);
+  canvas.addEventListener("pointercancel", finish);
+
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){
+    if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; }
+    subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise.";
+    overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch();
+  };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){
+    tool = t; updateButtons();
+    if(t === "line") status("Line tool: press at the start point, drag to the end point, then release.");
+    if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7");
+  };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){
+    if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started.");
+  };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){
+    if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return;
+    strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf");
+  };
+  window.downloadScratchImage = function(){
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = canvas.width; exportCanvas.height = canvas.height;
+    const ex = exportCanvas.getContext("2d");
+    ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0);
+    notes.forEach(function(note){
+      const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height;
+      ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110);
+      ex.fillStyle="#2f3429"; ex.font="14px Arial";
+      const words=(note.text||"").split(/\s+/); let line="", yy=y+24;
+      words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; });
+      ex.fillText(line,x+10,yy);
+    });
+    const link=document.createElement("a"); link.download="NEO_Maths_Area_Circle_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click();
+    status("Scratchpad image saved.", "#e3f0df");
+  };
+
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+
+<script>
+/* Focused symbol palette for this lesson — the build injects the palette UI on
+   every .neo-mathfield input and the Practice answer field. Lets learners enter π and r². */
+window.NEO_PALETTE_SYMBOLS=["π","r","²","×","=","≈"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+
+/* ---------------- CONNECTION: Circle to Parallelogram ---------------- */
+var secN=10;
+var SECCOLS=["#e07a5f","#3d8bcd","#5aa469","#e0a13b","#b5679f","#6b8f3a","#c0654e"];
+function setSecN(v){secN=Number(v);document.getElementById("secNval").textContent=secN;drawSectors();}
+function arcPts(cx,cy,R,a0,a1,steps){
+  var p=[]; for(var k=0;k<=steps;k++){var a=a0+(a1-a0)*k/steps; p.push([cx+R*Math.cos(a), cy+R*Math.sin(a)]);} return p;
+}
+function drawSectors(){
+  var n=secN, svg=document.getElementById("secCombined"); if(!svg)return;
+  // Both the circle and the rearrangement share ONE coordinate system and ONE radius R,
+  // so a sector is provably congruent in both pictures.
+  var R=62, s="";
+  s+='<text x="100" y="14" font-size="12" font-weight="600" fill="#4f554b" text-anchor="middle">The circle, cut into sectors</text>';
+  s+='<text x="335" y="14" font-size="12" font-weight="600" fill="#4f554b" text-anchor="middle">The same sectors, rearranged</text>';
+  // circle
+  var cx=100, cy=115;
+  for(var i=0;i<n;i++){
+    var a0=-Math.PI/2+i*2*Math.PI/n, a1=-Math.PI/2+(i+1)*2*Math.PI/n;
+    var x0=cx+R*Math.cos(a0),y0=cy+R*Math.sin(a0),x1=cx+R*Math.cos(a1),y1=cy+R*Math.sin(a1);
+    s+='<path d="M'+cx+','+cy+' L'+x0.toFixed(1)+','+y0.toFixed(1)+' A'+R+','+R+' 0 0 1 '+x1.toFixed(1)+','+y1.toFixed(1)+' Z" fill="'+SECCOLS[i%SECCOLS.length]+'" stroke="#fff" stroke-width="1"/>';
+  }
+  // arrow
+  s+='<line x1="178" y1="115" x2="204" y2="115" stroke="#6a6252" stroke-width="2"/><path d="M204,115 l-8,-4 l0,8 Z" fill="#6a6252"/>';
+  // rearranged: the same sectors (radius R, angle 2π/n), alternating up/down -> leaning parallelogram
+  var half=n/2, phi=Math.PI/n, step=2*R*Math.sin(phi), ox=222, baseY=150, topY=baseY-R*Math.cos(phi), W=half*step;
+  s+='<line x1="'+ox.toFixed(1)+'" y1="'+topY.toFixed(1)+'" x2="'+(ox+W).toFixed(1)+'" y2="'+topY.toFixed(1)+'" stroke="#c9b892" stroke-width="1" stroke-dasharray="3 3"/>';
+  s+='<line x1="'+(ox+step/2).toFixed(1)+'" y1="'+baseY+'" x2="'+(ox+W+step/2).toFixed(1)+'" y2="'+baseY+'" stroke="#c9b892" stroke-width="1" stroke-dasharray="3 3"/>';
+  function sector(apx,apy,aMid,fill){
+    var pts=arcPts(apx,apy,R,aMid-phi,aMid+phi,9), d='M'+apx.toFixed(1)+','+apy.toFixed(1);
+    pts.forEach(function(p){ d+=' L'+p[0].toFixed(1)+','+p[1].toFixed(1); });
+    return '<path d="'+d+' Z" fill="'+fill+'" stroke="#fff" stroke-width="1"/>';
+  }
+  for(var j=0;j<half;j++){
+    s+=sector(ox+step/2+j*step, baseY, -Math.PI/2, SECCOLS[(2*j)%SECCOLS.length]);
+    s+=sector(ox+step+j*step,   topY,  Math.PI/2, SECCOLS[(2*j+1)%SECCOLS.length]);
+  }
+  // one slanted radius edge highlighted, and the perpendicular height (distinct)
+  s+='<line x1="'+(ox+step/2).toFixed(1)+'" y1="'+baseY+'" x2="'+ox.toFixed(1)+'" y2="'+topY.toFixed(1)+'" stroke="#b0651f" stroke-width="2.5"/>';
+  s+='<text x="'+(ox-6).toFixed(1)+'" y="'+((baseY+topY)/2+2).toFixed(1)+'" font-size="12" font-weight="700" fill="#b0651f" text-anchor="end">r</text>';
+  var hx=ox+W*0.5;
+  s+='<line x1="'+hx.toFixed(1)+'" y1="'+baseY+'" x2="'+hx.toFixed(1)+'" y2="'+topY.toFixed(1)+'" stroke="#2b3d78" stroke-width="1.8"/>';
+  s+='<path d="M'+hx.toFixed(1)+','+baseY+' l7,0 l0,-7" fill="none" stroke="#2b3d78" stroke-width="1.2"/>';
+  s+='<text x="'+(hx+6).toFixed(1)+'" y="'+((baseY+topY)/2-1).toFixed(1)+'" font-size="12" font-weight="700" fill="#2b3d78">h</text>';
+  s+='<text x="'+(ox+W/2).toFixed(1)+'" y="'+(baseY+22)+'" font-size="12" fill="#2f3429" text-anchor="middle">base ≈ π r</text>';
+  svg.innerHTML=s;
+  var note=document.getElementById("secNote");
+  if(note){
+    var lead="The pieces are the <b>same sectors</b> in both pictures (each of radius r, bounded by a curved <b>arc</b>). ";
+    if(n<=12) note.innerHTML=lead+"With only a few sectors the shape leans and the arcs still curve, so the perpendicular height <b>h</b> (blue) is a little less than the radius <b>r</b> (orange).";
+    else if(n<28) note.innerHTML=lead+"As you add sectors the arcs flatten and the lean shrinks — the radius r is standing up closer to the perpendicular height h.";
+    else note.innerHTML=lead+"Now it is almost a true parallelogram: the arcs look straight (base ≈ π r) and the perpendicular height h ≈ the radius r.";
+  }
+}
+function revealConnCarry(){var el=document.getElementById("connCarry");if(el)el.style.display="";}
+function secCheckStatement(){
+  var fb=document.getElementById("secStFeedback");fb.style.display="block";
+  var a=document.getElementById("s1").value,b=document.getElementById("s2").value,c=document.getElementById("s3").value;
+  if(!a||!b||!c){fb.className="feedback warn";fb.textContent="Choose an option in each box, then check.";return;}
+  if(a==="parallelogram"&&b==="r"&&c==="circumference"){fb.className="feedback good";fb.innerHTML="Yes — a <b>parallelogram</b> with perpendicular height <b>r</b> and base ≈ half the <b>circumference</b> (which is π r).";}
+  else{fb.className="feedback warn";fb.textContent="Not yet. Look at the rearranged shape: what does it approach, what is its perpendicular height, and how long is its base compared with the circle's circumference?";}
+}
+function secCheckFormula(){
+  var fb=document.getElementById("secFmFeedback");fb.style.display="block";
+  var a=document.getElementById("f1").value,b=document.getElementById("f2").value,c=document.getElementById("f3").value;
+  if(!a||!b||!c){fb.className="feedback warn";fb.textContent="Choose an option in each box, then check.";return;}
+  if(a==="πr"&&b==="r"&&c==="πr²"){fb.className="feedback good";fb.innerHTML="Exactly! Area ≈ base × perpendicular height = <b>π r × r = π r²</b>. You have built the formula yourself.";revealConnCarry();}
+  else{fb.className="feedback warn";fb.textContent="Not yet. The base is half the circumference (π r) and the perpendicular height is r — multiply them.";}
+}
+
+/* ---------------- MOVEMENT: (r², A) Plotter ---------------- */
+var aR=2.0, plottedA=[], showALine=false;
+function areaA(r){return Math.PI*r*r;}
+function drawAreaMini(){
+  var svg=document.getElementById("areaMini");if(!svg)return;
+  var r=aR, pr=Math.max(16,Math.min(66,r*13)), cx=95, cy=85;
+  var ex=cx+pr, ey=cy;
+  var s='<circle cx="'+cx+'" cy="'+cy+'" r="'+pr.toFixed(1)+'" fill="#dff0fb" stroke="#3f7a45" stroke-width="2.5"/>';
+  s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+ex.toFixed(1)+'" y2="'+ey+'" stroke="#b0651f" stroke-width="2.5"/>';
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="4" fill="#c0392b"/><circle cx="'+ex.toFixed(1)+'" cy="'+ey+'" r="4" fill="#c0392b"/>';
+  s+='<text x="'+(cx-4)+'" y="'+(cy+18)+'" font-size="15" font-weight="700" fill="#2b3d78">O</text>';
+  s+='<text x="'+(cx+pr/2-6).toFixed(1)+'" y="'+(cy-6)+'" font-size="13" font-weight="700" fill="#b0651f">r</text>';
+  s+='<text x="185" y="60" font-size="13" fill="#2f3429">Radius (r) = '+r.toFixed(2)+' cm</text>';
+  s+='<text x="185" y="86" font-size="13" fill="#2f3429">r² = '+(r*r).toFixed(2)+' cm²</text>';
+  s+='<text x="185" y="112" font-size="13" fill="#2f3429">Area (A) = '+areaA(r).toFixed(2)+' cm²</text>';
+  svg.innerHTML=s;
+}
+function setAR(v){aR=Number(v);document.getElementById("rVal").textContent=aR.toFixed(2);document.getElementById("r2Val").textContent=(aR*aR).toFixed(2);document.getElementById("aVal").textContent=areaA(aR).toFixed(2);drawAreaMini();drawAGraph();}
+function plotA(){plottedA.push({x:aR*aR,A:areaA(aR)});renderATable();drawAGraph();}
+function clearPlotA(){plottedA=[];showALine=false;renderATable();drawAGraph();}
+function renderATable(){
+  document.getElementById("plotABody").innerHTML=plottedA.map(function(p){return '<tr><td>'+p.x.toFixed(2)+' cm²</td><td>'+p.A.toFixed(2)+' cm²</td></tr>';}).join("")
+    || '<tr><td class="small" colspan="2">No points yet — set a radius and press “Plot point G”.</td></tr>';
+}
+var GX0=48, GY0=310, GW=278, GH=280, XMAX=26, YMAX=82;
+function sx(x){return GX0 + x*(GW/XMAX);}
+function sy(y){return GY0 - y*(GH/YMAX);}
+function drawAGraph(){
+  var svg=document.getElementById("areaGraph");if(!svg)return;
+  var s="";
+  for(var gx=0;gx<=XMAX;gx+=2){ s+='<line x1="'+sx(gx).toFixed(1)+'" y1="'+sy(0)+'" x2="'+sx(gx).toFixed(1)+'" y2="'+sy(YMAX)+'" stroke="#f0e9db" stroke-width="1"/>'; }
+  for(var gy=0;gy<=YMAX;gy+=10){ s+='<line x1="'+sx(0)+'" y1="'+sy(gy).toFixed(1)+'" x2="'+sx(XMAX)+'" y2="'+sy(gy).toFixed(1)+'" stroke="#f0e9db" stroke-width="1"/>'; }
+  s+='<line x1="'+sx(0)+'" y1="'+sy(0)+'" x2="'+sx(XMAX)+'" y2="'+sy(0)+'" stroke="#8a7c63" stroke-width="1.5"/>';
+  s+='<line x1="'+sx(0)+'" y1="'+sy(0)+'" x2="'+sx(0)+'" y2="'+sy(YMAX)+'" stroke="#8a7c63" stroke-width="1.5"/>';
+  for(var tx=5;tx<=25;tx+=5){ s+='<text x="'+sx(tx).toFixed(1)+'" y="'+(sy(0)+16)+'" font-size="11" fill="#6a6252" text-anchor="middle">'+tx+'</text>'; }
+  for(var ty=20;ty<=80;ty+=20){ s+='<text x="'+(sx(0)-8)+'" y="'+(sy(ty)+4).toFixed(1)+'" font-size="11" fill="#6a6252" text-anchor="end">'+ty+'</text>'; }
+  s+='<text x="'+sx(XMAX/2).toFixed(1)+'" y="'+(sy(0)+32)+'" font-size="12" fill="#4f554b" text-anchor="middle">Radius squared, r² (cm²)</text>';
+  s+='<text transform="translate(14,'+sy(YMAX/2).toFixed(1)+') rotate(-90)" font-size="12" fill="#4f554b" text-anchor="middle">Area A (cm²)</text>';
+  if(showALine){ s+='<line x1="'+sx(0)+'" y1="'+sy(0)+'" x2="'+sx(XMAX).toFixed(1)+'" y2="'+sy(Math.PI*XMAX).toFixed(1)+'" stroke="#3f7a45" stroke-width="2" stroke-dasharray="6 4"/>'; }
+  plottedA.forEach(function(p){ s+='<circle cx="'+sx(p.x).toFixed(1)+'" cy="'+sy(p.A).toFixed(1)+'" r="4" fill="#c0392b"/>'; });
+  s+='<circle cx="'+sx(aR*aR).toFixed(1)+'" cy="'+sy(areaA(aR)).toFixed(1)+'" r="5.5" fill="#2b3d78"/>';
+  s+='<text x="'+(sx(aR*aR)+9).toFixed(1)+'" y="'+(sy(areaA(aR))+4).toFixed(1)+'" font-size="15" font-weight="700" fill="#2b3d78">G</text>';
+  svg.innerHTML=s;
+}
+function toggleALine(){showALine=!showALine;drawAGraph();}
+function revealMoveCarry(){var el=document.getElementById("moveCarry");if(el)el.style.display="";}
+function clearGradA(){var fb=document.getElementById("gradAFeedback");if(fb)fb.style.display="none";}
+function checkGradA(){
+  var v=document.getElementById("gradAIn").value, fb=document.getElementById("gradAFeedback");fb.style.display="block";
+  if(/π|pi/i.test(v)){fb.className="feedback good";fb.innerHTML="Yes — the gradient is <b>π</b> (about 3.14). Every circle gives the same ratio A ÷ r².";revealMoveCarry();return;}
+  var n=num(v);
+  if(isNaN(n)){fb.className="feedback warn";fb.textContent="Enter the value of A ÷ r², or write π.";return;}
+  if(Math.abs(n-Math.PI)<=0.06){fb.className="feedback good";fb.innerHTML="Yes — about <b>3.14</b>. That number is <b>π</b>, the same for every circle.";revealMoveCarry();}
+  else{fb.className="feedback warn";fb.textContent="Not yet. Divide an area by its r² — try it for two of your points and compare.";}
+}
+function clearEqA(){var fb=document.getElementById("eqAFeedback");if(fb)fb.style.display="none";}
+function areaEquiv(s){
+  var t=String(s).toLowerCase()
+    .replace(/×/g,'*').replace(/·/g,'*').replace(/∙/g,'*').replace(/÷/g,'/')
+    .replace(/π/g,'p').replace(/pi/g,'p')
+    .replace(/squared/g,'^2')
+    .replace(/\s+/g,'')
+    .replace(/^a=/,'').replace(/^y=/,'');
+  if(!t) return null;
+  t=t.replace(/x/g,'*').replace(/²/g,'^2');
+  t=t.replace(/r\^2/g,'(r*r)');
+  t=t.replace(/p/g,'('+Math.PI+')');
+  t=t.replace(/\)\(/g,')*(').replace(/(\d)\(/g,'$1*(').replace(/\)(\d)/g,')*$1').replace(/(\d)r/g,'$1*r').replace(/r(\d)/g,'r*$1').replace(/\)r/g,')*r').replace(/r\(/g,'r*(');
+  if(/[^0-9r+\-*/(). ]/.test(t)) return false;
+  try{
+    for(var r=1;r<=6;r++){
+      var val=eval(t.replace(/r/g,'('+r+')'));
+      if(typeof val!=="number"||isNaN(val)||Math.abs(val-Math.PI*r*r)>0.02*r*r+0.05) return false;
+    }
+    return true;
+  }catch(e){return false;}
+}
+function checkEquationA(){
+  var raw=document.getElementById("eqAIn").value, fb=document.getElementById("eqAFeedback");fb.style.display="block";
+  var r=areaEquiv(raw);
+  if(r===null){fb.className="feedback warn";fb.textContent="Write a formula for A in terms of r — for example using π and r².";return;}
+  if(r){fb.className="feedback good";fb.innerHTML="Yes! <b>A = π r²</b> — the area is π times the radius squared. (3.14 r² works too.)";revealMoveCarry();}
+  else{fb.className="feedback warn";fb.textContent="Not yet. The area is π times the radius squared — how would you write that?";}
+}
+
+/* ---------------- REFLECTION: Circle-Area Reasoner ---------------- */
+var REFL=[
+ {t:"The area of a circle is π times the radius squared.",ans:true,why:"True. A = π r² — the area is π multiplied by r × r."},
+ {t:"Doubling the radius of a circle doubles its area.",ans:false,why:"False. Because area depends on r², doubling the radius makes the area <em>four</em> times as big (2² = 4)."},
+ {t:"If you plot area against r², the points make a straight line through the origin.",ans:true,why:"True. A = π r² means area is proportional to r², so the graph is a straight line of gradient π."},
+ {t:"A circle of radius 10 cm has an area of about 314 cm².",ans:true,why:"True. A = π r² ≈ 3.14 × 10² = 3.14 × 100 = 314 cm²."},
+ {t:"π is used only for the circumference of a circle, not the area.",ans:false,why:"False. The same π appears in both: C = π d for the distance around, and A = π r² for the space within."}
+];
+var reflIndex=0;
+function reflRender(){
+  document.getElementById("reflClue").innerHTML="<b>Statement "+(reflIndex+1)+":</b> "+REFL[reflIndex].t;
+  document.getElementById("reflFeedback").style.display="none";
+  document.getElementById("reflProgress").textContent="Statement "+(reflIndex+1)+" of "+REFL.length+".";
+}
+function reflGuess(choice){
+  var r=REFL[reflIndex], fb=document.getElementById("reflFeedback"); fb.style.display="block";
+  if(choice===r.ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+r.why; }
+  else { fb.className="feedback warn"; fb.innerHTML="Look again — check the reasoning: "+r.why; }
+}
+function reflNext(){ reflIndex=(reflIndex+1)%REFL.length; reflRender(); }
+
+/* ---------------- CREATIVITY: Estimate then check ---------------- */
+var OBJECTS=[
+ {name:"A £1 coin", r:1.15, unit:"cm"},
+ {name:"A tea plate", r:9.5, unit:"cm"},
+ {name:"A large pizza", r:19, unit:"cm"},
+ {name:"A garden pond", r:2.5, unit:"m"}
+];
+var objIndex=0;
+function objChipsRender(){
+  document.getElementById("objChips").innerHTML=OBJECTS.map(function(o,i){
+    return '<span class="chip'+(i===objIndex?' active':'')+'" onclick="setObj('+i+')">'+o.name+'</span>';}).join("");
+}
+function setObj(i){objIndex=i;var o=OBJECTS[i];
+  document.getElementById("objName").textContent=o.name;
+  document.getElementById("objR").textContent=o.r;
+  document.getElementById("objUnit").textContent=o.unit;
+  document.getElementById("objGuess").value="";
+  document.getElementById("objFeedback").style.display="none";
+  objChipsRender();
+}
+function clearObj(){var fb=document.getElementById("objFeedback");if(fb)fb.style.display="none";}
+function checkObj(){
+  var o=OBJECTS[objIndex], fb=document.getElementById("objFeedback"), n=num(document.getElementById("objGuess").value);
+  fb.style.display="block"; var exact=Math.PI*o.r*o.r;
+  if(isNaN(n)){fb.className="feedback warn";fb.textContent="Enter your estimate of the area, then check.";return;}
+  if(Math.abs(n-exact)<=0.1*exact){fb.className="feedback good";fb.innerHTML="Close! The area is π × "+o.r+"² ≈ <b>"+exact.toFixed(1)+" "+o.unit+"²</b>. Your estimate was within 10%.";}
+  else if(Math.abs(n-exact)<=0.25*exact){fb.className="feedback warn";fb.innerHTML="Not far off. Remember A = π r² = 3.14 × r × r. The area is about <b>"+exact.toFixed(1)+" "+o.unit+"²</b>.";}
+  else{fb.className="feedback warn";fb.innerHTML="Try A = π r²: square the radius first, then multiply by 3.14. Here that is about <b>"+exact.toFixed(1)+" "+o.unit+"²</b>.";}
+}
+function revealObj(){
+  var o=OBJECTS[objIndex], fb=document.getElementById("objFeedback"); fb.style.display="block"; fb.className="feedback good";
+  fb.innerHTML="A = π r² ≈ 3.14 × "+o.r+"² = 3.14 × "+(o.r*o.r).toFixed(2)+" = <b>"+(Math.PI*o.r*o.r).toFixed(1)+" "+o.unit+"²</b>.";
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    square:{title:'Squaring a number',prompt:'What is 5² (5 squared)?',answer:25,hint:'5² means 5 × 5.'},
+    paral:{title:'Area of a parallelogram',prompt:'A parallelogram has base 6 cm and height 4 cm. What is its area, in cm²?',answer:24,hint:'Area of a parallelogram = base × height.'},
+    parts:{title:'Naming parts of a circle',prompt:'What is the name of the distance from the centre of a circle to its edge?',answer:'radius',hint:'It is half the diameter.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.05;} return normText(v).includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'square\')">Squaring a number</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'paral\')">Area of a parallelogram</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'parts\')">Naming parts of a circle</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · The formula",q:"Write a formula for the area A of a circle in terms of its radius r.",a:[],eq:areaEquiv,prompt:"The area is π lots of the radius squared.",hint:"A is π multiplied by r × r.",sol:"A = π r² (equivalently about 3.14 × r × r)."},
+ {label:"2 of 6 · Radius to area",q:"A circle has radius 3 cm. Find its area. Use π ≈ 3.14. (Answer in cm².)",a:[],eq:function(v){var n=num(v);return !isNaN(n)&&Math.abs(n-28.27)<=0.6;},prompt:"Square the radius first, then multiply by π.",hint:"A = π r² = 3.14 × 3² = 3.14 × 9.",sol:"A = π r² ≈ 3.14 × 9 = 28.3 cm² (28.27 cm² using π)."},
+ {label:"3 of 6 · From the diameter",q:"A circle has diameter 10 cm. Find its area. Use π ≈ 3.14. (Answer in cm².)",a:[],eq:function(v){var n=num(v);return !isNaN(n)&&Math.abs(n-78.54)<=1.2;},prompt:"First find the radius from the diameter.",hint:"r = d ÷ 2 = 5 cm, then A = π r² = 3.14 × 25.",sol:"r = 5 cm, so A = π r² ≈ 3.14 × 25 = 78.5 cm²."},
+ {label:"4 of 6 · Reason from the graph",q:"On a graph of area (up) against radius squared (across), the points make a straight line through the origin. What is the gradient of that line?",a:["π","pi","3.14"],eq:function(v){if(/π|pi/i.test(v))return true;var n=num(v);return !isNaN(n)&&Math.abs(n-Math.PI)<=0.06;},prompt:"Gradient = area ÷ r².",hint:"A ÷ r² is the same for every circle.",sol:"The gradient is π ≈ 3.14, because A ÷ r² = π for every circle."},
+ {label:"5 of 6 · Working backwards",q:"A circle has area about 78.5 cm². What is its radius? Use π ≈ 3.14. (Answer in cm².)",a:[],eq:function(v){var n=num(v);return !isNaN(n)&&Math.abs(n-5)<=0.4;},prompt:"Undo the steps: first divide the area by π to get r².",hint:"r² = A ÷ π ≈ 78.5 ÷ 3.14 = 25, then r is the square root.",sol:"r² = A ÷ π ≈ 25, so r = √25 = 5 cm."},
+ {label:"6 of 6 · Proportional reasoning",q:"If you double the radius of a circle, how many times bigger is its area?",a:["4","four","4 times","×4","x4","4x"],eq:function(v){var n=num(v);return !isNaN(n)&&Math.abs(n-4)<=0.001;},prompt:"The area depends on r², so what happens to r² when r doubles?",hint:"Doubling r means r² becomes 2² = 4 times as big.",sol:"Four times as big. Area depends on r², and doubling the radius makes r² four times larger (2² = 4)."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), ok=q.a.some(function(x){return normText(x)===learner||learner===normText(x);});
+  if(!ok && q.eq){ ok = q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct. Keep the reasoning visible — you used A = π r², or the ratio A ÷ r².";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Square the radius, then multiply by π — or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  setSecN(10);
+  setAR(2); renderATable(); drawAGraph();
+  reflRender();
+  objChipsRender();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>
