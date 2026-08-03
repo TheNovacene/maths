@@ -147,6 +147,14 @@
           "file": "lessons/2d-and-3d-shapes/06-platonic-solids.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-07-surface-area",
+          "num": "Lesson 07",
+          "title": "Surface Area",
+          "file": "lessons/2d-and-3d-shapes/07-surface-area.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

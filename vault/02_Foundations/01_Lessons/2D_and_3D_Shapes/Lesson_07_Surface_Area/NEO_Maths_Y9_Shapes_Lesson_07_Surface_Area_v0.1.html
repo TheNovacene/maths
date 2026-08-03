@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Surface Area</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.satab td,.satab th{text-align:center;vertical-align:middle}
+.tcell{width:84px;text-align:center;padding:7px;border:1px solid #bcae98;border-radius:6px;box-sizing:border-box}
+.netsvg,.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.readgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: 2D and 3D Shapes</h1>
+<h2>Surface Area</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How much material would it take to cover a solid completely?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Measurement — finding the total area of a solid's surface by adding up its faces.</p>
+<p><b>Stepping Stone:</b> calculate the surface area of a solid — the total area of all its faces, for cuboids, prisms, pyramids and cylinders.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 15 · Move 8 · Reflect 10 · Create 5 · Rest/Nourish 4 · Evidence 3</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_07_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_07_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch each net, work out the area of every face, and add them up.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Add up the faces of the net</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Surface area</b> — the total area of the whole outside surface of a solid, measured in square units (cm², m²).<br>
+<b style="color:#2b3d78">Face</b> — one flat (or curved) surface of the solid.<br>
+<b style="color:#b0651f">Net</b> — the solid unfolded flat, showing every face — so its total area <em>is</em> the surface area.</p>
+</div>
+<p><b>What to do:</b> choose a solid to unfold into its net. Work out the area of each face, type it in, then add them to find the total <b>surface area</b>.</p>
+<p><b>What you are trying to notice:</b> the surface area of a solid is just the total area of its net — every face measured and added, nothing more.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📦 Unfold &amp; Total</h3>
+<div id="saChips" class="buttonrow" style="justify-content:center"></div>
+<div class="twocol">
+<div class="card" style="text-align:center"><svg id="saNet" class="netsvg" viewBox="0 0 320 260" role="img" aria-label="The chosen solid, which unfolds into its net"></svg>
+<div class="buttonrow" style="justify-content:center;margin:6px 0 2px"><button id="saFoldBtn" onclick="saToggleFold()">📦 Unfold to net</button></div>
+<p class="small" id="saState" style="margin:2px 0">This is the solid. Press <b>Unfold to net</b> to open it out flat.</p>
+<p class="small" id="saDims" style="margin-top:2px"></p></div>
+<div class="card">
+<p class="small" style="margin-top:0"><b>Work out the area of one of each face, then the total surface area.</b> Use π ≈ 3.14 for circles.</p>
+<table class="satab"><thead><tr><th>Face</th><th>How many</th><th>Area of one (cm²)</th></tr></thead><tbody id="saBody"></tbody></table>
+<p class="small" style="margin:8px 0 4px"><b>Total surface area</b> (add all the faces):</p>
+<div class="buttonrow"><input id="saTotal" class="tcell" inputmode="decimal" style="width:120px" placeholder="cm²"><button onclick="saCheckTotal()">✅ Check total</button></div>
+<div id="saFeedback" class="feedback"></div>
+</div>
+</div>
+<div id="connCarry" style="display:none"><p><b>Carry this forward:</b> surface area is always the area of the net — add every face. Next, in Movement, you will see how the one tricky face — the curved side of a cylinder — unrolls into a simple rectangle.</p></div>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Unroll the cylinder's curved side</summary>
+<p><b>What to do:</b> drag the <b>unroll</b> slider to peel the curved surface off the can — watch it lift away from the round side and lay itself out flat to the right. Notice what shape it becomes, and how wide it ends up.</p>
+<p><b>What you are trying to notice:</b> the curved surface of a cylinder unrolls into a <b>rectangle</b> — its height is the cylinder's height, and its width is the circle's circumference, 2 π r.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🥫 Unroll the Cylinder</h3>
+<div class="readgrid">
+<div class="card"><label class="small" for="cyR">Radius r</label><input id="cyR" type="range" min="2" max="6" step="0.5" value="3" style="width:100%" oninput="drawCyl()"><div class="small" id="cyRv">3 cm</div></div>
+<div class="card"><label class="small" for="cyH">Height h</label><input id="cyH" type="range" min="4" max="12" step="1" value="8" style="width:100%" oninput="drawCyl()"><div class="small" id="cyHv">8 cm</div></div>
+</div>
+<div class="card" style="text-align:center"><svg id="cylSvg" class="graphsvg" style="max-width:460px" viewBox="0 0 460 200" role="img" aria-label="A cylinder with its curved surface unrolling into a rectangle"></svg></div>
+<label class="small" for="cyRoll"><b>Unroll:</b> wrapped <span id="cyPct">0%</span> flat</label>
+<input id="cyRoll" type="range" min="0" max="100" value="0" style="width:100%" oninput="drawCyl()">
+<div id="cyRead" class="card small"></div>
+<p><b>Carry this forward:</b> a cylinder's surface is two circles plus that rectangle: <b>2 π r²  +  2 π r h</b>. Every curved surface can be tamed by unrolling it flat.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Spot the slip</summary>
+<p><b>What to do:</b> each card shows a short surface-area calculation. Decide whether it is <b>right</b> or has a <b>slip</b> in it, then reveal the reasoning. These are the mistakes that catch everyone out.</p>
+<p><b>What you are trying to notice:</b> surface area goes wrong in a few predictable ways — a forgotten pair of faces, a diameter used as a radius, a missing face.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔍 Right or slip?</h3>
+<div id="slipClue" class="clue"></div>
+<div class="buttonrow"><button onclick="slipGuess(true)">✅ It's right</button><button onclick="slipGuess(false)">❌ There's a slip</button></div>
+<div id="slipFeedback" class="feedback"></div>
+<div class="buttonrow"><button onclick="slipNext()">➡️ Next calculation</button></div>
+<p class="small" id="slipProgress"></p>
+<p><b>Carry this forward:</b> checking surface area is really checking that you have counted <em>every</em> face, once each, with the right measurements. Slow and complete beats fast and clever.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — The packaging designer</summary>
+<p><b>What to do:</b> pick something to wrap or box, read its size, and work out how much <b>material</b> (card or paper) it needs — that is its surface area. Predict, then check.</p>
+<p><b>What you are trying to notice:</b> surface area is a real quantity — the amount of material to cover a shape completely — and a designer works it out every day.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🎁 How much material?</h3>
+<div id="pkChips" class="buttonrow" style="justify-content:center"></div>
+<div class="card">
+<p style="margin-top:0" id="pkDesc"></p>
+<div class="buttonrow"><input id="pkGuess" inputmode="decimal" placeholder="material needed (cm²)" style="flex:1;min-width:160px;padding:9px;border:1px solid #bcae98;border-radius:8px"><button onclick="pkCheck()">Check</button><button onclick="pkReveal()">Reveal</button></div>
+<div id="pkFeedback" class="feedback"></div>
+</div>
+<p><b>Make it your own:</b> on the Scratchpad, design a box for a gift of your choice, sketch its net, and work out how much card it would take.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Design a package: sketch its net, label the dimensions, and add up the faces for the material needed.')">✏️ Design on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause after careful counting</summary>
+<p>Adding up every face, missing none, is patient and precise work — the kind that rewards slowing down. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> which solid's surface felt easiest to add up, and which made you concentrate hardest? There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
+<p><b>Mode: contextual.</b> This lesson is in every wrapped gift and every cardboard box: <b>surface area is the amount of material</b> needed to cover something.</p>
+<div class="card">
+<p><b>Why it matters:</b> the paper to wrap a present, the card to make a cereal box, the label around a tin, the paint for a wall — each is a surface area. Designers and manufacturers work it out to use the least material for the job: less waste, lower cost. The careful adding-up you did today is exactly what saves a factory tonnes of cardboard.</p>
+<p class="small">Next time you unwrap something, picture its net — how much paper did it really take?</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> find and explain surface areas.</p>
+<ul>
+<li>Work out the surface area of a cuboid and one other solid (a prism, a pyramid, or a cylinder). Show every face and add them up.</li>
+<li>Explain, in your own words, why the surface area of a solid is the same as the total area of its net.</li>
+<li>For a cylinder, explain where the <b>2 π r h</b> part comes from — what shape is the curved surface when it is unrolled?</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SHAPES_SURFACE_AREA_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows surface area is the outside of a solid.</td><td>Adds the faces of a cuboid with support.</td><td>Finds the surface area of a cuboid and one other solid.</td><td>Explains why surface area equals the area of the net, including the cylinder.</td></tr>
+<tr><td><b>Application</b></td><td>Finds the area of one face.</td><td>Adds several faces with prompting.</td><td>Works through a solid's faces systematically.</td><td>Handles curved surfaces and chooses efficient methods.</td></tr>
+<tr><td><b>Communication</b></td><td>Records an answer with limited labelling.</td><td>Shows some face areas and units.</td><td>Sets out every face clearly with cm².</td><td>Explains a full method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots a missing face in a calculation.</td><td>Explains a common surface-area slip and how to avoid it.</td><td>Connects surface area to nets, circles and real packaging.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Surface Area — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the net, find each face area, and add them before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_surface_area_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Surface_Area_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["²","×","=","+","π"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+var PI=3.14;
+
+/* ============ CONNECTION: Unfold & Total ============ */
+var SA={
+ cuboid:{name:"Cuboid",dims:"length 5 cm · width 3 cm · height 4 cm",
+   faces:[{label:"Top & bottom (5 × 3)",n:2,area:15},{label:"Front & back (5 × 4)",n:2,area:20},{label:"Left & right (3 × 4)",n:2,area:12}],total:94},
+ prism:{name:"Triangular prism",dims:"triangle 3, 4, 5 cm · length 10 cm",
+   faces:[{label:"Two triangle ends (½ × 3 × 4)",n:2,area:6},{label:"Rectangle 3 × 10",n:1,area:30},{label:"Rectangle 4 × 10",n:1,area:40},{label:"Rectangle 5 × 10",n:1,area:50}],total:132},
+ pyramid:{name:"Square-based pyramid",dims:"base 6 cm · slant height 5 cm",
+   faces:[{label:"Square base (6 × 6)",n:1,area:36},{label:"Four triangles (½ × 6 × 5)",n:4,area:15}],total:96},
+ cylinder:{name:"Cylinder",dims:"radius 3 cm · height 10 cm",
+   faces:[{label:"Two circles (π × 3²)",n:2,area:28.26},{label:"Curved side (2π × 3 × 10)",n:1,area:188.4}],total:244.92}
+};
+var saKey="cuboid";
+function saChipsRender(){
+  var order=[["cuboid","Cuboid"],["prism","Triangular prism"],["pyramid","Square pyramid"],["cylinder","Cylinder"]];
+  document.getElementById("saChips").innerHTML=order.map(function(o){return '<span class="chip'+(o[0]===saKey?' active':'')+'" onclick="pickSA(\''+o[0]+'\')">'+o[1]+'</span>';}).join("");
+}
+function pickSA(k){saKey=k;saT=1;saTarget=1;saStopAnim();saRender();saChipsRender();}
+function saTol(a){return Math.max(0.5,a*0.01);}
+function saRender(){
+  var s=SA[saKey];
+  document.getElementById("saDims").innerHTML="<b>"+s.name+"</b> — "+s.dims;
+  document.getElementById("saBody").innerHTML=s.faces.map(function(f,i){
+    return '<tr><td style="text-align:left">'+f.label+'</td><td>'+f.n+'</td><td><input id="saf_'+i+'" class="tcell" inputmode="decimal" oninput="saCheckFace('+i+')" placeholder="?"></td></tr>';
+  }).join("");
+  document.getElementById("saTotal").value="";
+  document.getElementById("saFeedback").style.display="none";
+  saDrawCurrent();
+  saUpdateFoldUI();
+}
+
+/* ===== 3D fold engine (verified in Node: all solids close exactly) ===== */
+function v3s(a,b){return[a[0]-b[0],a[1]-b[1],a[2]-b[2]];}
+function v3a(a,b){return[a[0]+b[0],a[1]+b[1],a[2]+b[2]];}
+function v3m(a,s){return[a[0]*s,a[1]*s,a[2]*s];}
+function v3d(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
+function v3x(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
+function v3n(a){var L=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/L,a[1]/L,a[2]/L];}
+function rotLine(P,A,U,ang){var v=v3s(P,A),vp=v3m(U,v3d(v,U)),vq=v3s(v,vp),w=v3x(U,vq);return v3a(A,v3a(v3a(vp,v3m(vq,Math.cos(ang))),v3m(w,Math.sin(ang))));}
+var DR=Math.PI/180;
+var FOLD={
+ cuboid:{pose:{pre:0,ay:-34,ax:-24},verts:[[0,0],[5,0],[5,3],[0,3],[0,-4],[5,-4],[0,-7],[5,-7],[0,7],[5,7],[-4,0],[-4,3],[9,0],[9,3]],
+   faces:[[0,1,2,3],[0,1,5,4],[4,5,7,6],[3,2,9,8],[0,3,11,10],[1,2,13,12]],
+   col:["#e8f0e3","#dfe9ef","#dfe9ef","#dfe9ef","#f1e9dc","#f1e9dc"],
+   lab:["5×3","5×4","5×3","5×4","3×4","3×4"],
+   tree:[{f:1,h:[0,1],a:-90*DR},{f:2,h:[4,5],a:-90*DR},{f:3,h:[3,2],a:90*DR},{f:4,h:[0,3],a:90*DR},{f:5,h:[1,2],a:-90*DR}]},
+ pyramid:{pose:{pre:0,ay:-28,ax:-26},verts:[[0,0],[6,0],[6,6],[0,6],[3,-5],[3,11],[-5,3],[11,3]],
+   faces:[[0,1,2,3],[0,1,4],[3,2,5],[0,3,6],[1,2,7]],
+   col:["#e8f0e3","#f1e9dc","#f1e9dc","#dfe9ef","#dfe9ef"],
+   lab:["6×6","tri","tri","tri","tri"],
+   tree:[{f:1,h:[0,1],a:-2.214393},{f:2,h:[3,2],a:2.214207},{f:3,h:[0,3],a:2.214207},{f:4,h:[1,2],a:-2.214393}]},
+ prism:{pose:{pre:-90,ay:-38,ax:-14},verts:[[0,0],[4,0],[4,10],[0,10],[-3,0],[-3,10],[9,0],[9,10],[0,-3],[0,13]],
+   faces:[[0,1,2,3],[0,3,5,4],[1,2,7,6],[0,1,8],[3,2,9]],
+   col:["#e8f0e3","#dfe9ef","#dfe9ef","#f1e9dc","#f1e9dc"],
+   lab:["4×10","3×10","5×10","3-4-5","3-4-5"],
+   tree:[{f:1,h:[0,3],a:1.570807},{f:2,h:[1,2],a:-2.497993},{f:3,h:[0,1],a:-1.570793},{f:4,h:[3,2],a:1.570807}]}
+};
+function foldPts(S,t){
+  var P=S.verts.map(function(p){return[p[0],p[1],0];});
+  // process in listed (BFS) order, rotating each face's whole subtree about its current hinge
+  S.tree.forEach(function(n){
+    var A=P[n.h[0]],B=P[n.h[1]],U=v3n(v3s(B,A));
+    var vs=foldSub(S,n.f);
+    vs.forEach(function(vi){P[vi]=rotLine(P[vi],A,U,n.a*t);});
+  });
+  return P;
+}
+function foldSub(S,fid){
+  // children: a face g is child of f if g's hinge is an edge of f (shares both hinge verts with f)
+  if(!S._kids){ S._kids={}; S._own={};
+    S.tree.forEach(function(n){var hs=[n.h[0],n.h[1]]; S._own[n.f]=S.faces[n.f].filter(function(v){return hs.indexOf(v)<0;});});
+    // determine parent: face whose vertex set contains both hinge verts and isn't itself
+    S.tree.forEach(function(n){
+      var pf=0;
+      for(var i=0;i<S.faces.length;i++){ if(i===n.f)continue; if(S.faces[i].indexOf(n.h[0])>=0&&S.faces[i].indexOf(n.h[1])>=0){ // prefer a face that is an ancestor (lower in tree). pick the one that is root or already a parent
+          pf=i; } }
+      (S._kids[pf]=S._kids[pf]||[]).push(n.f);
+    });
+  }
+  var out=new Set();
+  (function rec(f){ (S._own[f]||[]).forEach(function(v){out.add(v);}); (S._kids[f]||[]).forEach(function(g){rec(g);}); })(fid);
+  return out;
+}
+/* view + projection */
+function saProject(S,t){
+  var P=foldPts(S,t);
+  // centre on flat-net centroid so it sits still
+  var flat=S.verts, cxN=0,cyN=0; flat.forEach(function(p){cxN+=p[0];cyN+=p[1];}); cxN/=flat.length; cyN/=flat.length;
+  var po=S.pose||{pre:0,ay:-34,ax:-24};
+  var pre=(po.pre||0)*DR*t, ax=po.ax*DR*t, ay=po.ay*DR*t; // all ramp with t (net at t=0 stays face-on)
+  var cp=Math.cos(pre),sp=Math.sin(pre), ca=Math.cos(ax),sa=Math.sin(ax), cb=Math.cos(ay),sb=Math.sin(ay);
+  var pr=P.map(function(p){
+    var x=p[0]-cxN,y=p[1]-cyN,z=p[2];
+    var y0=y*cp - z*sp, z0=y*sp + z*cp;   // pre-rotate about X (stand the solid up)
+    var x1=x*cb+z0*sb, z1=-x*sb+z0*cb;    // rotate about Y
+    var y2=y0*ca - z1*sa, z2=y0*sa + z1*ca;// rotate about X (tilt)
+    return {x:x1,y:y2,z:z2};
+  });
+  return pr;
+}
+function saDrawSolid(S,t){
+  var svg=document.getElementById("saNet"); if(!svg)return;
+  var pr=saProject(S,t);
+  var minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9;
+  pr.forEach(function(p){minx=Math.min(minx,p.x);maxx=Math.max(maxx,p.x);miny=Math.min(miny,p.y);maxy=Math.max(maxy,p.y);});
+  var VW=320,VH=260,pad=30;
+  var sc=Math.min((VW-2*pad)/(maxx-minx||1),(VH-2*pad)/(maxy-miny||1));
+  var ox=VW/2-((minx+maxx)/2)*sc, oy=VH/2+((miny+maxy)/2)*sc;
+  function SX(p){return ox+p.x*sc;} function SY(p){return oy-p.y*sc;}
+  // face draw order: far (smaller camera z) first
+  var order=S.faces.map(function(f,i){var mz=0;f.forEach(function(v){mz+=pr[v].z;});return {i:i,z:mz/f.length};}).sort(function(a,b){return a.z-b.z;});
+  var s="";
+  var flat=(t<0.06);
+  order.forEach(function(o){
+    var f=S.faces[o.i], pts=f.map(function(v){return SX(pr[v])+","+SY(pr[v]);}).join(" ");
+    // dim back faces a little when solid
+    var frontish=o.z>=0; var op=flat?1:(frontish?1:0.82);
+    s+='<polygon points="'+pts+'" fill="'+S.col[o.i]+'" fill-opacity="'+op+'" stroke="#5c7f49" stroke-width="1.6" stroke-linejoin="round"/>';
+  });
+  // labels at face centroids (only readable when flat/near-flat)
+  if(t<0.5){ var la=(0.5-t)/0.5;
+    S.faces.forEach(function(f,i){ if(!S.lab[i])return; var cx=0,cy=0; f.forEach(function(v){cx+=SX(pr[v]);cy+=SY(pr[v]);}); cx/=f.length;cy/=f.length;
+      s+='<text x="'+cx.toFixed(1)+'" y="'+(cy+3).toFixed(1)+'" font-size="10" fill="#2f3429" fill-opacity="'+la.toFixed(2)+'" text-anchor="middle">'+S.lab[i]+'</text>'; });
+  }
+  var title=flat?(SA[saKey].name+" net"):(t>0.94?SA[saKey].name:"unfolding…");
+  s+='<text x="160" y="16" font-size="11" fill="#4f554b" text-anchor="middle">'+title+'</text>';
+  svg.innerHTML=s;
+}
+/* ---- cylinder unfold (2 circles + rectangle) ---- */
+function saDrawCyl(t){
+  var svg=document.getElementById("saNet"); if(!svg)return;
+  var VW=320,VH=260, cx=150, cy=132, Rpx=26, HS=96, eRy=Rpx*0.34;
+  var N=26, TAU=Math.PI*2, rectW=TAU*Rpx*0.55; // px width of unrolled rectangle (2πr scaled to fit)
+  var tubeCx=cx-rectW/2- (0)*0; // tube sits where rectangle left is when wrapped
+  var s="";
+  var flatLeftAt=cx-rectW/2, wrapCx=cx; // when wrapped, strips centre on wrapCx
+  // caps: top->left circle, bottom->right circle
+  var capTop={wx:wrapCx, wy:cy-HS/2, fx:flatLeftAt-Rpx-14, fy:cy};
+  var capBot={wx:wrapCx, wy:cy+HS/2, fx:flatLeftAt+rectW+Rpx+14, fy:cy};
+  function capC(c){return {x:c.fx+(c.wx-c.fx)*t, y:c.fy+(c.wy-c.fy)*t, ry:Rpx+(eRy-Rpx)*t};}
+  var cT=capC(capTop), cB=capC(capBot);
+  // draw far cap (top) first
+  s+='<ellipse cx="'+cT.x.toFixed(1)+'" cy="'+cT.y.toFixed(1)+'" rx="'+Rpx+'" ry="'+cT.ry.toFixed(1)+'" fill="#f1e9dc" stroke="#5c7f49" stroke-width="1.5"/>';
+  if(t<0.5) s+='<text x="'+cT.x.toFixed(1)+'" y="'+(cT.y+3).toFixed(1)+'" font-size="9" text-anchor="middle" fill="#2f3429" fill-opacity="'+((0.5-t)/0.5).toFixed(2)+'">π×3²</text>';
+  // curved surface strips
+  var strips=[];
+  for(var k=0;k<N;k++){
+    var frac=k/N, ang=frac*TAU;                       // position around tube
+    var wrapX=wrapCx+Rpx*Math.sin(ang), depth=Math.cos(ang);
+    var flatX=flatLeftAt+frac*rectW;
+    var x=flatX+(wrapX-flatX)*t;
+    var yTopOff=t*eRy*Math.cos(ang), // top rim ellipse offset when wrapped
+        topY=(cy-HS/2)+yTopOff, botY=(cy+HS/2)+yTopOff;
+    strips.push({x:x,topY:topY,botY:botY,depth:depth,ang:ang});
+  }
+  // order back-to-front by depth so front strips overlay
+  var idx=strips.map(function(_,i){return i;}).sort(function(a,b){return strips[a].depth-strips[b].depth;});
+  idx.forEach(function(i){
+    var a=strips[i], b=strips[(i+1)%N];
+    // only connect adjacent when wrapped-continuous; when flat, connect neighbours in frac order
+    var nb=strips[(i+1)%N];
+    var quadNext = (i+1<N)? strips[i+1] : null;
+    if(!quadNext) return;
+    var shade = 0.55+0.45*((a.depth+1)/2); var op=(0.7+0.3*(1-t))+ (t*(shade-0.7)); // subtle front/back shade when wrapped
+    var fill= t>0.05 ? shadeOrange(a.depth,t) : "#e0913b";
+    s+='<polygon points="'+a.x.toFixed(1)+','+a.topY.toFixed(1)+' '+quadNext.x.toFixed(1)+','+quadNext.topY.toFixed(1)+' '+quadNext.x.toFixed(1)+','+quadNext.botY.toFixed(1)+' '+a.x.toFixed(1)+','+a.botY.toFixed(1)+'" fill="'+fill+'" fill-opacity="0.92" stroke="#b25f2e" stroke-width="0.5"/>';
+  });
+  // ridge lines every few strips
+  for(var k2=0;k2<=N;k2+=Math.round(N/8)){ var a=strips[k2%N]; s+='<line x1="'+a.x.toFixed(1)+'" y1="'+a.topY.toFixed(1)+'" x2="'+a.x.toFixed(1)+'" y2="'+a.botY.toFixed(1)+'" stroke="#8a3f1c" stroke-width="1" stroke-opacity="0.5"/>'; }
+  // near cap (bottom)
+  s+='<ellipse cx="'+cB.x.toFixed(1)+'" cy="'+cB.y.toFixed(1)+'" rx="'+Rpx+'" ry="'+cB.ry.toFixed(1)+'" fill="#f1e9dc" stroke="#5c7f49" stroke-width="1.5"/>';
+  if(t<0.5) s+='<text x="'+cB.x.toFixed(1)+'" y="'+(cB.y+3).toFixed(1)+'" font-size="9" text-anchor="middle" fill="#2f3429" fill-opacity="'+((0.5-t)/0.5).toFixed(2)+'">π×3²</text>';
+  if(t<0.35){ var la=(0.35-t)/0.35; s+='<text x="'+cx+'" y="'+(cy+3)+'" font-size="9" text-anchor="middle" fill="#2f3429" fill-opacity="'+la.toFixed(2)+'">2π×3</text>'; }
+  var title=(t<0.06)?"Cylinder net — 2 circles + a rectangle":(t>0.94?"Cylinder":"unrolling…");
+  s+='<text x="160" y="16" font-size="11" fill="#4f554b" text-anchor="middle">'+title+'</text>';
+  svg.innerHTML=s;
+}
+function shadeOrange(depth,t){ // depth -1..1; front(1) lighter
+  var base=[224,145,59]; var f=0.7+0.3*((depth+1)/2); f=1-t*(1-f); // fade shading out as it flattens
+  return 'rgb('+Math.round(base[0]*f)+','+Math.round(base[1]*f)+','+Math.round(base[2]*f)+')';
+}
+/* ---- fold state + animation ---- */
+var saT=1, saTarget=1, saRAF=null;
+function saDrawCurrent(){ if(saKey==="cylinder") saDrawCyl(saT); else saDrawSolid(FOLD[saKey],saT); }
+function saStopAnim(){ if(saRAF){ (window.cancelAnimationFrame||function(){})(saRAF); saRAF=null; } }
+function saUpdateFoldUI(){
+  var btn=document.getElementById("saFoldBtn"), st=document.getElementById("saState"); if(!btn)return;
+  var solid=saT>0.5;
+  btn.textContent=solid?"📦 Unfold to net":"🧊 Fold back up";
+  st.innerHTML=solid?"This is the solid. Press <b>Unfold to net</b> to open it out flat.":"This is the net — every face laid out flat. Its total area <em>is</em> the surface area.";
+}
+function saToggleFold(){
+  saTarget=(saT>0.5)?0:1; saStopAnim();
+  var start=saT, from=start, to=saTarget, dur=1100, t0=null;
+  function step(ts){ if(t0===null)t0=ts; var k=Math.min(1,(ts-t0)/dur); var e=k<0.5?2*k*k:1-Math.pow(-2*k+2,2)/2; saT=from+(to-from)*e; saDrawCurrent(); if(k<1){saRAF=requestAnimationFrame(step);} else {saT=to;saRAF=null;saDrawCurrent();saUpdateFoldUI();} }
+  if(window.requestAnimationFrame){ saUpdateFoldUI(); saRAF=requestAnimationFrame(step); }
+  else { saT=to; saDrawCurrent(); saUpdateFoldUI(); }
+}
+function markCell(el,ok){ if(!el)return; if(el.value.trim()===""){el.style.backgroundColor="#fff";el.style.borderColor="#bcae98";return;} el.style.backgroundColor=ok?"#e3f0df":"#fff6e0"; el.style.borderColor=ok?"#5c7f49":"#d8b26e"; }
+function saCheckFace(i){ var f=SA[saKey].faces[i], el=document.getElementById("saf_"+i); markCell(el, Math.abs(num(el.value)-f.area)<=saTol(f.area)); }
+function saCheckTotal(){
+  var s=SA[saKey], fb=document.getElementById("saFeedback"), v=num(document.getElementById("saTotal").value); fb.style.display="block";
+  if(isNaN(v)){fb.className="feedback warn";fb.textContent="Add up every face (remember how many of each), then enter the total.";return;}
+  if(Math.abs(v-s.total)<=Math.max(1,s.total*0.01)){fb.className="feedback good";fb.innerHTML="Correct — the surface area is <b>"+s.total+" cm²</b>. That is exactly the total area of the net.";revealConnCarry();}
+  else {fb.className="feedback warn";fb.textContent="Not yet. Work out the area of each face, multiply by how many there are, and add them all up.";}
+}
+function revealConnCarry(){var el=document.getElementById("connCarry");if(el)el.style.display="";}
+
+/* ============ MOVEMENT: Unroll the Cylinder (peel the curved surface off) ============ */
+function drawCyl(){
+  var svg=document.getElementById("cylSvg"); if(!svg)return;
+  var r=Number(document.getElementById("cyR").value), h=Number(document.getElementById("cyH").value), t=Number(document.getElementById("cyRoll").value)/100;
+  document.getElementById("cyRv").textContent=r+" cm"; document.getElementById("cyHv").textContent=h+" cm"; document.getElementById("cyPct").textContent=Math.round(t*100)+"%";
+  var circ=2*PI*r, curved=2*PI*r*h, circles=2*PI*r*r, tot=curved+circles;
+  var cx=90, cy=100, rx=r*7, eRy=rx*0.32, HS=Math.min(120,h*9);
+  var Wfull=2*Math.PI*rx;                 // full unrolled width in px = 2π·rx
+  var seamX=cx+rx;                        // peel point (right edge of tube)
+  var s="";
+  /* --- the tube body (blue) always present; its front curved surface carries the orange skin --- */
+  // bottom ellipse (back rim)
+  s+='<ellipse cx="'+cx+'" cy="'+(cy+HS/2)+'" rx="'+rx+'" ry="'+eRy+'" fill="#dff0fb" stroke="#3f7a45" stroke-width="1.6"/>';
+  // body sides
+  s+='<rect x="'+(cx-rx)+'" y="'+(cy-HS/2)+'" width="'+(2*rx)+'" height="'+HS+'" fill="#eaf4fb" stroke="none"/>';
+  s+='<line x1="'+(cx-rx)+'" y1="'+(cy-HS/2)+'" x2="'+(cx-rx)+'" y2="'+(cy+HS/2)+'" stroke="#3f7a45" stroke-width="1.6"/>';
+  s+='<line x1="'+(cx+rx)+'" y1="'+(cy-HS/2)+'" x2="'+(cx+rx)+'" y2="'+(cy+HS/2)+'" stroke="#3f7a45" stroke-width="1.6"/>';
+  /* --- the curved SURFACE as strips: wrapped strips sit on the tube front; peeled strips lie flat to the right --- */
+  var N=40, strips=[];
+  for(var k=0;k<=N;k++){
+    var p=k/N;                                     // 0..1 around the circumference (0 at peel seam)
+    var topY,botY,x,depth;
+    if(p<t){                                       // PEELED — lies flat to the right of the seam
+      x=seamX + (t-p)*Wfull;                       // farther peeled => farther right; width grows to t*Wfull
+      topY=cy-HS/2; botY=cy+HS/2; depth=2;         // depth 2 = definitely in front
+    } else {                                        // WRAPPED — still on the tube's front
+      var th=(p-t)/(1-t||1)*Math.PI;               // spread remaining surface across the front semicircle 0..π
+      x=cx+rx*Math.cos(th);                        // seam(th=0) at right, wraps to left(th=π)
+      depth=Math.sin(th);                          // 1 = nearest (front centre)
+      var off=eRy*Math.sin(th);                    // front (centre) dips down; edges sit at the rim -> curved-tube look
+      topY=(cy-HS/2)+off; botY=(cy+HS/2)+off;
+    }
+    strips.push({x:x,topY:topY,botY:botY,depth:depth,p:p});
+  }
+  // draw as quads between consecutive strips, front last
+  var seq=[]; for(var i=0;i<N;i++) seq.push(i);
+  seq.sort(function(a,b){return strips[a].depth-strips[b].depth;});
+  seq.forEach(function(i){
+    var a=strips[i], b=strips[i+1]; if(!b) return;
+    var col=cylSkin(a.depth);
+    s+='<polygon points="'+a.x.toFixed(1)+','+a.topY.toFixed(1)+' '+b.x.toFixed(1)+','+b.topY.toFixed(1)+' '+b.x.toFixed(1)+','+b.botY.toFixed(1)+' '+a.x.toFixed(1)+','+a.botY.toFixed(1)+'" fill="'+col+'" stroke="'+col+'" stroke-width="0.4"/>';
+  });
+  // ridge lines so the same surface is visibly migrating from round to flat
+  for(var g=0;g<=N;g+=5){ var a=strips[g]; s+='<line x1="'+a.x.toFixed(1)+'" y1="'+a.topY.toFixed(1)+'" x2="'+a.x.toFixed(1)+'" y2="'+a.botY.toFixed(1)+'" stroke="#8a3f1c" stroke-width="1" stroke-opacity="0.45"/>'; }
+  // top ellipse (front rim) drawn last so it caps the tube neatly
+  s+='<ellipse cx="'+cx+'" cy="'+(cy-HS/2)+'" rx="'+rx+'" ry="'+eRy+'" fill="#dff0fb" fill-opacity="0.5" stroke="#3f7a45" stroke-width="1.6"/>';
+  // height indicator against the can's vertical side (left)
+  var hx=cx-rx-8, hTop=cy-HS/2, hBot=cy+HS/2;
+  s+='<line x1="'+hx+'" y1="'+hTop+'" x2="'+hx+'" y2="'+hBot+'" stroke="#4f554b" stroke-width="1.2"/>';
+  s+='<line x1="'+(hx-3)+'" y1="'+hTop+'" x2="'+(hx+3)+'" y2="'+hTop+'" stroke="#4f554b" stroke-width="1.2"/>';
+  s+='<line x1="'+(hx-3)+'" y1="'+hBot+'" x2="'+(hx+3)+'" y2="'+hBot+'" stroke="#4f554b" stroke-width="1.2"/>';
+  s+='<text x="'+(hx-5)+'" y="'+(cy+4)+'" font-size="11" fill="#4f554b" text-anchor="end">h = '+h+'</text>';
+  // labels on the flat part
+  var flatW=t*Wfull, flatMid=seamX+flatW/2;
+  if(t>0.12){
+    s+='<line x1="'+seamX.toFixed(1)+'" y1="'+(cy+HS/2+8)+'" x2="'+(seamX+flatW).toFixed(1)+'" y2="'+(cy+HS/2+8)+'" stroke="#b25f2e" stroke-width="1.4"/>';
+    s+='<text x="'+flatMid.toFixed(1)+'" y="'+(cy+HS/2+22)+'" font-size="11" fill="#b25f2e" text-anchor="middle">width = 2π r'+(t>0.96?' = '+circ.toFixed(2)+' cm':'')+'</text>';
+    s+='<text x="'+(seamX+flatW+6).toFixed(1)+'" y="'+cy+'" font-size="11" fill="#b25f2e" text-anchor="start">h</text>';
+  }
+  svg.innerHTML=s;
+  document.getElementById("cyRead").innerHTML="Circumference = 2π r = <b>"+circ.toFixed(2)+" cm</b> &nbsp;·&nbsp; curved surface = 2π r h = <b>"+curved.toFixed(1)+" cm²</b><br>two circles = 2π r² = <b>"+circles.toFixed(1)+" cm²</b> &nbsp;·&nbsp; <b>total surface area = "+tot.toFixed(1)+" cm²</b>";
+}
+function cylSkin(depth){ // depth: >=2 flat(front), else sin(th) 0..1 on tube
+  var d=depth>=2?1:depth; var f=0.72+0.28*d; var base=[224,145,59];
+  return 'rgb('+Math.round(base[0]*f)+','+Math.round(base[1]*f)+','+Math.round(base[2]*f)+')';
+}
+
+/* ============ REFLECTION: Spot the slip ============ */
+var SLIP=[
+ {t:"A cube has side 4 cm. Its surface area is 4 × 4 = 16 cm².",ok:false,why:"Slip — that is the area of just <em>one</em> face. A cube has <b>6</b> faces, so it is 6 × 16 = 96 cm²."},
+ {t:"A cuboid is 5 × 3 × 2. Surface area = 2×(5×3) + 2×(5×2) + 2×(3×2) = 30 + 20 + 12 = 62 cm².",ok:true,why:"Right — three pairs of faces, each pair counted twice. 30 + 20 + 12 = 62 cm²."},
+ {t:"A circle has diameter 10 cm, so its area is π × 10² = 314 cm².",ok:false,why:"Slip — the formula uses the <b>radius</b>, not the diameter. r = 5, so area = π × 5² ≈ 78.5 cm²."},
+ {t:"A closed cylinder has r = 2, h = 5. Its surface area is 2π×2×5 = 62.8 cm².",ok:false,why:"Slip — that is only the curved side. A <em>closed</em> cylinder also needs the two circular ends: + 2π × 2² ≈ 25.1, giving ≈ 87.9 cm²."},
+ {t:"A square-based pyramid has base 6 and four triangles of area 15 each. Surface area = 6×6 + 4×15 = 36 + 60 = 96 cm².",ok:true,why:"Right — the square base plus the four triangles. 36 + 60 = 96 cm²."}
+];
+var slipIndex=0;
+function slipRender(){ document.getElementById("slipClue").innerHTML="<b>Calculation "+(slipIndex+1)+":</b> "+SLIP[slipIndex].t; document.getElementById("slipFeedback").style.display="none"; document.getElementById("slipProgress").textContent="Calculation "+(slipIndex+1)+" of "+SLIP.length+"."; }
+function slipGuess(choice){ var s=SLIP[slipIndex], fb=document.getElementById("slipFeedback"); fb.style.display="block"; if(choice===s.ok){fb.className="feedback good";fb.innerHTML="Correct. "+s.why;} else {fb.className="feedback warn";fb.innerHTML="Look again — "+s.why;} }
+function slipNext(){ slipIndex=(slipIndex+1)%SLIP.length; slipRender(); }
+
+/* ============ CREATIVITY: Packaging Designer ============ */
+var PKG=[
+ {name:"A cereal box (cuboid)",desc:"A cereal box is 30 cm tall, 20 cm wide and 6 cm deep. How much card is needed to make it (its surface area)?",area:2*(30*20+30*6+20*6)},
+ {name:"A soup tin (cylinder)",desc:"A soup tin has radius 4 cm and height 11 cm. How much metal covers it, including both ends? Use π ≈ 3.14.",area:2*PI*4*4+2*PI*4*11},
+ {name:"A gift box (cube)",desc:"A gift box is a cube of side 12 cm. How much wrapping paper covers it exactly (no overlap)?",area:6*12*12},
+ {name:"A toblerone box (triangular prism)",desc:"A chocolate box is a triangular prism: the triangle ends have area 10 cm² each, and the three rectangles are 24 cm², 24 cm² and 24 cm². How much card is needed?",area:2*10+24+24+24}
+];
+var pkIndex=0;
+function pkChipsRender(){ document.getElementById("pkChips").innerHTML=PKG.map(function(o,i){return '<span class="chip'+(i===pkIndex?' active':'')+'" onclick="setPk('+i+')">'+o.name+'</span>';}).join(""); }
+function setPk(i){pkIndex=i;document.getElementById("pkDesc").innerHTML=PKG[i].desc;document.getElementById("pkGuess").value="";document.getElementById("pkFeedback").style.display="none";pkChipsRender();}
+function pkCheck(){
+  var o=PKG[pkIndex], fb=document.getElementById("pkFeedback"), n=num(document.getElementById("pkGuess").value); fb.style.display="block";
+  if(isNaN(n)){fb.className="feedback warn";fb.textContent="Work out the total area of all the faces, then enter it.";return;}
+  if(Math.abs(n-o.area)<=Math.max(1,o.area*0.02)){fb.className="feedback good";fb.innerHTML="Spot on — it needs about <b>"+o.area.toFixed(0)+" cm²</b> of material.";}
+  else{fb.className="feedback warn";fb.innerHTML="Not yet. Add the area of every face. The answer is about <b>"+o.area.toFixed(0)+" cm²</b> — check which faces you have counted.";}
+}
+function pkReveal(){var o=PKG[pkIndex],fb=document.getElementById("pkFeedback");fb.style.display="block";fb.className="feedback good";fb.innerHTML="The surface area — the material needed — is <b>"+o.area.toFixed(0)+" cm²</b>.";}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    rect:{title:'Area of a rectangle',prompt:'A rectangle is 7 cm by 4 cm. What is its area, in cm²?',answer:28,hint:'Area of a rectangle = length × width.'},
+    tri:{title:'Area of a triangle',prompt:'A triangle has base 6 cm and height 5 cm. What is its area, in cm²?',answer:15,hint:'Area of a triangle = ½ × base × height.'},
+    circle:{title:'Area of a circle',prompt:'A circle has radius 5 cm. What is its area, in cm²? Use π ≈ 3.14.',answer:78.5,hint:'Area of a circle = π r² = 3.14 × 5².'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} return normText(v).includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'rect\')">Area of a rectangle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'tri\')">Area of a triangle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'circle\')">Area of a circle</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · Meaning",q:"In one sentence, what does the surface area of a solid measure?",a:["the total area of all its faces","total area of all its faces","the total area of its net","area of the net","total area of the faces"],prompt:"Think of the solid unfolded into its net.",hint:"It is the total area of every face — the same as the area of the net.",sol:"The total area of all the solid's faces — which is the same as the area of its net."},
+ {label:"2 of 6 · Cuboid",q:"A cuboid is 4 cm by 3 cm by 2 cm. Find its surface area, in cm².",a:[],eq:function(v){return Math.abs(num(v)-52)<0.5;},prompt:"There are three pairs of faces.",hint:"2×(4×3) + 2×(4×2) + 2×(3×2) = 24 + 16 + 12.",sol:"2×(4×3) + 2×(4×2) + 2×(3×2) = 24 + 16 + 12 = 52 cm²."},
+ {label:"3 of 6 · Cube",q:"A cube has side 5 cm. Find its surface area, in cm².",a:[],eq:function(v){return Math.abs(num(v)-150)<0.5;},prompt:"A cube has six identical square faces.",hint:"6 × (5 × 5) = 6 × 25.",sol:"6 × (5 × 5) = 6 × 25 = 150 cm²."},
+ {label:"4 of 6 · Curved surface",q:"A cylinder has radius 3 cm and height 10 cm. Find the area of its curved surface only, in cm². Use π ≈ 3.14.",a:[],eq:function(v){return Math.abs(num(v)-188.4)<1.5;},prompt:"The curved surface unrolls into a rectangle: circumference × height.",hint:"2 π r h = 2 × 3.14 × 3 × 10.",sol:"Curved surface = 2 π r h = 2 × 3.14 × 3 × 10 = 188.4 cm²."},
+ {label:"5 of 6 · Whole cylinder",q:"For that same cylinder (r = 3, h = 10), find the TOTAL surface area including both ends, in cm². Use π ≈ 3.14.",a:[],eq:function(v){return Math.abs(num(v)-244.9)<2;},prompt:"Add the two circular ends to the curved surface.",hint:"188.4 + 2 × (π × 3²) = 188.4 + 56.5.",sol:"188.4 + 2 × π × 3² = 188.4 + 56.5 = 244.9 cm²."},
+ {label:"6 of 6 · Spot the slip",q:"A learner writes: a cube of side 4 cm has surface area 4 × 4 = 16 cm². Are they right — yes or no?",a:["no"],prompt:"How many faces does a cube have?",hint:"That is only one face; a cube has six.",sol:"No — that is one face. A cube has six, so it is 6 × 16 = 96 cm²."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=q.a.some(function(x){var nx=normText(x);return nx===learner||nx===stripped;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct. You added every face of the net.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Find each face's area and add them, or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  saChipsRender(); saRender();
+  drawCyl();
+  slipRender();
+  pkChipsRender(); setPk(0);
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

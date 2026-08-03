@@ -267,3 +267,8 @@ dual checks). Still needs Gerry's eye on the 3D render look. Guidance PDFs after
   older Pythagoras/ratio/place-value/straight-line lessons have only numeric or number-with-unit answers,
   so it doesn't apply there. Regression suites all green (L2 48, L3 45, L4 48, L5 38, L6 61).
 - **Guidance PDFs** generated (DejaVu template; F + V − E = 2 renders cleanly). Lesson 6 complete.
+
+## L7 Surface Area — Connection & Movement rework (2026-08-03)
+- **Connection (Unfold & Total):** now shows the SOLID first, with an "📦 Unfold to net / 🧊 Fold back up" button that animates a true 3D hinge-fold down to the flat net (view tilt ramps with the fold; net ends face-on). Built on a generic hinge-fold engine (rotate each face's subtree about its current hinge). Fold data verified in Node: cuboid seam closes to 0.000, pyramid's 4 apexes meet at one point, prism seams coincide; every solid is flat at t=0. Each solid has its own viewing pose (prism uses a −90° pre-rotation so the 3-4-5 wedge stands up rather than looking flat). Cylinder unfolds via a strip-wrap: can → 2 circles + rectangle.
+- **Movement (Unroll the cylinder):** replaced the detached "growing rectangle" with a genuine peel — the orange curved surface lifts off the can at the right seam and lays itself flat to the right (ridges migrate from round to flat, wrapped remainder shrinks, can ends empty), flat width grows to 2πr. Addresses Gerry's note that neurodivergent learners need to *see* the unrolling, not just a rectangle enlarging.
+- Verified headlessly (jsdom 19/19) and by rasterising SVG frames.
