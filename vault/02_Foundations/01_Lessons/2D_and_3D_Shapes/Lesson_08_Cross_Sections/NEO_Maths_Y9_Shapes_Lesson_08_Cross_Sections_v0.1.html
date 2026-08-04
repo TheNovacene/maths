@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Cross-sections</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.satab td,.satab th{text-align:center;vertical-align:middle}
+.tcell{width:84px;text-align:center;padding:7px;border:1px solid #bcae98;border-radius:6px;box-sizing:border-box}
+.netsvg,.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.readgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: 2D and 3D Shapes</h1>
+<h2>Cross-sections</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What shape appears when you slice straight through a solid?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Spatial reasoning — the 2D shape revealed when a 3D solid is sliced.</p>
+<p><b>Stepping Stone:</b> use cross-sections — the 2D shape made by slicing through a solid, and the constant cross-section that defines a prism.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 12 · Move 12 · Reflect 9 · Create 5 · Rest/Nourish 4 · Evidence 3</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_08_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_08_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('isometric','Sketch a solid, then draw the 2D cross-section a slice would reveal.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Carry a shape along to build a prism</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Cross-section</b> — the flat 2D shape you get when you slice straight through a solid.<br>
+<b style="color:#2b3d78">Prism</b> — a solid with the <em>same</em> cross-section all the way along its length.<br>
+<b style="color:#b0651f">Face-on</b> — looking at the cross-section straight on, so you see its true 2D shape.</p>
+</div>
+<p><b>What to do:</b> choose a 2D cross-section, then drag the <b>Length</b> slider to carry it along and build a prism. Watch every slice along the way stay identical.</p>
+<p><b>What you are trying to notice:</b> a prism is one cross-section carried along a length — every slice across it is the same shape and the same size.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧱 Carry-it-Along Extruder</h3>
+<div id="exChips" class="buttonrow" style="justify-content:center"></div>
+<div class="card" style="text-align:center"><svg id="exSvg" class="graphsvg" style="max-width:460px" viewBox="0 0 460 250" role="img" aria-label="A 2D cross-section carried along a length to form a prism"></svg></div>
+<label class="small" for="exLen"><b>Length:</b> <span id="exLenV">4</span> units</label>
+<input id="exLen" type="range" min="1" max="8" step="0.5" value="4" style="width:100%" oninput="exDraw()">
+<p class="small" style="margin:6px 0"><label><input type="checkbox" id="exGhost" checked onchange="exDraw()"> show the slices along the way</label></p>
+<div id="exRead" class="card small"></div>
+<div id="exCarry" style="display:none"><p><b>Carry this forward:</b> a prism is a <b>constant cross-section carried along a length</b>. Hold onto that — in the Volume lesson it becomes <em>cross-section area × length</em>.</p></div>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Slice a solid and see the cross-section</summary>
+<p><b>What to do:</b> pick a solid, then drag <b>Height</b> to move the slicing plane up and down. Drag <b>Tilt</b> to cut on a slant. The 2D cross-section appears face-on on the right.</p>
+<p><b>What you are trying to notice:</b> prisms and cylinders give the <em>same</em> cross-section all the way up; a pyramid and a cone <em>shrink</em> as you climb. Tilt the cut and a circle becomes an ellipse.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔪 Slicing Plane Studio</h3>
+<div id="slChips" class="buttonrow" style="justify-content:center"></div>
+<div class="twocol">
+<div class="card" style="text-align:center"><svg id="slSolid" class="graphsvg" style="max-width:300px" viewBox="0 0 300 300" role="img" aria-label="A 3D solid with a slicing plane cutting through it"></svg><p class="small" style="margin:4px 0 0">The solid, with the slicing plane</p></div>
+<div class="card" style="text-align:center"><svg id="slFace" class="graphsvg" style="max-width:300px" viewBox="0 0 300 300" role="img" aria-label="The cross-section, shown face-on"></svg><p class="small" id="slName" style="margin:4px 0 0"></p></div>
+</div>
+<div class="readgrid">
+<div class="card"><label class="small" for="slH"><b>Height</b> of the cut: <span id="slHv"></span></label><input id="slH" type="range" min="5" max="95" value="50" style="width:100%" oninput="slDraw()"></div>
+<div class="card"><label class="small" for="slT"><b>Tilt</b> of the cut: <span id="slTv">0°</span></label><input id="slT" type="range" min="0" max="60" value="0" style="width:100%" oninput="slDraw()"></div>
+</div>
+<div id="slRead" class="card small"></div>
+<p><b>Carry this forward:</b> the shape of a slice depends on the solid <em>and</em> the direction you cut. A prism's cross-section stays constant; a cone's runs through circle, ellipse and even a parabola.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Name the slice</summary>
+<p><b>What to do:</b> read how the solid is sliced, predict the 2D shape, then check and reveal the reasoning.</p>
+<p><b>What you are trying to notice:</b> the same solid can give <em>different</em> cross-sections depending on the cut — and you can reason out which shape appears.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧩 What shape is the slice?</h3>
+<div id="nsClue" class="clue"></div>
+<div id="nsOpts" class="buttonrow"></div>
+<div id="nsFeedback" class="feedback"></div>
+<div class="buttonrow"><button onclick="nsNext()">➡️ Next slice</button></div>
+<p class="small" id="nsProgress"></p>
+<p><b>Carry this forward:</b> to name a slice, picture the plane cutting through — which edges does it cross, and what shape do those crossing points make?</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Design your own prism</summary>
+<p><b>What to do:</b> choose any cross-section and a length, and build your own prism. Then predict: what does a slice taken halfway along it look like?</p>
+<p><b>What you are trying to notice:</b> whatever cross-section you choose, a prism carries it unchanged from end to end — so you can design a whole solid just by choosing its cross-section.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🏗️ Prism designer</h3>
+<div id="dpChips" class="buttonrow" style="justify-content:center"></div>
+<div class="card" style="text-align:center"><svg id="dpSvg" class="graphsvg" style="max-width:440px" viewBox="0 0 440 230" role="img" aria-label="A prism built from the chosen cross-section"></svg></div>
+<label class="small" for="dpLen"><b>Length:</b> <span id="dpLenV">5</span> units</label>
+<input id="dpLen" type="range" min="2" max="9" step="0.5" value="5" style="width:100%" oninput="dpDraw()">
+<div class="card"><p style="margin-top:0"><b>Predict:</b> a slice taken halfway along your prism is…</p><div id="dpOpts" class="buttonrow"></div><div id="dpFeedback" class="feedback"></div></div>
+<p><b>Make it your own:</b> on the isometric Scratchpad, sketch your prism and draw the cross-section it carries.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('isometric','Sketch your prism: draw its cross-section and carry it along the length.')">✏️ Design on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause between dimensions</summary>
+<p>Moving between flat shapes and solids asks a lot of your spatial imagination — picturing a 2D shape hidden inside a 3D object. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> which slice surprised you most? Perhaps the ellipse from a tilted cylinder, or the triangle hiding inside a cube. There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
+<p><b>Mode: contextual.</b> Every slice reveals a cross-section — from a loaf of bread to a scan of the human body.</p>
+<div class="card">
+<p><b>Why it matters:</b> a sliced loaf is a prism — every slice is the same shape. A CT or MRI scanner builds a picture of the inside of the body from hundreds of thin cross-section "slices". Architects and engineers draw "sections" to show what a building or a tunnel looks like cut through. Cut an orange one way and you get a circle; cut it another way and the shape changes. Seeing the 2D shape inside the 3D object is exactly how designers, doctors and makers understand solid things.</p>
+<p class="small">Next time you slice something, pause: what cross-section did you just make?</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> explore cross-sections.</p>
+<ul>
+<li>Choose a solid and show at least <b>two different</b> cross-sections you can make by slicing it in different directions. Name each 2D shape.</li>
+<li>Explain, in your own words, what makes a solid a <b>prism</b> — and why every slice across a prism is the same.</li>
+<li>Find one real object that is a prism (its slices are all the same) and one that is not. How can you tell them apart?</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a written explanation, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SHAPES_CROSS_SECTIONS_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows a slice through a solid makes a 2D shape.</td><td>Names the cross-section of a simple slice.</td><td>Shows two different cross-sections of one solid.</td><td>Explains a prism's constant cross-section and how the cut direction changes the shape.</td></tr>
+<tr><td><b>Application</b></td><td>Identifies one cross-section.</td><td>Predicts a simple straight slice.</td><td>Works out cross-sections for several solids.</td><td>Handles tilted slices (ellipse) and curved solids confidently.</td></tr>
+<tr><td><b>Communication</b></td><td>Records a shape with limited labelling.</td><td>Labels a cross-section.</td><td>Sets out slices clearly, each named.</td><td>Explains so another learner could predict a slice.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the cut direction changes the shape.</td><td>Explains why a prism's slices stay constant.</td><td>Connects cross-sections to prisms, volume and real scans.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Cross-sections — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the net, find each face area, and add them before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_cross_sections_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Cross_Sections_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["²","×","=","°"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+var PI=3.14;
+
+/* ============ Shared 2D cross-section shapes ============ */
+var SHAPES={
+ rect:{name:"rectangle",label:"Rectangle",pts:[[-2,-1.5],[2,-1.5],[2,1.5],[-2,1.5]]},
+ tri:{name:"triangle",label:"Triangle",pts:[[-2,-1.3],[2,-1.3],[0,2.2]]},
+ lshape:{name:"L-shape",label:"L-shape",pts:[[-1.8,-1.8],[1.4,-1.8],[1.4,0],[0.2,0],[0.2,1.8],[-1.8,1.8]]},
+ pent:(function(){var p=[];for(var i=0;i<5;i++){var a=-Math.PI/2+i*2*Math.PI/5;p.push([2*Math.cos(a),2*Math.sin(a)]);}return {name:"pentagon",label:"Pentagon",pts:p};})(),
+ circle:{name:"circle",label:"Circle",r:2,circle:true}
+};
+function polyArea(pts){var a=0;for(var i=0;i<pts.length;i++){var j=(i+1)%pts.length;a+=pts[i][0]*pts[j][1]-pts[j][0]*pts[i][1];}return Math.abs(a)/2;}
+function shapeArea(s){return s.circle?Math.PI*s.r*s.r:polyArea(s.pts);}
+function fitMath(all,VW,VH,pad){
+  var minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9;
+  all.forEach(function(p){minx=Math.min(minx,p[0]);maxx=Math.max(maxx,p[0]);miny=Math.min(miny,p[1]);maxy=Math.max(maxy,p[1]);});
+  var sc=Math.min((VW-2*pad)/((maxx-minx)||1),(VH-2*pad)/((maxy-miny)||1));
+  var ox=VW/2-((minx+maxx)/2)*sc, oy=VH/2+((miny+maxy)/2)*sc;
+  return {sc:sc,ox:ox,oy:oy,SX:function(x){return ox+x*sc;},SY:function(y){return oy-y*sc;}};
+}
+/* draw a prism from a 2D cross-section carried along a length (oblique projection).
+   The scale is LOCKED to the longest prism (maxL) so the front cross-section stays
+   exactly the same size at every length — a prism has a constant cross-section. */
+function drawPrism(svgId,key,L,ghost,VW,VH,maxL){
+  var svg=document.getElementById(svgId); if(!svg)return; var s=SHAPES[key];
+  var A=32*Math.PI/180, cosA=Math.cos(A), sinA=Math.sin(A);
+  function Evec(len){return [len*0.45*cosA, len*0.45*sinA];}
+  var E=Evec(L), Emax=Evec(maxL);
+  // fit using the MAX-length geometry, then draw current length with that fixed transform
+  var all=[];
+  if(s.circle){ [[0,0],Emax].forEach(function(c){all.push([c[0]-s.r,c[1]-s.r]);all.push([c[0]+s.r,c[1]+s.r]);}); }
+  else { s.pts.forEach(function(p){all.push(p);all.push([p[0]+Emax[0],p[1]+Emax[1]]);}); }
+  var f=fitMath(all,VW,VH,28);
+  var out="";
+  if(s.circle){
+    var r=s.r*f.sc;
+    var Cf=[f.SX(0),f.SY(0)], Cb=[f.SX(E[0]),f.SY(E[1])];
+    var ex=Cb[0]-Cf[0], ey=Cb[1]-Cf[1], eL=Math.hypot(ex,ey)||1;
+    var px=-ey/eL, py=ex/eL;                       // unit perpendicular to the axis (screen)
+    var T1f=[Cf[0]+r*px,Cf[1]+r*py], T2f=[Cf[0]-r*px,Cf[1]-r*py];
+    var T1b=[Cb[0]+r*px,Cb[1]+r*py], T2b=[Cb[0]-r*px,Cb[1]-r*py];
+    // far rim (behind), then tube body, then side walls, then near circular face
+    out+='<ellipse cx="'+Cb[0].toFixed(1)+'" cy="'+Cb[1].toFixed(1)+'" rx="'+r.toFixed(1)+'" ry="'+r.toFixed(1)+'" fill="#dfe9ef" stroke="#5c7f49" stroke-width="1.5"/>';
+    out+='<polygon points="'+T1f[0].toFixed(1)+','+T1f[1].toFixed(1)+' '+T1b[0].toFixed(1)+','+T1b[1].toFixed(1)+' '+T2b[0].toFixed(1)+','+T2b[1].toFixed(1)+' '+T2f[0].toFixed(1)+','+T2f[1].toFixed(1)+'" fill="#e7eef4" stroke="none"/>';
+    out+='<line x1="'+T1f[0].toFixed(1)+'" y1="'+T1f[1].toFixed(1)+'" x2="'+T1b[0].toFixed(1)+'" y2="'+T1b[1].toFixed(1)+'" stroke="#5c7f49" stroke-width="1.5"/>';
+    out+='<line x1="'+T2f[0].toFixed(1)+'" y1="'+T2f[1].toFixed(1)+'" x2="'+T2b[0].toFixed(1)+'" y2="'+T2b[1].toFixed(1)+'" stroke="#5c7f49" stroke-width="1.5"/>';
+    if(ghost){ [0.33,0.66].forEach(function(t){ var gc=[f.SX(E[0]*t),f.SY(E[1]*t)]; out+='<ellipse cx="'+gc[0].toFixed(1)+'" cy="'+gc[1].toFixed(1)+'" rx="'+r.toFixed(1)+'" ry="'+r.toFixed(1)+'" fill="none" stroke="#8aa0b0" stroke-width="1" stroke-dasharray="3 3"/>'; }); }
+    out+='<ellipse cx="'+Cf[0].toFixed(1)+'" cy="'+Cf[1].toFixed(1)+'" rx="'+r.toFixed(1)+'" ry="'+r.toFixed(1)+'" fill="#dbe7f2" stroke="#3f5f45" stroke-width="2.2"/>';
+  } else {
+    var Fp=s.pts.map(function(p){return [f.SX(p[0]),f.SY(p[1])];});
+    var Bp=s.pts.map(function(p){return [f.SX(p[0]+E[0]),f.SY(p[1]+E[1])];});
+    out+='<polygon points="'+Bp.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(" ")+'" fill="#dfe9ef" stroke="#5c7f49" stroke-width="1.4"/>';
+    for(var i=0;i<s.pts.length;i++){var j=(i+1)%s.pts.length;
+      out+='<polygon points="'+Fp[i][0].toFixed(1)+','+Fp[i][1].toFixed(1)+' '+Fp[j][0].toFixed(1)+','+Fp[j][1].toFixed(1)+' '+Bp[j][0].toFixed(1)+','+Bp[j][1].toFixed(1)+' '+Bp[i][0].toFixed(1)+','+Bp[i][1].toFixed(1)+'" fill="#e7eef4" stroke="#7d9aa8" stroke-width="0.8"/>';}
+    if(ghost){ [0.33,0.66].forEach(function(t){ var G=s.pts.map(function(p){return f.SX(p[0]+E[0]*t)+','+f.SY(p[1]+E[1]*t);}).join(" "); out+='<polygon points="'+G+'" fill="none" stroke="#8aa0b0" stroke-width="1" stroke-dasharray="3 3"/>'; }); }
+    out+='<polygon points="'+Fp.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(" ")+'" fill="#dbe7f2" stroke="#3f5f45" stroke-width="2.2"/>';
+  }
+  svg.innerHTML=out;
+}
+
+/* ============ CONNECTION: Carry-it-Along Extruder ============ */
+var exKey="rect";
+function exChipsRender(){
+  var order=["rect","tri","lshape","pent","circle"];
+  document.getElementById("exChips").innerHTML=order.map(function(k){return '<span class="chip'+(k===exKey?' active':'')+'" onclick="setEx(\''+k+'\')">'+SHAPES[k].label+'</span>';}).join("");
+}
+function exRender(reveal){
+  var L=Number(document.getElementById("exLen").value), ghost=document.getElementById("exGhost").checked;
+  document.getElementById("exLenV").textContent=L;
+  drawPrism("exSvg",exKey,L,ghost,460,250,8);
+  var s=SHAPES[exKey], A=shapeArea(s);
+  var solidName = exKey==="circle" ? "cylinder" : (SHAPES[exKey].name+" prism");
+  document.getElementById("exRead").innerHTML="Every slice along the length is the same <b>"+s.name+"</b>, exactly the same size — so this solid is a <b>"+solidName+"</b>.<br>Cross-section area ≈ <b>"+A.toFixed(1)+" units²</b> at every slice · length = <b>"+L+" units</b>.";
+  if(reveal){var c=document.getElementById("exCarry");if(c)c.style.display="";}
+}
+function exDraw(){exRender(true);}
+function setEx(k){exKey=k;exChipsRender();exRender(true);}
+
+/* ============ 3D engine: meshes + generic plane slicer ============ */
+function V(a,b){return[a[0]-b[0],a[1]-b[1],a[2]-b[2]];}
+function Vp(a,b){return[a[0]+b[0],a[1]+b[1],a[2]+b[2]];}
+function Vs(a,s){return[a[0]*s,a[1]*s,a[2]*s];}
+function Vd(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
+function Vc(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
+function Vn(a){var L=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/L,a[1]/L,a[2]/L];}
+var SOLIDH=5;
+function mkBox(L,W,H){return {v:[[-L/2,-W/2,0],[L/2,-W/2,0],[L/2,W/2,0],[-L/2,W/2,0],[-L/2,-W/2,H],[L/2,-W/2,H],[L/2,W/2,H],[-L/2,W/2,H]],
+  e:[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]],
+  f:[[0,1,2,3],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]],H:H,kind:"box"};}
+function mkPrism(H){var t=[[-2,-1.2],[2,-1.2],[0,2.1]];return {v:[[t[0][0],t[0][1],0],[t[1][0],t[1][1],0],[t[2][0],t[2][1],0],[t[0][0],t[0][1],H],[t[1][0],t[1][1],H],[t[2][0],t[2][1],H]],
+  e:[[0,1],[1,2],[2,0],[3,4],[4,5],[5,3],[0,3],[1,4],[2,5]],
+  f:[[0,1,2],[3,4,5],[0,1,4,3],[1,2,5,4],[2,0,3,5]],H:H,kind:"prism"};}
+function mkPyr(base,H){var b=base/2;return {v:[[-b,-b,0],[b,-b,0],[b,b,0],[-b,b,0],[0,0,H]],
+  e:[[0,1],[1,2],[2,3],[3,0],[0,4],[1,4],[2,4],[3,4]],
+  f:[[0,1,2,3],[0,1,4],[1,2,4],[2,3,4],[3,0,4]],H:H,kind:"pyramid"};}
+function mkCyl(r,H,n){var v=[],e=[],f=[];for(var i=0;i<n;i++){var a=i/n*2*Math.PI;v.push([r*Math.cos(a),r*Math.sin(a),0]);}for(var i=0;i<n;i++){var a=i/n*2*Math.PI;v.push([r*Math.cos(a),r*Math.sin(a),H]);}for(var i=0;i<n;i++){e.push([i,(i+1)%n]);e.push([n+i,n+(i+1)%n]);e.push([i,n+i]);f.push([i,(i+1)%n,n+(i+1)%n,n+i]);}var bot=[],top=[];for(var i=0;i<n;i++){bot.push(i);top.push(n+i);}f.push(bot);f.push(top);return {v:v,e:e,f:f,H:H,kind:"cylinder",n:n,r:r};}
+function mkCone(r,H,n){var v=[],e=[],f=[];for(var i=0;i<n;i++){var a=i/n*2*Math.PI;v.push([r*Math.cos(a),r*Math.sin(a),0]);}var ap=v.push([0,0,H])-1;for(var i=0;i<n;i++){e.push([i,(i+1)%n]);e.push([i,ap]);f.push([i,(i+1)%n,ap]);}var bot=[];for(var i=0;i<n;i++)bot.push(i);f.push(bot);return {v:v,e:e,f:f,H:H,kind:"cone",n:n,r:r,apex:ap};}
+var MESH={};
+function getMesh(k){ if(MESH[k])return MESH[k];
+  var m = k==="box"?mkBox(4,3,SOLIDH): k==="prism"?mkPrism(SOLIDH): k==="pyramid"?mkPyr(4,SOLIDH): k==="cylinder"?mkCyl(2,SOLIDH,48): mkCone(2,SOLIDH,48);
+  MESH[k]=m; return m;
+}
+/* section of mesh by plane (normal n, point P0) -> {p3:[3D pts], p2:[2D in-plane], area, base, top, np} */
+function sliceMesh(mesh,n,P0){
+  n=Vn(n); var d=Vd(n,P0), pts=[];
+  mesh.e.forEach(function(ed){var A=mesh.v[ed[0]],B=mesh.v[ed[1]];var sa=Vd(n,A)-d, sb=Vd(n,B)-d;
+    if((sa>0&&sb>0)||(sa<0&&sb<0))return; if(sa===0&&sb===0)return; var t=sa/(sa-sb); if(t<-1e-9||t>1+1e-9)return;
+    pts.push(Vp(A,Vs(V(B,A),t)));});
+  var uniq=[]; pts.forEach(function(p){if(!uniq.some(function(q){return Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2])<1e-5;}))uniq.push(p);});
+  if(uniq.length<3)return {p3:[],p2:[],area:0,np:0};
+  var u=Vn(Math.abs(n[2])<0.9?Vc(n,[0,0,1]):Vc(n,[1,0,0])), v=Vn(Vc(n,u));
+  var c=[0,0,0]; uniq.forEach(function(p){c=Vp(c,p);}); c=Vs(c,1/uniq.length);
+  uniq.sort(function(a,b){return Math.atan2(Vd(V(a,c),v),Vd(V(a,c),u))-Math.atan2(Vd(V(b,c),v),Vd(V(b,c),u));});
+  var p2=uniq.map(function(p){return [Vd(V(p,c),u),Vd(V(p,c),v)];});
+  var base=uniq.some(function(p){return p[2]<0.02*mesh.H;}), top=uniq.some(function(p){return p[2]>0.98*mesh.H;});
+  return {p3:uniq,p2:p2,area:polyArea(p2),np:uniq.length,base:base,top:top,u:u,v:v,c:c};
+}
+/* camera: azimuth az, elevation el; world z is up */
+var CAM={az:35*Math.PI/180, el:20*Math.PI/180};
+function proj3(p,H){
+  var x=p[0], y=p[1], z=p[2]-H/2;
+  var ca=Math.cos(CAM.az),sa=Math.sin(CAM.az);
+  var x1=x*ca - y*sa, y1=x*sa + y*ca, z1=z;
+  var ce=Math.cos(CAM.el),se=Math.sin(CAM.el);
+  var y2=y1*ce - z1*se, z2=y1*se + z1*ce;
+  return {x:x1, y:-z2, depth:y2};
+}
+
+/* ============ MOVEMENT: Slicing Plane Studio ============ */
+var slKey="cylinder";
+function slChipsRender(){
+  var order=[["box","Cuboid"],["prism","Triangular prism"],["cylinder","Cylinder"],["pyramid","Square pyramid"],["cone","Cone"]];
+  document.getElementById("slChips").innerHTML=order.map(function(o){return '<span class="chip'+(o[0]===slKey?' active':'')+'" onclick="setSl(\''+o[0]+'\')">'+o[1]+'</span>';}).join("");
+}
+function setSl(k){slKey=k;slChipsRender();slDraw();}
+function shapeName(mesh,sec,tilt){
+  var np=sec.np, tiny=tilt<0.02;
+  if(mesh.kind==="box") return np<=4?"a rectangle":"a hexagon";
+  if(mesh.kind==="prism") return np<=3?"a triangle":"a four-sided shape";
+  if(mesh.kind==="pyramid") return tiny?"a square":"a four-sided shape";
+  if(mesh.kind==="cylinder"){ if(sec.base||sec.top) return "an ellipse with a straight edge"; return tiny?"a circle":"an ellipse"; }
+  if(mesh.kind==="cone"){ if(tiny) return "a circle"; if(sec.base) return "a parabola (an open curve)"; return "an ellipse"; }
+  return "a shape";
+}
+function noteFor(kind){
+  if(kind==="box") return "A cuboid is a prism — every level slice is the same rectangle.";
+  if(kind==="prism") return "A triangular prism — every level slice is the same triangle, all the way up.";
+  if(kind==="cylinder") return "A cylinder is a prism — level slices are always the same circle; tilt the cut and it becomes an ellipse.";
+  if(kind==="pyramid") return "A pyramid is not a prism — its square slice shrinks as you climb toward the point.";
+  if(kind==="cone") return "A cone is not a prism — its circle shrinks with height, and a slanted cut makes an ellipse or a parabola.";
+  return "";
+}
+function slDraw(){
+  var mesh=getMesh(slKey), H=mesh.H;
+  var hv=Number(document.getElementById("slH").value)/100, tiltDeg=Number(document.getElementById("slT").value);
+  var tilt=tiltDeg*Math.PI/180, hWorld=H*hv;
+  document.getElementById("slHv").textContent=Math.round(hv*100)+"% up";
+  document.getElementById("slTv").textContent=tiltDeg+"°";
+  var n=[Math.sin(tilt),0,Math.cos(tilt)], P0=[0,0,hWorld];
+  var sec=sliceMesh(mesh,n,P0);
+  /* ---- 3D view ---- */
+  var svg=document.getElementById("slSolid");
+  var proj=mesh.v.map(function(p){return proj3(p,H);});
+  // include plane corners + section in fit
+  var uu=Vn(Math.abs(n[2])<0.9?Vc(n,[0,0,1]):Vc(n,[1,0,0])), vv=Vn(Vc(n,[Math.sin(tilt),0,Math.cos(tilt)]));
+  vv=Vn(Vc(n,uu));
+  var R=3.6, planeC=[P0.slice()[0],P0[1],P0[2]];
+  var planeCorners=[Vp(P0,Vp(Vs(uu,R),Vs(vv,R))),Vp(P0,Vp(Vs(uu,-R),Vs(vv,R))),Vp(P0,Vp(Vs(uu,-R),Vs(vv,-R))),Vp(P0,Vp(Vs(uu,R),Vs(vv,-R)))];
+  var pcProj=planeCorners.map(function(p){return proj3(p,H);});
+  var secProj=sec.p3.map(function(p){return proj3(p,H);});
+  var allP=proj.concat(pcProj).concat(secProj);
+  var minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9;
+  allP.forEach(function(p){minx=Math.min(minx,p.x);maxx=Math.max(maxx,p.x);miny=Math.min(miny,p.y);maxy=Math.max(maxy,p.y);});
+  var VW=300,VH=300,pad=26, sc=Math.min((VW-2*pad)/((maxx-minx)||1),(VH-2*pad)/((maxy-miny)||1));
+  var ox=VW/2-((minx+maxx)/2)*sc, oy=VH/2-((miny+maxy)/2)*sc;
+  function SX(p){return ox+p.x*sc;} function SY(p){return oy+p.y*sc;}
+  var out="";
+  // faces, painter-sorted (far first = larger depth first if camera looks -y? use ascending)
+  var faces=mesh.f.map(function(f,i){var dsum=0;f.forEach(function(vi){dsum+=proj[vi].depth;});return {f:f,d:dsum/f.length};}).sort(function(a,b){return b.d-a.d;});
+  faces.forEach(function(o){var pts=o.f.map(function(vi){return SX(proj[vi]).toFixed(1)+","+SY(proj[vi]).toFixed(1);}).join(" ");
+    out+='<polygon points="'+pts+'" fill="#cfe0ec" fill-opacity="0.28" stroke="#6f8a9b" stroke-width="0.8" stroke-opacity="0.7"/>';});
+  // slicing plane
+  var pcp=pcProj.map(function(p){return SX(p).toFixed(1)+","+SY(p).toFixed(1);}).join(" ");
+  out+='<polygon points="'+pcp+'" fill="#e0913b" fill-opacity="0.16" stroke="#b25f2e" stroke-width="1" stroke-dasharray="4 3"/>';
+  // section polygon (bold)
+  if(secProj.length>=3){ var spts=secProj.map(function(p){return SX(p).toFixed(1)+","+SY(p).toFixed(1);}).join(" ");
+    out+='<polygon points="'+spts+'" fill="#e0913b" fill-opacity="0.55" stroke="#b25f2e" stroke-width="2.4"/>'; }
+  svg.innerHTML=out;
+  /* ---- face-on view ---- */
+  var fsvg=document.getElementById("slFace");
+  if(sec.p2.length>=3){
+    var f2=fitMath(sec.p2,300,300,40);
+    var fp=sec.p2.map(function(p){return f2.SX(p[0]).toFixed(1)+","+f2.SY(p[1]).toFixed(1);}).join(" ");
+    fsvg.innerHTML='<polygon points="'+fp+'" fill="#f6e2c9" stroke="#b25f2e" stroke-width="2.4"/>'+
+      '<text x="150" y="20" font-size="12" fill="#4f554b" text-anchor="middle">the cross-section, face-on</text>';
+    document.getElementById("slName").innerHTML="This slice is <b>"+shapeName(mesh,sec,tilt)+"</b>.";
+    document.getElementById("slRead").innerHTML=noteFor(mesh.kind)+" &nbsp; Cross-section area ≈ <b>"+sec.area.toFixed(1)+" units²</b>.";
+  } else {
+    fsvg.innerHTML='<text x="150" y="150" font-size="12" fill="#8a6a3f" text-anchor="middle">The slice misses the solid — move the height back.</text>';
+    document.getElementById("slName").textContent="";
+    document.getElementById("slRead").textContent="Move the height slider back toward the middle so the plane cuts through the solid.";
+  }
+}
+
+/* ============ REFLECTION: Name the Slice ============ */
+var NS=[
+ {clue:"A <b>cube</b> is sliced <b>parallel to one of its faces</b>.",opts:["Square","Triangle","Circle"],ans:0,why:"A flat cut parallel to a face gives the same square face — a <b>square</b>."},
+ {clue:"A <b>cube</b> is sliced straight down through the middle of two opposite faces.",opts:["Rectangle","Hexagon","Circle"],ans:0,why:"That vertical cut runs top to bottom across the width — a <b>rectangle</b>."},
+ {clue:"A <b>cylinder</b> is sliced <b>parallel to its circular base</b>.",opts:["Circle","Rectangle","Ellipse"],ans:0,why:"Every level slice of a cylinder is the same <b>circle</b>."},
+ {clue:"A <b>cylinder</b> is sliced straight down through its middle (a vertical cut).",opts:["Rectangle","Circle","Triangle"],ans:0,why:"A vertical cut down a cylinder reveals a <b>rectangle</b> — its height by its diameter."},
+ {clue:"A <b>cylinder</b> is sliced at a gentle <b>slant</b> (not level, not vertical).",opts:["Ellipse","Circle","Rectangle"],ans:0,why:"A slanted cut stretches the circle into an <b>ellipse</b>."},
+ {clue:"A <b>triangular prism</b> is sliced straight <b>across its length</b>.",opts:["Triangle","Rectangle","Square"],ans:0,why:"A prism keeps its cross-section, so the slice is the same <b>triangle</b>."},
+ {clue:"A <b>square-based pyramid</b> is sliced <b>parallel to its base</b>.",opts:["Square","Triangle","Circle"],ans:0,why:"A level slice of a pyramid is a smaller <b>square</b> — the same shape as the base, shrunk."},
+ {clue:"A <b>cone</b> is sliced <b>parallel to its base</b>.",opts:["Circle","Triangle","Ellipse"],ans:0,why:"A level slice of a cone is a <b>circle</b>, smaller the higher you cut."}
+];
+var nsIndex=0, nsAnswered=false;
+function nsRender(){
+  var q=NS[nsIndex];
+  document.getElementById("nsClue").innerHTML="<b>Slice "+(nsIndex+1)+":</b> "+q.clue;
+  document.getElementById("nsOpts").innerHTML=q.opts.map(function(o,i){return '<button onclick="nsPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("nsFeedback").style.display="none";
+  document.getElementById("nsProgress").textContent="Slice "+(nsIndex+1)+" of "+NS.length+".";
+  nsAnswered=false;
+}
+function nsPick(i){
+  var q=NS[nsIndex], fb=document.getElementById("nsFeedback"); fb.style.display="block";
+  if(i===q.ans){fb.className="feedback good";fb.innerHTML="Yes — "+q.why;}
+  else {fb.className="feedback warn";fb.innerHTML="Not quite. "+q.why;}
+  nsAnswered=true;
+}
+function nsNext(){ nsIndex=(nsIndex+1)%NS.length; nsRender(); }
+
+/* ============ CREATIVITY: Design-a-Prism ============ */
+var dpKey="lshape";
+function dpChipsRender(){
+  var order=["rect","tri","lshape","pent","circle"];
+  document.getElementById("dpChips").innerHTML=order.map(function(k){return '<span class="chip'+(k===dpKey?' active':'')+'" onclick="setDp(\''+k+'\')">'+SHAPES[k].label+'</span>';}).join("");
+}
+function dpOptsRender(){
+  document.getElementById("dpOpts").innerHTML=['the same shape','a smaller shape','a single point'].map(function(o,i){return '<button onclick="dpPick('+i+')">'+o+'</button>';}).join("");
+}
+function setDp(k){dpKey=k;dpChipsRender();dpDraw();document.getElementById("dpFeedback").style.display="none";}
+function dpDraw(){
+  var L=Number(document.getElementById("dpLen").value);
+  document.getElementById("dpLenV").textContent=L;
+  drawPrism("dpSvg",dpKey,L,true,440,230,9);
+}
+function dpPick(i){
+  var fb=document.getElementById("dpFeedback"); fb.style.display="block";
+  if(i===0){fb.className="feedback good";fb.innerHTML="Exactly — a prism carries the <b>same "+SHAPES[dpKey].name+"</b> all along its length, so a slice anywhere is identical. That is what makes it a prism.";}
+  else {fb.className="feedback warn";fb.innerHTML="Not for a prism. Unlike a pyramid or cone, a prism does not shrink — every slice is the <b>same "+SHAPES[dpKey].name+"</b>, end to end.";}
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    name2d:{title:'Naming 2D shapes',prompt:'A flat shape has 3 straight sides. What is it called?',answer:'triangle',hint:'Count the sides: 3 sides = tri-angle.'},
+    rect:{title:'Sides of a rectangle',prompt:'How many sides does a rectangle have?',answer:4,hint:'A rectangle has two pairs of equal sides.'},
+    circle:{title:'Parts of a circle',prompt:'The distance from the centre of a circle to its edge is called the …?',answer:'radius',hint:'It is half of the diameter.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} return normText(v).includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'name2d\')">Naming 2D shapes</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'rect\')">Sides of a rectangle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'circle\')">Parts of a circle</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · The word",q:"Fill in the blank: when you slice straight through a solid, the flat 2D shape you reveal is called the __________.",a:["cross section","cross sections","crosssection","section"],prompt:"It is the word this whole lesson is named after.",hint:"It starts with 'cross' — the flat shape a slice reveals.",sol:"It is called the cross-section — the flat 2D shape a slice reveals."},
+ {label:"2 of 6 · Prism",q:"Complete the sentence: a prism is a solid with the same … all along its length.",a:["cross section","cross-section","cross sectional area","cross section area"],prompt:"What stays the same at every slice of a prism?",hint:"Every slice across a prism is identical — the same what?",sol:"A prism has the same cross-section all along its length."},
+ {label:"3 of 6 · Cuboid slice",q:"A cuboid is sliced parallel to one of its faces. What 2D shape is the cross-section?",a:["rectangle","square"],prompt:"A flat cut parallel to a face reveals a face-shaped slice.",hint:"The slice is the same shape as the face it is parallel to.",sol:"A rectangle (a square if that face is square)."},
+ {label:"4 of 6 · Cylinder slice",q:"A cylinder is sliced parallel to its circular base. What 2D shape is the cross-section?",a:["circle"],prompt:"Every level slice of a cylinder is the same shape as its base.",hint:"The base is a circle, so a level slice is a …?",sol:"A circle — every level slice of a cylinder is the same circle."},
+ {label:"5 of 6 · Tilted cylinder",q:"A cylinder is sliced at a gentle slant (not level, not vertical). What 2D shape appears?",a:["ellipse","oval"],prompt:"A slanted cut stretches the circle in one direction.",hint:"It is a stretched circle — an oval shape with a special name.",sol:"An ellipse — a slanted slice stretches the circle into an ellipse."},
+ {label:"6 of 6 · Prism or not",q:"True or false: a square-based pyramid is a prism. (Its slices stay the same size all the way up.)",a:["false","f","no"],prompt:"Does a pyramid's slice stay the same size as you go up, or shrink?",hint:"A prism's slices are constant; a pyramid's shrink toward the point.",sol:"False — a pyramid's square slice shrinks with height, so it is not a prism."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=q.a.some(function(x){var nx=normText(x);return nx===learner||nx===stripped;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct — that is the cross-section.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Picture the slice cutting through, or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  exChipsRender(); exRender(false);
+  slChipsRender(); slDraw();
+  nsRender();
+  dpChipsRender(); dpOptsRender(); dpDraw();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>
