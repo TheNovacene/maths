@@ -163,6 +163,14 @@
           "file": "lessons/2d-and-3d-shapes/08-cross-sections.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-09-volume",
+          "num": "Lesson 09",
+          "title": "Volume",
+          "file": "lessons/2d-and-3d-shapes/09-volume.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

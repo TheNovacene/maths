@@ -54,6 +54,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_07_Surface_Area/NEO_Maths_Y9_Shapes_Lesson_07_Surface_Area_v0.1.html",
     "shapes-08-cross-sections":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_08_Cross_Sections/NEO_Maths_Y9_Shapes_Lesson_08_Cross_Sections_v0.1.html",
+    "shapes-09-volume":
+        "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_09_Volume/NEO_Maths_Y9_Shapes_Lesson_09_Volume_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

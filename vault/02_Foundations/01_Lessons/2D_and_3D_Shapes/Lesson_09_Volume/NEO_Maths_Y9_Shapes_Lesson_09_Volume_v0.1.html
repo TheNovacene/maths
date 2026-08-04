@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Volume</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.satab td,.satab th{text-align:center;vertical-align:middle}
+.tcell{width:84px;text-align:center;padding:7px;border:1px solid #bcae98;border-radius:6px;box-sizing:border-box}
+.netsvg,.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.readgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: 2D and 3D Shapes</h1>
+<h2>Volume</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How much space does a solid fill?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Measurement — the amount of 3D space inside a solid.</p>
+<p><b>Stepping Stone:</b> find the volume of cuboids, prisms and cylinders — the space they fill, measured in cubic units (cm³).</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 12 · Move 12 · Reflect 9 · Create 5 · Rest/Nourish 4 · Evidence 3</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_09_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Shapes_Lesson_09_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('isometric','Sketch a solid and work out its volume: cross-section area × length.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Build volume as area × length</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Volume</b> — the amount of 3D space a solid fills, measured in cubic units (cm³).<br>
+<b style="color:#2b3d78">Cubic centimetre (cm³)</b> — the space filled by a cube 1 cm on every side.<br>
+<b style="color:#b0651f">Capacity</b> — how much a container can hold; 1 litre = 1000 cm³.</p>
+</div>
+<p><b>What to do:</b> choose a cross-section, read its <b>area</b>, then drag the <b>Length</b> slider. Watch the volume grow as <b>area × length</b>.</p>
+<p><b>What you are trying to notice:</b> a prism is a cross-section carried along a length — so its volume is simply the <b>cross-section area × length</b>. A cuboid and a cylinder are just special cases.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧱 Prism Volume Machine</h3>
+<div id="exChips" class="buttonrow" style="justify-content:center"></div>
+<div class="card" style="text-align:center"><svg id="exSvg" class="graphsvg" style="max-width:460px" viewBox="0 0 460 250" role="img" aria-label="A cross-section carried along a length to form a prism, with its volume"></svg></div>
+<label class="small" for="exLen"><b>Length:</b> <span id="exLenV">4</span> cm</label>
+<input id="exLen" type="range" min="1" max="8" step="0.5" value="4" style="width:100%" oninput="exDraw()">
+<p class="small" style="margin:6px 0"><label><input type="checkbox" id="exGhost" checked onchange="exDraw()"> show the slices stacking along the length</label></p>
+<div id="exRead" class="card small"></div>
+<div id="exCarry" style="display:none"><p><b>Carry this forward:</b> <b>volume of any prism = cross-section area × length</b>. For a cuboid that is length × width × height; for a cylinder it is π r² × height.</p></div>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Stack it up in unit cubes</summary>
+<p><b>What to do:</b> set the <b>base</b> (how many cubes wide and deep) and the number of <b>layers</b>, and watch the solid fill with 1 cm cubes. Then drag <b>Lean</b> to slide the layers sideways.</p>
+<p><b>What you are trying to notice:</b> volume = cubes in one layer × number of layers = <b>base area × height</b>. And leaning the stack over does <em>not</em> change the volume — the same cubes are still there.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧊 Layer-Stacker</h3>
+<div class="card" style="text-align:center"><svg id="lsSvg" class="graphsvg" style="max-width:380px" viewBox="0 0 380 300" role="img" aria-label="A solid built from unit cubes in layers"></svg></div>
+<div class="readgrid">
+<div class="card"><label class="small" for="lsW"><b>Width:</b> <span id="lsWv">4</span></label><input id="lsW" type="range" min="1" max="6" value="4" style="width:100%" oninput="lsDraw()"></div>
+<div class="card"><label class="small" for="lsD"><b>Depth:</b> <span id="lsDv">3</span></label><input id="lsD" type="range" min="1" max="5" value="3" style="width:100%" oninput="lsDraw()"></div>
+</div>
+<div class="readgrid">
+<div class="card"><label class="small" for="lsH"><b>Layers (height):</b> <span id="lsHv">3</span></label><input id="lsH" type="range" min="1" max="6" value="3" style="width:100%" oninput="lsDraw()"></div>
+<div class="card"><label class="small" for="lsLean"><b>Lean:</b> <span id="lsLeanv">0%</span></label><input id="lsLean" type="range" min="0" max="100" value="0" style="width:100%" oninput="lsDraw()"></div>
+</div>
+<div id="lsRead" class="card small"></div>
+<p><b>Carry this forward:</b> volume is <b>one layer × the number of layers</b> — that is base area × height, and it is exactly cross-section area × length. Leaning the stack (an <em>oblique</em> prism) keeps the same volume.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Spot the slip</summary>
+<p><b>What to do:</b> each card shows a short volume calculation. Decide whether it is <b>right</b> or has a <b>slip</b> in it, then reveal the reasoning.</p>
+<p><b>What you are trying to notice:</b> volume goes wrong in a few predictable ways — the wrong units, a diameter used as a radius, or adding when you should multiply.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔍 Right or slip?</h3>
+<div id="vsClue" class="clue"></div>
+<div class="buttonrow"><button onclick="vsGuess(true)">✅ It's right</button><button onclick="vsGuess(false)">❌ There's a slip</button></div>
+<div id="vsFeedback" class="feedback"></div>
+<div class="buttonrow"><button onclick="vsNext()">➡️ Next calculation</button></div>
+<p class="small" id="vsProgress"></p>
+<p><b>Carry this forward:</b> volume is always in <b>cubic</b> units (cm³), uses the <b>radius</b> for circles, and comes from <b>multiplying</b> area by length — never adding.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — How much does it hold?</summary>
+<p><b>What to do:</b> pick a real container, read its size, and work out its <b>volume</b> — how much space it holds. Predict, then check. Meet <b>litres</b> along the way.</p>
+<p><b>What you are trying to notice:</b> volume is a real quantity — the amount a container holds — and 1 litre is just 1000 cm³.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🫙 Capacity calculator</h3>
+<div id="hhChips" class="buttonrow" style="justify-content:center"></div>
+<div class="card">
+<p style="margin-top:0" id="hhDesc"></p>
+<div class="buttonrow"><input id="hhGuess" inputmode="decimal" placeholder="volume (cm³)" style="flex:1;min-width:160px;padding:9px;border:1px solid #bcae98;border-radius:8px"><button onclick="hhCheck()">Check</button><button onclick="hhReveal()">Reveal</button></div>
+<div id="hhFeedback" class="feedback"></div>
+</div>
+<p><b>Make it your own:</b> on the Scratchpad, design a container to hold exactly 1 litre (1000 cm³). What dimensions could it have?</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('isometric','Design a 1-litre container: choose dimensions so length × width × height = 1000 cm³.')">✏️ Design on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>Filling space with cubes, and seeing area become volume, is a real stretch of the imagination. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> did it surprise you that leaning the stack of layers kept the same volume? There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
+<p><b>Mode: contextual.</b> Volume is how much a thing holds — from a bottle of water to a swimming pool.</p>
+<div class="card">
+<p><b>Why it matters:</b> every label that says "500 ml" or "2 litres" is a volume. A tank's fuel, a pool's water, the concrete for a foundation, the dose in a syringe — all are volumes, and mistakes are costly. Shipping and packaging firms work hard to fit the most into each box, because wasted space costs money. Even a recipe scaled up uses volume. The area × length idea you built today is exactly how all of these are worked out.</p>
+<p class="small">Next time you pour a drink, picture the cubic centimetres — 1 litre is a cube 10 cm on each side.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> find and explain volumes.</p>
+<ul>
+<li>Work out the volume of a cuboid and one other solid (a prism or a cylinder). Show the cross-section area and the length, and multiply.</li>
+<li>Explain, in your own words, why the volume of any prism is <b>cross-section area × length</b>.</li>
+<li>Find a real container at home, measure or estimate it, and work out roughly how much it holds in cm³ (and litres, if you like).</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SHAPES_VOLUME_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows volume is the space inside a solid, in cm³.</td><td>Finds the volume of a cuboid with support.</td><td>Finds the volume of a cuboid and one other prism.</td><td>Explains why any prism's volume is cross-section area × length.</td></tr>
+<tr><td><b>Application</b></td><td>Counts or estimates cubes in a stack.</td><td>Multiplies length × width × height.</td><td>Uses cross-section area × length for a prism or cylinder.</td><td>Handles cylinders and converts to litres confidently.</td></tr>
+<tr><td><b>Communication</b></td><td>Records a volume with limited labelling.</td><td>Shows some working and units.</td><td>Sets out the area, the length and the product clearly in cm³.</td><td>Explains a full method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots a units slip (cm² vs cm³).</td><td>Explains a common volume slip and how to avoid it.</td><td>Connects volume to cross-sections, capacity and real containers.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Volume — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the net, find each face area, and add them before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_volume_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Volume_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["³","²","×","="];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+var PI=3.14;
+
+/* ============ Cross-section shapes (for the Volume Machine) ============ */
+var SHAPES={
+ rect:{name:"rectangle",label:"Rectangle → cuboid",pts:[[-2,-1.5],[2,-1.5],[2,1.5],[-2,1.5]],areaStr:"4 × 3 = 12",solid:"cuboid"},
+ tri:{name:"triangle",label:"Triangle → prism",pts:[[-2,-1.5],[2,-1.5],[0,1.5]],areaStr:"½ × 4 × 3 = 6",solid:"triangular prism"},
+ circle:{name:"circle",label:"Circle → cylinder",r:2,circle:true,areaStr:"π × 2² ≈ 12.6",solid:"cylinder"}
+};
+function polyArea(pts){var a=0;for(var i=0;i<pts.length;i++){var j=(i+1)%pts.length;a+=pts[i][0]*pts[j][1]-pts[j][0]*pts[i][1];}return Math.abs(a)/2;}
+function shapeArea(s){return s.circle?Math.PI*s.r*s.r:polyArea(s.pts);}
+function fitMath(all,VW,VH,pad){
+  var minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9;
+  all.forEach(function(p){minx=Math.min(minx,p[0]);maxx=Math.max(maxx,p[0]);miny=Math.min(miny,p[1]);maxy=Math.max(maxy,p[1]);});
+  var sc=Math.min((VW-2*pad)/((maxx-minx)||1),(VH-2*pad)/((maxy-miny)||1));
+  var ox=VW/2-((minx+maxx)/2)*sc, oy=VH/2+((miny+maxy)/2)*sc;
+  return {sc:sc,ox:ox,oy:oy,SX:function(x){return ox+x*sc;},SY:function(y){return oy-y*sc;}};
+}
+/* prism drawing — scale locked to the longest prism so the cross-section stays a fixed size */
+function drawPrism(svgId,key,L,ghost,VW,VH,maxL){
+  var svg=document.getElementById(svgId); if(!svg)return; var s=SHAPES[key];
+  var A=32*Math.PI/180, cosA=Math.cos(A), sinA=Math.sin(A);
+  function Evec(len){return [len*0.45*cosA, len*0.45*sinA];}
+  var E=Evec(L), Emax=Evec(maxL);
+  var all=[];
+  if(s.circle){ [[0,0],Emax].forEach(function(c){all.push([c[0]-s.r,c[1]-s.r]);all.push([c[0]+s.r,c[1]+s.r]);}); }
+  else { s.pts.forEach(function(p){all.push(p);all.push([p[0]+Emax[0],p[1]+Emax[1]]);}); }
+  var f=fitMath(all,VW,VH,28), out="";
+  if(s.circle){
+    var r=s.r*f.sc, Cf=[f.SX(0),f.SY(0)], Cb=[f.SX(E[0]),f.SY(E[1])];
+    var ex=Cb[0]-Cf[0], ey=Cb[1]-Cf[1], eL=Math.hypot(ex,ey)||1, px=-ey/eL, py=ex/eL;
+    var T1f=[Cf[0]+r*px,Cf[1]+r*py], T2f=[Cf[0]-r*px,Cf[1]-r*py], T1b=[Cb[0]+r*px,Cb[1]+r*py], T2b=[Cb[0]-r*px,Cb[1]-r*py];
+    out+='<ellipse cx="'+Cb[0].toFixed(1)+'" cy="'+Cb[1].toFixed(1)+'" rx="'+r.toFixed(1)+'" ry="'+r.toFixed(1)+'" fill="#dfe9ef" stroke="#5c7f49" stroke-width="1.5"/>';
+    out+='<polygon points="'+T1f[0].toFixed(1)+','+T1f[1].toFixed(1)+' '+T1b[0].toFixed(1)+','+T1b[1].toFixed(1)+' '+T2b[0].toFixed(1)+','+T2b[1].toFixed(1)+' '+T2f[0].toFixed(1)+','+T2f[1].toFixed(1)+'" fill="#e7eef4" stroke="none"/>';
+    out+='<line x1="'+T1f[0].toFixed(1)+'" y1="'+T1f[1].toFixed(1)+'" x2="'+T1b[0].toFixed(1)+'" y2="'+T1b[1].toFixed(1)+'" stroke="#5c7f49" stroke-width="1.5"/>';
+    out+='<line x1="'+T2f[0].toFixed(1)+'" y1="'+T2f[1].toFixed(1)+'" x2="'+T2b[0].toFixed(1)+'" y2="'+T2b[1].toFixed(1)+'" stroke="#5c7f49" stroke-width="1.5"/>';
+    if(ghost){ [0.33,0.66].forEach(function(t){ var gc=[f.SX(E[0]*t),f.SY(E[1]*t)]; out+='<ellipse cx="'+gc[0].toFixed(1)+'" cy="'+gc[1].toFixed(1)+'" rx="'+r.toFixed(1)+'" ry="'+r.toFixed(1)+'" fill="none" stroke="#8aa0b0" stroke-width="1" stroke-dasharray="3 3"/>'; }); }
+    out+='<ellipse cx="'+Cf[0].toFixed(1)+'" cy="'+Cf[1].toFixed(1)+'" rx="'+r.toFixed(1)+'" ry="'+r.toFixed(1)+'" fill="#dbe7f2" stroke="#3f5f45" stroke-width="2.2"/>';
+  } else {
+    var Fp=s.pts.map(function(p){return [f.SX(p[0]),f.SY(p[1])];});
+    var Bp=s.pts.map(function(p){return [f.SX(p[0]+E[0]),f.SY(p[1]+E[1])];});
+    out+='<polygon points="'+Bp.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(" ")+'" fill="#dfe9ef" stroke="#5c7f49" stroke-width="1.4"/>';
+    for(var i=0;i<s.pts.length;i++){var j=(i+1)%s.pts.length;
+      out+='<polygon points="'+Fp[i][0].toFixed(1)+','+Fp[i][1].toFixed(1)+' '+Fp[j][0].toFixed(1)+','+Fp[j][1].toFixed(1)+' '+Bp[j][0].toFixed(1)+','+Bp[j][1].toFixed(1)+' '+Bp[i][0].toFixed(1)+','+Bp[i][1].toFixed(1)+'" fill="#e7eef4" stroke="#7d9aa8" stroke-width="0.8"/>';}
+    if(ghost){ [0.33,0.66].forEach(function(t){ var G=s.pts.map(function(p){return f.SX(p[0]+E[0]*t)+','+f.SY(p[1]+E[1]*t);}).join(" "); out+='<polygon points="'+G+'" fill="none" stroke="#8aa0b0" stroke-width="1" stroke-dasharray="3 3"/>'; }); }
+    out+='<polygon points="'+Fp.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(" ")+'" fill="#dbe7f2" stroke="#3f5f45" stroke-width="2.2"/>';
+  }
+  svg.innerHTML=out;
+}
+
+/* ============ CONNECTION: Prism Volume Machine ============ */
+var exKey="rect";
+function exChipsRender(){
+  var order=["rect","tri","circle"];
+  document.getElementById("exChips").innerHTML=order.map(function(k){return '<span class="chip'+(k===exKey?' active':'')+'" onclick="setEx(\''+k+'\')">'+SHAPES[k].label+'</span>';}).join("");
+}
+function exRender(reveal){
+  var L=Number(document.getElementById("exLen").value), ghost=document.getElementById("exGhost").checked;
+  document.getElementById("exLenV").textContent=L;
+  drawPrism("exSvg",exKey,L,ghost,460,250,8);
+  var s=SHAPES[exKey], A=shapeArea(s), V=A*L;
+  document.getElementById("exRead").innerHTML=
+    "Cross-section area = "+s.areaStr+" = <b>"+A.toFixed(A<20?1:0)+" cm²</b> &nbsp;·&nbsp; length = <b>"+L+" cm</b><br>"+
+    "Volume = area × length = "+A.toFixed(A<20?1:0)+" × "+L+" = <b>"+V.toFixed(V<100?1:0)+" cm³</b> &nbsp;(a "+s.solid+")";
+  if(reveal){var c=document.getElementById("exCarry");if(c)c.style.display="";}
+}
+function exDraw(){exRender(true);}
+function setEx(k){exKey=k;exChipsRender();exRender(true);}
+
+/* ============ MOVEMENT: Layer-Stacker (isometric unit cubes + Cavalieri lean) ============ */
+function lsStack(W,D,H,lean,VW,VH){
+  var kx=17, ky=9.5, kz=21, off1=lean*0.85;   // each whole layer slides off1 cubes over the one below
+  // cubes stay TRUE cubes; layer k shifts rigidly by k*off1 along the base -> a visible staircase (Cavalieri)
+  function Pr(a,b,c,off){ return [ (a-b+off)*kx, (a+b+off)*ky - c*kz ]; }
+  var cubes=[]; for(var i=0;i<W;i++)for(var j=0;j<D;j++)for(var k=0;k<H;k++)cubes.push([i,j,k]);
+  var xs=[],ys=[];
+  cubes.forEach(function(c){var off=c[2]*off1; for(var da=0;da<2;da++)for(var db=0;db<2;db++)for(var dc=0;dc<2;dc++){var p=Pr(c[0]+da,c[1]+db,c[2]+dc,off);xs.push(p[0]);ys.push(p[1]);}});
+  var ox=VW/2-(Math.min.apply(0,xs)+Math.max.apply(0,xs))/2, oy=VH/2-(Math.min.apply(0,ys)+Math.max.apply(0,ys))/2;
+  function S(a,b,c,off){var p=Pr(a,b,c,off);return (p[0]+ox).toFixed(1)+","+(p[1]+oy).toFixed(1);}
+  var top="#dbe7f2", left="#b9cfe0", right="#9db9cd", edge="#5b7185";
+  function poly(p,fill){return '<polygon points="'+p.join(" ")+'" fill="'+fill+'" stroke="'+edge+'" stroke-width="1" stroke-linejoin="round"/>';}
+  // draw layer by layer, bottom to top (each higher layer sits above and in front); within a layer, back to front
+  cubes.sort(function(A,B){ return (A[2]-B[2]) || ((A[0]+A[1])-(B[0]+B[1])); });
+  var out="";
+  cubes.forEach(function(c){var i=c[0],j=c[1],k=c[2],off=k*off1;
+    out+=poly([S(i,j,k+1,off),S(i+1,j,k+1,off),S(i+1,j+1,k+1,off),S(i,j+1,k+1,off)],top);
+    out+=poly([S(i,j+1,k,off),S(i+1,j+1,k,off),S(i+1,j+1,k+1,off),S(i,j+1,k+1,off)],left);
+    out+=poly([S(i+1,j,k,off),S(i+1,j+1,k,off),S(i+1,j+1,k+1,off),S(i+1,j,k+1,off)],right);
+  });
+  return out;
+}
+function lsDraw(){
+  var W=+document.getElementById("lsW").value, D=+document.getElementById("lsD").value, H=+document.getElementById("lsH").value, lean=+document.getElementById("lsLean").value/100;
+  document.getElementById("lsWv").textContent=W; document.getElementById("lsDv").textContent=D; document.getElementById("lsHv").textContent=H; document.getElementById("lsLeanv").textContent=Math.round(lean*100)+"%";
+  document.getElementById("lsSvg").innerHTML=lsStack(W,D,H,lean,380,300);
+  var layer=W*D, vol=layer*H;
+  var msg="Cubes in one layer = "+W+" × "+D+" = <b>"+layer+"</b> &nbsp;·&nbsp; layers = <b>"+H+"</b><br>Volume = "+layer+" × "+H+" = <b>"+vol+" cm³</b>.";
+  if(lean>0.02) msg+=" &nbsp;Leaning the stack keeps all "+vol+" cubes — the volume does <b>not</b> change.";
+  document.getElementById("lsRead").innerHTML=msg;
+}
+
+/* ============ REFLECTION: Spot the slip (volume) ============ */
+var VS=[
+ {t:"A cube has side 3 cm. Its volume is 3 × 3 = 9 cm³.",ok:false,why:"Slip — that is the area of one face. Volume needs all three dimensions: 3 × 3 × 3 = <b>27 cm³</b>."},
+ {t:"A cuboid is 5 × 4 × 2 cm. Volume = 5 × 4 × 2 = 40 cm³.",ok:true,why:"Right — length × width × height = 40 cm³."},
+ {t:"A prism has cross-section area 12 cm² and length 5 cm. Volume = 12 + 5 = 17 cm³.",ok:false,why:"Slip — volume is area <b>×</b> length, not area + length: 12 × 5 = <b>60 cm³</b>."},
+ {t:"A cylinder has diameter 10 cm and height 4 cm. Volume = π × 10² × 4 ≈ 1256 cm³.",ok:false,why:"Slip — the formula uses the <b>radius</b>. r = 5, so volume = π × 5² × 4 ≈ <b>314 cm³</b>."},
+ {t:"A cuboid is 6 × 3 × 2 cm, so its volume is 36 cm².",ok:false,why:"Slip — the number is right but volume is measured in <b>cubic</b> units: 36 <b>cm³</b>, not cm²."},
+ {t:"A triangular prism has triangle ends of area 6 cm² and length 10 cm. Volume = 6 × 10 = 60 cm³.",ok:true,why:"Right — cross-section area × length = 6 × 10 = 60 cm³."}
+];
+var vsIndex=0;
+function vsRender(){ document.getElementById("vsClue").innerHTML="<b>Calculation "+(vsIndex+1)+":</b> "+VS[vsIndex].t; document.getElementById("vsFeedback").style.display="none"; document.getElementById("vsProgress").textContent="Calculation "+(vsIndex+1)+" of "+VS.length+"."; }
+function vsGuess(choice){ var s=VS[vsIndex], fb=document.getElementById("vsFeedback"); fb.style.display="block"; if(choice===s.ok){fb.className="feedback good";fb.innerHTML="Correct. "+s.why;} else {fb.className="feedback warn";fb.innerHTML="Look again — "+s.why;} }
+function vsNext(){ vsIndex=(vsIndex+1)%VS.length; vsRender(); }
+
+/* ============ CREATIVITY: How much does it hold? ============ */
+var HH=[
+ {name:"A fish tank (cuboid)",desc:"A fish tank is 40 cm long, 25 cm wide and 30 cm tall. How much water does it hold, in cm³?",vol:40*25*30,litres:true},
+ {name:"A juice carton (cuboid)",desc:"A juice carton is 6 cm by 4 cm by 10 cm. What is its volume, in cm³?",vol:6*4*10,litres:true},
+ {name:"A soup tin (cylinder)",desc:"A soup tin has radius 4 cm and height 11 cm. How much does it hold, in cm³? Use π ≈ 3.14.",vol:3.14*4*4*11,litres:true},
+ {name:"A dice box (cube)",desc:"A cube-shaped box has side 8 cm. What is its volume, in cm³?",vol:8*8*8,litres:false}
+];
+var hhIndex=0;
+function hhChipsRender(){ document.getElementById("hhChips").innerHTML=HH.map(function(o,i){return '<span class="chip'+(i===hhIndex?' active':'')+'" onclick="setHh('+i+')">'+o.name+'</span>';}).join(""); }
+function setHh(i){hhIndex=i;document.getElementById("hhDesc").innerHTML=HH[i].desc;document.getElementById("hhGuess").value="";document.getElementById("hhFeedback").style.display="none";hhChipsRender();}
+function litreStr(v){return (v/1000).toFixed(v/1000<1?2:v%1000===0?0:1)+" litres";}
+function hhCheck(){
+  var o=HH[hhIndex], fb=document.getElementById("hhFeedback"), n=num(document.getElementById("hhGuess").value); fb.style.display="block";
+  if(isNaN(n)){fb.className="feedback warn";fb.textContent="Work out the volume (area of the base × height, or π r² × h), then enter it.";return;}
+  if(Math.abs(n-o.vol)<=Math.max(1,o.vol*0.02)){fb.className="feedback good";fb.innerHTML="Spot on — it holds about <b>"+o.vol.toFixed(0)+" cm³</b>"+(o.litres?" &nbsp;(that is "+litreStr(o.vol)+")":"")+".";}
+  else{fb.className="feedback warn";fb.innerHTML="Not yet. The volume is about <b>"+o.vol.toFixed(0)+" cm³</b> — check the base area and the height.";}
+}
+function hhReveal(){var o=HH[hhIndex],fb=document.getElementById("hhFeedback");fb.style.display="block";fb.className="feedback good";fb.innerHTML="It holds <b>"+o.vol.toFixed(0)+" cm³</b>"+(o.litres?" &nbsp;(about "+litreStr(o.vol)+", since 1 litre = 1000 cm³)":"")+".";}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    rect:{title:'Area of a rectangle',prompt:'A rectangle is 6 cm by 4 cm. What is its area, in cm²?',answer:24,hint:'Area of a rectangle = length × width.'},
+    circle:{title:'Area of a circle',prompt:'A circle has radius 5 cm. What is its area, in cm²? Use π ≈ 3.14.',answer:78.5,hint:'Area of a circle = π r² = 3.14 × 5².'},
+    mult:{title:'Multiplying',prompt:'What is 12 × 5?',answer:60,hint:'12 × 5 is the same as 12 + 12 + 12 + 12 + 12.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} return normText(v).includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'rect\')">Area of a rectangle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'circle\')">Area of a circle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'mult\')">Multiplying</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><p>'+r.prompt+'</p>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · The rule",q:"Fill in the blank: the volume of a prism = cross-section area × __________.",a:["length","the length","its length"],prompt:"What do you carry the cross-section along to build a prism?",hint:"You multiply the area by how long the prism is — its …?",sol:"Volume = cross-section area × length."},
+ {label:"2 of 6 · Cuboid",q:"A cuboid is 4 cm by 3 cm by 2 cm. Find its volume, in cm³.",a:[],eq:function(v){return Math.abs(num(v)-24)<0.5;},prompt:"Multiply all three dimensions.",hint:"4 × 3 × 2.",sol:"4 × 3 × 2 = 24 cm³."},
+ {label:"3 of 6 · Cube",q:"A cube has side 5 cm. Find its volume, in cm³.",a:[],eq:function(v){return Math.abs(num(v)-125)<0.5;},prompt:"A cube's three sides are all equal.",hint:"5 × 5 × 5.",sol:"5 × 5 × 5 = 125 cm³."},
+ {label:"4 of 6 · Any prism",q:"A prism has cross-section area 15 cm² and length 6 cm. Find its volume, in cm³.",a:[],eq:function(v){return Math.abs(num(v)-90)<0.5;},prompt:"Volume = cross-section area × length.",hint:"15 × 6.",sol:"15 × 6 = 90 cm³."},
+ {label:"5 of 6 · Cylinder",q:"A cylinder has radius 3 cm and height 10 cm. Find its volume, in cm³. Use π ≈ 3.14.",a:[],eq:function(v){return Math.abs(num(v)-282.6)<2;},prompt:"The cross-section is a circle: area = π r².",hint:"π × 3² × 10 = 3.14 × 9 × 10.",sol:"π r² × h = 3.14 × 3² × 10 = 282.6 cm³."},
+ {label:"6 of 6 · Units",q:"True or false: volume is measured in square centimetres (cm²).",a:["false","f","no"],prompt:"How many dimensions does volume fill — two, or three?",hint:"Area is cm²; volume fills 3D space, so its units are …?",sol:"False — volume is measured in cubic centimetres (cm³), not cm²."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=q.a.some(function(x){var nx=normText(x);return nx===learner||nx===stripped;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct — that is the volume.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Multiply the cross-section area by the length, or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  exChipsRender(); exRender(false);
+  lsDraw();
+  vsRender();
+  hhChipsRender(); setHh(0);
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

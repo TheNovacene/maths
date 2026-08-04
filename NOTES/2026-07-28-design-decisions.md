@@ -281,3 +281,12 @@ dual checks). Still needs Gerry's eye on the 3D render look. Guidance PDFs after
 - **Creativity (Design-a-Prism):** choose cross-section + length, predict a halfway slice (answer: identical — that's what makes it a prism); isometric Scratchpad.
 - Practice: 6 Qs (meaning, prism definition, cuboid/cylinder/tilted-cylinder slices, prism-or-not) with article/text tolerance. Reconnection Routes: naming 2D shapes, sides of a rectangle, parts of a circle. Scratchpad storageKey cross_sections_v01, isometric default.
 - QA: jsdom 18/18; visuals verified by rasterising SVG frames (extruder + studio incl. parabola). Guidance PDFs pending Gerry's sign-off.
+
+## L9 Volume — build (2026-08-04)
+- Cornerstones chosen by Gerry: Connection = Prism Volume Machine (B); Movement = Layer-Stacker (A) WITH the Cavalieri skew "wow" (C folded in as a Lean slider); Reflection = Spot the Slip; Creativity = How Much Does It Hold (capacity + litres).
+- **Connection (Prism Volume Machine):** reuses the L8 extruder (drawPrism, fixed-scale). Cross-section chips rectangle→cuboid / triangle→triangular prism / circle→cylinder; drag length; live readout "area × length = volume" in cm³.
+- **Movement (Layer-Stacker):** self-authored isometric unit-cube renderer (military projection, painter order = (a+b) then k — verified no occlusion errors). Sliders width/depth/height/lean. Volume = layer (W×D) × layers (H); Lean shears the stack into an oblique prism with the SAME volume (Cavalieri). Prototyped + screenshot-tuned.
+- **Reflection (Spot the Slip):** 6 volume calcs targeting cm²/cm³ units, diameter-for-radius, add-instead-of-multiply, face-area-for-volume.
+- **Creativity (How Much Does It Hold):** fish tank / juice carton / soup tin / cube; volume + litres (1 L = 1000 cm³).
+- Practice: fill-in-blank Q1 (× length), cuboid, cube, any-prism, cylinder (πr²h), units T/F. Reconnection: rectangle area, circle area, multiplying. Palette ["³","²","×","="]. Scratchpad key volume_v01.
+- QA: jsdom (all real checks pass; one loose test-regex miscount corrected — stacker draws 108 polys for 36 cubes as expected). Visuals verified by rasterising frames (volume machine + stacker + lean). Guidance PDFs pending sign-off.
