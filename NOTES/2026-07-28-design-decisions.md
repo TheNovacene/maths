@@ -290,3 +290,20 @@ dual checks). Still needs Gerry's eye on the 3D render look. Guidance PDFs after
 - **Creativity (How Much Does It Hold):** fish tank / juice carton / soup tin / cube; volume + litres (1 L = 1000 cm³).
 - Practice: fill-in-blank Q1 (× length), cuboid, cube, any-prism, cylinder (πr²h), units T/F. Reconnection: rectangle area, circle area, multiplying. Palette ["³","²","×","="]. Scratchpad key volume_v01.
 - QA: jsdom (all real checks pass; one loose test-regex miscount corrected — stacker draws 108 polys for 36 cubes as expected). Visuals verified by rasterising frames (volume machine + stacker + lean). Guidance PDFs pending sign-off.
+
+## L10 Converting spatial units — build (2026-08-04) — UNIT COMPLETE
+- Cornerstones chosen by Gerry: Connection = Zoom & Reveal (A); Movement = Fill It Up (C); scope = mm, cm and m. Reflection = Spot the Slip (conversions); Creativity = Real Measures.
+- **Connection (Zoom & Reveal):** tabs length/area/volume; press Zoom in to fill 1 cm / 1 cm² / 1 cm³ with mm units → 10 / 100 / 1000, tying the factor to powers of ten (10¹, 10², 10³). Volume uses a subdivided isometric cube (10×10 grid on 3 faces).
+- **Movement (Fill It Up):** area mode packs a cm² cell-by-cell to 100; volume mode stacks layers to fill a cm³ (faint outline shows remaining space) to 1000. Reuses a shared isoBox helper.
+- **Reflection (Spot the Slip):** 6 conversion right/slip cards (×10 for area error, volume ×1000, m²→cm² = ×10000, etc.).
+- **Creativity (Real Measures):** room m²→cm², phone mm²→cm², tank cm³→litres, pond m³→litres.
+- Practice: fill-blank (1 cm²=100 mm²), length/area/volume conversions, m²→cm², why-×100 T/F. Reconnection: ×10, ×100, powers of ten. Palette ["²","³","×","="].
+- QA jsdom 20/20; visuals verified (zoom reveal + fill). Guidance PDFs pending sign-off.
+- **Unit status: 2D and 3D Shapes L1–L10 all complete.**
+
+## Year 10 unit started — Straight Lines and Connected Representations (2026-08-05)
+- New Intermediate pathway unit (internal Y10). HT1 = 18 lessons (6 weeks × 3), from the 15-session blueprint + 3 additions (SL-R2 directed number, SL-C1 consolidation, SL-Q2 qualification). Mid-unit checkpoint after L9. Blueprint saved: vault/01_Curriculum_Maps/NEO_Mathematics_Unit_Blueprint_Straight_Lines_HT1_v0.1.md. Y9 HT1 covered by 2D&3D Shapes + Pythagoras (2/week).
+- New curriculum unit "straight-lines" (stage Intermediate, strand Algebra) in curriculum.json; vault 03_Intermediate/01_Lessons/Straight_Lines/. build_site.py SOURCES entry added.
+- **L1 "A line as a relationship" (SL-01):** Cornerstones — Connection = One Line, Five Costumes (m/c sliders drive story+table+coordinates+equation+graph together); Movement = Step the Story (dot steps along line, constant m); Reflection = Match the Representation (table/story → equation); Creativity = Model the Story (set m,c to fit a real scenario).
+- **Reusable graph engine** built: drawGraph(svgId,m,c,opts) — adaptive y-range, labelled axes, intercept dot, plotted points, highlightX with dashed guides, optional ghost target line; eqStr()/storyStr()/tableHTML() formatters (handle m∈{0,±1}, negative c). This is the shared spine the rest of the unit reskins (Intercept Isolator, Gradient Isolator, Line Detective, etc.).
+- QA jsdom 23/23; graph visuals verified (positive/negative/zero gradient + step). Practice: two-numbers, substitution×2, read-the-step, match, one-relationship T/F. Reconnection: coordinates, substitution, reading a table. Guidance PDFs pending sign-off.

@@ -171,6 +171,31 @@
           "file": "lessons/2d-and-3d-shapes/09-volume.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "shapes-10-converting-units",
+          "num": "Lesson 10",
+          "title": "Converting spatial units",
+          "file": "lessons/2d-and-3d-shapes/10-converting-units.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
+      "id": "straight-lines",
+      "title": "Straight Lines and Connected Representations",
+      "stage": "Intermediate",
+      "strand": "Algebra",
+      "source": "vault/03_Intermediate/01_Lessons/Straight_Lines",
+      "lessons": [
+        {
+          "id": "straight-lines-01-a-line-as-a-relationship",
+          "num": "Lesson 01",
+          "title": "A line as a relationship",
+          "file": "lessons/straight-lines/01-a-line-as-a-relationship.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

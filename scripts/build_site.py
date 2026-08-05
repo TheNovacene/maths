@@ -56,6 +56,10 @@ SOURCES = {
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_08_Cross_Sections/NEO_Maths_Y9_Shapes_Lesson_08_Cross_Sections_v0.1.html",
     "shapes-09-volume":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_09_Volume/NEO_Maths_Y9_Shapes_Lesson_09_Volume_v0.1.html",
+    "shapes-10-converting-units":
+        "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_10_Converting_Units/NEO_Maths_Y9_Shapes_Lesson_10_Converting_Units_v0.1.html",
+    "straight-lines-01-a-line-as-a-relationship":
+        "03_Intermediate/01_Lessons/Straight_Lines/Lesson_01_A_Line_as_a_Relationship/NEO_Maths_Y10_Straight_Lines_Lesson_01_A_Line_as_a_Relationship_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

@@ -84,4 +84,5 @@ canvas projector. Lesson 1 keeps its clean 2D Prism Family Explorer.
 This blueprint fixes the *story and sequence*, not the interactives. Each lesson is framed and
 built one at a time: Stage 1 (frame) → Stage 2 (interactive option bank, chosen by the
 curriculum lead) → Stage 4 (build the full ecosystem) → Stage 6 (QA, then review). Lessons 1–6
-are built (through Platonic Solids); Lesson 7 (Surface area) is next.
+are built. **All ten lessons of the 2D and 3D Shapes unit are now complete** (L1–L10), each with
+its interactive lesson, Practice Companion, Scratchpad, and Learner + Supporting Adult guidance PDFs.
