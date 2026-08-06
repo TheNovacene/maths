@@ -65,6 +65,17 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
 </div>
 
+<!-- ================= FILM OPENER ================= -->
+<div class="guides" style="text-align:center">
+<h3 style="margin-top:0">🎬 Watch first — the story behind the grid</h3>
+<p style="max-width:660px;margin:4px auto 10px">Every graph in this unit sits on a grid of coordinates: a way of pairing numbers with position on a page. That idea was shaped by the philosopher and mathematician <b>René Descartes</b> (1596–1650) — which is why we call it the <em>Cartesian</em> plane. Here is his story, in about three minutes.</p>
+<video id="descartesVid" controls preload="metadata" playsinline poster="../../assets/media/Descartes_Lines_of_Thought_poster.jpg" style="width:100%;max-width:600px;border-radius:12px;display:block;margin:0 auto">
+<source src="../../assets/media/Descartes_Lines_of_Thought_720p.mp4" type="video/mp4">
+Your browser does not support the video tag. The film tells the story of René Descartes, who shaped coordinate geometry.
+</video>
+<p class="small" style="margin-top:8px">Captions are on their way. If you would rather skip the film, that is completely fine — scroll on to begin.</p>
+</div>
+
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
 <summary>🌿 Connection — One line, five costumes</summary>
@@ -72,7 +83,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <h3 style="margin-top:0">🔤 New words for this lesson</h3>
 <p style="margin:6px 0"><b style="color:#3f7a45">Linear relationship</b> — a relationship whose graph is a straight line: equal steps in <em>x</em> give equal steps in <em>y</em>.<br>
 <b style="color:#2b3d78">Representation</b> — a way of showing the relationship: in words, a table, coordinates, an equation, or a graph.<br>
-<b style="color:#b0651f">Equation <em>y = mx + c</em></b> — the line's rule: <em>c</em> is the starting value, <em>m</em> is the step added each time.</p>
+<b style="color:#b0651f">Equation <em>y = mx + c</em></b> — the line's rule: <em>c</em> is the <em>y</em>-intercept (the value of <em>y</em> when <em>x</em> = 0), and <em>m</em> is the step — how much <em>y</em> changes each time <em>x</em> goes up by 1.</p>
 </div>
 <p><b>What to do:</b> drag the <b>m</b> and <b>c</b> sliders and watch <em>all five</em> representations change together — the story, the table, the coordinates, the equation and the graph.</p>
 <p><b>What you are trying to notice:</b> these are not five different things — they are five <b>costumes</b> on one relationship. Change the line and every view updates at once.</p>
@@ -80,7 +91,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <h3 style="margin-top:0">📈 One Line, Five Costumes</h3>
 <div class="readgrid">
 <div class="card"><label class="small" for="glM"><b>m</b> — step each time: <span id="glMv">2</span></label><input id="glM" type="range" min="-3" max="4" step="1" value="2" style="width:100%" oninput="glDraw()"></div>
-<div class="card"><label class="small" for="glC"><b>c</b> — starting value: <span id="glCv">3</span></label><input id="glC" type="range" min="-2" max="8" step="1" value="3" style="width:100%" oninput="glDraw()"></div>
+<div class="card"><label class="small" for="glC"><b>c</b> — the <em>y</em>-intercept: <span id="glCv">3</span></label><input id="glC" type="range" min="-2" max="8" step="1" value="3" style="width:100%" oninput="glDraw()"></div>
 </div>
 <div class="twocol">
 <div class="card" style="text-align:center"><svg id="glGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="The graph of the line, with its coordinates plotted"></svg><p class="small" style="margin:4px 0 0">Graph &amp; coordinates</p></div>
@@ -134,7 +145,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div id="cmChips" class="buttonrow" style="justify-content:center"></div>
 <p id="cmDesc" class="clue"></p>
 <div class="readgrid">
-<div class="card"><label class="small" for="cmC"><b>Starting value c:</b> <span id="cmCv">0</span></label><input id="cmC" type="range" min="-2" max="10" step="1" value="0" style="width:100%" oninput="cmDraw()"></div>
+<div class="card"><label class="small" for="cmC"><b>c</b> — the value at the start (<em>x</em> = 0): <span id="cmCv">0</span></label><input id="cmC" type="range" min="-2" max="10" step="1" value="0" style="width:100%" oninput="cmDraw()"></div>
 <div class="card"><label class="small" for="cmM"><b>Step m:</b> <span id="cmMv">1</span></label><input id="cmM" type="range" min="-3" max="5" step="1" value="1" style="width:100%" oninput="cmDraw()"></div>
 </div>
 <div class="card" style="text-align:center"><svg id="cmGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="Your line modelling the chosen story"></svg><div id="cmEq" class="bignum" style="margin:2px 0"></div></div>
@@ -158,10 +169,10 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <!-- ================= NUTRITION ================= -->
 <details class="nt">
 <summary>🍎 Nutrition — Where does this show up in the real world?</summary>
-<p><b>Mode: contextual.</b> Straight-line relationships are everywhere a fixed start meets a steady rate.</p>
+<p><b>Mode: contextual.</b> Straight-line relationships are everywhere a fixed amount meets a steady rate.</p>
 <div class="card">
-<p><b>Why it matters:</b> a phone tariff (a monthly fee plus a cost per gigabyte), a taxi fare (a flag price plus a rate per mile), wages (a bonus plus an hourly rate), a savings plan, a currency conversion — each is a line with a starting value <em>c</em> and a steady step <em>m</em>. People read these lines every day to compare deals and predict costs. Being able to move between the story, the numbers and the graph is what lets you choose well.</p>
-<p class="small">Next time you see a "fixed fee plus a rate", picture the line — where does it start, and how steep is it?</p>
+<p><b>Why it matters:</b> a phone tariff (a monthly fee plus a cost per gigabyte), a taxi fare (a flag price plus a rate per mile), wages (a bonus plus an hourly rate), a savings plan, a currency conversion — each is a line with an intercept <em>c</em> (the fixed amount, when <em>x</em> = 0) and a steady rate <em>m</em>. People read these lines every day to compare deals and predict costs. Being able to move between the story, the numbers and the graph is what lets you choose well.</p>
+<p class="small">Next time you see a "fixed fee plus a rate", picture the line — what is its fixed amount (<em>c</em>), and how steep is it (<em>m</em>)?</p>
 </div>
 </details>
 
@@ -329,7 +340,7 @@ function eqStr(m,c){
 }
 function storyStr(m,c){
   var step = m===0 ? "and <b>stays the same</b> each step" : m>0 ? ("and goes <b>up by "+m+"</b> each step") : ("and goes <b>down by "+(-m)+"</b> each step");
-  return "A value <b>starts at "+c+"</b> "+step+". After <em>x</em> steps it is <em>y</em>.";
+  return "Picture a value that is <b>"+c+" when x = 0</b> "+step+". After <em>x</em> steps it is <em>y</em>.";
 }
 function tableHTML(m,c){
   var th="",td="";
@@ -433,7 +444,7 @@ function cmDraw(){
 function cmCheck(){
   var o=CM[cmIndex], m=+document.getElementById("cmM").value, c=+document.getElementById("cmC").value, fb=document.getElementById("cmFeedback"); fb.style.display="block";
   if(m===o.m&&c===o.c){fb.className="feedback good";fb.innerHTML="Perfect — <b>"+eqStr(o.m,o.c)+"</b> models it: it starts at "+o.c+" and steps by "+o.m+" each time.";}
-  else{ var msg=[]; if(c!==o.c) msg.push("check the <b>starting value c</b> — where does it begin when x = 0?"); if(m!==o.m) msg.push("check the <b>step m</b> — how much does it change each time?"); fb.className="feedback warn"; fb.innerHTML="Not quite — "+msg.join(" and ")+"."; }
+  else{ var msg=[]; if(c!==o.c) msg.push("check the <b>y-intercept c</b> — the value when x = 0"); if(m!==o.m) msg.push("check the <b>step m</b> — how much does it change each time?"); fb.className="feedback warn"; fb.innerHTML="Not quite — "+msg.join(" and ")+"."; }
 }
 
 /* ---------------- Reconnection Routes ---------------- */
@@ -483,7 +494,7 @@ function cmCheck(){
 
 /* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · The two numbers",q:"In the equation y = mx + c, which letter tells you the starting value (where the line crosses the y-axis)?",a:["c"],prompt:"One letter is the start, the other is the step.",hint:"It is the number on its own, added at the end.",sol:"c — it is the value of y when x = 0, where the line meets the y-axis."},
+ {label:"1 of 6 · The two numbers",q:"In the equation y = mx + c, which letter is the y-intercept — the value of y when x = 0, where the line crosses the y-axis?",a:["c"],prompt:"One letter is the y-intercept, the other is the step.",hint:"It is the number on its own, added at the end.",sol:"c — it is the value of y when x = 0, where the line meets the y-axis."},
  {label:"2 of 6 · Substitute",q:"For the line y = 2x + 3, what is y when x = 0?",a:[],eq:function(v){return Math.abs(num(v)-3)<0.01;},prompt:"Replace x with 0.",hint:"2 × 0 + 3.",sol:"y = 2 × 0 + 3 = 3 — that is the intercept c."},
  {label:"3 of 6 · Substitute",q:"For the line y = 2x + 3, what is y when x = 4?",a:[],eq:function(v){return Math.abs(num(v)-11)<0.01;},prompt:"Replace x with 4.",hint:"2 × 4 + 3 = 8 + 3.",sol:"y = 2 × 4 + 3 = 11."},
  {label:"4 of 6 · Read the step",q:"A table shows x: 0, 1, 2 and y: 5, 7, 9. How much does y go up each time x goes up by 1?",a:[],eq:function(v){return Math.abs(num(v)-2)<0.01;},prompt:"Look at how the y values change: 5 → 7 → 9.",hint:"Each step, y increases by the same amount.",sol:"y goes up by 2 each step — that is the gradient m."},

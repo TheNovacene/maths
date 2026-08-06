@@ -307,3 +307,25 @@ dual checks). Still needs Gerry's eye on the 3D render look. Guidance PDFs after
 - **L1 "A line as a relationship" (SL-01):** Cornerstones — Connection = One Line, Five Costumes (m/c sliders drive story+table+coordinates+equation+graph together); Movement = Step the Story (dot steps along line, constant m); Reflection = Match the Representation (table/story → equation); Creativity = Model the Story (set m,c to fit a real scenario).
 - **Reusable graph engine** built: drawGraph(svgId,m,c,opts) — adaptive y-range, labelled axes, intercept dot, plotted points, highlightX with dashed guides, optional ghost target line; eqStr()/storyStr()/tableHTML() formatters (handle m∈{0,±1}, negative c). This is the shared spine the rest of the unit reskins (Intercept Isolator, Gradient Isolator, Line Detective, etc.).
 - QA jsdom 23/23; graph visuals verified (positive/negative/zero gradient + step). Practice: two-numbers, substitution×2, read-the-step, match, one-relationship T/F. Reconnection: coordinates, substitution, reading a table. Guidance PDFs pending sign-off.
+
+## Straight Lines L2 — A table can predict a line (SL-02) (2026-08-05)
+- Cornerstones (Gerry): Connection = Table-to-Line Predictor (fill table from a rule → highlight constant first difference → predict direction → REVEAL graph, hidden until predicted); Movement = Step-to-Build (press +m, table grows a row at a time, line builds via segTo); Reflection = First-Difference Detective (constant step or not — includes 2 non-linear: doubling, squares); Creativity = Predict a Mystery (2 rows shown → predict y at x=4 → reveal).
+- Extended shared drawGraph: showPoints now accepts a number (0..n); added hideLine and segTo (draw green segment 0→segTo) for the build-up effect. Backward compatible with L1.
+- Practice: generate y at x=0/4, first difference, continue the table, predict direction, is-it-a-line (non-linear no). Reconnection unchanged (coordinates/substitution/table). Wired: build_site.py + curriculum.json. 25 lessons live.
+- QA jsdom 20/20; visuals verified (predictor reveal + step-build segments). Guidance PDFs pending sign-off.
+
+## Straight Lines L3 — Where does the line start? (SL-03) (2026-08-06)
+- Cornerstones (Gerry): Connection = Intercept Isolator (m locked via m=1/2/3 buttons, vary c; shows crossing (0,c)); Movement = Slide to a Target (red target ring on y-axis, drag c to hit it); Reflection = Find the Intercept from graph / equation / table (three forms); Creativity = Parallel Family (shared m, three c sliders → three parallel lines, colour-matched intercepts).
+- Extended shared drawGraph again: opts.family (array of {m,c,col} → draws each line + its intercept, skips single-line drawing) and opts.targetY (hollow ring at (0,targetY)). Fit now spans all family lines + target. Backward compatible with L1/L2. This family capability is reused by SL-07 (parallel) and SL-08 (intersections).
+- Practice: which letter is c, c from equation, c from graph coordinate, c from table, parallel yes/no, "same m diff c = parallel" fill-blank. Reconnection unchanged. 26 lessons live.
+- QA jsdom 20/20; visuals verified (isolator + target + parallel family). Guidance PDFs pending sign-off.
+
+## Correctness fix — "y-intercept" not "starting point of a line" (2026-08-06)
+- Gerry (curriculum lead) flagged that framing c as "the starting value/point of a line" is mathematically misleading: a (non-vertical) line extends infinitely both ways and has no start; and "every straight line crosses the y-axis" is false (vertical lines x = k). Corrected across SL-01, SL-02, SL-03 lessons AND their guidance PDFs, plus the unit blueprint and curriculum.json title.
+- Convention adopted: c = the y-intercept (the value of y when x = 0, the point (0, c) where the line crosses the y-axis). "Initial/fixed value" reserved for real-life CONTEXTS where x counts from 0 (tariffs, deposits). Added an explicit note in SL-03 (New Words + FAQ + adult guide): a line has no start; and a caveat that y = mx + c describes only non-vertical lines (x = k has no y-intercept).
+- SL-03 renamed (learner-facing) "Where does the line start?" -> "Where does the line cross the y-axis?" (H2, page <title>, practice heading, curriculum title, blueprint). Internal filename/id/slug unchanged. Legitimate in-context uses (Model-the-Story, real fees) kept but tidied. Rebuilt: 26 live; jsdom SL-03 20/20.
+
+## Descartes film added to SL-01 (2026-08-06)
+- Gerry supplied "Lines of Thought — The Life of René Descartes" (1080p, 2:41, animated). Placed as a short OPENER before Connection in Straight Lines Lesson 1 (coordinates = the Cartesian plane's origin story). Matches the Euler-film pattern.
+- Transcoded to 720p (CRF 23) → docs/assets/media/Descartes_Lines_of_Thought_720p.mp4 (~20 MB) + poster jpg (title card). Self-hosted, no CDN. Embedded with <video><source> + poster; relative path ../../assets/media/ (verified).
+- Captions: deferred per Gerry (add later). WebVTT track to be added once narration script is available (as with Euler). Note added in the opener that captions are coming.

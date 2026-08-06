@@ -11,7 +11,7 @@ Can a line tell the same story as an equation, a table and a graph — and what 
 A straight line is a single relationship wearing many costumes: a context, a table, a set of
 coordinates, an equation, and a graph. This unit builds the learner's power to **move between
 those representations at will**, then to read the two numbers that control every line — *c*, the
-starting value (where the line meets the *y*-axis), and *m*, the constant rate of change
+*y*-intercept (where the line meets the *y*-axis), and *m*, the constant rate of change
 (gradient). From there it grows outward: finding a gradient from two points, writing *y = mx + c*
 from clues, and then lines **in relation to each other** — parallel lines, intersections
 (break-even/equal-value points), and conversion graphs. It closes by asking where a perfect line
@@ -38,7 +38,7 @@ becoming tortuous, HT2 may pivot and Lessons 10–18 become optional extension.
 | 1 | SL-01 | Core | A line as a relationship | Can a line tell the same story as an equation and a table? | Connection | Representation Matcher | REC-ALG-07/08 |
 | 2 | SL-02 | Core | A table can predict a line | How can a few coordinate pairs reveal a whole linear pattern? | Connection | Table-to-Line Predictor | REC-ALG-03/08 |
 | 3 | SL-R1 | Reconnection | Substitution and coordinates | Which earlier skills let a rule become a point? | Reflection | Rule-to-Point Reconnection | REC-ALG-03/07 |
-| 4 | SL-03 | Core | Where does the line start? | What does *c* control when nothing else changes? | Connection | Intercept Isolator (hold m, vary c) | SL-01/02 |
+| 4 | SL-03 | Core | Where does the line cross the y-axis? | What does *c* control when nothing else changes? | Connection | Intercept Isolator (hold m, vary c) | SL-01/02 |
 | 5 | SL-04 | Core | How fast is the line changing? | What does *m* control when the start stays fixed? | Movement | Gradient Isolator (hold c, vary m) | REC-NUM-02 |
 | 6 | SL-R2 ★ | Reconnection | Directed number & negative gradients | How do signed changes make a line fall? | Reflection | Directed-number preset (Structure Lab) | REC-NUM-02/05 |
 | 7 | SL-05 | Core | Rise, run and two points | How can two points reveal the gradient? | Movement | Gradient Triangle Builder | REC-NUM-02/05 |

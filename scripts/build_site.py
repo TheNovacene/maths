@@ -60,6 +60,10 @@ SOURCES = {
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_10_Converting_Units/NEO_Maths_Y9_Shapes_Lesson_10_Converting_Units_v0.1.html",
     "straight-lines-01-a-line-as-a-relationship":
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_01_A_Line_as_a_Relationship/NEO_Maths_Y10_Straight_Lines_Lesson_01_A_Line_as_a_Relationship_v0.1.html",
+    "straight-lines-02-a-table-can-predict-a-line":
+        "03_Intermediate/01_Lessons/Straight_Lines/Lesson_02_A_Table_Can_Predict_a_Line/NEO_Maths_Y10_Straight_Lines_Lesson_02_A_Table_Can_Predict_a_Line_v0.1.html",
+    "straight-lines-03-where-does-the-line-start":
+        "03_Intermediate/01_Lessons/Straight_Lines/Lesson_03_Where_Does_the_Line_Start/NEO_Maths_Y10_Straight_Lines_Lesson_03_Where_Does_the_Line_Start_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

@@ -196,6 +196,22 @@
           "file": "lessons/straight-lines/01-a-line-as-a-relationship.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-02-a-table-can-predict-a-line",
+          "num": "Lesson 02",
+          "title": "A table can predict a line",
+          "file": "lessons/straight-lines/02-a-table-can-predict-a-line.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "straight-lines-03-where-does-the-line-start",
+          "num": "Lesson 03",
+          "title": "Where does the line cross the y-axis?",
+          "file": "lessons/straight-lines/03-where-does-the-line-start.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
