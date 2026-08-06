@@ -212,6 +212,14 @@
           "file": "lessons/straight-lines/03-where-does-the-line-start.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-04-how-fast-is-the-line-changing",
+          "num": "Lesson 04",
+          "title": "How fast is the line changing?",
+          "file": "lessons/straight-lines/04-how-fast-is-the-line-changing.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
