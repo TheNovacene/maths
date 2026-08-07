@@ -220,6 +220,14 @@
           "file": "lessons/straight-lines/04-how-fast-is-the-line-changing.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-05-rise-run-and-two-points",
+          "num": "Lesson 05",
+          "title": "Rise, run and two points",
+          "file": "lessons/straight-lines/05-rise-run-and-two-points.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

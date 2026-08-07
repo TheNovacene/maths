@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Rise, run and two points</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.satab td,.satab th{text-align:center;vertical-align:middle}
+.tcell{width:84px;text-align:center;padding:7px;border:1px solid #bcae98;border-radius:6px;box-sizing:border-box}
+.netsvg,.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.readgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Straight Lines</h1>
+<h2>Rise, run and two points</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can two points reveal the gradient without showing the equation?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Calculating — finding the gradient from two points using rise and run.</p>
+<p><b>Stepping Stone:</b> find the gradient from two points — gradient = rise ÷ run = change in <em>y</em> ÷ change in <em>x</em>.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 10 · Move 15 · Reflect 10 · Create 5 · Rest/Nourish 3 · Evidence 2</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_05_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_05_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Mark two points, draw the rise-and-run triangle between them, and work out rise ÷ run.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Same line, different triangle</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Rise</b> — the change in <em>y</em> between two points: how far <em>up</em> (or down) you go.<br>
+<b style="color:#2b3d78">Run</b> — the change in <em>x</em> between two points: how far <em>across</em> you go.<br>
+<b style="color:#b0651f">Gradient</b> — <b>rise ÷ run</b> = change in <em>y</em> ÷ change in <em>x</em>. Written as <em>Δy</em> ÷ <em>Δx</em> ("delta" means "change in").</p>
+</div>
+<p><b>What to do:</b> each line shows <em>two</em> different rise-and-run triangles at once — a small one and a wider one. Compare the gradient each triangle gives. Press <b>Another line</b> for a fresh example.</p>
+<p><b>What you are trying to notice:</b> on any one line the two triangles have different rises and runs — but <b>rise ÷ run comes out the same every time</b>. The gradient belongs to the line, not to the points you pick.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔺 Same Line, Different Triangle</h3>
+<div class="card" style="text-align:center"><svg id="slGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="One line with two different gradient triangles on it"></svg></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="slNew()">🔀 Another line</button></div>
+<div id="slRead" class="card small"></div>
+<p><b>Carry this forward:</b> wherever you take the two points on a straight line, <b>rise ÷ run</b> gives the same gradient. That is what makes a line straight.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Gradient Triangle Builder</summary>
+<p><b>What to do:</b> <b>drag point A</b> and <b>point B</b> anywhere you like. The line is drawn through them, and the rise-and-run triangle appears between them. Watch how <b>rise ÷ run</b> gives the gradient.</p>
+<p><b>What you are trying to notice:</b> the <b>run</b> is how far across (change in <em>x</em>), the <b>rise</b> is how far up or down (change in <em>y</em>), and <b>gradient = rise ÷ run</b>. Move A and B closer or wider — as long as they stay on the same tilt, the gradient stays the same.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔺 Gradient Triangle Builder</h3>
+<p class="small" style="text-align:center;margin:2px 0">Drag the two dots. Keep them on different <em>x</em> positions (a run of zero has no gradient).</p>
+<div class="card" style="text-align:center"><svg id="gtGraph" class="graphsvg" style="max-width:360px;touch-action:none;cursor:grab" viewBox="0 0 360 360" role="img" aria-label="A line through two draggable points A and B, with the rise and run triangle between them"></svg></div>
+<div id="gtRead" class="card small"></div>
+<p><b>Carry this forward:</b> any two points on a line give the gradient by <b>rise ÷ run</b> — the change in <em>y</em> divided by the change in <em>x</em>. You do not need the equation to find it.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Right or slip?</summary>
+<p><b>What to do:</b> each card shows two points and someone's working for the gradient. Decide whether the working is <b>right</b> or a <b>slip</b>, then check.</p>
+<p><b>What you are trying to notice:</b> the two classic slips are <b>rise and run swapped</b> (run ÷ rise instead of rise ÷ run) and a <b>sign lost</b> when the line falls. Rise ÷ run, in that order, with signs kept.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 Right or slip?</h3>
+<div id="rcClue" class="clue"></div>
+<div class="card" style="text-align:center"><svg id="rcMini" class="graphsvg" style="max-width:300px" viewBox="0 0 360 360" role="img" aria-label="A line through two points with a rise and run triangle"></svg></div>
+<div id="rcOpts" class="buttonrow"></div>
+<div id="rcFeedback" class="feedback"></div>
+<div class="buttonrow"><button onclick="rcNext()">➡️ Next</button></div>
+<p class="small" id="rcProgress"></p>
+<p><b>Carry this forward:</b> gradient is <b>rise ÷ run</b> — always in that order, and keep the minus sign if the line falls.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Rate from two readings</summary>
+<p><b>What to do:</b> each situation gives you <b>two readings</b> — like a value at two different times. Work out the <b>rate</b> (the gradient) as <b>rise ÷ run</b>, type it in, and check.</p>
+<p><b>What you are trying to notice:</b> a real rate comes from two readings, not from an equation. When the second reading is <em>smaller</em>, the rise is negative — so the rate is <b>negative</b>.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🌍 Rate from Two Readings</h3>
+<div id="trChips" class="buttonrow" style="justify-content:center"></div>
+<p id="trDesc" class="clue"></p>
+<div class="card" style="text-align:center"><svg id="trGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="Two readings plotted, with the rise and run triangle between them"></svg></div>
+<div id="trWork" class="card small"></div>
+<label class="small" for="trAns"><b>The rate (gradient) = rise ÷ run =</b></label>
+<input id="trAns" placeholder="e.g. 3 or -2" style="max-width:160px">
+<div class="buttonrow" style="justify-content:center"><button onclick="trCheck()">✅ Check the rate</button></div>
+<div id="trFeedback" class="feedback"></div>
+<p><b>Make it your own:</b> on the Scratchpad, invent a situation, give two readings, and work out its rate — is it positive or negative?</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Invent a situation with two readings. Plot them, draw the rise-and-run triangle, and work out rise ÷ run.')">✏️ Create on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>Seeing that any two points give the same gradient — that rise ÷ run is fixed for a line — is a real shift in thinking. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> when you dragged A and B wider apart, both the rise and the run grew — yet the gradient stayed the same. What did it feel like to see that stay steady? There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
+<p><b>Mode: contextual.</b> A gradient is a rate — and rates run the world.</p>
+<div class="card">
+<p><b>Why it matters:</b> speed is a gradient (distance per hour), a wage is a gradient (pay per hour), a phone tariff's cost per gigabyte, the price per litre at a fuel pump, a medicine dose per kilogram of body weight — all gradients. A steeper line means a faster rate; a <em>negative</em> gradient means something falling — a battery draining, a balance dropping, a temperature cooling. Reading how steep a line is, and which way it leans, tells you how fast something is changing and whether it is growing or shrinking.</p>
+<p class="small">Next time you see the word "per" — miles per hour, cost per item — you are looking at a gradient.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> find a gradient from two points.</p>
+<ul>
+<li>Plot <b>two points</b> of your choosing, draw the line through them, and build the <b>rise-and-run triangle</b> between them. Label the rise and the run.</li>
+<li>Work out the gradient as <b>rise ÷ run</b>, showing your working. Then take a <b>different</b> pair of points on the same line and show it gives the <b>same</b> gradient.</li>
+<li>Give <b>two readings</b> from a real situation where the amount goes <em>down</em> (so the rise is negative), and work out the negative rate.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SL_RISE_RUN_AND_TWO_POINTS_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows rise is the change in y and run the change in x.</td><td>Builds a rise-and-run triangle between two points.</td><td>Finds the gradient as rise ÷ run.</td><td>Explains why any two points on a line give the same gradient, signs included.</td></tr>
+<tr><td><b>Application</b></td><td>Reads off two points.</td><td>Works out rise and run separately.</td><td>Calculates the gradient from two points, keeping the sign.</td><td>Finds a negative rate from two real readings.</td></tr>
+<tr><td><b>Communication</b></td><td>Records points with limited labelling.</td><td>Marks the rise and run on the triangle.</td><td>Shows rise ÷ run working clearly.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that a wider triangle keeps the same gradient.</td><td>Explains why rise ÷ run is constant on a line.</td><td>Connects two readings to a real rate of change.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Rise, run and two points — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Plot the two points, draw the rise-and-run triangle, and work out rise ÷ run before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_sl_gradient_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ for(let x=0; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=0; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Straight_Lines_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","y","=","+","−"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+var PI=3.14;
+
+/* ============ Shared straight-line engine (reused across the unit) ============ */
+function eqStr(m,c){
+  if(m===0) return "y = "+c;
+  var mt = m===1?"x" : m===-1?"−x" : m+"x";
+  var ct = c===0?"" : c>0?(" + "+c) : (" − "+(-c));
+  return "y = "+mt+ct;
+}
+function storyStr(m,c){
+  var step = m===0 ? "and <b>stays the same</b> each step" : m>0 ? ("and goes <b>up by "+m+"</b> each step") : ("and goes <b>down by "+(-m)+"</b> each step");
+  return "A value <b>starts at "+c+"</b> "+step+". After <em>x</em> steps it is <em>y</em>.";
+}
+function tableHTML(m,c){
+  var th="",td="";
+  [0,1,2,3,4].forEach(function(x){ th+="<td>"+x+"</td>"; td+="<td>"+(m*x+c)+"</td>"; });
+  return '<table class="satab" style="font-size:.92em;margin:0"><tr><th style="text-align:left">x</th>'+th+'</tr><tr><th style="text-align:left">y</th>'+td+'</tr></table>';
+}
+function drawGraph(svgId,m,c,opts){
+  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg)return;
+  var VW=360,VH=360,pad=34, xmin=(opts.xRange?opts.xRange[0]:-1), xmax=(opts.xRange?opts.xRange[1]:6);
+  var fam=opts.family||[{m:m,c:c}];
+  var exts=[0]; fam.forEach(function(f){ exts.push(f.m*xmin+f.c); exts.push(f.m*xmax+f.c); });
+  if(opts.targetY!=null) exts.push(opts.targetY);
+  var yA=m*xmin+c, yB=m*xmax+c;
+  var ylo=Math.floor(Math.min.apply(0,exts)-1), yhi=Math.ceil(Math.max.apply(0,exts)+1);
+  if(yhi-ylo<8){ var mid=(yhi+ylo)/2; ylo=Math.floor(mid-4); yhi=ylo+8; }
+  if(opts.fixedY){ ylo=opts.fixedY[0]; yhi=opts.fixedY[1]; }   /* fixed window: scale never changes as c/m change */
+  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(yhi-ylo);
+  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ylo)*uy;}
+  var s="", y0=SY(0), x0=SX(0);
+  for(var gx=xmin;gx<=xmax;gx++) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  for(var gy=ylo;gy<=yhi;gy++) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ylo).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(yhi).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  for(var lx=xmin+1;lx<=xmax;lx++){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
+  var ystep=(yhi-ylo)>12?2:1;
+  for(var ly=Math.ceil(ylo/ystep)*ystep;ly<=yhi;ly+=ystep){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
+  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="11" fill="#6a7080" text-anchor="end" font-style="italic">x</text>';
+  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(yhi)+10).toFixed(1)+'" font-size="11" fill="#6a7080" font-style="italic">y</text>';
+  if(opts.ghost){ var g=opts.ghost; s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(g.m*xmin+g.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(g.m*xmax+g.c).toFixed(1)+'" stroke="#b9a05f" stroke-width="2" stroke-dasharray="5 4"/>'; }
+  if(opts.targetY!=null){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(opts.targetY).toFixed(1)+'" r="8" fill="none" stroke="#b24c4c" stroke-width="2.4"/><text x="'+(SX(0)-9).toFixed(1)+'" y="'+(SY(opts.targetY)+3).toFixed(1)+'" font-size="10" fill="#b24c4c" text-anchor="end">target</text>'; }
+  if(opts.family){
+    opts.family.forEach(function(f){ var col=f.col||"#3f7a45";
+      s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(f.m*xmin+f.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(f.m*xmax+f.c).toFixed(1)+'" stroke="'+col+'" stroke-width="2.4"/>';
+      if(f.c>=ylo&&f.c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(f.c).toFixed(1)+'" r="4.5" fill="'+col+'"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(f.c)-6).toFixed(1)+'" font-size="10" fill="'+col+'">(0, '+f.c+')</text>'; }
+    });
+    svg.innerHTML=s; return;
+  }
+  if(opts.segTo!=null){ s+='<line x1="'+SX(0).toFixed(1)+'" y1="'+SY(c).toFixed(1)+'" x2="'+SX(opts.segTo).toFixed(1)+'" y2="'+SY(m*opts.segTo+c).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  else if(!opts.hideLine){ s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(yA).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(yB).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.showPoints){ var maxp=(opts.showPoints===true)?4:opts.showPoints; for(var px=0;px<=maxp;px++){ var py=m*px+c; if(py<ylo||py>yhi)continue; s+='<circle cx="'+SX(px).toFixed(1)+'" cy="'+SY(py).toFixed(1)+'" r="3.2" fill="#2f6a35"/>'; } }
+  if(!opts.hideIntercept && c>=ylo&&c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(c).toFixed(1)+'" r="4.5" fill="#b25f2e"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(c)-6).toFixed(1)+'" font-size="10" fill="#b25f2e">(0, '+c+')</text>'; }
+  if(opts.lineThrough){ var LA=opts.lineThrough.A, LB=opts.lineThrough.B, lm=(LB.y-LA.y)/(LB.x-LA.x), lc=LA.y-lm*LA.x;
+    s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(lm*xmin+lc).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(lm*xmax+lc).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.tris){ opts.tris.forEach(function(t){ var col=t.col||"#365a68", ax=SX(t.A.x),ay=SY(t.A.y),bx=SX(t.B.x),by=SY(t.B.y),cornerX=bx,cornerY=ay;
+    var run=t.B.x-t.A.x, rise=t.B.y-t.A.y;
+    s+='<line x1="'+ax.toFixed(1)+'" y1="'+ay.toFixed(1)+'" x2="'+cornerX.toFixed(1)+'" y2="'+cornerY.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<line x1="'+cornerX.toFixed(1)+'" y1="'+cornerY.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<text x="'+((ax+cornerX)/2).toFixed(1)+'" y="'+(cornerY+(rise>=0?15:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="middle">run '+run+'</text>';
+    var riseLeft = cornerX>295;   /* near right edge: put the rise label on the inside to avoid clipping */
+    s+='<text x="'+(cornerX+(riseLeft?-6:6)).toFixed(1)+'" y="'+((cornerY+by)/2+3).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="'+(riseLeft?'end':'start')+'">rise '+(rise>=0?"+"+rise:rise)+'</text>';
+    s+='<circle cx="'+ax.toFixed(1)+'" cy="'+ay.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(ax-8).toFixed(1)+'" y="'+(ay+(rise>=0?14:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="end">'+(t.aLabel||"A")+'</text>';
+    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(bx+7).toFixed(1)+'" y="'+(by-7).toFixed(1)+'" font-size="10" fill="'+col+'">'+(t.bLabel||"B")+'</text>';
+  }); }
+  if(opts.stepTri && m!==0){ var rx0=SX(0),ry0=SY(c),rx1=SX(1),ry1c=SY(c),ry1=SY(m+c);
+    s+='<line x1="'+rx0.toFixed(1)+'" y1="'+ry0.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1c.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<line x1="'+rx1.toFixed(1)+'" y1="'+ry1c.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<text x="'+((rx0+rx1)/2).toFixed(1)+'" y="'+(ry1c+16).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">1 across</text>';
+    s+='<text x="'+(rx1+5).toFixed(1)+'" y="'+((ry1c+ry1)/2+3).toFixed(1)+'" font-size="10" fill="#365a68">'+(m>0?"+"+m:m)+" up</text>";
+  }
+  if(opts.stepTri && m===0){ s+='<text x="'+SX(3).toFixed(1)+'" y="'+(SY(c)-8).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">flat: no change</text>'; }
+  if(opts.highlightX!=null){ var hx=opts.highlightX, hy=m*hx+c; if(hy>=ylo&&hy<=yhi){
+    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+hx+', '+hy+')</text>';
+  }}
+  svg.innerHTML=s;
+}
+
+/* fraction/decimal display for a gradient rise/run */
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
+function gradStr(rise,run){
+  var g=gcd(rise,run), sr=rise/g, sn=run/g;
+  if(sn<0){ sr=-sr; sn=-sn; }
+  var val=rise/run;
+  var frac = (sn===1)? String(sr) : (sr+"/"+sn);
+  var dec = Number.isInteger(val)? String(val) : (Math.round(val*100)/100);
+  return {frac:frac, dec:dec, val:val};
+}
+
+/* ============ CONNECTION: Same line, different triangle ============ */
+var slLines=[{m:1,c:1},{m:2,c:-1},{m:1,c:3},{m:-1,c:6},{m:-2,c:7},{m:1,c:0}];
+var slPick=0;
+function slNew(){ slPick=(slPick+1)%slLines.length; slDraw(); }
+function slDraw(){
+  var L=slLines[slPick], m=L.m, c=L.c;
+  // two triangles with different runs at different positions, both on the line
+  var x1a=0, x1b=1;                 // run 1
+  var x2a=2, x2b=4;                 // run 2
+  var A1={x:x1a,y:m*x1a+c}, B1={x:x1b,y:m*x1b+c};
+  var A2={x:x2a,y:m*x2a+c}, B2={x:x2b,y:m*x2b+c};
+  drawGraph("slGraph",m,c,{xRange:[-1,8], fixedY:[-1,8], hideLine:false, hideIntercept:true,
+    tris:[ {A:A1,B:B1,col:"#2b6cb0",aLabel:"A",bLabel:"B"},
+           {A:A2,B:B2,col:"#b25f2e",aLabel:"C",bLabel:"D"} ]});
+  var r1=gradStr(B1.y-A1.y, B1.x-A1.x), r2=gradStr(B2.y-A2.y, B2.x-A2.x);
+  document.getElementById("slRead").innerHTML=
+    '<span style="color:#2b6cb0"><b>Blue triangle A→B:</b></span> rise '+(B1.y-A1.y)+' ÷ run '+(B1.x-A1.x)+' = <b>'+r1.dec+'</b><br>'+
+    '<span style="color:#b25f2e"><b>Orange triangle C→D:</b></span> rise '+(B2.y-A2.y)+' ÷ run '+(B2.x-A2.x)+' = <b>'+r2.dec+'</b><br>'+
+    'Different points, different rise and run — but <b>rise ÷ run = '+r1.dec+'</b> both times. The gradient belongs to the <b>line</b>.';
+}
+
+/* ============ MOVEMENT: Gradient Triangle Builder (draggable) ============ */
+var gtA={x:1,y:2}, gtB={x:4,y:6}, gtDrag=null;
+var GT_FY=[-1,8], GT_PAD=34, GT_XMIN=-1, GT_XMAX=8, GT_VW=360;   // square window: equal scale on both axes
+function gtUX(){return (GT_VW-2*GT_PAD)/(GT_XMAX-GT_XMIN);}
+function gtUY(){return (GT_VW-2*GT_PAD)/(GT_FY[1]-GT_FY[0]);}
+function gtSX(x){return GT_PAD+(x-GT_XMIN)*gtUX();}
+function gtSY(y){return GT_VW-GT_PAD-(y-GT_FY[0])*gtUY();}
+function gtDraw(){
+  drawGraph("gtGraph", (gtB.y-gtA.y)/(gtB.x-gtA.x), 0, {xRange:[GT_XMIN,GT_XMAX], fixedY:GT_FY, hideLine:true, hideIntercept:true,
+    lineThrough:{A:gtA,B:gtB}, tris:[{A:gtA,B:gtB,col:"#365a68",aLabel:"A",bLabel:"B"}]});
+  var rise=gtB.y-gtA.y, run=gtB.x-gtA.x, g=gradStr(rise,run);
+  var sign = g.val>0?"positive — the line rises":g.val<0?"negative — the line falls":"zero — the line is flat";
+  document.getElementById("gtRead").innerHTML=
+    'A is ('+gtA.x+', '+gtA.y+') and B is ('+gtB.x+', '+gtB.y+').<br>'+
+    '<b>run</b> = change in x = '+run+' &nbsp;·&nbsp; <b>rise</b> = change in y = '+(rise>=0?"+"+rise:rise)+'<br>'+
+    '<b>gradient = rise ÷ run = '+(rise>=0?"+"+rise:rise)+' ÷ '+run+' = '+g.dec+'</b> ('+sign+').';
+}
+function gtPtFromEvent(e){
+  var svg=document.getElementById("gtGraph"), r=svg.getBoundingClientRect();
+  var vx=(e.clientX-r.left)*GT_VW/r.width, vy=(e.clientY-r.top)*GT_VW/r.height;
+  var gx=Math.round((vx-GT_PAD)/gtUX()+GT_XMIN);
+  var gy=Math.round(GT_FY[0]+(GT_VW-GT_PAD-vy)/gtUY());
+  gx=Math.max(0,Math.min(7,gx)); gy=Math.max(0,Math.min(8,gy));
+  return {x:gx,y:gy,vx:vx,vy:vy};
+}
+function gtNearest(vx,vy){
+  var da=Math.hypot(vx-gtSX(gtA.x),vy-gtSY(gtA.y)), db=Math.hypot(vx-gtSX(gtB.x),vy-gtSY(gtB.y));
+  if(Math.min(da,db)>40) return null;
+  return da<=db?"A":"B";
+}
+function gtInit(){
+  var svg=document.getElementById("gtGraph"); if(!svg||svg.dataset.wired) return; svg.dataset.wired="1";
+  function down(e){ var p=gtPtFromEvent(e); gtDrag=gtNearest(p.vx,p.vy); if(gtDrag){ svg.style.cursor="grabbing"; if(svg.setPointerCapture&&e.pointerId!=null){try{svg.setPointerCapture(e.pointerId);}catch(err){}} move(e); e.preventDefault(); } }
+  function move(e){ if(!gtDrag) return; var p=gtPtFromEvent(e); var pt=(gtDrag==="A")?gtA:gtB, other=(gtDrag==="A")?gtB:gtA;
+    if(p.x===other.x) p.x=pt.x;          // guard: never let the run become zero
+    pt.x=p.x; pt.y=p.y; gtDraw(); e.preventDefault(); }
+  function up(e){ if(gtDrag){ gtDrag=null; svg.style.cursor="grab"; e.preventDefault(); } }
+  svg.addEventListener("pointerdown",down); svg.addEventListener("pointermove",move);
+  svg.addEventListener("pointerup",up); svg.addEventListener("pointercancel",up);
+}
+
+/* ============ REFLECTION: Right or slip? ============ */
+var RC=[
+ {A:{x:0,y:1},B:{x:2,y:5}, work:"rise ÷ run = 4 ÷ 2 = 2", ok:true, opts:["Right","Slip"], ans:0, why:"Rise = 5 − 1 = 4, run = 2 − 0 = 2, and 4 ÷ 2 = 2. Correct."},
+ {A:{x:0,y:1},B:{x:3,y:7}, work:"run ÷ rise = 3 ÷ 6 = 0.5", ok:false, opts:["Right","Slip"], ans:1, why:"Slip — rise and run are swapped. It should be rise ÷ run = 6 ÷ 3 = 2."},
+ {A:{x:0,y:6},B:{x:3,y:0}, work:"rise ÷ run = 6 ÷ 3 = 2", ok:false, opts:["Right","Slip"], ans:1, why:"Slip — the line falls, so the rise is 0 − 6 = −6. The gradient is −6 ÷ 3 = −2."},
+ {A:{x:1,y:1},B:{x:5,y:3}, work:"rise ÷ run = 2 ÷ 4 = 0.5", ok:true, opts:["Right","Slip"], ans:0, why:"Rise = 3 − 1 = 2, run = 5 − 1 = 4, and 2 ÷ 4 = 0.5. Correct."},
+ {A:{x:2,y:7},B:{x:5,y:1}, work:"rise ÷ run = −6 ÷ 3 = −2", ok:true, opts:["Right","Slip"], ans:0, why:"Rise = 1 − 7 = −6, run = 5 − 2 = 3, and −6 ÷ 3 = −2. The minus is kept. Correct."}
+];
+var rcIndex=0;
+function rcRender(){
+  var q=RC[rcIndex];
+  document.getElementById("rcClue").innerHTML="<b>Q"+(rcIndex+1)+":</b> A line passes through <b>A ("+q.A.x+", "+q.A.y+")</b> and <b>B ("+q.B.x+", "+q.B.y+")</b>. Someone writes: &nbsp;<span style=\"background:#f3ecda;padding:2px 6px;border-radius:5px\">"+q.work+"</span><br>Is this <b>right</b>, or a <b>slip</b>?";
+  drawGraph("rcMini",(q.B.y-q.A.y)/(q.B.x-q.A.x),0,{xRange:[-1,8], fixedY:[-1,8], hideLine:true, hideIntercept:true, lineThrough:{A:q.A,B:q.B}, tris:[{A:q.A,B:q.B,col:"#365a68",aLabel:"A",bLabel:"B"}]});
+  document.getElementById("rcOpts").innerHTML=q.opts.map(function(o,i){return '<button onclick="rcPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("rcFeedback").style.display="none";
+  document.getElementById("rcProgress").textContent="Card "+(rcIndex+1)+" of "+RC.length+".";
+}
+function rcPick(i){
+  var q=RC[rcIndex], fb=document.getElementById("rcFeedback"); fb.style.display="block";
+  if(i===q.ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
+  else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
+}
+function rcNext(){ rcIndex=(rcIndex+1)%RC.length; rcRender(); }
+
+/* ============ CREATIVITY: Rate from two readings ============ */
+var TR=[
+ {name:"Bath filling",desc:"A bath holds 5 litres after 1 minute and 15 litres after 3 minutes. Reading 1: (1, 5). Reading 2: (3, 15). What is the rate (litres per minute)?",A:{x:1,y:5},B:{x:3,y:15},unit:"litres per minute"},
+ {name:"Phone battery",desc:"A phone is at 90% after 1 hour and 30% after 4 hours. Reading 1: (1, 90). Reading 2: (4, 30). What is the rate (% per hour)?",A:{x:1,y:90},B:{x:4,y:30},unit:"% per hour"},
+ {name:"Taxi fare",desc:"A taxi costs £6 after 2 km and £12 after 5 km. Reading 1: (2, 6). Reading 2: (5, 12). What is the rate (£ per km)?",A:{x:2,y:6},B:{x:5,y:12},unit:"£ per km"},
+ {name:"Candle burning",desc:"A candle is 12 cm tall after 1 hour and 4 cm tall after 5 hours. Reading 1: (1, 12). Reading 2: (5, 4). What is the rate (cm per hour)?",A:{x:1,y:12},B:{x:5,y:4},unit:"cm per hour"}
+];
+var trIndex=0;
+function trChipsRender(){ document.getElementById("trChips").innerHTML=TR.map(function(o,i){return '<span class="chip'+(i===trIndex?' active':'')+'" onclick="setTr('+i+')">'+o.name+'</span>';}).join(""); }
+function setTr(i){ trIndex=i; document.getElementById("trDesc").innerHTML=TR[i].desc; document.getElementById("trAns").value=""; document.getElementById("trFeedback").style.display="none"; trChipsRender(); trDraw(); }
+function trDraw(){
+  var o=TR[trIndex], hi=Math.max(o.A.y,o.B.y), lo=Math.min(o.A.y,o.B.y,0);
+  var pad=Math.ceil((hi-lo)*0.15)+1;
+  drawGraph("trGraph",(o.B.y-o.A.y)/(o.B.x-o.A.x),0,{fixedY:[lo-1,hi+pad], hideLine:true, hideIntercept:true, lineThrough:{A:o.A,B:o.B}, tris:[{A:o.A,B:o.B,col:"#3f7a45",aLabel:"1",bLabel:"2"}]});
+  var rise=o.B.y-o.A.y, run=o.B.x-o.A.x;
+  document.getElementById("trWork").innerHTML="Reading 1: <b>("+o.A.x+", "+o.A.y+")</b> &nbsp; Reading 2: <b>("+o.B.x+", "+o.B.y+")</b><br>rise = "+o.B.y+" − "+o.A.y+" = <b>"+(rise>=0?"+"+rise:rise)+"</b> &nbsp;·&nbsp; run = "+o.B.x+" − "+o.A.x+" = <b>"+run+"</b>";
+}
+function trCheck(){
+  var o=TR[trIndex], rise=o.B.y-o.A.y, run=o.B.x-o.A.x, ans=rise/run, v=num(document.getElementById("trAns").value), fb=document.getElementById("trFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the rate as a number, for example 3 or -2."; return; }
+  if(Math.abs(v-ans)<0.01){ fb.className="feedback good"; fb.innerHTML="Yes — rise ÷ run = "+(rise>=0?"+"+rise:rise)+" ÷ "+run+" = <b>"+ans+"</b> "+o.unit+(ans<0?". It is <b>negative</b> because the amount goes <b>down</b> between the readings.":"."); }
+  else { var hint = (v>0)!==(ans>0)&&ans!==0 ? "Check the <b>sign</b> — does the amount go up or down between the two readings?" : "Work out rise ÷ run: ("+o.B.y+" − "+o.A.y+") ÷ ("+o.B.x+" − "+o.A.x+")."; fb.className="feedback warn"; fb.innerHTML="Not yet. "+hint; }
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  function coordSVG(px,py){
+    var V=210,pad=26,n=6,u=(V-2*pad)/n;
+    function SX(x){return pad+x*u;} function SY(y){return V-pad-y*u;}
+    var s='<svg viewBox="0 0 '+V+' '+V+'" role="img" aria-label="A coordinate grid with point P plotted" style="max-width:220px;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:8px 0">';
+    for(var i=0;i<=n;i++){ s+='<line x1="'+SX(i)+'" y1="'+SY(0)+'" x2="'+SX(i)+'" y2="'+SY(n)+'" stroke="#e6ddcb"/><line x1="'+SX(0)+'" y1="'+SY(i)+'" x2="'+SX(n)+'" y2="'+SY(i)+'" stroke="#e6ddcb"/>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(n)+'" y2="'+SY(0)+'" stroke="#6a7080" stroke-width="1.4"/><line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(0)+'" y2="'+SY(n)+'" stroke="#6a7080" stroke-width="1.4"/>';
+    for(var t=1;t<=n;t++){ s+='<text x="'+SX(t)+'" y="'+(SY(0)+13)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+t+'</text><text x="'+(SX(0)-6)+'" y="'+(SY(t)+3)+'" font-size="9" fill="#6a7080" text-anchor="end">'+t+'</text>'; }
+    s+='<circle cx="'+SX(px)+'" cy="'+SY(py)+'" r="5" fill="#b25f2e"/><text x="'+(SX(px)+8)+'" y="'+(SY(py)-6)+'" font-size="13" fill="#b25f2e" font-weight="bold">P</text></svg>';
+    return s;
+  }
+  var RECONNECT={
+    coord:{title:'Reading coordinates',prompt:'What are the coordinates of point <b>P</b>? Write them like (across, up).'+coordSVG(4,2),answer:'4 2',hint:'Count how far <b>across</b> P is (that is x), then how far <b>up</b> (that is y).'},
+    diff:{title:'Finding a difference',prompt:'A reading changes from <b>7</b> to <b>1</b>. What is the change? (Work out 1 − 7.)',answer:-6,hint:'End minus start: 1 − 7 = −6. Going down gives a negative change.'},
+    frac:{title:'A fraction as a division',prompt:'What is <b>6 ÷ 3</b>? (This is the same as the fraction 6/3.)',answer:2,hint:'6 ÷ 3 = 2. A gradient of rise ÷ run works exactly like this.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'coord\')">Reading coordinates</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'diff\')">Finding a difference</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'frac\')">A fraction as a division</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · The definition",q:"To find the gradient of a line from two points, you work out rise ÷ what?",a:["run","the run"],prompt:"Rise is the change in y. What is the change in x called?",hint:"Gradient = rise ÷ run.",sol:"Run — the gradient is rise ÷ run, the change in y divided by the change in x."},
+ {label:"2 of 6 · Rise and run",q:"A line passes through (1, 2) and (4, 8). What is the run (the change in x)?",a:[],eq:function(v){return Math.abs(num(v)-3)<0.01;},prompt:"Run = second x − first x.",hint:"4 − 1 = ?",sol:"Run = 4 − 1 = 3."},
+ {label:"3 of 6 · The gradient",q:"A line passes through (1, 2) and (4, 8). What is its gradient? (rise ÷ run)",a:[],eq:function(v){return Math.abs(num(v)-2)<0.01;},prompt:"Rise = 8 − 2, run = 4 − 1. Then divide.",hint:"rise = 6, run = 3, so 6 ÷ 3 = ?",sol:"Rise = 6, run = 3, gradient = 6 ÷ 3 = 2."},
+ {label:"4 of 6 · A falling line",q:"A line passes through (0, 6) and (3, 0). What is its gradient? (keep the sign)",a:[],eq:function(v){return Math.abs(num(v)-(-2))<0.01;},prompt:"The line falls, so the rise is negative: 0 − 6.",hint:"rise = 0 − 6 = −6, run = 3 − 0 = 3, so −6 ÷ 3 = ?",sol:"Rise = −6, run = 3, gradient = −6 ÷ 3 = −2. The line falls, so the gradient is negative."},
+ {label:"5 of 6 · Same line, any two points",q:"A line has gradient 2 through one pair of points. Through a different pair of points on the same line, what is the gradient?",a:[],eq:function(v){return Math.abs(num(v)-2)<0.01;},prompt:"Does the gradient depend on which two points you pick?",hint:"Any two points on a line give the same rise ÷ run.",sol:"2 — every pair of points on the same line gives the same gradient."},
+ {label:"6 of 6 · A fractional gradient",q:"A line passes through (1, 1) and (5, 3). What is its gradient? (a decimal is fine)",a:[],eq:function(v){return Math.abs(num(v)-0.5)<0.01;},prompt:"rise = 3 − 1, run = 5 − 1. Then divide.",hint:"rise = 2, run = 4, so 2 ÷ 4 = ?",sol:"Rise = 2, run = 4, gradient = 2 ÷ 4 = 0.5 (or ½)."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=q.a.some(function(x){var nx=normText(x);return nx===learner||nx===stripped;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Work out the rise and the run, then rise ÷ run — or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  slDraw();
+  gtDraw(); gtInit();
+  rcRender();
+  trChipsRender(); setTr(0);
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

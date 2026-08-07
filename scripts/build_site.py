@@ -66,6 +66,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_03_Where_Does_the_Line_Start/NEO_Maths_Y10_Straight_Lines_Lesson_03_Where_Does_the_Line_Start_v0.1.html",
     "straight-lines-04-how-fast-is-the-line-changing":
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_04_How_Fast_Is_the_Line_Changing/NEO_Maths_Y10_Straight_Lines_Lesson_04_How_Fast_Is_the_Line_Changing_v0.1.html",
+    "straight-lines-05-rise-run-and-two-points":
+        "03_Intermediate/01_Lessons/Straight_Lines/Lesson_05_Rise_Run_and_Two_Points/NEO_Maths_Y10_Straight_Lines_Lesson_05_Rise_Run_and_Two_Points_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
