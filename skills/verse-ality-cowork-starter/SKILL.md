@@ -196,7 +196,7 @@ If you find this starter useful and want to support continued work on Verse-alit
 - **Canonical repository:** https://github.com/TheNovacene/verse-ality-agents
 - **Starter repository:** https://github.com/TheNovacene/verse-ality-cowork-starter
 - **Licence:** CC BY-NC-SA 4.0
-- **Trademark:** *Verse-ality* is a registered trademark of The Novacene Ltd (UK00004381891). Adaptation under this licence is welcomed; use of the name or mark to certify or endorse a deployment is reserved for the Certified pathway.
+- **Trade mark:** *Verse-ality®* is a registered trade mark of The Novacene Ltd (UK00004381891, classes 9, 41 and 42). Adaptation under this licence is welcomed; use of the name or mark to certify or endorse a deployment is reserved for the Certified pathway.
 - **This skill:** the generic starter expression of the framework for any user working with an AI agent. May 2026.
 
 No individuals are named in this skill other than the framework author (above), with consent.
