@@ -252,6 +252,14 @@
           "file": "lessons/straight-lines/08-when-two-lines-meet.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-09-conversion-graphs-as-models",
+          "num": "Lesson 09",
+          "title": "Conversion graphs as models",
+          "file": "lessons/straight-lines/09-conversion-graphs-as-models.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

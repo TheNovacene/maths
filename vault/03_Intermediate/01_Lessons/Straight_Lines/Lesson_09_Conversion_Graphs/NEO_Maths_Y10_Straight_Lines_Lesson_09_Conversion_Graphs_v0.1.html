@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Conversion graphs as models</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.satab td,.satab th{text-align:center;vertical-align:middle}
+.tcell{width:84px;text-align:center;padding:7px;border:1px solid #bcae98;border-radius:6px;box-sizing:border-box}
+.netsvg,.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.readgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Straight Lines</h1>
+<h2>Conversion graphs as models</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can a line translate one quantity into another?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Modelling — using a straight line to convert between two quantities, reading it both ways.</p>
+<p><b>Stepping Stone:</b> read a conversion graph in both directions, and interpret the gradient as the conversion rate.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 12 · Move 12 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_09_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_09_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Draw a conversion line, then read a value up to the line and across to the other axis.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Conversion Graph Translator</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Conversion graph</b> — a straight line that <b>translates</b> one quantity into another (miles into km, £ into €).<br>
+<b style="color:#2b3d78">Reading both ways</b> — go <b>up</b> from one axis to the line, then <b>across</b> to the other; it works in either direction.<br>
+<b style="color:#b0651f">Conversion rate</b> — the <b>gradient</b> of the line: how many of one unit you get for each of the other.</p>
+</div>
+<p><b>What to do:</b> use the conversion line to answer the question. Go <b>up</b> from the value you are given until you hit the line, then <b>across</b> to read the answer off the other axis. Type it in, press <b>Reveal</b>, and <b>Next</b> for another.</p>
+<p><b>What you are trying to notice:</b> the same line converts <b>both ways</b> — up-and-across, or across-and-down. One line does every conversion between the two quantities.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔁 Conversion Graph Translator</h3>
+<div class="card" style="text-align:center"><svg id="ctGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="A conversion line between two quantities"></svg></div>
+<p id="ctDesc" class="clue"></p>
+<div style="text-align:center"><label class="small" for="ctAns" id="ctLabel"><b>Your answer:</b></label> <input id="ctAns" placeholder="read it off the graph" inputmode="numeric" style="max-width:150px"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ctReveal()">🔍 Reveal</button><button onclick="ctNext()">➡️ Next question</button></div>
+<div id="ctFeedback" class="feedback"></div>
+<p><b>Carry this forward:</b> a conversion graph works <b>both ways</b>. Go up-and-across to convert one way, across-and-down to convert back — the single line does both.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Two-way reader</summary>
+<p><b>What to do:</b> pick a conversion, then <b>drag the point</b> along the line. Dashed guides drop to <b>both</b> axes, showing the matching pair — for example "5 miles = 8 km". Drag it anywhere to convert any value.</p>
+<p><b>What you are trying to notice:</b> a single point links a value on one axis to a value on the other, so one line reads <b>both directions</b> at once. The steeper the line, the bigger the conversion rate.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">↔️ Two-way Reader</h3>
+<div id="trChips" class="buttonrow" style="justify-content:center"></div>
+<div class="card" style="text-align:center"><svg id="trGraph" class="graphsvg" style="max-width:360px;touch-action:none;cursor:ew-resize" viewBox="0 0 360 360" role="img" aria-label="A conversion line with a draggable point and guide lines to both axes"></svg></div>
+<div id="trRead" class="card small"></div>
+<p><b>Carry this forward:</b> to convert with a graph, go up-and-across for one direction and across-and-down for the other. The same line, and the same point, does both.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Read it right?</summary>
+<p><b>What to do:</b> each card shows a conversion and how someone read it. Decide whether their reading is <b>right</b> or a <b>slip</b>, then check against the graph.</p>
+<p><b>What you are trying to notice:</b> the common slips are reading off the <b>wrong axis</b>, or <b>not using the line</b> (just multiplying without checking the graph — which goes wrong when the line does not start at zero, like °C to °F).</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 Read it right?</h3>
+<div id="rcClue" class="clue"></div>
+<div class="card" style="text-align:center"><svg id="rcMini" class="graphsvg" style="max-width:300px" viewBox="0 0 360 360" role="img" aria-label="A conversion line with a reading marked"></svg></div>
+<div id="rcOpts" class="buttonrow"></div>
+<div id="rcFeedback" class="feedback"></div>
+<div class="buttonrow"><button onclick="rcNext()">➡️ Next</button></div>
+<p class="small" id="rcProgress"></p>
+<p><b>Carry this forward:</b> always read <b>to the line</b> and check which axis is which. When a conversion line does not pass through the origin, you cannot just multiply.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Holiday money</summary>
+<p><b>What to do:</b> you are on holiday with a pounds-to-euros conversion graph. Use it to answer each real question — reading up-and-across, or across-and-down, depending which way you are converting. Type your answer and check.</p>
+<p><b>What you are trying to notice:</b> the same graph answers "how many euros do I get?" and "how much is that in pounds?" — one line, both directions. That is what makes a conversion graph so useful.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🏖️ Holiday Money</h3>
+<div id="hmChips" class="buttonrow" style="justify-content:center"></div>
+<p id="hmDesc" class="clue"></p>
+<div class="card" style="text-align:center"><svg id="hmGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="A pounds-to-euros conversion line"></svg></div>
+<div style="text-align:center"><label class="small" for="hmAns" id="hmLabel"><b>Your answer:</b></label> <input id="hmAns" placeholder="read it off the graph" inputmode="numeric" style="max-width:150px"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="hmCheck()">✅ Check</button></div>
+<div id="hmFeedback" class="feedback"></div>
+<p><b>Make it your own:</b> on the Scratchpad, draw a conversion graph for a currency or unit you care about, and use it to answer a question of your own — both ways.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Draw a conversion line for a currency or unit. Use it to answer a question both ways.')">✏️ Create on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>Seeing that one straight line can translate endlessly between two quantities — both ways, forever — is a quietly elegant idea. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> when you read the graph, did you find one direction easier than the other — up-and-across, or across-and-down? There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
+<p><b>Mode: contextual.</b> Conversion graphs turn a rate into an instant look-up you can read both ways.</p>
+<div class="card">
+<p><b>Why it matters:</b> changing money on holiday (pounds to euros and back), reading a recipe from another country (cups to grams, °F to °C for the oven), planning a drive abroad (miles to kilometres, and speed limits in km/h), or checking a weather forecast in the "wrong" units — all of these are a single straight line you can read in either direction. The <b>gradient is the conversion rate</b>: a steeper line means more of one unit per unit of the other. Some conversions pass through the origin (0 miles is 0 km) and some do <b>not</b> — 0°C is 32°F, not 0 — which is exactly why you read <b>to the line</b> rather than just multiplying. Once the graph is drawn, every conversion is a quick up-and-across or across-and-down.</p>
+<p class="small">Next time you need the "other units", picture the conversion line — one look-up, both directions.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> build and use a conversion graph.</p>
+<ul>
+<li>Draw a <b>conversion graph</b> from a rate you know (for example 1 mile ≈ 1.6 km, or £1 = €1.20). Plot a couple of points and join them with a straight line.</li>
+<li>Use your graph to convert <b>both ways</b>: pick a value on each axis and read across to the other. Show the up-and-across (and across-and-down) on the graph.</li>
+<li>Explain what the <b>gradient</b> of your line means as a conversion rate, and — if you use °C to °F — explain why you must read <b>to the line</b> and cannot simply multiply.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_SL_CONVERSION_GRAPHS_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows a line can convert between two quantities.</td><td>Reads one value off a conversion graph.</td><td>Reads a conversion both ways off the line.</td><td>Explains the gradient as a conversion rate, and why some lines do not start at zero.</td></tr>
+<tr><td><b>Application</b></td><td>Plots a point on the graph.</td><td>Draws a conversion line from a rate.</td><td>Uses the graph to convert in both directions.</td><td>Builds and uses a conversion graph to answer a real question.</td></tr>
+<tr><td><b>Communication</b></td><td>Records a reading with limited labelling.</td><td>Labels both axes with their quantities.</td><td>Shows the up-and-across reading on the graph.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the line reads both ways.</td><td>Explains why reading to the line matters.</td><td>Connects a conversion graph to a real everyday use.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Conversion graphs as models — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Draw the conversion line, then read up to the line and across to the other axis.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_sl_gradient_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Straight_Lines_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","y","=","+","−"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+var PI=3.14;
+
+/* ============ Shared straight-line engine (reused across the unit) ============ */
+function eqStr(m,c){
+  if(m===0) return "y = "+c;
+  var mt = m===1?"x" : m===-1?"−x" : m+"x";
+  var ct = c===0?"" : c>0?(" + "+c) : (" − "+(-c));
+  return "y = "+mt+ct;
+}
+function storyStr(m,c){
+  var step = m===0 ? "and <b>stays the same</b> each step" : m>0 ? ("and goes <b>up by "+m+"</b> each step") : ("and goes <b>down by "+(-m)+"</b> each step");
+  return "A value <b>starts at "+c+"</b> "+step+". After <em>x</em> steps it is <em>y</em>.";
+}
+function tableHTML(m,c){
+  var th="",td="";
+  [0,1,2,3,4].forEach(function(x){ th+="<td>"+x+"</td>"; td+="<td>"+(m*x+c)+"</td>"; });
+  return '<table class="satab" style="font-size:.92em;margin:0"><tr><th style="text-align:left">x</th>'+th+'</tr><tr><th style="text-align:left">y</th>'+td+'</tr></table>';
+}
+function drawGraph(svgId,m,c,opts){
+  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg)return;
+  var VW=360,VH=360,pad=34, xmin=(opts.xRange?opts.xRange[0]:-1), xmax=(opts.xRange?opts.xRange[1]:6);
+  var fam=opts.family||[{m:m,c:c}];
+  var exts=[0]; fam.forEach(function(f){ exts.push(f.m*xmin+f.c); exts.push(f.m*xmax+f.c); });
+  if(opts.targetY!=null) exts.push(opts.targetY);
+  var yA=m*xmin+c, yB=m*xmax+c;
+  var ylo=Math.floor(Math.min.apply(0,exts)-1), yhi=Math.ceil(Math.max.apply(0,exts)+1);
+  if(yhi-ylo<8){ var mid=(yhi+ylo)/2; ylo=Math.floor(mid-4); yhi=ylo+8; }
+  if(opts.fixedY){ ylo=opts.fixedY[0]; yhi=opts.fixedY[1]; }   /* fixed window: scale never changes as c/m change */
+  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(yhi-ylo);
+  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ylo)*uy;}
+  var s="", y0=SY(0), x0=SX(0);
+  var xr9=xmax-xmin, yr9=yhi-ylo;
+  var gsx=xr9>25?5:xr9>12?2:1, gsy=yr9>60?20:yr9>25?10:yr9>12?5:yr9>8?2:1;
+  for(var gx=Math.ceil(xmin/gsx)*gsx;gx<=xmax;gx+=gsx) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  for(var gy=Math.ceil(ylo/gsy)*gsy;gy<=yhi;gy+=gsy) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ylo).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(yhi).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  for(var lx=Math.ceil(xmin/gsx)*gsx;lx<=xmax;lx+=gsx){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
+  for(var ly=Math.ceil(ylo/gsy)*gsy;ly<=yhi;ly+=gsy){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
+  var xl9=(opts.axisLabels&&opts.axisLabels.x)||"x", yl9=(opts.axisLabels&&opts.axisLabels.y)||"y";
+  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="11" fill="#4a5566" text-anchor="end" font-style="italic">'+xl9+'</text>';
+  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(yhi)+10).toFixed(1)+'" font-size="11" fill="#4a5566" font-style="italic">'+yl9+'</text>';
+  if(opts.ghost){ var g=opts.ghost; s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(g.m*xmin+g.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(g.m*xmax+g.c).toFixed(1)+'" stroke="#b9a05f" stroke-width="2" stroke-dasharray="5 4"/>'; }
+  if(opts.targetY!=null){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(opts.targetY).toFixed(1)+'" r="8" fill="none" stroke="#b24c4c" stroke-width="2.4"/><text x="'+(SX(0)-9).toFixed(1)+'" y="'+(SY(opts.targetY)+3).toFixed(1)+'" font-size="10" fill="#b24c4c" text-anchor="end">target</text>'; }
+  if(opts.family){
+    opts.family.forEach(function(f){ var col=f.col||"#3f7a45";
+      s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(f.m*xmin+f.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(f.m*xmax+f.c).toFixed(1)+'" stroke="'+col+'" stroke-width="2.4"/>';
+      if(!opts.hideFamilyDots && f.c>=ylo&&f.c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(f.c).toFixed(1)+'" r="4.5" fill="'+col+'"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(f.c)-6).toFixed(1)+'" font-size="10" fill="'+col+'">(0, '+f.c+')</text>'; }
+    });
+    if(opts.vmark!=null){ var mvx=SX(opts.vmark);
+      s+='<line x1="'+mvx.toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+mvx.toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#365a68" stroke-width="1.6" stroke-dasharray="4 3"/>';
+      opts.family.forEach(function(f){ var yv=f.m*opts.vmark+f.c; if(yv>=ylo&&yv<=yhi){ s+='<circle cx="'+mvx.toFixed(1)+'" cy="'+SY(yv).toFixed(1)+'" r="4.5" fill="'+(f.col||"#3f7a45")+'"/>'; } });
+      s+='<text x="'+mvx.toFixed(1)+'" y="'+(SY(yhi)+11).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">x = '+opts.vmark+'</text>';
+    }
+    if(opts.markPoint){ var pX=SX(opts.markPoint.x), pY=SY(opts.markPoint.y);
+      s+='<circle cx="'+pX.toFixed(1)+'" cy="'+pY.toFixed(1)+'" r="7" fill="none" stroke="#b24c4c" stroke-width="2.6"/>';
+      if(opts.markPoint.label){ s+='<text x="'+(pX+10).toFixed(1)+'" y="'+(pY-8).toFixed(1)+'" font-size="10" fill="#b24c4c" font-weight="bold">'+opts.markPoint.label+'</text>'; }
+    }
+    svg.innerHTML=s; return;
+  }
+  if(opts.segTo!=null){ s+='<line x1="'+SX(0).toFixed(1)+'" y1="'+SY(c).toFixed(1)+'" x2="'+SX(opts.segTo).toFixed(1)+'" y2="'+SY(m*opts.segTo+c).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  else if(!opts.hideLine){ s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(yA).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(yB).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.showPoints){ var maxp=(opts.showPoints===true)?4:opts.showPoints; for(var px=0;px<=maxp;px++){ var py=m*px+c; if(py<ylo||py>yhi)continue; s+='<circle cx="'+SX(px).toFixed(1)+'" cy="'+SY(py).toFixed(1)+'" r="3.2" fill="#2f6a35"/>'; } }
+  if(!opts.hideIntercept && c>=ylo&&c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(c).toFixed(1)+'" r="4.5" fill="#b25f2e"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(c)-6).toFixed(1)+'" font-size="10" fill="#b25f2e">(0, '+c+')</text>'; }
+  if(opts.lineThrough){ var LA=opts.lineThrough.A, LB=opts.lineThrough.B, lm=(LB.y-LA.y)/(LB.x-LA.x), lc=LA.y-lm*LA.x;
+    s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(lm*xmin+lc).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(lm*xmax+lc).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.tris){ opts.tris.forEach(function(t){ var col=t.col||"#365a68", ax=SX(t.A.x),ay=SY(t.A.y),bx=SX(t.B.x),by=SY(t.B.y),cornerX=bx,cornerY=ay;
+    var run=t.B.x-t.A.x, rise=t.B.y-t.A.y;
+    s+='<line x1="'+ax.toFixed(1)+'" y1="'+ay.toFixed(1)+'" x2="'+cornerX.toFixed(1)+'" y2="'+cornerY.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<line x1="'+cornerX.toFixed(1)+'" y1="'+cornerY.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<text x="'+((ax+cornerX)/2).toFixed(1)+'" y="'+(cornerY+(rise>=0?15:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="middle">run '+run+'</text>';
+    var riseLeft = cornerX>295;   /* near right edge: put the rise label on the inside to avoid clipping */
+    s+='<text x="'+(cornerX+(riseLeft?-6:6)).toFixed(1)+'" y="'+((cornerY+by)/2+3).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="'+(riseLeft?'end':'start')+'">rise '+(rise>=0?"+"+rise:rise)+'</text>';
+    s+='<circle cx="'+ax.toFixed(1)+'" cy="'+ay.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(ax-8).toFixed(1)+'" y="'+(ay+(rise>=0?14:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="end">'+(t.aLabel||"A")+'</text>';
+    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(bx+7).toFixed(1)+'" y="'+(by-7).toFixed(1)+'" font-size="10" fill="'+col+'">'+(t.bLabel||"B")+'</text>';
+  }); }
+  if(opts.stepTri && m!==0){ var rx0=SX(0),ry0=SY(c),rx1=SX(1),ry1c=SY(c),ry1=SY(m+c);
+    s+='<line x1="'+rx0.toFixed(1)+'" y1="'+ry0.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1c.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<line x1="'+rx1.toFixed(1)+'" y1="'+ry1c.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<text x="'+(rx0+3).toFixed(1)+'" y="'+(ry1c+16).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="start">1 across</text>';
+    s+='<text x="'+(rx1+5).toFixed(1)+'" y="'+((ry1c+ry1)/2+3).toFixed(1)+'" font-size="10" fill="#365a68">'+(m>0?"+"+m:m)+" up</text>";
+  }
+  if(opts.stepTri && m===0){ s+='<text x="'+SX(3).toFixed(1)+'" y="'+(SY(c)-8).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">flat: no change</text>'; }
+  if(opts.highlightX!=null){ var hx=opts.highlightX, hy=m*hx+c; if(hy>=ylo&&hy<=yhi){
+    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+(Math.round(hx*10)/10)+', '+(Math.round(hy*10)/10)+')</text>';
+  }}
+  svg.innerHTML=s;
+}
+
+/* fraction/decimal display for a gradient rise/run */
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
+function gradStr(rise,run){
+  var g=gcd(rise,run), sr=rise/g, sn=run/g;
+  if(sn<0){ sr=-sr; sn=-sn; }
+  var val=rise/run;
+  var frac = (sn===1)? String(sr) : (sr+"/"+sn);
+  var dec = Number.isInteger(val)? String(val) : (Math.round(val*100)/100);
+  return {frac:frac, dec:dec, val:val};
+}
+
+/* parse a learner-typed linear equation into {m,c}, or null */
+function parseLine(str){
+  var s=String(str).toLowerCase().replace(/\s+/g,'').replace(/−/g,'-').replace(/\*/g,'');
+  var i=s.indexOf('='); if(i>=0) s=s.slice(i+1);
+  if(!s) return null;
+  s=s.replace(/-/g,'+-');
+  var parts=s.split('+').filter(function(t){return t!=='';});
+  var m=0,c=0,hasX=false;
+  for(var k=0;k<parts.length;k++){ var t=parts[k];
+    if(t.indexOf('x')>=0){ var coef=t.replace('x',''); if(coef===''||coef==='+') coef='1'; if(coef==='-') coef='-1'; var cv=parseFloat(coef); if(isNaN(cv))return null; m+=cv; hasX=true; }
+    else { var nv=parseFloat(t); if(isNaN(nv))return null; c+=nv; }
+  }
+  if(!hasX) return null;
+  return {m:m,c:c};
+}
+
+/* ============ Conversion definitions (shared by the activities) ============ */
+function round1(v){ return Math.round(v*10)/10; }
+var CONV={
+ milesKm:{m:1.6,c:0, xlab:"miles", ylab:"km", xR:[0,10], yhi:16, xu:"miles", yu:"km", name:"Miles ↔ kilometres (1 mile = 1.6 km)"},
+ poundsEuro:{m:1.2,c:0, xlab:"£", ylab:"€", xR:[0,20], yhi:24, xu:"£", yu:"€", name:"Pounds ↔ euros (£1 = €1.20)"},
+ cToF:{m:1.8,c:32, xlab:"°C", ylab:"°F", xR:[0,40], yhi:110, xu:"°C", yu:"°F", name:"Celsius ↔ Fahrenheit (F = 1.8C + 32)"}
+};
+
+/* ============ CONNECTION: Conversion Graph Translator ============ */
+var ctCases=[
+ {conv:"milesKm", given:5, dir:"toY"},
+ {conv:"milesKm", given:8, dir:"toX"},
+ {conv:"poundsEuro", given:10, dir:"toY"},
+ {conv:"poundsEuro", given:18, dir:"toX"},
+ {conv:"cToF", given:20, dir:"toY"},
+ {conv:"cToF", given:0, dir:"toY"}
+];
+var ctIndex=0;
+function ctAnswer(q){ var v=CONV[q.conv]; return q.dir==="toY" ? (v.m*q.given+v.c) : ((q.given-v.c)/v.m); }
+function ctMarkX(q){ var v=CONV[q.conv]; return q.dir==="toY" ? q.given : (q.given-v.c)/v.m; }
+function ctDraw(reveal){
+  var q=ctCases[ctIndex], v=CONV[q.conv];
+  drawGraph("ctGraph",v.m,v.c,{xRange:v.xR, fixedY:[0,v.yhi], axisLabels:{x:v.xlab,y:v.ylab}, highlightX: reveal?ctMarkX(q):null});
+  var fromU=q.dir==="toY"?v.xu:v.yu, toU=q.dir==="toY"?v.yu:v.xu;
+  document.getElementById("ctDesc").innerHTML="<b>"+v.name+"</b><br>Use the graph: convert <b>"+q.given+" "+fromU+"</b> to "+toU+".";
+  document.getElementById("ctLabel").innerHTML="<b>"+q.given+" "+fromU+" = </b>";
+  document.getElementById("ctAns").value="";
+  document.getElementById("ctFeedback").style.display="none";
+}
+function ctReveal(){
+  var q=ctCases[ctIndex], v=CONV[q.conv], ans=ctAnswer(q), toU=q.dir==="toY"?v.yu:v.xu, val=num(document.getElementById("ctAns").value), fb=document.getElementById("ctFeedback");
+  fb.style.display="block"; ctDraw(true);
+  if(isNaN(val)){ fb.className="feedback warn"; fb.innerHTML="Read up from "+q.given+" to the line, then across. Type the value off the other axis."; return; }
+  if(Math.abs(val-ans)<=(v.m>=1.5?0.35:0.2)){ fb.className="feedback good"; fb.innerHTML="✓ "+q.given+" "+(q.dir==="toY"?v.xu:v.yu)+" = <b>"+round1(ans)+" "+toU+"</b>. The dashed guide shows the read-off."; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not quite — follow the dashed guide to the line and across. It reads <b>"+round1(ans)+" "+toU+"</b>."; }
+}
+function ctNext(){ ctIndex=(ctIndex+1)%ctCases.length; ctDraw(false); }
+
+/* ============ MOVEMENT: Two-way reader (draggable point) ============ */
+var trKeys=["milesKm","poundsEuro","cToF"], trKi=0, trX=null;
+function trChipsRender(){ document.getElementById("trChips").innerHTML=trKeys.map(function(k,i){return '<span class="chip'+(i===trKi?' active':'')+'" onclick="setTr('+i+')">'+CONV[k].xlab+'/'+CONV[k].ylab+'</span>';}).join(""); }
+function setTr(i){ trKi=i; var v=CONV[trKeys[i]]; trX=Math.round((v.xR[0]+v.xR[1])/2); trChipsRender(); trDraw(); }
+function trDraw(){
+  var v=CONV[trKeys[trKi]];
+  drawGraph("trGraph",v.m,v.c,{xRange:v.xR, fixedY:[0,v.yhi], axisLabels:{x:v.xlab,y:v.ylab}, highlightX:trX});
+  var y=v.m*trX+v.c;
+  document.getElementById("trRead").innerHTML="<b>"+CONV[trKeys[trKi]].name+"</b><br>The point reads: <b>"+trX+" "+v.xu+" = "+round1(y)+" "+v.yu+"</b>. Drag it to convert any value — the guides read both ways.";
+}
+function trPtX(e){ var svg=document.getElementById("trGraph"), r=svg.getBoundingClientRect(), v=CONV[trKeys[trKi]];
+  var vx=(e.clientX-r.left)*360/r.width, ux=(360-68)/(v.xR[1]-v.xR[0]);
+  return Math.max(v.xR[0], Math.min(v.xR[1], Math.round((vx-34)/ux + v.xR[0]))); }
+function trInit(){ var svg=document.getElementById("trGraph"); if(!svg||svg.dataset.wired)return; svg.dataset.wired="1"; var dragging=false;
+  function set(e){ trX=trPtX(e); trDraw(); }
+  svg.addEventListener("pointerdown",function(e){ dragging=true; if(svg.setPointerCapture&&e.pointerId!=null){try{svg.setPointerCapture(e.pointerId);}catch(err){}} set(e); e.preventDefault(); });
+  svg.addEventListener("pointermove",function(e){ if(dragging){ set(e); e.preventDefault(); } });
+  svg.addEventListener("pointerup",function(e){ dragging=false; e.preventDefault(); });
+  svg.addEventListener("pointercancel",function(){ dragging=false; });
+}
+
+/* ============ REFLECTION: Read it right? ============ */
+var RC=[
+ {conv:"milesKm", markX:5, claim:"5 miles = 8 km", ok:true,  why:"Reading up from 5 miles to the line and across gives 8 km. Correct."},
+ {conv:"milesKm", markX:5, claim:"5 miles = 3 km", ok:false, why:"Slip — that reads the wrong way. 5 on the miles axis goes UP to 8 km, not down. 3 km would be about 2 miles."},
+ {conv:"cToF", markX:0, claim:"0°C = 0°F", ok:false, why:"Slip — this line does not start at the origin. Read to the line: 0°C = 32°F. You cannot just assume zero maps to zero."},
+ {conv:"cToF", markX:10, claim:"10°C = 18°F", ok:false, why:"Slip — that is 10 × 1.8 without the + 32. Read to the line: 10°C = 50°F."},
+ {conv:"poundsEuro", markX:10, claim:"£10 = €12", ok:true, why:"Up from £10 to the line and across gives €12. Correct."}
+];
+var rcIndex=0;
+function rcRender(){
+  var q=RC[rcIndex], v=CONV[q.conv];
+  drawGraph("rcMini",v.m,v.c,{xRange:v.xR, fixedY:[0,v.yhi], axisLabels:{x:v.xlab,y:v.ylab}, highlightX:q.markX});
+  document.getElementById("rcClue").innerHTML="<b>Card "+(rcIndex+1)+":</b> Someone reads this conversion graph and says <span style=\"background:#f3ecda;padding:2px 6px;border-radius:5px\">"+q.claim+"</span><br>Is that <b>right</b>, or a <b>slip</b>?";
+  document.getElementById("rcOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="rcPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("rcFeedback").style.display="none";
+  document.getElementById("rcProgress").textContent="Card "+(rcIndex+1)+" of "+RC.length+".";
+}
+function rcPick(i){
+  var q=RC[rcIndex], ans=q.ok?0:1, fb=document.getElementById("rcFeedback"); fb.style.display="block";
+  if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
+  else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
+}
+function rcNext(){ rcIndex=(rcIndex+1)%RC.length; rcRender(); }
+
+/* ============ CREATIVITY: Holiday money (£/€, both ways) ============ */
+var HM_CONV={m:1.2,c:0, xlab:"£", ylab:"€", xR:[0,50], yhi:60, xu:"£", yu:"€"};
+var HM=[
+ {desc:"You are heading to France with <b>£40</b> spending money. How many euros will you get?", given:40, dir:"toY"},
+ {desc:"A meal in a café costs <b>€30</b>. How much is that in pounds?", given:30, dir:"toX"},
+ {desc:"You have <b>£25</b> left at the end of the trip. How many euros is that?", given:25, dir:"toY"},
+ {desc:"A souvenir is priced at <b>€18</b>. How much is that in pounds?", given:18, dir:"toX"}
+];
+var hmIndex=0;
+function hmAnswer(q){ return q.dir==="toY" ? HM_CONV.m*q.given : q.given/HM_CONV.m; }
+function hmMarkX(q){ return q.dir==="toY" ? q.given : q.given/HM_CONV.m; }
+function hmChipsRender(){ document.getElementById("hmChips").innerHTML=HM.map(function(o,i){return '<span class="chip'+(i===hmIndex?' active':'')+'" onclick="setHm('+i+')">Q'+(i+1)+'</span>';}).join(""); }
+function hmDraw(reveal){
+  drawGraph("hmGraph",HM_CONV.m,HM_CONV.c,{xRange:HM_CONV.xR, fixedY:[0,HM_CONV.yhi], axisLabels:{x:HM_CONV.xlab,y:HM_CONV.ylab}, highlightX: reveal?hmMarkX(HM[hmIndex]):null});
+}
+function setHm(i){ hmIndex=i; var q=HM[i], toU=q.dir==="toY"?HM_CONV.yu:HM_CONV.xu, fromU=q.dir==="toY"?HM_CONV.xu:HM_CONV.yu;
+  document.getElementById("hmDesc").innerHTML=q.desc;
+  document.getElementById("hmLabel").innerHTML="<b>Answer ("+toU+"):</b>";
+  document.getElementById("hmAns").value=""; document.getElementById("hmFeedback").style.display="none";
+  hmChipsRender(); hmDraw(false); }
+function hmCheck(){
+  var q=HM[hmIndex], ans=hmAnswer(q), toU=q.dir==="toY"?HM_CONV.yu:HM_CONV.xu, val=num(document.getElementById("hmAns").value), fb=document.getElementById("hmFeedback");
+  fb.style.display="block"; hmDraw(true);
+  if(isNaN(val)){ fb.className="feedback warn"; fb.textContent="Read the graph and type the amount as a number."; return; }
+  if(Math.abs(val-ans)<=0.6){ fb.className="feedback good"; fb.innerHTML="✓ That is <b>"+round1(ans)+" "+toU+"</b>. The dashed guide shows the read-off — the same line works both ways."; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not quite — follow the dashed guide to the line and across. It reads <b>"+round1(ans)+" "+toU+"</b>."; }
+}
+
+/* (unused helper kept for compatibility) */
+function intersect(A,B){ var x=(B.c-A.c)/(A.m-B.m); return {x:x, y:A.m*x+A.c}; }
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  function coordSVG(px,py){
+    var V=210,pad=26,n=6,u=(V-2*pad)/n;
+    function SX(x){return pad+x*u;} function SY(y){return V-pad-y*u;}
+    var s='<svg viewBox="0 0 '+V+' '+V+'" role="img" aria-label="A coordinate grid with point P plotted" style="max-width:220px;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:8px 0">';
+    for(var i=0;i<=n;i++){ s+='<line x1="'+SX(i)+'" y1="'+SY(0)+'" x2="'+SX(i)+'" y2="'+SY(n)+'" stroke="#e6ddcb"/><line x1="'+SX(0)+'" y1="'+SY(i)+'" x2="'+SX(n)+'" y2="'+SY(i)+'" stroke="#e6ddcb"/>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(n)+'" y2="'+SY(0)+'" stroke="#6a7080" stroke-width="1.4"/><line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(0)+'" y2="'+SY(n)+'" stroke="#6a7080" stroke-width="1.4"/>';
+    for(var t=1;t<=n;t++){ s+='<text x="'+SX(t)+'" y="'+(SY(0)+13)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+t+'</text><text x="'+(SX(0)-6)+'" y="'+(SY(t)+3)+'" font-size="9" fill="#6a7080" text-anchor="end">'+t+'</text>'; }
+    s+='<circle cx="'+SX(px)+'" cy="'+SY(py)+'" r="5" fill="#b25f2e"/><text x="'+(SX(px)+8)+'" y="'+(SY(py)-6)+'" font-size="13" fill="#b25f2e" font-weight="bold">P</text></svg>';
+    return s;
+  }
+  function lineMiniSVG(m,c){
+    var V=210,pad=26,n=6,u=(V-2*pad)/n;
+    function SX(x){return pad+x*u;} function SY(y){return V-pad-y*u;}
+    var s='<svg viewBox="0 0 '+V+' '+V+'" role="img" aria-label="A line on a coordinate grid with its y-intercept marked" style="max-width:220px;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:8px 0">';
+    for(var i=0;i<=n;i++){ s+='<line x1="'+SX(i)+'" y1="'+SY(0)+'" x2="'+SX(i)+'" y2="'+SY(n)+'" stroke="#e6ddcb"/><line x1="'+SX(0)+'" y1="'+SY(i)+'" x2="'+SX(n)+'" y2="'+SY(i)+'" stroke="#e6ddcb"/>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(n)+'" y2="'+SY(0)+'" stroke="#6a7080" stroke-width="1.4"/><line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(0)+'" y2="'+SY(n)+'" stroke="#6a7080" stroke-width="1.4"/>';
+    for(var t=1;t<=n;t++){ s+='<text x="'+SX(t)+'" y="'+(SY(0)+13)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+t+'</text><text x="'+(SX(0)-6)+'" y="'+(SY(t)+3)+'" font-size="9" fill="#6a7080" text-anchor="end">'+t+'</text>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(c)+'" x2="'+SX(n)+'" y2="'+SY(m*n+c)+'" stroke="#3f7a45" stroke-width="2.4"/>';
+    s+='<circle cx="'+SX(0)+'" cy="'+SY(c)+'" r="5" fill="#b25f2e"/>';
+    s+='</svg>'; return s;
+  }
+  var RECONNECT={
+    readPoint:{title:'Reading coordinates',prompt:'What are the coordinates of point <b>P</b>? Write them like (across, up).'+coordSVG(4,2),answer:'4 2',hint:'Count how far <b>across</b> P is (that is x), then how far <b>up</b> (that is y).'},
+    readLine:{title:'Reading up to a line',prompt:'A conversion line has the rule <b>y = 2x</b>. Go up from <em>x</em> = 4 to the line — what is <em>y</em>?',answer:8,hint:'y = 2 × 4 = 8.'},
+    rate:{title:'The conversion rate',prompt:'A conversion is <b>km = 1.6 × miles</b>. What is the conversion rate (km per mile)?',answer:1.6,hint:'It is the number you multiply by — 1.6.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'readPoint\')">Reading coordinates</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'readLine\')">Reading up to a line</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'rate\')">The conversion rate</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · Both ways",q:"A conversion graph converts miles into km. Can you use the SAME line to convert km back into miles? (yes / no)",a:["yes","y"],prompt:"Does the line link a value on one axis to a value on the other?",hint:"Read up-and-across one way, across-and-down the other.",sol:"Yes — a conversion graph works both ways. The same line does miles → km and km → miles."},
+ {label:"2 of 6 · Miles to km",q:"On a graph where km = 1.6 × miles, convert 5 miles to km.",a:[],eq:function(v){return Math.abs(num(v)-8)<0.1;},prompt:"Multiply by the rate, or read up from 5 to the line.",hint:"1.6 × 5 = ?",sol:"8 km — 1.6 × 5 = 8 (read up from 5 miles to the line, then across)."},
+ {label:"3 of 6 · km to miles",q:"On the same graph (km = 1.6 × miles), convert 16 km back to miles.",a:[],eq:function(v){return Math.abs(num(v)-10)<0.1;},prompt:"Read across from 16 km to the line, then down.",hint:"16 ÷ 1.6 = ?",sol:"10 miles — reading the other way, 16 ÷ 1.6 = 10."},
+ {label:"4 of 6 · The rate",q:"A pounds-to-euros graph goes through (0, 0) and (10, 12). What is the conversion rate (euros per pound)?",a:[],eq:function(v){return Math.abs(num(v)-1.2)<0.05;},prompt:"The rate is the gradient — rise ÷ run.",hint:"12 ÷ 10 = ?",sol:"1.2 — €12 for £10 means €1.20 per £1 (the gradient)."},
+ {label:"5 of 6 · Not through zero",q:"A °C-to-°F line does NOT pass through the origin: 0°C is 32°F. To convert 10°C, is it correct to just work out 10 × 1.8 = 18°F? (yes / no)",a:["no","n"],prompt:"Does this line start at zero?",hint:"You must add the 32 — or read to the line.",sol:"No — you must read to the line (or add 32): 10°C = 1.8 × 10 + 32 = 50°F, not 18°F."},
+ {label:"6 of 6 · Holiday money",q:"Using £1 = €1.20, a meal costs €30. How much is that in pounds?",a:[],eq:function(v){return Math.abs(num(v)-25)<0.2;},prompt:"Read across from €30 to the line, then down — or divide by 1.2.",hint:"30 ÷ 1.2 = ?",sol:"£25 — €30 ÷ 1.20 = £25 (read across-and-down)."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=q.a.some(function(x){var nx=normText(x);return nx===learner||nx===stripped;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Read up to the line and across to the other axis — or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  ctDraw(false);
+  trChipsRender(); setTr(0); trInit();
+  rcRender();
+  hmChipsRender(); setHm(0);
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

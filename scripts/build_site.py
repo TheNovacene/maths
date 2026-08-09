@@ -74,6 +74,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_07_Parallel_Lines/NEO_Maths_Y10_Straight_Lines_Lesson_07_Parallel_Lines_v0.1.html",
     "straight-lines-08-when-two-lines-meet":
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_08_When_Two_Lines_Meet/NEO_Maths_Y10_Straight_Lines_Lesson_08_When_Two_Lines_Meet_v0.1.html",
+    "straight-lines-09-conversion-graphs-as-models":
+        "03_Intermediate/01_Lessons/Straight_Lines/Lesson_09_Conversion_Graphs/NEO_Maths_Y10_Straight_Lines_Lesson_09_Conversion_Graphs_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
