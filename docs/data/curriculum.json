@@ -244,6 +244,14 @@
           "file": "lessons/straight-lines/07-parallel-stories-of-change.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-08-when-two-lines-meet",
+          "num": "Lesson 08",
+          "title": "When two lines meet",
+          "file": "lessons/straight-lines/08-when-two-lines-meet.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

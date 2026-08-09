@@ -72,6 +72,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_06_Can_I_Write_the_Line/NEO_Maths_Y10_Straight_Lines_Lesson_06_Can_I_Write_the_Line_v0.1.html",
     "straight-lines-07-parallel-stories-of-change":
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_07_Parallel_Lines/NEO_Maths_Y10_Straight_Lines_Lesson_07_Parallel_Lines_v0.1.html",
+    "straight-lines-08-when-two-lines-meet":
+        "03_Intermediate/01_Lessons/Straight_Lines/Lesson_08_When_Two_Lines_Meet/NEO_Maths_Y10_Straight_Lines_Lesson_08_When_Two_Lines_Meet_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
