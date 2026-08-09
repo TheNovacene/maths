@@ -228,6 +228,14 @@
           "file": "lessons/straight-lines/05-rise-run-and-two-points.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-06-can-i-write-the-line",
+          "num": "Lesson 06",
+          "title": "Can I write the line?",
+          "file": "lessons/straight-lines/06-can-i-write-the-line.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
