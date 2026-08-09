@@ -236,6 +236,14 @@
           "file": "lessons/straight-lines/06-can-i-write-the-line.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-07-parallel-stories-of-change",
+          "num": "Lesson 07",
+          "title": "Parallel stories of change",
+          "file": "lessons/straight-lines/07-parallel-stories-of-change.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
