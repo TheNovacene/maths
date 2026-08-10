@@ -260,6 +260,14 @@
           "file": "lessons/straight-lines/09-conversion-graphs-as-models.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "straight-lines-10-what-can-i-explain",
+          "num": "Lesson 10",
+          "title": "What can I now explain about a line?",
+          "file": "lessons/straight-lines/10-what-can-i-explain.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
