@@ -82,6 +82,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_02_Naming_the_Sides/NEO_Maths_Y10_Trigonometry_Lesson_02_Naming_the_Sides_v0.1.html",
+    "trigonometry-03-the-tangent-ratio":
+        "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_03_The_Tangent_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_03_The_Tangent_Ratio_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
@@ -133,6 +135,12 @@ CHROME_STYLE = """
   .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
   .palette-keys[hidden]{display:none}
   .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
+  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em;line-height:1.05}
+  .frac .fnum{padding:0 .25em .5px}
+  .frac .fden{padding:.5px .25em 0;border-top:1.6px solid currentColor}
+  .fracpreview{margin-top:6px;font-size:1.05em;color:#2f3429}
+  .fracpreview[hidden]{display:none}
+  .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
 </style>
 """
 
@@ -179,14 +187,22 @@ PALETTE_SCRIPT = """
   if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
   var DEFAULT=["a","b","c","x","y","\u00b2","\u00b3","\u221a","\u03c0","+","-","\u00d7","\u00f7","=","\u2248","\u00b0"];
   function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
+  function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  /* render any a/b in a plain string as a stacked fraction (numerator over denominator) */
+  function renderFractions(t){ var re=new RegExp("([A-Za-z0-9.\u00b2\u00b3]+) */ *([A-Za-z0-9.\u00b2\u00b3]+)","g"); return esc(t).replace(re, function(_,n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }); }
   function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
+  function updatePreview(f,pv){ var v=f.value||""; if(v.indexOf("/")>=0){ pv.hidden=false; pv.innerHTML='<span class="flabel">Reads as:</span> '+renderFractions(v); } else { pv.hidden=true; pv.innerHTML=""; } }
   function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
     var w=document.createElement("div"); w.className="mathpalette";
     var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="\u221a Symbols";
     var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
-    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);}); k.appendChild(b); });
+    var pv=document.createElement("div"); pv.className="fracpreview"; pv.hidden=true; pv.setAttribute("aria-live","polite");
+    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);updatePreview(f,pv);}); k.appendChild(b); });
+    var fr=document.createElement("button"); fr.type="button"; fr.title="Insert a fraction (numerator / denominator)"; fr.innerHTML='<span class="frac"><span class="fnum">a</span><span class="fden">b</span></span>';
+    fr.addEventListener("click",function(){ insert(f,"/"); updatePreview(f,pv); }); k.appendChild(fr);
     t.addEventListener("click",function(){ k.hidden=!k.hidden; });
-    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w);
+    f.addEventListener("input",function(){ updatePreview(f,pv); });
+    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w); w.insertAdjacentElement("afterend",pv);
   }
   function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}

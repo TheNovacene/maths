@@ -293,6 +293,14 @@
           "file": "lessons/trigonometry/02-naming-the-sides.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "trigonometry-03-the-tangent-ratio",
+          "num": "Lesson 03",
+          "title": "The tangent ratio",
+          "file": "lessons/trigonometry/03-the-tangent-ratio.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

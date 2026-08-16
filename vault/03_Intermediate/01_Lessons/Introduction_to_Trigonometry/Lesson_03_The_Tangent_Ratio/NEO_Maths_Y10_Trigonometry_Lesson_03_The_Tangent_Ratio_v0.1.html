@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: Naming the sides</title>
+<title>NEO Mathematics: The tangent ratio</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -39,168 +39,109 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 </style>
 </head>
 <body>
-
-<style>
-  .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
-  .neo-chrome-header { background: #1A2E3B; color: #F7F7F5; padding: 0.6rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-  .neo-chrome-header a.neo-home { color: #2AB3A0; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
-  .neo-chrome-header a.neo-home:hover { text-decoration: underline; }
-  .neo-chrome-header .neo-crumb { font-size: 0.8rem; color: rgba(247,247,245,0.85); text-align: right; }
-  .neo-chrome-header .neo-crumb strong { color: #FFFFFF; font-weight: 600; }
-  .neo-chrome-footer { background: #1A2E3B; color: rgba(247,247,245,0.85); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.8rem; margin-top: 2rem; }
-  .neo-chrome-footer a { color: #2AB3A0; text-decoration: none; margin: 0 0.6rem; }
-  .neo-chrome-footer a:hover { text-decoration: underline; }
-  .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
-  .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
-  /* --- Comfort & Access --- */
-  .neo-comfort-btn{background:#2AB3A0;color:#08312b;border:none;border-radius:8px;padding:0.35rem 0.7rem;font-weight:700;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;white-space:nowrap}
-  .neo-comfort-btn:hover{filter:brightness(1.06)}
-  .neo-comfort-panel{background:#12242e;color:#F7F7F5;padding:0.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;border-top:1px solid rgba(255,255,255,0.12);font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
-  .neo-comfort-panel[hidden]{display:none}
-  .neo-comfort-group{display:flex;flex-direction:column;gap:0.35rem}
-  .neo-comfort-group>span{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(247,247,245,0.65)}
-  .neo-comfort-row{display:flex;gap:0.4rem}
-  .neo-comfort-panel button.opt{background:rgba(255,255,255,0.10);color:#F7F7F5;border:1px solid rgba(255,255,255,0.25);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem}
-  .neo-comfort-panel button.opt[aria-pressed="true"]{background:#2AB3A0;color:#08312b;border-color:#2AB3A0;font-weight:700}
-  .neo-comfort-reset{margin-left:auto;align-self:center;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(247,247,245,0.85);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem}
-  html[data-neo-text="large"]{font-size:112.5%}
-  html[data-neo-text="larger"]{font-size:125%}
-  html[data-neo-spacing="on"] .neo-lesson-root{letter-spacing:0.012em}
-  html[data-neo-spacing="on"] .neo-lesson-root p,html[data-neo-spacing="on"] .neo-lesson-root li,html[data-neo-spacing="on"] .neo-lesson-root summary,html[data-neo-spacing="on"] .neo-lesson-root h2,html[data-neo-spacing="on"] .neo-lesson-root h3,html[data-neo-spacing="on"] .neo-lesson-root label{line-height:1.9!important;margin-bottom:0.7em!important}
-  html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
-  html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
-  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
-  .mathpalette{margin:6px 0}
-  .palette-toggle{background:#365a68;color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:600}
-  .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .palette-keys[hidden]{display:none}
-  .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
-  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em;line-height:1.05}
-  .frac .fnum{padding:0 .25em .5px}
-  .frac .fden{padding:.5px .25em 0;border-top:1.6px solid currentColor}
-  .fracpreview{margin-top:6px;font-size:1.05em;color:#2f3429}
-  .fracpreview[hidden]{display:none}
-  .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
-</style>
-<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Introduction to Trigonometry &middot; <strong>Lesson 02 &mdash; Naming the sides</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
-<script>
-(function(){
- var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
- try{var sv=JSON.parse(localStorage.getItem(KEY)||"null");if(sv)st=Object.assign(st,sv);}catch(e){}
- function apply(){d.setAttribute("data-neo-text",st.text);st.spacing?d.setAttribute("data-neo-spacing","on"):d.removeAttribute("data-neo-spacing");st.calm?d.setAttribute("data-neo-calm","on"):d.removeAttribute("data-neo-calm");st.motion?d.setAttribute("data-neo-motion","reduced"):d.removeAttribute("data-neo-motion");}
- function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
- function sync(){var ps=document.querySelectorAll("#neoComfortPanel .opt");for(var i=0;i<ps.length;i++){var b=ps[i],k=b.getAttribute("data-k");if(k==="text"){b.setAttribute("aria-pressed",st.text===b.getAttribute("data-v")?"true":"false");}else{b.setAttribute("aria-pressed",st[k]?"true":"false");}}}
- window.neoComfortToggle=function(){var p=document.getElementById("neoComfortPanel"),btn=document.querySelector(".neo-comfort-btn"),willOpen=p.hasAttribute("hidden");willOpen?p.removeAttribute("hidden"):p.setAttribute("hidden","");if(btn)btn.setAttribute("aria-expanded",willOpen?"true":"false");};
- window.neoComfortSet=function(k,v){st[k]=v;apply();save();sync();};
- window.neoComfortToggleOpt=function(k){st[k]=!st[k];apply();save();sync();};
- window.neoComfortReset=function(){st={text:"normal",spacing:false,calm:false,motion:false};apply();save();sync();};
- apply();
- if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
-})();
-</script>
-<div class="neo-lesson-root">
-
 <div id="lessonView">
 <div class="neo">
 <h1>NEO Mathematics: Introduction to Trigonometry</h1>
-<h2>Naming the sides</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>Which side is which — and why does it depend on the angle you choose?</em></h2>
+<h2>The tangent ratio</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How does opposite ÷ adjacent capture an angle?</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Naming — giving the three sides of a right-angled triangle their proper names relative to a chosen angle.</p>
-<p><b>Stepping Stone:</b> identify the <em>hypotenuse</em>, <em>opposite</em> and <em>adjacent</em> relative to a marked angle <em>θ</em>.</p>
+<p><b>Lesson type:</b> Defining — meeting the first named trigonometric ratio, the tangent, and seeing it measure an angle.</p>
+<p><b>Stepping Stone:</b> define and use <em>tan θ = opposite ÷ adjacent</em>, and recognise that a bigger tangent means a steeper angle.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
-<p><b>45-minute shape:</b> Connect 12 · Move 12 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
+<p><b>45-minute shape:</b> Connect 10 · Move 14 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
 </div>
 
 <div class="guides">
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_02_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_02_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_03_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_03_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle, mark an angle, and label the hypotenuse, opposite and adjacent. Then mark the other angle — which labels change?')">✏️ Open Maths Scratchpad</button>
-
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle, mark an angle θ, and work out opposite ÷ adjacent — that is tan θ. Try a steeper angle and see the tangent grow.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
 </div>
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — Side Labeller</summary>
+<summary>🌿 Connection — The ratio with a name</summary>
 <div class="card">
 <h3 style="margin-top:0">🔤 New words for this lesson</h3>
-<p style="margin:6px 0"><b style="color:#8a5a2b">Hypotenuse</b> — the longest side, always <b>opposite the right angle</b>. It never changes, whichever acute angle you look from.<br>
-<b style="color:#b24c4c">Opposite</b> — the side <b>across from the angle θ</b> you are looking at (it does not touch θ).<br>
-<b style="color:#2b6cb0">Adjacent</b> — the side <b>next to θ</b> (it touches θ) that is <b>not</b> the hypotenuse.</p>
+<p style="margin:6px 0"><b style="color:#2f6b46">Tangent</b> — for a chosen angle <em>θ</em> in a right-angled triangle, the <b>tangent</b> is the ratio <b><span class="frac"><span class="fnum">opposite</span><span class="fden">adjacent</span></span></b>. We write it <b>tan θ</b>.<br>
+<b style="color:#b24c4c">Opposite</b> — the side across from θ (from Lesson 2).<br>
+<b style="color:#2b6cb0">Adjacent</b> — the side next to θ, not the hypotenuse (from Lesson 2). The tangent does <b>not</b> use the hypotenuse at all.</p>
 </div>
-<p><b>What to do:</b> the three sides are labelled from the marked angle <em>θ</em>. Press <b>Switch the angle</b> to move <em>θ</em> to the other corner, and <b>New triangle</b> to see a different one. Watch which labels change and which stays put.</p>
-<p><b>What you are trying to notice:</b> the <b>hypotenuse</b> never moves — it is always opposite the right angle. But <b>opposite</b> and <b>adjacent</b> <b>swap</b> when you look from the other angle. Their names depend on the angle you choose.</p>
+<p><b>What to do:</b> here are three right-angled triangles that are all the <b>same shape</b> (same angle θ) but different sizes. For each, work out <b>opposite ÷ adjacent</b>. Press <b>Reveal the ratio</b> to check.</p>
+<p><b>What you are trying to notice:</b> just as in Lesson 1, the ratio is the <b>same</b> for every size — because the angle is the same. That one shared number has a name: it is <b>tan θ</b>, the tangent of the angle.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🏷️ Side Labeller</h3>
-<div class="card" style="text-align:center"><svg id="slTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with its sides labelled hypotenuse, opposite and adjacent relative to a marked angle"></svg></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="slSwitch()">🔄 Switch the angle θ</button><button onclick="slNew()">🔺 New triangle</button></div>
-<div id="slRead" class="card small"></div>
-<p><b>Carry this forward:</b> the <b>hypotenuse</b> is opposite the right angle (fixed). The <b>opposite</b> is across from θ; the <b>adjacent</b> is next to θ — and these two swap if you change the angle.</p>
+<h3 style="margin-top:0">🏷️ The ratio with a name</h3>
+<div class="card" style="text-align:center"><svg id="cnTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="Three similar right-angled triangles of different sizes sharing one angle"></svg></div>
+<div id="cnChips" class="buttonrow" style="justify-content:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="cnReveal()">🔓 Reveal the ratio</button></div>
+<div id="cnRead" class="card small"></div>
+<p><b>Carry this forward:</b> <b>tan θ = opposite ÷ adjacent</b>. It is the same for every triangle with that angle — a single number that belongs to the angle.</p>
 </div>
 </details>
 
 <!-- ================= MOVEMENT ================= -->
 <details class="hs">
-<summary>🚶 Movement — Label it yourself</summary>
-<p><b>What to do:</b> one side of the triangle is <b>highlighted</b>. Looking at the marked angle <em>θ</em>, choose whether it is the <b>hypotenuse</b>, the <b>opposite</b> or the <b>adjacent</b>. A new triangle, angle and orientation come each round.</p>
-<p><b>What you are trying to notice:</b> you cannot go by position on the screen — you have to use the <b>definitions</b>: opposite the right angle is the hypotenuse; across from θ is the opposite; next to θ is the adjacent.</p>
+<summary>🚶 Movement — Tangent Explorer</summary>
+<p><b>What to do:</b> drag the <b>angle slider</b> to change <em>θ</em>. The adjacent side stays the same length; watch the <b>opposite</b> side and the value of <b>tan θ = opposite ÷ adjacent</b> change with it.</p>
+<p><b>What you are trying to notice:</b> as the angle gets <b>bigger</b>, the triangle gets <b>steeper</b>, the opposite side grows, and <b>tan θ grows too</b>. The tangent is a fingerprint of the angle: each angle has its own value, and a bigger angle means a bigger tangent.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">✍️ Label it Yourself</h3>
-<div class="card" style="text-align:center"><svg id="liTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle in some orientation with one side highlighted to be named"></svg></div>
-<p id="liQ" class="clue" style="text-align:center"></p>
-<div id="liOpts" class="buttonrow" style="justify-content:center"></div>
-<div id="liFeedback" class="feedback"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="liNext()">➡️ Next</button></div>
-<div id="liScore" class="card small" style="text-align:center"></div>
-<p><b>Carry this forward:</b> name a side by its <b>job</b> relative to the angle and the right angle — never by where it sits on the page.</p>
+<h3 style="margin-top:0">📐 Tangent Explorer</h3>
+<div class="card" style="text-align:center"><svg id="teTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle whose angle can be changed with a slider"></svg></div>
+<label class="small" for="teA"><b>Angle θ:</b> <span id="teAv">30°</span></label>
+<input id="teA" type="range" min="10" max="68" step="1" value="30" style="width:100%" oninput="teDraw()">
+<div id="teRead" class="card small"></div>
+<div id="teRatio" class="bignum"></div>
+<p><b>Carry this forward:</b> tan θ increases as θ increases. Knowing the angle fixes the tangent; knowing the tangent fixes the angle.</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION ================= -->
 <details class="es">
-<summary>🪞 Reflection — Which side is it?</summary>
-<p><b>What to do:</b> each card shows a triangle and a <b>claim</b> about the highlighted side. Decide whether the claim is <b>right</b> or a <b>slip</b>, then check.</p>
-<p><b>What you are trying to notice:</b> the classic slip is calling the <b>adjacent</b> the <b>hypotenuse</b> — but the hypotenuse is always opposite the <em>right</em> angle, not next to θ. Check each name against its definition.</p>
+<summary>🪞 Reflection — Is this tan θ?</summary>
+<p><b>What to do:</b> each card shows a right-angled triangle with the opposite and adjacent marked, and a <b>claimed value</b> for tan θ. Decide whether the claim is <b>right</b> or a <b>slip</b>, then check.</p>
+<p><b>What you are trying to notice:</b> the two classic slips are <b>using the hypotenuse</b> instead of the adjacent, and <b>turning the ratio upside down</b> (adjacent ÷ opposite). Tan θ is always <b>opposite ÷ adjacent</b> — nothing else.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔎 Which side is it?</h3>
-<div id="riClue" class="clue"></div>
-<div class="card" style="text-align:center"><svg id="riTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a claimed name for the highlighted side"></svg></div>
-<div id="riOpts" class="buttonrow" style="justify-content:center"></div>
-<div id="riFeedback" class="feedback"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="riNext()">➡️ Next</button></div>
-<p class="small" id="riProg"></p>
-<p><b>Carry this forward:</b> hypotenuse = opposite the right angle; opposite = across from θ; adjacent = next to θ. Test every claim against the definition.</p>
+<h3 style="margin-top:0">🔎 Is this tan θ?</h3>
+<div id="tqClue" class="clue"></div>
+<div class="card" style="text-align:center"><svg id="tqTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a claimed value for the tangent of the marked angle"></svg></div>
+<div id="tqOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="tqFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="tqNext()">➡️ Next</button></div>
+<p class="small" id="tqProg"></p>
+<p><b>Carry this forward:</b> to test any tangent, ask: is it <b>opposite ÷ adjacent</b>? Not the hypotenuse, and not upside down.</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY ================= -->
 <details class="dw">
-<summary>🎨 Creativity — Same triangle, two viewpoints</summary>
-<p><b>What to do:</b> here is <b>one</b> triangle. Look at it first from angle <b>A</b>, then from angle <b>B</b>. Each time, read off the hypotenuse, opposite and adjacent. Fill the table and see what changes.</p>
-<p><b>What you are trying to notice:</b> the <b>hypotenuse is the same</b> from both viewpoints, but the <b>opposite and adjacent swap</b>. The very side you called "vertical" in Lesson 1 is the <em>opposite</em> from one angle and the <em>adjacent</em> from the other — it all depends on where you look from.</p>
+<summary>🎨 Creativity — Rank by steepness</summary>
+<p><b>What to do:</b> here are three ramps (or roof slopes), each given by how far it <b>rises</b> (opposite) over how far it <b>runs</b> (adjacent). Work out <b>tan θ = rise ÷ run</b> for each, then put them in order from <b>gentlest to steepest</b>. Drag or use the buttons to order them, then check.</p>
+<p><b>What you are trying to notice:</b> you do not need to measure the angles to compare them — the <b>tangent alone</b> tells you which is steeper. A bigger tan θ is a steeper slope.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔀 Same Triangle, Two Viewpoints</h3>
-<div class="card" style="text-align:center"><svg id="tvTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="One triangle viewed from either of its two acute angles"></svg></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="tvView('A')">👁️ Look from angle A</button><button onclick="tvView('B')">👁️ Look from angle B</button></div>
-<div id="tvRead" class="card small"></div>
-<p><b>Make it your own:</b> on the Scratchpad, draw a right-angled triangle and label its three sides from <em>both</em> acute angles — write down which two names swap and which stays the same.</p>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle. Label hypotenuse, opposite and adjacent from angle A, then from angle B. Which two names swap?')">✏️ Create on the Scratchpad</button>
+<h3 style="margin-top:0">📊 Rank by Steepness</h3>
+<div id="rkCards" class="twocol"></div>
+<p class="small" style="text-align:center">Put them in order — <b>gentlest first</b>:</p>
+<div id="rkOrder" class="buttonrow" style="justify-content:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="rkCheck()">✅ Check the order</button><button onclick="rkReset()">↺ Reset</button></div>
+<div id="rkFeedback" class="feedback"></div>
+<p><b>Make it your own:</b> on the Scratchpad, invent three slopes of your own, work out each tangent, and challenge a friend to rank them.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Invent three slopes as rise over run. Work out tan θ = rise ÷ run for each, and order them from gentlest to steepest.')">✏️ Create on the Scratchpad</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
 <summary>🌙 Rest — A pause to let it settle</summary>
-<p>Realising that a side's name is not fixed to it — that "opposite" and "adjacent" depend on where you choose to look from — is a genuine shift in how you see a triangle. Take a breath before moving on.</p>
+<p>A single number that captures a whole angle — how steep, how tilted, how much rise for each step along — is a quietly powerful idea. Take a breath before moving on.</p>
 <div class="card">
-<p><b>Notice one thing:</b> did it feel odd that the same side could have two different names? There is no right answer — just what your own attention noticed.</p>
+<p><b>Notice one thing:</b> when the angle grew and the tangent grew with it, did the connection feel natural, or surprising? There is no right answer — just what your own attention noticed.</p>
 <p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
 </div>
 </details>
@@ -210,38 +151,36 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <summary>🍎 Nutrition — What this feeds</summary>
 <p><b>Mode: intellectual.</b> This mathematics does not live in food or the body, so we name honestly what the <em>learning</em> nourishes.</p>
 <div class="card">
-<p><b>What it feeds:</b> today feeds <b>precision of language</b> — the discipline of naming things by their exact role rather than by where they happen to sit. "Opposite" and "adjacent" are not fixed labels stuck to particular sides; they describe a <em>relationship</em> to the angle you are looking from. Learning to hold a definition steady and apply it — even when the picture is rotated or the answer feels counter-intuitive — is the same clear-headedness that mathematics, science and careful argument all rely on. Precise names are how mathematicians avoid talking past each other.</p>
-<p class="small">Carry one idea forward: before you name something, ask <em>what is its job here?</em> — not just <em>where is it?</em></p>
+<p><b>What it feeds:</b> today feeds the powerful mathematical move of letting <b>one number stand in for something larger</b> — a whole angle captured by a single ratio. This is the seed of measurement itself: temperature standing for warmth, a grade standing for a slope, a tangent standing for a tilt. Learning that a carefully chosen number can carry all the information you need — and can be compared, ordered and reasoned about — trains a mind to look for the <em>right measure</em> of a thing. It also feeds honesty about method: tan θ is <em>opposite ÷ adjacent</em>, in that order, every time — and precision like that is what makes the number trustworthy.</p>
+<p class="small">Carry one idea forward: a good measure lets you compare things you could never line up side by side. The tangent lets you compare angles by a single number.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> name the sides — and show the names depend on the angle.</p>
+<p><b>Your task:</b> show that you can define and use the tangent ratio.</p>
 <ul>
-<li>Draw a right-angled triangle, mark one acute angle <em>θ</em>, and label the <b>hypotenuse</b>, <b>opposite</b> and <b>adjacent</b>. Explain how you knew each one.</li>
-<li>Now mark the <b>other</b> acute angle and label the three sides again. Say clearly which two names <b>swapped</b> and which stayed the same, and <b>why</b>.</li>
-<li>Draw the triangle in a <b>different orientation</b> (rotated, so the right angle is not at the bottom) and label the sides for a marked angle — showing the names follow the angle, not the page.</li>
+<li>Draw a right-angled triangle, mark an angle <em>θ</em>, label the <b>opposite</b> and <b>adjacent</b>, and work out <b>tan θ = opposite ÷ adjacent</b>. Show your working.</li>
+<li>Draw a <b>bigger</b> triangle of the same shape and show that <b>tan θ is the same</b> — explain why.</li>
+<li>Take three slopes given as <b>rise over run</b>, work out each tangent, and <b>order them from gentlest to steepest</b>, explaining how the tangent tells you the order.</li>
 </ul>
 <p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_NAMING_THE_SIDES_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_THE_TANGENT_RATIO_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows the hypotenuse is the longest side.</td><td>Knows the hypotenuse is opposite the right angle.</td><td>Identifies opposite and adjacent relative to θ.</td><td>Explains why opposite and adjacent swap with the angle but the hypotenuse does not.</td></tr>
-<tr><td><b>Application</b></td><td>Labels one side correctly.</td><td>Labels all three for one angle.</td><td>Re-labels correctly for the other angle.</td><td>Labels correctly in any orientation.</td></tr>
-<tr><td><b>Communication</b></td><td>Records names with limited labelling.</td><td>Labels the marked angle θ.</td><td>Explains how each name was decided.</td><td>Explains a method another learner could follow.</td></tr>
-<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that two names swapped.</td><td>Explains why they swap.</td><td>Connects the naming to reading from the angle, not the page.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows tan θ compares two sides.</td><td>Knows tan θ = opposite ÷ adjacent.</td><td>Knows tan θ is the same for any size of the same-angle triangle.</td><td>Explains why tan θ depends only on the angle, and grows as the angle grows.</td></tr>
+<tr><td><b>Application</b></td><td>Identifies opposite and adjacent.</td><td>Works out tan θ for one triangle.</td><td>Confirms tan θ is unchanged when the triangle is enlarged.</td><td>Uses tan θ to order slopes by steepness.</td></tr>
+<tr><td><b>Communication</b></td><td>Records a ratio with limited labelling.</td><td>Labels opposite and adjacent.</td><td>Shows the opposite ÷ adjacent working clearly.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that tan θ grows with the angle.</td><td>Explains tan θ belongs to the angle.</td><td>Connects a bigger tangent to a steeper angle.</td></tr>
 </table>
 </details>
 
-</div>
-<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
-</div>
+</div></div>
 
 <!-- ================= PRACTICE COMPANION ================= -->
 <div id="practiceView" hidden><div class="practice">
-<h1>Naming the sides — Practice Companion</h1>
+<h1>The tangent ratio — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -254,7 +193,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the right triangle, mark θ, and name each side before you check.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the right triangle, mark θ, and work out tan θ = opposite ÷ adjacent before you check.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -368,7 +307,18 @@ window.NEO_PALETTE_SYMBOLS=["÷","×","=",".","θ"];
 /* ---------------- View switching + helpers ---------------- */
 function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
 function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
-function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function num(v){
+  var s=String(v).toLowerCase();
+  s=s.replace(/÷/g,'/');                       // palette ÷ counts as a fraction bar
+  s=s.replace(/tan\s*θ?/g,'');                  // drop a leading "tan θ"
+  s=s.replace(/=/g,'');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');   // strip a unit written after a number
+  s=s.replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);  // a fraction anywhere in the answer
+  if(fm) return parseFloat(fm[1])/parseFloat(fm[2]);
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
 function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
 var PI=3.14;
 
@@ -398,6 +348,8 @@ function drawTri(svgId, along, up, opts){
   svg.innerHTML=s;
 }
 function r2(x){ return Math.round(x*100)/100; }
+/* a stacked fraction: numerator over denominator (inherits the surrounding text colour) */
+function frac(n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }
 
 /* ============ Naming engine: a right triangle at any orientation, sides named from θ ============ */
 var SIDE_COL={hyp:"#8a5a2b", opp:"#b24c4c", adj:"#2b6cb0"};
@@ -415,8 +367,9 @@ function drawLabelTri(svgId, opts){
   var TR=tr(R), TP=tr(P), TQ=tr(Q);
   var xs=[TR.x,TP.x,TQ.x], ys=[TR.y,TP.y,TQ.y];
   var minx=Math.min.apply(0,xs), maxx=Math.max.apply(0,xs), miny=Math.min.apply(0,ys), maxy=Math.max.apply(0,ys);
-  var w=(maxx-minx)||1, h=(maxy-miny)||1, sc=Math.min((VW-2*pad)/w,(VH-2*pad)/h);
-  var offx=(VW-w*sc)/2-minx*sc, offy=(VH-h*sc)/2-miny*sc;
+  var w=(maxx-minx)||1, h=(maxy-miny)||1, sc, offx, offy;
+  if(opts.ppu){ sc=opts.ppu; offx=pad-minx*sc; offy=pad; }   /* fixed scale, anchored bottom-left */
+  else { sc=Math.min((VW-2*pad)/w,(VH-2*pad)/h); offx=(VW-w*sc)/2-minx*sc; offy=(VH-h*sc)/2-miny*sc; }
   function S(p){ return {x:p.x*sc+offx, y:VH-(p.y*sc+offy)}; }
   var sR=S(TR), sP=S(TP), sQ=S(TQ), cx=(sR.x+sP.x+sQ.x)/3, cy=(sR.y+sP.y+sQ.y)/3;
   var stroke="#365a68", s="";
@@ -433,14 +386,16 @@ function drawLabelTri(svgId, opts){
     (mark==="P"? {key:"adj", A:sR, B:sP} : {key:"opp", A:sR, B:sP}),
     (mark==="P"? {key:"opp", A:sR, B:sQ} : {key:"adj", A:sR, B:sQ})
   ];
+  var customLabels=opts.labels||null;
   sides.forEach(function(sd){
-    var hi=(opts.highlight===sd.key), showAll=(opts.show==="all");
-    if(hi||showAll){
+    var hi=(opts.highlight===sd.key), showAll=(opts.show==="all"), lab=(customLabels&&customLabels[sd.key]);
+    if(hi||showAll||lab){
       s+='<line x1="'+sd.A.x.toFixed(1)+'" y1="'+sd.A.y.toFixed(1)+'" x2="'+sd.B.x.toFixed(1)+'" y2="'+sd.B.y.toFixed(1)+'" stroke="'+SIDE_COL[sd.key]+'" stroke-width="'+(hi?5.2:3.4)+'" stroke-linecap="round"/>';
     }
-    if(showAll){
+    var text=showAll?SIDE_NAME[sd.key]:(lab||null);
+    if(text){
       var mid={x:(sd.A.x+sd.B.x)/2,y:(sd.A.y+sd.B.y)/2}, o=nrm(sub(mid,{x:cx,y:cy}));
-      s+='<text x="'+(mid.x+o.x*20).toFixed(1)+'" y="'+(mid.y+o.y*20+4).toFixed(1)+'" font-size="12" font-weight="bold" fill="'+SIDE_COL[sd.key]+'" text-anchor="middle">'+SIDE_NAME[sd.key]+'</text>';
+      s+='<text x="'+(mid.x+o.x*20).toFixed(1)+'" y="'+(mid.y+o.y*20+4).toFixed(1)+'" font-size="12" font-weight="bold" fill="'+SIDE_COL[sd.key]+'" text-anchor="middle">'+text+'</text>';
     }
   });
   /* marked-angle arc + θ (arc centred on the vertex, so it bulges outward = convex) */
@@ -463,86 +418,98 @@ function drawLabelTri(svgId, opts){
   svg.innerHTML=s;
 }
 
-/* ============ CONNECTION: Side Labeller ============ */
-var SL_SHAPES=[{a:3,b:4,orient:0,flip:false},{a:4,b:3,orient:1,flip:false},{a:5,b:3,orient:3,flip:false},{a:3,b:5,orient:2,flip:true}];
-var slShape=0, slMark="P";
-function slDraw(){
-  var sh=SL_SHAPES[slShape];
-  drawLabelTri("slTri", {a:sh.a,b:sh.b,orient:sh.orient,flip:sh.flip, mark:slMark, show:"all", theta:true});
-  document.getElementById("slRead").innerHTML="<b>From the marked angle θ:</b> the <b style='color:#8a5a2b'>Hypotenuse</b> is opposite the right angle; the <b style='color:#b24c4c'>Opposite</b> is across from θ; the <b style='color:#2b6cb0'>Adjacent</b> is next to θ."
-   +"<p class='small' style='margin:6px 0 0'>Press <b>Switch the angle θ</b>: the hypotenuse stays put, but opposite and adjacent swap. Press <b>New triangle</b> to test it in a different orientation.</p>";
+/* ============ CONNECTION: The ratio with a name ============ */
+var CN_BASE={opp:3, adj:4};                 /* the shared shape: opp:adj = 3:4, so tan = 0.75 */
+var CN_SIZES=[1,1.5,2.5];                    /* three scale factors -> different sizes, same angle */
+var cnSize=0, cnRevealed=false;
+function cnChips(){ document.getElementById("cnChips").innerHTML=CN_SIZES.map(function(k,i){return '<span class="chip'+(i===cnSize?' active':'')+'" onclick="cnPick('+i+')">Triangle '+(i+1)+'</span>';}).join(""); }
+function cnDraw(){
+  var k=CN_SIZES[cnSize], opp=r2(CN_BASE.opp*k), adj=r2(CN_BASE.adj*k);
+  drawLabelTri("cnTri", {a:CN_BASE.opp, b:CN_BASE.adj, mark:"P", theta:true, pad:66,
+    labels:{opp:"opposite = "+opp+" cm", adj:"adjacent = "+adj+" cm"}});
+  var msg="<b>Triangle "+(cnSize+1)+":</b> opposite = "+opp+" cm, adjacent = "+adj+" cm.";
+  if(cnRevealed){ msg+=" &nbsp; "+frac("opposite","adjacent")+" = "+frac(opp+" cm",adj+" cm")+" = <b>"+r2(opp/adj)+"</b> &nbsp;(the cm cancel, so the tangent has no units)."; }
+  else { msg+=" &nbsp; Work out "+frac("opposite","adjacent")+", then press <b>Reveal the ratio</b>."; }
+  document.getElementById("cnRead").innerHTML=msg;
 }
-function slSwitch(){ slMark=(slMark==="P"?"Q":"P"); slDraw(); }
-function slNew(){ slShape=(slShape+1)%SL_SHAPES.length; slDraw(); }
+function cnPick(i){ cnSize=i; cnRevealed=false; cnChips(); cnDraw(); }
+function cnReveal(){
+  cnRevealed=true; cnDraw();
+  document.getElementById("cnRead").innerHTML+="<p style='margin:6px 0 0'>Every one of these triangles gives <b>0.75</b> — the same angle, the same ratio. That number is <b>tan θ</b>: &nbsp;tan θ = "+frac("opposite","adjacent")+" = <b>0.75</b>.</p>";
+}
 
-/* ============ MOVEMENT: Label it yourself ============ */
-var LI=[
- {a:3,b:4,orient:0,flip:false,mark:"P",side:"hyp"},
- {a:3,b:4,orient:0,flip:false,mark:"P",side:"opp"},
- {a:4,b:3,orient:1,flip:false,mark:"Q",side:"adj"},
- {a:5,b:3,orient:2,flip:false,mark:"P",side:"opp"},
- {a:4,b:6,orient:3,flip:true, mark:"Q",side:"hyp"},
- {a:3,b:4,orient:2,flip:false,mark:"Q",side:"adj"}
+/* ============ MOVEMENT: Tangent Explorer ============ */
+function teDraw(){
+  var deg=+document.getElementById("teA").value, rad=deg*Math.PI/180;
+  var adj=4, opp=r2(adj*Math.tan(rad));          /* adjacent fixed; opposite grows with the angle */
+  document.getElementById("teAv").textContent=deg+"°";
+  drawLabelTri("teTri", {a:adj*Math.tan(rad), b:adj, mark:"P", flip:true, theta:true, pad:40, ppu:20,
+    labels:{opp:"opposite = "+opp+" cm", adj:"adjacent = "+adj+" cm"}});
+  document.getElementById("teRead").innerHTML="At <b>θ = "+deg+"°</b>: adjacent stays at <b>4 cm</b>, opposite is <b>"+opp+" cm</b>. Bigger angle → steeper triangle → longer opposite.";
+  document.getElementById("teRatio").innerHTML="tan "+deg+"° = "+frac("opposite","adjacent")+" = "+frac(opp+" cm","4 cm")+" = <b>"+r2(Math.tan(rad))+"</b>";
+}
+
+/* ============ REFLECTION: Is this tan θ? ============ */
+var TQ=[
+ {opp:3, adj:4, cn:"3 cm", cd:"4 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("3 cm","4 cm")+" = 0.75. Correct."},
+ {opp:5, adj:12, cn:"12 cm", cd:"5 cm", cval:"2.4", ok:false, why:"That is upside down. tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","12 cm")+" ≈ 0.42, not 2.4."},
+ {opp:6, adj:8, cn:"6 cm", cd:"8 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("6 cm","8 cm")+" = 0.75. Correct."},
+ {opp:8, adj:6, cn:"8 cm", cd:"10 cm", cval:"0.8", ok:false, why:"That used the hypotenuse (10 cm), not the adjacent. tan θ = "+frac("opposite","adjacent")+" = "+frac("8 cm","6 cm")+" ≈ 1.33."},
+ {opp:5, adj:5, cn:"5 cm", cd:"5 cm", cval:"1", ok:true,   why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","5 cm")+" = 1 (a 45° angle). Correct."}
 ];
-var liIndex=0, liScore=0, liAnswered=false;
-function liScoreText(){ return "Score: "+liScore+" · Round "+(liIndex+1)+" of "+LI.length; }
-function liDraw(){
-  var q=LI[liIndex];
-  drawLabelTri("liTri", {a:q.a,b:q.b,orient:q.orient,flip:q.flip,mark:q.mark,highlight:q.side,theta:true});
-  document.getElementById("liQ").innerHTML="Looking at the marked angle θ, what is the <b>highlighted</b> side called?";
-  document.getElementById("liOpts").innerHTML=["hyp","opp","adj"].map(function(k){return '<button onclick="liPick(\''+k+'\')">'+SIDE_NAME[k]+'</button>';}).join("");
-  document.getElementById("liFeedback").style.display="none";
-  liAnswered=false;
-  document.getElementById("liScore").textContent=liScoreText();
+var tqIndex=0;
+function tqRender(){
+  var q=TQ[tqIndex];
+  drawLabelTri("tqTri", {a:q.opp, b:q.adj, mark:"P", theta:true, pad:66,
+    labels:{opp:"opposite = "+q.opp+" cm", adj:"adjacent = "+q.adj+" cm"}});
+  document.getElementById("tqClue").innerHTML="<b>Card "+(tqIndex+1)+":</b> Someone claims &nbsp;tan θ = "+frac(q.cn,q.cd)+" = <b>"+q.cval+"</b>. Is that <b>right</b>, or a <b>slip</b>?";
+  document.getElementById("tqOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="tqPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("tqFeedback").style.display="none";
+  document.getElementById("tqProg").textContent="Card "+(tqIndex+1)+" of "+TQ.length+".";
 }
-function liPick(k){
-  if(liAnswered) return;
-  var q=LI[liIndex], fb=document.getElementById("liFeedback"); fb.style.display="block"; liAnswered=true;
-  if(k===q.side){ liScore++; fb.className="feedback good"; fb.innerHTML="Correct — the "+SIDE_NAME[q.side].toLowerCase()+" is "+SIDE_WHY[q.side]+"."; }
-  else { fb.className="feedback warn"; fb.innerHTML="Not quite. The highlighted side is the <b>"+SIDE_NAME[q.side]+"</b> — it is "+SIDE_WHY[q.side]+"."; }
-  document.getElementById("liScore").textContent=liScoreText();
+function tqPick(i){
+  var q=TQ[tqIndex], ans=q.ok?0:1, fb=document.getElementById("tqFeedback"); fb.style.display="block";
+  if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
+  else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
 }
-function liNext(){ liIndex=(liIndex+1)%LI.length; if(liIndex===0) liScore=0; liDraw(); }
+function tqNext(){ tqIndex=(tqIndex+1)%TQ.length; tqRender(); }
 
-/* ============ REFLECTION: Which side is it? ============ */
-var RI=[
- {a:3,b:4,orient:0,flip:false,mark:"P",side:"adj",claim:"Adjacent"},
- {a:3,b:4,orient:0,flip:false,mark:"P",side:"adj",claim:"Hypotenuse"},
- {a:4,b:3,orient:1,flip:false,mark:"Q",side:"hyp",claim:"Hypotenuse"},
- {a:5,b:3,orient:2,flip:false,mark:"P",side:"opp",claim:"Adjacent"},
- {a:4,b:6,orient:3,flip:true, mark:"Q",side:"opp",claim:"Opposite"}
+/* ============ CREATIVITY: Rank by steepness ============ */
+var RK=[
+ {name:"Ramp A", rise:3, run:12},
+ {name:"Ramp B", rise:5, run:10},
+ {name:"Ramp C", rise:2, run:14}
 ];
-var riIndex=0;
-function riRender(){
-  var q=RI[riIndex];
-  drawLabelTri("riTri", {a:q.a,b:q.b,orient:q.orient,flip:q.flip,mark:q.mark,highlight:q.side,theta:true});
-  document.getElementById("riClue").innerHTML="<b>Card "+(riIndex+1)+":</b> Someone says the <b>highlighted</b> side is the <b>"+q.claim+"</b>. Is that <b>right</b>, or a <b>slip</b>?";
-  document.getElementById("riOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="riPick('+i+')">'+o+'</button>';}).join("");
-  document.getElementById("riFeedback").style.display="none";
-  document.getElementById("riProg").textContent="Card "+(riIndex+1)+" of "+RI.length+".";
+var rkChosen=[];                                  /* the learner's order, as indices into RK */
+function rkTan(i){ return RK[i].rise/RK[i].run; }
+function rkCardsRender(){
+  document.getElementById("rkCards").innerHTML=RK.map(function(r,i){
+    return '<div class="card" style="text-align:center"><b>'+r.name+'</b><br><span class="small">rises '+r.rise+' m for every '+r.run+' m along</span><br>tan θ = '+frac(r.rise+" m",r.run+" m")+' = <b>?</b></div>';
+  }).join("");
 }
-function riPick(i){
-  var q=RI[riIndex], correctIsRight=(SIDE_NAME[q.side]===q.claim), ans=correctIsRight?0:1;
-  var fb=document.getElementById("riFeedback"); fb.style.display="block";
-  var truth="The highlighted side is the <b>"+SIDE_NAME[q.side]+"</b> ("+SIDE_WHY[q.side]+").";
-  if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+truth; }
-  else { fb.className="feedback warn"; fb.innerHTML="Look again. "+truth; }
+function rkOrderRender(){
+  var html="";
+  RK.forEach(function(r,i){
+    var pos=rkChosen.indexOf(i);
+    html+='<button onclick="rkTake('+i+')"'+(pos>=0?' style="background:#dce8ef;border-color:#365a68"':'')+'>'+(pos>=0?(pos+1)+'. ':'')+r.name+'</button>';
+  });
+  document.getElementById("rkOrder").innerHTML=html;
 }
-function riNext(){ riIndex=(riIndex+1)%RI.length; riRender(); }
-
-/* ============ CREATIVITY: Same triangle, two viewpoints ============ */
-var TV_SHAPE={a:3,b:4,orient:0,flip:false};
-var tvSeen={A:false,B:false};
-function tvView(which){
-  var mark=(which==="A"?"P":"Q");
-  drawLabelTri("tvTri", {a:TV_SHAPE.a,b:TV_SHAPE.b,orient:TV_SHAPE.orient,flip:TV_SHAPE.flip,mark:mark,show:"all",theta:true,vertexLabels:{P:"A",Q:"B"}});
-  tvSeen[which]=true;
-  var rowsA=tvSeen.A?"<tr><td>Angle A</td><td>the slope</td><td>the vertical side</td><td>the horizontal side</td></tr>":"";
-  var rowsB=tvSeen.B?"<tr><td>Angle B</td><td>the slope</td><td>the horizontal side</td><td>the vertical side</td></tr>":"";
-  var note=(tvSeen.A&&tvSeen.B)
-    ? "<p style='margin:6px 0 0'>The <b>hypotenuse</b> (the slope) is the <b>same</b> from both viewpoints. But <b>opposite</b> and <b>adjacent swap</b>: the vertical side is the <em>opposite</em> from angle A and the <em>adjacent</em> from angle B.</p>"
-    : "<p class='small' style='margin:6px 0 0'>Now look from the <b>other</b> angle to complete the table.</p>";
-  document.getElementById("tvRead").innerHTML="<table class='satab' style='width:100%;font-size:.9em;margin:0'><tr><th>Viewpoint</th><th>Hypotenuse</th><th>Opposite</th><th>Adjacent</th></tr>"+rowsA+rowsB+"</table>"+note;
+function rkTake(i){
+  var pos=rkChosen.indexOf(i);
+  if(pos>=0) rkChosen.splice(pos,1); else rkChosen.push(i);
+  rkOrderRender();
+  document.getElementById("rkFeedback").style.display="none";
+}
+function rkReset(){ rkChosen=[]; rkOrderRender(); document.getElementById("rkFeedback").style.display="none"; }
+function rkCheck(){
+  var fb=document.getElementById("rkFeedback"); fb.style.display="block";
+  if(rkChosen.length<RK.length){ fb.className="feedback warn"; fb.textContent="Pick all three, in order from gentlest to steepest."; return; }
+  var correct=RK.map(function(_,i){return i;}).sort(function(a,b){return rkTan(a)-rkTan(b);});
+  var ok=rkChosen.every(function(v,i){return v===correct[i];});
+  var vals=RK.map(function(r,i){return r.name+": tan θ = "+frac(r.rise+" m",r.run+" m")+" = "+r2(rkTan(i));}).join(";&nbsp; ");
+  if(ok){ fb.className="feedback good"; fb.innerHTML="Correct — gentlest to steepest is "+correct.map(function(i){return "<b>"+RK[i].name+"</b>";}).join(" → ")+". ("+vals+".) The bigger the tangent, the steeper the slope."; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet. Work out each tangent and order them smallest first. ("+vals+".)"; }
 }
 
 /* ---------------- Reconnection Routes ---------------- */
@@ -569,8 +536,8 @@ function tvView(which){
     s+='</svg>'; return s;
   }
   var RECONNECT={
-    hyp:{title:'The hypotenuse',prompt:'In a right-angled triangle, the longest side has a special name. What is it called?',answer:'hypotenuse',hint:'It is always opposite the right angle — the "hypotenuse".'},
-    rightangle:{title:'The right angle',prompt:'A right angle — the corner marked with a small square — measures how many degrees?',answer:90,hint:'A right angle is 90°.'},
+    sides:{title:'Opposite and adjacent (Lesson 2)',prompt:'The side <b>across from</b> the marked angle θ is called the ___ side. Which name?',answer:'opposite',hint:'Across from θ = the opposite; next to θ = the adjacent.'},
+    division:{title:'A ratio as a division',prompt:'What is <b>3 ÷ 4</b> as a decimal?',answer:0.75,hint:'3 ÷ 4 = 0.75.'},
     ratio:{title:'The constant ratio (Lesson 1)',prompt:'For a fixed angle, does enlarging a right-angled triangle change the ratio of two of its sides? (yes / no)',answer:'no',hint:'No — the ratio belongs to the angle, so enlarging (same angle) leaves it unchanged.'}
   };
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
@@ -578,8 +545,8 @@ function tvView(which){
     var p=document.getElementById('reconnectionPanel');p.style.display='block';
     p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
      +'<div class="buttonrow">'
-     +'<button class="guidebtn" onclick="showReconnect(\'hyp\')">The hypotenuse</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'rightangle\')">The right angle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'sides\')">Opposite and adjacent</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'division\')">A ratio as a division</button>'
      +'<button class="guidebtn" onclick="showReconnect(\'ratio\')">The constant ratio</button>'
      +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
   };
@@ -602,12 +569,12 @@ function tvView(which){
 
 /* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · The longest side",q:"In a right-angled triangle, the longest side has a special name. What is it called?",a:["hypotenuse","the hypotenuse","hyp"],prompt:"Which side sits opposite the right angle?",hint:"It is always opposite the right angle.",sol:"The hypotenuse — the longest side, always opposite the right angle."},
- {label:"2 of 6 · Where is the hypotenuse?",q:"The hypotenuse is always opposite which angle — the marked angle θ, or the RIGHT angle?",a:["right angle","the right angle","right","the right"],prompt:"Is the hypotenuse fixed to θ, or to the 90° corner?",hint:"It never moves when θ changes, so it is tied to the right angle.",sol:"The right angle — the hypotenuse is opposite the 90° corner, so it stays fixed however you choose θ."},
- {label:"3 of 6 · Across from θ",q:"The side that is across from the marked angle θ (it does not touch θ) is called the ___ side. Which name?",a:["opposite","the opposite","opp"],prompt:"Which side does not touch θ at all?",hint:"It is 'across from' θ — the opposite.",sol:"The opposite — it is across from θ and does not touch it."},
- {label:"4 of 6 · Next to θ",q:"The side next to θ that is NOT the hypotenuse is called the ___ side. Which name?",a:["adjacent","the adjacent","adj"],prompt:"Which leg touches θ but is not the longest side?",hint:"'Adjacent' means 'next to'.",sol:"The adjacent — it touches θ and is not the hypotenuse."},
- {label:"5 of 6 · Which name stays?",q:"You switch the marked angle to the other acute corner. Which side KEEPS its name — the opposite, the adjacent, or the hypotenuse?",a:["hypotenuse","the hypotenuse","hyp"],prompt:"Which side does not depend on which angle you look from?",hint:"Only the hypotenuse is fixed to the right angle.",sol:"The hypotenuse — it is opposite the right angle, so it keeps its name whichever acute angle you choose."},
- {label:"6 of 6 · Which two swap?",q:"When you switch to the other acute angle, which TWO names swap over? (name both)",a:["opposite and adjacent","adjacent and opposite","opposite adjacent","adjacent opposite","the opposite and the adjacent","opp and adj","adj and opp"],prompt:"The hypotenuse stays — so which two must change?",hint:"The two legs exchange roles: opposite ↔ adjacent.",sol:"The opposite and the adjacent swap — the side across from one angle is next to the other."}
+ {label:"1 of 6 · Define the tangent",q:"For a marked angle θ, the tangent is which ratio — opposite ÷ adjacent, or adjacent ÷ opposite?",a:["opposite ÷ adjacent","opposite divided by adjacent","opp ÷ adj","opp/adj","opposite/adjacent","opposite over adjacent"],prompt:"Which side goes on top in tan θ?",hint:"tan θ = opposite ÷ adjacent — opposite on top.",sol:"tan θ = opposite ÷ adjacent — the opposite side divided by the adjacent side."},
+ {label:"2 of 6 · Work out tan θ",q:"A right-angled triangle has opposite = 3 cm and adjacent = 4 cm for the marked angle θ. What is tan θ? (a decimal or a fraction is fine)",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"tan θ = opposite ÷ adjacent.",hint:"3 ÷ 4 = ? (the cm cancel)",sol:"0.75 — tan θ = opposite ÷ adjacent = 3 ÷ 4 = 0.75 (the units cancel, so the tangent has no units)."},
+ {label:"3 of 6 · The same shape, bigger",q:"That triangle is enlarged to opposite = 6 cm and adjacent = 8 cm. What is tan θ now?",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"Work out 6 ÷ 8 and compare with the last answer.",hint:"6 ÷ 8 = 0.75 — the same as before.",sol:"0.75 — tan θ is unchanged by size. Same angle → same tangent."},
+ {label:"4 of 6 · Which is steeper?",q:"Slope P has tan θ = 0.4. Slope Q has tan θ = 0.9. Which is steeper — P or Q?",a:["q","slope q","q is steeper"],prompt:"Does a bigger tangent mean steeper or gentler?",hint:"A bigger tangent means a steeper slope.",sol:"Q — a bigger tangent (0.9 > 0.4) means a steeper slope."},
+ {label:"5 of 6 · Spot the slip",q:"For opposite = 5 cm and adjacent = 12 cm, a learner writes tan θ = 12 ÷ 5. What have they done wrong? (one word)",a:["inverted","upside down","reversed","flipped","upside-down","inverted it"],prompt:"Is opposite on top, or adjacent?",hint:"They divided adjacent by opposite — the ratio is upside down.",sol:"They inverted it — tan θ = opposite ÷ adjacent = 5 ÷ 12, not 12 ÷ 5."},
+ {label:"6 of 6 · Tangent of 45°",q:"A right-angled triangle has opposite = adjacent (both the same length). What is tan θ?",a:[],eq:function(v){return Math.abs(num(v)-1)<0.02;},prompt:"tan θ = opposite ÷ adjacent, and they are equal.",hint:"Any number ÷ itself = 1.",sol:"1 — when opposite = adjacent, tan θ = 1 (this is the 45° angle)."}
 ];
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -637,7 +604,7 @@ function pCheck(){
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Check each name against its definition — hypotenuse (opposite the right angle), opposite (across from θ), adjacent (next to θ) — or use the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Remember tan θ = opposite ÷ adjacent (opposite on top, and never the hypotenuse) — or use the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -653,62 +620,13 @@ function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{va
 
 /* ---------------- init ---------------- */
 function initLesson(){
-  slDraw();
-  liDraw();
-  riRender();
-  tvView("A");
+  cnChips(); cnDraw();
+  teDraw();
+  tqRender();
+  rkCardsRender(); rkOrderRender();
   renderPractice();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
 </script>
-
-<script src="../../assets/progress.js"></script>
-<script>NEOProgress.autoTrack('trigonometry-02-naming-the-sides');</script>
-
-<script>
-/* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */
-(function(){
-  if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
-  var DEFAULT=["a","b","c","x","y","²","³","√","π","+","-","×","÷","=","≈","°"];
-  function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
-  function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  /* render any a/b in a plain string as a stacked fraction (numerator over denominator) */
-  function renderFractions(t){ var re=new RegExp("([A-Za-z0-9.²³]+) */ *([A-Za-z0-9.²³]+)","g"); return esc(t).replace(re, function(_,n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }); }
-  function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
-  function updatePreview(f,pv){ var v=f.value||""; if(v.indexOf("/")>=0){ pv.hidden=false; pv.innerHTML='<span class="flabel">Reads as:</span> '+renderFractions(v); } else { pv.hidden=true; pv.innerHTML=""; } }
-  function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
-    var w=document.createElement("div"); w.className="mathpalette";
-    var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="√ Symbols";
-    var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
-    var pv=document.createElement("div"); pv.className="fracpreview"; pv.hidden=true; pv.setAttribute("aria-live","polite");
-    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);updatePreview(f,pv);}); k.appendChild(b); });
-    var fr=document.createElement("button"); fr.type="button"; fr.title="Insert a fraction (numerator / denominator)"; fr.innerHTML='<span class="frac"><span class="fnum">a</span><span class="fden">b</span></span>';
-    fr.addEventListener("click",function(){ insert(f,"/"); updatePreview(f,pv); }); k.appendChild(fr);
-    t.addEventListener("click",function(){ k.hidden=!k.hidden; });
-    f.addEventListener("input",function(){ updatePreview(f,pv); });
-    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w); w.insertAdjacentElement("afterend",pv);
-  }
-  function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
-  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
-})();
-</script>
-
-<script>
-/* Single-open accordion: opening one panel closes the others (data-keep-open opts out). */
-(function(){
-  if(window.__neoAccordionInstalled)return; window.__neoAccordionInstalled=true;
-  function closeOthers(cur){
-    var scope=cur.closest("#lessonView")||document;
-    scope.querySelectorAll("details").forEach(function(d){
-      if(d!==cur && !d.contains(cur) && d.dataset.keepOpen!=="true") d.open=false;
-    });
-  }
-  document.addEventListener("toggle",function(e){
-    var d=e.target;
-    if(d && d.tagName==="DETAILS" && d.open && (d.closest("#lessonView")||d.closest(".neo-lesson-root"))) closeOthers(d);
-  },true);
-})();
-</script>
-</div><div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a></div></div>
 </body>
 </html>
