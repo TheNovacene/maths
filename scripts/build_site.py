@@ -78,6 +78,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_09_Conversion_Graphs/NEO_Maths_Y10_Straight_Lines_Lesson_09_Conversion_Graphs_v0.1.html",
     "straight-lines-10-what-can-i-explain":
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_10_What_Can_I_Explain/NEO_Maths_Y10_Straight_Lines_Lesson_10_What_Can_I_Explain_v0.1.html",
+    "trigonometry-01-the-constant-ratio":
+        "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

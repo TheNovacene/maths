@@ -272,6 +272,23 @@
       ]
     },
     {
+      "id": "introduction-to-trigonometry",
+      "title": "Introduction to Trigonometry",
+      "stage": "Intermediate",
+      "strand": "Geometry",
+      "source": "vault/03_Intermediate/01_Lessons/Introduction_to_Trigonometry",
+      "lessons": [
+        {
+          "id": "trigonometry-01-the-constant-ratio",
+          "num": "Lesson 01",
+          "title": "The constant ratio",
+          "file": "lessons/trigonometry/01-the-constant-ratio.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
       "id": "ks3-interactive-library",
       "title": "KS3 Interactive Library",
       "stage": "Key Stage 3",

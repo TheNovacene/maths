@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: The constant ratio</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.satab td,.satab th{text-align:center;vertical-align:middle}
+.tcell{width:84px;text-align:center;padding:7px;border:1px solid #bcae98;border-radius:6px;box-sizing:border-box}
+.netsvg,.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.readgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Introduction to Trigonometry</h1>
+<h2>The constant ratio</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>Why does the ratio of two sides stay the same when only the size of a right-angled triangle changes?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Discovering — noticing that same-angle right-angled triangles share fixed side ratios, whatever their size.</p>
+<p><b>Stepping Stone:</b> recognise that right-angled triangles with the same angle are <em>similar</em>, so the ratio of two chosen sides is constant.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 12 · Move 12 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_01_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_01_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle, then a bigger one with the same angle. Work out vertical ÷ horizontal for each — what do you notice?')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Ratio Locks</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 New words for this lesson</h3>
+<p style="margin:6px 0"><b style="color:#3f7a45">Right-angled triangle</b> — a triangle with one 90° corner. The angle we watch is marked <em>θ</em> ("theta").<br>
+<b style="color:#2b3d78">Similar</b> — two shapes are <b>mathematically similar</b> when their <b>corresponding angles are equal</b> and their <b>corresponding sides are in the same ratio</b>. One is then an exact <b>scale-factor</b> enlargement of the other.<br>
+<b style="color:#b0651f">Ratio</b> — one length divided by another. Here we compare the <b>vertical</b> side with the <b>horizontal</b> side: <em>vertical ÷ horizontal</em>. (Next lesson we give these sides their proper names.)</p>
+</div>
+<p><b>What to do:</b> drag the <b>scale-factor</b> slider to enlarge and shrink the triangle. Every side length is multiplied by the same scale factor, and the angle <em>θ</em> stays the same, so the triangle stays <b>similar</b>. Watch the three side lengths change — and watch the ratio <b>vertical ÷ horizontal</b>.</p>
+<p><b>What you are trying to notice:</b> the sides all change as you scale, but the ratio <b>vertical ÷ horizontal locks</b> at one value and never moves. That fixed number belongs to the <b>angle</b>, not the size.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔒 Ratio Locks</h3>
+<div class="card" style="text-align:center"><svg id="rlTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle that scales up and down while its angle stays fixed"></svg></div>
+<label class="small" for="rlK"><b>Scale factor</b> — multiply every side length by: <span id="rlKv">×1</span></label>
+<input id="rlK" type="range" min="1" max="4" step="1" value="1" style="width:100%" oninput="rlDraw()">
+<div id="rlRead" class="card small"></div>
+<div id="rlRatio" class="bignum" style="text-align:center"></div>
+<p><b>Carry this forward:</b> for a fixed angle, <b>vertical ÷ horizontal</b> is always the same, however big the triangle. The ratio is a property of the <b>angle</b>.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Stack the similar triangles</summary>
+<p><b>What to do:</b> press <b>Add a bigger one</b> to stack another triangle on top, all sharing the same corner and the same angle <em>θ</em>. Each new triangle is a scaled-up copy. Work out <b>vertical ÷ horizontal</b> for each as it appears.</p>
+<p><b>What you are trying to notice:</b> however tall the stack grows, every triangle in it gives the <b>same</b> ratio. Same shape → same ratio, at any size.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📐 Stack the Similar Triangles</h3>
+<div class="card" style="text-align:center"><svg id="stTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="Nested similar right-angled triangles sharing one corner"></svg></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="stAdd()">➕ Add a bigger one</button><button onclick="stReset()">↺ Reset</button></div>
+<div id="stRead" class="card small"></div>
+<p><b>Carry this forward:</b> a whole family of similar triangles shares one ratio. The ratio does not grow when the triangle does.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Similar or not?</summary>
+<p><b>What to do:</b> each card shows <b>two</b> right-angled triangles with their vertical and horizontal sides given. Work out <b>vertical ÷ horizontal</b> for each and decide whether the two triangles are <b>similar</b> or <b>not similar</b>, then check.</p>
+<p><b>What you are trying to notice:</b> two right-angled triangles are <b>similar</b> exactly when their ratios are equal — not when they are the same size. Equal ratio means the angle <em>θ</em> is equal, which is what makes them similar.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 Similar or not?</h3>
+<div id="rsClue" class="clue"></div>
+<div class="twocol">
+<div class="card" style="text-align:center"><svg id="rsA" class="graphsvg" style="max-width:220px" viewBox="0 0 300 250" role="img" aria-label="Triangle A"></svg></div>
+<div class="card" style="text-align:center"><svg id="rsB" class="graphsvg" style="max-width:220px" viewBox="0 0 300 250" role="img" aria-label="Triangle B"></svg></div>
+</div>
+<div id="rsOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="rsFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="rsNext()">➡️ Next</button></div>
+<p class="small" id="rsProg"></p>
+<p><b>Carry this forward:</b> to tell if two right-angled triangles are <b>similar</b>, compare their ratios — not their sizes. Equal ratios mean equal angles.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Find the hidden length</summary>
+<p><b>What to do:</b> here is a right-angled triangle the same shape as one you know (its ratio <b>vertical ÷ horizontal</b> is given). You are told <b>one</b> side. Use the locked ratio to work out the side you cannot see. Type your answer and check.</p>
+<p><b>What you are trying to notice:</b> once you know the ratio for a shape, one measurement is enough to find the rest. You can reach a length you never measured — the first taste of what trigonometry is for.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔦 Find the Hidden Length</h3>
+<div id="hlChips" class="buttonrow" style="justify-content:center"></div>
+<p id="hlDesc" class="clue"></p>
+<div class="card" style="text-align:center"><svg id="hlTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with one side known and one side hidden"></svg></div>
+<div style="text-align:center"><label class="small" for="hlAns" id="hlLabel"><b>Your answer:</b></label> <input id="hlAns" placeholder="the hidden length" inputmode="decimal" style="max-width:150px"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="hlCheck()">✅ Check</button></div>
+<div id="hlFeedback" class="feedback"></div>
+<p><b>Make it your own:</b> on the Scratchpad, choose a ratio, draw a right triangle to fit it, cover one side and challenge a friend to find it.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Pick a ratio (vertical ÷ horizontal). Draw a right triangle to fit it, then hide one side and work it out from the ratio.')">✏️ Create on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>Watching everything about a triangle change — every side, its whole size — while one number stays perfectly still is a quietly beautiful thing. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> when the triangle grew and grew but the ratio did not move at all, what did that feel like? There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> This mathematics does not live in food or the body, so we name honestly what the <em>learning</em> nourishes.</p>
+<div class="card">
+<p><b>What it feeds:</b> today's idea grows one of the most powerful habits in all of mathematics — <b>looking for what stays the same while everything else changes</b>. The triangle grew, every length shifted, yet one ratio held perfectly still. Trained to hunt for that kind of <em>invariant</em>, a mind starts to find hidden order everywhere: the constant that survives the chaos is often where the real understanding lives. It also feeds a quiet confidence — that careful reasoning can pin down something exact even when the picture keeps moving.</p>
+<p class="small">Carry one idea forward: when something feels like it is changing wildly, ask — <em>is anything staying the same?</em> That question is the start of a great deal of mathematics.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> show that the ratio belongs to the angle, not the size.</p>
+<ul>
+<li>Draw a right-angled triangle, then draw a <b>bigger one with the same angle</b>. Measure the vertical and horizontal sides of each and work out <b>vertical ÷ horizontal</b> for both — show they match.</li>
+<li>Explain in your own words <b>why</b> the ratio stays the same when the triangle is scaled up.</li>
+<li>Use a known ratio to <b>find a hidden side</b>: given the ratio of a shape and one side of a new triangle, work out the other side, and say how you did it.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_THE_CONSTANT_RATIO_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows a bigger triangle can be the same shape.</td><td>Knows same-shape triangles share their angles.</td><td>Explains that same angle → constant side ratio.</td><td>Explains why scaling cannot change the ratio (similarity).</td></tr>
+<tr><td><b>Application</b></td><td>Works out vertical ÷ horizontal for one triangle.</td><td>Works it out for two and compares.</td><td>Uses the ratio to decide if two triangles are similar.</td><td>Uses a known ratio to find a hidden side.</td></tr>
+<tr><td><b>Communication</b></td><td>Records a ratio with limited labelling.</td><td>Labels the vertical and horizontal sides.</td><td>Shows the vertical ÷ horizontal working clearly.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the ratio did not change.</td><td>Explains that the ratio belongs to the angle.</td><td>Connects the constant ratio to finding unknown lengths.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>The constant ratio — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the right triangle, work out vertical ÷ horizontal, and use the ratio before you check.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_sl_gradient_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointervertical = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Straight_Lines_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["÷","×","=",".","θ"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
+var PI=3.14;
+
+/* ============ Right-triangle engine (reused across the Trigonometry unit) ============ */
+function triHyp(a,u){ return Math.round(Math.sqrt(a*a+u*u)*100)/100; }
+function drawTri(svgId, along, up, opts){
+  opts=opts||{};
+  var svg=document.getElementById(svgId); if(!svg)return;
+  var vb=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);
+  var VW=vb[2], VH=vb[3], pad=(opts.pad!=null?opts.pad:34);
+  var rightReserve=(opts.rightReserve!=null?opts.rightReserve:82);
+  var ppu = opts.ppu || Math.min((VW-pad-rightReserve)/(opts.maxAlong||along), (VH-2*pad)/(opts.maxUp||up));
+  var Ax=pad, Ay=VH-pad, Bx=pad+along*ppu, By=VH-pad, Cx=Bx, Cy=VH-pad-up*ppu;
+  var s="", fill=opts.fill||"#efe3c4", stroke=opts.stroke||"#365a68";
+  s+='<polygon points="'+Ax+','+Ay+' '+Bx.toFixed(1)+','+By+' '+Cx.toFixed(1)+','+Cy.toFixed(1)+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2.4" stroke-linejoin="round"/>';
+  (opts.ghosts||[]).forEach(function(g){ var gx=pad+g.along*ppu, gy=VH-pad-g.up*ppu;
+    s+='<line x1="'+gx.toFixed(1)+'" y1="'+Ay+'" x2="'+gx.toFixed(1)+'" y2="'+gy.toFixed(1)+'" stroke="#4a5f6e" stroke-width="1.3" stroke-dasharray="4 3"/><circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="2.6" fill="#4a5f6e"/>'; });
+  var sq=Math.min(12, along*ppu*0.35, up*ppu*0.35);
+  s+='<path d="M'+(Bx-sq).toFixed(1)+','+By+' L'+(Bx-sq).toFixed(1)+','+(By-sq).toFixed(1)+' L'+Bx.toFixed(1)+','+(By-sq).toFixed(1)+'" fill="none" stroke="'+stroke+'" stroke-width="1.4"/>';
+  var r=Math.min(26, along*ppu*0.45), L=Math.hypot(along,up), hx=Ax+r*along/L, hy=Ay-r*up/L;
+  s+='<path d="M'+(Ax+r).toFixed(1)+','+Ay+' A'+r.toFixed(1)+','+r.toFixed(1)+' 0 0 0 '+hx.toFixed(1)+','+hy.toFixed(1)+'" fill="none" stroke="#b25f2e" stroke-width="1.8"/>';
+  if(opts.showTheta!==false) s+='<text x="'+(Ax+r+6).toFixed(1)+'" y="'+(Ay-6).toFixed(1)+'" font-size="13" fill="#b25f2e" font-style="italic">θ</text>';
+  var aL=(opts.alongLabel!=null?opts.alongLabel:("horizontal = "+along)), uL=(opts.upLabel!=null?opts.upLabel:("vertical = "+up));
+  s+='<text x="'+((Ax+Bx)/2).toFixed(1)+'" y="'+(Ay+16).toFixed(1)+'" font-size="11" fill="'+stroke+'" text-anchor="middle">'+aL+'</text>';
+  s+='<text x="'+(Bx+6).toFixed(1)+'" y="'+((By+Cy)/2+3).toFixed(1)+'" font-size="11" fill="'+stroke+'">'+uL+'</text>';
+  if(opts.hypLabel) s+='<text x="'+((Ax+Cx)/2-6).toFixed(1)+'" y="'+((Ay+Cy)/2-5).toFixed(1)+'" font-size="11" fill="#8a5a2b" text-anchor="end">'+opts.hypLabel+'</text>';
+  svg.innerHTML=s;
+}
+function r2(x){ return Math.round(x*100)/100; }
+
+var RL_SHAPE={along:4, up:3};   /* the 3-4-5 family: up : horizontal = 3 : 4 */
+
+/* ============ CONNECTION: Ratio Locks ============ */
+function rlDraw(){
+  var k=+document.getElementById("rlK").value;
+  document.getElementById("rlKv").textContent="×"+k;
+  var along=RL_SHAPE.along*k, up=RL_SHAPE.up*k, hyp=triHyp(along,up);
+  drawTri("rlTri", along, up, {ppu:15, pad:36, hypLabel:"hyp = "+hyp});
+  document.getElementById("rlRead").innerHTML="At scale factor ×"+k+": <b>horizontal = "+along+"</b>, <b>vertical = "+up+"</b>, hyp = "+hyp+". The sides all changed — keep watching the ratio.";
+  document.getElementById("rlRatio").innerHTML="vertical ÷ horizontal = "+up+" ÷ "+along+" = <b>"+r2(up/along)+"</b>";
+}
+
+/* ============ MOVEMENT: Stack the similar triangles ============ */
+var stMax=1;
+function stReset(){ stMax=1; stDraw(); }
+function stAdd(){ if(stMax<4) stMax++; stDraw(); }
+function stDraw(){
+  var along=RL_SHAPE.along*stMax, up=RL_SHAPE.up*stMax, ghosts=[];
+  for(var k=1;k<stMax;k++) ghosts.push({along:RL_SHAPE.along*k, up:RL_SHAPE.up*k});
+  drawTri("stTri", along, up, {ppu:15, pad:36, ghosts:ghosts, alongLabel:"horizontal", upLabel:"vertical"});
+  var rows="";
+  for(var j=1;j<=stMax;j++){ var a=RL_SHAPE.along*j, u=RL_SHAPE.up*j; rows+="<tr><td>×"+j+"</td><td>"+u+"</td><td>"+a+"</td><td><b>"+r2(u/a)+"</b></td></tr>"; }
+  document.getElementById("stRead").innerHTML="<table class='satab' style='width:100%;font-size:.92em;margin:0'><tr><th>scale factor</th><th>vertical</th><th>horizontal</th><th>vertical ÷ horizontal</th></tr>"+rows+"</table>"+(stMax>=4?"<p style='margin:6px 0 0'>Four sizes, one ratio — every similar triangle gives <b>0.75</b>.</p>":"<p style='margin:6px 0 0' class='small'>Keep adding — does the ratio column ever move?</p>");
+}
+
+/* ============ REFLECTION: Same shape? ============ */
+var RS=[
+ {a:{along:4,up:3}, b:{along:8,up:6}, same:true,  why:"Both give 3 ÷ 4 = 0.75 — equal ratios, so equal angles: the triangles are similar (B is A enlarged by scale factor 2)."},
+ {a:{along:4,up:3}, b:{along:6,up:6}, same:false, why:"A gives 3 ÷ 4 = 0.75 but B gives 6 ÷ 6 = 1. Different ratios → different angles → not similar."},
+ {a:{along:6,up:8}, b:{along:3,up:4}, same:true,  why:"A: 8 ÷ 6 = 1.33; B: 4 ÷ 3 = 1.33 — equal ratios, so similar."},
+ {a:{along:5,up:2}, b:{along:10,up:5}, same:false, why:"A: 2 ÷ 5 = 0.4; B: 5 ÷ 10 = 0.5. Close, but not equal — so not similar."},
+ {a:{along:4,up:4}, b:{along:7,up:7}, same:true,  why:"Both give 1 (a 45° angle) — equal ratios, so similar."}
+];
+var rsIndex=0;
+function rsRender(){
+  var q=RS[rsIndex];
+  drawTri("rsA", q.a.along, q.a.up, {pad:26, alongLabel:"horizontal = "+q.a.along, upLabel:"vertical = "+q.a.up});
+  drawTri("rsB", q.b.along, q.b.up, {pad:26, alongLabel:"horizontal = "+q.b.along, upLabel:"vertical = "+q.b.up, fill:"#e2ecdf"});
+  document.getElementById("rsClue").innerHTML="<b>Card "+(rsIndex+1)+":</b> Work out vertical ÷ horizontal for each triangle. Are the two triangles <b>similar</b> or <b>not similar</b>?";
+  document.getElementById("rsOpts").innerHTML=["Similar","Not similar"].map(function(o,i){return '<button onclick="rsPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("rsFeedback").style.display="none";
+  document.getElementById("rsProg").textContent="Card "+(rsIndex+1)+" of "+RS.length+".";
+}
+function rsPick(i){
+  var q=RS[rsIndex], ans=q.same?0:1, fb=document.getElementById("rsFeedback"); fb.style.display="block";
+  if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
+  else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
+}
+function rsNext(){ rsIndex=(rsIndex+1)%RS.length; rsRender(); }
+
+/* ============ CREATIVITY: Find the hidden length ============ */
+var HL=[
+ {ratio:0.75, known:"horizontal", knownVal:8, find:"vertical", ans:6, desc:"This triangle is the same shape as our 3-4-5 (vertical ÷ horizontal = 0.75). Its <b>horizontal</b> side is 8. How long is the <b>vertical</b> side?"},
+ {ratio:0.75, known:"vertical", knownVal:9, find:"horizontal", ans:12, desc:"Same shape (vertical ÷ horizontal = 0.75). This time the <b>vertical</b> side is 9. How long is the <b>horizontal</b> side?"},
+ {ratio:2, known:"horizontal", knownVal:5, find:"vertical", ans:10, desc:"A different, taller shape with vertical ÷ horizontal = 2. The <b>horizontal</b> side is 5. How long is the <b>vertical</b> side?"},
+ {ratio:0.5, known:"vertical", knownVal:7, find:"horizontal", ans:14, desc:"A wider shape with vertical ÷ horizontal = 0.5. The <b>vertical</b> side is 7. How long is the <b>horizontal</b> side?"}
+];
+var hlIndex=0;
+function hlChipsRender(){ document.getElementById("hlChips").innerHTML=HL.map(function(o,i){return '<span class="chip'+(i===hlIndex?' active':'')+'" onclick="setHl('+i+')">Shape '+(i+1)+'</span>';}).join(""); }
+function hlDraw(){
+  var o=HL[hlIndex];
+  var along=(o.find==="horizontal"?o.ans:o.knownVal), up=(o.find==="vertical"?o.ans:o.knownVal);
+  var aLbl=(o.find==="horizontal"?"horizontal = ?":("horizontal = "+o.knownVal)), uLbl=(o.find==="vertical"?"vertical = ?":("vertical = "+o.knownVal));
+  drawTri("hlTri", along, up, {pad:36, alongLabel:aLbl, upLabel:uLbl});
+}
+function setHl(i){ hlIndex=i; document.getElementById("hlDesc").innerHTML=HL[i].desc;
+  document.getElementById("hlLabel").innerHTML="<b>"+HL[i].find+" side = </b>";
+  document.getElementById("hlAns").value=""; document.getElementById("hlFeedback").style.display="none"; hlChipsRender(); hlDraw(); }
+function hlCheck(){
+  var o=HL[hlIndex], v=num(document.getElementById("hlAns").value), fb=document.getElementById("hlFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the hidden length as a number."; return; }
+  var work=(o.find==="vertical")?("vertical = ratio × horizontal = "+o.ratio+" × "+o.knownVal+" = "+o.ans):("horizontal = vertical ÷ ratio = "+o.knownVal+" ÷ "+o.ratio+" = "+o.ans);
+  if(Math.abs(v-o.ans)<0.05){ fb.className="feedback good"; fb.innerHTML="✓ The "+o.find+" side is <b>"+o.ans+"</b>. "+work+". You found a length without measuring it!"; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet — use the ratio. "+(o.find==="vertical"?("vertical = ratio × horizontal = "+o.ratio+" × "+o.knownVal):("horizontal = vertical ÷ ratio = "+o.knownVal+" ÷ "+o.ratio))+"."; }
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  function coordSVG(px,py){
+    var V=210,pad=26,n=6,u=(V-2*pad)/n;
+    function SX(x){return pad+x*u;} function SY(y){return V-pad-y*u;}
+    var s='<svg viewBox="0 0 '+V+' '+V+'" role="img" aria-label="A coordinate grid with point P plotted" style="max-width:220px;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:8px 0">';
+    for(var i=0;i<=n;i++){ s+='<line x1="'+SX(i)+'" y1="'+SY(0)+'" x2="'+SX(i)+'" y2="'+SY(n)+'" stroke="#e6ddcb"/><line x1="'+SX(0)+'" y1="'+SY(i)+'" x2="'+SX(n)+'" y2="'+SY(i)+'" stroke="#e6ddcb"/>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(n)+'" y2="'+SY(0)+'" stroke="#6a7080" stroke-width="1.4"/><line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(0)+'" y2="'+SY(n)+'" stroke="#6a7080" stroke-width="1.4"/>';
+    for(var t=1;t<=n;t++){ s+='<text x="'+SX(t)+'" y="'+(SY(0)+13)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+t+'</text><text x="'+(SX(0)-6)+'" y="'+(SY(t)+3)+'" font-size="9" fill="#6a7080" text-anchor="end">'+t+'</text>'; }
+    s+='<circle cx="'+SX(px)+'" cy="'+SY(py)+'" r="5" fill="#b25f2e"/><text x="'+(SX(px)+8)+'" y="'+(SY(py)-6)+'" font-size="13" fill="#b25f2e" font-weight="bold">P</text></svg>';
+    return s;
+  }
+  function lineMiniSVG(m,c){
+    var V=210,pad=26,n=6,u=(V-2*pad)/n;
+    function SX(x){return pad+x*u;} function SY(y){return V-pad-y*u;}
+    var s='<svg viewBox="0 0 '+V+' '+V+'" role="img" aria-label="A line on a coordinate grid with its y-intercept marked" style="max-width:220px;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:8px 0">';
+    for(var i=0;i<=n;i++){ s+='<line x1="'+SX(i)+'" y1="'+SY(0)+'" x2="'+SX(i)+'" y2="'+SY(n)+'" stroke="#e6ddcb"/><line x1="'+SX(0)+'" y1="'+SY(i)+'" x2="'+SX(n)+'" y2="'+SY(i)+'" stroke="#e6ddcb"/>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(n)+'" y2="'+SY(0)+'" stroke="#6a7080" stroke-width="1.4"/><line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(0)+'" y2="'+SY(n)+'" stroke="#6a7080" stroke-width="1.4"/>';
+    for(var t=1;t<=n;t++){ s+='<text x="'+SX(t)+'" y="'+(SY(0)+13)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+t+'</text><text x="'+(SX(0)-6)+'" y="'+(SY(t)+3)+'" font-size="9" fill="#6a7080" text-anchor="end">'+t+'</text>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(c)+'" x2="'+SX(n)+'" y2="'+SY(m*n+c)+'" stroke="#3f7a45" stroke-width="2.4"/>';
+    s+='<circle cx="'+SX(0)+'" cy="'+SY(c)+'" r="5" fill="#b25f2e"/>';
+    s+='</svg>'; return s;
+  }
+  var RECONNECT={
+    hyp:{title:'The right-angled triangle',prompt:'A right-angled triangle has short sides 3 and 4. What is the length of the longest side (the hypotenuse)? (Use Pythagoras, or recall the 3-4-5 triangle.)',answer:5,hint:'3² + 4² = 9 + 16 = 25, and √25 = 5.'},
+    ratio:{title:'A ratio as a division',prompt:'What is <b>6 ÷ 4</b> as a decimal? (This is the same as the ratio 6 : 4.)',answer:1.5,hint:'6 ÷ 4 = 1.5.'},
+    similar:{title:'Similar shapes',prompt:'Two triangles are <b>similar</b> — one is an enlargement of the other. Are their <b>corresponding angles</b> equal? (yes / no)',answer:'yes',hint:'Similar shapes have equal corresponding angles and sides in the same ratio; only the side lengths are scaled.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'hyp\')">The right-angled triangle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'ratio\')">A ratio as a division</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'similar\')">Similar shapes</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · The ratio",q:"A right-angled triangle has vertical side 3 and horizontal side 4. What is vertical ÷ horizontal? (a decimal is fine)",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"Divide the vertical side by the horizontal side.",hint:"3 ÷ 4 = ?",sol:"0.75 — vertical ÷ horizontal = 3 ÷ 4 = 0.75."},
+ {label:"2 of 6 · Enlarged",q:"That triangle is enlarged by scale factor 2, giving vertical 6 and horizontal 8. What is vertical ÷ horizontal now?",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"Work out 6 ÷ 8. Compare it with the last answer.",hint:"6 ÷ 8 = 0.75 — the same as before.",sol:"0.75 — the ratio does not change when the triangle is enlarged. The triangles are similar, so the ratio is the same."},
+ {label:"3 of 6 · What decides the ratio?",q:"What does the ratio vertical ÷ horizontal depend on — the SCALE FACTOR the triangle is drawn at, or its ANGLE θ?",a:["angle","the angle","its angle","the angle θ","angle θ","θ"],prompt:"Did the ratio change when you only changed the scale factor?",hint:"Enlarging the triangle did not change it; only a different angle would.",sol:"The angle θ — the ratio belongs to the angle, not to how big the triangle is drawn (the scale factor)."},
+ {label:"4 of 6 · Similar?",q:"Triangle A has vertical ÷ horizontal = 0.6. Triangle B has vertical ÷ horizontal = 0.6 but is much bigger. Are the two triangles similar? (yes / no)",a:["yes","y"],prompt:"Equal ratios mean equal what?",hint:"Equal ratios → equal angles → similar.",sol:"Yes — equal ratios mean equal angles, so the triangles are similar (B is A enlarged)."},
+ {label:"5 of 6 · Find the vertical side",q:"A triangle is the same shape as the 3-4-5 (vertical ÷ horizontal = 0.75). Its horizontal side is 12. How long is the vertical side?",a:[],eq:function(v){return Math.abs(num(v)-9)<0.05;},prompt:"vertical = ratio × along.",hint:"0.75 × 12 = ?",sol:"9 — vertical = 0.75 × 12 = 9."},
+ {label:"6 of 6 · Find the horizontal side",q:"Another triangle of the same shape (vertical ÷ horizontal = 0.75) has vertical side 6. How long is the horizontal side?",a:[],eq:function(v){return Math.abs(num(v)-8)<0.05;},prompt:"horizontal = vertical ÷ ratio.",hint:"6 ÷ 0.75 = ?",sol:"8 — horizontal = 6 ÷ 0.75 = 8."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=q.a.some(function(x){var nx=normText(x);return nx===learner||nx===stripped;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Work out vertical ÷ horizontal, and remember the ratio belongs to the angle — or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  rlDraw();
+  stReset();
+  rsRender();
+  hlChipsRender(); setHl(0);
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>
