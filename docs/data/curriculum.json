@@ -285,6 +285,14 @@
           "file": "lessons/trigonometry/01-the-constant-ratio.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "trigonometry-02-naming-the-sides",
+          "num": "Lesson 02",
+          "title": "Naming the sides",
+          "file": "lessons/trigonometry/02-naming-the-sides.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
