@@ -235,7 +235,18 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <script>
 function clean(v){return String(v).replace(/,/g,'').trim();}
-function num(v){const n=Number(clean(v));return Number.isFinite(n)?n:NaN;}
+function num(v){
+  var s=String(v).toLowerCase();
+  s=s.replace(/÷/g,'/');                       // palette ÷ counts as a fraction bar
+  s=s.replace(/(tan|sin|cos)\s*θ?/g,'');          // drop a leading trig label e.g. "tan θ"
+  s=s.replace(/=/g,'');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');       // strip a unit written after a number
+  s=s.replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);  // a fraction anywhere in the answer
+  if(fm) return parseFloat(fm[1])/parseFloat(fm[2]);
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
 function round1(n){if(!Number.isFinite(n)||n===0)return n;const p=-Math.floor(Math.log10(Math.abs(n)));const f=10**p;return Math.round((n+Number.EPSILON)*f)/f;}
 function fmt(n,max=6){return Number(n).toLocaleString('en-GB',{maximumFractionDigits:max});}
 function operate(a,op,b){return op==='+'?a+b:op==='-'?a-b:op==='*'?a*b:a/b;}

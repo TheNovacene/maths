@@ -2596,7 +2596,7 @@
     bundle:{title:'Bundling in tens',prompt:'How many tens make one hundred?',answer:10,hint:'Count up in tens: 10, 20, 30 … how many steps to reach 100?'},
     partition:{title:'Partitioning',prompt:'Partition 58 into tens and ones: 58 = 50 + ?',answer:8,hint:'Split 58 into its tens part and its ones part.'}
   };
-  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function parseNum(v){var s=String(v).toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);if(fm)return parseFloat(fm[1])/parseFloat(fm[2]);var m=s.match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
   function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
   function matches(r,v){
     if(typeof r.answer==='number'){var n=parseNum(v);return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);}

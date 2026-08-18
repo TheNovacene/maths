@@ -449,3 +449,28 @@ dual checks). Still needs Gerry's eye on the 3D render look. Guidance PDFs after
 
 ## TR-03 Practice — tolerant answer parser (2026-08-16, Gerry-requested)
 - Learners writing a correct answer as "tan θ = 3/4" were marked wrong (old num() read the leading "3"). Rewrote num() to: lowercase; treat ÷ as a fraction bar; strip a leading "tan θ" and any "="; strip a unit written after a number; then evaluate a fraction found anywhere (a/b), else the first number. Now accepts "tan θ = 3/4", "3/4", "3 ÷ 4", "6/8", "0.75", "4 cm" etc. QA extended to 37/37. To propagate to other lessons' Practice Companions when convenient.
+
+## Tolerant answer parser — propagated across the curriculum (2026-08-19)
+- Rolled the TR-03 tolerant parser (fraction eval, ÷→/, strip leading trig label tan/sin/cos + "=", strip a unit written after a number) to every NEO pathway lesson via exact-string migrations:
+  - Standard num() one-liner → tolerant: 22 files (Straight Lines ×10, 2D/3D Shapes ×10, Trig L1–L2).
+  - clean()-based num() (Foundations Accuracy L2–L5) → tolerant: 6 files.
+  - Pythagoras practiceNumber() ×4 and parseNum() → tolerant; Pyth L4 numFrom(String) → tolerant.
+  - TR-03 aligned to the canonical (tan|sin|cos) prefix.
+- Already-tolerant / intentionally skipped: Pyth L1 numberFrom() already splits on "/" and strips letters (fraction+unit aware); Rounding-to-Sig-Figs L1 left as-is (answers are plain rounded numbers — fractions never apply — and its cleanNumber() is reused in display code, so not worth the risk).
+- Deferred (flagged to Gerry): the 4 KS3/KS4 "Interactive Library" legacy items (ratio-and-proportion, place-value, straight-line-graphs, equation-of-a-straight-line) use bespoke parsers and predate the current NEO template; to be standardised when they're reworked, not hot-patched now.
+- Verification: TR-01/02/03 QA harnesses still 25/29/37 (no regression); a jsdom tolerance smoke over 12 pathway lessons = 36/36 (each reachable parser accepts "3/4", "13 cm", plain integers). Site builds 36 live / 0 missing.
+
+## TR-04 — Sine and cosine (SOH · CAH · TOA) (built 2026-08-19)
+- Dominant cornerstone = Connection (Ratio Trio), per blueprint. Creativity fork: chose "The other angle's cosine" (complementary sin θ = cos(90−θ) via the two-viewpoints idea) over a card-sort, to keep side-finding in TR-05/06 and tie the unit together.
+- Engine: drawLabelTri.highlight now accepts an ARRAY of side keys (or a string) so the Ratio Trio / Which-ratio can light up the TWO sides a ratio uses.
+- Cornerstones: Connection = Ratio Trio (3-4-5, buttons sin/cos/tan highlight the two sides + show the fraction & value, grouped SOH/CAH/TOA — hypotenuse enters here); Movement = Ratio Explorer (angle slider, hypotenuse fixed at 5 via ppu, sin rises 0→1 as cos falls 1→0); Reflection = Which ratio is it? (two sides highlighted → name sin/cos/tan, targets sine/cosine mix-up); Creativity = The other angle's cosine (sin A = cos B = 0.6 on a 3-4-5, then sin θ = cos(90−θ)). Rest + Nutrition Mode B (structure over rote; hidden symmetry).
+- Reconnect: hypotenuse (L2), tangent (L3, tan=opp÷adj), a ratio as a division (3÷5). Practice = 6 (SOH, CAH, work out sin, work out cos, choose the ratio, complementary cos60=sin30).
+- Visual fix: Ratio Explorer value-labels collided on tall/narrow triangles at steep angles; switched the moving triangle to short name-only labels (opp/adj/hyp) and kept the measured values with cm in the readout below.
+- QA: qa_tr04.js 27/27 (incl. array-highlight = exactly two thick sides, sin/cos crossover at 30/60, complementary identity, tolerant "sin θ = 3/5"). Guidance PDFs generated. curriculum.json + build_site.py updated; site builds 37 live / 0 missing.
+
+## drawLabelTri — prominence + label clearance (2026-08-19, Gerry-requested)
+- Highlighting made obvious: highlighted sides now draw a soft colour halo (width 11, opacity 0.28) behind a bold colour line (width 6); non-highlighted sides in a highlight view drop their colour (show only the slate polygon edge) and their label is muted grey. Clear "these two light up" effect for the Ratio Trio / Which-ratio.
+- Side labels no longer sit on the edges: each label is offset PERPENDICULAR to its edge (outward from the centroid), with edge-aware text-anchor (start/end for vertical-ish sides, middle for horizontal) and a canvas clamp so it can never run off an edge. Fixed the left-vertical "opp = 3 cm" clipping via the clamp + bumping the fixed label-heavy triangles to pad 78.
+- Ratio Explorer keeps short name-only labels (values in the readout) — unchanged.
+- Propagated the canonical drawLabelTri from TR-04 into TR-02 and TR-03 (superset engine: show/labels/array-highlight/ppu/vertexLabels), so all naming/tangent/sine-cosine triangles share the same prominent highlight + clear labels.
+- QA after propagation: TR-02 29/29, TR-03 37/37, TR-04 28/28 (adds halo + two-bold-sides checks). Site builds 37 live / 0 missing.

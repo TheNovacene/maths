@@ -378,7 +378,7 @@ function openAdultGuide(){
 function openPractice(){lessonView.hidden=true;practiceView.hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
 function returnLesson(){practiceView.hidden=true;lessonView.hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
 function norm(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/cm|m|≈|=|about/g,'').trim();}
-function numFrom(s){const m=String(s).match(/-?\d+(\.\d+)?/);return m?Number(m[0]):NaN;}
+function numFrom(s){var t=String(s).toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');var fm=t.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);if(fm)return Number(fm[1])/Number(fm[2]);const m=t.match(/-?\d+(\.\d+)?/);return m?Number(m[0]):NaN;}
 function renderPractice(){
  const p=PRACTICE[practiceIndex];
  practiceLabel.textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;
@@ -582,7 +582,7 @@ renderSolution();
     roots:{title:'Square roots',prompt:'What is √100?',answer:10,hint:'Ask: what number multiplied by itself gives 100?'},
     rightangle:{title:'The hidden right angle',prompt:'When you drop a straight line from the apex of an isosceles triangle to the midpoint of the base, what angle (in degrees) does it make with the base?',answer:90,hint:'This line is called the perpendicular bisector of the base.'}
   };
-  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function parseNum(v){var s=String(v).toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);if(fm)return parseFloat(fm[1])/parseFloat(fm[2]);var m=s.match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
   function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
   function matches(r,v){
     if(typeof r.answer==='number'){

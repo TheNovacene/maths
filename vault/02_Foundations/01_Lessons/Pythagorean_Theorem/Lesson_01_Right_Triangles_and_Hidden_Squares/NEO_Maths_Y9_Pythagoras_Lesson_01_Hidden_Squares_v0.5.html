@@ -613,7 +613,7 @@ function pNext(){if(practiceIndex<PRACTICE.length-1){practiceIndex++;renderPract
     roots:{title:'Square roots',prompt:'A square has an area of 49 square units. What is its side length?',answer:7,hint:'Ask: what number multiplied by itself gives 49?'},
     right:{title:'Right angles',prompt:'How many degrees are in a right angle?',answer:90,hint:'A right angle is a quarter turn — look for the small square marker in the corner.'}
   };
-  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function parseNum(v){var s=String(v).toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);if(fm)return parseFloat(fm[1])/parseFloat(fm[2]);var m=s.match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
   function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
   function matches(r,v){
     var n=parseNum(v);

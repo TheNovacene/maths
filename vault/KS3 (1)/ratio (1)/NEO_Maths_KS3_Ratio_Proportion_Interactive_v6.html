@@ -801,7 +801,7 @@ function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function pract
     equiv:{title:'Equivalent fractions',prompt:'Complete the equivalent fraction: 1/2 = ?/4. What number replaces the ?',answer:2,hint:'The bottom doubled (2 → 4) — so what must happen to the top?'},
     share:{title:'Sharing into parts',prompt:'To share an amount in the ratio 1 : 2, how many equal parts do you split it into altogether?',answer:3,hint:'Add the numbers in the ratio together.'}
   };
-  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function parseNum(v){var s=String(v).toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);if(fm)return parseFloat(fm[1])/parseFloat(fm[2]);var m=s.match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
   function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
   function matches(r,v){
     if(typeof r.answer==='number'){var n=parseNum(v);return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);}

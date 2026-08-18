@@ -382,7 +382,18 @@ window.NEO_PALETTE_SYMBOLS=["x","y","=","+","−"];
 /* ---------------- View switching + helpers ---------------- */
 function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
 function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
-function num(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function num(v){
+  var s=String(v).toLowerCase();
+  s=s.replace(/÷/g,'/');                       // palette ÷ counts as a fraction bar
+  s=s.replace(/(tan|sin|cos)\s*θ?/g,'');          // drop a leading trig label e.g. "tan θ"
+  s=s.replace(/=/g,'');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');       // strip a unit written after a number
+  s=s.replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);  // a fraction anywhere in the answer
+  if(fm) return parseFloat(fm[1])/parseFloat(fm[2]);
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
 function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
 var PI=3.14;
 

@@ -769,7 +769,7 @@ function practicePrev(){if(pIndex>0){pSave();pIndex--;pRender();}}function pract
     subst:{title:'Substitution',prompt:'If x = 3, what is the value of 2x?',answer:6,hint:'2x means 2 lots of x.'},
     change:{title:'Finding a change',prompt:'Moving along a line, y goes from 2 up to 6. By how much has y increased?',answer:4,hint:'Find the difference between the two y-values.'}
   };
-  function parseNum(v){var m=String(v).replace(/[, ]+/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+  function parseNum(v){var s=String(v).toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);if(fm)return parseFloat(fm[1])/parseFloat(fm[2]);var m=s.match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
   function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[°£,]/g,'').trim();}
   function matches(r,v){
     if(typeof r.answer==='number'){var n=parseNum(v);return !isNaN(n)&&Math.abs(n-r.answer)<=Math.max(0.001,Math.abs(r.answer)*0.001);}

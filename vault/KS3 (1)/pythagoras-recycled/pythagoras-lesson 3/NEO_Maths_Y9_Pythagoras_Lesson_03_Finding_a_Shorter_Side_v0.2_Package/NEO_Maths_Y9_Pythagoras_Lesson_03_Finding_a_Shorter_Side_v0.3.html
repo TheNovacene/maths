@@ -222,7 +222,10 @@ let practiceAttempts = Array(PRACTICE_QUESTIONS.length).fill(0);
 let practiceSecure = Array(PRACTICE_QUESTIONS.length).fill(false);
 
 function practiceNumber(value) {
-  const m = String(value || '').match(/-?\d+(?:\.\d+)?/);
+  var s = String(value || '').toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');
+  var fm = s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+  if(fm) return Number(fm[1])/Number(fm[2]);
+  const m = s.match(/-?\d+(?:\.\d+)?/);
   return m ? Number(m[0]) : NaN;
 }
 function practiceDot(i) {

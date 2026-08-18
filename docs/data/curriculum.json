@@ -301,6 +301,14 @@
           "file": "lessons/trigonometry/03-the-tangent-ratio.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "trigonometry-04-sine-and-cosine",
+          "num": "Lesson 04",
+          "title": "Sine and cosine",
+          "file": "lessons/trigonometry/04-sine-and-cosine.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

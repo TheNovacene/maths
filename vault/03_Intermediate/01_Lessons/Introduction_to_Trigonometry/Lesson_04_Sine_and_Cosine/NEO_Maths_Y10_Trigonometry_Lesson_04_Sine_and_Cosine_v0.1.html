@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: The tangent ratio</title>
+<title>NEO Mathematics: Sine and cosine</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -42,24 +42,24 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div id="lessonView">
 <div class="neo">
 <h1>NEO Mathematics: Introduction to Trigonometry</h1>
-<h2>The tangent ratio</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>How does opposite ÷ adjacent capture an angle?</em></h2>
+<h2>Sine and cosine</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How do the other two ratios complete the picture? (SOH · CAH · TOA)</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Defining — meeting the first named trigonometric ratio, the tangent, and seeing it measure an angle.</p>
-<p><b>Stepping Stone:</b> define and use <em>tan θ = opposite ÷ adjacent</em>, and recognise that a bigger tangent means a steeper angle.</p>
+<p><b>Lesson type:</b> Defining — meeting the sine and cosine ratios, bringing in the hypotenuse, and organising all three as SOH CAH TOA.</p>
+<p><b>Stepping Stone:</b> define and use <em>sin θ = opposite ÷ hypotenuse</em> and <em>cos θ = adjacent ÷ hypotenuse</em>, alongside <em>tan θ = opposite ÷ adjacent</em>.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
-<p><b>45-minute shape:</b> Connect 10 · Move 14 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
+<p><b>45-minute shape:</b> Connect 14 · Move 12 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
 </div>
 
 <div class="guides">
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_03_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_03_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_04_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_04_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle, mark an angle θ, and work out opposite ÷ adjacent — that is tan θ. Try a steeper angle and see the tangent grow.')">✏️ Open Maths Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle, mark an angle θ, and work out sin θ = opposite ÷ hypotenuse and cos θ = adjacent ÷ hypotenuse.')">✏️ Open Maths Scratchpad</button>
 <button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
@@ -67,81 +67,79 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — The ratio with a name</summary>
+<summary>🌿 Connection — Ratio Trio (SOH · CAH · TOA)</summary>
 <div class="card">
 <h3 style="margin-top:0">🔤 New words for this lesson</h3>
-<p style="margin:6px 0"><b style="color:#2f6b46">Tangent</b> — for a chosen angle <em>θ</em> in a right-angled triangle, the <b>tangent</b> is the ratio <b><span class="frac"><span class="fnum">opposite</span><span class="fden">adjacent</span></span></b>. We write it <b>tan θ</b>.<br>
-<b style="color:#b24c4c">Opposite</b> — the side across from θ (from Lesson 2).<br>
-<b style="color:#2b6cb0">Adjacent</b> — the side next to θ, not the hypotenuse (from Lesson 2). The tangent does <b>not</b> use the hypotenuse at all.</p>
+<p style="margin:6px 0"><b style="color:#2f6b46">Sine</b> — <b>sin θ = <span class="frac"><span class="fnum">opposite</span><span class="fden">hypotenuse</span></span></b> &nbsp;(<b>S</b>OH).<br>
+<b style="color:#2f6b46">Cosine</b> — <b>cos θ = <span class="frac"><span class="fnum">adjacent</span><span class="fden">hypotenuse</span></span></b> &nbsp;(<b>C</b>AH).<br>
+<b style="color:#2f6b46">Tangent</b> — <b>tan θ = <span class="frac"><span class="fnum">opposite</span><span class="fden">adjacent</span></span></b> &nbsp;(<b>T</b>OA, from Lesson 3).<br>
+<b style="color:#8a5a2b">Hypotenuse</b> — the longest side, opposite the right angle. <b>Sine and cosine both use it</b>; the tangent does not.</p>
 </div>
-<p><b>What to do:</b> here are three right-angled triangles that are all the <b>same shape</b> (same angle θ) but different sizes. For each, work out <b>opposite ÷ adjacent</b>. Press <b>Reveal the ratio</b> to check.</p>
-<p><b>What you are trying to notice:</b> just as in Lesson 1, the ratio is the <b>same</b> for every size — because the angle is the same. That one shared number has a name: it is <b>tan θ</b>, the tangent of the angle.</p>
+<p><b>What to do:</b> here is a 3–4–5 right-angled triangle with all three sides labelled. Press <b>sin θ</b>, <b>cos θ</b> or <b>tan θ</b> — the two sides that ratio uses light up, and its value appears as a fraction.</p>
+<p><b>What you are trying to notice:</b> each ratio is just <b>two of the three sides</b>, in a fixed order. <b>SOH · CAH · TOA</b> is the map: Sine = Opposite over Hypotenuse, Cosine = Adjacent over Hypotenuse, Tangent = Opposite over Adjacent.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🏷️ The ratio with a name</h3>
-<div class="card" style="text-align:center"><svg id="cnTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="Three similar right-angled triangles of different sizes sharing one angle"></svg></div>
-<div id="cnChips" class="buttonrow" style="justify-content:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="cnReveal()">🔓 Reveal the ratio</button></div>
-<div id="cnRead" class="card small"></div>
-<p><b>Carry this forward:</b> <b>tan θ = opposite ÷ adjacent</b>. It is the same for every triangle with that angle — a single number that belongs to the angle.</p>
+<h3 style="margin-top:0">🎺 Ratio Trio</h3>
+<div class="card" style="text-align:center"><svg id="rtTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A 3-4-5 right-angled triangle with the two sides of the chosen ratio highlighted"></svg></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="rtPick('sin')">sin θ</button><button onclick="rtPick('cos')">cos θ</button><button onclick="rtPick('tan')">tan θ</button></div>
+<div id="rtRead" class="card small"></div>
+<p><b>Carry this forward:</b> <b>SOH · CAH · TOA</b>. Sine and cosine bring in the hypotenuse; the tangent stays with opposite and adjacent.</p>
 </div>
 </details>
 
 <!-- ================= MOVEMENT ================= -->
 <details class="hs">
-<summary>🚶 Movement — Tangent Explorer</summary>
-<p><b>What to do:</b> drag the <b>angle slider</b> to change <em>θ</em>. The adjacent side stays the same length; watch the <b>opposite</b> side and the value of <b>tan θ = opposite ÷ adjacent</b> change with it.</p>
-<p><b>What you are trying to notice:</b> as the angle gets <b>bigger</b>, the triangle gets <b>steeper</b>, the opposite side grows, and <b>tan θ grows too</b>. The tangent is a fingerprint of the angle: each angle has its own value, and a bigger angle means a bigger tangent.</p>
+<summary>🚶 Movement — Ratio Explorer</summary>
+<p><b>What to do:</b> drag the <b>angle slider</b>. The <b>hypotenuse stays the same length</b>; watch the opposite and adjacent sides change, and watch <b>sin θ</b> and <b>cos θ</b> change with them.</p>
+<p><b>What you are trying to notice:</b> as θ grows, the opposite side grows so <b>sin θ climbs towards 1</b>, while the adjacent side shrinks so <b>cos θ falls towards 0</b>. Sine and cosine move in <b>opposite directions</b> — and both always sit between 0 and 1, because a side can never be longer than the hypotenuse.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">📐 Tangent Explorer</h3>
-<div class="card" style="text-align:center"><svg id="teTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle whose angle can be changed with a slider"></svg></div>
-<label class="small" for="teA"><b>Angle θ:</b> <span id="teAv">30°</span></label>
-<input id="teA" type="range" min="10" max="68" step="1" value="30" style="width:100%" oninput="teDraw()">
-<div id="teRead" class="card small"></div>
-<div id="teRatio" class="bignum"></div>
-<p><b>Carry this forward:</b> tan θ increases as θ increases. Knowing the angle fixes the tangent; knowing the tangent fixes the angle.</p>
+<h3 style="margin-top:0">📐 Ratio Explorer</h3>
+<div class="card" style="text-align:center"><svg id="reTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a fixed hypotenuse whose angle can be changed with a slider"></svg></div>
+<label class="small" for="reA"><b>Angle θ:</b> <span id="reAv">30°</span></label>
+<input id="reA" type="range" min="10" max="80" step="1" value="30" style="width:100%" oninput="reDraw()">
+<div id="reRead" class="card small"></div>
+<div id="reRatio" class="bignum"></div>
+<p><b>Carry this forward:</b> sin θ increases with the angle; cos θ decreases. Both are always between 0 and 1.</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION ================= -->
 <details class="es">
-<summary>🪞 Reflection — Is this tan θ?</summary>
-<p><b>What to do:</b> each card shows a right-angled triangle with the opposite and adjacent marked, and a <b>claimed value</b> for tan θ. Decide whether the claim is <b>right</b> or a <b>slip</b>, then check.</p>
-<p><b>What you are trying to notice:</b> the two classic slips are <b>using the hypotenuse</b> instead of the adjacent, and <b>turning the ratio upside down</b> (adjacent ÷ opposite). Tan θ is always <b>opposite ÷ adjacent</b> — nothing else.</p>
+<summary>🪞 Reflection — Which ratio is it?</summary>
+<p><b>What to do:</b> each card highlights <b>two sides</b> of a right-angled triangle and gives their ratio. Decide whether that ratio is <b>sin θ</b>, <b>cos θ</b> or <b>tan θ</b>, then check.</p>
+<p><b>What you are trying to notice:</b> the name is decided by <b>which two sides</b> are used: opposite &amp; hypotenuse → sine; adjacent &amp; hypotenuse → cosine; opposite &amp; adjacent → tangent. Watch for the classic mix-up of sine and cosine.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔎 Is this tan θ?</h3>
-<div id="tqClue" class="clue"></div>
-<div class="card" style="text-align:center"><svg id="tqTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a claimed value for the tangent of the marked angle"></svg></div>
-<div id="tqOpts" class="buttonrow" style="justify-content:center"></div>
-<div id="tqFeedback" class="feedback"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="tqNext()">➡️ Next</button></div>
-<p class="small" id="tqProg"></p>
-<p><b>Carry this forward:</b> to test any tangent, ask: is it <b>opposite ÷ adjacent</b>? Not the hypotenuse, and not upside down.</p>
+<h3 style="margin-top:0">🔎 Which ratio is it?</h3>
+<div id="wrClue" class="clue"></div>
+<div class="card" style="text-align:center"><svg id="wrTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with two sides highlighted to be named as a ratio"></svg></div>
+<div id="wrOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="wrFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="wrNext()">➡️ Next</button></div>
+<p class="small" id="wrProg"></p>
+<p><b>Carry this forward:</b> SOH · CAH · TOA. Read off which two sides are used, then name the ratio.</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY ================= -->
 <details class="dw">
-<summary>🎨 Creativity — Rank by steepness</summary>
-<p><b>What to do:</b> here are three ramps (or roof slopes), each given by how far it <b>rises</b> (opposite) over how far it <b>runs</b> (adjacent). Work out <b>tan θ = rise ÷ run</b> for each, then put them in order from <b>gentlest to steepest</b>. Drag or use the buttons to order them, then check.</p>
-<p><b>What you are trying to notice:</b> you do not need to measure the angles to compare them — the <b>tangent alone</b> tells you which is steeper. A bigger tan θ is a steeper slope.</p>
+<summary>🎨 Creativity — The other angle's cosine</summary>
+<p><b>What to do:</b> here is one right-angled triangle with <b>two</b> acute angles, <b>A</b> and <b>B</b>. Work out <b>sin</b> of angle A, then <b>cos</b> of angle B. Look from each angle and compare.</p>
+<p><b>What you are trying to notice:</b> the side that is <em>opposite</em> angle A is <em>adjacent</em> to angle B (you saw this swap in Lesson 2). So <b>sin A = cos B</b> — and because A and B add to 90°, <b>sin θ = cos(90° − θ)</b>. Sine and cosine are the same ratio, read from the two different angles.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">📊 Rank by Steepness</h3>
-<div id="rkCards" class="twocol"></div>
-<p class="small" style="text-align:center">Put them in order — <b>gentlest first</b>:</p>
-<div id="rkOrder" class="buttonrow" style="justify-content:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="rkCheck()">✅ Check the order</button><button onclick="rkReset()">↺ Reset</button></div>
-<div id="rkFeedback" class="feedback"></div>
-<p><b>Make it your own:</b> on the Scratchpad, invent three slopes of your own, work out each tangent, and challenge a friend to rank them.</p>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Invent three slopes as rise over run. Work out tan θ = rise ÷ run for each, and order them from gentlest to steepest.')">✏️ Create on the Scratchpad</button>
+<h3 style="margin-top:0">🔗 The other angle's cosine</h3>
+<div class="card" style="text-align:center"><svg id="coTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="One right-angled triangle viewed from either of its two acute angles"></svg></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="coView('A')">👁️ sin of angle A</button><button onclick="coView('B')">👁️ cos of angle B</button></div>
+<div id="coRead" class="card small"></div>
+<p><b>Make it your own:</b> on the Scratchpad, draw any right-angled triangle, mark both acute angles, and check that the sine of one equals the cosine of the other.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle. Work out sin of one acute angle and cos of the other. Are they equal? Why?')">✏️ Create on the Scratchpad</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
 <summary>🌙 Rest — A pause to let it settle</summary>
-<p>A single number that captures a whole angle — how steep, how tilted, how much rise for each step along — is a quietly powerful idea. Take a breath before moving on.</p>
+<p>Three ratios, one small map — SOH · CAH · TOA — and two of them turning out to be the same idea seen from different angles. There is a quiet neatness here. Take a breath before moving on.</p>
 <div class="card">
-<p><b>Notice one thing:</b> when the angle grew and the tangent grew with it, did the connection feel natural, or surprising? There is no right answer — just what your own attention noticed.</p>
+<p><b>Notice one thing:</b> as the angle grew, sine rose while cosine fell. Did that trade-off feel surprising, or somehow expected? There is no right answer — just what your own attention noticed.</p>
 <p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
 </div>
 </details>
@@ -151,28 +149,28 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <summary>🍎 Nutrition — What this feeds</summary>
 <p><b>Mode: intellectual.</b> This mathematics does not live in food or the body, so we name honestly what the <em>learning</em> nourishes.</p>
 <div class="card">
-<p><b>What it feeds:</b> today feeds the powerful mathematical move of letting <b>one number stand in for something larger</b> — a whole angle captured by a single ratio. This is the seed of measurement itself: temperature standing for warmth, a grade standing for a slope, a tangent standing for a tilt. Learning that a carefully chosen number can carry all the information you need — and can be compared, ordered and reasoned about — trains a mind to look for the <em>right measure</em> of a thing. It also feeds honesty about method: tan θ is <em>opposite ÷ adjacent</em>, in that order, every time — and precision like that is what makes the number trustworthy.</p>
-<p class="small">Carry one idea forward: a good measure lets you compare things you could never line up side by side. The tangent lets you compare angles by a single number.</p>
+<p><b>What it feeds:</b> today feeds the habit of <b>organising a set of ideas into a structure you can hold in mind</b>. Three ratios could be three things to memorise in isolation — or they could be one tidy pattern, <b>SOH · CAH · TOA</b>, where each name tells you exactly which two sides to use. Learning to compress information into a memorable structure, and to notice hidden symmetry (that sine and cosine are the same ratio read from the two angles), is what turns a pile of facts into understanding. It also feeds trust in <em>system</em> over <em>recall</em>: when you can rebuild a fact from its structure, you never truly forget it.</p>
+<p class="small">Carry one idea forward: a good structure means you remember less and understand more.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> show that you can define and use the tangent ratio.</p>
+<p><b>Your task:</b> show that you can define and use all three ratios.</p>
 <ul>
-<li>Draw a right-angled triangle, mark an angle <em>θ</em>, label the <b>opposite</b> and <b>adjacent</b>, and work out <b>tan θ = opposite ÷ adjacent</b>. Show your working.</li>
-<li>Draw a <b>bigger</b> triangle of the same shape and show that <b>tan θ is the same</b> — explain why.</li>
-<li>Take three slopes given as <b>rise over run</b>, work out each tangent, and <b>order them from gentlest to steepest</b>, explaining how the tangent tells you the order.</li>
+<li>Draw a right-angled triangle, mark an angle <em>θ</em>, label the <b>opposite</b>, <b>adjacent</b> and <b>hypotenuse</b>, and work out <b>sin θ</b>, <b>cos θ</b> and <b>tan θ</b>. Show each as a fraction.</li>
+<li>Explain, using <b>SOH · CAH · TOA</b>, which two sides each ratio uses and why the hypotenuse appears in two of them but not the tangent.</li>
+<li>Mark the <b>other</b> acute angle and show that its <b>cosine equals the sine</b> of the first angle — explain why, using the idea that opposite and adjacent swap between the two angles.</li>
 </ul>
 <p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_THE_TANGENT_RATIO_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_SINE_AND_COSINE_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows tan θ compares two sides.</td><td>Knows tan θ = opposite ÷ adjacent.</td><td>Knows tan θ is the same for any size of the same-angle triangle.</td><td>Explains why tan θ depends only on the angle, and grows as the angle grows.</td></tr>
-<tr><td><b>Application</b></td><td>Identifies opposite and adjacent.</td><td>Works out tan θ for one triangle.</td><td>Confirms tan θ is unchanged when the triangle is enlarged.</td><td>Uses tan θ to order slopes by steepness.</td></tr>
-<tr><td><b>Communication</b></td><td>Records a ratio with limited labelling.</td><td>Labels opposite and adjacent.</td><td>Shows the opposite ÷ adjacent working clearly.</td><td>Explains a method another learner could follow.</td></tr>
-<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that tan θ grows with the angle.</td><td>Explains tan θ belongs to the angle.</td><td>Connects a bigger tangent to a steeper angle.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows sine and cosine compare two sides.</td><td>Knows sin θ uses opposite &amp; hypotenuse, cos θ uses adjacent &amp; hypotenuse.</td><td>Selects the right ratio from SOH · CAH · TOA.</td><td>Explains why sin θ = cos(90° − θ).</td></tr>
+<tr><td><b>Application</b></td><td>Identifies the three sides.</td><td>Works out one ratio for a triangle.</td><td>Works out all three ratios for a triangle.</td><td>Uses the complementary link between sine and cosine.</td></tr>
+<tr><td><b>Communication</b></td><td>Records a ratio with limited labelling.</td><td>Labels the three sides.</td><td>Shows each ratio as a clear fraction.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that sine rises as cosine falls.</td><td>Explains SOH · CAH · TOA as a structure.</td><td>Connects sine and cosine as one ratio from two angles.</td></tr>
 </table>
 </details>
 
@@ -180,7 +178,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= PRACTICE COMPANION ================= -->
 <div id="practiceView" hidden><div class="practice">
-<h1>The tangent ratio — Practice Companion</h1>
+<h1>Sine and cosine — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -193,7 +191,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the right triangle, mark θ, and work out tan θ = opposite ÷ adjacent before you check.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the right triangle, label the three sides, and work out sin θ, cos θ or tan θ using SOH CAH TOA before you check.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -434,98 +432,71 @@ function drawLabelTri(svgId, opts){
   svg.innerHTML=s;
 }
 
-/* ============ CONNECTION: The ratio with a name ============ */
-var CN_BASE={opp:3, adj:4};                 /* the shared shape: opp:adj = 3:4, so tan = 0.75 */
-var CN_SIZES=[1,1.5,2.5];                    /* three scale factors -> different sizes, same angle */
-var cnSize=0, cnRevealed=false;
-function cnChips(){ document.getElementById("cnChips").innerHTML=CN_SIZES.map(function(k,i){return '<span class="chip'+(i===cnSize?' active':'')+'" onclick="cnPick('+i+')">Triangle '+(i+1)+'</span>';}).join(""); }
-function cnDraw(){
-  var k=CN_SIZES[cnSize], opp=r2(CN_BASE.opp*k), adj=r2(CN_BASE.adj*k);
-  drawLabelTri("cnTri", {a:CN_BASE.opp, b:CN_BASE.adj, mark:"P", theta:true, pad:66,
-    labels:{opp:"opposite = "+opp+" cm", adj:"adjacent = "+adj+" cm"}});
-  var msg="<b>Triangle "+(cnSize+1)+":</b> opposite = "+opp+" cm, adjacent = "+adj+" cm.";
-  if(cnRevealed){ msg+=" &nbsp; "+frac("opposite","adjacent")+" = "+frac(opp+" cm",adj+" cm")+" = <b>"+r2(opp/adj)+"</b> &nbsp;(the cm cancel, so the tangent has no units)."; }
-  else { msg+=" &nbsp; Work out "+frac("opposite","adjacent")+", then press <b>Reveal the ratio</b>."; }
-  document.getElementById("cnRead").innerHTML=msg;
+/* ============ CONNECTION: Ratio Trio (SOH CAH TOA) ============ */
+var RT_DEF={
+  sin:{sides:["opp","hyp"], num:"opposite", den:"hypotenuse", n:3, d:5, mnem:"SOH"},
+  cos:{sides:["adj","hyp"], num:"adjacent", den:"hypotenuse", n:4, d:5, mnem:"CAH"},
+  tan:{sides:["opp","adj"], num:"opposite", den:"adjacent",   n:3, d:4, mnem:"TOA"}
+};
+var rtKey="sin";
+function rtDraw(){
+  var def=RT_DEF[rtKey];
+  drawLabelTri("rtTri", {a:3, b:4, mark:"P", theta:true, pad:78, highlight:def.sides,
+    labels:{opp:"opp = 3 cm", adj:"adj = 4 cm", hyp:"hyp = 5 cm"}});
+  document.getElementById("rtRead").innerHTML="<b>"+rtKey+" θ</b> uses the two highlighted sides — <b>"+def.mnem+"</b>: &nbsp;"
+    +rtKey+" θ = "+frac(def.num,def.den)+" = "+frac(def.n+" cm",def.d+" cm")+" = <b>"+r2(def.n/def.d)+"</b>.";
 }
-function cnPick(i){ cnSize=i; cnRevealed=false; cnChips(); cnDraw(); }
-function cnReveal(){
-  cnRevealed=true; cnDraw();
-  document.getElementById("cnRead").innerHTML+="<p style='margin:6px 0 0'>Every one of these triangles gives <b>0.75</b> — the same angle, the same ratio. That number is <b>tan θ</b>: &nbsp;tan θ = "+frac("opposite","adjacent")+" = <b>0.75</b>.</p>";
+function rtPick(k){ rtKey=k; rtDraw(); }
+
+/* ============ MOVEMENT: Ratio Explorer (hypotenuse fixed) ============ */
+function reDraw(){
+  var deg=+document.getElementById("reA").value, rad=deg*Math.PI/180, hyp=5;
+  var opp=r2(hyp*Math.sin(rad)), adj=r2(hyp*Math.cos(rad));
+  document.getElementById("reAv").textContent=deg+"°";
+  drawLabelTri("reTri", {a:hyp*Math.sin(rad), b:hyp*Math.cos(rad), mark:"P", flip:true, theta:true, pad:44, ppu:34,
+    labels:{opp:"opp", adj:"adj", hyp:"hyp"}});
+  document.getElementById("reRead").innerHTML="At <b>θ = "+deg+"°</b>: hypotenuse fixed at <b>5 cm</b>, opposite = <b>"+opp+" cm</b>, adjacent = <b>"+adj+" cm</b>. Bigger angle → longer opposite, shorter adjacent.";
+  document.getElementById("reRatio").innerHTML="sin "+deg+"° = "+frac("opp","hyp")+" = <b>"+r2(Math.sin(rad))+"</b> &nbsp;·&nbsp; cos "+deg+"° = "+frac("adj","hyp")+" = <b>"+r2(Math.cos(rad))+"</b>";
 }
 
-/* ============ MOVEMENT: Tangent Explorer ============ */
-function teDraw(){
-  var deg=+document.getElementById("teA").value, rad=deg*Math.PI/180;
-  var adj=4, opp=r2(adj*Math.tan(rad));          /* adjacent fixed; opposite grows with the angle */
-  document.getElementById("teAv").textContent=deg+"°";
-  drawLabelTri("teTri", {a:adj*Math.tan(rad), b:adj, mark:"P", flip:true, theta:true, pad:40, ppu:20,
-    labels:{opp:"opposite = "+opp+" cm", adj:"adjacent = "+adj+" cm"}});
-  document.getElementById("teRead").innerHTML="At <b>θ = "+deg+"°</b>: adjacent stays at <b>4 cm</b>, opposite is <b>"+opp+" cm</b>. Bigger angle → steeper triangle → longer opposite.";
-  document.getElementById("teRatio").innerHTML="tan "+deg+"° = "+frac("opposite","adjacent")+" = "+frac(opp+" cm","4 cm")+" = <b>"+r2(Math.tan(rad))+"</b>";
-}
-
-/* ============ REFLECTION: Is this tan θ? ============ */
-var TQ=[
- {opp:3, adj:4, cn:"3 cm", cd:"4 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("3 cm","4 cm")+" = 0.75. Correct."},
- {opp:5, adj:12, cn:"12 cm", cd:"5 cm", cval:"2.4", ok:false, why:"That is upside down. tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","12 cm")+" ≈ 0.42, not 2.4."},
- {opp:6, adj:8, cn:"6 cm", cd:"8 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("6 cm","8 cm")+" = 0.75. Correct."},
- {opp:8, adj:6, cn:"8 cm", cd:"10 cm", cval:"0.8", ok:false, why:"That used the hypotenuse (10 cm), not the adjacent. tan θ = "+frac("opposite","adjacent")+" = "+frac("8 cm","6 cm")+" ≈ 1.33."},
- {opp:5, adj:5, cn:"5 cm", cd:"5 cm", cval:"1", ok:true,   why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","5 cm")+" = 1 (a 45° angle). Correct."}
+/* ============ REFLECTION: Which ratio is it? ============ */
+var WR=[
+ {a:3,b:4, mark:"P", sides:["opp","hyp"], ans:"sin", labels:{opp:"opp = 3 cm", hyp:"hyp = 5 cm"}},
+ {a:3,b:4, mark:"P", sides:["adj","hyp"], ans:"cos", labels:{adj:"adj = 4 cm", hyp:"hyp = 5 cm"}},
+ {a:3,b:4, mark:"P", sides:["opp","adj"], ans:"tan", labels:{opp:"opp = 3 cm", adj:"adj = 4 cm"}},
+ {a:6,b:8, mark:"P", sides:["opp","hyp"], ans:"sin", labels:{opp:"opp = 6 cm", hyp:"hyp = 10 cm"}},
+ {a:5,b:12, mark:"P", sides:["adj","hyp"], ans:"cos", labels:{adj:"adj = 12 cm", hyp:"hyp = 13 cm"}}
 ];
-var tqIndex=0;
-function tqRender(){
-  var q=TQ[tqIndex];
-  drawLabelTri("tqTri", {a:q.opp, b:q.adj, mark:"P", theta:true, pad:66,
-    labels:{opp:"opposite = "+q.opp+" cm", adj:"adjacent = "+q.adj+" cm"}});
-  document.getElementById("tqClue").innerHTML="<b>Card "+(tqIndex+1)+":</b> Someone claims &nbsp;tan θ = "+frac(q.cn,q.cd)+" = <b>"+q.cval+"</b>. Is that <b>right</b>, or a <b>slip</b>?";
-  document.getElementById("tqOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="tqPick('+i+')">'+o+'</button>';}).join("");
-  document.getElementById("tqFeedback").style.display="none";
-  document.getElementById("tqProg").textContent="Card "+(tqIndex+1)+" of "+TQ.length+".";
+var wrIndex=0;
+var WR_WHY={sin:"opposite &amp; hypotenuse → <b>sine</b> (SOH)", cos:"adjacent &amp; hypotenuse → <b>cosine</b> (CAH)", tan:"opposite &amp; adjacent → <b>tangent</b> (TOA)"};
+function wrRender(){
+  var q=WR[wrIndex];
+  drawLabelTri("wrTri", {a:q.a, b:q.b, mark:q.mark, theta:true, pad:78, highlight:q.sides, labels:q.labels});
+  document.getElementById("wrClue").innerHTML="<b>Card "+(wrIndex+1)+":</b> the two <b>highlighted</b> sides give a ratio. Is it <b>sin θ</b>, <b>cos θ</b> or <b>tan θ</b>?";
+  document.getElementById("wrOpts").innerHTML=["sin","cos","tan"].map(function(k){return '<button onclick="wrPick(\''+k+'\')">'+k+' θ</button>';}).join("");
+  document.getElementById("wrFeedback").style.display="none";
+  document.getElementById("wrProg").textContent="Card "+(wrIndex+1)+" of "+WR.length+".";
 }
-function tqPick(i){
-  var q=TQ[tqIndex], ans=q.ok?0:1, fb=document.getElementById("tqFeedback"); fb.style.display="block";
-  if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
-  else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
+function wrPick(k){
+  var q=WR[wrIndex], fb=document.getElementById("wrFeedback"); fb.style.display="block";
+  if(k===q.ans){ fb.className="feedback good"; fb.innerHTML="Correct — "+WR_WHY[q.ans]+"."; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not quite. These two sides are "+WR_WHY[q.ans]+"."; }
 }
-function tqNext(){ tqIndex=(tqIndex+1)%TQ.length; tqRender(); }
+function wrNext(){ wrIndex=(wrIndex+1)%WR.length; wrRender(); }
 
-/* ============ CREATIVITY: Rank by steepness ============ */
-var RK=[
- {name:"Ramp A", rise:3, run:12},
- {name:"Ramp B", rise:5, run:10},
- {name:"Ramp C", rise:2, run:14}
-];
-var rkChosen=[];                                  /* the learner's order, as indices into RK */
-function rkTan(i){ return RK[i].rise/RK[i].run; }
-function rkCardsRender(){
-  document.getElementById("rkCards").innerHTML=RK.map(function(r,i){
-    return '<div class="card" style="text-align:center"><b>'+r.name+'</b><br><span class="small">rises '+r.rise+' m for every '+r.run+' m along</span><br>tan θ = '+frac(r.rise+" m",r.run+" m")+' = <b>?</b></div>';
-  }).join("");
-}
-function rkOrderRender(){
-  var html="";
-  RK.forEach(function(r,i){
-    var pos=rkChosen.indexOf(i);
-    html+='<button onclick="rkTake('+i+')"'+(pos>=0?' style="background:#dce8ef;border-color:#365a68"':'')+'>'+(pos>=0?(pos+1)+'. ':'')+r.name+'</button>';
-  });
-  document.getElementById("rkOrder").innerHTML=html;
-}
-function rkTake(i){
-  var pos=rkChosen.indexOf(i);
-  if(pos>=0) rkChosen.splice(pos,1); else rkChosen.push(i);
-  rkOrderRender();
-  document.getElementById("rkFeedback").style.display="none";
-}
-function rkReset(){ rkChosen=[]; rkOrderRender(); document.getElementById("rkFeedback").style.display="none"; }
-function rkCheck(){
-  var fb=document.getElementById("rkFeedback"); fb.style.display="block";
-  if(rkChosen.length<RK.length){ fb.className="feedback warn"; fb.textContent="Pick all three, in order from gentlest to steepest."; return; }
-  var correct=RK.map(function(_,i){return i;}).sort(function(a,b){return rkTan(a)-rkTan(b);});
-  var ok=rkChosen.every(function(v,i){return v===correct[i];});
-  var vals=RK.map(function(r,i){return r.name+": tan θ = "+frac(r.rise+" m",r.run+" m")+" = "+r2(rkTan(i));}).join(";&nbsp; ");
-  if(ok){ fb.className="feedback good"; fb.innerHTML="Correct — gentlest to steepest is "+correct.map(function(i){return "<b>"+RK[i].name+"</b>";}).join(" → ")+". ("+vals+".) The bigger the tangent, the steeper the slope."; }
-  else { fb.className="feedback warn"; fb.innerHTML="Not yet. Work out each tangent and order them smallest first. ("+vals+".)"; }
+/* ============ CREATIVITY: The other angle's cosine ============ */
+var coSeen={A:false,B:false};
+function coView(which){
+  var mark=(which==="A"?"P":"Q");
+  var labs = mark==="P" ? {opp:"opp = 3 cm", adj:"adj = 4 cm", hyp:"hyp = 5 cm"} : {opp:"opp = 4 cm", adj:"adj = 3 cm", hyp:"hyp = 5 cm"};
+  drawLabelTri("coTri", {a:3, b:4, mark:mark, theta:true, pad:78, vertexLabels:{P:"A", Q:"B"}, labels:labs});
+  coSeen[which]=true;
+  var rowA = coSeen.A ? "<p style='margin:4px 0'>From <b>angle A</b>: &nbsp;sin A = "+frac("opp","hyp")+" = "+frac("3","5")+" = <b>0.6</b></p>" : "";
+  var rowB = coSeen.B ? "<p style='margin:4px 0'>From <b>angle B</b>: &nbsp;cos B = "+frac("adj","hyp")+" = "+frac("3","5")+" = <b>0.6</b></p>" : "";
+  var note = (coSeen.A&&coSeen.B)
+    ? "<p style='margin:6px 0 0'>The <b>vertical side (3 cm)</b> is <em>opposite</em> angle A but <em>adjacent</em> to angle B — so <b>sin A = cos B = 0.6</b>. And because A + B = 90°, <b>sin θ = cos(90° − θ)</b>.</p>"
+    : "<p class='small' style='margin:6px 0 0'>Now look from the <b>other</b> angle.</p>";
+  document.getElementById("coRead").innerHTML=rowA+rowB+note;
 }
 
 /* ---------------- Reconnection Routes ---------------- */
@@ -552,18 +523,18 @@ function rkCheck(){
     s+='</svg>'; return s;
   }
   var RECONNECT={
-    sides:{title:'Opposite and adjacent (Lesson 2)',prompt:'The side <b>across from</b> the marked angle θ is called the ___ side. Which name?',answer:'opposite',hint:'Across from θ = the opposite; next to θ = the adjacent.'},
-    division:{title:'A ratio as a division',prompt:'What is <b>3 ÷ 4</b> as a decimal?',answer:0.75,hint:'3 ÷ 4 = 0.75.'},
-    ratio:{title:'The constant ratio (Lesson 1)',prompt:'For a fixed angle, does enlarging a right-angled triangle change the ratio of two of its sides? (yes / no)',answer:'no',hint:'No — the ratio belongs to the angle, so enlarging (same angle) leaves it unchanged.'}
+    hyp:{title:'The hypotenuse (Lesson 2)',prompt:'The longest side, opposite the right angle, is called the ___?',answer:'hypotenuse',hint:'It is opposite the right angle — the "hypotenuse". Sine and cosine both use it.'},
+    tangent:{title:'The tangent (Lesson 3)',prompt:'Complete: tan θ = opposite ÷ ___ ? (name the side)',answer:'adjacent',hint:'tan θ = opposite ÷ adjacent (TOA).'},
+    division:{title:'A ratio as a division',prompt:'What is <b>3 ÷ 5</b> as a decimal?',answer:0.6,hint:'3 ÷ 5 = 0.6.'}
   };
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
   window.openReconnect=function(){
     var p=document.getElementById('reconnectionPanel');p.style.display='block';
     p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
      +'<div class="buttonrow">'
-     +'<button class="guidebtn" onclick="showReconnect(\'sides\')">Opposite and adjacent</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'hyp\')">The hypotenuse</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'tangent\')">The tangent</button>'
      +'<button class="guidebtn" onclick="showReconnect(\'division\')">A ratio as a division</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'ratio\')">The constant ratio</button>'
      +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
   };
   window.showReconnect=function(key){
@@ -585,12 +556,12 @@ function rkCheck(){
 
 /* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · Define the tangent",q:"For a marked angle θ, the tangent is which ratio — opposite ÷ adjacent, or adjacent ÷ opposite?",a:["opposite ÷ adjacent","opposite divided by adjacent","opp ÷ adj","opp/adj","opposite/adjacent","opposite over adjacent"],prompt:"Which side goes on top in tan θ?",hint:"tan θ = opposite ÷ adjacent — opposite on top.",sol:"tan θ = opposite ÷ adjacent — the opposite side divided by the adjacent side."},
- {label:"2 of 6 · Work out tan θ",q:"A right-angled triangle has opposite = 3 cm and adjacent = 4 cm for the marked angle θ. What is tan θ? (a decimal or a fraction is fine)",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"tan θ = opposite ÷ adjacent.",hint:"3 ÷ 4 = ? (the cm cancel)",sol:"0.75 — tan θ = opposite ÷ adjacent = 3 ÷ 4 = 0.75 (the units cancel, so the tangent has no units)."},
- {label:"3 of 6 · The same shape, bigger",q:"That triangle is enlarged to opposite = 6 cm and adjacent = 8 cm. What is tan θ now?",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"Work out 6 ÷ 8 and compare with the last answer.",hint:"6 ÷ 8 = 0.75 — the same as before.",sol:"0.75 — tan θ is unchanged by size. Same angle → same tangent."},
- {label:"4 of 6 · Which is steeper?",q:"Slope P has tan θ = 0.4. Slope Q has tan θ = 0.9. Which is steeper — P or Q?",a:["q","slope q","q is steeper"],prompt:"Does a bigger tangent mean steeper or gentler?",hint:"A bigger tangent means a steeper slope.",sol:"Q — a bigger tangent (0.9 > 0.4) means a steeper slope."},
- {label:"5 of 6 · Spot the slip",q:"For opposite = 5 cm and adjacent = 12 cm, a learner writes tan θ = 12 ÷ 5. What have they done wrong? (one word)",a:["inverted","upside down","reversed","flipped","upside-down","inverted it"],prompt:"Is opposite on top, or adjacent?",hint:"They divided adjacent by opposite — the ratio is upside down.",sol:"They inverted it — tan θ = opposite ÷ adjacent = 5 ÷ 12, not 12 ÷ 5."},
- {label:"6 of 6 · Tangent of 45°",q:"A right-angled triangle has opposite = adjacent (both the same length). What is tan θ?",a:[],eq:function(v){return Math.abs(num(v)-1)<0.02;},prompt:"tan θ = opposite ÷ adjacent, and they are equal.",hint:"Any number ÷ itself = 1.",sol:"1 — when opposite = adjacent, tan θ = 1 (this is the 45° angle)."}
+ {label:"1 of 6 · SOH",q:"Complete SOH: sin θ = opposite ÷ ___ ? (name the side)",a:["hypotenuse","the hypotenuse","hyp"],prompt:"S-O-H: Sine = Opposite over ___?",hint:"sin θ = opposite ÷ hypotenuse.",sol:"Hypotenuse — sin θ = opposite ÷ hypotenuse (SOH)."},
+ {label:"2 of 6 · CAH",q:"Complete CAH: cos θ = ___ ÷ hypotenuse ? (name the side)",a:["adjacent","the adjacent","adj"],prompt:"C-A-H: Cosine = Adjacent over ___?",hint:"cos θ = adjacent ÷ hypotenuse.",sol:"Adjacent — cos θ = adjacent ÷ hypotenuse (CAH)."},
+ {label:"3 of 6 · Work out sin θ",q:"A right-angled triangle has opposite = 3 cm and hypotenuse = 5 cm. What is sin θ? (a decimal or a fraction is fine)",a:[],eq:function(v){return Math.abs(num(v)-0.6)<0.02;},prompt:"sin θ = opposite ÷ hypotenuse.",hint:"3 ÷ 5 = ?",sol:"0.6 — sin θ = opposite ÷ hypotenuse = 3 ÷ 5 = 0.6."},
+ {label:"4 of 6 · Work out cos θ",q:"The same triangle has adjacent = 4 cm and hypotenuse = 5 cm. What is cos θ?",a:[],eq:function(v){return Math.abs(num(v)-0.8)<0.02;},prompt:"cos θ = adjacent ÷ hypotenuse.",hint:"4 ÷ 5 = ?",sol:"0.8 — cos θ = adjacent ÷ hypotenuse = 4 ÷ 5 = 0.8."},
+ {label:"5 of 6 · Which ratio?",q:"You know the opposite side and the hypotenuse and want the angle. Which ratio uses exactly those two sides — sin, cos or tan?",a:["sin","sine","sin θ"],prompt:"Opposite and hypotenuse together → which of SOH, CAH, TOA?",hint:"Opposite over hypotenuse is SOH — the sine.",sol:"sin — SOH uses the opposite and the hypotenuse."},
+ {label:"6 of 6 · The other angle",q:"In a right-angled triangle sin(30°) = 0.5. What is cos(60°)? (the two acute angles add to 90°)",a:[],eq:function(v){return Math.abs(num(v)-0.5)<0.02;},prompt:"sin θ = cos(90° − θ). What is 90 − 30?",hint:"cos(60°) = sin(30°) = 0.5.",sol:"0.5 — since 30° and 60° add to 90°, cos(60°) = sin(30°) = 0.5."}
 ];
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -620,7 +591,7 @@ function pCheck(){
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Remember tan θ = opposite ÷ adjacent (opposite on top, and never the hypotenuse) — or use the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Use SOH · CAH · TOA — sin = opposite ÷ hypotenuse, cos = adjacent ÷ hypotenuse, tan = opposite ÷ adjacent — or use the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -636,10 +607,10 @@ function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{va
 
 /* ---------------- init ---------------- */
 function initLesson(){
-  cnChips(); cnDraw();
-  teDraw();
-  tqRender();
-  rkCardsRender(); rkOrderRender();
+  rtDraw();
+  reDraw();
+  wrRender();
+  coView("A");
   renderPractice();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();

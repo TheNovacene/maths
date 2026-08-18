@@ -373,7 +373,7 @@ function returnLesson(){document.getElementById("practiceView").hidden=true;docu
 function num(v){
   var s=String(v).toLowerCase();
   s=s.replace(/÷/g,'/');                       // palette ÷ counts as a fraction bar
-  s=s.replace(/tan\s*θ?/g,'');                  // drop a leading "tan θ"
+  s=s.replace(/(tan|sin|cos)\s*θ?/g,'');          // drop a leading trig label e.g. "tan θ"
   s=s.replace(/=/g,'');
   s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');   // strip a unit written after a number
   s=s.replace(/[, ]+/g,'');
@@ -449,16 +449,32 @@ function drawLabelTri(svgId, opts){
     (mark==="P"? {key:"adj", A:sR, B:sP} : {key:"opp", A:sR, B:sP}),
     (mark==="P"? {key:"opp", A:sR, B:sQ} : {key:"adj", A:sR, B:sQ})
   ];
-  var customLabels=opts.labels||null;
+  var customLabels=opts.labels||null, hlActive=(opts.highlight!=null);
   sides.forEach(function(sd){
-    var hi=(opts.highlight===sd.key), showAll=(opts.show==="all"), lab=(customLabels&&customLabels[sd.key]);
-    if(hi||showAll||lab){
-      s+='<line x1="'+sd.A.x.toFixed(1)+'" y1="'+sd.A.y.toFixed(1)+'" x2="'+sd.B.x.toFixed(1)+'" y2="'+sd.B.y.toFixed(1)+'" stroke="'+SIDE_COL[sd.key]+'" stroke-width="'+(hi?5.2:3.4)+'" stroke-linecap="round"/>';
+    var hl=opts.highlight, hi=(Array.isArray(hl)?hl.indexOf(sd.key)>=0:hl===sd.key), showAll=(opts.show==="all"), lab=(customLabels&&customLabels[sd.key]);
+    var A=sd.A, B=sd.B, col=SIDE_COL[sd.key];
+    /* ---- stroke: highlighted sides get a soft halo + a bold line so they clearly "light up" ---- */
+    if(hi){
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="11" stroke-linecap="round" opacity="0.28"/>';
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="6" stroke-linecap="round"/>';
+    } else if(showAll || (lab && !hlActive)){
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="3.4" stroke-linecap="round"/>';
     }
+    /* ---- label: offset PERPENDICULAR to the edge (outward) so it never sits on the line ---- */
     var text=showAll?SIDE_NAME[sd.key]:(lab||null);
     if(text){
-      var mid={x:(sd.A.x+sd.B.x)/2,y:(sd.A.y+sd.B.y)/2}, o=nrm(sub(mid,{x:cx,y:cy}));
-      s+='<text x="'+(mid.x+o.x*20).toFixed(1)+'" y="'+(mid.y+o.y*20+4).toFixed(1)+'" font-size="12" font-weight="bold" fill="'+SIDE_COL[sd.key]+'" text-anchor="middle">'+text+'</text>';
+      var mid={x:(A.x+B.x)/2,y:(A.y+B.y)/2}, dir=nrm(sub(B,A)), nl={x:-dir.y,y:dir.x};
+      if(nl.x*(mid.x-cx)+nl.y*(mid.y-cy)<0){ nl={x:-nl.x,y:-nl.y}; }   /* point away from the centre */
+      var off=15, anchor=(nl.x>0.35?"start":(nl.x<-0.35?"end":"middle"));
+      var lx=mid.x+nl.x*off, ly=mid.y+nl.y*off;
+      if(anchor==="middle"){ ly += (nl.y>0? 12 : -4); } else { lx += (nl.x>0? 3 : -3); ly += 4; }
+      /* keep the whole label inside the canvas (never clip at an edge) */
+      var estW=String(text).replace(/<[^>]*>/g,"").length*6.6;
+      if(anchor==="end"){ lx=Math.min(Math.max(lx,estW+4),VW-4); }
+      else if(anchor==="start"){ lx=Math.max(Math.min(lx,VW-4-estW),4); }
+      else { lx=Math.min(Math.max(lx,estW/2+4),VW-4-estW/2); }
+      var faded=(hlActive && !hi);
+      s+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="'+(hi?13:12)+'" font-weight="'+(hi?"bold":"600")+'" fill="'+(faded?"#8f958a":col)+'" text-anchor="'+anchor+'">'+text+'</text>';
     }
   });
   /* marked-angle arc + θ (arc centred on the vertex, so it bulges outward = convex) */

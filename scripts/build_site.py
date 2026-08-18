@@ -84,6 +84,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_02_Naming_the_Sides/NEO_Maths_Y10_Trigonometry_Lesson_02_Naming_the_Sides_v0.1.html",
     "trigonometry-03-the-tangent-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_03_The_Tangent_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_03_The_Tangent_Ratio_v0.1.html",
+    "trigonometry-04-sine-and-cosine":
+        "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_04_Sine_and_Cosine/NEO_Maths_Y10_Trigonometry_Lesson_04_Sine_and_Cosine_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

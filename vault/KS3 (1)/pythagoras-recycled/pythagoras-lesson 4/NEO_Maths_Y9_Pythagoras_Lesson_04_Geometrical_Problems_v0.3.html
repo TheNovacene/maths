@@ -313,7 +313,7 @@ function openAdultGuide(){
 function openPractice(){lessonView.hidden=true;practiceView.hidden=false;renderPractice();window.scrollTo({top:0,behavior:'smooth'});}
 function returnLesson(){practiceView.hidden=true;lessonView.hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
 function norm(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/cm|m|≈|=|about/g,'').trim();}
-function numFrom(s){const m=String(s).match(/-?\d+(\.\d+)?/);return m?Number(m[0]):NaN;}
+function numFrom(s){var t=String(s).toLowerCase().replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'').replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');var fm=t.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);if(fm)return Number(fm[1])/Number(fm[2]);const m=t.match(/-?\d+(\.\d+)?/);return m?Number(m[0]):NaN;}
 function renderPractice(){
  const p=PRACTICE[practiceIndex];
  practiceLabel.textContent='Question '+(practiceIndex+1)+' of '+PRACTICE.length+' — '+p.title;
