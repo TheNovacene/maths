@@ -309,6 +309,14 @@
           "file": "lessons/trigonometry/04-sine-and-cosine.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "trigonometry-05-finding-a-side",
+          "num": "Lesson 05",
+          "title": "Finding a side",
+          "file": "lessons/trigonometry/05-finding-a-side.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

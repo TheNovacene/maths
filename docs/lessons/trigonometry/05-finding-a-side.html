@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: Conversion graphs as models</title>
+<title>NEO Mathematics: Finding a side</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -82,7 +82,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   .fracpreview[hidden]{display:none}
   .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
 </style>
-<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Straight Lines and Connected Representations &middot; <strong>Lesson 09 &mdash; Conversion graphs as models</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Introduction to Trigonometry &middot; <strong>Lesson 05 &mdash; Finding a side</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
 <script>
 (function(){
  var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
@@ -102,25 +102,26 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <div id="lessonView">
 <div class="neo">
-<h1>NEO Mathematics: Straight Lines</h1>
-<h2>Conversion graphs as models</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>How can a line translate one quantity into another?</em></h2>
+<h1>NEO Mathematics: Introduction to Trigonometry</h1>
+<h2>Finding a side</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How do I find a length from one side and one angle?</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Modelling — using a straight line to convert between two quantities, reading it both ways.</p>
-<p><b>Stepping Stone:</b> read a conversion graph in both directions, and interpret the gradient as the conversion rate.</p>
+<p><b>Lesson type:</b> Applying — using a trigonometric ratio to find an unknown side that sits on top of the ratio (a single multiplication).</p>
+<p><b>Stepping Stone:</b> given one angle and one side, write the ratio as an equation, substitute the numbers, and use algebra to solve for the unknown (e.g. sin θ = x ÷ hypotenuse, so x = hypotenuse × sin θ).</p>
+<p><b>You will need:</b> a calculator in <b>degrees</b> — use the <b>🧮 Calculator</b> button in the bottom-right of the screen (it is already set to degrees), or your own. A <b>√ Symbols</b> palette sits under each answer box too.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
-<p><b>45-minute shape:</b> Connect 12 · Move 12 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
+<p><b>45-minute shape:</b> Connect 10 · Move 14 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
 </div>
 
 <div class="guides">
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_09_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_09_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_05_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_05_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Draw a conversion line, then read a value up to the line and across to the other axis.')">✏️ Open Maths Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle, mark the angle and the known side. Choose the ratio, then work out the unknown = known × ratio.')">✏️ Open Maths Scratchpad</button>
 
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
@@ -128,112 +129,120 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — Conversion Graph Translator</summary>
+<summary>🌿 Connection — Set it up</summary>
 <div class="card">
-<h3 style="margin-top:0">🔤 New words for this lesson</h3>
-<p style="margin:6px 0"><b style="color:#3f7a45">Conversion graph</b> — a straight line that <b>translates</b> one quantity into another (miles into km, £ into €).<br>
-<b style="color:#2b3d78">Reading both ways</b> — go <b>up</b> from one axis to the line, then <b>across</b> to the other; it works in either direction.<br>
-<b style="color:#b0651f">Conversion rate</b> — the <b>gradient</b> of the line: how many of one unit you get for each of the other.</p>
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">There is <b>no new rule to memorise</b>. When you know <b>one angle</b> and <b>one side</b>, you write the ratio as an <b>equation</b>, put in the numbers, and use <b>algebra</b> to solve for the unknown — call it <em>x</em>. It is always the same four lines:</p>
+<p style="margin:6px 0 0 10px">1. <b>Write the ratio:</b> &nbsp;sin θ = <span class="frac"><span class="fnum">opposite</span><span class="fden">hypotenuse</span></span><br>
+2. <b>Put in what you know</b> (unknown = <em>x</em>): &nbsp;sin θ = <span class="frac"><span class="fnum">x</span><span class="fden">hyp</span></span><br>
+3. <b>Rearrange</b> to get <em>x</em> on its own — <em>this is the algebra</em><br>
+4. <b>Work it out</b> on a calculator (set to <b>degrees</b>).</p>
+<p style="margin:6px 0"><b>Line 3 is the important one.</b> Think about the <em>equation</em>, not a formula: if x is divided by a number, multiply both sides by it. &nbsp;For line 4, open the <b>🧮 Calculator</b> (bottom-right) — it works in degrees.</p>
 </div>
-<p><b>What to do:</b> use the conversion line to answer the question. Go <b>up</b> from the value you are given until you hit the line, then <b>across</b> to read the answer off the other axis. Type it in, press <b>Reveal</b>, and <b>Next</b> for another.</p>
-<p><b>What you are trying to notice:</b> the same line converts <b>both ways</b> — up-and-across, or across-and-down. One line does every conversion between the two quantities.</p>
+<p><b>What to do:</b> the triangle shows the marked angle, one <b>known</b> side, and the side you <b>want</b> (marked <b>?</b>). Press <b>sin</b>, <b>cos</b> or <b>tan</b> to set up the ratio, then reveal the working <b>one line at a time</b> and watch the algebra unfold.</p>
+<p><b>What you are trying to notice:</b> every solution is the same four lines — ratio, substitute, rearrange, evaluate. Once you can do the <b>algebra</b> in line 3, you never need to remember a special rule.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔁 Conversion Graph Translator</h3>
-<div class="card" style="text-align:center"><svg id="ctGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="A conversion line between two quantities"></svg></div>
-<p id="ctDesc" class="clue"></p>
-<div style="text-align:center"><label class="small" for="ctAns" id="ctLabel"><b>Your answer:</b></label> <input id="ctAns" placeholder="read it off the graph" inputmode="numeric" style="max-width:150px"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="ctReveal()">🔍 Reveal</button><button onclick="ctNext()">➡️ Next question</button></div>
-<div id="ctFeedback" class="feedback"></div>
-<p><b>Carry this forward:</b> a conversion graph works <b>both ways</b>. Go up-and-across to convert one way, across-and-down to convert back — the single line does both.</p>
+<h3 style="margin-top:0">🧩 Set it up</h3>
+<div class="card" style="text-align:center"><svg id="suTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a marked angle, one known side and one unknown side"></svg></div>
+<div id="suStep" class="clue"></div>
+<div id="suOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="suWork" class="readout" style="display:none"></div>
+<div class="buttonrow" style="justify-content:center"><button id="suNextBtn" onclick="suNext()" style="display:none">▸ Next line</button><button onclick="suNew()">🔄 New set-up</button></div>
+<p><b>Carry this forward:</b> ratio → substitute → rearrange → evaluate. The algebra does the work; there is no rule to memorise.</p>
 </div>
 </details>
 
 <!-- ================= MOVEMENT ================= -->
 <details class="hs">
-<summary>🚶 Movement — Two-way reader</summary>
-<p><b>What to do:</b> pick a conversion, then <b>drag the point</b> along the line. Dashed guides drop to <b>both</b> axes, showing the matching pair — for example "5 miles = 8 km". Drag it anywhere to convert any value.</p>
-<p><b>What you are trying to notice:</b> a single point links a value on one axis to a value on the other, so one line reads <b>both directions</b> at once. The steeper the line, the bigger the conversion rate.</p>
+<summary>🚶 Movement — Side Finder</summary>
+<p><b>What to do:</b> build the solution <b>line by line</b>. First <b>choose the ratio</b> (that writes lines 1 and 2 for you). Then <b>type the rearrangement</b> yourself — the line that gets <em>x</em> on its own. Finally <b>work out the answer</b> with your calculator (to 1 d.p.). Each line stays on screen below the one before.</p>
+<p><b>What you are trying to notice:</b> you are not remembering a rule — you are solving an <b>equation</b>. Line 2 is <em>ratio = x ÷ known</em>; to get <em>x</em> alone you <b>multiply both sides by the known number</b>. That is the whole of line 3.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">↔️ Two-way Reader</h3>
-<div id="trChips" class="buttonrow" style="justify-content:center"></div>
-<div class="card" style="text-align:center"><svg id="trGraph" class="graphsvg" style="max-width:360px;touch-action:none;cursor:ew-resize" viewBox="0 0 360 360" role="img" aria-label="A conversion line with a draggable point and guide lines to both axes"></svg></div>
-<div id="trRead" class="card small"></div>
-<p><b>Carry this forward:</b> to convert with a graph, go up-and-across for one direction and across-and-down for the other. The same line, and the same point, does both.</p>
+<h3 style="margin-top:0">📐 Side Finder</h3>
+<div class="card" style="text-align:center"><svg id="sfTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a marked angle, a known side and an unknown side to find"></svg></div>
+<div id="sfStep" class="clue"></div>
+<div id="sfOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="sfWork" class="readout" style="display:none"></div>
+<div id="sfRearrRow" style="display:none;text-align:center"><label class="small" for="sfRearr"><b>Line 3 — rearrange (x = …):</b></label><br><input id="sfRearr" class="neo-mathfield" placeholder="e.g. x = 8 × sin 40" style="max-width:240px"> <button onclick="sfRearrCheck()">Check line 3</button></div>
+<div id="sfAnsRow" style="display:none;text-align:center;margin-top:8px"><label class="small" for="sfAns"><b>Line 4 — work it out, x =</b></label> <input id="sfAns" class="neo-mathfield" placeholder="length to 1 d.p." inputmode="decimal" style="max-width:150px"> <button onclick="sfCheck()">✅ Check</button></div>
+<div id="sfFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="sfNew()">➡️ New problem</button></div>
+<div id="sfScore" class="card small" style="text-align:center"></div>
+<p><b>Carry this forward:</b> write the ratio, substitute, then do the algebra to make x the subject. Understand the equation and you never need a rule.</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION ================= -->
 <details class="es">
-<summary>🪞 Reflection — Read it right?</summary>
-<p><b>What to do:</b> each card shows a conversion and how someone read it. Decide whether their reading is <b>right</b> or a <b>slip</b>, then check against the graph.</p>
-<p><b>What you are trying to notice:</b> the common slips are reading off the <b>wrong axis</b>, or <b>not using the line</b> (just multiplying without checking the graph — which goes wrong when the line does not start at zero, like °C to °F).</p>
+<summary>🪞 Reflection — Set up or slip?</summary>
+<p><b>What to do:</b> each card shows <b>two lines</b> of someone's working — their ratio equation and their rearrangement. Decide whether the working is <b>right</b> or a <b>slip</b>, then check.</p>
+<p><b>What you are trying to notice:</b> two things can go wrong — the <b>wrong ratio</b> (a side that isn't in the problem), and the <b>wrong algebra</b> (dividing when the equation says multiply). When line 2 is <em>ratio = x ÷ known</em>, line 3 must multiply both sides by the known number.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔎 Read it right?</h3>
-<div id="rcClue" class="clue"></div>
-<div class="card" style="text-align:center"><svg id="rcMini" class="graphsvg" style="max-width:300px" viewBox="0 0 360 360" role="img" aria-label="A conversion line with a reading marked"></svg></div>
-<div id="rcOpts" class="buttonrow"></div>
-<div id="rcFeedback" class="feedback"></div>
-<div class="buttonrow"><button onclick="rcNext()">➡️ Next</button></div>
-<p class="small" id="rcProgress"></p>
-<p><b>Carry this forward:</b> always read <b>to the line</b> and check which axis is which. When a conversion line does not pass through the origin, you cannot just multiply.</p>
+<h3 style="margin-top:0">🔎 Set up or slip?</h3>
+<div id="ssClue" class="clue"></div>
+<div class="card" style="text-align:center"><svg id="ssTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a proposed first line of working"></svg></div>
+<div id="ssOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="ssFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ssNext()">➡️ Next</button></div>
+<p class="small" id="ssProg"></p>
+<p><b>Carry this forward:</b> check two things — is it the right ratio, and (unknown on top) is it known × ratio, not known ÷ ratio?</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY ================= -->
 <details class="dw">
-<summary>🎨 Creativity — Holiday money</summary>
-<p><b>What to do:</b> you are on holiday with a pounds-to-euros conversion graph. Use it to answer each real question — reading up-and-across, or across-and-down, depending which way you are converting. Type your answer and check.</p>
-<p><b>What you are trying to notice:</b> the same graph answers "how many euros do I get?" and "how much is that in pounds?" — one line, both directions. That is what makes a conversion graph so useful.</p>
+<summary>🎨 Creativity — Reach the unmeasurable</summary>
+<p><b>What to do:</b> each scenario is a real length you could never reach with a tape measure — the height of a tree, a cliff, a flagpole. You are given a distance and an angle. Set it up and find the height with your calculator.</p>
+<p><b>What you are trying to notice:</b> this is what trigonometry is <em>for</em>. One side you can measure, plus one angle, gives you a length you could never reach — the whole point of the ratios.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🏖️ Holiday Money</h3>
-<div id="hmChips" class="buttonrow" style="justify-content:center"></div>
-<p id="hmDesc" class="clue"></p>
-<div class="card" style="text-align:center"><svg id="hmGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="A pounds-to-euros conversion line"></svg></div>
-<div style="text-align:center"><label class="small" for="hmAns" id="hmLabel"><b>Your answer:</b></label> <input id="hmAns" placeholder="read it off the graph" inputmode="numeric" style="max-width:150px"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="hmCheck()">✅ Check</button></div>
-<div id="hmFeedback" class="feedback"></div>
-<p><b>Make it your own:</b> on the Scratchpad, draw a conversion graph for a currency or unit you care about, and use it to answer a question of your own — both ways.</p>
-<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Draw a conversion line for a currency or unit. Use it to answer a question both ways.')">✏️ Create on the Scratchpad</button>
+<h3 style="margin-top:0">🌲 Reach the unmeasurable</h3>
+<div class="card" style="text-align:center"><svg id="ruTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A real-world right-angled triangle: a horizontal distance, an angle of elevation and an unknown height"></svg></div>
+<div id="ruScenario" class="clue"></div>
+<div style="text-align:center"><label class="small" for="ruAns"><b>height = </b></label> <input id="ruAns" class="neo-mathfield" placeholder="height to 1 d.p." inputmode="decimal" style="max-width:170px"> <button onclick="ruCheck()">✅ Check</button></div>
+<div id="ruFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ruNew()">🌲 Another one</button></div>
+<p><b>Make it your own:</b> on the Scratchpad, invent your own "reach the unmeasurable" problem — a tall thing, a distance and an angle — solve it, and challenge a friend.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Invent a height you cannot reach. Give a distance and an angle of elevation, then find the height with unknown = distance × tan(angle).')">✏️ Create on the Scratchpad</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
 <summary>🌙 Rest — A pause to let it settle</summary>
-<p>Seeing that one straight line can translate endlessly between two quantities — both ways, forever — is a quietly elegant idea. Take a breath before moving on.</p>
+<p>Finding a length you could never reach — the top of a tree, the far side of a river — from a single angle and one measurement is a genuinely powerful thing. Take a breath before moving on.</p>
 <div class="card">
-<p><b>Notice one thing:</b> when you read the graph, did you find one direction easier than the other — up-and-across, or across-and-down? There is no right answer — just what your own attention noticed.</p>
+<p><b>Notice one thing:</b> you did not follow a rule — you wrote an equation and solved it. Did understanding the algebra feel steadier than trying to remember what to do? There is no right answer — just what your own attention noticed.</p>
 <p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
 </div>
 </details>
 
 <!-- ================= NUTRITION ================= -->
 <details class="nt">
-<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
-<p><b>Mode: contextual.</b> Conversion graphs turn a rate into an instant look-up you can read both ways.</p>
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> The tree and the cliff are honest problem settings, not the nourishment itself — so we name honestly what the <em>learning</em> feeds.</p>
 <div class="card">
-<p><b>Why it matters:</b> changing money on holiday (pounds to euros and back), reading a recipe from another country (cups to grams, °F to °C for the oven), planning a drive abroad (miles to kilometres, and speed limits in km/h), or checking a weather forecast in the "wrong" units — all of these are a single straight line you can read in either direction. The <b>gradient is the conversion rate</b>: a steeper line means more of one unit per unit of the other. Some conversions pass through the origin (0 miles is 0 km) and some do <b>not</b> — 0°C is 32°F, not 0 — which is exactly why you read <b>to the line</b> rather than just multiplying. Once the graph is drawn, every conversion is a quick up-and-across or across-and-down.</p>
-<p class="small">Next time you need the "other units", picture the conversion line — one look-up, both directions.</p>
+<p><b>What it feeds:</b> today feeds the power of <b>indirect measurement</b> — reaching something you cannot touch by reasoning from something you can. This is one of the oldest and most useful moves in all of science: the height of a mountain, the distance to a star, the depth of the sea have all been found this way, without ever going there. Learning that careful reasoning can measure the unreachable builds a quiet confidence that problems which look impossible often have a clever, measurable way in. It also feeds <b>method discipline</b>: a reliable three-step routine you can trust turns a daunting task into a calm one.</p>
+<p class="small">Carry one idea forward: when something cannot be measured directly, ask what you <em>can</em> measure — and what links it to what you want.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> build and use a conversion graph.</p>
+<p><b>Your task:</b> show that you can find an unknown side from one side and one angle.</p>
 <ul>
-<li>Draw a <b>conversion graph</b> from a rate you know (for example 1 mile ≈ 1.6 km, or £1 = €1.20). Plot a couple of points and join them with a straight line.</li>
-<li>Use your graph to convert <b>both ways</b>: pick a value on each axis and read across to the other. Show the up-and-across (and across-and-down) on the graph.</li>
-<li>Explain what the <b>gradient</b> of your line means as a conversion rate, and — if you use °C to °F — explain why you must read <b>to the line</b> and cannot simply multiply.</li>
+<li>Take a right-angled triangle with a marked angle and one known side. Write the ratio as an equation, substitute the numbers (unknown = x), <b>rearrange</b> to make x the subject, and evaluate with a calculator. Show all four lines.</li>
+<li>Do this for all three cases: finding the <b>opposite</b> from the hypotenuse (sine), the <b>adjacent</b> from the hypotenuse (cosine), and the <b>opposite</b> from the adjacent (tangent), explaining the algebra step each time.</li>
+<li>Solve one <b>reach the unmeasurable</b> problem — a height you could not measure directly, from a distance and an angle of elevation — and explain your method.</li>
 </ul>
 <p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_SL_CONVERSION_GRAPHS_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_FINDING_A_SIDE_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows a line can convert between two quantities.</td><td>Reads one value off a conversion graph.</td><td>Reads a conversion both ways off the line.</td><td>Explains the gradient as a conversion rate, and why some lines do not start at zero.</td></tr>
-<tr><td><b>Application</b></td><td>Plots a point on the graph.</td><td>Draws a conversion line from a rate.</td><td>Uses the graph to convert in both directions.</td><td>Builds and uses a conversion graph to answer a real question.</td></tr>
-<tr><td><b>Communication</b></td><td>Records a reading with limited labelling.</td><td>Labels both axes with their quantities.</td><td>Shows the up-and-across reading on the graph.</td><td>Explains a method another learner could follow.</td></tr>
-<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the line reads both ways.</td><td>Explains why reading to the line matters.</td><td>Connects a conversion graph to a real everyday use.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows a ratio links the angle to the sides.</td><td>Knows the unknown-on-top rule unknown = known × ratio.</td><td>Chooses the correct ratio for the known and unknown sides.</td><td>Explains why the unknown on top means multiply, not divide.</td></tr>
+<tr><td><b>Application</b></td><td>Reads a ratio value from a calculator.</td><td>Finds a side in one case.</td><td>Finds a side in all three cases.</td><td>Solves a real reach-the-unmeasurable problem.</td></tr>
+<tr><td><b>Communication</b></td><td>Records an answer with limited working.</td><td>Writes the equation used.</td><td>Shows the ratio, the equation and the multiplication.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the method repeats.</td><td>Explains the three-step routine.</td><td>Connects the method to measuring the unreachable.</td></tr>
 </table>
 </details>
 
@@ -243,7 +252,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= PRACTICE COMPANION ================= -->
 <div id="practiceView" hidden><div class="practice">
-<h1>Conversion graphs as models — Practice Companion</h1>
+<h1>Finding a side — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -256,7 +265,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Draw the conversion line, then read up to the line and across to the other axis.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the triangle, mark the angle and known side, choose the ratio, then work out unknown = known × ratio before you check.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -338,7 +347,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   }
   function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
   function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
-  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointervertical = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
   function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
   function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
   function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
@@ -366,7 +375,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <script>
 /* Focused symbol palette for this lesson. */
-window.NEO_PALETTE_SYMBOLS=["x","y","=","+","−"];
+window.NEO_PALETTE_SYMBOLS=["x","=","×","÷","sin","cos","tan","°","(",")","."];
 /* ---------------- View switching + helpers ---------------- */
 function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
 function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
@@ -375,7 +384,7 @@ function num(v){
   s=s.replace(/÷/g,'/');                       // palette ÷ counts as a fraction bar
   s=s.replace(/(tan|sin|cos)\s*θ?/g,'');          // drop a leading trig label e.g. "tan θ"
   s=s.replace(/=/g,'');
-  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');       // strip a unit written after a number
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');   // strip a unit written after a number
   s=s.replace(/[, ]+/g,'');
   var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);  // a fraction anywhere in the answer
   if(fm) return parseFloat(fm[1])/parseFloat(fm[2]);
@@ -385,235 +394,288 @@ function num(v){
 function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
 var PI=3.14;
 
-/* ============ Shared straight-line engine (reused across the unit) ============ */
-function eqStr(m,c){
-  if(m===0) return "y = "+c;
-  var mt = m===1?"x" : m===-1?"−x" : m+"x";
-  var ct = c===0?"" : c>0?(" + "+c) : (" − "+(-c));
-  return "y = "+mt+ct;
+/* ============ Right-triangle engine (reused across the Trigonometry unit) ============ */
+function triHyp(a,u){ return Math.round(Math.sqrt(a*a+u*u)*100)/100; }
+function drawTri(svgId, along, up, opts){
+  opts=opts||{};
+  var svg=document.getElementById(svgId); if(!svg)return;
+  var vb=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);
+  var VW=vb[2], VH=vb[3], pad=(opts.pad!=null?opts.pad:34);
+  var rightReserve=(opts.rightReserve!=null?opts.rightReserve:82);
+  var ppu = opts.ppu || Math.min((VW-pad-rightReserve)/(opts.maxAlong||along), (VH-2*pad)/(opts.maxUp||up));
+  var Ax=pad, Ay=VH-pad, Bx=pad+along*ppu, By=VH-pad, Cx=Bx, Cy=VH-pad-up*ppu;
+  var s="", fill=opts.fill||"#efe3c4", stroke=opts.stroke||"#365a68";
+  s+='<polygon points="'+Ax+','+Ay+' '+Bx.toFixed(1)+','+By+' '+Cx.toFixed(1)+','+Cy.toFixed(1)+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2.4" stroke-linejoin="round"/>';
+  (opts.ghosts||[]).forEach(function(g){ var gx=pad+g.along*ppu, gy=VH-pad-g.up*ppu;
+    s+='<line x1="'+gx.toFixed(1)+'" y1="'+Ay+'" x2="'+gx.toFixed(1)+'" y2="'+gy.toFixed(1)+'" stroke="#4a5f6e" stroke-width="1.3" stroke-dasharray="4 3"/><circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="2.6" fill="#4a5f6e"/>'; });
+  var sq=Math.min(12, along*ppu*0.35, up*ppu*0.35);
+  s+='<path d="M'+(Bx-sq).toFixed(1)+','+By+' L'+(Bx-sq).toFixed(1)+','+(By-sq).toFixed(1)+' L'+Bx.toFixed(1)+','+(By-sq).toFixed(1)+'" fill="none" stroke="'+stroke+'" stroke-width="1.4"/>';
+  var r=Math.min(26, along*ppu*0.45), L=Math.hypot(along,up), hx=Ax+r*along/L, hy=Ay-r*up/L;
+  s+='<path d="M'+(Ax+r).toFixed(1)+','+Ay+' A'+r.toFixed(1)+','+r.toFixed(1)+' 0 0 0 '+hx.toFixed(1)+','+hy.toFixed(1)+'" fill="none" stroke="#b25f2e" stroke-width="1.8"/>';
+  if(opts.showTheta!==false) s+='<text x="'+(Ax+r+6).toFixed(1)+'" y="'+(Ay-6).toFixed(1)+'" font-size="13" fill="#b25f2e" font-style="italic">θ</text>';
+  var aL=(opts.alongLabel!=null?opts.alongLabel:("horizontal = "+along)), uL=(opts.upLabel!=null?opts.upLabel:("vertical = "+up));
+  s+='<text x="'+((Ax+Bx)/2).toFixed(1)+'" y="'+(Ay+16).toFixed(1)+'" font-size="11" fill="'+stroke+'" text-anchor="middle">'+aL+'</text>';
+  s+='<text x="'+(Bx+6).toFixed(1)+'" y="'+((By+Cy)/2+3).toFixed(1)+'" font-size="11" fill="'+stroke+'">'+uL+'</text>';
+  if(opts.hypLabel) s+='<text x="'+((Ax+Cx)/2-6).toFixed(1)+'" y="'+((Ay+Cy)/2-5).toFixed(1)+'" font-size="11" fill="#8a5a2b" text-anchor="end">'+opts.hypLabel+'</text>';
+  svg.innerHTML=s;
 }
-function storyStr(m,c){
-  var step = m===0 ? "and <b>stays the same</b> each step" : m>0 ? ("and goes <b>up by "+m+"</b> each step") : ("and goes <b>down by "+(-m)+"</b> each step");
-  return "A value <b>starts at "+c+"</b> "+step+". After <em>x</em> steps it is <em>y</em>.";
-}
-function tableHTML(m,c){
-  var th="",td="";
-  [0,1,2,3,4].forEach(function(x){ th+="<td>"+x+"</td>"; td+="<td>"+(m*x+c)+"</td>"; });
-  return '<table class="satab" style="font-size:.92em;margin:0"><tr><th style="text-align:left">x</th>'+th+'</tr><tr><th style="text-align:left">y</th>'+td+'</tr></table>';
-}
-function drawGraph(svgId,m,c,opts){
-  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg)return;
-  var VW=360,VH=360,pad=34, xmin=(opts.xRange?opts.xRange[0]:-1), xmax=(opts.xRange?opts.xRange[1]:6);
-  var fam=opts.family||[{m:m,c:c}];
-  var exts=[0]; fam.forEach(function(f){ exts.push(f.m*xmin+f.c); exts.push(f.m*xmax+f.c); });
-  if(opts.targetY!=null) exts.push(opts.targetY);
-  var yA=m*xmin+c, yB=m*xmax+c;
-  var ylo=Math.floor(Math.min.apply(0,exts)-1), yhi=Math.ceil(Math.max.apply(0,exts)+1);
-  if(yhi-ylo<8){ var mid=(yhi+ylo)/2; ylo=Math.floor(mid-4); yhi=ylo+8; }
-  if(opts.fixedY){ ylo=opts.fixedY[0]; yhi=opts.fixedY[1]; }   /* fixed window: scale never changes as c/m change */
-  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(yhi-ylo);
-  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ylo)*uy;}
-  var s="", y0=SY(0), x0=SX(0);
-  var xr9=xmax-xmin, yr9=yhi-ylo;
-  var gsx=xr9>25?5:xr9>12?2:1, gsy=yr9>60?20:yr9>25?10:yr9>12?5:yr9>8?2:1;
-  for(var gx=Math.ceil(xmin/gsx)*gsx;gx<=xmax;gx+=gsx) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
-  for(var gy=Math.ceil(ylo/gsy)*gsy;gy<=yhi;gy+=gsy) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
-  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
-  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ylo).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(yhi).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
-  for(var lx=Math.ceil(xmin/gsx)*gsx;lx<=xmax;lx+=gsx){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
-  for(var ly=Math.ceil(ylo/gsy)*gsy;ly<=yhi;ly+=gsy){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
-  var xl9=(opts.axisLabels&&opts.axisLabels.x)||"x", yl9=(opts.axisLabels&&opts.axisLabels.y)||"y";
-  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="11" fill="#4a5566" text-anchor="end" font-style="italic">'+xl9+'</text>';
-  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(yhi)+10).toFixed(1)+'" font-size="11" fill="#4a5566" font-style="italic">'+yl9+'</text>';
-  if(opts.ghost){ var g=opts.ghost; s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(g.m*xmin+g.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(g.m*xmax+g.c).toFixed(1)+'" stroke="#b9a05f" stroke-width="2" stroke-dasharray="5 4"/>'; }
-  if(opts.targetY!=null){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(opts.targetY).toFixed(1)+'" r="8" fill="none" stroke="#b24c4c" stroke-width="2.4"/><text x="'+(SX(0)-9).toFixed(1)+'" y="'+(SY(opts.targetY)+3).toFixed(1)+'" font-size="10" fill="#b24c4c" text-anchor="end">target</text>'; }
-  if(opts.family){
-    opts.family.forEach(function(f){ var col=f.col||"#3f7a45";
-      s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(f.m*xmin+f.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(f.m*xmax+f.c).toFixed(1)+'" stroke="'+col+'" stroke-width="2.4"/>';
-      if(!opts.hideFamilyDots && f.c>=ylo&&f.c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(f.c).toFixed(1)+'" r="4.5" fill="'+col+'"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(f.c)-6).toFixed(1)+'" font-size="10" fill="'+col+'">(0, '+f.c+')</text>'; }
+function r2(x){ return Math.round(x*100)/100; }
+/* a stacked fraction: numerator over denominator (inherits the surrounding text colour) */
+function frac(n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }
+
+/* ============ Naming engine: a right triangle at any orientation, sides named from θ ============ */
+var SIDE_COL={hyp:"#8a5a2b", opp:"#b24c4c", adj:"#2b6cb0"};
+var SIDE_NAME={hyp:"Hypotenuse", opp:"Opposite", adj:"Adjacent"};
+var SIDE_WHY={hyp:"opposite the right angle", opp:"across from θ", adj:"next to θ"};
+function drawLabelTri(svgId, opts){
+  opts=opts||{};
+  var svg=document.getElementById(svgId); if(!svg) return;
+  var vb=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);
+  var VW=vb[2], VH=vb[3], pad=(opts.pad!=null?opts.pad:58);
+  var a=opts.a||3, b=opts.b||4;                 /* a = vertical leg, b = horizontal leg (logical) */
+  var R={x:0,y:0}, P={x:b,y:0}, Q={x:0,y:a};    /* R = right-angle corner */
+  var orient=(opts.orient||0)%4, flip=!!opts.flip, ang=orient*Math.PI/2, ca=Math.cos(ang), sa=Math.sin(ang);
+  function tr(p){ var x=flip?-p.x:p.x, y=p.y; return {x:x*ca-y*sa, y:x*sa+y*ca}; }
+  var TR=tr(R), TP=tr(P), TQ=tr(Q);
+  var xs=[TR.x,TP.x,TQ.x], ys=[TR.y,TP.y,TQ.y];
+  var minx=Math.min.apply(0,xs), maxx=Math.max.apply(0,xs), miny=Math.min.apply(0,ys), maxy=Math.max.apply(0,ys);
+  var w=(maxx-minx)||1, h=(maxy-miny)||1, sc, offx, offy;
+  if(opts.ppu){ sc=opts.ppu; offx=pad-minx*sc; offy=pad; }   /* fixed scale, anchored bottom-left */
+  else { sc=Math.min((VW-2*pad)/w,(VH-2*pad)/h); offx=(VW-w*sc)/2-minx*sc; offy=(VH-h*sc)/2-miny*sc; }
+  function S(p){ return {x:p.x*sc+offx, y:VH-(p.y*sc+offy)}; }
+  var sR=S(TR), sP=S(TP), sQ=S(TQ), cx=(sR.x+sP.x+sQ.x)/3, cy=(sR.y+sP.y+sQ.y)/3;
+  var stroke="#365a68", s="";
+  s+='<polygon points="'+sR.x.toFixed(1)+','+sR.y.toFixed(1)+' '+sP.x.toFixed(1)+','+sP.y.toFixed(1)+' '+sQ.x.toFixed(1)+','+sQ.y.toFixed(1)+'" fill="'+(opts.fill||"#efe3c4")+'" stroke="'+stroke+'" stroke-width="2.2" stroke-linejoin="round"/>';
+  function sub(A,B){return {x:A.x-B.x,y:A.y-B.y};}
+  function nrm(v){var L=Math.hypot(v.x,v.y)||1;return {x:v.x/L,y:v.y/L};}
+  /* right-angle marker at R */
+  var u1=nrm(sub(sP,sR)), u2=nrm(sub(sQ,sR)), m=13;
+  s+='<path d="M'+(sR.x+u1.x*m).toFixed(1)+','+(sR.y+u1.y*m).toFixed(1)+' L'+(sR.x+u1.x*m+u2.x*m).toFixed(1)+','+(sR.y+u1.y*m+u2.y*m).toFixed(1)+' L'+(sR.x+u2.x*m).toFixed(1)+','+(sR.y+u2.y*m).toFixed(1)+'" fill="none" stroke="'+stroke+'" stroke-width="1.4"/>';
+  /* the three sides, keyed to the marked angle */
+  var mark=opts.mark||"P";
+  var sides=[
+    {key:"hyp", A:sP, B:sQ},
+    (mark==="P"? {key:"adj", A:sR, B:sP} : {key:"opp", A:sR, B:sP}),
+    (mark==="P"? {key:"opp", A:sR, B:sQ} : {key:"adj", A:sR, B:sQ})
+  ];
+  var customLabels=opts.labels||null, hlActive=(opts.highlight!=null);
+  sides.forEach(function(sd){
+    var hl=opts.highlight, hi=(Array.isArray(hl)?hl.indexOf(sd.key)>=0:hl===sd.key), showAll=(opts.show==="all"), lab=(customLabels&&customLabels[sd.key]);
+    var A=sd.A, B=sd.B, col=SIDE_COL[sd.key];
+    /* ---- stroke: highlighted sides get a soft halo + a bold line so they clearly "light up" ---- */
+    if(hi){
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="11" stroke-linecap="round" opacity="0.28"/>';
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="6" stroke-linecap="round"/>';
+    } else if(showAll || (lab && !hlActive)){
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="3.4" stroke-linecap="round"/>';
+    }
+    /* ---- label: offset PERPENDICULAR to the edge (outward) so it never sits on the line ---- */
+    var text=showAll?SIDE_NAME[sd.key]:(lab||null);
+    if(text){
+      var mid={x:(A.x+B.x)/2,y:(A.y+B.y)/2}, dir=nrm(sub(B,A)), nl={x:-dir.y,y:dir.x};
+      if(nl.x*(mid.x-cx)+nl.y*(mid.y-cy)<0){ nl={x:-nl.x,y:-nl.y}; }   /* point away from the centre */
+      var off=15, anchor=(nl.x>0.35?"start":(nl.x<-0.35?"end":"middle"));
+      var lx=mid.x+nl.x*off, ly=mid.y+nl.y*off;
+      if(anchor==="middle"){ ly += (nl.y>0? 12 : -4); } else { lx += (nl.x>0? 3 : -3); ly += 4; }
+      /* keep the whole label inside the canvas (never clip at an edge) */
+      var estW=String(text).replace(/<[^>]*>/g,"").length*6.6;
+      if(anchor==="end"){ lx=Math.min(Math.max(lx,estW+4),VW-4); }
+      else if(anchor==="start"){ lx=Math.max(Math.min(lx,VW-4-estW),4); }
+      else { lx=Math.min(Math.max(lx,estW/2+4),VW-4-estW/2); }
+      var faded=(hlActive && !hi);
+      s+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="'+(hi?13:12)+'" font-weight="'+(hi?"bold":"600")+'" fill="'+(faded?"#8f958a":col)+'" text-anchor="'+anchor+'">'+text+'</text>';
+    }
+  });
+  /* marked-angle arc + label (θ by default, or a specific value like "40°" via opts.angleLabel) */
+  if(opts.theta!==false){
+    var V=(mark==="P"?sP:sQ), e1=nrm(sub(sR,V)), e2=nrm(sub((mark==="P"?sQ:sP),V)), r=20;
+    var p1={x:V.x+e1.x*r,y:V.y+e1.y*r}, p2={x:V.x+e2.x*r,y:V.y+e2.y*r};
+    var cross=e1.x*e2.y-e1.y*e2.x, sweep=cross>0?1:0;
+    s+='<path d="M'+p1.x.toFixed(1)+','+p1.y.toFixed(1)+' A'+r+','+r+' 0 0 '+sweep+' '+p2.x.toFixed(1)+','+p2.y.toFixed(1)+'" fill="none" stroke="#b25f2e" stroke-width="1.8"/>';
+    var bx=e1.x+e2.x, by=e1.y+e2.y, bl=Math.hypot(bx,by)||1;
+    var aLab=(opts.angleLabel!=null?opts.angleLabel:"θ"), aStyle=(opts.angleLabel!=null?"":' font-style="italic"'), aOff=(opts.angleLabel!=null?r+16:r+11);
+    var alx=Math.min(Math.max(V.x+bx/bl*aOff,14),VW-14);
+    s+='<text x="'+alx.toFixed(1)+'" y="'+(V.y+by/bl*aOff+4).toFixed(1)+'" font-size="'+(opts.angleLabel!=null?"12.5":"14")+'" font-weight="'+(opts.angleLabel!=null?"bold":"normal")+'" fill="#b25f2e"'+aStyle+' text-anchor="middle">'+aLab+'</text>';
+  }
+  /* optional labels on the two acute vertices (used to name angle A / angle B) */
+  if(opts.vertexLabels){
+    [["P",sP],["Q",sQ]].forEach(function(pr){
+      var lab=opts.vertexLabels[pr[0]]; if(!lab) return;
+      var vv=pr[1], o=nrm(sub(vv,{x:cx,y:cy})), col=(mark===pr[0]?"#b25f2e":"#2f3429");
+      s+='<text x="'+(vv.x+o.x*17).toFixed(1)+'" y="'+(vv.y+o.y*17+5).toFixed(1)+'" font-size="14" font-weight="bold" fill="'+col+'" text-anchor="middle">'+lab+'</text>';
     });
-    if(opts.vmark!=null){ var mvx=SX(opts.vmark);
-      s+='<line x1="'+mvx.toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+mvx.toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#365a68" stroke-width="1.6" stroke-dasharray="4 3"/>';
-      opts.family.forEach(function(f){ var yv=f.m*opts.vmark+f.c; if(yv>=ylo&&yv<=yhi){ s+='<circle cx="'+mvx.toFixed(1)+'" cy="'+SY(yv).toFixed(1)+'" r="4.5" fill="'+(f.col||"#3f7a45")+'"/>'; } });
-      s+='<text x="'+mvx.toFixed(1)+'" y="'+(SY(yhi)+11).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">x = '+opts.vmark+'</text>';
-    }
-    if(opts.markPoint){ var pX=SX(opts.markPoint.x), pY=SY(opts.markPoint.y);
-      s+='<circle cx="'+pX.toFixed(1)+'" cy="'+pY.toFixed(1)+'" r="7" fill="none" stroke="#b24c4c" stroke-width="2.6"/>';
-      if(opts.markPoint.label){ s+='<text x="'+(pX+10).toFixed(1)+'" y="'+(pY-8).toFixed(1)+'" font-size="10" fill="#b24c4c" font-weight="bold">'+opts.markPoint.label+'</text>'; }
-    }
-    svg.innerHTML=s; return;
   }
-  if(opts.segTo!=null){ s+='<line x1="'+SX(0).toFixed(1)+'" y1="'+SY(c).toFixed(1)+'" x2="'+SX(opts.segTo).toFixed(1)+'" y2="'+SY(m*opts.segTo+c).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  else if(!opts.hideLine){ s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(yA).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(yB).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  if(opts.showPoints){ var maxp=(opts.showPoints===true)?4:opts.showPoints; for(var px=0;px<=maxp;px++){ var py=m*px+c; if(py<ylo||py>yhi)continue; s+='<circle cx="'+SX(px).toFixed(1)+'" cy="'+SY(py).toFixed(1)+'" r="3.2" fill="#2f6a35"/>'; } }
-  if(!opts.hideIntercept && c>=ylo&&c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(c).toFixed(1)+'" r="4.5" fill="#b25f2e"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(c)-6).toFixed(1)+'" font-size="10" fill="#b25f2e">(0, '+c+')</text>'; }
-  if(opts.lineThrough){ var LA=opts.lineThrough.A, LB=opts.lineThrough.B, lm=(LB.y-LA.y)/(LB.x-LA.x), lc=LA.y-lm*LA.x;
-    s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(lm*xmin+lc).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(lm*xmax+lc).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  if(opts.tris){ opts.tris.forEach(function(t){ var col=t.col||"#365a68", ax=SX(t.A.x),ay=SY(t.A.y),bx=SX(t.B.x),by=SY(t.B.y),cornerX=bx,cornerY=ay;
-    var run=t.B.x-t.A.x, rise=t.B.y-t.A.y;
-    s+='<line x1="'+ax.toFixed(1)+'" y1="'+ay.toFixed(1)+'" x2="'+cornerX.toFixed(1)+'" y2="'+cornerY.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
-    s+='<line x1="'+cornerX.toFixed(1)+'" y1="'+cornerY.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
-    s+='<text x="'+((ax+cornerX)/2).toFixed(1)+'" y="'+(cornerY+(rise>=0?15:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="middle">run '+run+'</text>';
-    var riseLeft = cornerX>295;   /* near right edge: put the rise label on the inside to avoid clipping */
-    s+='<text x="'+(cornerX+(riseLeft?-6:6)).toFixed(1)+'" y="'+((cornerY+by)/2+3).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="'+(riseLeft?'end':'start')+'">rise '+(rise>=0?"+"+rise:rise)+'</text>';
-    s+='<circle cx="'+ax.toFixed(1)+'" cy="'+ay.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(ax-8).toFixed(1)+'" y="'+(ay+(rise>=0?14:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="end">'+(t.aLabel||"A")+'</text>';
-    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(bx+7).toFixed(1)+'" y="'+(by-7).toFixed(1)+'" font-size="10" fill="'+col+'">'+(t.bLabel||"B")+'</text>';
-  }); }
-  if(opts.stepTri && m!==0){ var rx0=SX(0),ry0=SY(c),rx1=SX(1),ry1c=SY(c),ry1=SY(m+c);
-    s+='<line x1="'+rx0.toFixed(1)+'" y1="'+ry0.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1c.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
-    s+='<line x1="'+rx1.toFixed(1)+'" y1="'+ry1c.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
-    s+='<text x="'+(rx0+3).toFixed(1)+'" y="'+(ry1c+16).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="start">1 across</text>';
-    s+='<text x="'+(rx1+5).toFixed(1)+'" y="'+((ry1c+ry1)/2+3).toFixed(1)+'" font-size="10" fill="#365a68">'+(m>0?"+"+m:m)+" up</text>";
-  }
-  if(opts.stepTri && m===0){ s+='<text x="'+SX(3).toFixed(1)+'" y="'+(SY(c)-8).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">flat: no change</text>'; }
-  if(opts.highlightX!=null){ var hx=opts.highlightX, hy=m*hx+c; if(hy>=ylo&&hy<=yhi){
-    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
-    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
-    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+(Math.round(hx*10)/10)+', '+(Math.round(hy*10)/10)+')</text>';
-  }}
   svg.innerHTML=s;
 }
 
-/* fraction/decimal display for a gradient rise/run */
-function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
-function gradStr(rise,run){
-  var g=gcd(rise,run), sr=rise/g, sn=run/g;
-  if(sn<0){ sr=-sr; sn=-sn; }
-  var val=rise/run;
-  var frac = (sn===1)? String(sr) : (sr+"/"+sn);
-  var dec = Number.isInteger(val)? String(val) : (Math.round(val*100)/100);
-  return {frac:frac, dec:dec, val:val};
+/* ---- shared helpers for finding a side ---- */
+function sideShort(k){return {opp:"opp",adj:"adj",hyp:"hyp"}[k];}
+function sideFull(k){return {opp:"opposite",adj:"adjacent",hyp:"hypotenuse"}[k];}
+var RATIO_SIDES={sin:["opp","hyp"], cos:["adj","hyp"], tan:["opp","adj"]};
+function triFor(ang){ var t=Math.tan(ang*Math.PI/180); return t>=1? {a:3.4, b:3.4/t} : {a:3.4*t, b:3.4}; }  /* schematic triangle whose marked angle ≈ ang */
+function trigFactor(ratio,ang){ var r=ang*Math.PI/180; return ratio==="sin"?Math.sin(r):ratio==="cos"?Math.cos(r):Math.tan(r); }
+function ratioFracHTML(ratio){ return {sin:frac("opposite","hypotenuse"), cos:frac("adjacent","hypotenuse"), tan:frac("opposite","adjacent")}[ratio]; }
+/* render a list of working lines, stacked with a left rule so each follows below the last */
+function workLines(arr){ return arr.map(function(l){ return "<div style='border-left:3px solid #cdbfa9;margin:5px 0;padding:3px 0 3px 10px;font-size:1.06em'>"+l+"</div>"; }).join(""); }
+/* evaluate the right-hand side a learner types for line 3, e.g. "x = 8 × sin 40" */
+function evalRHS(s){
+  var t=String(s).toLowerCase();
+  if(t.indexOf("=")>=0) t=t.slice(t.indexOf("=")+1);      /* keep only the right of "=" */
+  t=t.replace(/×/g,"*").replace(/÷/g,"/").replace(/°/g," ").replace(/x/g,"*");
+  t=t.replace(/(\d)\s*(sin|cos|tan)/g,"$1*$2");            /* implicit multiply: 8 sin -> 8*sin */
+  var hasTrig=/(sin|cos|tan)/.test(t);
+  t=t.replace(/(sin|cos|tan)\s*([0-9.]+)/g,function(m,fn,a){ return trigFactor(fn,+a).toFixed(6); });
+  var toks=t.replace(/[^0-9.*/+\-]/g,"").match(/(\d+\.?\d*|[*/+\-])/g), val=NaN;
+  if(toks&&toks.length){ var terms=[parseFloat(toks[0])];
+    for(var i=1;i+1<toks.length;i+=2){ var op=toks[i], n=parseFloat(toks[i+1]);
+      if(op==="*")terms[terms.length-1]*=n; else if(op==="/")terms[terms.length-1]/=n; else if(op==="+")terms.push(n); else if(op==="-")terms.push(-n); }
+    val=terms.reduce(function(a,b){return a+b;},0); }
+  return {val:val, hasTrig:hasTrig};
 }
 
-/* parse a learner-typed linear equation into {m,c}, or null */
-function parseLine(str){
-  var s=String(str).toLowerCase().replace(/\s+/g,'').replace(/−/g,'-').replace(/\*/g,'');
-  var i=s.indexOf('='); if(i>=0) s=s.slice(i+1);
-  if(!s) return null;
-  s=s.replace(/-/g,'+-');
-  var parts=s.split('+').filter(function(t){return t!=='';});
-  var m=0,c=0,hasX=false;
-  for(var k=0;k<parts.length;k++){ var t=parts[k];
-    if(t.indexOf('x')>=0){ var coef=t.replace('x',''); if(coef===''||coef==='+') coef='1'; if(coef==='-') coef='-1'; var cv=parseFloat(coef); if(isNaN(cv))return null; m+=cv; hasX=true; }
-    else { var nv=parseFloat(t); if(isNaN(nv))return null; c+=nv; }
-  }
-  if(!hasX) return null;
-  return {m:m,c:c};
-}
-
-/* ============ Conversion definitions (shared by the activities) ============ */
-function round1(v){ return Math.round(v*10)/10; }
-var CONV={
- milesKm:{m:1.6,c:0, xlab:"miles", ylab:"km", xR:[0,10], yhi:16, xu:"miles", yu:"km", name:"Miles ↔ kilometres (1 mile = 1.6 km)"},
- poundsEuro:{m:1.2,c:0, xlab:"£", ylab:"€", xR:[0,20], yhi:24, xu:"£", yu:"€", name:"Pounds ↔ euros (£1 = €1.20)"},
- cToF:{m:1.8,c:32, xlab:"°C", ylab:"°F", xR:[0,40], yhi:110, xu:"°C", yu:"°F", name:"Celsius ↔ Fahrenheit (F = 1.8C + 32)"}
-};
-
-/* ============ CONNECTION: Conversion Graph Translator ============ */
-var ctCases=[
- {conv:"milesKm", given:5, dir:"toY"},
- {conv:"milesKm", given:8, dir:"toX"},
- {conv:"poundsEuro", given:10, dir:"toY"},
- {conv:"poundsEuro", given:18, dir:"toX"},
- {conv:"cToF", given:20, dir:"toY"},
- {conv:"cToF", given:0, dir:"toY"}
+/* ============ CONNECTION: Set it up (reveal the algebra one line at a time) ============ */
+var SU=[
+ {ang:40, known:"hyp", knownVal:8,  unknown:"opp", ratio:"sin"},
+ {ang:35, known:"hyp", knownVal:10, unknown:"adj", ratio:"cos"},
+ {ang:50, known:"adj", knownVal:6,  unknown:"opp", ratio:"tan"}
 ];
-var ctIndex=0;
-function ctAnswer(q){ var v=CONV[q.conv]; return q.dir==="toY" ? (v.m*q.given+v.c) : ((q.given-v.c)/v.m); }
-function ctMarkX(q){ var v=CONV[q.conv]; return q.dir==="toY" ? q.given : (q.given-v.c)/v.m; }
-function ctDraw(reveal){
-  var q=ctCases[ctIndex], v=CONV[q.conv];
-  drawGraph("ctGraph",v.m,v.c,{xRange:v.xR, fixedY:[0,v.yhi], axisLabels:{x:v.xlab,y:v.ylab}, highlightX: reveal?ctMarkX(q):null});
-  var fromU=q.dir==="toY"?v.xu:v.yu, toU=q.dir==="toY"?v.yu:v.xu;
-  document.getElementById("ctDesc").innerHTML="<b>"+v.name+"</b><br>Use the graph: convert <b>"+q.given+" "+fromU+"</b> to "+toU+".";
-  document.getElementById("ctLabel").innerHTML="<b>"+q.given+" "+fromU+" = </b>";
-  document.getElementById("ctAns").value="";
-  document.getElementById("ctFeedback").style.display="none";
+var suIdx=0, suShown=0, suLines=[];
+function suBuild(q){ var tf=trigFactor(q.ratio,q.ang); return [
+  "<b>1.</b> &nbsp;write the ratio: &nbsp;"+q.ratio+" "+q.ang+"° = "+ratioFracHTML(q.ratio),
+  "<b>2.</b> &nbsp;put in what you know: &nbsp;"+q.ratio+" "+q.ang+"° = "+frac("x", q.knownVal),
+  "<b>3.</b> &nbsp;rearrange &nbsp;<span class='small'>(x is ÷ "+q.knownVal+", so × "+q.knownVal+" on both sides)</span>: &nbsp;x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°",
+  "<b>4.</b> &nbsp;work it out: &nbsp;x = "+q.knownVal+" × "+r2(tf)+" = <b>"+(q.knownVal*tf).toFixed(1)+" cm</b>"
+]; }
+function suDraw(){
+  var q=SU[suIdx], g=triFor(q.ang), labs={};
+  labs[q.known]=sideShort(q.known)+" = "+q.knownVal+" cm"; labs[q.unknown]=sideShort(q.unknown)+" = x";
+  drawLabelTri("suTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78, labels:labs, highlight:[q.known,q.unknown]});
+  suShown=0; suLines=suBuild(q);
+  document.getElementById("suStep").innerHTML="<b>Known:</b> "+sideFull(q.known)+" = "+q.knownVal+" cm, angle "+q.ang+"°. &nbsp;<b>Want:</b> "+sideFull(q.unknown)+" = x. &nbsp;Which ratio uses the <b>"+sideFull(q.known)+"</b> and the <b>"+sideFull(q.unknown)+"</b>?";
+  document.getElementById("suOpts").innerHTML=["sin","cos","tan"].map(function(k){return '<button onclick="suPick(\''+k+'\')">'+k+'</button>';}).join("");
+  document.getElementById("suOpts").style.display="flex";
+  var w=document.getElementById("suWork"); w.style.display="none"; w.innerHTML="";
+  document.getElementById("suNextBtn").style.display="none";
 }
-function ctReveal(){
-  var q=ctCases[ctIndex], v=CONV[q.conv], ans=ctAnswer(q), toU=q.dir==="toY"?v.yu:v.xu, val=num(document.getElementById("ctAns").value), fb=document.getElementById("ctFeedback");
-  fb.style.display="block"; ctDraw(true);
-  if(isNaN(val)){ fb.className="feedback warn"; fb.innerHTML="Read up from "+q.given+" to the line, then across. Type the value off the other axis."; return; }
-  if(Math.abs(val-ans)<=(v.m>=1.5?0.35:0.2)){ fb.className="feedback good"; fb.innerHTML="✓ "+q.given+" "+(q.dir==="toY"?v.xu:v.yu)+" = <b>"+round1(ans)+" "+toU+"</b>. The dashed guide shows the read-off."; }
-  else { fb.className="feedback warn"; fb.innerHTML="Not quite — follow the dashed guide to the line and across. It reads <b>"+round1(ans)+" "+toU+"</b>."; }
+function suPick(k){
+  var q=SU[suIdx], w=document.getElementById("suWork");
+  if(k!==q.ratio){ w.style.display="block"; w.innerHTML="<span style='color:#9a5f3f'>Not that one — <b>"+k+"</b> uses the "+sideFull(RATIO_SIDES[k][0])+" and the "+sideFull(RATIO_SIDES[k][1])+". You know the "+sideFull(q.known)+" and want the "+sideFull(q.unknown)+".</span>"; return; }
+  document.getElementById("suOpts").style.display="none";
+  suShown=2; w.style.display="block"; w.innerHTML=workLines(suLines.slice(0,suShown));
+  var btn=document.getElementById("suNextBtn"); btn.style.display="inline-block"; btn.textContent="▸ Next line (rearrange)";
 }
-function ctNext(){ ctIndex=(ctIndex+1)%ctCases.length; ctDraw(false); }
+function suNext(){
+  if(suShown<suLines.length){ suShown++; document.getElementById("suWork").innerHTML=workLines(suLines.slice(0,suShown)); }
+  var btn=document.getElementById("suNextBtn");
+  if(suShown>=suLines.length){ btn.style.display="none"; }
+  else if(suShown===3){ btn.textContent="▸ Next line (work it out)"; }
+}
+function suNew(){ suIdx=(suIdx+1)%SU.length; suDraw(); }
 
-/* ============ MOVEMENT: Two-way reader (draggable point) ============ */
-var trKeys=["milesKm","poundsEuro","cToF"], trKi=0, trX=null;
-function trChipsRender(){ document.getElementById("trChips").innerHTML=trKeys.map(function(k,i){return '<span class="chip'+(i===trKi?' active':'')+'" onclick="setTr('+i+')">'+CONV[k].xlab+'/'+CONV[k].ylab+'</span>';}).join(""); }
-function setTr(i){ trKi=i; var v=CONV[trKeys[i]]; trX=Math.round((v.xR[0]+v.xR[1])/2); trChipsRender(); trDraw(); }
-function trDraw(){
-  var v=CONV[trKeys[trKi]];
-  drawGraph("trGraph",v.m,v.c,{xRange:v.xR, fixedY:[0,v.yhi], axisLabels:{x:v.xlab,y:v.ylab}, highlightX:trX});
-  var y=v.m*trX+v.c;
-  document.getElementById("trRead").innerHTML="<b>"+CONV[trKeys[trKi]].name+"</b><br>The point reads: <b>"+trX+" "+v.xu+" = "+round1(y)+" "+v.yu+"</b>. Drag it to convert any value — the guides read both ways.";
-}
-function trPtX(e){ var svg=document.getElementById("trGraph"), r=svg.getBoundingClientRect(), v=CONV[trKeys[trKi]];
-  var vx=(e.clientX-r.left)*360/r.width, ux=(360-68)/(v.xR[1]-v.xR[0]);
-  return Math.max(v.xR[0], Math.min(v.xR[1], Math.round((vx-34)/ux + v.xR[0]))); }
-function trInit(){ var svg=document.getElementById("trGraph"); if(!svg||svg.dataset.wired)return; svg.dataset.wired="1"; var dragging=false;
-  function set(e){ trX=trPtX(e); trDraw(); }
-  svg.addEventListener("pointerdown",function(e){ dragging=true; if(svg.setPointerCapture&&e.pointerId!=null){try{svg.setPointerCapture(e.pointerId);}catch(err){}} set(e); e.preventDefault(); });
-  svg.addEventListener("pointermove",function(e){ if(dragging){ set(e); e.preventDefault(); } });
-  svg.addEventListener("pointerup",function(e){ dragging=false; e.preventDefault(); });
-  svg.addEventListener("pointercancel",function(){ dragging=false; });
-}
-
-/* ============ REFLECTION: Read it right? ============ */
-var RC=[
- {conv:"milesKm", markX:5, claim:"5 miles = 8 km", ok:true,  why:"Reading up from 5 miles to the line and across gives 8 km. Correct."},
- {conv:"milesKm", markX:5, claim:"5 miles = 3 km", ok:false, why:"Slip — that reads the wrong way. 5 on the miles axis goes UP to 8 km, not down. 3 km would be about 2 miles."},
- {conv:"cToF", markX:0, claim:"0°C = 0°F", ok:false, why:"Slip — this line does not start at the origin. Read to the line: 0°C = 32°F. You cannot just assume zero maps to zero."},
- {conv:"cToF", markX:10, claim:"10°C = 18°F", ok:false, why:"Slip — that is 10 × 1.8 without the + 32. Read to the line: 10°C = 50°F."},
- {conv:"poundsEuro", markX:10, claim:"£10 = €12", ok:true, why:"Up from £10 to the line and across gives €12. Correct."}
+/* ============ MOVEMENT: Side Finder (dominant) — build the solution line by line ============ */
+var SF=[
+ {ang:37, known:"hyp", knownVal:9,  unknown:"opp", ratio:"sin"},
+ {ang:52, known:"hyp", knownVal:14, unknown:"adj", ratio:"cos"},
+ {ang:41, known:"adj", knownVal:8,  unknown:"opp", ratio:"tan"},
+ {ang:28, known:"hyp", knownVal:20, unknown:"opp", ratio:"sin"},
+ {ang:63, known:"adj", knownVal:5,  unknown:"opp", ratio:"tan"},
+ {ang:45, known:"hyp", knownVal:12, unknown:"adj", ratio:"cos"}
 ];
-var rcIndex=0;
-function rcRender(){
-  var q=RC[rcIndex], v=CONV[q.conv];
-  drawGraph("rcMini",v.m,v.c,{xRange:v.xR, fixedY:[0,v.yhi], axisLabels:{x:v.xlab,y:v.ylab}, highlightX:q.markX});
-  document.getElementById("rcClue").innerHTML="<b>Card "+(rcIndex+1)+":</b> Someone reads this conversion graph and says <span style=\"background:#f3ecda;padding:2px 6px;border-radius:5px\">"+q.claim+"</span><br>Is that <b>right</b>, or a <b>slip</b>?";
-  document.getElementById("rcOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="rcPick('+i+')">'+o+'</button>';}).join("");
-  document.getElementById("rcFeedback").style.display="none";
-  document.getElementById("rcProgress").textContent="Card "+(rcIndex+1)+" of "+RC.length+".";
+var sfIdx=0, sfScore=0, sfLines=[];
+function sfDraw(){
+  var q=SF[sfIdx], g=triFor(q.ang), labs={};
+  labs[q.known]=sideShort(q.known)+" = "+q.knownVal+" cm"; labs[q.unknown]=sideShort(q.unknown)+" = x";
+  drawLabelTri("sfTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78, labels:labs, highlight:[q.known,q.unknown]});
+  document.getElementById("sfStep").innerHTML="<b>Problem "+(sfIdx+1)+".</b> Known "+sideFull(q.known)+" = "+q.knownVal+" cm, angle "+q.ang+"°. Find the "+sideFull(q.unknown)+" (= x). &nbsp;<b>Step 1 — set up the ratio:</b>";
+  document.getElementById("sfOpts").innerHTML=["sin","cos","tan"].map(function(k){return '<button onclick="sfRatio(\''+k+'\')">'+k+'</button>';}).join("");
+  document.getElementById("sfOpts").style.display="flex";
+  var w=document.getElementById("sfWork"); w.style.display="none"; w.innerHTML="";
+  document.getElementById("sfRearrRow").style.display="none";
+  document.getElementById("sfAnsRow").style.display="none";
+  document.getElementById("sfFeedback").style.display="none";
+  document.getElementById("sfRearr").value=""; document.getElementById("sfAns").value="";
+  sfLines=[];
+  document.getElementById("sfScore").textContent="Score: "+sfScore;
 }
-function rcPick(i){
-  var q=RC[rcIndex], ans=q.ok?0:1, fb=document.getElementById("rcFeedback"); fb.style.display="block";
+function sfRatio(k){
+  var q=SF[sfIdx], fb=document.getElementById("sfFeedback");
+  if(k!==q.ratio){ fb.style.display="block"; fb.className="feedback warn"; fb.innerHTML="Not that ratio — you know the "+sideFull(q.known)+" and want the "+sideFull(q.unknown)+". <b>"+k+"</b> uses the "+sideFull(RATIO_SIDES[k][0])+" and the "+sideFull(RATIO_SIDES[k][1])+"."; return; }
+  fb.style.display="none";
+  document.getElementById("sfOpts").style.display="none";
+  sfLines=[ "<b>1.</b> &nbsp;"+k+" "+q.ang+"° = "+ratioFracHTML(k), "<b>2.</b> &nbsp;"+k+" "+q.ang+"° = "+frac("x", q.knownVal) ];
+  var w=document.getElementById("sfWork"); w.style.display="block"; w.innerHTML=workLines(sfLines);
+  document.getElementById("sfRearrRow").style.display="block";
+  document.getElementById("sfRearr").focus();
+}
+function sfRearrCheck(){
+  var q=SF[sfIdx], fb=document.getElementById("sfFeedback"); fb.style.display="block";
+  var res=evalRHS(document.getElementById("sfRearr").value), target=q.knownVal*trigFactor(q.ratio,q.ang);
+  if(!res.hasTrig){ fb.className="feedback warn"; fb.innerHTML="Show the ratio in your line — e.g. <b>x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°</b>. (Multiply both sides of line 2 by "+q.knownVal+".)"; return; }
+  if(isNaN(res.val)||Math.abs(res.val-target)>0.3){ fb.className="feedback warn"; fb.innerHTML="Not quite. In line 2, x is <b>divided by "+q.knownVal+"</b>, so <b>multiply both sides by "+q.knownVal+"</b>: &nbsp;x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°. Try line 3 again."; return; }
+  fb.style.display="none";
+  sfLines.push("<b>3.</b> &nbsp;x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°");
+  document.getElementById("sfWork").innerHTML=workLines(sfLines);
+  document.getElementById("sfRearrRow").style.display="none";
+  document.getElementById("sfAnsRow").style.display="block";
+  document.getElementById("sfAns").focus();
+}
+function sfCheck(){
+  var q=SF[sfIdx], v=num(document.getElementById("sfAns").value), fb=document.getElementById("sfFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the length as a number."; return; }
+  var tf=trigFactor(q.ratio,q.ang), ans=q.knownVal*tf;
+  if(Math.abs(v-ans)<0.2){ sfScore++; sfLines.push("<b>4.</b> &nbsp;x = "+q.knownVal+" × "+r2(tf)+" = <b>"+ans.toFixed(1)+" cm</b>"); document.getElementById("sfWork").innerHTML=workLines(sfLines); document.getElementById("sfAnsRow").style.display="none"; fb.className="feedback good"; fb.innerHTML="✓ Solved — the "+sideFull(q.unknown)+" is <b>"+ans.toFixed(1)+" cm</b>. Press <b>New problem</b>."; document.getElementById("sfScore").textContent="Score: "+sfScore; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet — x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"° = "+q.knownVal+" × "+r2(tf)+". Work that out to 1 d.p."; }
+}
+function sfNew(){ sfIdx=(sfIdx+1)%SF.length; if(sfIdx===0) sfScore=0; sfDraw(); }
+
+/* ============ REFLECTION: Set up or slip? ============ */
+var SS=[
+ {ang:40, known:"hyp", knownVal:8,  unknown:"opp", givenRatio:"sin", line3:"x = 8 × sin 40°",  ok:true,  why:"Right — sin links the hypotenuse and the opposite, and from sin 40° = x/8 you multiply both sides by 8."},
+ {ang:40, known:"hyp", knownVal:8,  unknown:"opp", givenRatio:"sin", line3:"x = 8 ÷ sin 40°",  ok:false, why:"Slip — in line 2, x is divided by 8, so you multiply both sides by 8 (not divide by sin): x = 8 × sin 40°."},
+ {ang:35, known:"adj", knownVal:6,  unknown:"opp", givenRatio:"tan", line3:"x = 6 × tan 35°",  ok:true,  why:"Right — tan links the adjacent and the opposite; from tan 35° = x/6, multiply both sides by 6."},
+ {ang:35, known:"hyp", knownVal:10, unknown:"adj", givenRatio:"sin", line3:"x = 10 × sin 35°", ok:false, why:"Slip — you know the hypotenuse and want the adjacent, so the ratio should be cosine, not sine: cos 35° = x/10, giving x = 10 × cos 35°."},
+ {ang:50, known:"hyp", knownVal:9,  unknown:"adj", givenRatio:"cos", line3:"x = 9 × cos 50°",  ok:true,  why:"Right — cos links the hypotenuse and the adjacent; from cos 50° = x/9, multiply both sides by 9."}
+];
+var ssIdx=0;
+function ssRender(){
+  var q=SS[ssIdx], g=triFor(q.ang), labs={};
+  labs[q.known]=sideShort(q.known)+" = "+q.knownVal+" cm"; labs[q.unknown]=sideShort(q.unknown)+" = x";
+  drawLabelTri("ssTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78, labels:labs, highlight:[q.known,q.unknown]});
+  document.getElementById("ssClue").innerHTML="<b>Card "+(ssIdx+1)+":</b> someone writes"+workLines(["&nbsp;"+q.givenRatio+" "+q.ang+"° = "+frac("x",q.knownVal),"&nbsp;"+q.line3])+"Is the working <b>right</b>, or a <b>slip</b>?";
+  document.getElementById("ssOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="ssPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("ssFeedback").style.display="none";
+  document.getElementById("ssProg").textContent="Card "+(ssIdx+1)+" of "+SS.length+".";
+}
+function ssPick(i){
+  var q=SS[ssIdx], ans=q.ok?0:1, fb=document.getElementById("ssFeedback"); fb.style.display="block";
   if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
   else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
 }
-function rcNext(){ rcIndex=(rcIndex+1)%RC.length; rcRender(); }
+function ssNext(){ ssIdx=(ssIdx+1)%SS.length; ssRender(); }
 
-/* ============ CREATIVITY: Holiday money (£/€, both ways) ============ */
-var HM_CONV={m:1.2,c:0, xlab:"£", ylab:"€", xR:[0,50], yhi:60, xu:"£", yu:"€"};
-var HM=[
- {desc:"You are heading to France with <b>£40</b> spending money. How many euros will you get?", given:40, dir:"toY"},
- {desc:"A meal in a café costs <b>€30</b>. How much is that in pounds?", given:30, dir:"toX"},
- {desc:"You have <b>£25</b> left at the end of the trip. How many euros is that?", given:25, dir:"toY"},
- {desc:"A souvenir is priced at <b>€18</b>. How much is that in pounds?", given:18, dir:"toX"}
+/* ============ CREATIVITY: Reach the unmeasurable ============ */
+var RU=[
+ {name:"a tree",      dist:15, ang:34},
+ {name:"a flagpole",  dist:20, ang:28},
+ {name:"a cliff",     dist:40, ang:52}
 ];
-var hmIndex=0;
-function hmAnswer(q){ return q.dir==="toY" ? HM_CONV.m*q.given : q.given/HM_CONV.m; }
-function hmMarkX(q){ return q.dir==="toY" ? q.given : q.given/HM_CONV.m; }
-function hmChipsRender(){ document.getElementById("hmChips").innerHTML=HM.map(function(o,i){return '<span class="chip'+(i===hmIndex?' active':'')+'" onclick="setHm('+i+')">Q'+(i+1)+'</span>';}).join(""); }
-function hmDraw(reveal){
-  drawGraph("hmGraph",HM_CONV.m,HM_CONV.c,{xRange:HM_CONV.xR, fixedY:[0,HM_CONV.yhi], axisLabels:{x:HM_CONV.xlab,y:HM_CONV.ylab}, highlightX: reveal?hmMarkX(HM[hmIndex]):null});
+var ruIdx=0;
+function ruDraw(){
+  var q=RU[ruIdx], g=triFor(q.ang);
+  drawLabelTri("ruTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78,
+    labels:{adj:"distance = "+q.dist+" m", opp:"height = x"}, highlight:["adj","opp"]});
+  document.getElementById("ruScenario").innerHTML="You stand <b>"+q.dist+" m</b> from the base of "+q.name+". The angle up to the top is <b>"+q.ang+"°</b>. How tall is it? &nbsp;<span class='small'>Set it up: the height and distance are the opposite and adjacent, so use tan.</span>";
+  document.getElementById("ruAns").value="";
+  document.getElementById("ruFeedback").style.display="none";
 }
-function setHm(i){ hmIndex=i; var q=HM[i], toU=q.dir==="toY"?HM_CONV.yu:HM_CONV.xu, fromU=q.dir==="toY"?HM_CONV.xu:HM_CONV.yu;
-  document.getElementById("hmDesc").innerHTML=q.desc;
-  document.getElementById("hmLabel").innerHTML="<b>Answer ("+toU+"):</b>";
-  document.getElementById("hmAns").value=""; document.getElementById("hmFeedback").style.display="none";
-  hmChipsRender(); hmDraw(false); }
-function hmCheck(){
-  var q=HM[hmIndex], ans=hmAnswer(q), toU=q.dir==="toY"?HM_CONV.yu:HM_CONV.xu, val=num(document.getElementById("hmAns").value), fb=document.getElementById("hmFeedback");
-  fb.style.display="block"; hmDraw(true);
-  if(isNaN(val)){ fb.className="feedback warn"; fb.textContent="Read the graph and type the amount as a number."; return; }
-  if(Math.abs(val-ans)<=0.6){ fb.className="feedback good"; fb.innerHTML="✓ That is <b>"+round1(ans)+" "+toU+"</b>. The dashed guide shows the read-off — the same line works both ways."; }
-  else { fb.className="feedback warn"; fb.innerHTML="Not quite — follow the dashed guide to the line and across. It reads <b>"+round1(ans)+" "+toU+"</b>."; }
+function ruCheck(){
+  var q=RU[ruIdx], v=num(document.getElementById("ruAns").value), fb=document.getElementById("ruFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the height as a number."; return; }
+  var tf=Math.tan(q.ang*Math.PI/180), ans=q.dist*tf;
+  if(Math.abs(v-ans)<0.4){ fb.className="feedback good"; fb.innerHTML=workLines(["&nbsp;tan "+q.ang+"° = "+frac("x",q.dist),"&nbsp;x = "+q.dist+" × tan "+q.ang+"°","&nbsp;x = "+q.dist+" × "+r2(tf)+" = <b>"+ans.toFixed(1)+" m</b>"])+"You measured a height you could never reach!"; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet. From <b>tan "+q.ang+"° = x/"+q.dist+"</b>, multiply both sides by "+q.dist+": x = "+q.dist+" × tan "+q.ang+"° = "+q.dist+" × "+r2(tf)+". Try again (1 d.p.)."; }
 }
-
-/* (unused helper kept for compatibility) */
-function intersect(A,B){ var x=(B.c-A.c)/(A.m-B.m); return {x:x, y:A.m*x+A.c}; }
+function ruNew(){ ruIdx=(ruIdx+1)%RU.length; ruDraw(); }
 
 /* ---------------- Reconnection Routes ---------------- */
 (function(){
@@ -639,18 +701,18 @@ function intersect(A,B){ var x=(B.c-A.c)/(A.m-B.m); return {x:x, y:A.m*x+A.c}; }
     s+='</svg>'; return s;
   }
   var RECONNECT={
-    readPoint:{title:'Reading coordinates',prompt:'What are the coordinates of point <b>P</b>? Write them like (across, up).'+coordSVG(4,2),answer:'4 2',hint:'Count how far <b>across</b> P is (that is x), then how far <b>up</b> (that is y).'},
-    readLine:{title:'Reading up to a line',prompt:'A conversion line has the rule <b>y = 2x</b>. Go up from <em>x</em> = 4 to the line — what is <em>y</em>?',answer:8,hint:'y = 2 × 4 = 8.'},
-    rate:{title:'The conversion rate',prompt:'A conversion is <b>km = 1.6 × miles</b>. What is the conversion rate (km per mile)?',answer:1.6,hint:'It is the number you multiply by — 1.6.'}
+    sohcahtoa:{title:'SOH · CAH · TOA (Lesson 4)',prompt:'Which ratio uses the <b>opposite</b> and the <b>hypotenuse</b>? (sin / cos / tan)',answer:'sin',hint:'SOH — Sine = Opposite over Hypotenuse.'},
+    calc:{title:'A ratio value from a calculator',prompt:'With your calculator in <b>degrees</b>, what is <b>sin 30°</b>?',answer:0.5,hint:'sin 30° = 0.5 exactly.'},
+    multiply:{title:'Multiplying by a decimal',prompt:'What is <b>10 × 0.6</b>?',answer:6,hint:'10 × 0.6 = 6.'}
   };
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
   window.openReconnect=function(){
     var p=document.getElementById('reconnectionPanel');p.style.display='block';
     p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
      +'<div class="buttonrow">'
-     +'<button class="guidebtn" onclick="showReconnect(\'readPoint\')">Reading coordinates</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'readLine\')">Reading up to a line</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'rate\')">The conversion rate</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'sohcahtoa\')">SOH · CAH · TOA</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'calc\')">Ratio from a calculator</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'multiply\')">Multiplying by a decimal</button>'
      +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
   };
   window.showReconnect=function(key){
@@ -672,12 +734,12 @@ function intersect(A,B){ var x=(B.c-A.c)/(A.m-B.m); return {x:x, y:A.m*x+A.c}; }
 
 /* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · Both ways",q:"A conversion graph converts miles into km. Can you use the SAME line to convert km back into miles? (yes / no)",a:["yes","y"],prompt:"Does the line link a value on one axis to a value on the other?",hint:"Read up-and-across one way, across-and-down the other.",sol:"Yes — a conversion graph works both ways. The same line does miles → km and km → miles."},
- {label:"2 of 6 · Miles to km",q:"On a graph where km = 1.6 × miles, convert 5 miles to km.",a:[],eq:function(v){return Math.abs(num(v)-8)<0.1;},prompt:"Multiply by the rate, or read up from 5 to the line.",hint:"1.6 × 5 = ?",sol:"8 km — 1.6 × 5 = 8 (read up from 5 miles to the line, then across)."},
- {label:"3 of 6 · km to miles",q:"On the same graph (km = 1.6 × miles), convert 16 km back to miles.",a:[],eq:function(v){return Math.abs(num(v)-10)<0.1;},prompt:"Read across from 16 km to the line, then down.",hint:"16 ÷ 1.6 = ?",sol:"10 miles — reading the other way, 16 ÷ 1.6 = 10."},
- {label:"4 of 6 · The rate",q:"A pounds-to-euros graph goes through (0, 0) and (10, 12). What is the conversion rate (euros per pound)?",a:[],eq:function(v){return Math.abs(num(v)-1.2)<0.05;},prompt:"The rate is the gradient — rise ÷ run.",hint:"12 ÷ 10 = ?",sol:"1.2 — €12 for £10 means €1.20 per £1 (the gradient)."},
- {label:"5 of 6 · Not through zero",q:"A °C-to-°F line does NOT pass through the origin: 0°C is 32°F. To convert 10°C, is it correct to just work out 10 × 1.8 = 18°F? (yes / no)",a:["no","n"],prompt:"Does this line start at zero?",hint:"You must add the 32 — or read to the line.",sol:"No — you must read to the line (or add 32): 10°C = 1.8 × 10 + 32 = 50°F, not 18°F."},
- {label:"6 of 6 · Holiday money",q:"Using £1 = €1.20, a meal costs €30. How much is that in pounds?",a:[],eq:function(v){return Math.abs(num(v)-25)<0.2;},prompt:"Read across from €30 to the line, then down — or divide by 1.2.",hint:"30 ÷ 1.2 = ?",sol:"£25 — €30 ÷ 1.20 = £25 (read across-and-down)."}
+ {label:"1 of 6 · Choose the ratio",q:"You know the hypotenuse and want the opposite side. Which ratio links them — sin, cos or tan?",a:["sin","sine","sin θ"],prompt:"Opposite and hypotenuse together → SOH, CAH or TOA?",hint:"Opposite over hypotenuse is SOH — sine.",sol:"sin — sine uses the opposite and the hypotenuse (SOH)."},
+ {label:"2 of 6 · The algebra",q:"Line 2 of a solution is: sin 40° = x/8 (x is the unknown side). To get x on its own, what do you do to both sides?",a:["multiply by 8","times 8","multiply both sides by 8","× 8","x 8","multiply by eight"],prompt:"x is divided by 8. How do you undo dividing by 8?",hint:"x is ÷ 8, so multiply both sides by 8 → x = 8 × sin 40°.",sol:"Multiply both sides by 8 — since x is divided by 8, that isolates x: x = 8 × sin 40°."},
+ {label:"3 of 6 · Solve it (sine)",q:"A right-angled triangle has hypotenuse = 10 cm and angle 30°. Find the opposite side x. (sin 30° = 0.5)",a:[],eq:function(v){return Math.abs(num(v)-5)<0.15;},prompt:"Write sin 30° = x/10, then rearrange.",hint:"x/10 = sin 30°, so x = 10 × sin 30° = 10 × 0.5.",sol:"sin 30° = x/10 → x = 10 × sin 30° = 10 × 0.5 = 5 cm."},
+ {label:"4 of 6 · Solve it (cosine)",q:"A right-angled triangle has hypotenuse = 8 cm and angle 60°. Find the adjacent side x. (cos 60° = 0.5)",a:[],eq:function(v){return Math.abs(num(v)-4)<0.15;},prompt:"Write cos 60° = x/8, then rearrange.",hint:"x/8 = cos 60°, so x = 8 × cos 60° = 8 × 0.5.",sol:"cos 60° = x/8 → x = 8 × cos 60° = 8 × 0.5 = 4 cm."},
+ {label:"5 of 6 · Solve it (tangent)",q:"A right-angled triangle has adjacent = 10 cm and angle 45°. Find the opposite side x. (tan 45° = 1)",a:[],eq:function(v){return Math.abs(num(v)-10)<0.15;},prompt:"Write tan 45° = x/10, then rearrange.",hint:"x/10 = tan 45°, so x = 10 × tan 45° = 10 × 1.",sol:"tan 45° = x/10 → x = 10 × tan 45° = 10 × 1 = 10 cm."},
+ {label:"6 of 6 · Reach the unmeasurable",q:"You are 12 m from a tree; the angle up to its top is 40°. How tall is it, to 1 d.p.? (tan 40° ≈ 0.839)",a:[],eq:function(v){return Math.abs(num(v)-12*Math.tan(40*Math.PI/180))<0.3;},prompt:"The height and distance are opposite and adjacent → tan 40° = x/12.",hint:"x = 12 × tan 40° = 12 × 0.839.",sol:"tan 40° = x/12 → x = 12 × tan 40° = 12 × 0.839 ≈ 10.1 m."}
 ];
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -707,7 +769,7 @@ function pCheck(){
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Read up to the line and across to the other axis — or use the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Pick the ratio (SOH · CAH · TOA), write unknown = known × ratio, then multiply — or use the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -723,17 +785,17 @@ function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{va
 
 /* ---------------- init ---------------- */
 function initLesson(){
-  ctDraw(false);
-  trChipsRender(); setTr(0); trInit();
-  rcRender();
-  hmChipsRender(); setHm(0);
+  suDraw();
+  sfDraw();
+  ssRender();
+  ruDraw();
   renderPractice();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
 </script>
 
 <script src="../../assets/progress.js"></script>
-<script>NEOProgress.autoTrack('straight-lines-09-conversion-graphs-as-models');</script>
+<script>NEOProgress.autoTrack('trigonometry-05-finding-a-side');</script>
 
 <script>
 /* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */

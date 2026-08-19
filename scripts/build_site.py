@@ -86,6 +86,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_03_The_Tangent_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_03_The_Tangent_Ratio_v0.1.html",
     "trigonometry-04-sine-and-cosine":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_04_Sine_and_Cosine/NEO_Maths_Y10_Trigonometry_Lesson_04_Sine_and_Cosine_v0.1.html",
+    "trigonometry-05-finding-a-side":
+        "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_05_Finding_a_Side/NEO_Maths_Y10_Trigonometry_Lesson_05_Finding_a_Side_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
@@ -231,6 +233,107 @@ ACCORDION_SCRIPT = """
 </script>
 """
 
+CALCULATOR = r"""
+<style>
+#neoCalcWrap{position:fixed;right:16px;bottom:16px;z-index:9990;font-family:Arial,sans-serif}
+#neoCalcToggle{background:#365a68;color:#fff;border:none;border-radius:24px;padding:11px 16px;font-weight:700;font-size:1em;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+#neoCalcPanel{position:absolute;right:0;bottom:56px;width:246px;background:#f7f3ea;border:1px solid #cdbfa9;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.30);padding:12px}
+#neoCalcPanel[hidden]{display:none}
+.neoCalcHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.neoCalcHead b{color:#3f5f45}
+.neoCalcDeg{font-size:.72em;font-weight:700;color:#fff;background:#5c6b4f;border-radius:6px;padding:2px 7px;letter-spacing:.05em}
+#neoCalcExpr{min-height:22px;background:#fff;border:1px solid #cdbfa9;border-radius:8px;padding:7px 9px;font-size:1.05em;text-align:right;word-break:break-all;color:#2f3429}
+#neoCalcResult{min-height:20px;text-align:right;font-size:1.15em;font-weight:700;color:#2f6b46;padding:3px 4px 8px}
+.neoCalcGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.neoCalcGrid button{padding:11px 0;font-size:1em;border:1px solid #bcae98;border-radius:9px;background:#fff;cursor:pointer;color:#2f3429;font-weight:600}
+.neoCalcGrid button:hover{background:#f0ebe0}
+.neoCalcGrid button.fn{background:#e5eef2;border-color:#7d97a6;font-size:.92em}
+.neoCalcGrid button.op{background:#eef3e8}
+.neoCalcGrid button.eq{background:#2f6b46;color:#fff;border:none}
+.neoCalcGrid button.clr{background:#f6e6de;border-color:#c69}
+@media print{#neoCalcWrap{display:none}}
+</style>
+<div id="neoCalcWrap">
+  <button id="neoCalcToggle" type="button" onclick="neoCalcToggle()" aria-expanded="false" aria-controls="neoCalcPanel">&#129518; Calculator</button>
+  <div id="neoCalcPanel" hidden role="dialog" aria-label="Scientific calculator, degrees">
+    <div class="neoCalcHead"><b>Calculator</b><span class="neoCalcDeg">DEG</span></div>
+    <div id="neoCalcExpr" aria-live="polite">0</div>
+    <div id="neoCalcResult" aria-live="polite"></div>
+    <div class="neoCalcGrid">
+      <button type="button" class="fn" onclick="neoCalcFn('sin')">sin</button>
+      <button type="button" class="fn" onclick="neoCalcFn('cos')">cos</button>
+      <button type="button" class="fn" onclick="neoCalcFn('tan')">tan</button>
+      <button type="button" class="clr" onclick="neoCalcBack()">&#9003;</button>
+      <button type="button" class="fn" onclick="neoCalcKey('(')">(</button>
+      <button type="button" class="fn" onclick="neoCalcKey(')')">)</button>
+      <button type="button" class="fn" onclick="neoCalcFn('sqrt')">&#8730;</button>
+      <button type="button" class="op" onclick="neoCalcKey('÷')">&#247;</button>
+      <button type="button" onclick="neoCalcKey('7')">7</button>
+      <button type="button" onclick="neoCalcKey('8')">8</button>
+      <button type="button" onclick="neoCalcKey('9')">9</button>
+      <button type="button" class="op" onclick="neoCalcKey('×')">&#215;</button>
+      <button type="button" onclick="neoCalcKey('4')">4</button>
+      <button type="button" onclick="neoCalcKey('5')">5</button>
+      <button type="button" onclick="neoCalcKey('6')">6</button>
+      <button type="button" class="op" onclick="neoCalcKey('-')">&#8722;</button>
+      <button type="button" onclick="neoCalcKey('1')">1</button>
+      <button type="button" onclick="neoCalcKey('2')">2</button>
+      <button type="button" onclick="neoCalcKey('3')">3</button>
+      <button type="button" class="op" onclick="neoCalcKey('+')">+</button>
+      <button type="button" class="clr" onclick="neoCalcClear()">C</button>
+      <button type="button" onclick="neoCalcKey('0')">0</button>
+      <button type="button" onclick="neoCalcKey('.')">.</button>
+      <button type="button" class="eq" onclick="neoCalcEq()">=</button>
+    </div>
+    <p style="font-size:.78em;color:#5c6b4f;margin:8px 2px 0">Angles are in <b>degrees</b>. Example: 9 &#215; sin(37) = 5.42</p>
+  </div>
+</div>
+<script>
+(function(){
+  if(window.__neoCalcInstalled)return; window.__neoCalcInstalled=true;
+  var expr="";
+  function isFn(x){return x==="sin"||x==="cos"||x==="tan"||x==="sqrt";}
+  function evalExpr(input){
+    var s=String(input).replace(/×/g,"*").replace(/÷/g,"/").replace(/−/g,"-").replace(/°/g,"");
+    var toks=s.match(/\d+\.?\d*|\.\d+|sin|cos|tan|sqrt|√|[()+\-*/]/g);
+    if(!toks) return NaN;
+    var out=[], ops=[], prec={"+":1,"-":1,"*":2,"/":2,"u":4}, prev=null;
+    for(var i=0;i<toks.length;i++){ var t=toks[i]; if(t==="√")t="sqrt";
+      if(/^[\d.]/.test(t)){ out.push(parseFloat(t)); prev="n"; }
+      else if(isFn(t)){ ops.push(t); prev="f"; }
+      else if(t==="("){ ops.push("("); prev="("; }
+      else if(t===")"){ while(ops.length&&ops[ops.length-1]!=="(") out.push(ops.pop()); if(ops.length) ops.pop(); if(ops.length&&isFn(ops[ops.length-1])) out.push(ops.pop()); prev="n"; }
+      else { var op=t; if(op==="-"&&(prev===null||prev==="("||prev==="o"||prev==="f")) op="u";
+        while(ops.length){ var tp=ops[ops.length-1]; if(tp!=="(" && (isFn(tp) || (prec[tp] && prec[tp]>=prec[op]))) out.push(ops.pop()); else break; }
+        ops.push(op); prev="o"; }
+    }
+    while(ops.length){ var o=ops.pop(); if(o!=="(") out.push(o); }
+    var st=[];
+    for(var j=0;j<out.length;j++){ var x=out[j];
+      if(typeof x==="number"){ st.push(x); }
+      else if(x==="u"){ if(!st.length)return NaN; st.push(-st.pop()); }
+      else if(isFn(x)){ if(!st.length)return NaN; var a=st.pop(); st.push(x==="sin"?Math.sin(a*Math.PI/180):x==="cos"?Math.cos(a*Math.PI/180):x==="tan"?Math.tan(a*Math.PI/180):Math.sqrt(a)); }
+      else { if(st.length<2)return NaN; var b=st.pop(), a2=st.pop(); st.push(x==="+"?a2+b:x==="-"?a2-b:x==="*"?a2*b:a2/b); }
+    }
+    return st.length===1?st[0]:NaN;
+  }
+  function render(){
+    document.getElementById("neoCalcExpr").textContent = expr || "0";
+    var v=evalExpr(expr);
+    document.getElementById("neoCalcResult").textContent = (expr && isFinite(v)) ? "= "+(Math.round(v*1e6)/1e6) : "";
+  }
+  window.neoCalcEval=evalExpr;
+  window.neoCalcToggle=function(){ var p=document.getElementById("neoCalcPanel"); p.hidden=!p.hidden; document.getElementById("neoCalcToggle").setAttribute("aria-expanded", String(!p.hidden)); };
+  window.neoCalcKey=function(s){ expr+=s; render(); };
+  window.neoCalcFn=function(f){ expr+=(f==="sqrt"?"√":f)+"("; render(); };
+  window.neoCalcClear=function(){ expr=""; render(); };
+  window.neoCalcBack=function(){ var m=expr.match(/(sin\(|cos\(|tan\(|√\()$/); expr=m?expr.slice(0,-m[0].length):expr.slice(0,-1); render(); };
+  window.neoCalcEq=function(){ var v=evalExpr(expr); document.getElementById("neoCalcResult").textContent = isFinite(v) ? "= "+(Math.round(v*1e6)/1e6) : "= —"; };
+  render();
+})();
+</script>
+"""
+
 COMFORT_SCRIPT = """
 <script>
 (function(){
@@ -255,14 +358,14 @@ def inject_chrome(html: str, unit: str, num: str, title: str, depth: int) -> str
         return html
     rel = "../" * depth
     header = CHROME_STYLE + CHROME_HEADER.format(rel=rel, unit=unit, num=num, title=title) + COMFORT_PANEL + COMFORT_SCRIPT + '<div class="neo-lesson-root">'
-    footer = PALETTE_SCRIPT + ACCORDION_SCRIPT + "</div>" + CHROME_FOOTER.format(rel=rel)
+    footer = PALETTE_SCRIPT + ACCORDION_SCRIPT + "</div>" + CALCULATOR + CHROME_FOOTER.format(rel=rel)
     m = re.search(r"<body[^>]*>", html, re.IGNORECASE)
     if m:
         html = html[: m.end()] + "\n" + header + "\n" + html[m.end() :]
     else:
         html = header + "\n" + html
     if re.search(r"</body>", html, re.IGNORECASE):
-        html = re.sub(r"</body>", footer + "\n</body>", html, count=1, flags=re.IGNORECASE)
+        html = re.sub(r"</body>", lambda _m: footer + "\n</body>", html, count=1, flags=re.IGNORECASE)
     else:
         html = html + footer
     return html

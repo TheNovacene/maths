@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: The tangent ratio</title>
+<title>NEO Mathematics: Finding a side — when the unknown is underneath</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -39,170 +39,118 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 </style>
 </head>
 <body>
-
-<style>
-  .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
-  .neo-chrome-header { background: #1A2E3B; color: #F7F7F5; padding: 0.6rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-  .neo-chrome-header a.neo-home { color: #2AB3A0; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
-  .neo-chrome-header a.neo-home:hover { text-decoration: underline; }
-  .neo-chrome-header .neo-crumb { font-size: 0.8rem; color: rgba(247,247,245,0.85); text-align: right; }
-  .neo-chrome-header .neo-crumb strong { color: #FFFFFF; font-weight: 600; }
-  .neo-chrome-footer { background: #1A2E3B; color: rgba(247,247,245,0.85); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.8rem; margin-top: 2rem; }
-  .neo-chrome-footer a { color: #2AB3A0; text-decoration: none; margin: 0 0.6rem; }
-  .neo-chrome-footer a:hover { text-decoration: underline; }
-  .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
-  .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
-  /* --- Comfort & Access --- */
-  .neo-comfort-btn{background:#2AB3A0;color:#08312b;border:none;border-radius:8px;padding:0.35rem 0.7rem;font-weight:700;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;white-space:nowrap}
-  .neo-comfort-btn:hover{filter:brightness(1.06)}
-  .neo-comfort-panel{background:#12242e;color:#F7F7F5;padding:0.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;border-top:1px solid rgba(255,255,255,0.12);font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
-  .neo-comfort-panel[hidden]{display:none}
-  .neo-comfort-group{display:flex;flex-direction:column;gap:0.35rem}
-  .neo-comfort-group>span{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(247,247,245,0.65)}
-  .neo-comfort-row{display:flex;gap:0.4rem}
-  .neo-comfort-panel button.opt{background:rgba(255,255,255,0.10);color:#F7F7F5;border:1px solid rgba(255,255,255,0.25);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem}
-  .neo-comfort-panel button.opt[aria-pressed="true"]{background:#2AB3A0;color:#08312b;border-color:#2AB3A0;font-weight:700}
-  .neo-comfort-reset{margin-left:auto;align-self:center;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(247,247,245,0.85);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem}
-  html[data-neo-text="large"]{font-size:112.5%}
-  html[data-neo-text="larger"]{font-size:125%}
-  html[data-neo-spacing="on"] .neo-lesson-root{letter-spacing:0.012em}
-  html[data-neo-spacing="on"] .neo-lesson-root p,html[data-neo-spacing="on"] .neo-lesson-root li,html[data-neo-spacing="on"] .neo-lesson-root summary,html[data-neo-spacing="on"] .neo-lesson-root h2,html[data-neo-spacing="on"] .neo-lesson-root h3,html[data-neo-spacing="on"] .neo-lesson-root label{line-height:1.9!important;margin-bottom:0.7em!important}
-  html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
-  html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
-  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
-  .mathpalette{margin:6px 0}
-  .palette-toggle{background:#365a68;color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:600}
-  .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .palette-keys[hidden]{display:none}
-  .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
-  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em;line-height:1.05}
-  .frac .fnum{padding:0 .25em .5px}
-  .frac .fden{padding:.5px .25em 0;border-top:1.6px solid currentColor}
-  .fracpreview{margin-top:6px;font-size:1.05em;color:#2f3429}
-  .fracpreview[hidden]{display:none}
-  .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
-</style>
-<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Introduction to Trigonometry &middot; <strong>Lesson 03 &mdash; The tangent ratio</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
-<script>
-(function(){
- var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
- try{var sv=JSON.parse(localStorage.getItem(KEY)||"null");if(sv)st=Object.assign(st,sv);}catch(e){}
- function apply(){d.setAttribute("data-neo-text",st.text);st.spacing?d.setAttribute("data-neo-spacing","on"):d.removeAttribute("data-neo-spacing");st.calm?d.setAttribute("data-neo-calm","on"):d.removeAttribute("data-neo-calm");st.motion?d.setAttribute("data-neo-motion","reduced"):d.removeAttribute("data-neo-motion");}
- function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
- function sync(){var ps=document.querySelectorAll("#neoComfortPanel .opt");for(var i=0;i<ps.length;i++){var b=ps[i],k=b.getAttribute("data-k");if(k==="text"){b.setAttribute("aria-pressed",st.text===b.getAttribute("data-v")?"true":"false");}else{b.setAttribute("aria-pressed",st[k]?"true":"false");}}}
- window.neoComfortToggle=function(){var p=document.getElementById("neoComfortPanel"),btn=document.querySelector(".neo-comfort-btn"),willOpen=p.hasAttribute("hidden");willOpen?p.removeAttribute("hidden"):p.setAttribute("hidden","");if(btn)btn.setAttribute("aria-expanded",willOpen?"true":"false");};
- window.neoComfortSet=function(k,v){st[k]=v;apply();save();sync();};
- window.neoComfortToggleOpt=function(k){st[k]=!st[k];apply();save();sync();};
- window.neoComfortReset=function(){st={text:"normal",spacing:false,calm:false,motion:false};apply();save();sync();};
- apply();
- if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
-})();
-</script>
-<div class="neo-lesson-root">
-
 <div id="lessonView">
 <div class="neo">
 <h1>NEO Mathematics: Introduction to Trigonometry</h1>
-<h2>The tangent ratio</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>How does opposite ÷ adjacent capture an angle?</em></h2>
+<h2>Finding a side — when the unknown is underneath</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What changes when the unknown is on the bottom of the ratio?</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Defining — meeting the first named trigonometric ratio, the tangent, and seeing it measure an angle.</p>
-<p><b>Stepping Stone:</b> define and use <em>tan θ = opposite ÷ adjacent</em>, and recognise that a bigger tangent means a steeper angle.</p>
+<p><b>Lesson type:</b> Applying — solving the ratio equation when the unknown side sits <em>underneath</em> (in the denominator), which changes the rearrangement.</p>
+<p><b>Stepping Stone:</b> when substituting gives ratio = known ÷ x (the unknown underneath), rearrange in two steps to get x = known ÷ ratio — the answer is a <b>division</b>, not a multiplication.</p>
+<p><b>You will need:</b> a calculator in <b>degrees</b> — use the <b>🧮 Calculator</b> button in the bottom-right of the screen (it is already set to degrees), or your own. A <b>√ Symbols</b> palette sits under each answer box too.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
-<p><b>45-minute shape:</b> Connect 10 · Move 14 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
+<p><b>45-minute shape:</b> Connect 10 · Move 12 · Reflect 12 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
 </div>
 
 <div class="guides">
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_03_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_03_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_06_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_06_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a right-angled triangle, mark an angle θ, and work out opposite ÷ adjacent — that is tan θ. Try a steeper angle and see the tangent grow.')">✏️ Open Maths Scratchpad</button>
-
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw the triangle, mark the angle and known side. Write the ratio, substitute — if x is underneath, rearrange to x = known ÷ ratio.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
 </div>
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — The ratio with a name</summary>
+<summary>🌿 Connection — Set it up</summary>
 <div class="card">
-<h3 style="margin-top:0">🔤 New words for this lesson</h3>
-<p style="margin:6px 0"><b style="color:#2f6b46">Tangent</b> — for a chosen angle <em>θ</em> in a right-angled triangle, the <b>tangent</b> is the ratio <b><span class="frac"><span class="fnum">opposite</span><span class="fden">adjacent</span></span></b>. We write it <b>tan θ</b>.<br>
-<b style="color:#b24c4c">Opposite</b> — the side across from θ (from Lesson 2).<br>
-<b style="color:#2b6cb0">Adjacent</b> — the side next to θ, not the hypotenuse (from Lesson 2). The tangent does <b>not</b> use the hypotenuse at all.</p>
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">There is <b>no new rule to memorise</b>. When you know <b>one angle</b> and <b>one side</b>, you write the ratio as an <b>equation</b>, put in the numbers, and use <b>algebra</b> to solve for the unknown — call it <em>x</em>. It is always the same four lines:</p>
+<p style="margin:6px 0 0 10px">1. <b>Write the ratio:</b> &nbsp;sin θ = <span class="frac"><span class="fnum">opposite</span><span class="fden">hypotenuse</span></span><br>
+2. <b>Put in what you know</b> (unknown = <em>x</em>): &nbsp;sin θ = <span class="frac"><span class="fnum">x</span><span class="fden">hyp</span></span><br>
+3. <b>Rearrange</b> to get <em>x</em> on its own — <em>this is the algebra</em><br>
+4. <b>Work it out</b> on a calculator (set to <b>degrees</b>).</p>
+<p style="margin:6px 0"><b>Line 3 is the important one.</b> Think about the <em>equation</em>, not a formula: if x is divided by a number, multiply both sides by it. &nbsp;For line 4, open the <b>🧮 Calculator</b> (bottom-right) — it works in degrees.</p>
 </div>
-<p><b>What to do:</b> here are three right-angled triangles that are all the <b>same shape</b> (same angle θ) but different sizes. For each, work out <b>opposite ÷ adjacent</b>. Press <b>Reveal the ratio</b> to check.</p>
-<p><b>What you are trying to notice:</b> just as in Lesson 1, the ratio is the <b>same</b> for every size — because the angle is the same. That one shared number has a name: it is <b>tan θ</b>, the tangent of the angle.</p>
+<p><b>What to do:</b> the triangle shows the marked angle, one <b>known</b> side, and the side you <b>want</b> (marked <b>?</b>). Press <b>sin</b>, <b>cos</b> or <b>tan</b> to set up the ratio, then reveal the working <b>one line at a time</b> and watch the algebra unfold.</p>
+<p><b>What you are trying to notice:</b> every solution is the same four lines — ratio, substitute, rearrange, evaluate. Once you can do the <b>algebra</b> in line 3, you never need to remember a special rule.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🏷️ The ratio with a name</h3>
-<div class="card" style="text-align:center"><svg id="cnTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="Three similar right-angled triangles of different sizes sharing one angle"></svg></div>
-<div id="cnChips" class="buttonrow" style="justify-content:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="cnReveal()">🔓 Reveal the ratio</button></div>
-<div id="cnRead" class="card small"></div>
-<p><b>Carry this forward:</b> <b>tan θ = opposite ÷ adjacent</b>. It is the same for every triangle with that angle — a single number that belongs to the angle.</p>
+<h3 style="margin-top:0">🧩 Set it up</h3>
+<div class="card" style="text-align:center"><svg id="suTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a marked angle, one known side and one unknown side"></svg></div>
+<div id="suStep" class="clue"></div>
+<div id="suOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="suWork" class="readout" style="display:none"></div>
+<div class="buttonrow" style="justify-content:center"><button id="suNextBtn" onclick="suNext()" style="display:none">▸ Next line</button><button onclick="suNew()">🔄 New set-up</button></div>
+<p><b>Carry this forward:</b> ratio → substitute → rearrange → evaluate. The algebra does the work; there is no rule to memorise.</p>
 </div>
 </details>
 
 <!-- ================= MOVEMENT ================= -->
 <details class="hs">
-<summary>🚶 Movement — Tangent Explorer</summary>
-<p><b>What to do:</b> drag the <b>angle slider</b> to change <em>θ</em>. The adjacent side stays the same length; watch the <b>opposite</b> side and the value of <b>tan θ = opposite ÷ adjacent</b> change with it.</p>
-<p><b>What you are trying to notice:</b> as the angle gets <b>bigger</b>, the triangle gets <b>steeper</b>, the opposite side grows, and <b>tan θ grows too</b>. The tangent is a fingerprint of the angle: each angle has its own value, and a bigger angle means a bigger tangent.</p>
+<summary>🚶 Movement — Side Finder</summary>
+<p><b>What to do:</b> build the solution <b>line by line</b>. First <b>choose the ratio</b> (that writes lines 1 and 2 for you). Then <b>type the rearrangement</b> yourself — the line that gets <em>x</em> on its own. Finally <b>work out the answer</b> with your calculator (to 1 d.p.). Each line stays on screen below the one before.</p>
+<p><b>What you are trying to notice:</b> you are not remembering a rule — you are solving an <b>equation</b>. Line 2 is <em>ratio = x ÷ known</em>; to get <em>x</em> alone you <b>multiply both sides by the known number</b>. That is the whole of line 3.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">📐 Tangent Explorer</h3>
-<div class="card" style="text-align:center"><svg id="teTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle whose angle can be changed with a slider"></svg></div>
-<label class="small" for="teA"><b>Angle θ:</b> <span id="teAv">30°</span></label>
-<input id="teA" type="range" min="10" max="68" step="1" value="30" style="width:100%" oninput="teDraw()">
-<div id="teRead" class="card small"></div>
-<div id="teRatio" class="bignum"></div>
-<p><b>Carry this forward:</b> tan θ increases as θ increases. Knowing the angle fixes the tangent; knowing the tangent fixes the angle.</p>
+<h3 style="margin-top:0">📐 Side Finder</h3>
+<div class="card" style="text-align:center"><svg id="sfTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a marked angle, a known side and an unknown side to find"></svg></div>
+<div id="sfStep" class="clue"></div>
+<div id="sfOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="sfWork" class="readout" style="display:none"></div>
+<div id="sfRearrRow" style="display:none;text-align:center"><label class="small" for="sfRearr"><b>Line 3 — rearrange (x = …):</b></label><br><input id="sfRearr" class="neo-mathfield" placeholder="e.g. x = 8 × sin 40" style="max-width:240px"> <button onclick="sfRearrCheck()">Check line 3</button></div>
+<div id="sfAnsRow" style="display:none;text-align:center;margin-top:8px"><label class="small" for="sfAns"><b>Line 4 — work it out, x =</b></label> <input id="sfAns" class="neo-mathfield" placeholder="length to 1 d.p." inputmode="decimal" style="max-width:150px"> <button onclick="sfCheck()">✅ Check</button></div>
+<div id="sfFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="sfNew()">➡️ New problem</button></div>
+<div id="sfScore" class="card small" style="text-align:center"></div>
+<p><b>Carry this forward:</b> write the ratio, substitute, then do the algebra to make x the subject. Understand the equation and you never need a rule.</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION ================= -->
 <details class="es">
-<summary>🪞 Reflection — Is this tan θ?</summary>
-<p><b>What to do:</b> each card shows a right-angled triangle with the opposite and adjacent marked, and a <b>claimed value</b> for tan θ. Decide whether the claim is <b>right</b> or a <b>slip</b>, then check.</p>
-<p><b>What you are trying to notice:</b> the two classic slips are <b>using the hypotenuse</b> instead of the adjacent, and <b>turning the ratio upside down</b> (adjacent ÷ opposite). Tan θ is always <b>opposite ÷ adjacent</b> — nothing else.</p>
+<summary>🪞 Reflection — Set up or slip?</summary>
+<p><b>What to do:</b> each card shows <b>two lines</b> of someone's working — their ratio equation and their rearrangement. Decide whether the working is <b>right</b> or a <b>slip</b>, then check.</p>
+<p><b>What you are trying to notice:</b> two things can go wrong — the <b>wrong ratio</b> (a side that isn't in the problem), and the <b>wrong algebra</b> (dividing when the equation says multiply). When line 2 is <em>ratio = x ÷ known</em>, line 3 must multiply both sides by the known number.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔎 Is this tan θ?</h3>
-<div id="tqClue" class="clue"></div>
-<div class="card" style="text-align:center"><svg id="tqTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a claimed value for the tangent of the marked angle"></svg></div>
-<div id="tqOpts" class="buttonrow" style="justify-content:center"></div>
-<div id="tqFeedback" class="feedback"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="tqNext()">➡️ Next</button></div>
-<p class="small" id="tqProg"></p>
-<p><b>Carry this forward:</b> to test any tangent, ask: is it <b>opposite ÷ adjacent</b>? Not the hypotenuse, and not upside down.</p>
+<h3 style="margin-top:0">🔎 Set up or slip?</h3>
+<div id="ssClue" class="clue"></div>
+<div class="card" style="text-align:center"><svg id="ssTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with a proposed first line of working"></svg></div>
+<div id="ssOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="ssFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ssNext()">➡️ Next</button></div>
+<p class="small" id="ssProg"></p>
+<p><b>Carry this forward:</b> check two things — is it the right ratio, and (unknown on top) is it known × ratio, not known ÷ ratio?</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY ================= -->
 <details class="dw">
-<summary>🎨 Creativity — Rank by steepness</summary>
-<p><b>What to do:</b> here are three ramps (or roof slopes), each given by how far it <b>rises</b> (opposite) over how far it <b>runs</b> (adjacent). Work out <b>tan θ = rise ÷ run</b> for each, then put them in order from <b>gentlest to steepest</b>. Drag or use the buttons to order them, then check.</p>
-<p><b>What you are trying to notice:</b> you do not need to measure the angles to compare them — the <b>tangent alone</b> tells you which is steeper. A bigger tan θ is a steeper slope.</p>
+<summary>🎨 Creativity — Reach the unmeasurable</summary>
+<p><b>What to do:</b> each scenario is a real length you could never reach with a tape measure — the height of a tree, a cliff, a flagpole. You are given a distance and an angle. Set it up and find the height with your calculator.</p>
+<p><b>What you are trying to notice:</b> this is what trigonometry is <em>for</em>. One side you can measure, plus one angle, gives you a length you could never reach — the whole point of the ratios.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">📊 Rank by Steepness</h3>
-<div id="rkCards" class="twocol"></div>
-<p class="small" style="text-align:center">Put them in order — <b>gentlest first</b>:</p>
-<div id="rkOrder" class="buttonrow" style="justify-content:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="rkCheck()">✅ Check the order</button><button onclick="rkReset()">↺ Reset</button></div>
-<div id="rkFeedback" class="feedback"></div>
-<p><b>Make it your own:</b> on the Scratchpad, invent three slopes of your own, work out each tangent, and challenge a friend to rank them.</p>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Invent three slopes as rise over run. Work out tan θ = rise ÷ run for each, and order them from gentlest to steepest.')">✏️ Create on the Scratchpad</button>
+<h3 style="margin-top:0">🌲 Reach the unmeasurable</h3>
+<div class="card" style="text-align:center"><svg id="ruTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A real-world right-angled triangle: a horizontal distance, an angle of elevation and an unknown height"></svg></div>
+<div id="ruScenario" class="clue"></div>
+<div style="text-align:center"><label class="small" for="ruAns"><b>height = </b></label> <input id="ruAns" class="neo-mathfield" placeholder="height to 1 d.p." inputmode="decimal" style="max-width:170px"> <button onclick="ruCheck()">✅ Check</button></div>
+<div id="ruFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ruNew()">🌲 Another one</button></div>
+<p><b>Make it your own:</b> on the Scratchpad, invent your own "reach the unmeasurable" problem — a tall thing, a distance and an angle — solve it, and challenge a friend.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Invent a height you cannot reach. Give a distance and an angle of elevation, then find the height with unknown = distance × tan(angle).')">✏️ Create on the Scratchpad</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
 <summary>🌙 Rest — A pause to let it settle</summary>
-<p>A single number that captures a whole angle — how steep, how tilted, how much rise for each step along — is a quietly powerful idea. Take a breath before moving on.</p>
+<p>Finding a length you could never reach — the top of a tree, the far side of a river — from a single angle and one measurement is a genuinely powerful thing. Take a breath before moving on.</p>
 <div class="card">
-<p><b>Notice one thing:</b> when the angle grew and the tangent grew with it, did the connection feel natural, or surprising? There is no right answer — just what your own attention noticed.</p>
+<p><b>Notice one thing:</b> you did not follow a rule — you wrote an equation and solved it. Did understanding the algebra feel steadier than trying to remember what to do? There is no right answer — just what your own attention noticed.</p>
 <p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
 </div>
 </details>
@@ -210,40 +158,38 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <!-- ================= NUTRITION ================= -->
 <details class="nt">
 <summary>🍎 Nutrition — What this feeds</summary>
-<p><b>Mode: intellectual.</b> This mathematics does not live in food or the body, so we name honestly what the <em>learning</em> nourishes.</p>
+<p><b>Mode: intellectual.</b> The tree and the cliff are honest problem settings, not the nourishment itself — so we name honestly what the <em>learning</em> feeds.</p>
 <div class="card">
-<p><b>What it feeds:</b> today feeds the powerful mathematical move of letting <b>one number stand in for something larger</b> — a whole angle captured by a single ratio. This is the seed of measurement itself: temperature standing for warmth, a grade standing for a slope, a tangent standing for a tilt. Learning that a carefully chosen number can carry all the information you need — and can be compared, ordered and reasoned about — trains a mind to look for the <em>right measure</em> of a thing. It also feeds honesty about method: tan θ is <em>opposite ÷ adjacent</em>, in that order, every time — and precision like that is what makes the number trustworthy.</p>
-<p class="small">Carry one idea forward: a good measure lets you compare things you could never line up side by side. The tangent lets you compare angles by a single number.</p>
+<p><b>What it feeds:</b> today feeds the power of <b>indirect measurement</b> — reaching something you cannot touch by reasoning from something you can. This is one of the oldest and most useful moves in all of science: the height of a mountain, the distance to a star, the depth of the sea have all been found this way, without ever going there. Learning that careful reasoning can measure the unreachable builds a quiet confidence that problems which look impossible often have a clever, measurable way in. It also feeds <b>method discipline</b>: a reliable three-step routine you can trust turns a daunting task into a calm one.</p>
+<p class="small">Carry one idea forward: when something cannot be measured directly, ask what you <em>can</em> measure — and what links it to what you want.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> show that you can define and use the tangent ratio.</p>
+<p><b>Your task:</b> show that you can find an unknown side from one side and one angle.</p>
 <ul>
-<li>Draw a right-angled triangle, mark an angle <em>θ</em>, label the <b>opposite</b> and <b>adjacent</b>, and work out <b>tan θ = opposite ÷ adjacent</b>. Show your working.</li>
-<li>Draw a <b>bigger</b> triangle of the same shape and show that <b>tan θ is the same</b> — explain why.</li>
-<li>Take three slopes given as <b>rise over run</b>, work out each tangent, and <b>order them from gentlest to steepest</b>, explaining how the tangent tells you the order.</li>
+<li>Take a right-angled triangle with a marked angle and one known side. Write the ratio as an equation, substitute the numbers (unknown = x), <b>rearrange</b> to make x the subject, and evaluate with a calculator. Show all four lines.</li>
+<li>Do this for all three cases: finding the <b>opposite</b> from the hypotenuse (sine), the <b>adjacent</b> from the hypotenuse (cosine), and the <b>opposite</b> from the adjacent (tangent), explaining the algebra step each time.</li>
+<li>Solve one <b>reach the unmeasurable</b> problem — a height you could not measure directly, from a distance and an angle of elevation — and explain your method.</li>
 </ul>
 <p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_THE_TANGENT_RATIO_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_FINDING_A_SIDE_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows tan θ compares two sides.</td><td>Knows tan θ = opposite ÷ adjacent.</td><td>Knows tan θ is the same for any size of the same-angle triangle.</td><td>Explains why tan θ depends only on the angle, and grows as the angle grows.</td></tr>
-<tr><td><b>Application</b></td><td>Identifies opposite and adjacent.</td><td>Works out tan θ for one triangle.</td><td>Confirms tan θ is unchanged when the triangle is enlarged.</td><td>Uses tan θ to order slopes by steepness.</td></tr>
-<tr><td><b>Communication</b></td><td>Records a ratio with limited labelling.</td><td>Labels opposite and adjacent.</td><td>Shows the opposite ÷ adjacent working clearly.</td><td>Explains a method another learner could follow.</td></tr>
-<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that tan θ grows with the angle.</td><td>Explains tan θ belongs to the angle.</td><td>Connects a bigger tangent to a steeper angle.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows a ratio links the angle to the sides.</td><td>Knows the unknown-on-top rule unknown = known × ratio.</td><td>Chooses the correct ratio for the known and unknown sides.</td><td>Explains why the unknown on top means multiply, not divide.</td></tr>
+<tr><td><b>Application</b></td><td>Reads a ratio value from a calculator.</td><td>Finds a side in one case.</td><td>Finds a side in all three cases.</td><td>Solves a real reach-the-unmeasurable problem.</td></tr>
+<tr><td><b>Communication</b></td><td>Records an answer with limited working.</td><td>Writes the equation used.</td><td>Shows the ratio, the equation and the multiplication.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the method repeats.</td><td>Explains the three-step routine.</td><td>Connects the method to measuring the unreachable.</td></tr>
 </table>
 </details>
 
-</div>
-<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
-</div>
+</div></div>
 
 <!-- ================= PRACTICE COMPANION ================= -->
 <div id="practiceView" hidden><div class="practice">
-<h1>The tangent ratio — Practice Companion</h1>
+<h1>Finding a side — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -256,7 +202,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the right triangle, mark θ, and work out tan θ = opposite ÷ adjacent before you check.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the triangle, mark the angle and known side, choose the ratio, then work out unknown = known × ratio before you check.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -366,7 +312,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <script>
 /* Focused symbol palette for this lesson. */
-window.NEO_PALETTE_SYMBOLS=["÷","×","=",".","θ"];
+window.NEO_PALETTE_SYMBOLS=["x","=","×","÷","sin","cos","tan","°","(",")","."];
 /* ---------------- View switching + helpers ---------------- */
 function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
 function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
@@ -477,14 +423,16 @@ function drawLabelTri(svgId, opts){
       s+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="'+(hi?13:12)+'" font-weight="'+(hi?"bold":"600")+'" fill="'+(faded?"#8f958a":col)+'" text-anchor="'+anchor+'">'+text+'</text>';
     }
   });
-  /* marked-angle arc + θ (arc centred on the vertex, so it bulges outward = convex) */
+  /* marked-angle arc + label (θ by default, or a specific value like "40°" via opts.angleLabel) */
   if(opts.theta!==false){
     var V=(mark==="P"?sP:sQ), e1=nrm(sub(sR,V)), e2=nrm(sub((mark==="P"?sQ:sP),V)), r=20;
     var p1={x:V.x+e1.x*r,y:V.y+e1.y*r}, p2={x:V.x+e2.x*r,y:V.y+e2.y*r};
     var cross=e1.x*e2.y-e1.y*e2.x, sweep=cross>0?1:0;
     s+='<path d="M'+p1.x.toFixed(1)+','+p1.y.toFixed(1)+' A'+r+','+r+' 0 0 '+sweep+' '+p2.x.toFixed(1)+','+p2.y.toFixed(1)+'" fill="none" stroke="#b25f2e" stroke-width="1.8"/>';
     var bx=e1.x+e2.x, by=e1.y+e2.y, bl=Math.hypot(bx,by)||1;
-    s+='<text x="'+(V.x+bx/bl*(r+11)).toFixed(1)+'" y="'+(V.y+by/bl*(r+11)+4).toFixed(1)+'" font-size="14" fill="#b25f2e" font-style="italic" text-anchor="middle">θ</text>';
+    var aLab=(opts.angleLabel!=null?opts.angleLabel:"θ"), aStyle=(opts.angleLabel!=null?"":' font-style="italic"'), aOff=(opts.angleLabel!=null?r+16:r+11);
+    var alx=Math.min(Math.max(V.x+bx/bl*aOff,14),VW-14);
+    s+='<text x="'+alx.toFixed(1)+'" y="'+(V.y+by/bl*aOff+4).toFixed(1)+'" font-size="'+(opts.angleLabel!=null?"12.5":"14")+'" font-weight="'+(opts.angleLabel!=null?"bold":"normal")+'" fill="#b25f2e"'+aStyle+' text-anchor="middle">'+aLab+'</text>';
   }
   /* optional labels on the two acute vertices (used to name angle A / angle B) */
   if(opts.vertexLabels){
@@ -497,99 +445,174 @@ function drawLabelTri(svgId, opts){
   svg.innerHTML=s;
 }
 
-/* ============ CONNECTION: The ratio with a name ============ */
-var CN_BASE={opp:3, adj:4};                 /* the shared shape: opp:adj = 3:4, so tan = 0.75 */
-var CN_SIZES=[1,1.5,2.5];                    /* three scale factors -> different sizes, same angle */
-var cnSize=0, cnRevealed=false;
-function cnChips(){ document.getElementById("cnChips").innerHTML=CN_SIZES.map(function(k,i){return '<span class="chip'+(i===cnSize?' active':'')+'" onclick="cnPick('+i+')">Triangle '+(i+1)+'</span>';}).join(""); }
-function cnDraw(){
-  var k=CN_SIZES[cnSize], opp=r2(CN_BASE.opp*k), adj=r2(CN_BASE.adj*k);
-  drawLabelTri("cnTri", {a:CN_BASE.opp, b:CN_BASE.adj, mark:"P", theta:true, pad:66,
-    labels:{opp:"opposite = "+opp+" cm", adj:"adjacent = "+adj+" cm"}});
-  var msg="<b>Triangle "+(cnSize+1)+":</b> opposite = "+opp+" cm, adjacent = "+adj+" cm.";
-  if(cnRevealed){ msg+=" &nbsp; "+frac("opposite","adjacent")+" = "+frac(opp+" cm",adj+" cm")+" = <b>"+r2(opp/adj)+"</b> &nbsp;(the cm cancel, so the tangent has no units)."; }
-  else { msg+=" &nbsp; Work out "+frac("opposite","adjacent")+", then press <b>Reveal the ratio</b>."; }
-  document.getElementById("cnRead").innerHTML=msg;
-}
-function cnPick(i){ cnSize=i; cnRevealed=false; cnChips(); cnDraw(); }
-function cnReveal(){
-  cnRevealed=true; cnDraw();
-  document.getElementById("cnRead").innerHTML+="<p style='margin:6px 0 0'>Every one of these triangles gives <b>0.75</b> — the same angle, the same ratio. That number is <b>tan θ</b>: &nbsp;tan θ = "+frac("opposite","adjacent")+" = <b>0.75</b>.</p>";
-}
-
-/* ============ MOVEMENT: Tangent Explorer ============ */
-function teDraw(){
-  var deg=+document.getElementById("teA").value, rad=deg*Math.PI/180;
-  var adj=4, opp=r2(adj*Math.tan(rad));          /* adjacent fixed; opposite grows with the angle */
-  document.getElementById("teAv").textContent=deg+"°";
-  drawLabelTri("teTri", {a:adj*Math.tan(rad), b:adj, mark:"P", flip:true, theta:true, pad:40, ppu:20,
-    labels:{opp:"opposite = "+opp+" cm", adj:"adjacent = "+adj+" cm"}});
-  document.getElementById("teRead").innerHTML="At <b>θ = "+deg+"°</b>: adjacent stays at <b>4 cm</b>, opposite is <b>"+opp+" cm</b>. Bigger angle → steeper triangle → longer opposite.";
-  document.getElementById("teRatio").innerHTML="tan "+deg+"° = "+frac("opposite","adjacent")+" = "+frac(opp+" cm","4 cm")+" = <b>"+r2(Math.tan(rad))+"</b>";
+/* ---- shared helpers for finding a side ---- */
+function sideShort(k){return {opp:"opp",adj:"adj",hyp:"hyp"}[k];}
+function sideFull(k){return {opp:"opposite",adj:"adjacent",hyp:"hypotenuse"}[k];}
+var RATIO_SIDES={sin:["opp","hyp"], cos:["adj","hyp"], tan:["opp","adj"]};
+function triFor(ang){ var t=Math.tan(ang*Math.PI/180); return t>=1? {a:3.4, b:3.4/t} : {a:3.4*t, b:3.4}; }  /* schematic triangle whose marked angle ≈ ang */
+function trigFactor(ratio,ang){ var r=ang*Math.PI/180; return ratio==="sin"?Math.sin(r):ratio==="cos"?Math.cos(r):Math.tan(r); }
+function ratioFracHTML(ratio){ return {sin:frac("opposite","hypotenuse"), cos:frac("adjacent","hypotenuse"), tan:frac("opposite","adjacent")}[ratio]; }
+/* render a list of working lines, stacked with a left rule so each follows below the last */
+function workLines(arr){ return arr.map(function(l){ return "<div style='border-left:3px solid #cdbfa9;margin:5px 0;padding:3px 0 3px 10px;font-size:1.06em'>"+l+"</div>"; }).join(""); }
+/* evaluate the right-hand side a learner types for line 3, e.g. "x = 8 × sin 40" */
+function evalRHS(s){
+  var t=String(s).toLowerCase();
+  if(t.indexOf("=")>=0) t=t.slice(t.indexOf("=")+1);      /* keep only the right of "=" */
+  t=t.replace(/×/g,"*").replace(/÷/g,"/").replace(/°/g," ").replace(/x/g,"*");
+  t=t.replace(/(\d)\s*(sin|cos|tan)/g,"$1*$2");            /* implicit multiply: 8 sin -> 8*sin */
+  var hasTrig=/(sin|cos|tan)/.test(t);
+  t=t.replace(/(sin|cos|tan)\s*([0-9.]+)/g,function(m,fn,a){ return trigFactor(fn,+a).toFixed(6); });
+  var toks=t.replace(/[^0-9.*/+\-]/g,"").match(/(\d+\.?\d*|[*/+\-])/g), val=NaN;
+  if(toks&&toks.length){ var terms=[parseFloat(toks[0])];
+    for(var i=1;i+1<toks.length;i+=2){ var op=toks[i], n=parseFloat(toks[i+1]);
+      if(op==="*")terms[terms.length-1]*=n; else if(op==="/")terms[terms.length-1]/=n; else if(op==="+")terms.push(n); else if(op==="-")terms.push(-n); }
+    val=terms.reduce(function(a,b){return a+b;},0); }
+  return {val:val, hasTrig:hasTrig};
 }
 
-/* ============ REFLECTION: Is this tan θ? ============ */
-var TQ=[
- {opp:3, adj:4, cn:"3 cm", cd:"4 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("3 cm","4 cm")+" = 0.75. Correct."},
- {opp:5, adj:12, cn:"12 cm", cd:"5 cm", cval:"2.4", ok:false, why:"That is upside down. tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","12 cm")+" ≈ 0.42, not 2.4."},
- {opp:6, adj:8, cn:"6 cm", cd:"8 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("6 cm","8 cm")+" = 0.75. Correct."},
- {opp:8, adj:6, cn:"8 cm", cd:"10 cm", cval:"0.8", ok:false, why:"That used the hypotenuse (10 cm), not the adjacent. tan θ = "+frac("opposite","adjacent")+" = "+frac("8 cm","6 cm")+" ≈ 1.33."},
- {opp:5, adj:5, cn:"5 cm", cd:"5 cm", cval:"1", ok:true,   why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","5 cm")+" = 1 (a 45° angle). Correct."}
+/* ============ CONNECTION: Set it up (reveal the algebra one line at a time) ============ */
+var SU=[
+ {ang:40, known:"hyp", knownVal:8,  unknown:"opp", ratio:"sin"},
+ {ang:35, known:"hyp", knownVal:10, unknown:"adj", ratio:"cos"},
+ {ang:50, known:"adj", knownVal:6,  unknown:"opp", ratio:"tan"}
 ];
-var tqIndex=0;
-function tqRender(){
-  var q=TQ[tqIndex];
-  drawLabelTri("tqTri", {a:q.opp, b:q.adj, mark:"P", theta:true, pad:66,
-    labels:{opp:"opposite = "+q.opp+" cm", adj:"adjacent = "+q.adj+" cm"}});
-  document.getElementById("tqClue").innerHTML="<b>Card "+(tqIndex+1)+":</b> Someone claims &nbsp;tan θ = "+frac(q.cn,q.cd)+" = <b>"+q.cval+"</b>. Is that <b>right</b>, or a <b>slip</b>?";
-  document.getElementById("tqOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="tqPick('+i+')">'+o+'</button>';}).join("");
-  document.getElementById("tqFeedback").style.display="none";
-  document.getElementById("tqProg").textContent="Card "+(tqIndex+1)+" of "+TQ.length+".";
+var suIdx=0, suShown=0, suLines=[];
+function suBuild(q){ var tf=trigFactor(q.ratio,q.ang); return [
+  "<b>1.</b> &nbsp;write the ratio: &nbsp;"+q.ratio+" "+q.ang+"° = "+ratioFracHTML(q.ratio),
+  "<b>2.</b> &nbsp;put in what you know: &nbsp;"+q.ratio+" "+q.ang+"° = "+frac("x", q.knownVal),
+  "<b>3.</b> &nbsp;rearrange &nbsp;<span class='small'>(x is ÷ "+q.knownVal+", so × "+q.knownVal+" on both sides)</span>: &nbsp;x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°",
+  "<b>4.</b> &nbsp;work it out: &nbsp;x = "+q.knownVal+" × "+r2(tf)+" = <b>"+(q.knownVal*tf).toFixed(1)+" cm</b>"
+]; }
+function suDraw(){
+  var q=SU[suIdx], g=triFor(q.ang), labs={};
+  labs[q.known]=sideShort(q.known)+" = "+q.knownVal+" cm"; labs[q.unknown]=sideShort(q.unknown)+" = x";
+  drawLabelTri("suTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78, labels:labs, highlight:[q.known,q.unknown]});
+  suShown=0; suLines=suBuild(q);
+  document.getElementById("suStep").innerHTML="<b>Known:</b> "+sideFull(q.known)+" = "+q.knownVal+" cm, angle "+q.ang+"°. &nbsp;<b>Want:</b> "+sideFull(q.unknown)+" = x. &nbsp;Which ratio uses the <b>"+sideFull(q.known)+"</b> and the <b>"+sideFull(q.unknown)+"</b>?";
+  document.getElementById("suOpts").innerHTML=["sin","cos","tan"].map(function(k){return '<button onclick="suPick(\''+k+'\')">'+k+'</button>';}).join("");
+  document.getElementById("suOpts").style.display="flex";
+  var w=document.getElementById("suWork"); w.style.display="none"; w.innerHTML="";
+  document.getElementById("suNextBtn").style.display="none";
 }
-function tqPick(i){
-  var q=TQ[tqIndex], ans=q.ok?0:1, fb=document.getElementById("tqFeedback"); fb.style.display="block";
+function suPick(k){
+  var q=SU[suIdx], w=document.getElementById("suWork");
+  if(k!==q.ratio){ w.style.display="block"; w.innerHTML="<span style='color:#9a5f3f'>Not that one — <b>"+k+"</b> uses the "+sideFull(RATIO_SIDES[k][0])+" and the "+sideFull(RATIO_SIDES[k][1])+". You know the "+sideFull(q.known)+" and want the "+sideFull(q.unknown)+".</span>"; return; }
+  document.getElementById("suOpts").style.display="none";
+  suShown=2; w.style.display="block"; w.innerHTML=workLines(suLines.slice(0,suShown));
+  var btn=document.getElementById("suNextBtn"); btn.style.display="inline-block"; btn.textContent="▸ Next line (rearrange)";
+}
+function suNext(){
+  if(suShown<suLines.length){ suShown++; document.getElementById("suWork").innerHTML=workLines(suLines.slice(0,suShown)); }
+  var btn=document.getElementById("suNextBtn");
+  if(suShown>=suLines.length){ btn.style.display="none"; }
+  else if(suShown===3){ btn.textContent="▸ Next line (work it out)"; }
+}
+function suNew(){ suIdx=(suIdx+1)%SU.length; suDraw(); }
+
+/* ============ MOVEMENT: Side Finder (dominant) — build the solution line by line ============ */
+var SF=[
+ {ang:37, known:"hyp", knownVal:9,  unknown:"opp", ratio:"sin"},
+ {ang:52, known:"hyp", knownVal:14, unknown:"adj", ratio:"cos"},
+ {ang:41, known:"adj", knownVal:8,  unknown:"opp", ratio:"tan"},
+ {ang:28, known:"hyp", knownVal:20, unknown:"opp", ratio:"sin"},
+ {ang:63, known:"adj", knownVal:5,  unknown:"opp", ratio:"tan"},
+ {ang:45, known:"hyp", knownVal:12, unknown:"adj", ratio:"cos"}
+];
+var sfIdx=0, sfScore=0, sfLines=[];
+function sfDraw(){
+  var q=SF[sfIdx], g=triFor(q.ang), labs={};
+  labs[q.known]=sideShort(q.known)+" = "+q.knownVal+" cm"; labs[q.unknown]=sideShort(q.unknown)+" = x";
+  drawLabelTri("sfTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78, labels:labs, highlight:[q.known,q.unknown]});
+  document.getElementById("sfStep").innerHTML="<b>Problem "+(sfIdx+1)+".</b> Known "+sideFull(q.known)+" = "+q.knownVal+" cm, angle "+q.ang+"°. Find the "+sideFull(q.unknown)+" (= x). &nbsp;<b>Step 1 — set up the ratio:</b>";
+  document.getElementById("sfOpts").innerHTML=["sin","cos","tan"].map(function(k){return '<button onclick="sfRatio(\''+k+'\')">'+k+'</button>';}).join("");
+  document.getElementById("sfOpts").style.display="flex";
+  var w=document.getElementById("sfWork"); w.style.display="none"; w.innerHTML="";
+  document.getElementById("sfRearrRow").style.display="none";
+  document.getElementById("sfAnsRow").style.display="none";
+  document.getElementById("sfFeedback").style.display="none";
+  document.getElementById("sfRearr").value=""; document.getElementById("sfAns").value="";
+  sfLines=[];
+  document.getElementById("sfScore").textContent="Score: "+sfScore;
+}
+function sfRatio(k){
+  var q=SF[sfIdx], fb=document.getElementById("sfFeedback");
+  if(k!==q.ratio){ fb.style.display="block"; fb.className="feedback warn"; fb.innerHTML="Not that ratio — you know the "+sideFull(q.known)+" and want the "+sideFull(q.unknown)+". <b>"+k+"</b> uses the "+sideFull(RATIO_SIDES[k][0])+" and the "+sideFull(RATIO_SIDES[k][1])+"."; return; }
+  fb.style.display="none";
+  document.getElementById("sfOpts").style.display="none";
+  sfLines=[ "<b>1.</b> &nbsp;"+k+" "+q.ang+"° = "+ratioFracHTML(k), "<b>2.</b> &nbsp;"+k+" "+q.ang+"° = "+frac("x", q.knownVal) ];
+  var w=document.getElementById("sfWork"); w.style.display="block"; w.innerHTML=workLines(sfLines);
+  document.getElementById("sfRearrRow").style.display="block";
+  document.getElementById("sfRearr").focus();
+}
+function sfRearrCheck(){
+  var q=SF[sfIdx], fb=document.getElementById("sfFeedback"); fb.style.display="block";
+  var res=evalRHS(document.getElementById("sfRearr").value), target=q.knownVal*trigFactor(q.ratio,q.ang);
+  if(!res.hasTrig){ fb.className="feedback warn"; fb.innerHTML="Show the ratio in your line — e.g. <b>x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°</b>. (Multiply both sides of line 2 by "+q.knownVal+".)"; return; }
+  if(isNaN(res.val)||Math.abs(res.val-target)>0.3){ fb.className="feedback warn"; fb.innerHTML="Not quite. In line 2, x is <b>divided by "+q.knownVal+"</b>, so <b>multiply both sides by "+q.knownVal+"</b>: &nbsp;x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°. Try line 3 again."; return; }
+  fb.style.display="none";
+  sfLines.push("<b>3.</b> &nbsp;x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"°");
+  document.getElementById("sfWork").innerHTML=workLines(sfLines);
+  document.getElementById("sfRearrRow").style.display="none";
+  document.getElementById("sfAnsRow").style.display="block";
+  document.getElementById("sfAns").focus();
+}
+function sfCheck(){
+  var q=SF[sfIdx], v=num(document.getElementById("sfAns").value), fb=document.getElementById("sfFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the length as a number."; return; }
+  var tf=trigFactor(q.ratio,q.ang), ans=q.knownVal*tf;
+  if(Math.abs(v-ans)<0.2){ sfScore++; sfLines.push("<b>4.</b> &nbsp;x = "+q.knownVal+" × "+r2(tf)+" = <b>"+ans.toFixed(1)+" cm</b>"); document.getElementById("sfWork").innerHTML=workLines(sfLines); document.getElementById("sfAnsRow").style.display="none"; fb.className="feedback good"; fb.innerHTML="✓ Solved — the "+sideFull(q.unknown)+" is <b>"+ans.toFixed(1)+" cm</b>. Press <b>New problem</b>."; document.getElementById("sfScore").textContent="Score: "+sfScore; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet — x = "+q.knownVal+" × "+q.ratio+" "+q.ang+"° = "+q.knownVal+" × "+r2(tf)+". Work that out to 1 d.p."; }
+}
+function sfNew(){ sfIdx=(sfIdx+1)%SF.length; if(sfIdx===0) sfScore=0; sfDraw(); }
+
+/* ============ REFLECTION: Set up or slip? ============ */
+var SS=[
+ {ang:40, known:"hyp", knownVal:8,  unknown:"opp", givenRatio:"sin", line3:"x = 8 × sin 40°",  ok:true,  why:"Right — sin links the hypotenuse and the opposite, and from sin 40° = x/8 you multiply both sides by 8."},
+ {ang:40, known:"hyp", knownVal:8,  unknown:"opp", givenRatio:"sin", line3:"x = 8 ÷ sin 40°",  ok:false, why:"Slip — in line 2, x is divided by 8, so you multiply both sides by 8 (not divide by sin): x = 8 × sin 40°."},
+ {ang:35, known:"adj", knownVal:6,  unknown:"opp", givenRatio:"tan", line3:"x = 6 × tan 35°",  ok:true,  why:"Right — tan links the adjacent and the opposite; from tan 35° = x/6, multiply both sides by 6."},
+ {ang:35, known:"hyp", knownVal:10, unknown:"adj", givenRatio:"sin", line3:"x = 10 × sin 35°", ok:false, why:"Slip — you know the hypotenuse and want the adjacent, so the ratio should be cosine, not sine: cos 35° = x/10, giving x = 10 × cos 35°."},
+ {ang:50, known:"hyp", knownVal:9,  unknown:"adj", givenRatio:"cos", line3:"x = 9 × cos 50°",  ok:true,  why:"Right — cos links the hypotenuse and the adjacent; from cos 50° = x/9, multiply both sides by 9."}
+];
+var ssIdx=0;
+function ssRender(){
+  var q=SS[ssIdx], g=triFor(q.ang), labs={};
+  labs[q.known]=sideShort(q.known)+" = "+q.knownVal+" cm"; labs[q.unknown]=sideShort(q.unknown)+" = x";
+  drawLabelTri("ssTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78, labels:labs, highlight:[q.known,q.unknown]});
+  document.getElementById("ssClue").innerHTML="<b>Card "+(ssIdx+1)+":</b> someone writes"+workLines(["&nbsp;"+q.givenRatio+" "+q.ang+"° = "+frac("x",q.knownVal),"&nbsp;"+q.line3])+"Is the working <b>right</b>, or a <b>slip</b>?";
+  document.getElementById("ssOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="ssPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("ssFeedback").style.display="none";
+  document.getElementById("ssProg").textContent="Card "+(ssIdx+1)+" of "+SS.length+".";
+}
+function ssPick(i){
+  var q=SS[ssIdx], ans=q.ok?0:1, fb=document.getElementById("ssFeedback"); fb.style.display="block";
   if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
   else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
 }
-function tqNext(){ tqIndex=(tqIndex+1)%TQ.length; tqRender(); }
+function ssNext(){ ssIdx=(ssIdx+1)%SS.length; ssRender(); }
 
-/* ============ CREATIVITY: Rank by steepness ============ */
-var RK=[
- {name:"Ramp A", rise:3, run:12},
- {name:"Ramp B", rise:5, run:10},
- {name:"Ramp C", rise:2, run:14}
+/* ============ CREATIVITY: Reach the unmeasurable ============ */
+var RU=[
+ {name:"a tree",      dist:15, ang:34},
+ {name:"a flagpole",  dist:20, ang:28},
+ {name:"a cliff",     dist:40, ang:52}
 ];
-var rkChosen=[];                                  /* the learner's order, as indices into RK */
-function rkTan(i){ return RK[i].rise/RK[i].run; }
-function rkCardsRender(){
-  document.getElementById("rkCards").innerHTML=RK.map(function(r,i){
-    return '<div class="card" style="text-align:center"><b>'+r.name+'</b><br><span class="small">rises '+r.rise+' m for every '+r.run+' m along</span><br>tan θ = '+frac(r.rise+" m",r.run+" m")+' = <b>?</b></div>';
-  }).join("");
+var ruIdx=0;
+function ruDraw(){
+  var q=RU[ruIdx], g=triFor(q.ang);
+  drawLabelTri("ruTri", {a:g.a, b:g.b, mark:"P", theta:true, angleLabel:q.ang+"°", pad:78,
+    labels:{adj:"distance = "+q.dist+" m", opp:"height = x"}, highlight:["adj","opp"]});
+  document.getElementById("ruScenario").innerHTML="You stand <b>"+q.dist+" m</b> from the base of "+q.name+". The angle up to the top is <b>"+q.ang+"°</b>. How tall is it? &nbsp;<span class='small'>Set it up: the height and distance are the opposite and adjacent, so use tan.</span>";
+  document.getElementById("ruAns").value="";
+  document.getElementById("ruFeedback").style.display="none";
 }
-function rkOrderRender(){
-  var html="";
-  RK.forEach(function(r,i){
-    var pos=rkChosen.indexOf(i);
-    html+='<button onclick="rkTake('+i+')"'+(pos>=0?' style="background:#dce8ef;border-color:#365a68"':'')+'>'+(pos>=0?(pos+1)+'. ':'')+r.name+'</button>';
-  });
-  document.getElementById("rkOrder").innerHTML=html;
+function ruCheck(){
+  var q=RU[ruIdx], v=num(document.getElementById("ruAns").value), fb=document.getElementById("ruFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the height as a number."; return; }
+  var tf=Math.tan(q.ang*Math.PI/180), ans=q.dist*tf;
+  if(Math.abs(v-ans)<0.4){ fb.className="feedback good"; fb.innerHTML=workLines(["&nbsp;tan "+q.ang+"° = "+frac("x",q.dist),"&nbsp;x = "+q.dist+" × tan "+q.ang+"°","&nbsp;x = "+q.dist+" × "+r2(tf)+" = <b>"+ans.toFixed(1)+" m</b>"])+"You measured a height you could never reach!"; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet. From <b>tan "+q.ang+"° = x/"+q.dist+"</b>, multiply both sides by "+q.dist+": x = "+q.dist+" × tan "+q.ang+"° = "+q.dist+" × "+r2(tf)+". Try again (1 d.p.)."; }
 }
-function rkTake(i){
-  var pos=rkChosen.indexOf(i);
-  if(pos>=0) rkChosen.splice(pos,1); else rkChosen.push(i);
-  rkOrderRender();
-  document.getElementById("rkFeedback").style.display="none";
-}
-function rkReset(){ rkChosen=[]; rkOrderRender(); document.getElementById("rkFeedback").style.display="none"; }
-function rkCheck(){
-  var fb=document.getElementById("rkFeedback"); fb.style.display="block";
-  if(rkChosen.length<RK.length){ fb.className="feedback warn"; fb.textContent="Pick all three, in order from gentlest to steepest."; return; }
-  var correct=RK.map(function(_,i){return i;}).sort(function(a,b){return rkTan(a)-rkTan(b);});
-  var ok=rkChosen.every(function(v,i){return v===correct[i];});
-  var vals=RK.map(function(r,i){return r.name+": tan θ = "+frac(r.rise+" m",r.run+" m")+" = "+r2(rkTan(i));}).join(";&nbsp; ");
-  if(ok){ fb.className="feedback good"; fb.innerHTML="Correct — gentlest to steepest is "+correct.map(function(i){return "<b>"+RK[i].name+"</b>";}).join(" → ")+". ("+vals+".) The bigger the tangent, the steeper the slope."; }
-  else { fb.className="feedback warn"; fb.innerHTML="Not yet. Work out each tangent and order them smallest first. ("+vals+".)"; }
-}
+function ruNew(){ ruIdx=(ruIdx+1)%RU.length; ruDraw(); }
 
 /* ---------------- Reconnection Routes ---------------- */
 (function(){
@@ -615,18 +638,18 @@ function rkCheck(){
     s+='</svg>'; return s;
   }
   var RECONNECT={
-    sides:{title:'Opposite and adjacent (Lesson 2)',prompt:'The side <b>across from</b> the marked angle θ is called the ___ side. Which name?',answer:'opposite',hint:'Across from θ = the opposite; next to θ = the adjacent.'},
-    division:{title:'A ratio as a division',prompt:'What is <b>3 ÷ 4</b> as a decimal?',answer:0.75,hint:'3 ÷ 4 = 0.75.'},
-    ratio:{title:'The constant ratio (Lesson 1)',prompt:'For a fixed angle, does enlarging a right-angled triangle change the ratio of two of its sides? (yes / no)',answer:'no',hint:'No — the ratio belongs to the angle, so enlarging (same angle) leaves it unchanged.'}
+    sohcahtoa:{title:'SOH · CAH · TOA (Lesson 4)',prompt:'Which ratio uses the <b>opposite</b> and the <b>hypotenuse</b>? (sin / cos / tan)',answer:'sin',hint:'SOH — Sine = Opposite over Hypotenuse.'},
+    calc:{title:'A ratio value from a calculator',prompt:'With your calculator in <b>degrees</b>, what is <b>sin 30°</b>?',answer:0.5,hint:'sin 30° = 0.5 exactly.'},
+    multiply:{title:'Multiplying by a decimal',prompt:'What is <b>10 × 0.6</b>?',answer:6,hint:'10 × 0.6 = 6.'}
   };
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
   window.openReconnect=function(){
     var p=document.getElementById('reconnectionPanel');p.style.display='block';
     p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
      +'<div class="buttonrow">'
-     +'<button class="guidebtn" onclick="showReconnect(\'sides\')">Opposite and adjacent</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'division\')">A ratio as a division</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'ratio\')">The constant ratio</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'sohcahtoa\')">SOH · CAH · TOA</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'calc\')">Ratio from a calculator</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'multiply\')">Multiplying by a decimal</button>'
      +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
   };
   window.showReconnect=function(key){
@@ -648,12 +671,12 @@ function rkCheck(){
 
 /* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · Define the tangent",q:"For a marked angle θ, the tangent is which ratio — opposite ÷ adjacent, or adjacent ÷ opposite?",a:["opposite ÷ adjacent","opposite divided by adjacent","opp ÷ adj","opp/adj","opposite/adjacent","opposite over adjacent"],prompt:"Which side goes on top in tan θ?",hint:"tan θ = opposite ÷ adjacent — opposite on top.",sol:"tan θ = opposite ÷ adjacent — the opposite side divided by the adjacent side."},
- {label:"2 of 6 · Work out tan θ",q:"A right-angled triangle has opposite = 3 cm and adjacent = 4 cm for the marked angle θ. What is tan θ? (a decimal or a fraction is fine)",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"tan θ = opposite ÷ adjacent.",hint:"3 ÷ 4 = ? (the cm cancel)",sol:"0.75 — tan θ = opposite ÷ adjacent = 3 ÷ 4 = 0.75 (the units cancel, so the tangent has no units)."},
- {label:"3 of 6 · The same shape, bigger",q:"That triangle is enlarged to opposite = 6 cm and adjacent = 8 cm. What is tan θ now?",a:[],eq:function(v){return Math.abs(num(v)-0.75)<0.02;},prompt:"Work out 6 ÷ 8 and compare with the last answer.",hint:"6 ÷ 8 = 0.75 — the same as before.",sol:"0.75 — tan θ is unchanged by size. Same angle → same tangent."},
- {label:"4 of 6 · Which is steeper?",q:"Slope P has tan θ = 0.4. Slope Q has tan θ = 0.9. Which is steeper — P or Q?",a:["q","slope q","q is steeper"],prompt:"Does a bigger tangent mean steeper or gentler?",hint:"A bigger tangent means a steeper slope.",sol:"Q — a bigger tangent (0.9 > 0.4) means a steeper slope."},
- {label:"5 of 6 · Spot the slip",q:"For opposite = 5 cm and adjacent = 12 cm, a learner writes tan θ = 12 ÷ 5. What have they done wrong? (one word)",a:["inverted","upside down","reversed","flipped","upside-down","inverted it"],prompt:"Is opposite on top, or adjacent?",hint:"They divided adjacent by opposite — the ratio is upside down.",sol:"They inverted it — tan θ = opposite ÷ adjacent = 5 ÷ 12, not 12 ÷ 5."},
- {label:"6 of 6 · Tangent of 45°",q:"A right-angled triangle has opposite = adjacent (both the same length). What is tan θ?",a:[],eq:function(v){return Math.abs(num(v)-1)<0.02;},prompt:"tan θ = opposite ÷ adjacent, and they are equal.",hint:"Any number ÷ itself = 1.",sol:"1 — when opposite = adjacent, tan θ = 1 (this is the 45° angle)."}
+ {label:"1 of 6 · Choose the ratio",q:"You know the hypotenuse and want the opposite side. Which ratio links them — sin, cos or tan?",a:["sin","sine","sin θ"],prompt:"Opposite and hypotenuse together → SOH, CAH or TOA?",hint:"Opposite over hypotenuse is SOH — sine.",sol:"sin — sine uses the opposite and the hypotenuse (SOH)."},
+ {label:"2 of 6 · The algebra",q:"Line 2 of a solution is: sin 40° = x/8 (x is the unknown side). To get x on its own, what do you do to both sides?",a:["multiply by 8","times 8","multiply both sides by 8","× 8","x 8","multiply by eight"],prompt:"x is divided by 8. How do you undo dividing by 8?",hint:"x is ÷ 8, so multiply both sides by 8 → x = 8 × sin 40°.",sol:"Multiply both sides by 8 — since x is divided by 8, that isolates x: x = 8 × sin 40°."},
+ {label:"3 of 6 · Solve it (sine)",q:"A right-angled triangle has hypotenuse = 10 cm and angle 30°. Find the opposite side x. (sin 30° = 0.5)",a:[],eq:function(v){return Math.abs(num(v)-5)<0.15;},prompt:"Write sin 30° = x/10, then rearrange.",hint:"x/10 = sin 30°, so x = 10 × sin 30° = 10 × 0.5.",sol:"sin 30° = x/10 → x = 10 × sin 30° = 10 × 0.5 = 5 cm."},
+ {label:"4 of 6 · Solve it (cosine)",q:"A right-angled triangle has hypotenuse = 8 cm and angle 60°. Find the adjacent side x. (cos 60° = 0.5)",a:[],eq:function(v){return Math.abs(num(v)-4)<0.15;},prompt:"Write cos 60° = x/8, then rearrange.",hint:"x/8 = cos 60°, so x = 8 × cos 60° = 8 × 0.5.",sol:"cos 60° = x/8 → x = 8 × cos 60° = 8 × 0.5 = 4 cm."},
+ {label:"5 of 6 · Solve it (tangent)",q:"A right-angled triangle has adjacent = 10 cm and angle 45°. Find the opposite side x. (tan 45° = 1)",a:[],eq:function(v){return Math.abs(num(v)-10)<0.15;},prompt:"Write tan 45° = x/10, then rearrange.",hint:"x/10 = tan 45°, so x = 10 × tan 45° = 10 × 1.",sol:"tan 45° = x/10 → x = 10 × tan 45° = 10 × 1 = 10 cm."},
+ {label:"6 of 6 · Reach the unmeasurable",q:"You are 12 m from a tree; the angle up to its top is 40°. How tall is it, to 1 d.p.? (tan 40° ≈ 0.839)",a:[],eq:function(v){return Math.abs(num(v)-12*Math.tan(40*Math.PI/180))<0.3;},prompt:"The height and distance are opposite and adjacent → tan 40° = x/12.",hint:"x = 12 × tan 40° = 12 × 0.839.",sol:"tan 40° = x/12 → x = 12 × tan 40° = 12 × 0.839 ≈ 10.1 m."}
 ];
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -683,7 +706,7 @@ function pCheck(){
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Remember tan θ = opposite ÷ adjacent (opposite on top, and never the hypotenuse) — or use the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Pick the ratio (SOH · CAH · TOA), write unknown = known × ratio, then multiply — or use the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -699,161 +722,13 @@ function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{va
 
 /* ---------------- init ---------------- */
 function initLesson(){
-  cnChips(); cnDraw();
-  teDraw();
-  tqRender();
-  rkCardsRender(); rkOrderRender();
+  suDraw();
+  sfDraw();
+  ssRender();
+  ruDraw();
   renderPractice();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
 </script>
-
-<script src="../../assets/progress.js"></script>
-<script>NEOProgress.autoTrack('trigonometry-03-the-tangent-ratio');</script>
-
-<script>
-/* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */
-(function(){
-  if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
-  var DEFAULT=["a","b","c","x","y","²","³","√","π","+","-","×","÷","=","≈","°"];
-  function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
-  function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  /* render any a/b in a plain string as a stacked fraction (numerator over denominator) */
-  function renderFractions(t){ var re=new RegExp("([A-Za-z0-9.²³]+) */ *([A-Za-z0-9.²³]+)","g"); return esc(t).replace(re, function(_,n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }); }
-  function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
-  function updatePreview(f,pv){ var v=f.value||""; if(v.indexOf("/")>=0){ pv.hidden=false; pv.innerHTML='<span class="flabel">Reads as:</span> '+renderFractions(v); } else { pv.hidden=true; pv.innerHTML=""; } }
-  function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
-    var w=document.createElement("div"); w.className="mathpalette";
-    var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="√ Symbols";
-    var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
-    var pv=document.createElement("div"); pv.className="fracpreview"; pv.hidden=true; pv.setAttribute("aria-live","polite");
-    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);updatePreview(f,pv);}); k.appendChild(b); });
-    var fr=document.createElement("button"); fr.type="button"; fr.title="Insert a fraction (numerator / denominator)"; fr.innerHTML='<span class="frac"><span class="fnum">a</span><span class="fden">b</span></span>';
-    fr.addEventListener("click",function(){ insert(f,"/"); updatePreview(f,pv); }); k.appendChild(fr);
-    t.addEventListener("click",function(){ k.hidden=!k.hidden; });
-    f.addEventListener("input",function(){ updatePreview(f,pv); });
-    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w); w.insertAdjacentElement("afterend",pv);
-  }
-  function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
-  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
-})();
-</script>
-
-<script>
-/* Single-open accordion: opening one panel closes the others (data-keep-open opts out). */
-(function(){
-  if(window.__neoAccordionInstalled)return; window.__neoAccordionInstalled=true;
-  function closeOthers(cur){
-    var scope=cur.closest("#lessonView")||document;
-    scope.querySelectorAll("details").forEach(function(d){
-      if(d!==cur && !d.contains(cur) && d.dataset.keepOpen!=="true") d.open=false;
-    });
-  }
-  document.addEventListener("toggle",function(e){
-    var d=e.target;
-    if(d && d.tagName==="DETAILS" && d.open && (d.closest("#lessonView")||d.closest(".neo-lesson-root"))) closeOthers(d);
-  },true);
-})();
-</script>
-</div>
-<style>
-#neoCalcWrap{position:fixed;right:16px;bottom:16px;z-index:9990;font-family:Arial,sans-serif}
-#neoCalcToggle{background:#365a68;color:#fff;border:none;border-radius:24px;padding:11px 16px;font-weight:700;font-size:1em;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-#neoCalcPanel{position:absolute;right:0;bottom:56px;width:246px;background:#f7f3ea;border:1px solid #cdbfa9;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.30);padding:12px}
-#neoCalcPanel[hidden]{display:none}
-.neoCalcHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.neoCalcHead b{color:#3f5f45}
-.neoCalcDeg{font-size:.72em;font-weight:700;color:#fff;background:#5c6b4f;border-radius:6px;padding:2px 7px;letter-spacing:.05em}
-#neoCalcExpr{min-height:22px;background:#fff;border:1px solid #cdbfa9;border-radius:8px;padding:7px 9px;font-size:1.05em;text-align:right;word-break:break-all;color:#2f3429}
-#neoCalcResult{min-height:20px;text-align:right;font-size:1.15em;font-weight:700;color:#2f6b46;padding:3px 4px 8px}
-.neoCalcGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.neoCalcGrid button{padding:11px 0;font-size:1em;border:1px solid #bcae98;border-radius:9px;background:#fff;cursor:pointer;color:#2f3429;font-weight:600}
-.neoCalcGrid button:hover{background:#f0ebe0}
-.neoCalcGrid button.fn{background:#e5eef2;border-color:#7d97a6;font-size:.92em}
-.neoCalcGrid button.op{background:#eef3e8}
-.neoCalcGrid button.eq{background:#2f6b46;color:#fff;border:none}
-.neoCalcGrid button.clr{background:#f6e6de;border-color:#c69}
-@media print{#neoCalcWrap{display:none}}
-</style>
-<div id="neoCalcWrap">
-  <button id="neoCalcToggle" type="button" onclick="neoCalcToggle()" aria-expanded="false" aria-controls="neoCalcPanel">&#129518; Calculator</button>
-  <div id="neoCalcPanel" hidden role="dialog" aria-label="Scientific calculator, degrees">
-    <div class="neoCalcHead"><b>Calculator</b><span class="neoCalcDeg">DEG</span></div>
-    <div id="neoCalcExpr" aria-live="polite">0</div>
-    <div id="neoCalcResult" aria-live="polite"></div>
-    <div class="neoCalcGrid">
-      <button type="button" class="fn" onclick="neoCalcFn('sin')">sin</button>
-      <button type="button" class="fn" onclick="neoCalcFn('cos')">cos</button>
-      <button type="button" class="fn" onclick="neoCalcFn('tan')">tan</button>
-      <button type="button" class="clr" onclick="neoCalcBack()">&#9003;</button>
-      <button type="button" class="fn" onclick="neoCalcKey('(')">(</button>
-      <button type="button" class="fn" onclick="neoCalcKey(')')">)</button>
-      <button type="button" class="fn" onclick="neoCalcFn('sqrt')">&#8730;</button>
-      <button type="button" class="op" onclick="neoCalcKey('÷')">&#247;</button>
-      <button type="button" onclick="neoCalcKey('7')">7</button>
-      <button type="button" onclick="neoCalcKey('8')">8</button>
-      <button type="button" onclick="neoCalcKey('9')">9</button>
-      <button type="button" class="op" onclick="neoCalcKey('×')">&#215;</button>
-      <button type="button" onclick="neoCalcKey('4')">4</button>
-      <button type="button" onclick="neoCalcKey('5')">5</button>
-      <button type="button" onclick="neoCalcKey('6')">6</button>
-      <button type="button" class="op" onclick="neoCalcKey('-')">&#8722;</button>
-      <button type="button" onclick="neoCalcKey('1')">1</button>
-      <button type="button" onclick="neoCalcKey('2')">2</button>
-      <button type="button" onclick="neoCalcKey('3')">3</button>
-      <button type="button" class="op" onclick="neoCalcKey('+')">+</button>
-      <button type="button" class="clr" onclick="neoCalcClear()">C</button>
-      <button type="button" onclick="neoCalcKey('0')">0</button>
-      <button type="button" onclick="neoCalcKey('.')">.</button>
-      <button type="button" class="eq" onclick="neoCalcEq()">=</button>
-    </div>
-    <p style="font-size:.78em;color:#5c6b4f;margin:8px 2px 0">Angles are in <b>degrees</b>. Example: 9 &#215; sin(37) = 5.42</p>
-  </div>
-</div>
-<script>
-(function(){
-  if(window.__neoCalcInstalled)return; window.__neoCalcInstalled=true;
-  var expr="";
-  function isFn(x){return x==="sin"||x==="cos"||x==="tan"||x==="sqrt";}
-  function evalExpr(input){
-    var s=String(input).replace(/×/g,"*").replace(/÷/g,"/").replace(/−/g,"-").replace(/°/g,"");
-    var toks=s.match(/\d+\.?\d*|\.\d+|sin|cos|tan|sqrt|√|[()+\-*/]/g);
-    if(!toks) return NaN;
-    var out=[], ops=[], prec={"+":1,"-":1,"*":2,"/":2,"u":4}, prev=null;
-    for(var i=0;i<toks.length;i++){ var t=toks[i]; if(t==="√")t="sqrt";
-      if(/^[\d.]/.test(t)){ out.push(parseFloat(t)); prev="n"; }
-      else if(isFn(t)){ ops.push(t); prev="f"; }
-      else if(t==="("){ ops.push("("); prev="("; }
-      else if(t===")"){ while(ops.length&&ops[ops.length-1]!=="(") out.push(ops.pop()); if(ops.length) ops.pop(); if(ops.length&&isFn(ops[ops.length-1])) out.push(ops.pop()); prev="n"; }
-      else { var op=t; if(op==="-"&&(prev===null||prev==="("||prev==="o"||prev==="f")) op="u";
-        while(ops.length){ var tp=ops[ops.length-1]; if(tp!=="(" && (isFn(tp) || (prec[tp] && prec[tp]>=prec[op]))) out.push(ops.pop()); else break; }
-        ops.push(op); prev="o"; }
-    }
-    while(ops.length){ var o=ops.pop(); if(o!=="(") out.push(o); }
-    var st=[];
-    for(var j=0;j<out.length;j++){ var x=out[j];
-      if(typeof x==="number"){ st.push(x); }
-      else if(x==="u"){ if(!st.length)return NaN; st.push(-st.pop()); }
-      else if(isFn(x)){ if(!st.length)return NaN; var a=st.pop(); st.push(x==="sin"?Math.sin(a*Math.PI/180):x==="cos"?Math.cos(a*Math.PI/180):x==="tan"?Math.tan(a*Math.PI/180):Math.sqrt(a)); }
-      else { if(st.length<2)return NaN; var b=st.pop(), a2=st.pop(); st.push(x==="+"?a2+b:x==="-"?a2-b:x==="*"?a2*b:a2/b); }
-    }
-    return st.length===1?st[0]:NaN;
-  }
-  function render(){
-    document.getElementById("neoCalcExpr").textContent = expr || "0";
-    var v=evalExpr(expr);
-    document.getElementById("neoCalcResult").textContent = (expr && isFinite(v)) ? "= "+(Math.round(v*1e6)/1e6) : "";
-  }
-  window.neoCalcEval=evalExpr;
-  window.neoCalcToggle=function(){ var p=document.getElementById("neoCalcPanel"); p.hidden=!p.hidden; document.getElementById("neoCalcToggle").setAttribute("aria-expanded", String(!p.hidden)); };
-  window.neoCalcKey=function(s){ expr+=s; render(); };
-  window.neoCalcFn=function(f){ expr+=(f==="sqrt"?"√":f)+"("; render(); };
-  window.neoCalcClear=function(){ expr=""; render(); };
-  window.neoCalcBack=function(){ var m=expr.match(/(sin\(|cos\(|tan\(|√\()$/); expr=m?expr.slice(0,-m[0].length):expr.slice(0,-1); render(); };
-  window.neoCalcEq=function(){ var v=evalExpr(expr); document.getElementById("neoCalcResult").textContent = isFinite(v) ? "= "+(Math.round(v*1e6)/1e6) : "= —"; };
-  render();
-})();
-</script>
-<div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a></div></div>
 </body>
 </html>
