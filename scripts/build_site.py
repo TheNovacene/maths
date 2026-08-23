@@ -92,6 +92,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_06_Finding_a_Side_Rearranging/NEO_Maths_Y10_Trigonometry_Lesson_06_Finding_a_Side_Rearranging_v0.1.html",
     "trigonometry-07-finding-an-angle":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_07_Finding_an_Angle/NEO_Maths_Y10_Trigonometry_Lesson_07_Finding_an_Angle_v0.1.html",
+    "trigonometry-08-putting-it-together":
+        "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_08_Putting_It_Together/NEO_Maths_Y10_Trigonometry_Lesson_08_Putting_It_Together_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

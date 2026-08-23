@@ -447,7 +447,7 @@ function drawLabelTri(svgId, opts){
 function sideShort(k){return {opp:"opp",adj:"adj",hyp:"hyp"}[k];}
 function sideFull(k){return {opp:"opposite",adj:"adjacent",hyp:"hypotenuse"}[k];}
 var RATIO_SIDES={sin:["opp","hyp"], cos:["adj","hyp"], tan:["opp","adj"]};
-function triFor(ang){ var t=Math.tan(ang*Math.PI/180); return t>=1? {a:3.4, b:3.4/t} : {a:3.4*t, b:3.4}; }  /* schematic triangle whose marked angle ≈ ang */
+function triFor(ang){ var v=Math.max(24,Math.min(66,ang)); var t=Math.tan(v*Math.PI/180); return t>=1? {a:3.4, b:3.4/t} : {a:3.4*t, b:3.4}; }  /* schematic shape only: clamp the DRAWN angle to a visible range; value labels carry the true measures */
 function trigFactor(ratio,ang){ var r=ang*Math.PI/180; return ratio==="sin"?Math.sin(r):ratio==="cos"?Math.cos(r):Math.tan(r); }
 function ratioFracHTML(ratio){ return {sin:frac("opposite","hypotenuse"), cos:frac("adjacent","hypotenuse"), tan:frac("opposite","adjacent")}[ratio]; }
 /* render a list of working lines, stacked with a left rule so each follows below the last */

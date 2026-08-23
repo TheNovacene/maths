@@ -498,7 +498,7 @@ function drawLabelTri(svgId, opts){
 }
 
 /* ============ CONNECTION: The ratio with a name ============ */
-var CN_BASE={opp:3, adj:4};                 /* the shared shape: opp:adj = 3:4, so tan = 0.75 */
+var CN_BASE={opp:5, adj:8};                 /* the shared shape: opp:adj = 5:8, so tan = 0.625 */
 var CN_SIZES=[1,1.5,2.5];                    /* three scale factors -> different sizes, same angle */
 var cnSize=0, cnRevealed=false;
 function cnChips(){ document.getElementById("cnChips").innerHTML=CN_SIZES.map(function(k,i){return '<span class="chip'+(i===cnSize?' active':'')+'" onclick="cnPick('+i+')">Triangle '+(i+1)+'</span>';}).join(""); }
@@ -514,7 +514,7 @@ function cnDraw(){
 function cnPick(i){ cnSize=i; cnRevealed=false; cnChips(); cnDraw(); }
 function cnReveal(){
   cnRevealed=true; cnDraw();
-  document.getElementById("cnRead").innerHTML+="<p style='margin:6px 0 0'>Every one of these triangles gives <b>0.75</b> — the same angle, the same ratio. That number is <b>tan θ</b>: &nbsp;tan θ = "+frac("opposite","adjacent")+" = <b>0.75</b>.</p>";
+  document.getElementById("cnRead").innerHTML+="<p style='margin:6px 0 0'>Every one of these triangles gives <b>0.625</b> — the same angle, the same ratio. That number is <b>tan θ</b>: &nbsp;tan θ = "+frac("opposite","adjacent")+" = <b>0.625</b>.</p>";
 }
 
 /* ============ MOVEMENT: Tangent Explorer ============ */
@@ -530,9 +530,9 @@ function teDraw(){
 
 /* ============ REFLECTION: Is this tan θ? ============ */
 var TQ=[
- {opp:3, adj:4, cn:"3 cm", cd:"4 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("3 cm","4 cm")+" = 0.75. Correct."},
+ {opp:7, adj:4, cn:"7 cm", cd:"4 cm", cval:"1.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("7 cm","4 cm")+" = 1.75. Correct."},
  {opp:5, adj:12, cn:"12 cm", cd:"5 cm", cval:"2.4", ok:false, why:"That is upside down. tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","12 cm")+" ≈ 0.42, not 2.4."},
- {opp:6, adj:8, cn:"6 cm", cd:"8 cm", cval:"0.75", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("6 cm","8 cm")+" = 0.75. Correct."},
+ {opp:9, adj:6, cn:"9 cm", cd:"6 cm", cval:"1.5", ok:true,  why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("9 cm","6 cm")+" = 1.5. Correct."},
  {opp:8, adj:6, cn:"8 cm", cd:"10 cm", cval:"0.8", ok:false, why:"That used the hypotenuse (10 cm), not the adjacent. tan θ = "+frac("opposite","adjacent")+" = "+frac("8 cm","6 cm")+" ≈ 1.33."},
  {opp:5, adj:5, cn:"5 cm", cd:"5 cm", cval:"1", ok:true,   why:"tan θ = "+frac("opposite","adjacent")+" = "+frac("5 cm","5 cm")+" = 1 (a 45° angle). Correct."}
 ];

@@ -333,6 +333,14 @@
           "file": "lessons/trigonometry/07-finding-an-angle.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "trigonometry-08-putting-it-together",
+          "num": "Lesson 08",
+          "title": "Putting it together",
+          "file": "lessons/trigonometry/08-putting-it-together.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
