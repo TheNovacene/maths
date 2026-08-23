@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: Rise, run and two points</title>
+<title>NEO Mathematics: Finding an angle</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -82,7 +82,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   .fracpreview[hidden]{display:none}
   .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
 </style>
-<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Straight Lines and Connected Representations &middot; <strong>Lesson 05 &mdash; Rise, run and two points</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Introduction to Trigonometry &middot; <strong>Lesson 07 &mdash; Finding an angle</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
 <script>
 (function(){
  var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
@@ -102,25 +102,26 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <div id="lessonView">
 <div class="neo">
-<h1>NEO Mathematics: Straight Lines</h1>
-<h2>Rise, run and two points</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>How can two points reveal the gradient without showing the equation?</em></h2>
+<h1>NEO Mathematics: Introduction to Trigonometry</h1>
+<h2>Finding an angle</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How can two sides reveal the angle? (the inverse ratios)</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Calculating — finding the gradient from two points using rise and run.</p>
-<p><b>Stepping Stone:</b> find the gradient from two points — gradient = rise ÷ run = change in <em>y</em> ÷ change in <em>x</em>.</p>
+<p><b>Lesson type:</b> Applying — turning the ratios around: from two sides you find the <em>angle</em>, using the inverse ratios sin⁻¹, cos⁻¹ and tan⁻¹.</p>
+<p><b>Stepping Stone:</b> given two sides, write the ratio as an equation (ratio = a number), then apply the <b>inverse</b> ratio to undo it: e.g. tan θ = 3 ÷ 4, so θ = tan⁻¹(3 ÷ 4).</p>
+<p><b>You will need:</b> a calculator in <b>degrees</b> with the <b>inverse</b> keys — use the <b>🧮 Calculator</b> button in the bottom-right (its sin⁻¹, cos⁻¹, tan⁻¹ keys work in degrees), or your own. A <b>√ Symbols</b> palette sits under each answer box too.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
-<p><b>45-minute shape:</b> Connect 10 · Move 15 · Reflect 10 · Create 5 · Rest/Nourish 3 · Evidence 2</p>
+<p><b>45-minute shape:</b> Connect 10 · Move 14 · Reflect 10 · Create 6 · Rest/Nourish 3 · Evidence 2</p>
 </div>
 
 <div class="guides">
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_05_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Straight_Lines_Lesson_05_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_07_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Trigonometry_Lesson_07_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Mark two points, draw the rise-and-run triangle between them, and work out rise ÷ run.')">✏️ Open Maths Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw the triangle and mark the two known sides. Write the ratio, substitute the numbers, then apply the inverse to find the angle: θ = ratio⁻¹(value).')">✏️ Open Maths Scratchpad</button>
 
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
@@ -128,112 +129,120 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — Same line, different triangle</summary>
+<summary>🌿 Connection — From ratio back to angle</summary>
 <div class="card">
-<h3 style="margin-top:0">🔤 New words for this lesson</h3>
-<p style="margin:6px 0"><b style="color:#3f7a45">Rise</b> — the change in <em>y</em> between two points: how far <em>up</em> (or down) you go.<br>
-<b style="color:#2b3d78">Run</b> — the change in <em>x</em> between two points: how far <em>across</em> you go.<br>
-<b style="color:#b0651f">Gradient</b> — <b>rise ÷ run</b> = change in <em>y</em> ÷ change in <em>x</em>. Written as <em>Δy</em> ÷ <em>Δx</em> ("delta" means "change in").</p>
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">So far the angle was given and you found a side. Now you have <b>two sides</b> and want the <b>angle</b>. Same equation-solving — you just need to <b>undo</b> the ratio. The button that undoes sin is <b>sin⁻¹</b> (the <em>inverse sine</em>); it takes a ratio and gives back its angle. Likewise <b>cos⁻¹</b> and <b>tan⁻¹</b>. Four lines again:</p>
+<p style="margin:6px 0 0 10px">1. <b>Write the ratio</b> (choose it from the two sides you have): &nbsp;tan θ = <span class="frac"><span class="fnum">opposite</span><span class="fden">adjacent</span></span><br>
+2. <b>Put in the numbers</b>: &nbsp;tan θ = <span class="frac"><span class="fnum">3</span><span class="fden">4</span></span> = 0.75<br>
+3. <b>Apply the inverse</b> to undo tan: &nbsp;θ = tan⁻¹(0.75)<br>
+4. <b>Work it out</b> on a calculator (in degrees): &nbsp;θ = 36.9°</p>
+<p style="margin:6px 0"><b>Line 3 is the key idea:</b> sin⁻¹, cos⁻¹, tan⁻¹ are the inverse operations that turn a <em>ratio</em> back into its <em>angle</em>. The 🧮 Calculator (bottom-right) has sin⁻¹, cos⁻¹, tan⁻¹ keys, in degrees.</p>
 </div>
-<p><b>What to do:</b> each line shows <em>two</em> different rise-and-run triangles at once — a small one and a wider one. Compare the gradient each triangle gives. Press <b>Another line</b> for a fresh example.</p>
-<p><b>What you are trying to notice:</b> on any one line the two triangles have different rises and runs — but <b>rise ÷ run comes out the same every time</b>. The gradient belongs to the line, not to the points you pick.</p>
+<p><b>What to do:</b> the triangle shows <b>two known sides</b> and the unknown angle <b>θ</b>. Press <b>sin</b>, <b>cos</b> or <b>tan</b> to choose the ratio those two sides make, then reveal the working <b>one line at a time</b> — watch the inverse turn the ratio into the angle.</p>
+<p><b>What you are trying to notice:</b> finding an angle is finding a side <em>run backwards</em>. You still write the ratio and substitute — then instead of rearranging for a side, you <b>apply the inverse</b> to get the angle.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔺 Same Line, Different Triangle</h3>
-<div class="card" style="text-align:center"><svg id="slGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="One line with two different gradient triangles on it"></svg></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="slNew()">🔀 Another line</button></div>
-<div id="slRead" class="card small"></div>
-<p><b>Carry this forward:</b> wherever you take the two points on a straight line, <b>rise ÷ run</b> gives the same gradient. That is what makes a line straight.</p>
+<h3 style="margin-top:0">🧩 From ratio back to angle</h3>
+<div class="card" style="text-align:center"><svg id="suTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with two known sides and an unknown angle"></svg></div>
+<div id="suStep" class="clue"></div>
+<div id="suOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="suWork" class="readout" style="display:none"></div>
+<div class="buttonrow" style="justify-content:center"><button id="suNextBtn" onclick="suNext()" style="display:none">▸ Next line</button><button onclick="suNew()">🔄 New set-up</button></div>
+<p><b>Carry this forward:</b> ratio → substitute → <b>apply the inverse</b> → evaluate. θ = ratio⁻¹(value).</p>
 </div>
 </details>
 
-<!-- ================= MOVEMENT ================= -->
+<!-- ================= MOVEMENT (dominant) ================= -->
 <details class="hs">
-<summary>🚶 Movement — Gradient Triangle Builder</summary>
-<p><b>What to do:</b> <b>drag point A</b> and <b>point B</b> anywhere you like. The line is drawn through them, and the rise-and-run triangle appears between them. Watch how <b>rise ÷ run</b> gives the gradient.</p>
-<p><b>What you are trying to notice:</b> the <b>run</b> is how far across (change in <em>x</em>), the <b>rise</b> is how far up or down (change in <em>y</em>), and <b>gradient = rise ÷ run</b>. Move A and B closer or wider — as long as they stay on the same tilt, the gradient stays the same.</p>
+<summary>🚶 Movement — Angle Finder</summary>
+<p><b>What to do:</b> build the solution <b>line by line</b>. <b>Choose the ratio</b> from the two sides you have (that writes lines 1 and 2). Then <b>type the inverse line</b> that gives the angle — θ = ratio⁻¹(value). Finally <b>work out the angle</b> on your calculator (to 1 d.p.).</p>
+<p><b>What you are trying to notice:</b> the method is finding-a-side in reverse. Two moves change: you <b>choose the ratio from the two sides you have</b> (not from the angle), and line 3 <b>applies the inverse</b> (sin⁻¹, cos⁻¹ or tan⁻¹) instead of multiplying or dividing.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔺 Gradient Triangle Builder</h3>
-<p class="small" style="text-align:center;margin:2px 0">Drag the two dots. Keep them on different <em>x</em> positions (a run of zero has no gradient).</p>
-<div class="card" style="text-align:center"><svg id="gtGraph" class="graphsvg" style="max-width:360px;touch-action:none;cursor:grab" viewBox="0 0 360 360" role="img" aria-label="A line through two draggable points A and B, with the rise and run triangle between them"></svg></div>
-<div id="gtRead" class="card small"></div>
-<p><b>Carry this forward:</b> any two points on a line give the gradient by <b>rise ÷ run</b> — the change in <em>y</em> divided by the change in <em>x</em>. You do not need the equation to find it.</p>
+<h3 style="margin-top:0">📐 Angle Finder</h3>
+<div class="card" style="text-align:center"><svg id="sfTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with two known sides and an angle to find"></svg></div>
+<div id="sfStep" class="clue"></div>
+<div id="sfOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="sfWork" class="readout" style="display:none"></div>
+<div id="sfRearrRow" style="display:none;text-align:center"><label class="small" for="sfRearr"><b>Line 3 — apply the inverse (θ = …):</b></label><br><input id="sfRearr" class="neo-mathfield" placeholder="e.g. θ = tan⁻¹(3 ÷ 4)" style="max-width:250px"> <button onclick="sfRearrCheck()">Check line 3</button></div>
+<div id="sfAnsRow" style="display:none;text-align:center;margin-top:8px"><label class="small" for="sfAns"><b>Line 4 — the angle, θ =</b></label> <input id="sfAns" class="neo-mathfield" placeholder="angle to 1 d.p." inputmode="decimal" style="max-width:150px"> <button onclick="sfCheck()">✅ Check</button></div>
+<div id="sfFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="sfNew()">➡️ New problem</button></div>
+<div id="sfScore" class="card small" style="text-align:center"></div>
+<p><b>Carry this forward:</b> choose the ratio from your two sides, substitute, then apply the inverse: θ = ratio⁻¹(value).</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION ================= -->
 <details class="es">
-<summary>🪞 Reflection — Right or slip?</summary>
-<p><b>What to do:</b> each card shows two points and someone's working for the gradient. Decide whether the working is <b>right</b> or a <b>slip</b>, then check.</p>
-<p><b>What you are trying to notice:</b> the two classic slips are <b>rise and run swapped</b> (run ÷ rise instead of rise ÷ run) and a <b>sign lost</b> when the line falls. Rise ÷ run, in that order, with signs kept.</p>
+<summary>🪞 Reflection — Spot the slip</summary>
+<p><b>What to do:</b> each card shows two sides and <b>someone's working</b> for the angle. Decide whether it is <b>right</b> or a <b>slip</b>, then check.</p>
+<p><b>What you are trying to notice:</b> the two classic slips are the <b>wrong ratio</b> (using a side that isn't there), and <b>forgetting the inverse</b> — giving the ratio value (like 0.75) as if it were the angle. The angle is <b>ratio⁻¹(value)</b>, never the value itself.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔎 Right or slip?</h3>
-<div id="rcClue" class="clue"></div>
-<div class="card" style="text-align:center"><svg id="rcMini" class="graphsvg" style="max-width:300px" viewBox="0 0 360 360" role="img" aria-label="A line through two points with a rise and run triangle"></svg></div>
-<div id="rcOpts" class="buttonrow"></div>
-<div id="rcFeedback" class="feedback"></div>
-<div class="buttonrow"><button onclick="rcNext()">➡️ Next</button></div>
-<p class="small" id="rcProgress"></p>
-<p><b>Carry this forward:</b> gradient is <b>rise ÷ run</b> — always in that order, and keep the minus sign if the line falls.</p>
+<h3 style="margin-top:0">🔎 Spot the slip</h3>
+<div id="ssClue" class="clue"></div>
+<div class="card" style="text-align:center"><svg id="ssTri" class="graphsvg" style="max-width:340px" viewBox="0 0 360 300" role="img" aria-label="A right-angled triangle with two known sides and a proposed working for the angle"></svg></div>
+<div id="ssOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="ssFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ssNext()">➡️ Next</button></div>
+<p class="small" id="ssProg"></p>
+<p><b>Carry this forward:</b> right ratio for the two sides, and always apply the inverse — the angle is ratio⁻¹(value), not the value.</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY ================= -->
 <details class="dw">
-<summary>🎨 Creativity — Rate from two readings</summary>
-<p><b>What to do:</b> each situation gives you <b>two readings</b> — like a value at two different times. Work out the <b>rate</b> (the gradient) as <b>rise ÷ run</b>, type it in, and check.</p>
-<p><b>What you are trying to notice:</b> a real rate comes from two readings, not from an equation. When the second reading is <em>smaller</em>, the rise is negative — so the rate is <b>negative</b>.</p>
+<summary>🎨 Creativity — Reveal the angle</summary>
+<p><b>What to do:</b> each scenario gives you <b>two real measurements</b> — a rise and a run, a height and a distance — and asks for the <b>angle</b>: how steep is the ramp, how pitched is the roof, how high is the angle of elevation. Set it up and find the angle with your calculator.</p>
+<p><b>What you are trying to notice:</b> from two lengths you can measure, the inverse ratio hands you an angle you could not measure with a protractor on the spot — the steepness of a hillside, the pitch of a distant roof.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🌍 Rate from Two Readings</h3>
-<div id="trChips" class="buttonrow" style="justify-content:center"></div>
-<p id="trDesc" class="clue"></p>
-<div class="card" style="text-align:center"><svg id="trGraph" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="Two readings plotted, with the rise and run triangle between them"></svg></div>
-<div id="trWork" class="card small"></div>
-<label class="small" for="trAns"><b>The rate (gradient) = rise ÷ run =</b></label>
-<input id="trAns" placeholder="e.g. 3 or -2" style="max-width:160px">
-<div class="buttonrow" style="justify-content:center"><button onclick="trCheck()">✅ Check the rate</button></div>
-<div id="trFeedback" class="feedback"></div>
-<p><b>Make it your own:</b> on the Scratchpad, invent a situation, give two readings, and work out its rate — is it positive or negative?</p>
-<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Invent a situation with two readings. Plot them, draw the rise-and-run triangle, and work out rise ÷ run.')">✏️ Create on the Scratchpad</button>
+<h3 style="margin-top:0">📐 Reveal the angle</h3>
+<div class="card" style="text-align:center"><svg id="ruTri" class="graphsvg" style="max-width:360px" viewBox="0 0 360 300" role="img" aria-label="A real-world right-angled triangle: two known lengths and an unknown angle"></svg></div>
+<div id="ruScenario" class="clue"></div>
+<div style="text-align:center"><label class="small" for="ruAns"><b>angle = </b></label> <input id="ruAns" class="neo-mathfield" placeholder="angle to 1 d.p." inputmode="decimal" style="max-width:170px"> <button onclick="ruCheck()">✅ Check</button></div>
+<div id="ruFeedback" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ruNew()">📐 Another one</button></div>
+<p><b>Make it your own:</b> on the Scratchpad, invent a real angle to find — a ramp, a roof, a hill — give the two lengths and find the angle with an inverse ratio.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Invent an angle to find. Give two lengths (e.g. rise and run), write the ratio, then apply the inverse: angle = tan⁻¹(rise ÷ run).')">✏️ Create on the Scratchpad</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
 <summary>🌙 Rest — A pause to let it settle</summary>
-<p>Seeing that any two points give the same gradient — that rise ÷ run is fixed for a line — is a real shift in thinking. Take a breath before moving on.</p>
+<p>Turning the whole idea around — from "angle gives a ratio" to "a ratio gives back the angle" — is a small but satisfying shift. The inverse simply runs the machine backwards. Take a breath before moving on.</p>
 <div class="card">
-<p><b>Notice one thing:</b> when you dragged A and B wider apart, both the rise and the run grew — yet the gradient stayed the same. What did it feel like to see that stay steady? There is no right answer — just what your own attention noticed.</p>
+<p><b>Notice one thing:</b> did it help to see finding an angle as finding a side <em>run backwards</em>, rather than as a brand-new method? There is no right answer — just what your own attention noticed.</p>
 <p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
 </div>
 </details>
 
 <!-- ================= NUTRITION ================= -->
 <details class="nt">
-<summary>🍎 Nutrition — Where does this show up in the real world?</summary>
-<p><b>Mode: contextual.</b> A gradient is a rate — and rates run the world.</p>
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> The ramps and roofs are honest problem settings, not the nourishment itself — so we name honestly what the <em>learning</em> feeds.</p>
 <div class="card">
-<p><b>Why it matters:</b> speed is a gradient (distance per hour), a wage is a gradient (pay per hour), a phone tariff's cost per gigabyte, the price per litre at a fuel pump, a medicine dose per kilogram of body weight — all gradients. A steeper line means a faster rate; a <em>negative</em> gradient means something falling — a battery draining, a balance dropping, a temperature cooling. Reading how steep a line is, and which way it leans, tells you how fast something is changing and whether it is growing or shrinking.</p>
-<p class="small">Next time you see the word "per" — miles per hour, cost per item — you are looking at a gradient.</p>
+<p><b>What it feeds:</b> today feeds the idea of an <b>inverse</b> — every operation that does something has a partner that undoes it, and knowing the partner doubles what you can do. Adding and subtracting, multiplying and dividing, squaring and rooting, and now sin and sin⁻¹: recognising these pairs is one of the most powerful organising ideas in mathematics, because it means you rarely need a new method — only the reverse of one you already have. Learning to ask "what undoes this?" turns a wall into a door.</p>
+<p class="small">Carry one idea forward: when you can go one way, look for the way back — the inverse is often hiding in plain sight.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> find a gradient from two points.</p>
+<p><b>Your task:</b> show that you can find an angle from two sides using the inverse ratios.</p>
 <ul>
-<li>Plot <b>two points</b> of your choosing, draw the line through them, and build the <b>rise-and-run triangle</b> between them. Label the rise and the run.</li>
-<li>Work out the gradient as <b>rise ÷ run</b>, showing your working. Then take a <b>different</b> pair of points on the same line and show it gives the <b>same</b> gradient.</li>
-<li>Give <b>two readings</b> from a real situation where the amount goes <em>down</em> (so the rise is negative), and work out the negative rate.</li>
+<li>Take a right-angled triangle with two known sides. Write the ratio those two sides make, substitute the numbers, <b>apply the inverse</b> (sin⁻¹, cos⁻¹ or tan⁻¹), and evaluate. Show all four lines.</li>
+<li>Do this for all three cases: two sides that give a <b>tangent</b>, two that give a <b>sine</b>, and two that give a <b>cosine</b> — explaining how you chose the ratio each time.</li>
+<li>Solve one <b>reveal the angle</b> problem from real measurements (a ramp, a roof or an angle of elevation), and explain why you used the inverse.</li>
 </ul>
 <p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution, a labelled poster, or a spoken/video walkthrough.</p>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_SL_RISE_RUN_AND_TWO_POINTS_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_FINDING_AN_ANGLE_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows rise is the change in y and run the change in x.</td><td>Builds a rise-and-run triangle between two points.</td><td>Finds the gradient as rise ÷ run.</td><td>Explains why any two points on a line give the same gradient, signs included.</td></tr>
-<tr><td><b>Application</b></td><td>Reads off two points.</td><td>Works out rise and run separately.</td><td>Calculates the gradient from two points, keeping the sign.</td><td>Finds a negative rate from two real readings.</td></tr>
-<tr><td><b>Communication</b></td><td>Records points with limited labelling.</td><td>Marks the rise and run on the triangle.</td><td>Shows rise ÷ run working clearly.</td><td>Explains a method another learner could follow.</td></tr>
-<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that a wider triangle keeps the same gradient.</td><td>Explains why rise ÷ run is constant on a line.</td><td>Connects two readings to a real rate of change.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows two sides can give the angle.</td><td>Knows the inverse ratio turns a ratio back into its angle.</td><td>Chooses the correct ratio from the two known sides.</td><td>Explains the inverse as the operation that undoes sin/cos/tan.</td></tr>
+<tr><td><b>Application</b></td><td>Reads an inverse value from a calculator.</td><td>Finds an angle in one case.</td><td>Finds an angle in all three cases.</td><td>Reveals an angle from real measurements.</td></tr>
+<tr><td><b>Communication</b></td><td>Records an answer with limited working.</td><td>Writes the ratio equation.</td><td>Shows all four lines including the inverse step.</td><td>Explains a method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the angle needs the inverse, not the ratio.</td><td>Explains finding an angle as finding a side reversed.</td><td>Connects it to the general idea of inverse operations.</td></tr>
 </table>
 </details>
 
@@ -243,7 +252,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= PRACTICE COMPANION ================= -->
 <div id="practiceView" hidden><div class="practice">
-<h1>Rise, run and two points — Practice Companion</h1>
+<h1>Finding an angle — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -256,7 +265,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Plot the two points, draw the rise-and-run triangle, and work out rise ÷ run before you check.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Sketch the triangle and mark the two known sides. Write the ratio, substitute, then apply the inverse to find the angle before you check.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -338,7 +347,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   }
   function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
   function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
-  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointervertical = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
   function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
   function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
   function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
@@ -366,7 +375,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <script>
 /* Focused symbol palette for this lesson. */
-window.NEO_PALETTE_SYMBOLS=["x","y","=","+","−"];
+window.NEO_PALETTE_SYMBOLS=["θ","=","÷","°","sin⁻¹","cos⁻¹","tan⁻¹","(",")","."];
 /* ---------------- View switching + helpers ---------------- */
 function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
 function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
@@ -375,7 +384,7 @@ function num(v){
   s=s.replace(/÷/g,'/');                       // palette ÷ counts as a fraction bar
   s=s.replace(/(tan|sin|cos)\s*θ?/g,'');          // drop a leading trig label e.g. "tan θ"
   s=s.replace(/=/g,'');
-  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');       // strip a unit written after a number
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1');   // strip a unit written after a number
   s=s.replace(/[, ]+/g,'');
   var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);  // a fraction anywhere in the answer
   if(fm) return parseFloat(fm[1])/parseFloat(fm[2]);
@@ -385,204 +394,277 @@ function num(v){
 function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[°£,]/g,'').trim();}
 var PI=3.14;
 
-/* ============ Shared straight-line engine (reused across the unit) ============ */
-function eqStr(m,c){
-  if(m===0) return "y = "+c;
-  var mt = m===1?"x" : m===-1?"−x" : m+"x";
-  var ct = c===0?"" : c>0?(" + "+c) : (" − "+(-c));
-  return "y = "+mt+ct;
+/* ============ Right-triangle engine (reused across the Trigonometry unit) ============ */
+function triHyp(a,u){ return Math.round(Math.sqrt(a*a+u*u)*100)/100; }
+function drawTri(svgId, along, up, opts){
+  opts=opts||{};
+  var svg=document.getElementById(svgId); if(!svg)return;
+  var vb=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);
+  var VW=vb[2], VH=vb[3], pad=(opts.pad!=null?opts.pad:34);
+  var rightReserve=(opts.rightReserve!=null?opts.rightReserve:82);
+  var ppu = opts.ppu || Math.min((VW-pad-rightReserve)/(opts.maxAlong||along), (VH-2*pad)/(opts.maxUp||up));
+  var Ax=pad, Ay=VH-pad, Bx=pad+along*ppu, By=VH-pad, Cx=Bx, Cy=VH-pad-up*ppu;
+  var s="", fill=opts.fill||"#efe3c4", stroke=opts.stroke||"#365a68";
+  s+='<polygon points="'+Ax+','+Ay+' '+Bx.toFixed(1)+','+By+' '+Cx.toFixed(1)+','+Cy.toFixed(1)+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2.4" stroke-linejoin="round"/>';
+  (opts.ghosts||[]).forEach(function(g){ var gx=pad+g.along*ppu, gy=VH-pad-g.up*ppu;
+    s+='<line x1="'+gx.toFixed(1)+'" y1="'+Ay+'" x2="'+gx.toFixed(1)+'" y2="'+gy.toFixed(1)+'" stroke="#4a5f6e" stroke-width="1.3" stroke-dasharray="4 3"/><circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="2.6" fill="#4a5f6e"/>'; });
+  var sq=Math.min(12, along*ppu*0.35, up*ppu*0.35);
+  s+='<path d="M'+(Bx-sq).toFixed(1)+','+By+' L'+(Bx-sq).toFixed(1)+','+(By-sq).toFixed(1)+' L'+Bx.toFixed(1)+','+(By-sq).toFixed(1)+'" fill="none" stroke="'+stroke+'" stroke-width="1.4"/>';
+  var r=Math.min(26, along*ppu*0.45), L=Math.hypot(along,up), hx=Ax+r*along/L, hy=Ay-r*up/L;
+  s+='<path d="M'+(Ax+r).toFixed(1)+','+Ay+' A'+r.toFixed(1)+','+r.toFixed(1)+' 0 0 0 '+hx.toFixed(1)+','+hy.toFixed(1)+'" fill="none" stroke="#b25f2e" stroke-width="1.8"/>';
+  if(opts.showTheta!==false) s+='<text x="'+(Ax+r+6).toFixed(1)+'" y="'+(Ay-6).toFixed(1)+'" font-size="13" fill="#b25f2e" font-style="italic">θ</text>';
+  var aL=(opts.alongLabel!=null?opts.alongLabel:("horizontal = "+along)), uL=(opts.upLabel!=null?opts.upLabel:("vertical = "+up));
+  s+='<text x="'+((Ax+Bx)/2).toFixed(1)+'" y="'+(Ay+16).toFixed(1)+'" font-size="11" fill="'+stroke+'" text-anchor="middle">'+aL+'</text>';
+  s+='<text x="'+(Bx+6).toFixed(1)+'" y="'+((By+Cy)/2+3).toFixed(1)+'" font-size="11" fill="'+stroke+'">'+uL+'</text>';
+  if(opts.hypLabel) s+='<text x="'+((Ax+Cx)/2-6).toFixed(1)+'" y="'+((Ay+Cy)/2-5).toFixed(1)+'" font-size="11" fill="#8a5a2b" text-anchor="end">'+opts.hypLabel+'</text>';
+  svg.innerHTML=s;
 }
-function storyStr(m,c){
-  var step = m===0 ? "and <b>stays the same</b> each step" : m>0 ? ("and goes <b>up by "+m+"</b> each step") : ("and goes <b>down by "+(-m)+"</b> each step");
-  return "A value <b>starts at "+c+"</b> "+step+". After <em>x</em> steps it is <em>y</em>.";
-}
-function tableHTML(m,c){
-  var th="",td="";
-  [0,1,2,3,4].forEach(function(x){ th+="<td>"+x+"</td>"; td+="<td>"+(m*x+c)+"</td>"; });
-  return '<table class="satab" style="font-size:.92em;margin:0"><tr><th style="text-align:left">x</th>'+th+'</tr><tr><th style="text-align:left">y</th>'+td+'</tr></table>';
-}
-function drawGraph(svgId,m,c,opts){
-  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg)return;
-  var VW=360,VH=360,pad=34, xmin=(opts.xRange?opts.xRange[0]:-1), xmax=(opts.xRange?opts.xRange[1]:6);
-  var fam=opts.family||[{m:m,c:c}];
-  var exts=[0]; fam.forEach(function(f){ exts.push(f.m*xmin+f.c); exts.push(f.m*xmax+f.c); });
-  if(opts.targetY!=null) exts.push(opts.targetY);
-  var yA=m*xmin+c, yB=m*xmax+c;
-  var ylo=Math.floor(Math.min.apply(0,exts)-1), yhi=Math.ceil(Math.max.apply(0,exts)+1);
-  if(yhi-ylo<8){ var mid=(yhi+ylo)/2; ylo=Math.floor(mid-4); yhi=ylo+8; }
-  if(opts.fixedY){ ylo=opts.fixedY[0]; yhi=opts.fixedY[1]; }   /* fixed window: scale never changes as c/m change */
-  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(yhi-ylo);
-  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ylo)*uy;}
-  var s="", y0=SY(0), x0=SX(0);
-  for(var gx=xmin;gx<=xmax;gx++) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
-  for(var gy=ylo;gy<=yhi;gy++) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
-  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
-  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ylo).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(yhi).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
-  for(var lx=xmin+1;lx<=xmax;lx++){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
-  var ystep=(yhi-ylo)>12?2:1;
-  for(var ly=Math.ceil(ylo/ystep)*ystep;ly<=yhi;ly+=ystep){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
-  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="11" fill="#6a7080" text-anchor="end" font-style="italic">x</text>';
-  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(yhi)+10).toFixed(1)+'" font-size="11" fill="#6a7080" font-style="italic">y</text>';
-  if(opts.ghost){ var g=opts.ghost; s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(g.m*xmin+g.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(g.m*xmax+g.c).toFixed(1)+'" stroke="#b9a05f" stroke-width="2" stroke-dasharray="5 4"/>'; }
-  if(opts.targetY!=null){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(opts.targetY).toFixed(1)+'" r="8" fill="none" stroke="#b24c4c" stroke-width="2.4"/><text x="'+(SX(0)-9).toFixed(1)+'" y="'+(SY(opts.targetY)+3).toFixed(1)+'" font-size="10" fill="#b24c4c" text-anchor="end">target</text>'; }
-  if(opts.family){
-    opts.family.forEach(function(f){ var col=f.col||"#3f7a45";
-      s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(f.m*xmin+f.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(f.m*xmax+f.c).toFixed(1)+'" stroke="'+col+'" stroke-width="2.4"/>';
-      if(f.c>=ylo&&f.c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(f.c).toFixed(1)+'" r="4.5" fill="'+col+'"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(f.c)-6).toFixed(1)+'" font-size="10" fill="'+col+'">(0, '+f.c+')</text>'; }
+function r2(x){ return Math.round(x*100)/100; }
+/* a stacked fraction: numerator over denominator (inherits the surrounding text colour) */
+function frac(n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }
+
+/* ============ Naming engine: a right triangle at any orientation, sides named from θ ============ */
+var SIDE_COL={hyp:"#8a5a2b", opp:"#b24c4c", adj:"#2b6cb0"};
+var SIDE_NAME={hyp:"Hypotenuse", opp:"Opposite", adj:"Adjacent"};
+var SIDE_WHY={hyp:"opposite the right angle", opp:"across from θ", adj:"next to θ"};
+function drawLabelTri(svgId, opts){
+  opts=opts||{};
+  var svg=document.getElementById(svgId); if(!svg) return;
+  var vb=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);
+  var VW=vb[2], VH=vb[3], pad=(opts.pad!=null?opts.pad:58);
+  var a=opts.a||3, b=opts.b||4;                 /* a = vertical leg, b = horizontal leg (logical) */
+  var R={x:0,y:0}, P={x:b,y:0}, Q={x:0,y:a};    /* R = right-angle corner */
+  var orient=(opts.orient||0)%4, flip=!!opts.flip, ang=orient*Math.PI/2, ca=Math.cos(ang), sa=Math.sin(ang);
+  function tr(p){ var x=flip?-p.x:p.x, y=p.y; return {x:x*ca-y*sa, y:x*sa+y*ca}; }
+  var TR=tr(R), TP=tr(P), TQ=tr(Q);
+  var xs=[TR.x,TP.x,TQ.x], ys=[TR.y,TP.y,TQ.y];
+  var minx=Math.min.apply(0,xs), maxx=Math.max.apply(0,xs), miny=Math.min.apply(0,ys), maxy=Math.max.apply(0,ys);
+  var w=(maxx-minx)||1, h=(maxy-miny)||1, sc, offx, offy;
+  if(opts.ppu){ sc=opts.ppu; offx=pad-minx*sc; offy=pad; }   /* fixed scale, anchored bottom-left */
+  else { sc=Math.min((VW-2*pad)/w,(VH-2*pad)/h); offx=(VW-w*sc)/2-minx*sc; offy=(VH-h*sc)/2-miny*sc; }
+  function S(p){ return {x:p.x*sc+offx, y:VH-(p.y*sc+offy)}; }
+  var sR=S(TR), sP=S(TP), sQ=S(TQ), cx=(sR.x+sP.x+sQ.x)/3, cy=(sR.y+sP.y+sQ.y)/3;
+  var stroke="#365a68", s="";
+  s+='<polygon points="'+sR.x.toFixed(1)+','+sR.y.toFixed(1)+' '+sP.x.toFixed(1)+','+sP.y.toFixed(1)+' '+sQ.x.toFixed(1)+','+sQ.y.toFixed(1)+'" fill="'+(opts.fill||"#efe3c4")+'" stroke="'+stroke+'" stroke-width="2.2" stroke-linejoin="round"/>';
+  function sub(A,B){return {x:A.x-B.x,y:A.y-B.y};}
+  function nrm(v){var L=Math.hypot(v.x,v.y)||1;return {x:v.x/L,y:v.y/L};}
+  /* right-angle marker at R */
+  var u1=nrm(sub(sP,sR)), u2=nrm(sub(sQ,sR)), m=13;
+  s+='<path d="M'+(sR.x+u1.x*m).toFixed(1)+','+(sR.y+u1.y*m).toFixed(1)+' L'+(sR.x+u1.x*m+u2.x*m).toFixed(1)+','+(sR.y+u1.y*m+u2.y*m).toFixed(1)+' L'+(sR.x+u2.x*m).toFixed(1)+','+(sR.y+u2.y*m).toFixed(1)+'" fill="none" stroke="'+stroke+'" stroke-width="1.4"/>';
+  /* the three sides, keyed to the marked angle */
+  var mark=opts.mark||"P";
+  var sides=[
+    {key:"hyp", A:sP, B:sQ},
+    (mark==="P"? {key:"adj", A:sR, B:sP} : {key:"opp", A:sR, B:sP}),
+    (mark==="P"? {key:"opp", A:sR, B:sQ} : {key:"adj", A:sR, B:sQ})
+  ];
+  var customLabels=opts.labels||null, hlActive=(opts.highlight!=null);
+  sides.forEach(function(sd){
+    var hl=opts.highlight, hi=(Array.isArray(hl)?hl.indexOf(sd.key)>=0:hl===sd.key), showAll=(opts.show==="all"), lab=(customLabels&&customLabels[sd.key]);
+    var A=sd.A, B=sd.B, col=SIDE_COL[sd.key];
+    /* ---- stroke: highlighted sides get a soft halo + a bold line so they clearly "light up" ---- */
+    if(hi){
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="11" stroke-linecap="round" opacity="0.28"/>';
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="6" stroke-linecap="round"/>';
+    } else if(showAll || (lab && !hlActive)){
+      s+='<line x1="'+A.x.toFixed(1)+'" y1="'+A.y.toFixed(1)+'" x2="'+B.x.toFixed(1)+'" y2="'+B.y.toFixed(1)+'" stroke="'+col+'" stroke-width="3.4" stroke-linecap="round"/>';
+    }
+    /* ---- label: offset PERPENDICULAR to the edge (outward) so it never sits on the line ---- */
+    var text=showAll?SIDE_NAME[sd.key]:(lab||null);
+    if(text){
+      var mid={x:(A.x+B.x)/2,y:(A.y+B.y)/2}, dir=nrm(sub(B,A)), nl={x:-dir.y,y:dir.x};
+      if(nl.x*(mid.x-cx)+nl.y*(mid.y-cy)<0){ nl={x:-nl.x,y:-nl.y}; }   /* point away from the centre */
+      var off=15, anchor=(nl.x>0.35?"start":(nl.x<-0.35?"end":"middle"));
+      var lx=mid.x+nl.x*off, ly=mid.y+nl.y*off;
+      if(anchor==="middle"){ ly += (nl.y>0? 12 : -4); } else { lx += (nl.x>0? 3 : -3); ly += 4; }
+      /* keep the whole label inside the canvas (never clip at an edge) */
+      var estW=String(text).replace(/<[^>]*>/g,"").length*6.6;
+      if(anchor==="end"){ lx=Math.min(Math.max(lx,estW+4),VW-4); }
+      else if(anchor==="start"){ lx=Math.max(Math.min(lx,VW-4-estW),4); }
+      else { lx=Math.min(Math.max(lx,estW/2+4),VW-4-estW/2); }
+      var faded=(hlActive && !hi);
+      s+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="'+(hi?13:12)+'" font-weight="'+(hi?"bold":"600")+'" fill="'+(faded?"#8f958a":col)+'" text-anchor="'+anchor+'">'+text+'</text>';
+    }
+  });
+  /* marked-angle arc + label (θ by default, or a specific value like "40°" via opts.angleLabel) */
+  if(opts.theta!==false){
+    var V=(mark==="P"?sP:sQ), e1=nrm(sub(sR,V)), e2=nrm(sub((mark==="P"?sQ:sP),V)), r=20;
+    var p1={x:V.x+e1.x*r,y:V.y+e1.y*r}, p2={x:V.x+e2.x*r,y:V.y+e2.y*r};
+    var cross=e1.x*e2.y-e1.y*e2.x, sweep=cross>0?1:0;
+    s+='<path d="M'+p1.x.toFixed(1)+','+p1.y.toFixed(1)+' A'+r+','+r+' 0 0 '+sweep+' '+p2.x.toFixed(1)+','+p2.y.toFixed(1)+'" fill="none" stroke="#b25f2e" stroke-width="1.8"/>';
+    var bx=e1.x+e2.x, by=e1.y+e2.y, bl=Math.hypot(bx,by)||1;
+    var aLab=(opts.angleLabel!=null?opts.angleLabel:"θ"), aStyle=(opts.angleLabel!=null?"":' font-style="italic"'), aOff=(opts.angleLabel!=null?r+16:r+11);
+    var alx=Math.min(Math.max(V.x+bx/bl*aOff,14),VW-14);
+    s+='<text x="'+alx.toFixed(1)+'" y="'+(V.y+by/bl*aOff+4).toFixed(1)+'" font-size="'+(opts.angleLabel!=null?"12.5":"14")+'" font-weight="'+(opts.angleLabel!=null?"bold":"normal")+'" fill="#b25f2e"'+aStyle+' text-anchor="middle">'+aLab+'</text>';
+  }
+  /* optional labels on the two acute vertices (used to name angle A / angle B) */
+  if(opts.vertexLabels){
+    [["P",sP],["Q",sQ]].forEach(function(pr){
+      var lab=opts.vertexLabels[pr[0]]; if(!lab) return;
+      var vv=pr[1], o=nrm(sub(vv,{x:cx,y:cy})), col=(mark===pr[0]?"#b25f2e":"#2f3429");
+      s+='<text x="'+(vv.x+o.x*17).toFixed(1)+'" y="'+(vv.y+o.y*17+5).toFixed(1)+'" font-size="14" font-weight="bold" fill="'+col+'" text-anchor="middle">'+lab+'</text>';
     });
-    svg.innerHTML=s; return;
   }
-  if(opts.segTo!=null){ s+='<line x1="'+SX(0).toFixed(1)+'" y1="'+SY(c).toFixed(1)+'" x2="'+SX(opts.segTo).toFixed(1)+'" y2="'+SY(m*opts.segTo+c).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  else if(!opts.hideLine){ s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(yA).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(yB).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  if(opts.showPoints){ var maxp=(opts.showPoints===true)?4:opts.showPoints; for(var px=0;px<=maxp;px++){ var py=m*px+c; if(py<ylo||py>yhi)continue; s+='<circle cx="'+SX(px).toFixed(1)+'" cy="'+SY(py).toFixed(1)+'" r="3.2" fill="#2f6a35"/>'; } }
-  if(!opts.hideIntercept && c>=ylo&&c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(c).toFixed(1)+'" r="4.5" fill="#b25f2e"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(c)-6).toFixed(1)+'" font-size="10" fill="#b25f2e">(0, '+c+')</text>'; }
-  if(opts.lineThrough){ var LA=opts.lineThrough.A, LB=opts.lineThrough.B, lm=(LB.y-LA.y)/(LB.x-LA.x), lc=LA.y-lm*LA.x;
-    s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(lm*xmin+lc).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(lm*xmax+lc).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  if(opts.tris){ opts.tris.forEach(function(t){ var col=t.col||"#365a68", ax=SX(t.A.x),ay=SY(t.A.y),bx=SX(t.B.x),by=SY(t.B.y),cornerX=bx,cornerY=ay;
-    var run=t.B.x-t.A.x, rise=t.B.y-t.A.y;
-    s+='<line x1="'+ax.toFixed(1)+'" y1="'+ay.toFixed(1)+'" x2="'+cornerX.toFixed(1)+'" y2="'+cornerY.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
-    s+='<line x1="'+cornerX.toFixed(1)+'" y1="'+cornerY.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
-    s+='<text x="'+((ax+cornerX)/2).toFixed(1)+'" y="'+(cornerY+(rise>=0?15:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="middle">run '+run+'</text>';
-    var riseLeft = cornerX>295;   /* near right edge: put the rise label on the inside to avoid clipping */
-    s+='<text x="'+(cornerX+(riseLeft?-6:6)).toFixed(1)+'" y="'+((cornerY+by)/2+3).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="'+(riseLeft?'end':'start')+'">rise '+(rise>=0?"+"+rise:rise)+'</text>';
-    s+='<circle cx="'+ax.toFixed(1)+'" cy="'+ay.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(ax-8).toFixed(1)+'" y="'+(ay+(rise>=0?14:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="end">'+(t.aLabel||"A")+'</text>';
-    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(bx+7).toFixed(1)+'" y="'+(by-7).toFixed(1)+'" font-size="10" fill="'+col+'">'+(t.bLabel||"B")+'</text>';
-  }); }
-  if(opts.stepTri && m!==0){ var rx0=SX(0),ry0=SY(c),rx1=SX(1),ry1c=SY(c),ry1=SY(m+c);
-    s+='<line x1="'+rx0.toFixed(1)+'" y1="'+ry0.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1c.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
-    s+='<line x1="'+rx1.toFixed(1)+'" y1="'+ry1c.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
-    s+='<text x="'+((rx0+rx1)/2).toFixed(1)+'" y="'+(ry1c+16).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">1 across</text>';
-    s+='<text x="'+(rx1+5).toFixed(1)+'" y="'+((ry1c+ry1)/2+3).toFixed(1)+'" font-size="10" fill="#365a68">'+(m>0?"+"+m:m)+" up</text>";
-  }
-  if(opts.stepTri && m===0){ s+='<text x="'+SX(3).toFixed(1)+'" y="'+(SY(c)-8).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">flat: no change</text>'; }
-  if(opts.highlightX!=null){ var hx=opts.highlightX, hy=m*hx+c; if(hy>=ylo&&hy<=yhi){
-    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
-    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
-    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+hx+', '+hy+')</text>';
-  }}
   svg.innerHTML=s;
 }
 
-/* fraction/decimal display for a gradient rise/run */
-function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
-function gradStr(rise,run){
-  var g=gcd(rise,run), sr=rise/g, sn=run/g;
-  if(sn<0){ sr=-sr; sn=-sn; }
-  var val=rise/run;
-  var frac = (sn===1)? String(sr) : (sr+"/"+sn);
-  var dec = Number.isInteger(val)? String(val) : (Math.round(val*100)/100);
-  return {frac:frac, dec:dec, val:val};
+/* ---- shared helpers for finding an angle ---- */
+function sideShort(k){return {opp:"opp",adj:"adj",hyp:"hyp"}[k];}
+function sideFull(k){return {opp:"opposite",adj:"adjacent",hyp:"hypotenuse"}[k];}
+var RATIO_SIDES={sin:["opp","hyp"], cos:["adj","hyp"], tan:["opp","adj"]};
+function triFor(ang){ var t=Math.tan(ang*Math.PI/180); return t>=1? {a:3.4, b:3.4/t} : {a:3.4*t, b:3.4}; }
+function ratioFracHTML(ratio){ return {sin:frac("opposite","hypotenuse"), cos:frac("adjacent","hypotenuse"), tan:frac("opposite","adjacent")}[ratio]; }
+function workLines(arr){ return arr.map(function(l){ return "<div style='border-left:3px solid #cdbfa9;margin:5px 0;padding:3px 0 3px 10px;font-size:1.06em'>"+l+"</div>"; }).join(""); }
+var INV_NAME={sin:"sin⁻¹", cos:"cos⁻¹", tan:"tan⁻¹"};
+function angleFromRatio(ratio,value){ return ratio==="sin"?Math.asin(value)*180/Math.PI : ratio==="cos"?Math.acos(value)*180/Math.PI : Math.atan(value)*180/Math.PI; }
+/* evaluate the line-3 the learner types, e.g. "θ = tan⁻¹(3 ÷ 4)" -> {val: angle, hasInv:true} */
+function evalAngleLine(input){
+  var t=String(input).toLowerCase()
+    .replace(/arcsin/g,"asin").replace(/arccos/g,"acos").replace(/arctan/g,"atan")
+    .replace(/sin\s*(⁻¹|\^?-1|-1)/g,"asin").replace(/cos\s*(⁻¹|\^?-1|-1)/g,"acos").replace(/tan\s*(⁻¹|\^?-1|-1)/g,"atan");
+  var hasInv=/(asin|acos|atan)/.test(t);
+  if(t.indexOf("=")>=0) t=t.slice(t.indexOf("=")+1);
+  t=t.replace(/×/g,"*").replace(/÷/g,"/").replace(/°/g," ");
+  var val=(typeof window.neoCalcEval==="function")?window.neoCalcEval(t):NaN;
+  return {val:val, hasInv:hasInv};
 }
 
-/* ============ CONNECTION: Same line, different triangle ============ */
-var slLines=[{m:1,c:1},{m:2,c:-1},{m:1,c:3},{m:-1,c:6},{m:-2,c:7},{m:1,c:0}];
-var slPick=0;
-function slNew(){ slPick=(slPick+1)%slLines.length; slDraw(); }
-function slDraw(){
-  var L=slLines[slPick], m=L.m, c=L.c;
-  // two triangles with different runs at different positions, both on the line
-  var x1a=0, x1b=1;                 // run 1
-  var x2a=2, x2b=4;                 // run 2
-  var A1={x:x1a,y:m*x1a+c}, B1={x:x1b,y:m*x1b+c};
-  var A2={x:x2a,y:m*x2a+c}, B2={x:x2b,y:m*x2b+c};
-  drawGraph("slGraph",m,c,{xRange:[-1,8], fixedY:[-1,8], hideLine:false, hideIntercept:true,
-    tris:[ {A:A1,B:B1,col:"#2b6cb0",aLabel:"A",bLabel:"B"},
-           {A:A2,B:B2,col:"#b25f2e",aLabel:"C",bLabel:"D"} ]});
-  var r1=gradStr(B1.y-A1.y, B1.x-A1.x), r2=gradStr(B2.y-A2.y, B2.x-A2.x);
-  document.getElementById("slRead").innerHTML=
-    '<span style="color:#2b6cb0"><b>Blue triangle A→B:</b></span> rise '+(B1.y-A1.y)+' ÷ run '+(B1.x-A1.x)+' = <b>'+r1.dec+'</b><br>'+
-    '<span style="color:#b25f2e"><b>Orange triangle C→D:</b></span> rise '+(B2.y-A2.y)+' ÷ run '+(B2.x-A2.x)+' = <b>'+r2.dec+'</b><br>'+
-    'Different points, different rise and run — but <b>rise ÷ run = '+r1.dec+'</b> both times. The gradient belongs to the <b>line</b>.';
+/* ============ CONNECTION: From ratio back to angle ============ */
+var SU=[ {ratio:"tan", num:3, den:4}, {ratio:"sin", num:3, den:5}, {ratio:"cos", num:8, den:10} ];
+var suIdx=0, suShown=0, suLines=[];
+function suBuild(q){ var val=q.num/q.den, ang=angleFromRatio(q.ratio,val); return [
+  "<b>1.</b> &nbsp;write the ratio: &nbsp;"+q.ratio+" θ = "+ratioFracHTML(q.ratio),
+  "<b>2.</b> &nbsp;put in the numbers: &nbsp;"+q.ratio+" θ = "+frac(q.num,q.den)+" = "+r2(val),
+  "<b>3.</b> &nbsp;apply the inverse (undo "+q.ratio+"): &nbsp;θ = "+INV_NAME[q.ratio]+"("+r2(val)+")",
+  "<b>4.</b> &nbsp;work it out (calculator): &nbsp;θ = <b>"+ang.toFixed(1)+"°</b>"
+]; }
+function suDraw(){
+  var q=SU[suIdx], numS=RATIO_SIDES[q.ratio][0], denS=RATIO_SIDES[q.ratio][1];
+  var val=q.num/q.den, ang=angleFromRatio(q.ratio,val), g=triFor(ang), labs={};
+  labs[numS]=sideShort(numS)+" = "+q.num+" cm"; labs[denS]=sideShort(denS)+" = "+q.den+" cm";
+  drawLabelTri("suTri", {a:g.a, b:g.b, mark:"P", theta:true, pad:78, labels:labs, highlight:[numS,denS]});
+  suShown=0; suLines=suBuild(q);
+  document.getElementById("suStep").innerHTML="<b>Known:</b> "+sideFull(numS)+" = "+q.num+" cm and "+sideFull(denS)+" = "+q.den+" cm. &nbsp;<b>Find the angle θ.</b> &nbsp;Which ratio uses these two sides?";
+  document.getElementById("suOpts").innerHTML=["sin","cos","tan"].map(function(k){return '<button onclick="suPick(\''+k+'\')">'+k+'</button>';}).join("");
+  document.getElementById("suOpts").style.display="flex";
+  var w=document.getElementById("suWork"); w.style.display="none"; w.innerHTML="";
+  document.getElementById("suNextBtn").style.display="none";
 }
+function suPick(k){
+  var q=SU[suIdx], w=document.getElementById("suWork");
+  if(k!==q.ratio){ w.style.display="block"; w.innerHTML="<span style='color:#9a5f3f'>Not that one — the two sides are the "+sideFull(RATIO_SIDES[q.ratio][0])+" and the "+sideFull(RATIO_SIDES[q.ratio][1])+", which is <b>"+q.ratio+"</b>.</span>"; return; }
+  document.getElementById("suOpts").style.display="none";
+  suShown=2; w.style.display="block"; w.innerHTML=workLines(suLines.slice(0,suShown));
+  var btn=document.getElementById("suNextBtn"); btn.style.display="inline-block"; btn.textContent="▸ Next line (apply the inverse)";
+}
+function suNext(){
+  if(suShown<suLines.length){ suShown++; document.getElementById("suWork").innerHTML=workLines(suLines.slice(0,suShown)); }
+  var btn=document.getElementById("suNextBtn");
+  if(suShown>=suLines.length){ btn.style.display="none"; }
+  else if(suShown===3){ btn.textContent="▸ Next line (work it out)"; }
+}
+function suNew(){ suIdx=(suIdx+1)%SU.length; suDraw(); }
 
-/* ============ MOVEMENT: Gradient Triangle Builder (draggable) ============ */
-var gtA={x:1,y:2}, gtB={x:4,y:6}, gtDrag=null;
-var GT_FY=[-1,8], GT_PAD=34, GT_XMIN=-1, GT_XMAX=8, GT_VW=360;   // square window: equal scale on both axes
-function gtUX(){return (GT_VW-2*GT_PAD)/(GT_XMAX-GT_XMIN);}
-function gtUY(){return (GT_VW-2*GT_PAD)/(GT_FY[1]-GT_FY[0]);}
-function gtSX(x){return GT_PAD+(x-GT_XMIN)*gtUX();}
-function gtSY(y){return GT_VW-GT_PAD-(y-GT_FY[0])*gtUY();}
-function gtDraw(){
-  drawGraph("gtGraph", (gtB.y-gtA.y)/(gtB.x-gtA.x), 0, {xRange:[GT_XMIN,GT_XMAX], fixedY:GT_FY, hideLine:true, hideIntercept:true,
-    lineThrough:{A:gtA,B:gtB}, tris:[{A:gtA,B:gtB,col:"#365a68",aLabel:"A",bLabel:"B"}]});
-  var rise=gtB.y-gtA.y, run=gtB.x-gtA.x, g=gradStr(rise,run);
-  var sign = g.val>0?"positive — the line rises":g.val<0?"negative — the line falls":"zero — the line is flat";
-  document.getElementById("gtRead").innerHTML=
-    'A is ('+gtA.x+', '+gtA.y+') and B is ('+gtB.x+', '+gtB.y+').<br>'+
-    '<b>run</b> = change in x = '+run+' &nbsp;·&nbsp; <b>rise</b> = change in y = '+(rise>=0?"+"+rise:rise)+'<br>'+
-    '<b>gradient = rise ÷ run = '+(rise>=0?"+"+rise:rise)+' ÷ '+run+' = '+g.dec+'</b> ('+sign+').';
+/* ============ MOVEMENT: Angle Finder (dominant) ============ */
+var SF=[ {ratio:"tan", num:3, den:4}, {ratio:"sin", num:3, den:5}, {ratio:"cos", num:8, den:10}, {ratio:"tan", num:5, den:12}, {ratio:"sin", num:7, den:10}, {ratio:"cos", num:5, den:9} ];
+var sfIdx=0, sfScore=0, sfLines=[];
+function sfDraw(){
+  var q=SF[sfIdx], numS=RATIO_SIDES[q.ratio][0], denS=RATIO_SIDES[q.ratio][1];
+  var val=q.num/q.den, ang=angleFromRatio(q.ratio,val), g=triFor(ang), labs={};
+  labs[numS]=sideShort(numS)+" = "+q.num+" cm"; labs[denS]=sideShort(denS)+" = "+q.den+" cm";
+  drawLabelTri("sfTri", {a:g.a, b:g.b, mark:"P", theta:true, pad:78, labels:labs, highlight:[numS,denS]});
+  document.getElementById("sfStep").innerHTML="<b>Problem "+(sfIdx+1)+".</b> Two sides: "+sideFull(numS)+" = "+q.num+" cm and "+sideFull(denS)+" = "+q.den+" cm. Find the angle θ. &nbsp;<b>Step 1 — which ratio?</b>";
+  document.getElementById("sfOpts").innerHTML=["sin","cos","tan"].map(function(k){return '<button onclick="sfRatio(\''+k+'\')">'+k+'</button>';}).join("");
+  document.getElementById("sfOpts").style.display="flex";
+  var w=document.getElementById("sfWork"); w.style.display="none"; w.innerHTML="";
+  document.getElementById("sfRearrRow").style.display="none";
+  document.getElementById("sfAnsRow").style.display="none";
+  document.getElementById("sfFeedback").style.display="none";
+  document.getElementById("sfRearr").value=""; document.getElementById("sfAns").value="";
+  sfLines=[];
+  document.getElementById("sfScore").textContent="Score: "+sfScore;
 }
-function gtPtFromEvent(e){
-  var svg=document.getElementById("gtGraph"), r=svg.getBoundingClientRect();
-  var vx=(e.clientX-r.left)*GT_VW/r.width, vy=(e.clientY-r.top)*GT_VW/r.height;
-  var gx=Math.round((vx-GT_PAD)/gtUX()+GT_XMIN);
-  var gy=Math.round(GT_FY[0]+(GT_VW-GT_PAD-vy)/gtUY());
-  gx=Math.max(0,Math.min(7,gx)); gy=Math.max(0,Math.min(8,gy));
-  return {x:gx,y:gy,vx:vx,vy:vy};
+function sfRatio(k){
+  var q=SF[sfIdx], fb=document.getElementById("sfFeedback");
+  if(k!==q.ratio){ fb.style.display="block"; fb.className="feedback warn"; fb.innerHTML="Not that ratio — the two sides you have are the "+sideFull(RATIO_SIDES[q.ratio][0])+" and the "+sideFull(RATIO_SIDES[q.ratio][1])+", which is <b>"+q.ratio+"</b>."; return; }
+  fb.style.display="none";
+  document.getElementById("sfOpts").style.display="none";
+  var val=q.num/q.den;
+  sfLines=[ "<b>1.</b> &nbsp;"+k+" θ = "+ratioFracHTML(k), "<b>2.</b> &nbsp;"+k+" θ = "+frac(q.num,q.den)+" = "+r2(val) ];
+  var w=document.getElementById("sfWork"); w.style.display="block"; w.innerHTML=workLines(sfLines);
+  document.getElementById("sfRearrRow").style.display="block";
+  document.getElementById("sfRearr").focus();
 }
-function gtNearest(vx,vy){
-  var da=Math.hypot(vx-gtSX(gtA.x),vy-gtSY(gtA.y)), db=Math.hypot(vx-gtSX(gtB.x),vy-gtSY(gtB.y));
-  if(Math.min(da,db)>40) return null;
-  return da<=db?"A":"B";
+function sfRearrCheck(){
+  var q=SF[sfIdx], fb=document.getElementById("sfFeedback"); fb.style.display="block";
+  var val=q.num/q.den, target=angleFromRatio(q.ratio,val), res=evalAngleLine(document.getElementById("sfRearr").value);
+  if(!res.hasInv){ fb.className="feedback warn"; fb.innerHTML="Apply the <b>inverse</b> — e.g. <b>θ = "+INV_NAME[q.ratio]+"("+q.num+" ÷ "+q.den+")</b>. The angle is "+INV_NAME[q.ratio]+"(value), not the value itself."; return; }
+  if(isNaN(res.val)||Math.abs(res.val-target)>0.6){ fb.className="feedback warn"; fb.innerHTML="Not quite. From "+q.ratio+" θ = "+r2(val)+", the angle is θ = "+INV_NAME[q.ratio]+"("+r2(val)+"). Check the inverse and the value."; return; }
+  fb.style.display="none";
+  sfLines.push("<b>3.</b> &nbsp;θ = "+INV_NAME[q.ratio]+"("+q.num+" ÷ "+q.den+")");
+  document.getElementById("sfWork").innerHTML=workLines(sfLines);
+  document.getElementById("sfRearrRow").style.display="none";
+  document.getElementById("sfAnsRow").style.display="block";
+  document.getElementById("sfAns").focus();
 }
-function gtInit(){
-  var svg=document.getElementById("gtGraph"); if(!svg||svg.dataset.wired) return; svg.dataset.wired="1";
-  function down(e){ var p=gtPtFromEvent(e); gtDrag=gtNearest(p.vx,p.vy); if(gtDrag){ svg.style.cursor="grabbing"; if(svg.setPointerCapture&&e.pointerId!=null){try{svg.setPointerCapture(e.pointerId);}catch(err){}} move(e); e.preventDefault(); } }
-  function move(e){ if(!gtDrag) return; var p=gtPtFromEvent(e); var pt=(gtDrag==="A")?gtA:gtB, other=(gtDrag==="A")?gtB:gtA;
-    if(p.x===other.x) p.x=pt.x;          // guard: never let the run become zero
-    pt.x=p.x; pt.y=p.y; gtDraw(); e.preventDefault(); }
-  function up(e){ if(gtDrag){ gtDrag=null; svg.style.cursor="grab"; e.preventDefault(); } }
-  svg.addEventListener("pointerdown",down); svg.addEventListener("pointermove",move);
-  svg.addEventListener("pointerup",up); svg.addEventListener("pointercancel",up);
+function sfCheck(){
+  var q=SF[sfIdx], v=num(document.getElementById("sfAns").value), fb=document.getElementById("sfFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the angle as a number."; return; }
+  var val=q.num/q.den, ang=angleFromRatio(q.ratio,val);
+  if(Math.abs(v-ang)<0.2){ sfScore++; sfLines.push("<b>4.</b> &nbsp;θ = <b>"+ang.toFixed(1)+"°</b>"); document.getElementById("sfWork").innerHTML=workLines(sfLines); document.getElementById("sfAnsRow").style.display="none"; fb.className="feedback good"; fb.innerHTML="✓ Solved — the angle is <b>"+ang.toFixed(1)+"°</b>. Press <b>New problem</b>."; document.getElementById("sfScore").textContent="Score: "+sfScore; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet — θ = "+INV_NAME[q.ratio]+"("+r2(val)+") = "+ang.toFixed(1)+"°. Use the calculator's "+INV_NAME[q.ratio]+" key (in degrees)."; }
 }
+function sfNew(){ sfIdx=(sfIdx+1)%SF.length; if(sfIdx===0) sfScore=0; sfDraw(); }
 
-/* ============ REFLECTION: Right or slip? ============ */
-var RC=[
- {A:{x:0,y:1},B:{x:2,y:5}, work:"rise ÷ run = 4 ÷ 2 = 2", ok:true, opts:["Right","Slip"], ans:0, why:"Rise = 5 − 1 = 4, run = 2 − 0 = 2, and 4 ÷ 2 = 2. Correct."},
- {A:{x:0,y:1},B:{x:3,y:7}, work:"run ÷ rise = 3 ÷ 6 = 0.5", ok:false, opts:["Right","Slip"], ans:1, why:"Slip — rise and run are swapped. It should be rise ÷ run = 6 ÷ 3 = 2."},
- {A:{x:0,y:6},B:{x:3,y:0}, work:"rise ÷ run = 6 ÷ 3 = 2", ok:false, opts:["Right","Slip"], ans:1, why:"Slip — the line falls, so the rise is 0 − 6 = −6. The gradient is −6 ÷ 3 = −2."},
- {A:{x:1,y:1},B:{x:5,y:3}, work:"rise ÷ run = 2 ÷ 4 = 0.5", ok:true, opts:["Right","Slip"], ans:0, why:"Rise = 3 − 1 = 2, run = 5 − 1 = 4, and 2 ÷ 4 = 0.5. Correct."},
- {A:{x:2,y:7},B:{x:5,y:1}, work:"rise ÷ run = −6 ÷ 3 = −2", ok:true, opts:["Right","Slip"], ans:0, why:"Rise = 1 − 7 = −6, run = 5 − 2 = 3, and −6 ÷ 3 = −2. The minus is kept. Correct."}
+/* ============ REFLECTION: Spot the slip ============ */
+var SS=[
+ {ratio:"tan", num:3, den:4,  claim:"θ = tan⁻¹(3 ÷ 4) = 36.9°", ok:true,  why:"Right — the opposite and adjacent give the tangent, and the angle is tan⁻¹ of the ratio."},
+ {ratio:"tan", num:3, den:4,  claim:"θ = 3 ÷ 4 = 0.75°",              ok:false, why:"Slip — 0.75 is the ratio, not the angle. Apply the inverse: θ = tan⁻¹(0.75) = 36.9°."},
+ {ratio:"sin", num:3, den:5,  claim:"θ = sin⁻¹(3 ÷ 5) = 36.9°", ok:true,  why:"Right — the opposite and hypotenuse give the sine, and θ = sin⁻¹ of the ratio."},
+ {ratio:"cos", num:8, den:10, claim:"θ = sin⁻¹(8 ÷ 10) = 53.1°", ok:false, why:"Slip — the adjacent and hypotenuse give the cosine, not the sine: θ = cos⁻¹(8 ÷ 10) = 36.9°."},
+ {ratio:"tan", num:5, den:12, claim:"θ = tan⁻¹(5 ÷ 12) = 22.6°", ok:true,  why:"Right — opposite over adjacent is the tangent, and θ = tan⁻¹ of the ratio."}
 ];
-var rcIndex=0;
-function rcRender(){
-  var q=RC[rcIndex];
-  document.getElementById("rcClue").innerHTML="<b>Q"+(rcIndex+1)+":</b> A line passes through <b>A ("+q.A.x+", "+q.A.y+")</b> and <b>B ("+q.B.x+", "+q.B.y+")</b>. Someone writes: &nbsp;<span style=\"background:#f3ecda;padding:2px 6px;border-radius:5px\">"+q.work+"</span><br>Is this <b>right</b>, or a <b>slip</b>?";
-  drawGraph("rcMini",(q.B.y-q.A.y)/(q.B.x-q.A.x),0,{xRange:[-1,8], fixedY:[-1,8], hideLine:true, hideIntercept:true, lineThrough:{A:q.A,B:q.B}, tris:[{A:q.A,B:q.B,col:"#365a68",aLabel:"A",bLabel:"B"}]});
-  document.getElementById("rcOpts").innerHTML=q.opts.map(function(o,i){return '<button onclick="rcPick('+i+')">'+o+'</button>';}).join("");
-  document.getElementById("rcFeedback").style.display="none";
-  document.getElementById("rcProgress").textContent="Card "+(rcIndex+1)+" of "+RC.length+".";
+var ssIdx=0;
+function ssRender(){
+  var q=SS[ssIdx], numS=RATIO_SIDES[q.ratio][0], denS=RATIO_SIDES[q.ratio][1];
+  var val=q.num/q.den, ang=angleFromRatio(q.ratio,val), g=triFor(ang), labs={};
+  labs[numS]=sideShort(numS)+" = "+q.num+" cm"; labs[denS]=sideShort(denS)+" = "+q.den+" cm";
+  drawLabelTri("ssTri", {a:g.a, b:g.b, mark:"P", theta:true, pad:78, labels:labs, highlight:[numS,denS]});
+  document.getElementById("ssClue").innerHTML="<b>Card "+(ssIdx+1)+":</b> two sides are given, and someone writes &nbsp;<b>"+q.claim+"</b>. &nbsp;Is that <b>right</b>, or a <b>slip</b>?";
+  document.getElementById("ssOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="ssPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("ssFeedback").style.display="none";
+  document.getElementById("ssProg").textContent="Card "+(ssIdx+1)+" of "+SS.length+".";
 }
-function rcPick(i){
-  var q=RC[rcIndex], fb=document.getElementById("rcFeedback"); fb.style.display="block";
-  if(i===q.ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
+function ssPick(i){
+  var q=SS[ssIdx], ans=q.ok?0:1, fb=document.getElementById("ssFeedback"); fb.style.display="block";
+  if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
   else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
 }
-function rcNext(){ rcIndex=(rcIndex+1)%RC.length; rcRender(); }
+function ssNext(){ ssIdx=(ssIdx+1)%SS.length; ssRender(); }
 
-/* ============ CREATIVITY: Rate from two readings ============ */
-var TR=[
- {name:"Bath filling",desc:"A bath holds 5 litres after 1 minute and 15 litres after 3 minutes. Reading 1: (1, 5). Reading 2: (3, 15). What is the rate (litres per minute)?",A:{x:1,y:5},B:{x:3,y:15},unit:"litres per minute"},
- {name:"Phone battery",desc:"A phone is at 90% after 1 hour and 30% after 4 hours. Reading 1: (1, 90). Reading 2: (4, 30). What is the rate (% per hour)?",A:{x:1,y:90},B:{x:4,y:30},unit:"% per hour"},
- {name:"Taxi fare",desc:"A taxi costs £6 after 2 km and £12 after 5 km. Reading 1: (2, 6). Reading 2: (5, 12). What is the rate (£ per km)?",A:{x:2,y:6},B:{x:5,y:12},unit:"£ per km"},
- {name:"Candle burning",desc:"A candle is 12 cm tall after 1 hour and 4 cm tall after 5 hours. Reading 1: (1, 12). Reading 2: (5, 4). What is the rate (cm per hour)?",A:{x:1,y:12},B:{x:5,y:4},unit:"cm per hour"}
+/* ============ CREATIVITY: Reveal the angle ============ */
+var RU=[
+ {desc:"A wheelchair ramp rises <b>1 m</b> over a run of <b>8 m</b>. What angle does it make with the ground?", num:1, den:8},
+ {desc:"A roof rises <b>3 m</b> over a horizontal span of <b>5 m</b>. What is its pitch (angle to the horizontal)?", num:3, den:5},
+ {desc:"From <b>20 m</b> away, the top of a tree is <b>14 m</b> above your eye-line. What is the angle of elevation?", num:14, den:20}
 ];
-var trIndex=0;
-function trChipsRender(){ document.getElementById("trChips").innerHTML=TR.map(function(o,i){return '<span class="chip'+(i===trIndex?' active':'')+'" onclick="setTr('+i+')">'+o.name+'</span>';}).join(""); }
-function setTr(i){ trIndex=i; document.getElementById("trDesc").innerHTML=TR[i].desc; document.getElementById("trAns").value=""; document.getElementById("trFeedback").style.display="none"; trChipsRender(); trDraw(); }
-function trDraw(){
-  var o=TR[trIndex], hi=Math.max(o.A.y,o.B.y), lo=Math.min(o.A.y,o.B.y,0);
-  var pad=Math.ceil((hi-lo)*0.15)+1;
-  drawGraph("trGraph",(o.B.y-o.A.y)/(o.B.x-o.A.x),0,{fixedY:[lo-1,hi+pad], hideLine:true, hideIntercept:true, lineThrough:{A:o.A,B:o.B}, tris:[{A:o.A,B:o.B,col:"#3f7a45",aLabel:"1",bLabel:"2"}]});
-  var rise=o.B.y-o.A.y, run=o.B.x-o.A.x;
-  document.getElementById("trWork").innerHTML="Reading 1: <b>("+o.A.x+", "+o.A.y+")</b> &nbsp; Reading 2: <b>("+o.B.x+", "+o.B.y+")</b><br>rise = "+o.B.y+" − "+o.A.y+" = <b>"+(rise>=0?"+"+rise:rise)+"</b> &nbsp;·&nbsp; run = "+o.B.x+" − "+o.A.x+" = <b>"+run+"</b>";
+var ruIdx=0;
+function ruDraw(){
+  var q=RU[ruIdx], val=q.num/q.den, ang=Math.atan(val)*180/Math.PI, g=triFor(ang);
+  drawLabelTri("ruTri", {a:g.a, b:g.b, mark:"P", theta:true, pad:78,
+    labels:{opp:"rise = "+q.num+" m", adj:"run = "+q.den+" m"}, highlight:["opp","adj"]});
+  document.getElementById("ruScenario").innerHTML=q.desc+" &nbsp;<span class='small'>The two lengths are the opposite and adjacent, so use tan — then the inverse.</span>";
+  document.getElementById("ruAns").value="";
+  document.getElementById("ruFeedback").style.display="none";
 }
-function trCheck(){
-  var o=TR[trIndex], rise=o.B.y-o.A.y, run=o.B.x-o.A.x, ans=rise/run, v=num(document.getElementById("trAns").value), fb=document.getElementById("trFeedback"); fb.style.display="block";
-  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the rate as a number, for example 3 or -2."; return; }
-  if(Math.abs(v-ans)<0.01){ fb.className="feedback good"; fb.innerHTML="Yes — rise ÷ run = "+(rise>=0?"+"+rise:rise)+" ÷ "+run+" = <b>"+ans+"</b> "+o.unit+(ans<0?". It is <b>negative</b> because the amount goes <b>down</b> between the readings.":"."); }
-  else { var hint = (v>0)!==(ans>0)&&ans!==0 ? "Check the <b>sign</b> — does the amount go up or down between the two readings?" : "Work out rise ÷ run: ("+o.B.y+" − "+o.A.y+") ÷ ("+o.B.x+" − "+o.A.x+")."; fb.className="feedback warn"; fb.innerHTML="Not yet. "+hint; }
+function ruCheck(){
+  var q=RU[ruIdx], v=num(document.getElementById("ruAns").value), fb=document.getElementById("ruFeedback"); fb.style.display="block";
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type the angle as a number."; return; }
+  var val=q.num/q.den, ang=Math.atan(val)*180/Math.PI;
+  if(Math.abs(v-ang)<0.4){ fb.className="feedback good"; fb.innerHTML=workLines(["&nbsp;tan θ = "+frac(q.num,q.den)+" = "+r2(val),"&nbsp;θ = tan⁻¹("+r2(val)+")","&nbsp;θ = <b>"+ang.toFixed(1)+"°</b>"])+"From two lengths you could measure, you found an angle you could not."; }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet. tan θ = "+q.num+" ÷ "+q.den+" = "+r2(val)+", so θ = tan⁻¹("+r2(val)+") = "+ang.toFixed(1)+"°. Use the tan⁻¹ key (degrees)."; }
 }
+function ruNew(){ ruIdx=(ruIdx+1)%RU.length; ruDraw(); }
 
 /* ---------------- Reconnection Routes ---------------- */
 (function(){
@@ -596,19 +678,30 @@ function trCheck(){
     s+='<circle cx="'+SX(px)+'" cy="'+SY(py)+'" r="5" fill="#b25f2e"/><text x="'+(SX(px)+8)+'" y="'+(SY(py)-6)+'" font-size="13" fill="#b25f2e" font-weight="bold">P</text></svg>';
     return s;
   }
+  function lineMiniSVG(m,c){
+    var V=210,pad=26,n=6,u=(V-2*pad)/n;
+    function SX(x){return pad+x*u;} function SY(y){return V-pad-y*u;}
+    var s='<svg viewBox="0 0 '+V+' '+V+'" role="img" aria-label="A line on a coordinate grid with its y-intercept marked" style="max-width:220px;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:10px;display:block;margin:8px 0">';
+    for(var i=0;i<=n;i++){ s+='<line x1="'+SX(i)+'" y1="'+SY(0)+'" x2="'+SX(i)+'" y2="'+SY(n)+'" stroke="#e6ddcb"/><line x1="'+SX(0)+'" y1="'+SY(i)+'" x2="'+SX(n)+'" y2="'+SY(i)+'" stroke="#e6ddcb"/>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(n)+'" y2="'+SY(0)+'" stroke="#6a7080" stroke-width="1.4"/><line x1="'+SX(0)+'" y1="'+SY(0)+'" x2="'+SX(0)+'" y2="'+SY(n)+'" stroke="#6a7080" stroke-width="1.4"/>';
+    for(var t=1;t<=n;t++){ s+='<text x="'+SX(t)+'" y="'+(SY(0)+13)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+t+'</text><text x="'+(SX(0)-6)+'" y="'+(SY(t)+3)+'" font-size="9" fill="#6a7080" text-anchor="end">'+t+'</text>'; }
+    s+='<line x1="'+SX(0)+'" y1="'+SY(c)+'" x2="'+SX(n)+'" y2="'+SY(m*n+c)+'" stroke="#3f7a45" stroke-width="2.4"/>';
+    s+='<circle cx="'+SX(0)+'" cy="'+SY(c)+'" r="5" fill="#b25f2e"/>';
+    s+='</svg>'; return s;
+  }
   var RECONNECT={
-    coord:{title:'Reading coordinates',prompt:'What are the coordinates of point <b>P</b>? Write them like (across, up).'+coordSVG(4,2),answer:'4 2',hint:'Count how far <b>across</b> P is (that is x), then how far <b>up</b> (that is y).'},
-    diff:{title:'Finding a difference',prompt:'A reading changes from <b>7</b> to <b>1</b>. What is the change? (Work out 1 − 7.)',answer:-6,hint:'End minus start: 1 − 7 = −6. Going down gives a negative change.'},
-    frac:{title:'A fraction as a division',prompt:'What is <b>6 ÷ 3</b>? (This is the same as the fraction 6/3.)',answer:2,hint:'6 ÷ 3 = 2. A gradient of rise ÷ run works exactly like this.'}
+    sohcahtoa:{title:'SOH · CAH · TOA (Lesson 4)',prompt:'Which ratio uses the <b>opposite</b> and the <b>adjacent</b>? (sin / cos / tan)',answer:'tan',hint:'TOA — Tangent = Opposite over Adjacent.'},
+    inverse:{title:'What is an inverse?',prompt:'Adding is undone by subtracting; multiplying by dividing. <b>sin⁻¹</b> is the inverse of which function? (sin / cos / tan)',answer:'sin',hint:'sin⁻¹ undoes sin — it turns a ratio back into its angle.'},
+    calcinv:{title:'An inverse on the calculator',prompt:'With your calculator in <b>degrees</b>, what is <b>sin⁻¹(0.5)</b>?',answer:30,hint:'sin⁻¹(0.5) = 30° (because sin 30° = 0.5).'}
   };
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.6;} var s=String(v).toLowerCase().replace(/[(),]/g,' ').replace(/\s+/g,' ').trim(); return s.includes(normText(r.answer)); }
   window.openReconnect=function(){
     var p=document.getElementById('reconnectionPanel');p.style.display='block';
     p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
      +'<div class="buttonrow">'
-     +'<button class="guidebtn" onclick="showReconnect(\'coord\')">Reading coordinates</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'diff\')">Finding a difference</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'frac\')">A fraction as a division</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'sohcahtoa\')">SOH · CAH · TOA</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'inverse\')">What is an inverse?</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'calcinv\')">Inverse on the calculator</button>'
      +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
   };
   window.showReconnect=function(key){
@@ -630,12 +723,12 @@ function trCheck(){
 
 /* ---------------- PRACTICE COMPANION (with v1.0 unlock gate) ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · The definition",q:"To find the gradient of a line from two points, you work out rise ÷ what?",a:["run","the run"],prompt:"Rise is the change in y. What is the change in x called?",hint:"Gradient = rise ÷ run.",sol:"Run — the gradient is rise ÷ run, the change in y divided by the change in x."},
- {label:"2 of 6 · Rise and run",q:"A line passes through (1, 2) and (4, 8). What is the run (the change in x)?",a:[],eq:function(v){return Math.abs(num(v)-3)<0.01;},prompt:"Run = second x − first x.",hint:"4 − 1 = ?",sol:"Run = 4 − 1 = 3."},
- {label:"3 of 6 · The gradient",q:"A line passes through (1, 2) and (4, 8). What is its gradient? (rise ÷ run)",a:[],eq:function(v){return Math.abs(num(v)-2)<0.01;},prompt:"Rise = 8 − 2, run = 4 − 1. Then divide.",hint:"rise = 6, run = 3, so 6 ÷ 3 = ?",sol:"Rise = 6, run = 3, gradient = 6 ÷ 3 = 2."},
- {label:"4 of 6 · A falling line",q:"A line passes through (0, 6) and (3, 0). What is its gradient? (keep the sign)",a:[],eq:function(v){return Math.abs(num(v)-(-2))<0.01;},prompt:"The line falls, so the rise is negative: 0 − 6.",hint:"rise = 0 − 6 = −6, run = 3 − 0 = 3, so −6 ÷ 3 = ?",sol:"Rise = −6, run = 3, gradient = −6 ÷ 3 = −2. The line falls, so the gradient is negative."},
- {label:"5 of 6 · Same line, any two points",q:"A line has gradient 2 through one pair of points. Through a different pair of points on the same line, what is the gradient?",a:[],eq:function(v){return Math.abs(num(v)-2)<0.01;},prompt:"Does the gradient depend on which two points you pick?",hint:"Any two points on a line give the same rise ÷ run.",sol:"2 — every pair of points on the same line gives the same gradient."},
- {label:"6 of 6 · A fractional gradient",q:"A line passes through (1, 1) and (5, 3). What is its gradient? (a decimal is fine)",a:[],eq:function(v){return Math.abs(num(v)-0.5)<0.01;},prompt:"rise = 3 − 1, run = 5 − 1. Then divide.",hint:"rise = 2, run = 4, so 2 ÷ 4 = ?",sol:"Rise = 2, run = 4, gradient = 2 ÷ 4 = 0.5 (or ½)."}
+ {label:"1 of 6 · Choose the ratio",q:"You know the opposite and the adjacent, and want the angle. Which ratio uses those two sides — sin, cos or tan?",a:["tan","tangent","tan θ"],prompt:"Opposite and adjacent together → SOH, CAH or TOA?",hint:"Opposite over adjacent is TOA — the tangent.",sol:"tan — the tangent uses the opposite and the adjacent (TOA)."},
+ {label:"2 of 6 · The inverse",q:"You have tan θ = 0.75. To get the angle θ, which do you do — tan(0.75), or tan⁻¹(0.75)?",a:["tan⁻¹(0.75)","tan-1(0.75)","tan⁻¹","inverse","tan inverse","the inverse"],prompt:"You need to UNDO tan. Which one undoes it?",hint:"The inverse tan⁻¹ turns the ratio back into its angle: θ = tan⁻¹(0.75).",sol:"tan⁻¹(0.75) — the inverse undoes tan and gives the angle (about 36.9°)."},
+ {label:"3 of 6 · Find the angle (tangent)",q:"A right-angled triangle has opposite = 3 cm and adjacent = 4 cm. Find θ, to 1 d.p.",a:[],eq:function(v){return Math.abs(num(v)-Math.atan(3/4)*180/Math.PI)<0.15;},prompt:"tan θ = 3/4, so θ = tan⁻¹(3/4).",hint:"θ = tan⁻¹(0.75) ≈ 36.9°.",sol:"tan θ = 3/4 = 0.75 → θ = tan⁻¹(0.75) ≈ 36.9°."},
+ {label:"4 of 6 · Find the angle (sine)",q:"A right-angled triangle has opposite = 3 cm and hypotenuse = 5 cm. Find θ, to 1 d.p.",a:[],eq:function(v){return Math.abs(num(v)-Math.asin(3/5)*180/Math.PI)<0.15;},prompt:"sin θ = 3/5, so θ = sin⁻¹(3/5).",hint:"θ = sin⁻¹(0.6) ≈ 36.9°.",sol:"sin θ = 3/5 = 0.6 → θ = sin⁻¹(0.6) ≈ 36.9°."},
+ {label:"5 of 6 · Find the angle (cosine)",q:"A right-angled triangle has adjacent = 8 cm and hypotenuse = 10 cm. Find θ, to 1 d.p.",a:[],eq:function(v){return Math.abs(num(v)-Math.acos(8/10)*180/Math.PI)<0.15;},prompt:"cos θ = 8/10, so θ = cos⁻¹(8/10).",hint:"θ = cos⁻¹(0.8) ≈ 36.9°.",sol:"cos θ = 8/10 = 0.8 → θ = cos⁻¹(0.8) ≈ 36.9°."},
+ {label:"6 of 6 · Reveal the angle",q:"A ramp rises 2 m over a run of 9 m. What angle does it make with the ground, to 1 d.p.?",a:[],eq:function(v){return Math.abs(num(v)-Math.atan(2/9)*180/Math.PI)<0.3;},prompt:"Rise and run are opposite and adjacent → tan θ = 2/9.",hint:"θ = tan⁻¹(2 ÷ 9) ≈ 12.5°.",sol:"tan θ = 2/9 → θ = tan⁻¹(0.222) ≈ 12.5°."}
 ];
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -665,7 +758,7 @@ function pCheck(){
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(!ok){ var ln=num(val); ok=q.a.some(function(x){var xn=num(x);return !isNaN(xn)&&!isNaN(ln)&&xn===ln;}); }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Work out the rise and the run, then rise ÷ run — or use the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Choose the ratio from your two sides, substitute, then apply the inverse: θ = ratio⁻¹(value) — or use the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -681,17 +774,17 @@ function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{va
 
 /* ---------------- init ---------------- */
 function initLesson(){
-  slDraw();
-  gtDraw(); gtInit();
-  rcRender();
-  trChipsRender(); setTr(0);
+  suDraw();
+  sfDraw();
+  ssRender();
+  ruDraw();
   renderPractice();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
 </script>
 
 <script src="../../assets/progress.js"></script>
-<script>NEOProgress.autoTrack('straight-lines-05-rise-run-and-two-points');</script>
+<script>NEOProgress.autoTrack('trigonometry-07-finding-an-angle');</script>
 
 <script>
 /* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */

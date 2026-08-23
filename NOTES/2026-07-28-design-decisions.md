@@ -513,3 +513,16 @@ dual checks). Still needs Gerry's eye on the 3D render look. Guidance PDFs after
   1. GreenPrint entry card: vault/00_GreenPrint_and_Governance/NEO_Mathematics_GreenPrint_v2.0_Entry_Precise_Mathematical_Vocabulary_DRAFT.md — "always use precise mathematical vocabulary wherever a correct term exists; informal paraphrase only as a one-time first-use gloss; consistent across lesson/practice/feedback/guidance; marking stays generous."
   2. neo-mathematics skill (saved via save_skill, overwrite): added the rule to the "Language that must always hold" section, tagged (GreenPrint entry v2.0).
 - Low-priority retrofit tracked: TR-05 still uses "on top" (numerator) — align when convenient since TR-05/TR-06 cross-reference.
+
+- TR-05 retrofit (2026-08-20): aligned "on top" -> "in the numerator" (3 lesson spots + guide, glossed once on first use); guide regenerated; QA 40/40. TR-05/TR-06 now consistent (numerator/denominator).
+
+## Inverse trig on the calculator + TR-07 (2026-08-20)
+### Calculator: inverse trig site-wide
+- Added sin⁻¹/cos⁻¹/tan⁻¹ to the build_site.py CALCULATOR: buttons insert asin/acos/atan and display as sin⁻¹ etc.; evaluator returns DEGREES with domain guards (asin/acos NaN outside [-1,1]); backspace handles asin(/acos(/atan(; keypad reflowed (7 rows, = spans 2). QA 10/10 (asin(0.5)=30, acos(0.5)=60, atan(1)=45, domain guard, forward still works, UI displays sin⁻¹). No regression (palette 17/17, TR-06 30/30). One calculator per lesson site-wide.
+
+## TR-07 — Finding an angle (inverse ratios) (built 2026-08-20)
+- Framed as "finding a side, run backwards": two sides → choose the ratio those two sides make → substitute to a value → apply the INVERSE (sin⁻¹/cos⁻¹/tan⁻¹) → evaluate. Same 4-line equation-solving footing; the inverse replaces the rearrangement.
+- Engine: evalAngleLine() normalises inverse notation (tan⁻¹, tan-1, arctan → atan) and evaluates via the injected window.neoCalcEval (degrees). angleFromRatio() computes the target. Triangles show two known sides + the unknown angle θ (default θ label, not a value); the drawn angle is the true inverse.
+- Cornerstones: Connection "From ratio back to angle" (reveal ratio→substitute→inverse→evaluate); Movement "Angle Finder" (dominant: choose ratio, TYPE the inverse line θ = ratio⁻¹(value) [checked: must contain an inverse and evaluate to the angle; bare ratio rejected], then evaluate); Reflection "Spot the slip" (mixed cards catching wrong-ratio and forgot-the-inverse "θ = 0.75°"); Creativity "Reveal the angle" (ramp/roof/elevation from two lengths via tan⁻¹). Rest + Nutrition Mode B (the idea of an inverse; reuse a method in reverse).
+- Palette symbols tuned to [θ,=,÷,sin⁻¹,cos⁻¹,tan⁻¹,(,),.]. Reconnect: SOH·CAH·TOA, what is an inverse (sin⁻¹ undoes sin), inverse on the calculator (sin⁻¹(0.5)=30). Practice = 6 (choose ratio for opp+adj=tan; tan vs tan⁻¹; find angle via tan/sin/cos; ramp angle). Vocabulary: numerator/denominator, precise throughout.
+- QA: qa_tr07.js 32/32 (inverse-notation parsing incl. tan⁻¹/tan-1/arcsin, bare-ratio rejection, mixed reflection slips, real-angle). Guidance PDFs generated. curriculum.json + build_site.py updated; site builds 40 live / 0 missing.

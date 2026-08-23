@@ -107,7 +107,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <h2 style="font-size:1.25em">Driving Question: <em>How do I find a length from one side and one angle?</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Applying — using a trigonometric ratio to find an unknown side that sits on top of the ratio (a single multiplication).</p>
+<p><b>Lesson type:</b> Applying — using a trigonometric ratio to find an unknown side that sits in the <em>numerator</em> (the top of the fraction), so a single multiplication solves it.</p>
 <p><b>Stepping Stone:</b> given one angle and one side, write the ratio as an equation, substitute the numbers, and use algebra to solve for the unknown (e.g. sin θ = x ÷ hypotenuse, so x = hypotenuse × sin θ).</p>
 <p><b>You will need:</b> a calculator in <b>degrees</b> — use the <b>🧮 Calculator</b> button in the bottom-right of the screen (it is already set to degrees), or your own. A <b>√ Symbols</b> palette sits under each answer box too.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
@@ -185,7 +185,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div id="ssFeedback" class="feedback"></div>
 <div class="buttonrow" style="justify-content:center"><button onclick="ssNext()">➡️ Next</button></div>
 <p class="small" id="ssProg"></p>
-<p><b>Carry this forward:</b> check two things — is it the right ratio, and (unknown on top) is it known × ratio, not known ÷ ratio?</p>
+<p><b>Carry this forward:</b> check two things — is it the right ratio, and (with the unknown in the numerator) is it known × ratio, not known ÷ ratio?</p>
 </div>
 </details>
 
@@ -239,7 +239,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <p><strong>Filename pattern:</strong> <code>NEO_MATH_TR_FINDING_A_SIDE_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows a ratio links the angle to the sides.</td><td>Knows the unknown-on-top rule unknown = known × ratio.</td><td>Chooses the correct ratio for the known and unknown sides.</td><td>Explains why the unknown on top means multiply, not divide.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows a ratio links the angle to the sides.</td><td>Knows that with the unknown in the numerator, x = known × ratio.</td><td>Chooses the correct ratio for the known and unknown sides.</td><td>Explains why the unknown in the numerator means multiply, not divide.</td></tr>
 <tr><td><b>Application</b></td><td>Reads a ratio value from a calculator.</td><td>Finds a side in one case.</td><td>Finds a side in all three cases.</td><td>Solves a real reach-the-unmeasurable problem.</td></tr>
 <tr><td><b>Communication</b></td><td>Records an answer with limited working.</td><td>Writes the equation used.</td><td>Shows the ratio, the equation and the multiplication.</td><td>Explains a method another learner could follow.</td></tr>
 <tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Spots that the method repeats.</td><td>Explains the three-step routine.</td><td>Connects the method to measuring the unreachable.</td></tr>
@@ -872,9 +872,13 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
       <button type="button" class="fn" onclick="neoCalcFn('cos')">cos</button>
       <button type="button" class="fn" onclick="neoCalcFn('tan')">tan</button>
       <button type="button" class="clr" onclick="neoCalcBack()">&#9003;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('asin')">sin&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('acos')">cos&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('atan')">tan&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('sqrt')">&#8730;</button>
       <button type="button" class="fn" onclick="neoCalcKey('(')">(</button>
       <button type="button" class="fn" onclick="neoCalcKey(')')">)</button>
-      <button type="button" class="fn" onclick="neoCalcFn('sqrt')">&#8730;</button>
+      <button type="button" class="clr" onclick="neoCalcClear()">C</button>
       <button type="button" class="op" onclick="neoCalcKey('÷')">&#247;</button>
       <button type="button" onclick="neoCalcKey('7')">7</button>
       <button type="button" onclick="neoCalcKey('8')">8</button>
@@ -888,22 +892,21 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
       <button type="button" onclick="neoCalcKey('2')">2</button>
       <button type="button" onclick="neoCalcKey('3')">3</button>
       <button type="button" class="op" onclick="neoCalcKey('+')">+</button>
-      <button type="button" class="clr" onclick="neoCalcClear()">C</button>
       <button type="button" onclick="neoCalcKey('0')">0</button>
       <button type="button" onclick="neoCalcKey('.')">.</button>
-      <button type="button" class="eq" onclick="neoCalcEq()">=</button>
+      <button type="button" class="eq" style="grid-column:span 2" onclick="neoCalcEq()">=</button>
     </div>
-    <p style="font-size:.78em;color:#5c6b4f;margin:8px 2px 0">Angles are in <b>degrees</b>. Example: 9 &#215; sin(37) = 5.42</p>
+    <p style="font-size:.78em;color:#5c6b4f;margin:8px 2px 0">Angles are in <b>degrees</b>. Examples: 9 &#215; sin(37) = 5.42; &nbsp;sin&#8315;&#185;(0.5) = 30</p>
   </div>
 </div>
 <script>
 (function(){
   if(window.__neoCalcInstalled)return; window.__neoCalcInstalled=true;
   var expr="";
-  function isFn(x){return x==="sin"||x==="cos"||x==="tan"||x==="sqrt";}
+  function isFn(x){return x==="sin"||x==="cos"||x==="tan"||x==="sqrt"||x==="asin"||x==="acos"||x==="atan";}
   function evalExpr(input){
     var s=String(input).replace(/×/g,"*").replace(/÷/g,"/").replace(/−/g,"-").replace(/°/g,"");
-    var toks=s.match(/\d+\.?\d*|\.\d+|sin|cos|tan|sqrt|√|[()+\-*/]/g);
+    var toks=s.match(/\d+\.?\d*|\.\d+|asin|acos|atan|sin|cos|tan|sqrt|√|[()+\-*/]/g);
     if(!toks) return NaN;
     var out=[], ops=[], prec={"+":1,"-":1,"*":2,"/":2,"u":4}, prev=null;
     for(var i=0;i<toks.length;i++){ var t=toks[i]; if(t==="√")t="sqrt";
@@ -920,13 +923,17 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
     for(var j=0;j<out.length;j++){ var x=out[j];
       if(typeof x==="number"){ st.push(x); }
       else if(x==="u"){ if(!st.length)return NaN; st.push(-st.pop()); }
-      else if(isFn(x)){ if(!st.length)return NaN; var a=st.pop(); st.push(x==="sin"?Math.sin(a*Math.PI/180):x==="cos"?Math.cos(a*Math.PI/180):x==="tan"?Math.tan(a*Math.PI/180):Math.sqrt(a)); }
+      else if(isFn(x)){ if(!st.length)return NaN; var a=st.pop(), r;
+        if(x==="sin")r=Math.sin(a*Math.PI/180); else if(x==="cos")r=Math.cos(a*Math.PI/180); else if(x==="tan")r=Math.tan(a*Math.PI/180);
+        else if(x==="sqrt")r=Math.sqrt(a);
+        else if(x==="asin")r=(a<-1||a>1)?NaN:Math.asin(a)*180/Math.PI; else if(x==="acos")r=(a<-1||a>1)?NaN:Math.acos(a)*180/Math.PI; else if(x==="atan")r=Math.atan(a)*180/Math.PI;
+        st.push(r); }
       else { if(st.length<2)return NaN; var b=st.pop(), a2=st.pop(); st.push(x==="+"?a2+b:x==="-"?a2-b:x==="*"?a2*b:a2/b); }
     }
     return st.length===1?st[0]:NaN;
   }
   function render(){
-    document.getElementById("neoCalcExpr").textContent = expr || "0";
+    document.getElementById("neoCalcExpr").textContent = (expr||"0").replace(/asin/g,"sin⁻¹").replace(/acos/g,"cos⁻¹").replace(/atan/g,"tan⁻¹");
     var v=evalExpr(expr);
     document.getElementById("neoCalcResult").textContent = (expr && isFinite(v)) ? "= "+(Math.round(v*1e6)/1e6) : "";
   }
@@ -935,7 +942,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   window.neoCalcKey=function(s){ expr+=s; render(); };
   window.neoCalcFn=function(f){ expr+=(f==="sqrt"?"√":f)+"("; render(); };
   window.neoCalcClear=function(){ expr=""; render(); };
-  window.neoCalcBack=function(){ var m=expr.match(/(sin\(|cos\(|tan\(|√\()$/); expr=m?expr.slice(0,-m[0].length):expr.slice(0,-1); render(); };
+  window.neoCalcBack=function(){ var m=expr.match(/(asin\(|acos\(|atan\(|sin\(|cos\(|tan\(|√\()$/); expr=m?expr.slice(0,-m[0].length):expr.slice(0,-1); render(); };
   window.neoCalcEq=function(){ var v=evalExpr(expr); document.getElementById("neoCalcResult").textContent = isFinite(v) ? "= "+(Math.round(v*1e6)/1e6) : "= —"; };
   render();
 })();

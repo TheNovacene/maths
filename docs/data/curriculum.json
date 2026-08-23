@@ -325,6 +325,14 @@
           "file": "lessons/trigonometry/06-finding-a-side-rearranging.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "trigonometry-07-finding-an-angle",
+          "num": "Lesson 07",
+          "title": "Finding an angle",
+          "file": "lessons/trigonometry/07-finding-an-angle.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
