@@ -88,6 +88,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_04_Sine_and_Cosine/NEO_Maths_Y10_Trigonometry_Lesson_04_Sine_and_Cosine_v0.1.html",
     "trigonometry-05-finding-a-side":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_05_Finding_a_Side/NEO_Maths_Y10_Trigonometry_Lesson_05_Finding_a_Side_v0.1.html",
+    "trigonometry-06-finding-a-side-rearranging":
+        "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_06_Finding_a_Side_Rearranging/NEO_Maths_Y10_Trigonometry_Lesson_06_Finding_a_Side_Rearranging_v0.1.html",
     "ks3-ratio-and-proportion":
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":

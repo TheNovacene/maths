@@ -317,6 +317,14 @@
           "file": "lessons/trigonometry/05-finding-a-side.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "trigonometry-06-finding-a-side-rearranging",
+          "num": "Lesson 06",
+          "title": "Finding a side — when the unknown is in the denominator",
+          "file": "lessons/trigonometry/06-finding-a-side-rearranging.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
