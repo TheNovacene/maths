@@ -48,6 +48,10 @@ SOURCES = {
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_04_Area_of_a_Circle/NEO_Maths_Y9_Shapes_Lesson_04_Area_of_a_Circle_v0.1.html",
     "shapes-05-reasoning-from-nets":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_05_Reasoning_from_Nets/NEO_Maths_Y9_Shapes_Lesson_05_Reasoning_from_Nets_v0.1.html",
+    "quad-01-growing-patterns":
+        "02_Foundations/01_Lessons/Quadratics/Lesson_01_Growing_Patterns/NEO_Maths_Y9_Quadratics_Lesson_01_Growing_Patterns_v0.1.html",
+    "quad-02-the-second-difference":
+        "02_Foundations/01_Lessons/Quadratics/Lesson_02_The_Second_Difference/NEO_Maths_Y9_Quadratics_Lesson_02_The_Second_Difference_v0.1.html",
     "shapes-06-platonic-solids":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_06_Platonic_Solids/NEO_Maths_Y9_Shapes_Lesson_06_Platonic_Solids_v0.1.html",
     "shapes-07-surface-area":

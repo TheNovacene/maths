@@ -183,6 +183,31 @@
       ]
     },
     {
+      "id": "quadratics",
+      "title": "Quadratics",
+      "stage": "Foundations",
+      "strand": "Algebra",
+      "source": "vault/02_Foundations/01_Lessons/Quadratics",
+      "lessons": [
+        {
+          "id": "quad-01-growing-patterns",
+          "num": "Lesson 01",
+          "title": "Growing patterns",
+          "file": "lessons/quadratics/01-growing-patterns.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "quad-02-the-second-difference",
+          "num": "Lesson 02",
+          "title": "The second difference",
+          "file": "lessons/quadratics/02-the-second-difference.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
       "id": "straight-lines",
       "title": "Straight Lines and Connected Representations",
       "stage": "Intermediate",
