@@ -52,6 +52,10 @@ SOURCES = {
         "02_Foundations/01_Lessons/Quadratics/Lesson_01_Growing_Patterns/NEO_Maths_Y9_Quadratics_Lesson_01_Growing_Patterns_v0.1.html",
     "quad-02-the-second-difference":
         "02_Foundations/01_Lessons/Quadratics/Lesson_02_The_Second_Difference/NEO_Maths_Y9_Quadratics_Lesson_02_The_Second_Difference_v0.1.html",
+    "quad-03-the-rule-behind-the-sequence":
+        "02_Foundations/01_Lessons/Quadratics/Lesson_03_The_Rule_Behind_the_Sequence/NEO_Maths_Y9_Quadratics_Lesson_03_The_Rule_Behind_the_Sequence_v0.1.html",
+    "quad-04-the-expression-behind-it":
+        "02_Foundations/01_Lessons/Quadratics/Lesson_04_The_Expression_Behind_It/NEO_Maths_Y9_Quadratics_Lesson_04_The_Expression_Behind_It_v0.1.html",
     "shapes-06-platonic-solids":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_06_Platonic_Solids/NEO_Maths_Y9_Shapes_Lesson_06_Platonic_Solids_v0.1.html",
     "shapes-07-surface-area":

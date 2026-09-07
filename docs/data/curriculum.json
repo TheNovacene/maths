@@ -204,6 +204,22 @@
           "file": "lessons/quadratics/02-the-second-difference.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "quad-03-the-rule-behind-the-sequence",
+          "num": "Lesson 03",
+          "title": "The rule behind the sequence",
+          "file": "lessons/quadratics/03-the-rule-behind-the-sequence.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "quad-04-the-expression-behind-it",
+          "num": "Lesson 04",
+          "title": "The expression behind it",
+          "file": "lessons/quadratics/04-the-expression-behind-it.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

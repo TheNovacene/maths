@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: The expression behind it</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+@media(max-width:700px){.neo,.practice{padding:14px}.practice h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Quadratics</h1>
+<h2>The expression behind it</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What does x² look like as an area — and can we build it and take it apart?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core, with a stretch tier — meeting a quadratic through its second face, the <em>symbol</em> face.</p>
+<p><b>Stepping Stone:</b> <b>expand</b> a product of two brackets using an area model (for everyone) · <b>factorise</b> a simple quadratic <span class="stretch">stretch</span>.</p>
+<p><b>You will need:</b> the idea of the area of a rectangle, and the optional <b>✏️ Scratchpad</b>. No calculator today.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 10 · Move 14 · Reflect 10 · Create 7 · Rest/Nourish 4</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Quadratics_Lesson_04_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Quadratics_Lesson_04_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a rectangle with sides (x + 2) and (x + 3). Split it into four pieces and label each area. What do the four areas add up to?')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — The rectangle behind the brackets</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">Two lessons ago you met a quadratic as a growing <em>sequence</em>. Today you meet it as an <em>expression</em> — the symbol with an x² in it — and the picture that makes it make sense is <b>area</b>. The area of a rectangle is its width times its height. So <b>(x + 2)(x + 3)</b> is just the area of a rectangle whose sides are <b>x + 2</b> and <b>x + 3</b>. Split that rectangle where the x ends and the numbers begin, and it falls into <b>four pieces</b>: a square of side x (that is <b>x²</b>), two thin strips (that make the <b>x terms</b>), and a small rectangle of the two numbers — the <b>constant term</b> (the term with no x in it — just a number on its own). Add the four areas and you have expanded the brackets.</p>
+<p style="margin:6px 0">This picture does two jobs. Read it forwards and you <b>expand</b>: sides → area. Read it backwards and you <b>factorise</b>: area → sides. Same rectangle, both ways.</p>
+</div>
+<p><b>What to do:</b> choose the two numbers <b>a</b> and <b>b</b>, and watch the rectangle for (x + a)(x + b) split into its four areas.</p>
+<p><b>What you are trying to notice:</b> the top-left square is always <b>x²</b>; the two strips are the x terms; the little corner is the two numbers multiplied. The two strips join to give the middle term.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">▦ The rectangle behind the brackets</h3>
+<div class="small" style="text-align:center">side down: <b>x + <span id="amAval">2</span></b> &nbsp;·&nbsp; side across: <b>x + <span id="amBval">3</span></b></div>
+<div style="text-align:center"><span class="small">a =</span> <span id="amAchips"></span> &nbsp; <span class="small">b =</span> <span id="amBchips"></span></div>
+<div class="card" style="text-align:center"><svg id="amSvg" class="graphsvg" style="max-width:360px" viewBox="0 0 360 320" role="img" aria-label="A rectangle split into four areas for (x + a)(x + b)"></svg></div>
+<div id="amExpr" class="clue" style="text-align:center;font-size:1.05em"></div>
+<p><b>Carry this forward:</b> (x + a)(x + b) = x² + ax + bx + ab = x² + (a + b)x + ab. The middle is <b>added</b>; the constant is <b>multiplied</b>.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT (primary) ================= -->
+<details class="hs">
+<summary>🚶 Movement — Expand it</summary>
+<p><b>What to do:</b> expand each product into <b>x² + &#9633; x + &#9633;</b>. The middle number is a + b (added); the constant term is a × b (multiplied). Press <b>Show the area model</b> if a picture would help.</p>
+<p><b>What you are trying to notice:</b> once you see it as area, expanding is just "fill the four pieces and collect". You never need to remember a rule — you can rebuild it from the rectangle every time.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">✳️ Expand it</h3>
+<div id="exClue" class="clue" style="text-align:center;font-size:1.15em"></div>
+<div style="text-align:center;margin:6px 0">x² + <input id="exMid" class="numin" inputmode="numeric" placeholder="?"> x + <input id="exCon" class="numin" inputmode="numeric" placeholder="?"> &nbsp;<button onclick="exCheck()">✅ Check</button></div>
+<div id="exModel" class="card" style="text-align:center;display:none"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="exShow()">👀 Show the area model</button><button onclick="exNew()">➡️ New product</button></div>
+<div id="exFeedback" class="feedback"></div>
+<div id="exScore" class="card small" style="text-align:center"></div>
+<p><b>Carry this forward:</b> x² + (a + b)x + ab — add for the middle, multiply for the end.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Spot the slip</summary>
+<p><b>What to do:</b> each card shows someone's expansion of a product. Decide whether it is <b>right</b> or a <b>slip</b>, then check.</p>
+<p><b>What you are trying to notice:</b> the two classic slips are <b>multiplying the two numbers for the middle term</b> (the middle is added, not multiplied), and <b>forgetting to multiply for the constant</b> (or forgetting the middle term altogether). The area picture catches both.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 Spot the slip</h3>
+<div id="ssClue" class="clue" style="text-align:center;font-size:1.1em"></div>
+<div id="ssOpts" class="buttonrow" style="justify-content:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="ssNext()">➡️ Next</button></div>
+<div id="ssFeedback" class="feedback"></div>
+<p class="small" id="ssProg"></p>
+<p><b>Carry this forward:</b> middle term = the two numbers <b>added</b>; constant = the two numbers <b>multiplied</b>.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Factor Finder <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> this is the <b>reverse</b> challenge, for when you are ready. You are given the <em>area</em> — a quadratic like x² + 7x + 12 — and you find the <em>sides</em>. You need two numbers that <b>multiply</b> to the constant term (the number on its own) and <b>add</b> to the middle number.</p>
+<p><b>What you are trying to notice:</b> factorising is expanding run backwards. Instead of "add for the middle, multiply for the end", you ask "which two numbers multiply to the end <em>and</em> add to the middle?" — and the area model gives them back to you as the sides.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧩 Factor Finder</h3>
+<div id="faClue" class="clue" style="text-align:center;font-size:1.15em"></div>
+<div style="text-align:center;margin:6px 0">the two numbers are <input id="faP" class="numin" inputmode="numeric" placeholder="?"> and <input id="faQ" class="numin" inputmode="numeric" placeholder="?"> &nbsp;<button onclick="faCheck()">✅ Check</button></div>
+<div id="faModel" class="card" style="text-align:center;display:none"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="faShow()">👀 Show the area model</button><button onclick="faNew()">➡️ New quadratic</button></div>
+<div id="faFeedback" class="feedback"></div>
+<p><b>Make it your own:</b> on the Scratchpad, pick two numbers, expand (x + p)(x + q) to make a quadratic, then hand it to someone else to factorise.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Choose two numbers p and q. Expand (x + p)(x + q). Now hide the brackets and challenge yourself to factorise the quadratic back into its two sides.')">✏️ Create on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>You have turned a pair of brackets into a picture you can see. That shift — from a rule to a reason — is worth a quiet moment. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> did seeing (x + a)(x + b) as an <em>area</em> change how the expanding felt — from something to remember to something you could rebuild? There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> The rectangle is an honest mathematical picture, not the nourishment itself — so we name honestly what the <em>learning</em> feeds.</p>
+<div class="card">
+<p><b>What it feeds:</b> today feeds the power of a good <b>representation</b> — finding a picture that makes an abstract symbol make sense. x² + 5x + 6 is just marks on a page until you see it as an <em>area</em>; then it has parts you can point to, and expanding and factorising become the same rectangle read two ways. Great mathematicians and scientists are, more than anything, people who find the right way to <em>see</em> a problem. Learning that a hard idea often becomes easy once you draw it the right way is a confidence that lasts far beyond this lesson.</p>
+<p class="small">Carry one idea forward: when a symbol feels abstract, ask "what could this be a picture of?" — the picture usually holds the meaning.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> show that you can expand a pair of brackets using the area model — and, if you are ready, factorise one back.</p>
+<ul>
+<li>Take a product like (x + a)(x + b). Draw its <b>area rectangle</b>, label the four pieces, and expand it to x² + (a + b)x + ab. Do this for two different products.</li>
+<li>Explain in a sentence why the middle term is <b>added</b> and the constant is <b>multiplied</b>.</li>
+<li><span class="stretch">stretch</span> Take a quadratic such as x² + 7x + 12 and <b>factorise</b> it — find the two numbers that multiply to the constant and add to the middle — showing how the area model gives back the sides.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a written solution with the rectangle drawn, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_QUAD_EXPRESSION_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Sees (x+a)(x+b) as a rectangle's area.</td><td>Names the four pieces of the area.</td><td>Explains why the middle is added and the constant multiplied.</td><td>Explains factorising as the area model run backwards.</td></tr>
+<tr><td><b>Application</b></td><td>Fills the four areas with support.</td><td>Expands a product to x² + (a+b)x + ab.</td><td>Expands accurately and collects the middle term.</td><td>Factorises a simple quadratic back into two brackets.</td></tr>
+<tr><td><b>Communication</b></td><td>Records some areas.</td><td>Draws and labels the area rectangle.</td><td>Lays out a clear expansion from the picture.</td><td>Explains the method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Notices the two strips make the middle term.</td><td>Sees expand and factorise as one picture, two ways.</td><td>Connects the area model to the structure of any quadratic.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>The expression behind it — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw the area rectangle. Fill the four pieces, then collect them into x² + (a+b)x + ab.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_quad_expression_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","²","(",")","+","×","="];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){ var s=String(v).toLowerCase().replace(/[, ]+/g,'').replace(/=/g,''); var m=s.match(/-?\d+(\.\d+)?/); return m?parseFloat(m[0]):NaN; }
+function nums(v){ var m=String(v).match(/-?\d+/g); return m?m.map(Number):[]; }
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+function coefX(c){ return (c===1?"":c)+"x"; }
+
+/* ============ Area-model drawer ============ */
+var AM_COL={sq:"#cfe6c9", strip:"#d7e6f0", con:"#f1e6cf"};
+function drawArea(svgId,a,b,opts){
+  opts=opts||{};
+  var svg=document.getElementById(svgId); if(!svg) return;
+  var VW=360, VH=320, pad=40, xL=118, u=22;
+  var W=xL+b*u, H=xL+a*u, sc=Math.min((VW-2*pad)/W,(VH-2*pad)/H,1);
+  var w=W*sc, h=H*sc, xl=xL*sc, ub=b*u*sc, ua=a*u*sc, ox=pad, oy=pad;
+  function R(x,y,ww,hh,fill){ return '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+ww.toFixed(1)+'" height="'+hh.toFixed(1)+'" fill="'+fill+'" stroke="#5c6b4f" stroke-width="1.4"/>'; }
+  function T(x,y,t,fs,col){ return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" font-size="'+(fs||14)+'" fill="'+(col||"#2f3429")+'" text-anchor="middle" font-weight="bold">'+t+'</text>'; }
+  var s="";
+  s+=R(ox,oy,xl,xl,AM_COL.sq);          s+=T(ox+xl/2,oy+xl/2+5,"x²",17,"#2f5a34");
+  s+=R(ox+xl,oy,ub,xl,AM_COL.strip);    s+=T(ox+xl+ub/2,oy+xl/2+5,coefX(b),14,"#2b6cb0");
+  s+=R(ox,oy+xl,xl,ua,AM_COL.strip);    s+=T(ox+xl/2,oy+xl+ua/2+5,coefX(a),14,"#2b6cb0");
+  s+=R(ox+xl,oy+xl,ub,ua,AM_COL.con);   s+=T(ox+xl+ub/2,oy+xl+ua/2+5,(a*b),14,"#8a5a2b");
+  /* side labels */
+  s+=T(ox-16,oy+xl/2+4,"x",13,"#5c6b4f");    s+=T(ox-16,oy+xl+ua/2+4,a,13,"#5c6b4f");
+  s+=T(ox+xl/2,oy-12,"x",13,"#5c6b4f");       s+=T(ox+xl+ub/2,oy-12,b,13,"#5c6b4f");
+  svg.innerHTML=s;
+}
+function expandExpr(a,b){ return "x² + "+coefX(b)+" + "+coefX(a)+" + "+(a*b)+" &nbsp;=&nbsp; <b>x² + "+coefX(a+b)+" + "+(a*b)+"</b>"; }
+
+/* ============ CONNECTION: The rectangle behind the brackets ============ */
+var amA=2, amB=3;
+function amChips(){
+  var A=""; for(var i=1;i<=4;i++) A+='<span class="chip'+(i===amA?' active':'')+'" onclick="amSetA('+i+')">'+i+'</span>';
+  var B=""; for(var j=1;j<=4;j++) B+='<span class="chip'+(j===amB?' active':'')+'" onclick="amSetB('+j+')">'+j+'</span>';
+  document.getElementById("amAchips").innerHTML=A; document.getElementById("amBchips").innerHTML=B;
+}
+function amSetA(v){ amA=v; amDraw(); } function amSetB(v){ amB=v; amDraw(); }
+function amDraw(){
+  amChips();
+  document.getElementById("amAval").textContent=amA; document.getElementById("amBval").textContent=amB;
+  drawArea("amSvg",amA,amB);
+  document.getElementById("amExpr").innerHTML="(x + "+amA+")(x + "+amB+") = "+expandExpr(amA,amB);
+}
+
+/* ============ MOVEMENT: Expand it ============ */
+var EX=[ [2,3],[4,1],[1,6],[3,5],[2,7],[4,4],[3,6],[2,9] ];
+var exIdx=0, exScore=0;
+function exNew(){ exIdx=(exIdx+1)%EX.length; if(exIdx===0) exScore=0; exDraw(); }
+function exDraw(){
+  var p=EX[exIdx];
+  document.getElementById("exClue").innerHTML="Expand &nbsp;<b>(x + "+p[0]+")(x + "+p[1]+")</b>";
+  document.getElementById("exMid").value=""; document.getElementById("exCon").value="";
+  document.getElementById("exFeedback").style.display="none";
+  document.getElementById("exModel").style.display="none";
+  document.getElementById("exScore").textContent="Score: "+exScore;
+}
+function exShow(){ var p=EX[exIdx]; var el=document.getElementById("exModel"); el.style.display="block";
+  el.innerHTML='<svg id="exSvg" class="graphsvg" style="max-width:300px" viewBox="0 0 360 320"></svg>'; drawArea("exSvg",p[0],p[1]); }
+function exCheck(){
+  var p=EX[exIdx], mid=num(document.getElementById("exMid").value), con=num(document.getElementById("exCon").value), fb=document.getElementById("exFeedback"); fb.style.display="block";
+  if(isNaN(mid)||isNaN(con)){ fb.className="feedback warn"; fb.textContent="Fill in both boxes with a number."; return; }
+  if(mid===p[0]+p[1] && con===p[0]*p[1]){ exScore++; fb.className="feedback good";
+    fb.innerHTML="✓ Correct — (x + "+p[0]+")(x + "+p[1]+") = <b>x² + "+coefX(p[0]+p[1])+" + "+(p[0]*p[1])+"</b>. Press <b>New product</b>.";
+    document.getElementById("exScore").textContent="Score: "+exScore; }
+  else { fb.className="feedback warn";
+    fb.innerHTML="Not yet. The middle is "+p[0]+" + "+p[1]+" (<b>add</b>) and the constant is "+p[0]+" × "+p[1]+" (<b>multiply</b>). Press <b>Show the area model</b> if it helps."; }
+}
+
+/* ============ REFLECTION: Spot the slip ============ */
+var SS=[
+ {p:[2,3], claim:"x² + 5x + 6", ok:true,  why:"Right — middle 2 + 3 = 5, constant 2 × 3 = 6."},
+ {p:[2,3], claim:"x² + 6x + 6", ok:false, why:"Slip — the middle is 2 + 3 = 5, not 2 × 3. The middle term is added, not multiplied: x² + 5x + 6."},
+ {p:[4,1], claim:"x² + 5x + 4", ok:true,  why:"Right — middle 4 + 1 = 5, constant 4 × 1 = 4."},
+ {p:[3,5], claim:"x² + 8x + 8", ok:false, why:"Slip — the constant is 3 × 5 = 15, not 3 + 5. It should be x² + 8x + 15."},
+ {p:[3,4], claim:"x² + 12", ok:false, why:"Slip — the middle term is missing. Adding 3 + 4 = 7 gives the middle: x² + 7x + 12."},
+ {p:[2,7], claim:"x² + 9x + 14", ok:true, why:"Right — middle 2 + 7 = 9, constant 2 × 7 = 14."}
+];
+var ssIdx=0;
+function ssDraw(){
+  var q=SS[ssIdx];
+  document.getElementById("ssClue").innerHTML="(x + "+q.p[0]+")(x + "+q.p[1]+") = &nbsp;<b>"+q.claim+"</b>";
+  document.getElementById("ssOpts").innerHTML=["Right","Slip"].map(function(o,i){return '<button onclick="ssPick('+i+')">'+o+'</button>';}).join("");
+  document.getElementById("ssFeedback").style.display="none";
+  document.getElementById("ssProg").textContent="Card "+(ssIdx+1)+" of "+SS.length+".";
+}
+function ssPick(i){
+  var q=SS[ssIdx], ans=q.ok?0:1, fb=document.getElementById("ssFeedback"); fb.style.display="block";
+  if(i===ans){ fb.className="feedback good"; fb.innerHTML="Correct. "+q.why; }
+  else { fb.className="feedback warn"; fb.innerHTML="Look again — "+q.why; }
+}
+function ssNext(){ ssIdx=(ssIdx+1)%SS.length; ssDraw(); }
+
+/* ============ CREATIVITY: Factor Finder (stretch) ============ */
+var FA=[ [3,4],[2,5],[1,6],[2,6],[4,5],[3,7] ];
+var faIdx=0;
+function faNew(){ faIdx=(faIdx+1)%FA.length; faDraw(); }
+function faDraw(){
+  var p=FA[faIdx], b=p[0]+p[1], c=p[0]*p[1];
+  document.getElementById("faClue").innerHTML="Factorise &nbsp;<b>x² + "+coefX(b)+" + "+c+"</b> &nbsp;=&nbsp; (x + &#9633;)(x + &#9633;)";
+  document.getElementById("faP").value=""; document.getElementById("faQ").value="";
+  document.getElementById("faFeedback").style.display="none";
+  document.getElementById("faModel").style.display="none";
+}
+function faShow(){ var p=FA[faIdx]; var el=document.getElementById("faModel"); el.style.display="block";
+  el.innerHTML='<p class="small">The sides are (x + '+p[0]+') and (x + '+p[1]+'):</p><svg id="faSvg" class="graphsvg" style="max-width:300px" viewBox="0 0 360 320"></svg>'; drawArea("faSvg",p[0],p[1]); }
+function faCheck(){
+  var p=FA[faIdx], b=p[0]+p[1], c=p[0]*p[1], g=nums(document.getElementById("faP").value+" "+document.getElementById("faQ").value), fb=document.getElementById("faFeedback"); fb.style.display="block";
+  if(g.length<2){ fb.className="feedback warn"; fb.textContent="Put a number in each box."; return; }
+  if((g[0]===p[0]&&g[1]===p[1])||(g[0]===p[1]&&g[1]===p[0])){ fb.className="feedback good";
+    fb.innerHTML="✓ Yes — "+p[0]+" and "+p[1]+" multiply to "+c+" and add to "+b+". So x² + "+coefX(b)+" + "+c+" = <b>(x + "+p[0]+")(x + "+p[1]+")</b>. Press <b>New quadratic</b>."; }
+  else { fb.className="feedback warn";
+    fb.innerHTML="Not yet. You need two numbers that <b>multiply</b> to "+c+" and <b>add</b> to "+b+". List the pairs that multiply to "+c+", then find the pair that adds to "+b+"."; }
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    distribute:{title:'Multiplying out one bracket',prompt:'Expand <b>2(x + 5)</b>. What is the constant term (the term with no x in it)?',answer:10,hint:'2 × 5 = 10, so 2(x + 5) = 2x + 10.'},
+    area:{title:'Area of a rectangle',prompt:'A rectangle has sides <b>4</b> and <b>7</b>. What is its area?',answer:28,hint:'Area = width × height = 4 × 7 = 28.'},
+    collect:{title:'Collecting like terms',prompt:'Collect <b>3x + 5x</b>. How many x altogether?',answer:8,hint:'3 + 5 = 8, so 3x + 5x = 8x.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'distribute\')">Multiplying out a bracket</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'area\')">Area of a rectangle</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'collect\')">Collecting like terms</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer" style="width:100%;max-width:220px;padding:9px;border:1px solid #bcae98;border-radius:8px;margin-top:8px">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · The middle term",q:"Expand (x + 2)(x + 3). What number goes in front of x (the middle term)?",a:[],eq:function(v){return num(v)===5;},prompt:"The middle term comes from adding the two numbers.",hint:"2 + 3 = 5.",sol:"5 — the middle term is 2 + 3 = 5, so (x + 2)(x + 3) = x² + 5x + 6."},
+ {label:"2 of 6 · The constant term",q:"For that same expansion (x + 2)(x + 3), what is the constant term (the term with no x in it)?",a:[],eq:function(v){return num(v)===6;},prompt:"The constant term comes from multiplying the two numbers.",hint:"2 × 3 = 6.",sol:"6 — the constant term is 2 × 3 = 6, so (x + 2)(x + 3) = x² + 5x + 6."},
+ {label:"3 of 6 · Expand another",q:"Expand (x + 1)(x + 6). What is the middle number (in front of x)?",a:[],eq:function(v){return num(v)===7;},prompt:"Add the two numbers for the middle term.",hint:"1 + 6 = 7.",sol:"7 — the middle term is 1 + 6 = 7, so (x + 1)(x + 6) = x² + 7x + 6."},
+ {label:"4 of 6 · Add or multiply?",q:"When you expand (x + a)(x + b), does the middle term come from adding a and b, or multiplying them?",a:["adding","add","a+b","a plus b","addition","sum"],prompt:"Which two areas join to make the middle term — and are they combined by adding or multiplying?",hint:"The two strips join, so you add: the middle is a + b.",sol:"Adding — the middle term is a + b. The constant is the one that comes from multiplying (a × b)."},
+ {label:"5 of 6 · Factorise (stretch)",q:"Factorise x² + 7x + 12 = (x + 3)(x + ?). What is the missing number?",a:[],eq:function(v){return num(v)===4;},prompt:"You need two numbers that multiply to 12 and add to 7. One of them is 3.",hint:"3 × 4 = 12 and 3 + 4 = 7, so the missing number is 4.",sol:"4 — 3 and 4 multiply to 12 and add to 7, so x² + 7x + 12 = (x + 3)(x + 4)."},
+ {label:"6 of 6 · Factorise (stretch)",q:"Two numbers multiply to 10 and add to 7. Give the larger of the two numbers.",a:[],eq:function(v){return num(v)===5;},prompt:"List the pairs that multiply to 10: 1 and 10, 2 and 5. Which pair adds to 7?",hint:"2 and 5 multiply to 10 and add to 7 — the larger is 5.",sol:"5 — the numbers are 2 and 5 (they multiply to 10 and add to 7), so the larger is 5."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Add for the middle, multiply for the constant — or draw the area model, or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  amDraw();
+  exDraw();
+  ssDraw();
+  faDraw();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>
