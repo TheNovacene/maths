@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Stretch and reflect</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top;text-align:center}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+.uk{font-family:'Times New Roman',Georgia,serif;font-style:italic}
+</style>
+</head>
+<body>
+
+<style>
+  .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
+  .neo-chrome-header { background: #1A2E3B; color: #F7F7F5; padding: 0.6rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .neo-chrome-header a.neo-home { color: #2AB3A0; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
+  .neo-chrome-header a.neo-home:hover { text-decoration: underline; }
+  .neo-chrome-header .neo-crumb { font-size: 0.8rem; color: rgba(247,247,245,0.85); text-align: right; }
+  .neo-chrome-header .neo-crumb strong { color: #FFFFFF; font-weight: 600; }
+  .neo-chrome-footer { background: #1A2E3B; color: rgba(247,247,245,0.85); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.8rem; margin-top: 2rem; }
+  .neo-chrome-footer a { color: #2AB3A0; text-decoration: none; margin: 0 0.6rem; }
+  .neo-chrome-footer a:hover { text-decoration: underline; }
+  .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
+  /* --- Comfort & Access --- */
+  .neo-comfort-btn{background:#2AB3A0;color:#08312b;border:none;border-radius:8px;padding:0.35rem 0.7rem;font-weight:700;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;white-space:nowrap}
+  .neo-comfort-btn:hover{filter:brightness(1.06)}
+  .neo-comfort-panel{background:#12242e;color:#F7F7F5;padding:0.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;border-top:1px solid rgba(255,255,255,0.12);font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
+  .neo-comfort-panel[hidden]{display:none}
+  .neo-comfort-group{display:flex;flex-direction:column;gap:0.35rem}
+  .neo-comfort-group>span{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(247,247,245,0.65)}
+  .neo-comfort-row{display:flex;gap:0.4rem}
+  .neo-comfort-panel button.opt{background:rgba(255,255,255,0.10);color:#F7F7F5;border:1px solid rgba(255,255,255,0.25);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem}
+  .neo-comfort-panel button.opt[aria-pressed="true"]{background:#2AB3A0;color:#08312b;border-color:#2AB3A0;font-weight:700}
+  .neo-comfort-reset{margin-left:auto;align-self:center;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(247,247,245,0.85);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem}
+  html[data-neo-text="large"]{font-size:112.5%}
+  html[data-neo-text="larger"]{font-size:125%}
+  html[data-neo-spacing="on"] .neo-lesson-root{letter-spacing:0.012em}
+  html[data-neo-spacing="on"] .neo-lesson-root p,html[data-neo-spacing="on"] .neo-lesson-root li,html[data-neo-spacing="on"] .neo-lesson-root summary,html[data-neo-spacing="on"] .neo-lesson-root h2,html[data-neo-spacing="on"] .neo-lesson-root h3,html[data-neo-spacing="on"] .neo-lesson-root label{line-height:1.9!important;margin-bottom:0.7em!important}
+  html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
+  html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+  .mathpalette{margin:6px 0}
+  .palette-toggle{background:#365a68;color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+  .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .palette-keys[hidden]{display:none}
+  .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
+  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em;line-height:1.05}
+  .frac .fnum{padding:0 .25em .5px}
+  .frac .fden{padding:.5px .25em 0;border-top:1.6px solid currentColor}
+  .fracpreview{margin-top:6px;font-size:1.05em;color:#2f3429}
+  .fracpreview[hidden]{display:none}
+  .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
+</style>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Quadratics &middot; <strong>Lesson 06 &mdash; Stretch and reflect</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<script>
+(function(){
+ var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
+ try{var sv=JSON.parse(localStorage.getItem(KEY)||"null");if(sv)st=Object.assign(st,sv);}catch(e){}
+ function apply(){d.setAttribute("data-neo-text",st.text);st.spacing?d.setAttribute("data-neo-spacing","on"):d.removeAttribute("data-neo-spacing");st.calm?d.setAttribute("data-neo-calm","on"):d.removeAttribute("data-neo-calm");st.motion?d.setAttribute("data-neo-motion","reduced"):d.removeAttribute("data-neo-motion");}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+ function sync(){var ps=document.querySelectorAll("#neoComfortPanel .opt");for(var i=0;i<ps.length;i++){var b=ps[i],k=b.getAttribute("data-k");if(k==="text"){b.setAttribute("aria-pressed",st.text===b.getAttribute("data-v")?"true":"false");}else{b.setAttribute("aria-pressed",st[k]?"true":"false");}}}
+ window.neoComfortToggle=function(){var p=document.getElementById("neoComfortPanel"),btn=document.querySelector(".neo-comfort-btn"),willOpen=p.hasAttribute("hidden");willOpen?p.removeAttribute("hidden"):p.setAttribute("hidden","");if(btn)btn.setAttribute("aria-expanded",willOpen?"true":"false");};
+ window.neoComfortSet=function(k,v){st[k]=v;apply();save();sync();};
+ window.neoComfortToggleOpt=function(k){st[k]=!st[k];apply();save();sync();};
+ window.neoComfortReset=function(){st={text:"normal",spacing:false,calm:false,motion:false};apply();save();sync();};
+ apply();
+ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
+})();
+</script>
+<div class="neo-lesson-root">
+
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Quadratics</h1>
+<h2>Stretch and reflect</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What does the number in front of <span class="uk">x</span>² do to the curve?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core — the first of two lessons on <em>moving and reshaping</em> the parabola.</p>
+<p><b>Stepping Stone:</b> describe how the coefficient <b>a</b> <b>stretches</b> the curve in <span class="uk">y</span> = a<span class="uk">x</span>², and how a negative <b>a</b> <b>reflects</b> it into a ∩.</p>
+<p><b>You will need:</b> plotting <span class="uk">y</span> = <span class="uk">x</span>² (Lesson 5), multiplying by a whole number and by a half, and the optional <b>✏️ Scratchpad</b>. No calculator today.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 9 · Move 14 · Reflect 10 · Create 8 · Rest/Nourish 4</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y9_Quadratics_Lesson_06_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y9_Quadratics_Lesson_06_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Plot y = x², y = 2x² and y = ½x² on the same grid. How does each one compare with y = x²?')">✏️ Open Maths Scratchpad</button>
+
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Same curve, scaled</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">Last lesson you built <b><span class="uk">y</span> = <span class="uk">x</span>²</b>. Today you ask what happens when you put a <b>number in front</b> of the <span class="uk">x</span>² — a <b>coefficient</b> we call <b>a</b>, as in <b><span class="uk">y</span> = a<span class="uk">x</span>²</b>. The quickest way to feel it is a table. For every <span class="uk">x</span>, the height of <span class="uk">y</span> = 2<span class="uk">x</span>² is just <b>twice</b> the height of <span class="uk">y</span> = <span class="uk">x</span>², and the height of <span class="uk">y</span> = ½<span class="uk">x</span>² is <b>half</b> of it. So <b>a</b> stretches every point away from the <span class="uk">x</span>-axis (when a &gt; 1) or pulls it in towards the axis (when a is between 0 and 1) — but the turning point at (0, 0) never moves, because a × 0 is still 0.</p>
+</div>
+<p><b>What to do:</b> fill in the heights for <b><span class="uk">y</span> = 2<span class="uk">x</span>²</b> and <b><span class="uk">y</span> = ½<span class="uk">x</span>²</b> (the <span class="uk">y</span> = <span class="uk">x</span>² row is given), then press <b>Plot all three</b>.</p>
+<p><b>What you are trying to notice:</b> all three curves share the same turning point and line of symmetry; only their <em>steepness</em> differs. 2<span class="uk">x</span>² is the narrow one; ½<span class="uk">x</span>² is the wide one.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">▦ Compare the heights</h3>
+<div id="tcTableWrap"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="tcCheck()">✅ Plot all three</button><button onclick="tcReset()">↺ Clear</button></div>
+<div id="tcFeedback" class="feedback"></div>
+<div class="card" style="text-align:center"><svg id="tcSvg" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360" role="img" aria-label="Three parabolas: y = x squared, y = 2x squared and y = half x squared"></svg></div>
+<div id="tcRead" class="clue" style="text-align:center"></div>
+<p><b>Carry this forward:</b> in <span class="uk">y</span> = a<span class="uk">x</span>², every height is the <span class="uk">x</span>² height multiplied by <b>a</b>. Bigger a → narrower; smaller a → wider.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT (primary) ================= -->
+<details class="hs">
+<summary>🚶 Movement — The a-dial</summary>
+<p><b>What to do:</b> move the dial to change <b>a</b> and watch <span class="uk">y</span> = a<span class="uk">x</span>² stretch, flatten and flip. The faint dashed curve is <span class="uk">y</span> = <span class="uk">x</span>² (a = 1), kept still so you can compare.</p>
+<p><b>What you are trying to notice:</b> a bigger <b>a</b> makes a <em>narrower, steeper</em> U; a smaller <b>a</b> (between 0 and 1) makes a <em>wider, flatter</em> one; and a <em>negative</em> <b>a</b> flips the whole curve upside-down into a ∩. Through it all, the turning point stays at (0, 0).</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🎛️ The a-dial</h3>
+<div style="text-align:center"><span class="small"><b>a = <span id="adVal">1</span></b></span><br>
+<input id="adSlider" type="range" min="-3" max="3" step="0.5" value="1" style="width:82%;max-width:420px" oninput="adSet(this.value)" aria-label="coefficient a"></div>
+<div id="adEq" class="bignum"></div>
+<div class="card" style="text-align:center"><svg id="adSvg" class="graphsvg" style="max-width:360px" viewBox="0 0 360 360"></svg></div>
+<div id="adRead" class="clue" style="text-align:center"></div>
+<p><b>Carry this forward:</b> <b>a</b> controls steepness and direction. |a| &gt; 1 narrower · 0 &lt; |a| &lt; 1 wider · a &lt; 0 opens downward. The turning point does not move.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Read the steepness</summary>
+<p><b>What to do:</b> a parabola is drawn for a secret value of <b>a</b>. Read its steepness and direction, and type the <b>a</b> you think produced it.</p>
+<p><b>What you are trying to notice:</b> a narrow curve means a <em>large</em> |a|; a wide one means a <em>small</em> |a|; a ∩ means a is <em>negative</em>. A common slip is to think a bigger number makes a wider curve — it is the opposite.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 Name the a</h3>
+<div id="mcClue" class="clue" style="text-align:center"></div>
+<div class="card" style="text-align:center"><svg id="mcSvg" class="graphsvg" style="max-width:340px" viewBox="0 0 360 360"></svg></div>
+<div style="text-align:center;margin:6px 0"><span class="uk">y</span> = <input id="mcA" class="numin" inputmode="decimal" placeholder="a"><span class="uk">x</span>² &nbsp;<button onclick="mcCheck()">✅ Check</button> &nbsp;<button onclick="mcNew()">➡️ New curve</button></div>
+<div id="mcFeedback" class="feedback"></div>
+<p><b>Carry this forward:</b> steeper = larger |a| · wider = smaller |a| · upside-down = negative a.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Make it pass through a point <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> choose <b>a</b> so that <span class="uk">y</span> = a<span class="uk">x</span>² passes exactly through a given point. Since the point (<span class="uk">x</span>, <span class="uk">y</span>) must fit the rule, you need <b>a = <span class="uk">y</span> ÷ <span class="uk">x</span>²</b>.</p>
+<p><b>What you are trying to notice:</b> one point is enough to pin down the whole curve. Working backwards from a point to the coefficient is the seed of "fitting" a curve to data.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧩 Find the a</h3>
+<div id="tp2Clue" class="clue" style="text-align:center;font-size:1.1em"></div>
+<div style="text-align:center;margin:6px 0">a = <input id="tp2A" class="numin" inputmode="decimal" placeholder="?"> &nbsp;<button onclick="tp2Check()">✅ Check</button> &nbsp;<button onclick="tp2New()">➡️ New point</button></div>
+<div class="card" style="text-align:center"><svg id="tp2Svg" class="graphsvg" style="max-width:340px" viewBox="0 0 360 360"></svg></div>
+<div id="tp2Feedback" class="feedback"></div>
+<p><b>Make it your own:</b> on the Scratchpad, pick your own point and work out the <b>a</b> that makes <span class="uk">y</span> = a<span class="uk">x</span>² go through it.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Pick a point like (2, 12). Work out a = y ÷ x². Sketch y = ax² and check it passes through your point.')">✏️ Create on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>You have taken one curve and made a whole family of them — steeper, flatter, flipped — just by changing a single number. That is worth a quiet moment. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> which felt more surprising — that a bigger <b>a</b> makes the curve <em>narrower</em>, or that a <em>negative</em> <b>a</b> turns it upside-down? There is no right answer — just what your own attention noticed.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> The stretching curve is a mathematical idea, not the nourishment itself — so we name honestly what the <em>learning</em> feeds.</p>
+<div class="card">
+<p><b>What it feeds:</b> today feeds the powerful idea of a <b>transformation</b> — that one small change to a rule reshapes its whole picture in a predictable way. Instead of memorising dozens of separate curves, you learn one move (multiply by <b>a</b>) and you can picture them all. That habit — looking for the single control that governs a whole family — is how mathematicians and scientists tame complicated things: find the dial, and you understand the machine.</p>
+<p class="small">Carry one idea forward: when a rule has a number you can change, ask "what does <em>that</em> number do to the shape?" — the answer is usually one clean movement.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> show that you can describe what <b>a</b> does to <span class="uk">y</span> = a<span class="uk">x</span>².</p>
+<ul>
+<li>On one grid, sketch <span class="uk">y</span> = <span class="uk">x</span>², a <b>narrower</b> curve and a <b>wider</b> curve, and label each with its value of <b>a</b>.</li>
+<li>Sketch a curve with a <b>negative</b> <b>a</b> and explain in a sentence how it differs from the others, and what stays the same (the turning point and line of symmetry).</li>
+<li><span class="stretch">stretch</span> Find the value of <b>a</b> so that <span class="uk">y</span> = a<span class="uk">x</span>² passes through a point you choose, showing that a = <span class="uk">y</span> ÷ <span class="uk">x</span>².</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a hand-drawn set of curves on one grid, a labelled poster, or a spoken/video walkthrough.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_QUAD_ASTRETCH_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Sees that a changes the curve.</td><td>Links a bigger a to a narrower curve.</td><td>Explains stretch (a) and reflection (negative a).</td><td>Explains why the turning point never moves.</td></tr>
+<tr><td><b>Application</b></td><td>Reads a from a given curve with support.</td><td>Sketches a narrower and a wider curve.</td><td>Sketches an upward and a downward curve accurately.</td><td>Finds a so the curve passes through a chosen point.</td></tr>
+<tr><td><b>Communication</b></td><td>Labels one curve.</td><td>Labels each curve with its a.</td><td>Describes steepness and direction clearly.</td><td>Explains the method another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Notices bigger a means narrower.</td><td>Connects negative a to the reflection.</td><td>Sees a as one control governing a whole family of curves.</td></tr>
+</table>
+</details>
+
+</div>
+<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
+</div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Stretch and reflect — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('coordinate-grid','Plot y = x², y = 2x² and y = ½x² on one grid, then a downward one like y = −x².')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_quad_parabola_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","²","a","(",")","−","+","="];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function num(v){ var s=String(v).toLowerCase().replace(/[, ]+/g,'').replace(/=/g,''); var m=s.match(/-?\d+(\.\d+)?/); return m?parseFloat(m[0]):NaN; }
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+
+/* ============ PARABOLA LAB — reusable curve engine ============ */
+/* Draws y = a(x - p)^2 + k on a coordinate grid. Presets per lesson via opts.
+   opts: xRange[min,max], yRange[min,max] (else auto), a,p,k (curve params, default 1,0,0),
+         showCurve(bool), points[{x,y,col,label}], sym(x-value dashed line),
+         turn({x,y}), highlight({x,y}) with drop-lines, curveCol. */
+function drawParab(svgId,opts){
+  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg) return;
+  var VW=360,VH=360,pad=34;
+  var xmin=opts.xRange?opts.xRange[0]:-4, xmax=opts.xRange?opts.xRange[1]:4;
+  var a=(opts.a==null?1:opts.a), p=(opts.p==null?0:opts.p), k=(opts.k==null?0:opts.k);
+  function F(x){ return a*(x-p)*(x-p)+k; }
+  var ymin,ymax;
+  if(opts.yRange){ ymin=opts.yRange[0]; ymax=opts.yRange[1]; }
+  else {
+    var ys=[0]; for(var sx=xmin;sx<=xmax;sx+=0.5) ys.push(F(sx));
+    if(opts.points) opts.points.forEach(function(pt){ ys.push(pt.y); });
+    ymin=Math.floor(Math.min.apply(0,ys)-1); ymax=Math.ceil(Math.max.apply(0,ys)+1);
+  }
+  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(ymax-ymin);
+  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ymin)*uy;}
+  var s="", y0=SY(0), x0=SX(0);
+  /* grid */
+  for(var gx=Math.ceil(xmin);gx<=xmax;gx++) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(ymax).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ymin).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  var ystep=(ymax-ymin)>12?2:1;
+  for(var gy=Math.ceil(ymin/ystep)*ystep;gy<=ymax;gy+=ystep) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  /* symmetry line (behind axes) */
+  if(opts.sym!=null){ s+='<line x1="'+SX(opts.sym).toFixed(1)+'" y1="'+SY(ymax).toFixed(1)+'" x2="'+SX(opts.sym).toFixed(1)+'" y2="'+SY(ymin).toFixed(1)+'" stroke="#b25f2e" stroke-width="1.6" stroke-dasharray="6 4"/>'; s+='<text x="'+SX(opts.sym).toFixed(1)+'" y="14" font-size="10" fill="#b25f2e" text-anchor="middle">line of symmetry</text>'; }
+  /* axes */
+  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ymin).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(ymax).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  for(var lx=Math.ceil(xmin);lx<=xmax;lx++){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
+  for(var ly=Math.ceil(ymin/ystep)*ystep;ly<=ymax;ly+=ystep){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
+  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="12" fill="#6a7080" text-anchor="end" font-style="italic">x</text>';
+  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(ymax)+11).toFixed(1)+'" font-size="12" fill="#6a7080" font-style="italic">y</text>';
+  /* ghost reference curve (faint dashed) */
+  if(opts.ghost){ var ga=(opts.ghost.a==null?1:opts.ghost.a), gp=(opts.ghost.p==null?0:opts.ghost.p), gk=(opts.ghost.k==null?0:opts.ghost.k);
+    function G(x){ return ga*(x-gp)*(x-gp)+gk; }
+    var gpts=[]; for(var gxx=xmin;gxx<=xmax+0.0001;gxx+=(xmax-xmin)/240){ var gyy=G(gxx); if(gyy>=ymin&&gyy<=ymax) gpts.push(SX(gxx).toFixed(1)+','+SY(gyy).toFixed(1)); }
+    if(gpts.length) s+='<polyline points="'+gpts.join(' ')+'" fill="none" stroke="#9fb0a2" stroke-width="1.8" stroke-dasharray="5 4"/>';
+    if(opts.ghostLabel){ s+='<text x="'+(SX(xmax)-4).toFixed(1)+'" y="'+(SY(G(xmax))-4).toFixed(1)+'" font-size="9.5" fill="#7f9084" text-anchor="end">'+opts.ghostLabel+'</text>'; } }
+  /* curve */
+  if(opts.showCurve){ var pts=[]; for(var cx=xmin;cx<=xmax+0.0001;cx+=(xmax-xmin)/240){ var cy=F(cx); if(cy>=ymin&&cy<=ymax) pts.push(SX(cx).toFixed(1)+','+SY(cy).toFixed(1)); }
+    if(pts.length) s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+(opts.curveCol||"#3f7a45")+'" stroke-width="2.6"/>'; }
+  /* several curves at once (y = a x^2) */
+  if(opts.curves){ opts.curves.forEach(function(cv){ var ca=cv.a; var qpts=[];
+    for(var qx=xmin;qx<=xmax+0.0001;qx+=(xmax-xmin)/240){ var qy=ca*qx*qx; if(qy>=ymin&&qy<=ymax) qpts.push(SX(qx).toFixed(1)+','+SY(qy).toFixed(1)); }
+    if(qpts.length) s+='<polyline points="'+qpts.join(' ')+'" fill="none" stroke="'+(cv.col||"#3f7a45")+'" stroke-width="2.4"'+(cv.dash?' stroke-dasharray="5 4"':'')+'/>'; }); }
+  /* plotted points */
+  if(opts.points) opts.points.forEach(function(pt){ if(pt.y<ymin||pt.y>ymax) return; var col=pt.col||"#2f6a35";
+    s+='<circle cx="'+SX(pt.x).toFixed(1)+'" cy="'+SY(pt.y).toFixed(1)+'" r="4.2" fill="'+col+'"/>';
+    if(pt.label) s+='<text x="'+(SX(pt.x)+7).toFixed(1)+'" y="'+(SY(pt.y)-6).toFixed(1)+'" font-size="10" fill="'+col+'">'+pt.label+'</text>'; });
+  /* highlight point with drop-lines */
+  if(opts.highlight){ var hx=opts.highlight.x, hy=opts.highlight.y; if(hy>=ymin&&hy<=ymax){
+    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+hx+', '+hy+')</text>'; }}
+  /* turning point ring */
+  if(opts.turn){ s+='<circle cx="'+SX(opts.turn.x).toFixed(1)+'" cy="'+SY(opts.turn.y).toFixed(1)+'" r="7.5" fill="none" stroke="#b24c4c" stroke-width="2.2"/><text x="'+(SX(opts.turn.x)+12).toFixed(1)+'" y="'+(SY(opts.turn.y)-9).toFixed(1)+'" font-size="10" fill="#b24c4c">turning point ('+opts.turn.x+', '+opts.turn.y+')</text>'; }
+  svg.innerHTML=s;
+}
+
+/* helper: format a coefficient for display (italic-x aware, true minus) */
+function aStr(a){ return (a%1===0?String(a):String(a)).replace("-","−"); }
+/* fraction-aware number parser: accepts 0.5, 1/2, ½ etc. */
+function numFrac(v){
+  var s=String(v).trim().replace(/½/g,"0.5").replace(/¼/g,"0.25").replace(/¾/g,"0.75").replace(/−/g,"-").replace(/[ ,]/g,"");
+  var m=s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+  if(m){ var d=parseFloat(m[2]); return d===0?NaN:parseFloat(m[1])/d; }
+  return num(s);
+}
+function aCoef(a){ if(a===1) return ""; if(a===-1) return "−"; return aStr(a); }
+
+/* ============ CONNECTION: Table compare ============ */
+var TC_XS=[-2,-1,0,1,2];
+var tcPlotted=false;
+function tcTable(){
+  var h='<table><tr><th><span class="uk">x</span></th>';
+  TC_XS.forEach(function(x){ h+='<th>'+x+'</th>'; });
+  h+='</tr><tr><td style="text-align:left"><span class="uk">y</span> = <span class="uk">x</span>²</td>';
+  TC_XS.forEach(function(x){ h+='<td>'+(x*x)+'</td>'; });
+  h+='</tr><tr><td style="text-align:left"><span class="uk">y</span> = 2<span class="uk">x</span>²</td>';
+  TC_XS.forEach(function(x,i){ h+='<td><input id="tc2_'+i+'" class="numin" style="max-width:52px" inputmode="numeric" placeholder="?"></td>'; });
+  h+='</tr><tr><td style="text-align:left"><span class="uk">y</span> = ½<span class="uk">x</span>²</td>';
+  TC_XS.forEach(function(x,i){ h+='<td><input id="tch_'+i+'" class="numin" style="max-width:52px" inputmode="decimal" placeholder="?"></td>'; });
+  h+='</tr></table>';
+  document.getElementById("tcTableWrap").innerHTML=h;
+}
+function tcDraw(){
+  var curves=[{a:1,col:"#9fb0a2",dash:true}], pts=[];
+  if(tcPlotted){ curves.push({a:2,col:"#3f7a45"}); curves.push({a:0.5,col:"#2b6cb0"});
+    TC_XS.forEach(function(x){ pts.push({x:x,y:2*x*x,col:"#2f6a35"}); pts.push({x:x,y:0.5*x*x,col:"#2b6cb0"}); }); }
+  drawParab("tcSvg",{xRange:[-3,3], yRange:[-1,9], curves:curves, points:pts});
+}
+function tcCheck(){
+  var fb=document.getElementById("tcFeedback"); fb.style.display="block";
+  var ok=true, filled=0;
+  TC_XS.forEach(function(x,i){
+    var a2=document.getElementById("tc2_"+i).value, ah=document.getElementById("tch_"+i).value;
+    if(a2.trim()!==""||ah.trim()!=="") filled++;
+    if(a2.trim()===""||ah.trim()==="") { ok=false; return; }
+    if(numFrac(a2)!==2*x*x) ok=false;
+    if(Math.abs(numFrac(ah)-0.5*x*x)>0.001) ok=false;
+  });
+  if(filled===0){ fb.className="feedback warn"; fb.innerHTML="Fill in the two rows: <span class=\"uk\">y</span> = 2<span class=\"uk\">x</span>² is twice <span class=\"uk\">x</span>², and <span class=\"uk\">y</span> = ½<span class=\"uk\">x</span>² is half of it."; return; }
+  if(!ok){ fb.className="feedback warn"; fb.innerHTML="Not all correct yet. For each <span class=\"uk\">x</span>: 2<span class=\"uk\">x</span>² = 2 × (<span class=\"uk\">x</span>²), and ½<span class=\"uk\">x</span>² = (<span class=\"uk\">x</span>²) ÷ 2. For example at <span class=\"uk\">x</span> = 2: 2×4 = 8 and 4÷2 = 2."; return; }
+  tcPlotted=true; tcDraw();
+  fb.className="feedback good"; fb.innerHTML="✓ All three plotted. <b>2<span class=\"uk\">x</span>²</b> (green) is the <b>narrow</b> one — every height doubled. <b>½<span class=\"uk\">x</span>²</b> (blue) is the <b>wide</b> one — every height halved. All three share the turning point (0, 0).";
+  document.getElementById("tcRead").innerHTML="<b>Legend:</b> grey dashed = <span class=\"uk\">y</span> = <span class=\"uk\">x</span>² · green = 2<span class=\"uk\">x</span>² · blue = ½<span class=\"uk\">x</span>²";
+}
+function tcReset(){ tcPlotted=false; TC_XS.forEach(function(x,i){ var a=document.getElementById("tc2_"+i), b=document.getElementById("tch_"+i); if(a)a.value=""; if(b)b.value=""; }); document.getElementById("tcFeedback").style.display="none"; document.getElementById("tcRead").innerHTML=""; tcDraw(); }
+
+/* ============ MOVEMENT: the a-dial ============ */
+function adSet(v){
+  var a=parseFloat(v); document.getElementById("adVal").textContent=aStr(a);
+  var eq=document.getElementById("adEq"), read=document.getElementById("adRead");
+  if(a===0){ eq.innerHTML="<span class=\"uk\">y</span> = 0";
+    drawParab("adSvg",{xRange:[-3,3], yRange:[-9,9], showCurve:false, ghost:{a:1}, ghostLabel:"y = x²"});
+    read.innerHTML="When <b>a = 0</b> there is no <span class=\"uk\">x</span>² any more — <span class=\"uk\">y</span> = 0 is a flat line along the axis, not a parabola. Nudge the dial either way."; return; }
+  eq.innerHTML="<span class=\"uk\">y</span> = "+aCoef(a)+"<span class=\"uk\">x</span>²";
+  drawParab("adSvg",{xRange:[-3,3], yRange:[-9,9], a:a, showCurve:true, ghost:{a:1}, ghostLabel:"y = x²", turn:{x:0,y:0}});
+  var mag=Math.abs(a);
+  var steep = mag>1?"<b>narrower and steeper</b> than <span class=\"uk\">y</span> = <span class=\"uk\">x</span>²":(mag<1?"<b>wider and flatter</b> than <span class=\"uk\">y</span> = <span class=\"uk\">x</span>²":"exactly <span class=\"uk\">y</span> = <span class=\"uk\">x</span>²");
+  read.innerHTML=(a<0?"Negative <b>a</b>: the curve is <b>reflected</b> — it opens <b>downward</b> into a ∩. ":"")+"It is "+steep+". The turning point is still (0, 0).";
+}
+
+/* ============ REFLECTION: name the a ============ */
+var MC=[2,0.5,-1,3,-2,1];
+var mcIdx=0;
+function mcNew(){ mcIdx=(mcIdx+1)%MC.length; mcDraw(); }
+function mcDraw(){
+  var a=MC[mcIdx];
+  document.getElementById("mcClue").innerHTML="Which value of <b>a</b> gives this curve? (The dashed grey curve is <span class=\"uk\">y</span> = <span class=\"uk\">x</span>² for comparison.)";
+  document.getElementById("mcA").value="";
+  document.getElementById("mcFeedback").style.display="none";
+  drawParab("mcSvg",{xRange:[-3,3], yRange:[-9,9], a:a, showCurve:true, ghost:{a:1}, ghostLabel:"y = x²"});
+}
+function mcCheck(){
+  var a=MC[mcIdx], fb=document.getElementById("mcFeedback"); fb.style.display="block";
+  var v=num(document.getElementById("mcA").value);
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type a value for a."; return; }
+  if(Math.abs(v-a)<0.001){ fb.className="feedback good";
+    fb.innerHTML="✓ Yes — this is <span class=\"uk\">y</span> = "+aCoef(a)+"<span class=\"uk\">x</span>². "+(a<0?"It opens downward, so a is negative. ":"")+(Math.abs(a)>1?"It is narrower than <span class=\"uk\">y</span> = <span class=\"uk\">x</span>², so |a| &gt; 1.":(Math.abs(a)<1?"It is wider than <span class=\"uk\">y</span> = <span class=\"uk\">x</span>², so |a| &lt; 1.":"It matches <span class=\"uk\">y</span> = <span class=\"uk\">x</span>² exactly.")); }
+  else { fb.className="feedback warn"; fb.innerHTML="Not quite. Is it narrower (|a| bigger than 1) or wider (|a| smaller than 1)? Does it open up (a positive) or down (a negative)? Compare it with the dashed <span class=\"uk\">y</span> = <span class=\"uk\">x</span>²."; }
+}
+
+/* ============ CREATIVITY: make it pass through a point (stretch) ============ */
+var TP2=[[2,8],[2,2],[1,-3],[3,9],[2,-8]];  /* a = y/x^2 -> 2, 0.5, -3, 1, -2 */
+var tp2Idx=0;
+function tp2New(){ tp2Idx=(tp2Idx+1)%TP2.length; tp2Draw(); }
+function tp2Draw(){
+  var pt=TP2[tp2Idx];
+  document.getElementById("tp2Clue").innerHTML="Find <b>a</b> so that <span class=\"uk\">y</span> = a<span class=\"uk\">x</span>² passes through (<b>"+pt[0]+"</b>, <b>"+pt[1]+"</b>).";
+  document.getElementById("tp2A").value="";
+  document.getElementById("tp2Feedback").style.display="none";
+  drawParab("tp2Svg",{xRange:[-4,4], yRange:[-10,10], showCurve:false, ghost:{a:1}, ghostLabel:"y = x²", points:[{x:pt[0],y:pt[1],col:"#365a68",label:"("+pt[0]+", "+pt[1]+")"}]});
+}
+function tp2Check(){
+  var pt=TP2[tp2Idx], a=pt[1]/(pt[0]*pt[0]), fb=document.getElementById("tp2Feedback"); fb.style.display="block";
+  var v=num(document.getElementById("tp2A").value);
+  if(isNaN(v)){ fb.className="feedback warn"; fb.textContent="Type a value for a."; return; }
+  if(Math.abs(v-a)<0.001){ fb.className="feedback good";
+    fb.innerHTML="✓ Yes — a = <span class=\"uk\">y</span> ÷ <span class=\"uk\">x</span>² = "+pt[1]+" ÷ "+(pt[0]*pt[0])+" = <b>"+aStr(a)+"</b>. The curve <span class=\"uk\">y</span> = "+aCoef(a)+"<span class=\"uk\">x</span>² passes right through the point.";
+    drawParab("tp2Svg",{xRange:[-4,4], yRange:[-10,10], a:a, showCurve:true, ghost:{a:1}, ghostLabel:"y = x²", points:[{x:pt[0],y:pt[1],col:"#365a68",label:"("+pt[0]+", "+pt[1]+")"}]}); }
+  else { fb.className="feedback warn"; fb.innerHTML="Not yet. Put the point into the rule: "+pt[1]+" = a × "+pt[0]+"², so a = "+pt[1]+" ÷ "+(pt[0]*pt[0])+"."; }
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    scale:{title:'Multiplying a height',prompt:'A point on <span class="uk">y</span> = <span class="uk">x</span>² is at height 9. On <span class="uk">y</span> = 2<span class="uk">x</span>², what is the height at the same <span class="uk">x</span>?',answer:18,hint:'Multiply the height by a: 2 × 9 = 18.'},
+    half:{title:'Half of a square',prompt:'What is ½ × 16?',answer:8,hint:'Half of 16 is 8.'},
+    negtimes:{title:'A negative coefficient',prompt:'Work out −1 × 2². Square first, then multiply.',answer:-4,hint:'2² = 4, then −1 × 4 = −4.'}
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
+     +'<div class="buttonrow">'
+     +'<button class="guidebtn" onclick="showReconnect(\'scale\')">Multiplying a height</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'half\')">Half of a square</button>'
+     +'<button class="guidebtn" onclick="showReconnect(\'negtimes\')">A negative coefficient</button>'
+     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer" style="width:100%;max-width:220px;padding:9px;border:1px solid #bcae98;border-radius:8px;margin-top:8px">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · A stretched height",q:"On y = 2x², what is y when x = 3?",a:[],eq:function(v){return num(v)===18;},prompt:"Work out x² first, then multiply by a = 2.",hint:"3² = 9, then 2 × 9 = 18.",sol:"18 — y = 2 × 3² = 2 × 9 = 18."},
+ {label:"2 of 6 · A flatter height",q:"On y = ½x², what is y when x = 4?",a:[],eq:function(v){return num(v)===8;},prompt:"Work out x², then take half.",hint:"4² = 16, then ½ × 16 = 8.",sol:"8 — y = ½ × 4² = ½ × 16 = 8."},
+ {label:"3 of 6 · Narrow or wide?",q:"Which is the narrower curve: y = 3x² or y = x²? (Answer 3x² or x².)",a:["3x2","3x²","y=3x2","y = 3x²","3x squared","the first","3xx","3 x 2"],eq:function(v){return false;},prompt:"A larger value of a pulls the curve in, making it steeper.",hint:"a = 3 is bigger than a = 1, so 3x² is the narrower curve.",sol:"y = 3x² — a bigger a makes a narrower, steeper curve."},
+ {label:"4 of 6 · Which way up?",q:"Does the curve y = −2x² open upward or downward?",a:["downward","down","downwards"],eq:function(v){return false;},prompt:"What does a negative a do to the curve?",hint:"A negative a reflects the curve, so it opens downward (a ∩).",sol:"Downward — a negative a flips the parabola into a ∩ shape."},
+ {label:"5 of 6 · The turning point",q:"For y = 5x², what are the coordinates of the turning point?",a:["(0,0)","0,0","00","0 0","(0, 0)","origin"],eq:function(v){return false;},prompt:"Changing a stretches the curve but does not move its lowest point.",hint:"a × 0 = 0, so the turning point stays at (0, 0).",sol:"(0, 0) — a changes the steepness but never moves the turning point."},
+ {label:"6 of 6 · Through a point (stretch)",q:"Find a so that y = ax² passes through (2, 12).",a:[],eq:function(v){return num(v)===3;},prompt:"Put the point into the rule: 12 = a × 2².",hint:"12 = a × 4, so a = 12 ÷ 4 = 3.",sol:"3 — a = y ÷ x² = 12 ÷ 4 = 3, so y = 3x² passes through (2, 12)."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Substitute and square — and remember a negative squared is positive — or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  tcTable(); tcDraw();
+  adSet(1);
+  mcDraw();
+  tp2Draw();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+
+<script src="../../assets/progress.js"></script>
+<script>NEOProgress.autoTrack('quad-06-stretch-and-reflect');</script>
+
+<script>
+/* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */
+(function(){
+  if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
+  var DEFAULT=["a","b","c","x","y","²","³","√","π","+","-","×","÷","=","≈","°"];
+  function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
+  function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  /* render any a/b in a plain string as a stacked fraction (numerator over denominator) */
+  function renderFractions(t){ var re=new RegExp("([A-Za-z0-9.²³]+) */ *([A-Za-z0-9.²³]+)","g"); return esc(t).replace(re, function(_,n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }); }
+  function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
+  function updatePreview(f,pv){ var v=f.value||""; if(v.indexOf("/")>=0){ pv.hidden=false; pv.innerHTML='<span class="flabel">Reads as:</span> '+renderFractions(v); } else { pv.hidden=true; pv.innerHTML=""; } }
+  function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
+    var w=document.createElement("div"); w.className="mathpalette";
+    var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="√ Symbols";
+    var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
+    var pv=document.createElement("div"); pv.className="fracpreview"; pv.hidden=true; pv.setAttribute("aria-live","polite");
+    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);updatePreview(f,pv);}); k.appendChild(b); });
+    var fr=document.createElement("button"); fr.type="button"; fr.title="Insert a fraction (numerator / denominator)"; fr.innerHTML='<span class="frac"><span class="fnum">a</span><span class="fden">b</span></span>';
+    fr.addEventListener("click",function(){ insert(f,"/"); updatePreview(f,pv); }); k.appendChild(fr);
+    t.addEventListener("click",function(){ k.hidden=!k.hidden; });
+    f.addEventListener("input",function(){ updatePreview(f,pv); });
+    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w); w.insertAdjacentElement("afterend",pv);
+  }
+  function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
+})();
+</script>
+
+<script>
+/* Single-open accordion: opening one panel closes the others (data-keep-open opts out). */
+(function(){
+  if(window.__neoAccordionInstalled)return; window.__neoAccordionInstalled=true;
+  function closeOthers(cur){
+    var scope=cur.closest("#lessonView")||document;
+    scope.querySelectorAll("details").forEach(function(d){
+      if(d!==cur && !d.contains(cur) && d.dataset.keepOpen!=="true") d.open=false;
+    });
+  }
+  document.addEventListener("toggle",function(e){
+    var d=e.target;
+    if(d && d.tagName==="DETAILS" && d.open && (d.closest("#lessonView")||d.closest(".neo-lesson-root"))) closeOthers(d);
+  },true);
+})();
+</script>
+</div>
+<style>
+#neoCalcWrap{position:fixed;right:16px;bottom:16px;z-index:9990;font-family:Arial,sans-serif}
+#neoCalcToggle{background:#365a68;color:#fff;border:none;border-radius:24px;padding:11px 16px;font-weight:700;font-size:1em;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+#neoCalcPanel{position:absolute;right:0;bottom:56px;width:246px;background:#f7f3ea;border:1px solid #cdbfa9;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.30);padding:12px}
+#neoCalcPanel[hidden]{display:none}
+.neoCalcHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.neoCalcHead b{color:#3f5f45}
+.neoCalcDeg{font-size:.72em;font-weight:700;color:#fff;background:#5c6b4f;border-radius:6px;padding:2px 7px;letter-spacing:.05em}
+#neoCalcExpr{min-height:22px;background:#fff;border:1px solid #cdbfa9;border-radius:8px;padding:7px 9px;font-size:1.05em;text-align:right;word-break:break-all;color:#2f3429}
+#neoCalcResult{min-height:20px;text-align:right;font-size:1.15em;font-weight:700;color:#2f6b46;padding:3px 4px 8px}
+.neoCalcGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.neoCalcGrid button{padding:11px 0;font-size:1em;border:1px solid #bcae98;border-radius:9px;background:#fff;cursor:pointer;color:#2f3429;font-weight:600}
+.neoCalcGrid button:hover{background:#f0ebe0}
+.neoCalcGrid button.fn{background:#e5eef2;border-color:#7d97a6;font-size:.92em}
+.neoCalcGrid button.op{background:#eef3e8}
+.neoCalcGrid button.eq{background:#2f6b46;color:#fff;border:none}
+.neoCalcGrid button.clr{background:#f6e6de;border-color:#c69}
+@media print{#neoCalcWrap{display:none}}
+</style>
+<div id="neoCalcWrap">
+  <button id="neoCalcToggle" type="button" onclick="neoCalcToggle()" aria-expanded="false" aria-controls="neoCalcPanel">&#129518; Calculator</button>
+  <div id="neoCalcPanel" hidden role="dialog" aria-label="Scientific calculator, degrees">
+    <div class="neoCalcHead"><b>Calculator</b><span class="neoCalcDeg">DEG</span></div>
+    <div id="neoCalcExpr" aria-live="polite">0</div>
+    <div id="neoCalcResult" aria-live="polite"></div>
+    <div class="neoCalcGrid">
+      <button type="button" class="fn" onclick="neoCalcFn('sin')">sin</button>
+      <button type="button" class="fn" onclick="neoCalcFn('cos')">cos</button>
+      <button type="button" class="fn" onclick="neoCalcFn('tan')">tan</button>
+      <button type="button" class="clr" onclick="neoCalcBack()">&#9003;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('asin')">sin&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('acos')">cos&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('atan')">tan&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('sqrt')">&#8730;</button>
+      <button type="button" class="fn" onclick="neoCalcKey('(')">(</button>
+      <button type="button" class="fn" onclick="neoCalcKey(')')">)</button>
+      <button type="button" class="clr" onclick="neoCalcClear()">C</button>
+      <button type="button" class="op" onclick="neoCalcKey('÷')">&#247;</button>
+      <button type="button" onclick="neoCalcKey('7')">7</button>
+      <button type="button" onclick="neoCalcKey('8')">8</button>
+      <button type="button" onclick="neoCalcKey('9')">9</button>
+      <button type="button" class="op" onclick="neoCalcKey('×')">&#215;</button>
+      <button type="button" onclick="neoCalcKey('4')">4</button>
+      <button type="button" onclick="neoCalcKey('5')">5</button>
+      <button type="button" onclick="neoCalcKey('6')">6</button>
+      <button type="button" class="op" onclick="neoCalcKey('-')">&#8722;</button>
+      <button type="button" onclick="neoCalcKey('1')">1</button>
+      <button type="button" onclick="neoCalcKey('2')">2</button>
+      <button type="button" onclick="neoCalcKey('3')">3</button>
+      <button type="button" class="op" onclick="neoCalcKey('+')">+</button>
+      <button type="button" onclick="neoCalcKey('0')">0</button>
+      <button type="button" onclick="neoCalcKey('.')">.</button>
+      <button type="button" class="eq" style="grid-column:span 2" onclick="neoCalcEq()">=</button>
+    </div>
+    <p style="font-size:.78em;color:#5c6b4f;margin:8px 2px 0">Angles are in <b>degrees</b>. Examples: 9 &#215; sin(37) = 5.42; &nbsp;sin&#8315;&#185;(0.5) = 30</p>
+  </div>
+</div>
+<script>
+(function(){
+  if(window.__neoCalcInstalled)return; window.__neoCalcInstalled=true;
+  var expr="";
+  function isFn(x){return x==="sin"||x==="cos"||x==="tan"||x==="sqrt"||x==="asin"||x==="acos"||x==="atan";}
+  function evalExpr(input){
+    var s=String(input).replace(/×/g,"*").replace(/÷/g,"/").replace(/−/g,"-").replace(/°/g,"");
+    var toks=s.match(/\d+\.?\d*|\.\d+|asin|acos|atan|sin|cos|tan|sqrt|√|[()+\-*/]/g);
+    if(!toks) return NaN;
+    var out=[], ops=[], prec={"+":1,"-":1,"*":2,"/":2,"u":4}, prev=null;
+    for(var i=0;i<toks.length;i++){ var t=toks[i]; if(t==="√")t="sqrt";
+      if(/^[\d.]/.test(t)){ out.push(parseFloat(t)); prev="n"; }
+      else if(isFn(t)){ ops.push(t); prev="f"; }
+      else if(t==="("){ ops.push("("); prev="("; }
+      else if(t===")"){ while(ops.length&&ops[ops.length-1]!=="(") out.push(ops.pop()); if(ops.length) ops.pop(); if(ops.length&&isFn(ops[ops.length-1])) out.push(ops.pop()); prev="n"; }
+      else { var op=t; if(op==="-"&&(prev===null||prev==="("||prev==="o"||prev==="f")) op="u";
+        while(ops.length){ var tp=ops[ops.length-1]; if(tp!=="(" && (isFn(tp) || (prec[tp] && prec[tp]>=prec[op]))) out.push(ops.pop()); else break; }
+        ops.push(op); prev="o"; }
+    }
+    while(ops.length){ var o=ops.pop(); if(o!=="(") out.push(o); }
+    var st=[];
+    for(var j=0;j<out.length;j++){ var x=out[j];
+      if(typeof x==="number"){ st.push(x); }
+      else if(x==="u"){ if(!st.length)return NaN; st.push(-st.pop()); }
+      else if(isFn(x)){ if(!st.length)return NaN; var a=st.pop(), r;
+        if(x==="sin")r=Math.sin(a*Math.PI/180); else if(x==="cos")r=Math.cos(a*Math.PI/180); else if(x==="tan")r=Math.tan(a*Math.PI/180);
+        else if(x==="sqrt")r=Math.sqrt(a);
+        else if(x==="asin")r=(a<-1||a>1)?NaN:Math.asin(a)*180/Math.PI; else if(x==="acos")r=(a<-1||a>1)?NaN:Math.acos(a)*180/Math.PI; else if(x==="atan")r=Math.atan(a)*180/Math.PI;
+        st.push(r); }
+      else { if(st.length<2)return NaN; var b=st.pop(), a2=st.pop(); st.push(x==="+"?a2+b:x==="-"?a2-b:x==="*"?a2*b:a2/b); }
+    }
+    return st.length===1?st[0]:NaN;
+  }
+  function render(){
+    document.getElementById("neoCalcExpr").textContent = (expr||"0").replace(/asin/g,"sin⁻¹").replace(/acos/g,"cos⁻¹").replace(/atan/g,"tan⁻¹");
+    var v=evalExpr(expr);
+    document.getElementById("neoCalcResult").textContent = (expr && isFinite(v)) ? "= "+(Math.round(v*1e6)/1e6) : "";
+  }
+  window.neoCalcEval=evalExpr;
+  window.neoCalcToggle=function(){ var p=document.getElementById("neoCalcPanel"); p.hidden=!p.hidden; document.getElementById("neoCalcToggle").setAttribute("aria-expanded", String(!p.hidden)); };
+  window.neoCalcKey=function(s){ expr+=s; render(); };
+  window.neoCalcFn=function(f){ expr+=(f==="sqrt"?"√":f)+"("; render(); };
+  window.neoCalcClear=function(){ expr=""; render(); };
+  window.neoCalcBack=function(){ var m=expr.match(/(asin\(|acos\(|atan\(|sin\(|cos\(|tan\(|√\()$/); expr=m?expr.slice(0,-m[0].length):expr.slice(0,-1); render(); };
+  window.neoCalcEq=function(){ var v=evalExpr(expr); document.getElementById("neoCalcResult").textContent = isFinite(v) ? "= "+(Math.round(v*1e6)/1e6) : "= —"; };
+  render();
+})();
+</script>
+<div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a></div></div>
+</body>
+</html>

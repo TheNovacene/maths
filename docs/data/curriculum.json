@@ -228,6 +228,14 @@
           "file": "lessons/quadratics/05-meet-the-parabola.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "quad-06-stretch-and-reflect",
+          "num": "Lesson 06",
+          "title": "Stretch and reflect",
+          "file": "lessons/quadratics/06-stretch-and-reflect.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
