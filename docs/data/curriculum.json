@@ -220,6 +220,14 @@
           "file": "lessons/quadratics/04-the-expression-behind-it.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "quad-05-meet-the-parabola",
+          "num": "Lesson 05",
+          "title": "Meet the parabola",
+          "file": "lessons/quadratics/05-meet-the-parabola.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
