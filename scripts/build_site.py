@@ -62,6 +62,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/Quadratics/Lesson_06_Stretch_and_Reflect/NEO_Maths_Y9_Quadratics_Lesson_06_Stretch_and_Reflect_v0.1.html",
     "quad-07-slide-it-across":
         "02_Foundations/01_Lessons/Quadratics/Lesson_07_Slide_it_Across/NEO_Maths_Y9_Quadratics_Lesson_07_Slide_it_Across_v0.1.html",
+    "quad-08-reading-real-parabolas":
+        "02_Foundations/01_Lessons/Quadratics/Lesson_08_Reading_Real_Parabolas/NEO_Maths_Y9_Quadratics_Lesson_08_Reading_Real_Parabolas_v0.1.html",
     "shapes-06-platonic-solids":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_06_Platonic_Solids/NEO_Maths_Y9_Shapes_Lesson_06_Platonic_Solids_v0.1.html",
     "shapes-07-surface-area":

@@ -244,6 +244,14 @@
           "file": "lessons/quadratics/07-slide-it-across.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "quad-08-reading-real-parabolas",
+          "num": "Lesson 08",
+          "title": "Reading real parabolas",
+          "file": "lessons/quadratics/08-reading-real-parabolas.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
