@@ -236,6 +236,14 @@
           "file": "lessons/quadratics/06-stretch-and-reflect.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "quad-07-slide-it-across",
+          "num": "Lesson 07",
+          "title": "Slide it across",
+          "file": "lessons/quadratics/07-slide-it-across.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
