@@ -185,6 +185,7 @@ CHROME_FOOTER = (
     '<a href="{rel}index.html">All lessons</a>'
     '<a href="{rel}cornerstones.html">The Six Cornerstones</a>'
     '<a href="{rel}curriculum.html">Our curriculum</a>'
+    '<a href="{rel}tools/geometry-studio.html">Geometry Studio</a>'
     '</div>'
     '</div>'
 )
