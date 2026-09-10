@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Dynamic Geometry Studio — v0.2</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429;font-family:Arial,sans-serif}
+.wrap{max-width:1000px;margin:auto;padding:18px}
+h1{color:#3f5f45;margin:0 0 2px}.sub{color:#6a7f4e;margin:0 0 14px;font-size:.95em}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#f7f3ea;border:1px solid #cdbfa9;border-radius:12px;padding:8px;margin-bottom:8px}
+.bar .grp{display:flex;gap:6px;padding-right:8px;margin-right:2px;border-right:1px solid #e0d6c4}
+button{padding:8px 11px;border-radius:8px;border:1px solid #a9b3a0;background:#fff;cursor:pointer;font-weight:600;color:#2f3429;font-size:.92em}
+button.tool.active{background:#3f5f45;color:#fff;border-color:#3f5f45}
+button.util{background:#eef0df}
+.stage{position:relative;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none}
+svg{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
+.hint{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.95em;min-height:1.2em}
+.legend{font-size:.85em;color:#6a6157;margin-top:8px}
+kbd{background:#efe9df;border:1px solid #cdbfa9;border-radius:5px;padding:0 5px;font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Dynamic Geometry Studio</h1>
+<p class="sub">v0.2 — the exact-construction toolkit: draggable points, authentic swing compass (with length transfer), quick circle, straightedge, perpendicular bisector, angle bisector, perpendicular &amp; parallel lines, intersections, and length/angle measurement. Everything is dynamic: drag a base point and the whole construction follows.</p>
+
+<div class="bar" id="toolbar">
+  <div class="grp">
+    <button class="tool active" data-tool="select" title="Select and drag points">🖐 Select</button>
+    <button class="tool" data-tool="point" title="Place a point">• Point</button>
+  </div>
+  <div class="grp">
+    <button class="tool" data-tool="segment" title="Straightedge: click two points">／ Segment</button>
+    <button class="tool" data-tool="line" title="Full line through two points">∕ Line</button>
+    <button class="tool" data-tool="circle" title="Circle: click centre, then a point on it">◯ Circle</button>
+    <button class="tool" data-tool="compass" title="Compass: click centre, radius point, then swing to a third point">◜ Compass</button>
+  </div>
+  <div class="grp">
+    <button class="tool" data-tool="midpoint" title="Midpoint of two points">⋯ Midpoint</button>
+    <button class="tool" data-tool="perpbis" title="Perpendicular bisector of two points">⟂ Perp. bisector</button>
+    <button class="tool" data-tool="anglebis" title="Angle bisector: click a point on one arm, the vertex, then a point on the other arm">∠ Angle bisector</button>
+    <button class="tool" data-tool="perpendicular" title="Perpendicular to a line through a point: click the line, then the point">⊥ Perpendicular</button>
+    <button class="tool" data-tool="parallel" title="Parallel to a line through a point: click the line, then the point">∥ Parallel</button>
+    <button class="tool" data-tool="intersect" title="Intersection: click two circles/lines">✕ Intersect</button>
+  </div>
+  <div class="grp">
+    <button class="tool" data-tool="measlen" title="Measure a length: click two points">📏 Length</button>
+    <button class="tool" data-tool="measang" title="Measure an angle: click a point on one arm, the vertex, then the other arm">📐 Angle</button>
+  </div>
+  <div class="grp" style="border-right:none">
+    <button class="util" onclick="demoEquilateral()" title="Auto-build a dynamic equilateral triangle">▷ Demo: equilateral</button>
+    <button class="util" onclick="undo()">↶ Undo</button>
+    <button class="util" onclick="clearAll()">🗑 Clear</button>
+  </div>
+</div>
+
+<div class="stage">
+  <svg id="canvas" viewBox="0 0 900 560" role="img" aria-label="Dynamic geometry construction area"></svg>
+</div>
+<div class="hint" id="hint">Select a tool. Try <b>Compass</b>: click a centre, click a point to set the radius, then click again to swing an arc. Or press <b>Demo: equilateral</b>.</div>
+<p class="legend">v0.2 notes: points auto-label A, B, C… · every dependent object (circles, arcs, bisectors, perpendiculars, parallels, intersections, measurements) recomputes live when you drag a free point · the <b>Compass</b> copies a length if you click a segment for its radius · click any object to select it (halo/glow) · <kbd>Undo</kbd> removes the last object. Still to come (Phase 3): protractor &amp; bearings, transformations, animation, saved custom tools, and locus tracing.</p>
+</div>
+
+<script>
+(function(){
+"use strict";
+var svg=document.getElementById("canvas"), hint=document.getElementById("hint");
+var VW=900, VH=560;
+var objects=[];         // dependency graph
+var nextId=1, pointLabel=0;
+var tool="select";
+var pending=[];         // ids collected mid-gesture
+var drag=null;
+var selected=null;
+var compass=null;       // authentic compass gesture state {stage:'radius'|'swing', c, rp, start, swept, lastAng}
+var hover=null;         // last pointer position, for live previews
+var baseLine=null;      // first pick for perpendicular/parallel (a line to build from)
+
+/* ---------- geometry helpers ---------- */
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function ang(c,p){return Math.atan2(p.y-c.y,p.x-c.x);}
+function sub(a,b){return {x:a.x-b.x,y:a.y-b.y};}
+function unit(v){var m=Math.hypot(v.x,v.y)||1;return {x:v.x/m,y:v.y/m};}
+function segLen(id){var o=byId(id);if(o&&o.type==="segment")return dist(P(o.a),P(o.b));return 0;}
+function circleCircle(c1,r1,c2,r2){
+  var d=Math.hypot(c2.x-c1.x,c2.y-c1.y);
+  if(d<1e-9||d>r1+r2||d<Math.abs(r1-r2)) return [];
+  var a=(r1*r1-r2*r2+d*d)/(2*d), h2=r1*r1-a*a; if(h2<0)h2=0; var h=Math.sqrt(h2);
+  var xm=c1.x+a*(c2.x-c1.x)/d, ym=c1.y+a*(c2.y-c1.y)/d;
+  var rx=-(c2.y-c1.y)*(h/d), ry=(c2.x-c1.x)*(h/d);
+  return [{x:xm+rx,y:ym+ry},{x:xm-rx,y:ym-ry}];
+}
+function lineLine(p1,d1,p2,d2){
+  var den=d1.x*d2.y-d1.y*d2.x; if(Math.abs(den)<1e-9) return [];
+  var t=((p2.x-p1.x)*d2.y-(p2.y-p1.y)*d2.x)/den;
+  return [{x:p1.x+t*d1.x,y:p1.y+t*d1.y}];
+}
+function lineCircle(p,d,c,r){
+  var f=sub(p,c), a=d.x*d.x+d.y*d.y, b=2*(f.x*d.x+f.y*d.y), cc=f.x*f.x+f.y*f.y-r*r;
+  var disc=b*b-4*a*cc; if(disc<0) return []; disc=Math.sqrt(disc);
+  var t1=(-b-disc)/(2*a), t2=(-b+disc)/(2*a);
+  return [{x:p.x+t1*d.x,y:p.y+t1*d.y},{x:p.x+t2*d.x,y:p.y+t2*d.y}];
+}
+
+/* ---------- resolve geometry from the dependency graph ---------- */
+function byId(id){for(var i=0;i<objects.length;i++)if(objects[i].id===id)return objects[i];return null;}
+function P(id){ // resolve a point's {x,y}
+  var o=byId(id); if(!o) return {x:0,y:0};
+  if(o.type!=="point") return {x:0,y:0};
+  if(o.kind==="free") return {x:o.x,y:o.y};
+  if(o.kind==="mid"){var a=P(o.a),b=P(o.b);return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+  if(o.kind==="intersect"){var pts=intersectGeom(o.o1,o.o2);if(!pts.length)return o._last||{x:0,y:0};var pick=pts[Math.min(o.which,pts.length-1)];o._last=pick;return pick;}
+  if(o.kind==="arcend"){var ce=P(o.c),rpe=P(o.rp),re=dist(ce,rpe),ae=ang(ce,rpe)+o.swept;return {x:ce.x+re*Math.cos(ae),y:ce.y+re*Math.sin(ae)};}
+  if(o.kind==="polar"){var cp=P(o.c),rr=segLen(o.seg);return {x:cp.x+rr*Math.cos(o.ang),y:cp.y+rr*Math.sin(o.ang)};}
+  return {x:0,y:0};
+}
+function lineGeom(o){ // returns {p, d} point+direction
+  if(o.type==="line"&&o.kind==="through"){var a=P(o.a),b=P(o.b);return {p:a,d:sub(b,a)};}
+  if(o.type==="segment"){var a2=P(o.a),b2=P(o.b);return {p:a2,d:sub(b2,a2)};}
+  if(o.type==="perpbis"){var a3=P(o.a),b3=P(o.b);var m={x:(a3.x+b3.x)/2,y:(a3.y+b3.y)/2};var ab=sub(b3,a3);return {p:m,d:{x:-ab.y,y:ab.x}};}
+  if(o.type==="perp"){var bp=lineGeom(byId(o.base));return {p:P(o.thru),d:{x:-bp.d.y,y:bp.d.x}};}
+  if(o.type==="parallel"){var bq=lineGeom(byId(o.base));return {p:P(o.thru),d:bq.d};}
+  if(o.type==="anglebis"){var va=P(o.v),u1=unit(sub(P(o.a),va)),u2=unit(sub(P(o.b),va));var dd={x:u1.x+u2.x,y:u1.y+u2.y};if(Math.hypot(dd.x,dd.y)<1e-6)dd={x:-u1.y,y:u1.x};return {p:va,d:dd};}
+  return null;
+}
+function circGeom(o){
+  if(o.type==="circle"){var c=P(o.c),t=P(o.thru);return {c:c,r:dist(c,t)};}
+  if(o.type==="arc"){var c2=P(o.c),rp=P(o.rp);return {c:c2,r:dist(c2,rp)};}
+  return null;
+}
+function isLineish(o){return o&&(o.type==="line"||o.type==="segment"||o.type==="perpbis"||o.type==="perp"||o.type==="parallel"||o.type==="anglebis");}
+function isCircleish(o){return o&&(o.type==="circle"||o.type==="arc");}
+function intersectGeom(id1,id2){
+  var o1=byId(id1),o2=byId(id2); if(!o1||!o2) return [];
+  if(isCircleish(o1)&&isCircleish(o2)){var a=circGeom(o1),b=circGeom(o2);return circleCircle(a.c,a.r,b.c,b.r);}
+  if(isLineish(o1)&&isLineish(o2)){var l1=lineGeom(o1),l2=lineGeom(o2);return lineLine(l1.p,l1.d,l2.p,l2.d);}
+  var L=isLineish(o1)?lineGeom(o1):lineGeom(o2), C=isCircleish(o1)?circGeom(o1):circGeom(o2);
+  return lineCircle(L.p,L.d,C.c,C.r);
+}
+
+/* ---------- creating objects ---------- */
+function addFreePoint(x,y){var o={id:nextId++,type:"point",kind:"free",x:x,y:y,label:String.fromCharCode(65+(pointLabel++%26))};objects.push(o);return o.id;}
+function nearestPoint(x,y,thr){var best=null,bd=thr||16;objects.forEach(function(o){if(o.type==="point"){var p=P(o.id),d=Math.hypot(p.x-x,p.y-y);if(d<bd){bd=d;best=o.id;}}});return best;}
+function nearestCurve(x,y,thr){var best=null,bd=thr||12;objects.forEach(function(o){var d=null;
+    if(isCircleish(o)){var g=circGeom(o);d=Math.abs(Math.hypot(x-g.c.x,y-g.c.y)-g.r);}
+    else if(isLineish(o)){var l=lineGeom(o),n={x:-l.d.y,y:l.d.x},nn=unit(n);d=Math.abs((x-l.p.x)*nn.x+(y-l.p.y)*nn.y);}
+    if(d!=null&&d<bd){bd=d;best=o.id;}});return best;}
+function pickOrCreatePoint(x,y){var id=nearestPoint(x,y);return id!=null?id:addFreePoint(x,y);}
+
+/* ---------- rendering ---------- */
+function arcPath(c,r,a0,swept){          // signed sweep: sign = direction, magnitude = how far swung
+  var a1=a0+swept;
+  var s={x:c.x+r*Math.cos(a0),y:c.y+r*Math.sin(a0)}, e={x:c.x+r*Math.cos(a1),y:c.y+r*Math.sin(a1)};
+  var large=Math.abs(swept)>Math.PI?1:0, sweep=swept>=0?1:0;
+  return "M"+s.x.toFixed(1)+" "+s.y.toFixed(1)+" A"+r.toFixed(1)+" "+r.toFixed(1)+" 0 "+large+" "+sweep+" "+e.x.toFixed(1)+" "+e.y.toFixed(1);
+}
+function normAng(x){while(x>Math.PI)x-=2*Math.PI;while(x<-Math.PI)x+=2*Math.PI;return x;}
+function describe(o){
+  if(o.type==="point"){var k={free:"a free point (drag to move)",mid:"a midpoint",intersect:"an intersection point",arcend:"an arc's end point"}[o.kind]||"a point";return "Selected: point "+o.label+" — "+k+".";}
+  return "Selected: "+({segment:"a segment",line:"a line",perpbis:"a perpendicular bisector (an equidistant locus)",perp:"a perpendicular line",parallel:"a parallel line",anglebis:"an angle bisector (an equidistant locus)",circle:"a circle",arc:"an arc"}[o.type]||"an object")+".";
+}
+function highlightSVG(o){
+  var col="#e79b5a", w=9, op="0.45";
+  function L(p1,p2){return '<line x1="'+p1.x.toFixed(1)+'" y1="'+p1.y.toFixed(1)+'" x2="'+p2.x.toFixed(1)+'" y2="'+p2.y.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-opacity="'+op+'" stroke-linecap="round"/>';}
+  if(o.type==="segment"){return L(P(o.a),P(o.b));}
+  if(o.type==="line"||o.type==="perpbis"||o.type==="perp"||o.type==="parallel"||o.type==="anglebis"){var l=lineGeom(o),u=unit(l.d),ext=2000;return L({x:l.p.x-u.x*ext,y:l.p.y-u.y*ext},{x:l.p.x+u.x*ext,y:l.p.y+u.y*ext});}
+  if(o.type==="circle"){var g=circGeom(o);return '<circle cx="'+g.c.x.toFixed(1)+'" cy="'+g.c.y.toFixed(1)+'" r="'+g.r.toFixed(1)+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-opacity="'+op+'"/>';}
+  if(o.type==="arc"){var ga=circGeom(o),a0=ang(ga.c,P(o.rp));return '<path d="'+arcPath(ga.c,ga.r,a0,o.swept)+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-opacity="'+op+'" stroke-linecap="round"/>';}
+  return "";
+}
+function render(){
+  var s="";
+  // faint grid
+  for(var gx=0;gx<=VW;gx+=30) s+='<line x1="'+gx+'" y1="0" x2="'+gx+'" y2="'+VH+'" stroke="#efe7d7" stroke-width="1"/>';
+  for(var gy=0;gy<=VH;gy+=30) s+='<line x1="0" y1="'+gy+'" x2="'+VW+'" y2="'+gy+'" stroke="#efe7d7" stroke-width="1"/>';
+  // selection highlight (soft glow beneath the object)
+  if(selected!=null){var so=byId(selected); if(so&&so.type!=="point") s+=highlightSVG(so);}
+  // curves and lines first
+  objects.forEach(function(o){
+    var sel=(o.id===selected)?' stroke="#c1622e"':'';
+    if(o.type==="circle"){var g=circGeom(o);s+='<circle cx="'+g.c.x.toFixed(1)+'" cy="'+g.c.y.toFixed(1)+'" r="'+g.r.toFixed(1)+'" fill="none" stroke="'+(o.id===selected?"#c1622e":"#2b6cb0")+'" stroke-width="1.8"/>';}
+    else if(o.type==="arc"){var ga=circGeom(o),a0=ang(ga.c,P(o.rp));s+='<path d="'+arcPath(ga.c,ga.r,a0,o.swept)+'" fill="none" stroke="'+(o.id===selected?"#c1622e":"#2b6cb0")+'" stroke-width="1.8"/>';}
+    else if(o.type==="segment"){var a=P(o.a),b=P(o.b);s+='<line x1="'+a.x.toFixed(1)+'" y1="'+a.y.toFixed(1)+'" x2="'+b.x.toFixed(1)+'" y2="'+b.y.toFixed(1)+'" stroke="'+(o.id===selected?"#c1622e":"#2f3429")+'" stroke-width="2"/>';}
+    else if(o.type==="line"||o.type==="perpbis"||o.type==="perp"||o.type==="parallel"||o.type==="anglebis"){var l=lineGeom(o),u=unit(l.d),ext=2000;var p1={x:l.p.x-u.x*ext,y:l.p.y-u.y*ext},p2={x:l.p.x+u.x*ext,y:l.p.y+u.y*ext};var col=(o.type==="line")?"#2f3429":"#3f7a45";s+='<line x1="'+p1.x.toFixed(1)+'" y1="'+p1.y.toFixed(1)+'" x2="'+p2.x.toFixed(1)+'" y2="'+p2.y.toFixed(1)+'" stroke="'+(o.id===selected?"#c1622e":col)+'" stroke-width="'+(o.type==="line"?"1.6":"2")+'"/>';}
+    else if(o.type==="measlen"){var ma=P(o.a),mb=P(o.b);var mx=(ma.x+mb.x)/2,my=(ma.y+mb.y)/2;s+='<line x1="'+ma.x.toFixed(1)+'" y1="'+ma.y.toFixed(1)+'" x2="'+mb.x.toFixed(1)+'" y2="'+mb.y.toFixed(1)+'" stroke="#7a4fb0" stroke-width="1" stroke-dasharray="4 3"/><text x="'+mx.toFixed(1)+'" y="'+(my-6).toFixed(1)+'" font-size="12" fill="#7a4fb0" text-anchor="middle" font-weight="bold">'+(dist(ma,mb)/30).toFixed(1)+' cm</text>';}
+    else if(o.type==="measang"){var qa=P(o.a),qv=P(o.v),qb=P(o.b);var a1=ang(qv,qa),da=normAng(ang(qv,qb)-a1);var deg=Math.abs(da*180/Math.PI);var midA=a1+da/2;s+='<path d="'+arcPath(qv,26,a1,da)+'" fill="none" stroke="#7a4fb0" stroke-width="1.5"/><text x="'+(qv.x+46*Math.cos(midA)).toFixed(1)+'" y="'+(qv.y+46*Math.sin(midA)+4).toFixed(1)+'" font-size="12" fill="#7a4fb0" text-anchor="middle" font-weight="bold">'+deg.toFixed(0)+'°</text>';}
+  });
+  // compass live preview
+  if(tool==="compass"&&compass&&hover){var cc=P(compass.c);
+    s+='<circle cx="'+cc.x.toFixed(1)+'" cy="'+cc.y.toFixed(1)+'" r="4" fill="none" stroke="#c1622e" stroke-width="1.5"/>';
+    if(compass.stage==="radius"){var r=Math.hypot(hover.x-cc.x,hover.y-cc.y);
+      s+='<circle cx="'+cc.x.toFixed(1)+'" cy="'+cc.y.toFixed(1)+'" r="'+r.toFixed(1)+'" fill="none" stroke="#b9a05f" stroke-width="1.2" stroke-dasharray="4 4"/>';
+      s+='<line x1="'+cc.x.toFixed(1)+'" y1="'+cc.y.toFixed(1)+'" x2="'+hover.x.toFixed(1)+'" y2="'+hover.y.toFixed(1)+'" stroke="#b9a05f" stroke-width="1" stroke-dasharray="3 3"/>';}
+    else if(compass.stage==="swing"){var r2=(compass.mode==="len")?segLen(compass.seg):dist(cc,P(compass.rp));
+      s+='<circle cx="'+cc.x.toFixed(1)+'" cy="'+cc.y.toFixed(1)+'" r="'+r2.toFixed(1)+'" fill="none" stroke="#ddd0b5" stroke-width="1" stroke-dasharray="2 5"/>';
+      s+='<path d="'+arcPath(cc,r2,compass.start,compass.swept)+'" fill="none" stroke="#2b6cb0" stroke-width="1.8"/>';
+      var tip={x:cc.x+r2*Math.cos(compass.start+compass.swept),y:cc.y+r2*Math.sin(compass.start+compass.swept)};
+      s+='<line x1="'+cc.x.toFixed(1)+'" y1="'+cc.y.toFixed(1)+'" x2="'+tip.x.toFixed(1)+'" y2="'+tip.y.toFixed(1)+'" stroke="#b9a05f" stroke-width="1" stroke-dasharray="3 3"/>';
+      s+='<circle cx="'+tip.x.toFixed(1)+'" cy="'+tip.y.toFixed(1)+'" r="3.5" fill="#2b6cb0"/>';}
+  }
+  // points on top
+  objects.forEach(function(o){
+    if(o.type==="point"){var p=P(o.id);var free=o.kind==="free";
+      if(o.id===selected) s+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="10" fill="#e79b5a" fill-opacity="0.35" stroke="#c1622e" stroke-width="2"/>';
+      s+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+(free?5:4)+'" fill="'+(free?"#2f3429":"#b25f2e")+'" stroke="#fff" stroke-width="1.5"/>';
+      s+='<text x="'+(p.x+8).toFixed(1)+'" y="'+(p.y-8).toFixed(1)+'" font-size="14" font-family="Georgia,serif" font-style="italic" fill="#2f3429">'+o.label+'</text>';}
+  });
+  // pending markers
+  pending.forEach(function(id){var p=P(id);s+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="9" fill="none" stroke="#c1622e" stroke-width="1.5" stroke-dasharray="3 3"/>';});
+  svg.innerHTML=s;
+}
+
+/* ---------- pointer handling ---------- */
+function toXY(e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*VW/r.width,y:(e.clientY-r.top)*VH/r.height};}
+function setHint(t){hint.innerHTML=t;}
+
+svg.addEventListener("pointerdown",function(e){
+  var pos=toXY(e); try{svg.setPointerCapture(e.pointerId);}catch(err){}
+  if(tool==="select"){var id=nearestPoint(pos.x,pos.y); if(id==null) id=nearestCurve(pos.x,pos.y); selected=id;
+    if(id!=null){var o=byId(id); if(o.type==="point"&&o.kind==="free"){drag={id:id};} setHint(describe(o));}
+    else setHint("Nothing selected — click an object to select it, or drag a point to move it.");
+    render();return;}
+  if(tool==="point"){addFreePoint(pos.x,pos.y);render();return;}
+  if(tool==="intersect"){var cid=nearestCurve(pos.x,pos.y);if(cid==null){setHint("Click nearer a circle, arc or line.");return;}pending.push(cid);
+    if(pending.length===2){var pts=intersectGeom(pending[0],pending[1]);
+      if(!pts.length){setHint("Those two do not meet. Try another pair.");pending=[];render();return;}
+      for(var k=0;k<pts.length;k++){var o={id:nextId++,type:"point",kind:"intersect",o1:pending[0],o2:pending[1],which:k,label:String.fromCharCode(65+(pointLabel++%26))};objects.push(o);}
+      pending=[];setHint(pts.length>1?"Two intersection points created — drag a base point and watch them stay on the crossings.":"Intersection point created.");}
+    else setHint("Now click the second circle/arc/line to intersect.");
+    render();return;}
+  if(tool==="perpendicular"||tool==="parallel"){
+    if(baseLine==null){var lid=nearestCurve(pos.x,pos.y);var lo=byId(lid);
+      if(!lo||!isLineish(lo)){setHint("First click a <b>line or segment</b> to be "+(tool==="parallel"?"parallel":"perpendicular")+" to.");return;}
+      baseLine=lid;selected=lid;setHint("Now click the <b>point</b> the "+(tool==="parallel"?"parallel":"perpendicular")+" line must pass through.");render();return;}
+    var thru=pickOrCreatePoint(pos.x,pos.y);
+    objects.push({id:nextId++,type:(tool==="parallel"?"parallel":"perp"),base:baseLine,thru:thru});
+    baseLine=null;selected=null;setHint((tool==="parallel"?"Parallel":"Perpendicular")+" line constructed — drag anything and it stays "+(tool==="parallel"?"parallel":"perpendicular")+".");render();return;
+  }
+  if(tool==="compass"){
+    if(!compass){var cid0=pickOrCreatePoint(pos.x,pos.y);compass={stage:"radius",c:cid0,mode:"pt"};setHint("Compass placed. Click a point to set the <b>radius</b> (the pencil goes there), or click a <b>segment</b> to copy its length.");}
+    else if(compass.stage==="radius"){var cc=P(compass.c);var segId=nearestCurve(pos.x,pos.y);var segO=byId(segId);
+      if(segO&&segO.type==="segment"){compass.seg=segId;compass.mode="len";compass.start=ang(cc,pos);}
+      else{var rid=pickOrCreatePoint(pos.x,pos.y);compass.rp=rid;compass.mode="pt";compass.start=ang(cc,P(rid));}
+      compass.swept=0;compass.lastAng=compass.start;compass.stage="swing";
+      setHint("Now <b>swing</b>: move the mouse to sweep the arc — the radius stays fixed. Stop where you like (minor or major arc), then click to leave the mark.");}
+    else{var _c=compass.c,_sw=compass.swept,_rp;
+      if(compass.mode==="len"){var pol={id:nextId++,type:"point",kind:"polar",c:_c,seg:compass.seg,ang:compass.start,label:String.fromCharCode(65+(pointLabel++%26))};objects.push(pol);_rp=pol.id;}
+      else{_rp=compass.rp;}
+      objects.push({id:nextId++,type:"arc",c:_c,rp:_rp,swept:_sw});objects.push({id:nextId++,type:"point",kind:"arcend",c:_c,rp:_rp,swept:_sw,label:String.fromCharCode(65+(pointLabel++%26))});compass=null;setHint("Arc drawn, and its end point is now marked and fixed on the arc. Click a new centre for another arc.");}
+    render();return;
+  }
+  // multi-point tools
+  var pid=pickOrCreatePoint(pos.x,pos.y); pending.push(pid);
+  if(tool==="segment"&&pending.length===2){objects.push({id:nextId++,type:"segment",a:pending[0],b:pending[1]});pending=[];setHint("Segment drawn. Straightedge ready for another.");}
+  else if(tool==="line"&&pending.length===2){objects.push({id:nextId++,type:"line",kind:"through",a:pending[0],b:pending[1]});pending=[];setHint("Line drawn.");}
+  else if(tool==="circle"&&pending.length===2){objects.push({id:nextId++,type:"circle",c:pending[0],thru:pending[1]});pending=[];setHint("Circle drawn — drag the centre or the point on it to resize.");}
+  else if(tool==="midpoint"&&pending.length===2){objects.push({id:nextId++,type:"point",kind:"mid",a:pending[0],b:pending[1],label:String.fromCharCode(65+(pointLabel++%26))});pending=[];setHint("Midpoint constructed.");}
+  else if(tool==="perpbis"&&pending.length===2){objects.push({id:nextId++,type:"perpbis",a:pending[0],b:pending[1]});pending=[];setHint("Perpendicular bisector constructed — every point on it is the same distance from the two points. Drag either point.");}
+  else if(tool==="anglebis"&&pending.length===3){objects.push({id:nextId++,type:"anglebis",a:pending[0],v:pending[1],b:pending[2]});pending=[];setHint("Angle bisector constructed — the locus of points equidistant from the two arms. Drag any point.");}
+  else if(tool==="measlen"&&pending.length===2){objects.push({id:nextId++,type:"measlen",a:pending[0],b:pending[1]});pending=[];setHint("Length measured (grid units shown as cm). Drag a point and it updates.");}
+  else if(tool==="measang"&&pending.length===3){objects.push({id:nextId++,type:"measang",a:pending[0],v:pending[1],b:pending[2]});pending=[];setHint("Angle measured at the vertex. Drag a point and it updates.");}
+  else if(pending.length===1&&(tool==="segment"||tool==="line")) setHint("Click the second point.");
+  else if(pending.length===1&&tool==="circle") setHint("Click a point the circle should pass through.");
+  else if(pending.length===1&&(tool==="midpoint"||tool==="perpbis"||tool==="measlen")) setHint("Click the second point.");
+  else if((tool==="anglebis"||tool==="measang")) setHint(pending.length===1?"Now click the <b>vertex</b> of the angle.":"Now click a point on the <b>other arm</b>.");
+  render();
+});
+svg.addEventListener("pointermove",function(e){var pos=toXY(e);hover=pos;
+  if(drag){var o=byId(drag.id);o.x=pos.x;o.y=pos.y;render();return;}
+  if(tool==="compass"&&compass){
+    if(compass.stage==="swing"){var cc=P(compass.c);var cur=ang(cc,pos);compass.swept+=normAng(cur-compass.lastAng);var lim=2*Math.PI-0.01;if(compass.swept>lim)compass.swept=lim;if(compass.swept<-lim)compass.swept=-lim;compass.lastAng=cur;}
+    render();
+  }
+});
+svg.addEventListener("pointerup",function(e){drag=null;try{svg.releasePointerCapture(e.pointerId);}catch(err){}});
+
+/* ---------- toolbar ---------- */
+document.getElementById("toolbar").addEventListener("click",function(e){
+  var b=e.target.closest("button.tool"); if(!b)return;
+  tool=b.dataset.tool; pending=[]; selected=null; compass=null; baseLine=null;
+  document.querySelectorAll("button.tool").forEach(function(x){x.classList.toggle("active",x===b);});
+  var hints={select:"Drag any solid point to move it — dependent objects follow.",point:"Click to drop points.",segment:"Straightedge: click two points to draw a segment.",line:"Click two points for a full line.",circle:"Circle tool: click the centre, then a point it passes through.",compass:"Compass: click a <b>centre</b>, click a point to set the <b>radius</b> (or a <b>segment</b> to copy its length), then <b>move to swing</b> the arc.",midpoint:"Click two points to construct their midpoint.",perpbis:"Click two points to construct the perpendicular bisector (their equidistant locus).",anglebis:"Angle bisector: click a point on one arm, then the <b>vertex</b>, then a point on the other arm.",perpendicular:"Perpendicular: click a <b>line/segment</b>, then the <b>point</b> the perpendicular must pass through.",parallel:"Parallel: click a <b>line/segment</b>, then the <b>point</b> the parallel must pass through.",measlen:"Length: click two points to measure the distance between them.",measang:"Angle: click a point on one arm, then the <b>vertex</b>, then a point on the other arm.",intersect:"Click two circles/arcs/lines to mark where they cross."};
+  setHint(hints[tool]||""); render();
+});
+
+/* ---------- utilities ---------- */
+window.undo=function(){if(objects.length){objects.pop();pending=[];selected=null;compass=null;baseLine=null;render();}};
+window.clearAll=function(){objects=[];pending=[];selected=null;compass=null;baseLine=null;pointLabel=0;nextId=1;render();setHint("Cleared. Pick a tool to begin.");};
+window.demoEquilateral=function(){
+  clearAll();
+  var A=addFreePoint(320,380), B=addFreePoint(580,380);
+  var c1={id:nextId++,type:"circle",c:A,thru:B}; objects.push(c1);
+  var c2={id:nextId++,type:"circle",c:B,thru:A}; objects.push(c2);
+  var C={id:nextId++,type:"point",kind:"intersect",o1:c1.id,o2:c2.id,which:1,label:String.fromCharCode(65+(pointLabel++%26))}; objects.push(C);
+  objects.push({id:nextId++,type:"segment",a:A,b:B});
+  objects.push({id:nextId++,type:"segment",a:A,b:C.id});
+  objects.push({id:nextId++,type:"segment",a:B,b:C.id});
+  selected=null; render();
+  setHint("A dynamic <b>equilateral triangle</b>: two circles of equal radius meet at C. Switch to <b>Select</b> and drag <i>A</i> or <i>B</i> — the arcs, the meeting point and the triangle all stay exact.");
+};
+
+render();
+})();
+</script>
+</body>
+</html>

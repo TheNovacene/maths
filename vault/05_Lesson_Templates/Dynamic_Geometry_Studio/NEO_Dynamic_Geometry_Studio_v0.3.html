@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Dynamic Geometry Studio — v0.3</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429;font-family:Arial,sans-serif}
+.wrap{max-width:1040px;margin:auto;padding:14px}
+h1{color:#3f5f45;margin:0 0 2px;font-size:1.3em}.sub{color:#6a7f4e;margin:0 0 10px;font-size:.9em}
+/* menu bar */
+.menubar{display:flex;gap:2px;background:#3f5f45;border-radius:10px 10px 0 0;padding:4px 6px;position:relative;z-index:20}
+.menubar>.menu{position:relative}
+.menubar>.menu>button{background:transparent;color:#fff;border:none;padding:7px 12px;font-weight:700;border-radius:7px;cursor:pointer;font-size:.95em}
+.menubar>.menu.open>button,.menubar>.menu>button:hover{background:#5c7a54}
+.dropdown{display:none;position:absolute;top:100%;left:0;min-width:210px;background:#fff;border:1px solid #cdbfa9;border-radius:0 8px 8px 8px;box-shadow:0 8px 22px rgba(0,0,0,.18);padding:5px;z-index:30}
+.menu.open .dropdown{display:block}
+.dropdown button{display:block;width:100%;text-align:left;background:transparent;border:none;padding:7px 10px;border-radius:6px;cursor:pointer;font-size:.92em;color:#2f3429}
+.dropdown button:hover{background:#eef3e8}
+.dropdown button.disabled{color:#a9a293;cursor:default}
+.dropdown button.disabled:hover{background:transparent}
+.dropdown .sep{height:1px;background:#e6ddcb;margin:4px 2px}
+.dropdown .lbl{font-size:.72em;text-transform:uppercase;letter-spacing:.05em;color:#9a917f;padding:5px 10px 2px}
+/* body: toolbox + stage */
+.studio{display:flex;border:1px solid #cdbfa9;border-top:none;border-radius:0 0 12px 12px;overflow:hidden}
+.toolbox{display:flex;flex-direction:column;gap:6px;background:#f2ecdf;padding:8px;border-right:1px solid #cdbfa9}
+.toolbox button{width:52px;height:46px;border-radius:9px;border:1px solid #b7bda9;background:#fff;cursor:pointer;font-size:1.15em;line-height:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.toolbox button .cap{font-size:.55em;font-weight:700;color:#5c6b4f}
+.toolbox button.active{background:#3f5f45;border-color:#3f5f45;color:#fff}
+.toolbox button.active .cap{color:#eaf0e4}
+.stage{position:relative;background:#fbf7ef;flex:1;min-width:0}
+svg{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
+.hint{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.92em;min-height:1.2em}
+.legend{font-size:.82em;color:#6a6157;margin-top:8px}
+/* dialog */
+.overlay{display:none;position:fixed;inset:0;background:rgba(39,45,35,.55);z-index:50;align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.dialog{background:#f7f3ea;border-radius:14px;padding:18px 20px;max-width:460px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.dialog h3{margin:0 0 8px;color:#3f5f45}
+.dialog .row{margin:8px 0}
+.dialog button{padding:8px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;margin-right:6px}
+.dialog button.primary{background:#5c6b4f;color:#fff;border:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Dynamic Geometry Studio <span id="sketchName" style="font-size:.62em;font-weight:normal;color:#6a7f4e">— (unsaved)</span></h1>
+<p class="sub">v0.3 — Sketchpad-style layout: instruments in the left toolbox, operations in the top menus. <b>Select objects, then choose a menu action.</b></p>
+
+<div class="menubar" id="menubar">
+  <div class="menu"><button data-menu="file">File</button>
+    <div class="dropdown">
+      <button data-act="newsketch">New sketch</button>
+      <button data-act="opendlg">Open…</button>
+      <div class="sep"></div>
+      <button data-act="save">Save</button>
+      <button data-act="saveas">Save as…</button>
+      <div class="sep"></div>
+      <button data-act="exportfile">Export to file…</button>
+      <button data-act="importfile">Import from file…</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="edit">Edit</button>
+    <div class="dropdown">
+      <button data-act="undo">Undo</button>
+      <button data-act="delete">Delete selection</button>
+      <button data-act="relabel">Rename / edit label…</button>
+      <div class="sep"></div>
+      <button data-act="selectall">Select all</button>
+      <button data-act="deselect">Deselect all</button>
+      <button data-act="clear">Clear all</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="display">Display</button>
+    <div class="dropdown">
+      <button data-act="colour">Colour…</button>
+      <div class="sep"></div>
+      <button data-act="labels">Show / hide labels</button>
+      <button data-act="hide">Hide selection</button>
+      <button data-act="showall">Show all hidden</button>
+      <div class="sep"></div>
+      <button data-act="trace">Trace selection (on/off)</button>
+      <button data-act="erasetrace">Erase traces</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="construct">Construct</button>
+    <div class="dropdown">
+      <div class="lbl">from selected points</div>
+      <button data-act="segment">Segment</button>
+      <button data-act="ray">Ray</button>
+      <button data-act="line">Line</button>
+      <button data-act="midpoint">Midpoint</button>
+      <button data-act="circlecp">Circle by centre + point</button>
+      <button data-act="pointon">Point on object (circle/line)</button>
+      <button data-act="polygon">Polygon interior (3+ points)</button>
+      <div class="sep"></div>
+      <div class="lbl">loci &amp; relations</div>
+      <button data-act="intersection">Intersection(s)</button>
+      <button data-act="perpbis">Perpendicular bisector</button>
+      <button data-act="anglebis">Angle bisector</button>
+      <button data-act="perpendicular">Perpendicular line</button>
+      <button data-act="parallel">Parallel line</button>
+      <button data-act="locus" class="disabled">Locus — soon</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="transform">Transform</button>
+    <div class="dropdown">
+      <button class="disabled">Mark mirror / centre / vector — soon</button>
+      <button class="disabled">Reflect — soon</button>
+      <button class="disabled">Rotate… — soon</button>
+      <button class="disabled">Translate… — soon</button>
+      <button class="disabled">Enlarge… — soon</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="measure">Measure</button>
+    <div class="dropdown">
+      <button data-act="mlength">Length (segment)</button>
+      <button data-act="mdistance">Distance (2 points)</button>
+      <button data-act="mangle">Angle (3 points)</button>
+      <button data-act="mradius">Radius (circle)</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="number">Number</button>
+    <div class="dropdown">
+      <button class="disabled">Calculator… — soon</button>
+      <button class="disabled">New parameter… — soon</button>
+      <button class="disabled">New function… — soon</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="graph">Graph</button>
+    <div class="dropdown">
+      <button class="disabled">Define axes — soon</button>
+      <button class="disabled">Plot function… — soon</button>
+      <button class="disabled">Bearings / north mode — soon</button>
+    </div>
+  </div>
+  <div class="menu"><button data-menu="help">Help</button>
+    <div class="dropdown">
+      <button data-act="help">Quick reference</button>
+    </div>
+  </div>
+</div>
+
+<div class="studio">
+  <div class="toolbox" id="toolbox">
+    <button class="tool active" data-tool="select" title="Select &amp; drag (click objects to build a selection)"><span>🖐</span><span class="cap">Select</span></button>
+    <button class="tool" data-tool="point" title="Place points"><span>•</span><span class="cap">Point</span></button>
+    <button class="tool" data-tool="segment" title="Straightedge — draw a segment between two points"><span>╱</span><span class="cap">Segment</span></button>
+    <button class="tool" data-tool="circle" title="Circle — centre then a point on it"><span>◯</span><span class="cap">Circle</span></button>
+    <button class="tool" data-tool="compass" title="Compass — centre, radius (point or segment), then swing"><span>◜</span><span class="cap">Compass</span></button>
+    <button class="tool" data-tool="text" title="Text — click to place a caption; double-click any text or point to rename"><span>🅰</span><span class="cap">Text</span></button>
+    <button class="tool" data-tool="pencil" title="Pencil — draw or handwrite freehand"><span>✎</span><span class="cap">Pencil</span></button>
+  </div>
+  <div class="stage">
+    <svg id="canvas" viewBox="0 0 860 560" role="img" aria-label="Dynamic geometry construction area"></svg>
+  </div>
+</div>
+<div class="hint" id="hint">Pick an instrument on the left to draw, or use <b>Select</b> to choose objects then apply a menu action. Try: Point ×3, then Select all three and Construct → Angle bisector.</div>
+<p class="legend">v0.3 — instruments create objects; menus act on the current selection (highlighted). Everything stays dynamic: drag a free point and all dependents follow. Coming next: Transform &amp; Bearings (v0.4), then Number/Calculator &amp; Graph/Functions (v0.5).</p>
+</div>
+
+<input type="file" id="fileInput" accept="application/json,.json" style="display:none">
+<input type="color" id="colourPicker" value="#3f7a45" style="position:fixed;left:-9999px">
+<div class="overlay" id="overlay"><div class="dialog" id="dialog"></div></div>
+
+<script>
+(function(){
+"use strict";
+var svg=document.getElementById("canvas"), hint=document.getElementById("hint");
+var VW=860, VH=560;
+var objects=[], nextId=1, pointLabel=0;
+var tool="select";
+var sel=[];               // selection: array of object ids (Sketchpad-style)
+var pending=[];           // ids collected mid draw-gesture
+var drag=null, compass=null, hover=null;
+var labelsShown=true, currentName=null;
+var PALETTE=[["Charcoal","#2f3429"],["Ocean","#2b6cb0"],["Moss","#3f7a45"],["Berry","#b24c4c"],["Plum","#7a4fb0"],["Rust","#c1622e"],["Teal","#2f8f8f"],["Gold","#b8860b"]];
+var LSKEY="neoDGS_sketches_v1";
+
+/* ---------- geometry helpers ---------- */
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function ang(c,p){return Math.atan2(p.y-c.y,p.x-c.x);}
+function sub(a,b){return {x:a.x-b.x,y:a.y-b.y};}
+function unit(v){var m=Math.hypot(v.x,v.y)||1;return {x:v.x/m,y:v.y/m};}
+function segLen(id){var o=byId(id);if(o&&o.type==="segment")return dist(P(o.a),P(o.b));return 0;}
+function esc(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function distToSeg(p,a,b){var vx=b.x-a.x,vy=b.y-a.y,wx=p.x-a.x,wy=p.y-a.y,c1=vx*wx+vy*wy;if(c1<=0)return Math.hypot(p.x-a.x,p.y-a.y);var c2=vx*vx+vy*vy;if(c2<=c1)return Math.hypot(p.x-b.x,p.y-b.y);var t=c1/c2;return Math.hypot(p.x-(a.x+t*vx),p.y-(a.y+t*vy));}
+function circleCircle(c1,r1,c2,r2){var d=Math.hypot(c2.x-c1.x,c2.y-c1.y);if(d<1e-9||d>r1+r2||d<Math.abs(r1-r2))return[];var a=(r1*r1-r2*r2+d*d)/(2*d),h2=r1*r1-a*a;if(h2<0)h2=0;var h=Math.sqrt(h2);var xm=c1.x+a*(c2.x-c1.x)/d,ym=c1.y+a*(c2.y-c1.y)/d;var rx=-(c2.y-c1.y)*(h/d),ry=(c2.x-c1.x)*(h/d);return[{x:xm+rx,y:ym+ry},{x:xm-rx,y:ym-ry}];}
+function lineLine(p1,d1,p2,d2){var den=d1.x*d2.y-d1.y*d2.x;if(Math.abs(den)<1e-9)return[];var t=((p2.x-p1.x)*d2.y-(p2.y-p1.y)*d2.x)/den;return[{x:p1.x+t*d1.x,y:p1.y+t*d1.y}];}
+function lineCircle(p,d,c,r){var f=sub(p,c),a=d.x*d.x+d.y*d.y,b=2*(f.x*d.x+f.y*d.y),cc=f.x*f.x+f.y*f.y-r*r;var disc=b*b-4*a*cc;if(disc<0)return[];disc=Math.sqrt(disc);var t1=(-b-disc)/(2*a),t2=(-b+disc)/(2*a);return[{x:p.x+t1*d.x,y:p.y+t1*d.y},{x:p.x+t2*d.x,y:p.y+t2*d.y}];}
+
+/* ---------- resolve from dependency graph ---------- */
+function byId(id){for(var i=0;i<objects.length;i++)if(objects[i].id===id)return objects[i];return null;}
+function P(id){var o=byId(id);if(!o||o.type!=="point")return {x:0,y:0};
+  if(o.kind==="free")return {x:o.x,y:o.y};
+  if(o.kind==="mid"){var a=P(o.a),b=P(o.b);return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+  if(o.kind==="intersect"){var pts=intersectGeom(o.o1,o.o2);if(!pts.length)return o._last||{x:0,y:0};var pick=pts[Math.min(o.which,pts.length-1)];o._last=pick;return pick;}
+  if(o.kind==="arcend"){var ce=P(o.c),rpe=P(o.rp),re=dist(ce,rpe),ae=ang(ce,rpe)+o.swept;return {x:ce.x+re*Math.cos(ae),y:ce.y+re*Math.sin(ae)};}
+  if(o.kind==="polar"){var cp=P(o.c),rr=segLen(o.seg);return {x:cp.x+rr*Math.cos(o.ang),y:cp.y+rr*Math.sin(o.ang)};}
+  if(o.kind==="on"){var host=byId(o.on);if(isCircleish(host)){var g=circGeom(host);return {x:g.c.x+g.r*Math.cos(o.ang),y:g.c.y+g.r*Math.sin(o.ang)};}if(isLineish(host)){var lg=lineGeom(host);return {x:lg.p.x+o.t*lg.d.x,y:lg.p.y+o.t*lg.d.y};}return {x:0,y:0};}
+  return {x:0,y:0};}
+function lineGeom(o){
+  if(o.type==="line"&&(o.kind==="through"||o.kind==="ray")){var a=P(o.a),b=P(o.b);return {p:a,d:sub(b,a)};}
+  if(o.type==="segment"){var a2=P(o.a),b2=P(o.b);return {p:a2,d:sub(b2,a2)};}
+  if(o.type==="perpbis"){var a3=P(o.a),b3=P(o.b);var m={x:(a3.x+b3.x)/2,y:(a3.y+b3.y)/2};var ab=sub(b3,a3);return {p:m,d:{x:-ab.y,y:ab.x}};}
+  if(o.type==="perp"){var bp=lineGeom(byId(o.base));return {p:P(o.thru),d:{x:-bp.d.y,y:bp.d.x}};}
+  if(o.type==="parallel"){var bq=lineGeom(byId(o.base));return {p:P(o.thru),d:bq.d};}
+  if(o.type==="anglebis"){var va=P(o.v),u1=unit(sub(P(o.a),va)),u2=unit(sub(P(o.b),va));var dd={x:u1.x+u2.x,y:u1.y+u2.y};if(Math.hypot(dd.x,dd.y)<1e-6)dd={x:-u1.y,y:u1.x};return {p:va,d:dd};}
+  return null;}
+function circGeom(o){if(o.type==="circle"){var c=P(o.c),t=P(o.thru);return {c:c,r:dist(c,t)};}if(o.type==="arc"){var c2=P(o.c),rp=P(o.rp);return {c:c2,r:dist(c2,rp)};}return null;}
+function isLineish(o){return o&&(o.type==="line"||o.type==="segment"||o.type==="perpbis"||o.type==="perp"||o.type==="parallel"||o.type==="anglebis");}
+function isCircleish(o){return o&&(o.type==="circle"||o.type==="arc");}
+function intersectGeom(id1,id2){var o1=byId(id1),o2=byId(id2);if(!o1||!o2)return[];
+  if(isCircleish(o1)&&isCircleish(o2)){var a=circGeom(o1),b=circGeom(o2);return circleCircle(a.c,a.r,b.c,b.r);}
+  if(isLineish(o1)&&isLineish(o2)){var l1=lineGeom(o1),l2=lineGeom(o2);return lineLine(l1.p,l1.d,l2.p,l2.d);}
+  var L=isLineish(o1)?lineGeom(o1):lineGeom(o2),C=isCircleish(o1)?circGeom(o1):circGeom(o2);return lineCircle(L.p,L.d,C.c,C.r);}
+
+/* ---------- create / pick ---------- */
+function nextLabel(){return String.fromCharCode(65+(pointLabel++%26));}
+function addFreePoint(x,y){var o={id:nextId++,type:"point",kind:"free",x:x,y:y,label:nextLabel()};objects.push(o);return o.id;}
+function nearestPoint(x,y,thr){var best=null,bd=thr||16;objects.forEach(function(o){if(o.type==="point"&&!o.hidden){var p=P(o.id),d=Math.hypot(p.x-x,p.y-y);if(d<bd){bd=d;best=o.id;}}});return best;}
+function nearestCurve(x,y,thr){var best=null,bd=thr||12;objects.forEach(function(o){if(o.hidden)return;var d=null;
+  if(isCircleish(o)){var g=circGeom(o);d=Math.abs(Math.hypot(x-g.c.x,y-g.c.y)-g.r);}
+  else if(isLineish(o)){var l=lineGeom(o),nn=unit({x:-l.d.y,y:l.d.x});d=Math.abs((x-l.p.x)*nn.x+(y-l.p.y)*nn.y);}
+  else if(o.type==="ink"&&o.pts.length>1){var md=1e9;for(var k=0;k<o.pts.length-1;k++)md=Math.min(md,distToSeg({x:x,y:y},{x:o.pts[k][0],y:o.pts[k][1]},{x:o.pts[k+1][0],y:o.pts[k+1][1]}));d=md;}
+  if(d!=null&&d<bd){bd=d;best=o.id;}});return best;}
+function nearestCaption(x,y){for(var i=objects.length-1;i>=0;i--){var o=objects[i];if(o.type==="caption"&&!o.hidden){var w=(o.text||"").length*8+10;if(x>=o.x-4&&x<=o.x+w&&y>=o.y-16&&y<=o.y+6)return o.id;}}return null;}
+function pickOrCreatePoint(x,y){var id=nearestPoint(x,y);return id!=null?id:addFreePoint(x,y);}
+function pickAny(x,y){var id=nearestPoint(x,y);if(id!=null)return id;var cap=nearestCaption(x,y);if(cap!=null)return cap;var c=nearestCurve(x,y);if(c!=null)return c;return nearestPolygon(x,y);}
+function freeAncestors(id){var out={};(function walk(x){var o=byId(x);if(!o)return;if(o.type==="point"&&o.kind==="free"){out[x]=1;return;}["a","b","c","v","thru","base","o1","o2","rp","seg","at","of","on"].forEach(function(f){if(typeof o[f]==="number")walk(o[f]);});if(Array.isArray(o.pts))o.pts.forEach(walk);})(id);return Object.keys(out).map(Number);}
+function pointInPoly(pt,verts){var inside=false;for(var i=0,j=verts.length-1;i<verts.length;j=i++){var a=verts[i],b=verts[j];if(((a.y>pt.y)!==(b.y>pt.y))&&(pt.x<(b.x-a.x)*(pt.y-a.y)/((b.y-a.y)||1e-9)+a.x))inside=!inside;}return inside;}
+function nearestPolygon(x,y){for(var i=objects.length-1;i>=0;i--){var o=objects[i];if(o.type==="polygon"&&!o.hidden&&pointInPoly({x:x,y:y},o.pts.map(P)))return o.id;}return null;}
+function enclosed(x0,y0,x1,y1){var lo={x:Math.min(x0,x1),y:Math.min(y0,y1)},hi={x:Math.max(x0,x1),y:Math.max(y0,y1)};var out=[];objects.forEach(function(o){if(o.hidden)return;if(o.type==="measlen"||o.type==="measang"||o.type==="meastext")return;var anc=freeAncestors(o.id);if(!anc.length)return;var all=anc.every(function(pid){var q=P(pid);return q.x>=lo.x&&q.x<=hi.x&&q.y>=lo.y&&q.y<=hi.y;});if(all)out.push(o.id);});return out;}
+function updateOnPoint(o,pos){var host=byId(o.on);if(isCircleish(host)){o.ang=ang(circGeom(host).c,pos);}else if(isLineish(host)){var lg=lineGeom(host);var dd=lg.d.x*lg.d.x+lg.d.y*lg.d.y||1;o.t=((pos.x-lg.p.x)*lg.d.x+(pos.y-lg.p.y)*lg.d.y)/dd;}}
+
+/* ---------- rendering ---------- */
+function arcPath(c,r,a0,swept){var a1=a0+swept;var s={x:c.x+r*Math.cos(a0),y:c.y+r*Math.sin(a0)},e={x:c.x+r*Math.cos(a1),y:c.y+r*Math.sin(a1)};var large=Math.abs(swept)>Math.PI?1:0,sweep=swept>=0?1:0;return "M"+s.x.toFixed(1)+" "+s.y.toFixed(1)+" A"+r.toFixed(1)+" "+r.toFixed(1)+" 0 "+large+" "+sweep+" "+e.x.toFixed(1)+" "+e.y.toFixed(1);}
+function normAng(x){while(x>Math.PI)x-=2*Math.PI;while(x<-Math.PI)x+=2*Math.PI;return x;}
+function isSel(id){return sel.indexOf(id)>=0;}
+function lineEndpoints(o){var l=lineGeom(o),u=unit(l.d),ext=2000;
+  if(o.type==="segment")return [P(o.a),P(o.b)];
+  if(o.type==="line"&&o.kind==="ray")return [P(o.a),{x:P(o.a).x+u.x*ext,y:P(o.a).y+u.y*ext}];
+  return [{x:l.p.x-u.x*ext,y:l.p.y-u.y*ext},{x:l.p.x+u.x*ext,y:l.p.y+u.y*ext}];}
+function highlightSVG(o){var col="#e79b5a",w=9,op="0.45";
+  if(isLineish(o)){var e=lineEndpoints(o);return '<line x1="'+e[0].x.toFixed(1)+'" y1="'+e[0].y.toFixed(1)+'" x2="'+e[1].x.toFixed(1)+'" y2="'+e[1].y.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-opacity="'+op+'" stroke-linecap="round"/>';}
+  if(o.type==="circle"){var g=circGeom(o);return '<circle cx="'+g.c.x.toFixed(1)+'" cy="'+g.c.y.toFixed(1)+'" r="'+g.r.toFixed(1)+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-opacity="'+op+'"/>';}
+  if(o.type==="arc"){var ga=circGeom(o),a0=ang(ga.c,P(o.rp));return '<path d="'+arcPath(ga.c,ga.r,a0,o.swept)+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-opacity="'+op+'" stroke-linecap="round"/>';}
+  return "";}
+function render(){
+  var s="";
+  for(var gx=0;gx<=VW;gx+=30)s+='<line x1="'+gx+'" y1="0" x2="'+gx+'" y2="'+VH+'" stroke="#efe7d7" stroke-width="1"/>';
+  for(var gy=0;gy<=VH;gy+=30)s+='<line x1="0" y1="'+gy+'" x2="'+VW+'" y2="'+gy+'" stroke="#efe7d7" stroke-width="1"/>';
+  // traces
+  objects.forEach(function(o){if(o.trace&&o._trail)o._trail.forEach(function(p){s+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="1.6" fill="#9a6fbf"/>';});});
+  // filled polygons (behind lines/points)
+  objects.forEach(function(o){if(o.hidden||o.type!=="polygon")return;var dd=o.pts.map(P).map(function(p){return p.x.toFixed(1)+","+p.y.toFixed(1);}).join(" ");var fill=o.fill||"#9ec7e8";s+='<polygon points="'+dd+'" fill="'+fill+'" fill-opacity="'+(fill==="none"?0:0.45)+'" stroke="none"/>';if(isSel(o.id))s+='<polygon points="'+dd+'" fill="#e79b5a" fill-opacity="0.35" stroke="#c1622e" stroke-width="3" stroke-dasharray="8 5"/>';});
+  // selection glow
+  sel.forEach(function(id){var so=byId(id);if(so&&so.type!=="point"&&so.type!=="polygon"&&!so.hidden)s+=highlightSVG(so);});
+  // curves/lines
+  objects.forEach(function(o){if(o.hidden)return;
+    if(o.type==="circle"){var g=circGeom(o);s+='<circle cx="'+g.c.x.toFixed(1)+'" cy="'+g.c.y.toFixed(1)+'" r="'+g.r.toFixed(1)+'" fill="none" stroke="'+(isSel(o.id)?"#c1622e":(o.colour||"#2b6cb0"))+'" stroke-width="1.8"/>';}
+    else if(o.type==="arc"){var ga=circGeom(o),a0=ang(ga.c,P(o.rp));s+='<path d="'+arcPath(ga.c,ga.r,a0,o.swept)+'" fill="none" stroke="'+(isSel(o.id)?"#c1622e":(o.colour||"#2b6cb0"))+'" stroke-width="1.8"/>';}
+    else if(isLineish(o)){var e=lineEndpoints(o);var col=(o.type==="line"||o.type==="segment")?"#2f3429":"#3f7a45";s+='<line x1="'+e[0].x.toFixed(1)+'" y1="'+e[0].y.toFixed(1)+'" x2="'+e[1].x.toFixed(1)+'" y2="'+e[1].y.toFixed(1)+'" stroke="'+(isSel(o.id)?"#c1622e":(o.colour||col))+'" stroke-width="'+(o.type==="segment"?"2":o.type==="line"?"1.6":"2")+'"/>';}
+    else if(o.type==="measlen"){var ma=P(o.a),mb=P(o.b);var mx=(ma.x+mb.x)/2,my=(ma.y+mb.y)/2;s+='<line x1="'+ma.x.toFixed(1)+'" y1="'+ma.y.toFixed(1)+'" x2="'+mb.x.toFixed(1)+'" y2="'+mb.y.toFixed(1)+'" stroke="#7a4fb0" stroke-width="1" stroke-dasharray="4 3"/><text x="'+mx.toFixed(1)+'" y="'+(my-6).toFixed(1)+'" font-size="12" fill="#7a4fb0" text-anchor="middle" font-weight="bold">'+(dist(ma,mb)/30).toFixed(1)+' cm</text>';}
+    else if(o.type==="measang"){var qa=P(o.a),qv=P(o.v),qb=P(o.b);var a1=ang(qv,qa),da=normAng(ang(qv,qb)-a1);var midA=a1+da/2;s+='<path d="'+arcPath(qv,26,a1,da)+'" fill="none" stroke="#7a4fb0" stroke-width="1.5"/><text x="'+(qv.x+46*Math.cos(midA)).toFixed(1)+'" y="'+(qv.y+46*Math.sin(midA)+4).toFixed(1)+'" font-size="12" fill="#7a4fb0" text-anchor="middle" font-weight="bold">'+Math.abs(da*180/Math.PI).toFixed(0)+'°</text>';}
+    else if(o.type==="meastext"){var pp=P(o.at);var txt="";if(o.kind==="radius"){var host=byId(o.of);if(host)txt="r = "+(circGeom(host).r/30).toFixed(1)+" cm";}s+='<text x="'+(pp.x+10).toFixed(1)+'" y="'+(pp.y+18).toFixed(1)+'" font-size="12" fill="#7a4fb0" font-weight="bold">'+txt+'</text>';}
+    else if(o.type==="ink"&&o.pts.length){var dp=o.pts.map(function(p){return p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ");s+='<polyline points="'+dp+'" fill="none" stroke="'+(isSel(o.id)?"#c1622e":(o.colour||"#2f3429"))+'" stroke-width="'+(o.width||2.5)+'" stroke-linecap="round" stroke-linejoin="round"/>';}
+    else if(o.type==="caption"){s+='<text x="'+o.x.toFixed(1)+'" y="'+o.y.toFixed(1)+'" font-size="15" font-family="Arial" fill="'+(isSel(o.id)?"#c1622e":(o.colour||"#2f3429"))+'">'+esc(o.text)+'</text>';if(isSel(o.id))s+='<circle cx="'+o.x.toFixed(1)+'" cy="'+o.y.toFixed(1)+'" r="3" fill="#c1622e"/>';}
+  });
+  // compass preview
+  if(tool==="compass"&&compass&&hover){var cc=P(compass.c);
+    s+='<circle cx="'+cc.x.toFixed(1)+'" cy="'+cc.y.toFixed(1)+'" r="4" fill="none" stroke="#c1622e" stroke-width="1.5"/>';
+    if(compass.stage==="radius"){var r=Math.hypot(hover.x-cc.x,hover.y-cc.y);s+='<circle cx="'+cc.x.toFixed(1)+'" cy="'+cc.y.toFixed(1)+'" r="'+r.toFixed(1)+'" fill="none" stroke="#b9a05f" stroke-width="1.2" stroke-dasharray="4 4"/><line x1="'+cc.x.toFixed(1)+'" y1="'+cc.y.toFixed(1)+'" x2="'+hover.x.toFixed(1)+'" y2="'+hover.y.toFixed(1)+'" stroke="#b9a05f" stroke-width="1" stroke-dasharray="3 3"/>';}
+    else if(compass.stage==="swing"){var r2=(compass.mode==="len")?segLen(compass.seg):dist(cc,P(compass.rp));s+='<circle cx="'+cc.x.toFixed(1)+'" cy="'+cc.y.toFixed(1)+'" r="'+r2.toFixed(1)+'" fill="none" stroke="#ddd0b5" stroke-width="1" stroke-dasharray="2 5"/><path d="'+arcPath(cc,r2,compass.start,compass.swept)+'" fill="none" stroke="#2b6cb0" stroke-width="1.8"/>';var tip={x:cc.x+r2*Math.cos(compass.start+compass.swept),y:cc.y+r2*Math.sin(compass.start+compass.swept)};s+='<circle cx="'+tip.x.toFixed(1)+'" cy="'+tip.y.toFixed(1)+'" r="3.5" fill="#2b6cb0"/>';}
+  }
+  // points
+  objects.forEach(function(o){if(o.type==="point"&&!o.hidden){var p=P(o.id),free=o.kind==="free";
+    if(isSel(o.id))s+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="10" fill="#e79b5a" fill-opacity="0.35" stroke="#c1622e" stroke-width="2"/>';
+    s+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+(free?5:4)+'" fill="'+(o.colour||(free?"#2f3429":"#b25f2e"))+'" stroke="#fff" stroke-width="1.5"/>';
+    if(labelsShown)s+='<text x="'+(p.x+8).toFixed(1)+'" y="'+(p.y-8).toFixed(1)+'" font-size="14" font-family="Georgia,serif" font-style="italic" fill="#2f3429">'+o.label+'</text>';}});
+  pending.forEach(function(id){if(typeof id!=="number")return;var p=P(id);s+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="9" fill="none" stroke="#c1622e" stroke-width="1.5" stroke-dasharray="3 3"/>';});
+  if(drag&&drag.kind==="marquee"&&drag.moved){var x0=Math.min(drag.start.x,drag.last.x),y0=Math.min(drag.start.y,drag.last.y),ww=Math.abs(drag.last.x-drag.start.x),hh=Math.abs(drag.last.y-drag.start.y);s+='<rect x="'+x0.toFixed(1)+'" y="'+y0.toFixed(1)+'" width="'+ww.toFixed(1)+'" height="'+hh.toFixed(1)+'" fill="#3f5f45" fill-opacity="0.08" stroke="#3f5f45" stroke-width="1" stroke-dasharray="5 4"/>';}
+  svg.innerHTML=s;
+}
+
+/* ---------- pointer / instruments ---------- */
+function toXY(e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*VW/r.width,y:(e.clientY-r.top)*VH/r.height};}
+function setHint(t){hint.innerHTML=t;}
+function toggleSel(id){var i=sel.indexOf(id);if(i>=0)sel.splice(i,1);else sel.push(id);}
+
+svg.addEventListener("pointerdown",function(e){var pos=toXY(e);try{svg.setPointerCapture(e.pointerId);}catch(err){}
+  if(tool==="select"){var id=pickAny(pos.x,pos.y);
+    if(id==null){drag={kind:"marquee",start:pos,last:pos,total:0,moved:false,candidate:null};render();return;}
+    var o=byId(id);var st={candidate:id,last:pos,total:0,moved:false,kind:"none"};
+    if(o.type==="point"){if(o.kind==="free")st.kind="point";else if(o.kind==="on")st.kind="on";}
+    else if(o.type==="caption")st.kind="caption";
+    else if(o.type==="ink")st.kind="ink";
+    else if(isLineish(o)||isCircleish(o)||o.type==="polygon"){st.kind="obj";st.ids=freeAncestors(id);}
+    drag=st;render();return;}
+  if(tool==="text"){var t=window.prompt("Text to place:","");if(t)objects.push({id:nextId++,type:"caption",x:pos.x,y:pos.y,text:t});render();return;}
+  if(tool==="pencil"){var ink={id:nextId++,type:"ink",pts:[[pos.x,pos.y]],colour:"#2f3429",width:2.5};objects.push(ink);drag={kind:"ink-draw",candidate:ink.id,last:pos,moved:false};render();return;}
+  if(tool==="point"){var np=addFreePoint(pos.x,pos.y);sel=[np];render();return;}
+  if(tool==="compass"){
+    if(!compass){compass={stage:"radius",c:pickOrCreatePoint(pos.x,pos.y),mode:"pt"};setHint("Compass placed. Click a point to set the <b>radius</b>, or a <b>segment</b> to copy its length.");}
+    else if(compass.stage==="radius"){var cc=P(compass.c);var segId=nearestCurve(pos.x,pos.y);var segO=byId(segId);
+      if(segO&&segO.type==="segment"){compass.seg=segId;compass.mode="len";compass.start=ang(cc,pos);}
+      else{var rid=pickOrCreatePoint(pos.x,pos.y);compass.rp=rid;compass.mode="pt";compass.start=ang(cc,P(rid));}
+      compass.swept=0;compass.lastAng=compass.start;compass.stage="swing";setHint("Now <b>swing</b>: move to sweep the arc, then click to leave the mark.");}
+    else{var _c=compass.c,_sw=compass.swept,_rp;if(compass.mode==="len"){var pol={id:nextId++,type:"point",kind:"polar",c:_c,seg:compass.seg,ang:compass.start,label:nextLabel()};objects.push(pol);_rp=pol.id;}else{_rp=compass.rp;}objects.push({id:nextId++,type:"arc",c:_c,rp:_rp,swept:_sw});objects.push({id:nextId++,type:"point",kind:"arcend",c:_c,rp:_rp,swept:_sw,label:nextLabel()});compass=null;setHint("Arc drawn with a fixed end point. Click a new centre for another.");}
+    render();return;}
+  // segment / circle instruments (two clicks)
+  var pid=pickOrCreatePoint(pos.x,pos.y);pending.push(pid);
+  if(tool==="segment"&&pending.length===2){objects.push({id:nextId++,type:"segment",a:pending[0],b:pending[1]});pending=[];setHint("Segment drawn.");}
+  else if(tool==="circle"&&pending.length===2){objects.push({id:nextId++,type:"circle",c:pending[0],thru:pending[1]});pending=[];setHint("Circle drawn.");}
+  else if(pending.length===1&&tool==="segment")setHint("Click the second point.");
+  else if(pending.length===1&&tool==="circle")setHint("Click a point the circle passes through.");
+  render();
+});
+svg.addEventListener("pointermove",function(e){var pos=toXY(e);hover=pos;
+  if(drag&&drag.kind==="ink-draw"){var io=byId(drag.candidate);if(io)io.pts.push([pos.x,pos.y]);drag.moved=true;render();return;}
+  if(drag){var dx=pos.x-drag.last.x,dy=pos.y-drag.last.y;drag.total+=Math.hypot(dx,dy);if(drag.total>3)drag.moved=true;
+    if(drag.kind==="point"){var o=byId(drag.candidate);o.x=pos.x;o.y=pos.y;}
+    else if(drag.kind==="on"){updateOnPoint(byId(drag.candidate),pos);}
+    else if(drag.kind==="caption"){var oc=byId(drag.candidate);oc.x=pos.x;oc.y=pos.y;}
+    else if(drag.kind==="ink"){var oi=byId(drag.candidate);oi.pts=oi.pts.map(function(p){return [p[0]+dx,p[1]+dy];});}
+    else if(drag.kind==="obj"){drag.ids.forEach(function(pid){var fp=byId(pid);if(fp){fp.x+=dx;fp.y+=dy;}});}
+    drag.last=pos;
+    objects.forEach(function(t){if(t.trace&&t.type==="point"){t._trail=t._trail||[];t._trail.push(P(t.id));if(t._trail.length>400)t._trail.shift();}});
+    render();return;}
+  if(tool==="compass"&&compass){if(compass.stage==="swing"){var cc=P(compass.c);var cur=ang(cc,pos);compass.swept+=normAng(cur-compass.lastAng);var lim=2*Math.PI-0.01;if(compass.swept>lim)compass.swept=lim;if(compass.swept<-lim)compass.swept=-lim;compass.lastAng=cur;}render();}
+});
+svg.addEventListener("pointerup",function(e){
+  if(drag){
+    if(drag.kind==="ink-draw"){var io=byId(drag.candidate);if(io&&io.pts.length<2)objects=objects.filter(function(x){return x.id!==io.id;});setHint("Freehand stroke drawn. Undo removes the last stroke.");}
+    else if(drag.kind==="marquee"){if(drag.moved){sel=enclosed(drag.start.x,drag.start.y,drag.last.x,drag.last.y);setHint(sel.length?selSummary():"Nothing enclosed.");}else{sel=[];setHint("Selection cleared.");}}
+    else if(!drag.moved&&drag.candidate!=null){toggleSel(drag.candidate);setHint(selSummary());}
+  }
+  drag=null;try{svg.releasePointerCapture(e.pointerId);}catch(err){}render();});
+svg.addEventListener("dblclick",function(e){var pos=toXY(e);var pid=nearestPoint(pos.x,pos.y);if(pid!=null){var o=byId(pid);var nl=window.prompt("Label for this point:",o.label||"");if(nl!=null){o.label=nl;render();}return;}var cid=nearestCaption(pos.x,pos.y);if(cid!=null){var oc=byId(cid);var nt=window.prompt("Edit text:",oc.text||"");if(nt!=null){oc.text=nt;render();}}});
+
+/* ---------- selection helpers ---------- */
+function selObjs(){return sel.map(byId).filter(Boolean);}
+function selPoints(){return selObjs().filter(function(o){return o.type==="point";});}
+function selLines(){return selObjs().filter(isLineish);}
+function selCircles(){return selObjs().filter(isCircleish);}
+function selSummary(){var o=selObjs();if(!o.length)return "Nothing selected.";var pts=selPoints().length,ln=selLines().length,ci=selCircles().length;var parts=[];if(pts)parts.push(pts+" point"+(pts>1?"s":""));if(ln)parts.push(ln+" line/segment"+(ln>1?"s":""));if(ci)parts.push(ci+" circle/arc"+(ci>1?"s":""));return "Selected: "+parts.join(", ")+". Choose a menu action.";}
+
+/* ---------- menu actions ---------- */
+function need(msg){setHint('<b>Select needed:</b> '+msg);}
+var ACT={
+  undo:function(){if(objects.length){objects.pop();sel=[];render();}},
+  clear:function(){objects=[];sel=[];pending=[];compass=null;pointLabel=0;nextId=1;render();setHint("Cleared.");},
+  selectall:function(){sel=objects.filter(function(o){return !o.hidden;}).map(function(o){return o.id;});render();setHint(selSummary());},
+  deselect:function(){sel=[];render();setHint("Deselected.");},
+  relabel:function(){var o=selObjs();if(o.length!==1||(o[0].type!=="point"&&o[0].type!=="caption")){need("exactly 1 point or text label.");return;}var it=o[0],cur=it.type==="caption"?it.text:it.label;var v=window.prompt(it.type==="caption"?"Edit text:":"Label for this point:",cur||"");if(v!=null){if(it.type==="caption")it.text=v;else it.label=v;render();setHint("Renamed.");}},
+  delete:function(){if(!sel.length){need("objects to delete.");return;}var dead={};sel.forEach(function(id){dead[id]=1;});var changed=true;while(changed){changed=false;objects.forEach(function(o){if(dead[o.id])return;["a","b","c","v","thru","base","o1","o2","rp","seg","at","of","on"].forEach(function(f){if(o[f]!=null&&dead[o[f]]){if(!dead[o.id]){dead[o.id]=1;changed=true;}}});if(Array.isArray(o.pts)&&o.pts.some(function(p){return dead[p];})&&!dead[o.id]){dead[o.id]=1;changed=true;}});}objects=objects.filter(function(o){return !dead[o.id];});sel=[];render();setHint("Deleted.");},
+  labels:function(){labelsShown=!labelsShown;render();},
+  hide:function(){if(!sel.length){need("objects to hide.");return;}selObjs().forEach(function(o){o.hidden=true;});sel=[];render();setHint("Hidden (Display → Show all hidden to restore).");},
+  showall:function(){objects.forEach(function(o){o.hidden=false;});render();setHint("All objects shown.");},
+  trace:function(){var p=selPoints();if(!p.length){need("a point to trace.");return;}p.forEach(function(o){o.trace=!o.trace;if(!o.trace)o._trail=[];else o._trail=[];});render();setHint("Trace toggled — drag a base point to leave a locus trail.");},
+  erasetrace:function(){objects.forEach(function(o){o._trail=[];});render();setHint("Traces erased.");},
+  segment:function(){var p=selPoints();if(p.length!==2){need("exactly 2 points.");return;}objects.push({id:nextId++,type:"segment",a:p[0].id,b:p[1].id});sel=[];render();setHint("Segment constructed.");},
+  ray:function(){var p=selPoints();if(p.length!==2){need("2 points (start, then a point it passes through).");return;}objects.push({id:nextId++,type:"line",kind:"ray",a:p[0].id,b:p[1].id});sel=[];render();setHint("Ray constructed.");},
+  line:function(){var p=selPoints();if(p.length!==2){need("exactly 2 points.");return;}objects.push({id:nextId++,type:"line",kind:"through",a:p[0].id,b:p[1].id});sel=[];render();setHint("Line constructed.");},
+  midpoint:function(){var p=selPoints();var seg=selObjs().filter(function(o){return o.type==="segment";});
+    if(p.length===2){objects.push({id:nextId++,type:"point",kind:"mid",a:p[0].id,b:p[1].id,label:nextLabel()});}
+    else if(seg.length===1){objects.push({id:nextId++,type:"point",kind:"mid",a:seg[0].a,b:seg[0].b,label:nextLabel()});}
+    else{need("2 points, or 1 segment.");return;}sel=[];render();setHint("Midpoint constructed.");},
+  circlecp:function(){var p=selPoints();if(p.length!==2){need("2 points (centre first, then a point on the circle).");return;}objects.push({id:nextId++,type:"circle",c:p[0].id,thru:p[1].id});sel=[];render();setHint("Circle constructed.");},
+  intersection:function(){var c=selObjs().filter(function(o){return isLineish(o)||isCircleish(o);});if(c.length!==2){need("exactly 2 lines/circles/arcs.");return;}var pts=intersectGeom(c[0].id,c[1].id);if(!pts.length){setHint("Those two do not meet.");return;}for(var k=0;k<pts.length;k++)objects.push({id:nextId++,type:"point",kind:"intersect",o1:c[0].id,o2:c[1].id,which:k,label:nextLabel()});sel=[];render();setHint(pts.length>1?"Two intersection points constructed.":"Intersection constructed.");},
+  perpbis:function(){var p=selPoints();var seg=selObjs().filter(function(o){return o.type==="segment";});
+    if(p.length===2){objects.push({id:nextId++,type:"perpbis",a:p[0].id,b:p[1].id});}
+    else if(seg.length===1){objects.push({id:nextId++,type:"perpbis",a:seg[0].a,b:seg[0].b});}
+    else{need("2 points, or 1 segment.");return;}sel=[];render();setHint("Perpendicular bisector constructed — the locus of points equidistant from the two ends.");},
+  anglebis:function(){var p=selPoints();if(p.length!==3){need("exactly 3 points, in order: arm, vertex, arm.");return;}objects.push({id:nextId++,type:"anglebis",a:p[0].id,v:p[1].id,b:p[2].id});sel=[];render();setHint("Angle bisector constructed — the locus of points equidistant from the two arms.");},
+  perpendicular:function(){var l=selLines(),p=selPoints();if(l.length!==1||p.length!==1){need("1 line/segment and 1 point.");return;}objects.push({id:nextId++,type:"perp",base:l[0].id,thru:p[0].id});sel=[];render();setHint("Perpendicular line constructed.");},
+  parallel:function(){var l=selLines(),p=selPoints();if(l.length!==1||p.length!==1){need("1 line/segment and 1 point.");return;}objects.push({id:nextId++,type:"parallel",base:l[0].id,thru:p[0].id});sel=[];render();setHint("Parallel line constructed.");},
+  mlength:function(){var seg=selObjs().filter(function(o){return o.type==="segment";});var p=selPoints();
+    if(seg.length===1){objects.push({id:nextId++,type:"measlen",a:seg[0].a,b:seg[0].b});}
+    else if(p.length===2){objects.push({id:nextId++,type:"measlen",a:p[0].id,b:p[1].id});}
+    else{need("1 segment, or 2 points.");return;}sel=[];render();setHint("Length measured.");},
+  mdistance:function(){var p=selPoints();if(p.length!==2){need("2 points.");return;}objects.push({id:nextId++,type:"measlen",a:p[0].id,b:p[1].id});sel=[];render();setHint("Distance measured.");},
+  mangle:function(){var p=selPoints();if(p.length!==3){need("3 points (arm, vertex, arm).");return;}objects.push({id:nextId++,type:"measang",a:p[0].id,v:p[1].id,b:p[2].id});sel=[];render();setHint("Angle measured.");},
+  mradius:function(){var c=selCircles();if(c.length!==1){need("1 circle or arc.");return;}objects.push({id:nextId++,type:"meastext",kind:"radius",of:c[0].id,at:c[0].c});sel=[];render();setHint("Radius measured.");},
+  pointon:function(){var c=selCircles(),l=selLines();
+    if(c.length===1){objects.push({id:nextId++,type:"point",kind:"on",on:c[0].id,ang:-Math.PI/2,label:nextLabel()});}
+    else if(l.length===1){objects.push({id:nextId++,type:"point",kind:"on",on:l[0].id,t:0.5,label:nextLabel()});}
+    else{need("1 circle, or 1 line/segment.");return;}sel=[];render();setHint("Point placed on the object — switch to Select and drag it; it slides along and stays on the object.");},
+  newsketch:function(){if(objects.length&&!window.confirm("Start a new sketch? This clears the current one."))return;ACT.clear();currentName=null;updateTitle();setHint("New sketch.");},
+  save:function(){if(!currentName){openSaveAsDialog();return;}storeSave(currentName);setHint('Saved changes to "'+currentName+'".');},
+  saveas:function(){openSaveAsDialog();},
+  opendlg:function(){openOpenDialog();},
+  exportfile:function(){var blob=new Blob([JSON.stringify(serialize(),null,1)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download=(currentName||"NEO_sketch")+".json";document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);setHint("Exported to a downloadable file.");},
+  importfile:function(){document.getElementById("fileInput").click();},
+  polygon:function(){var p=selPoints();if(p.length<3){need("3 or more points (the vertices, in order).");return;}objects.push({id:nextId++,type:"polygon",pts:p.map(function(o){return o.id;}),fill:"#9ec7e8"});sel=[];render();setHint("Polygon interior constructed — select it, then Display → Colour… to fill it.");},
+  colour:function(){openColourDialog();},
+  help:function(){openDialog("<h3>Quick reference</h3><p style='max-width:400px'>Left toolbox = <b>instruments</b> (draw points, segments, circles, and swing the compass). The top menus <b>act on the current selection</b>: switch to <b>Select</b>, click objects to build a selection, then choose an action.</p><ul style='max-width:400px'><li><b>Construct</b> builds dependent objects (midpoints, bisectors, perpendiculars, intersections).</li><li><b>Measure</b> reports lengths and angles.</li><li><b>Display</b> hides objects, toggles labels, and traces a point to reveal a locus.</li></ul><p style='color:#6a6157'>Transform, Number/Calculator and Graph/Functions are coming in later versions.</p>");}
+};
+
+/* ---------- menu bar wiring ---------- */
+var menubar=document.getElementById("menubar");
+function closeMenus(){menubar.querySelectorAll(".menu.open").forEach(function(m){m.classList.remove("open");});}
+menubar.addEventListener("click",function(e){
+  var top=e.target.closest("button[data-menu]");
+  if(top){var m=top.parentNode,wasOpen=m.classList.contains("open");closeMenus();if(!wasOpen)m.classList.add("open");e.stopPropagation();return;}
+  var item=e.target.closest("button[data-act]");
+  if(item&&!item.classList.contains("disabled")){var act=item.dataset.act;closeMenus();if(ACT[act])ACT[act]();}
+});
+document.addEventListener("click",function(e){if(!e.target.closest("#menubar"))closeMenus();});
+
+/* ---------- toolbox wiring ---------- */
+document.getElementById("toolbox").addEventListener("click",function(e){var b=e.target.closest("button.tool");if(!b)return;
+  tool=b.dataset.tool;pending=[];compass=null;
+  document.querySelectorAll("#toolbox button.tool").forEach(function(x){x.classList.toggle("active",x===b);});
+  var hints={select:"Click objects to build a selection, then choose a menu action. Drag a free point to move it.",point:"Click to drop points.",segment:"Click two points to draw a segment.",circle:"Click a centre, then a point on the circle.",compass:"Click a centre, set the radius (a point, or a segment to copy its length), then swing.",text:"Click to place a caption. Double-click any caption or point to rename it.",pencil:"Press and drag to draw freehand. Undo removes the last stroke."};
+  setHint(hints[tool]||"");render();
+});
+
+/* ---------- serialisation + named-sketch store ---------- */
+function serialize(){return {version:"NEO-DGS-0.3",name:currentName,pointLabel:pointLabel,nextId:nextId,objects:objects.map(function(o){var c={};for(var k in o){if(k==="_last"||k==="_trail")continue;c[k]=o[k];}return c;})};}
+function loadData(data){if(!data||!data.objects)throw 0;objects=data.objects;sel=[];pending=[];compass=null;pointLabel=data.pointLabel||0;var mx=0;objects.forEach(function(o){if(o.id>mx)mx=o.id;});nextId=data.nextId||(mx+1);currentName=data.name||null;updateTitle();render();}
+function storeMap(){try{return JSON.parse(localStorage.getItem(LSKEY)||"{}");}catch(e){return {};}}
+function storeSet(m){try{localStorage.setItem(LSKEY,JSON.stringify(m));}catch(e){}}
+function storeSave(name){var m=storeMap();currentName=name;m[name]=serialize();storeSet(m);updateTitle();}
+function updateTitle(){var el=document.getElementById("sketchName");if(el)el.textContent=currentName?("— "+currentName):"— (unsaved)";}
+
+/* ---------- dialog ---------- */
+var overlay=document.getElementById("overlay"),dialog=document.getElementById("dialog");
+function closeDialog(){overlay.classList.remove("open");}
+function openDialog(html,buttons){var b='<div class="row" style="text-align:right;margin-top:16px">';(buttons||[]).forEach(function(x,i){b+='<button class="'+(x.primary?"primary":"")+'" data-i="'+i+'">'+x.label+'</button> ';});b+='<button data-close="1">Close</button></div>';dialog.innerHTML=html+b;overlay.classList.add("open");dialog.querySelectorAll("button[data-i]").forEach(function(btn){btn.onclick=function(){buttons[+btn.dataset.i].fn();};});dialog.querySelector("button[data-close]").onclick=closeDialog;}
+overlay.addEventListener("click",function(e){if(e.target===overlay)closeDialog();});
+function openSaveAsDialog(){openDialog('<h3>Save sketch as…</h3><div class="row"><input id="saName" type="text" placeholder="Sketch name" value="'+(currentName||"")+'" style="width:100%;box-sizing:border-box;padding:9px;border:1px solid #bcae98;border-radius:8px"></div><p style="color:#6a6157;font-size:.85em">Saved inside this page. Use File → Export to keep a copy as a file.</p>',[{label:"Save",primary:true,fn:function(){var n=(document.getElementById("saName").value||"").trim();if(!n)return;storeSave(n);setHint('Saved as "'+n+'".');closeDialog();}}]);setTimeout(function(){var i=document.getElementById("saName");if(i)i.focus();},20);}
+function openOpenDialog(){var m=storeMap();var names=Object.keys(m).sort();var h='<h3>Open sketch</h3>';if(!names.length)h+='<p style="color:#6a6157">No saved sketches yet — use “Save as…”, or Import from file.</p>';else{h+='<div style="max-height:260px;overflow:auto">';names.forEach(function(n){h+='<div style="display:flex;gap:8px;align-items:center;margin:5px 0"><button data-open="'+encodeURIComponent(n)+'" style="flex:1;text-align:left;padding:8px 10px">'+n+'</button><button data-del="'+encodeURIComponent(n)+'" title="Delete" style="padding:8px 10px">🗑</button></div>';});h+='</div>';}h+='<div class="row" style="margin-top:6px"><button data-import="1">Import from file…</button></div>';openDialog(h,[]);dialog.querySelectorAll("button[data-open]").forEach(function(b){b.onclick=function(){try{loadData(storeMap()[decodeURIComponent(b.dataset.open)]);setHint("Opened.");}catch(e){setHint("Could not open that sketch.");}closeDialog();};});dialog.querySelectorAll("button[data-del]").forEach(function(b){b.onclick=function(){var mm=storeMap();delete mm[decodeURIComponent(b.dataset.del)];storeSet(mm);openOpenDialog();};});var imp=dialog.querySelector("button[data-import]");if(imp)imp.onclick=function(){closeDialog();document.getElementById("fileInput").click();};}
+function openColourDialog(){if(!sel.length){need("objects to colour first (switch to Select and click some).");return;}var h='<h3>Colour</h3><p style="color:#6a6157;margin:0 0 8px;max-width:360px">Applies to the '+sel.length+' selected object(s). Polygons are <b>filled</b>; lines, circles and points are recoloured.</p><div style="display:flex;flex-wrap:wrap;gap:8px">';PALETTE.forEach(function(c){h+='<button data-col="'+c[1]+'" title="'+c[0]+'" style="width:44px;height:34px;background:'+c[1]+';border:1px solid #999;border-radius:7px"></button>';});h+='</div><div class="row" style="margin-top:12px"><button data-col="none">No fill (polygon)</button> <button data-col="default">Default colour</button> <label style="display:inline-flex;align-items:center;gap:6px;border:1px solid #738697;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:600">More colours… <input type="color" id="moreCol" value="#3f7a45" style="width:30px;height:24px;padding:0;border:none;background:none;cursor:pointer"></label></div>';openDialog(h,[]);dialog.querySelectorAll("button[data-col]").forEach(function(b){b.onclick=function(){applyColour(b.dataset.col);closeDialog();};});var mc=dialog.querySelector("#moreCol");if(mc){mc.addEventListener("input",function(){applyColour(mc.value);});mc.addEventListener("change",function(){applyColour(mc.value);closeDialog();});}}
+function applyColour(col){selObjs().forEach(function(o){if(o.type==="polygon"){o.fill=(col==="default")?"#9ec7e8":col;}else{if(col==="default"||col==="none")delete o.colour;else o.colour=col;}});render();setHint("Colour applied.");}
+
+/* ---------- file import ---------- */
+document.getElementById("fileInput").addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){try{loadData(JSON.parse(rd.result));setHint("Imported from file.");}catch(err){setHint("That file could not be read as a sketch.");}};rd.readAsText(f);e.target.value="";});
+document.getElementById("colourPicker").addEventListener("change",function(e){applyColour(e.target.value);});
+
+updateTitle();
+render();
+})();
+</script>
+</body>
+</html>
