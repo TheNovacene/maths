@@ -507,6 +507,26 @@ def copy_lesson_assets(html: str, src: Path, dest: Path) -> list:
     return missing
 
 
+def publish_tools() -> None:
+    """Publish standalone tools (not lessons) from the vault into docs/ so they go live.
+    The Dynamic Geometry Studio is versioned in the vault (…_v0.3.html, …_v0.4.html, …);
+    always publish the highest version to docs/tools/geometry-studio.html."""
+    import re
+    studio_dir = VAULT / "05_Lesson_Templates" / "Dynamic_Geometry_Studio"
+    versions = sorted(
+        studio_dir.glob("NEO_Dynamic_Geometry_Studio_v*.html"),
+        key=lambda p: [int(n) for n in re.findall(r"\d+", p.stem.split("_v")[-1])] or [0],
+    )
+    if not versions:
+        print("tools: no Dynamic Geometry Studio version found to publish")
+        return
+    latest = versions[-1]
+    dest = DOCS / "tools" / "geometry-studio.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(latest, dest)
+    print(f"tools: published {latest.name} -> docs/tools/geometry-studio.html")
+
+
 def main() -> None:
     data = json.loads(CURRICULUM.read_text(encoding="utf-8"))
     live, missing = [], []
@@ -536,6 +556,7 @@ def main() -> None:
             lesson["status"] = "live"
             live.append(lesson["id"])
 
+    publish_tools()
     CURRICULUM.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"live: {len(live)}  missing: {len(missing)}")
     if missing_guides:
