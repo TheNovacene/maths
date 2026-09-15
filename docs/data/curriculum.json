@@ -256,6 +256,23 @@
       ]
     },
     {
+      "id": "constructions-loci-bearings",
+      "title": "Constructions, Loci and Bearings",
+      "stage": "Foundations",
+      "strand": "Geometry",
+      "source": "vault/02_Foundations/01_Lessons/Constructions",
+      "lessons": [
+        {
+          "id": "constructions-01-the-compass-and-the-circle",
+          "num": "Lesson 01",
+          "title": "The compass and the circle",
+          "file": "lessons/constructions/01-the-compass-and-the-circle.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
       "id": "straight-lines",
       "title": "Straight Lines and Connected Representations",
       "stage": "Intermediate",

@@ -64,6 +64,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/Quadratics/Lesson_07_Slide_it_Across/NEO_Maths_Y9_Quadratics_Lesson_07_Slide_it_Across_v0.1.html",
     "quad-08-reading-real-parabolas":
         "02_Foundations/01_Lessons/Quadratics/Lesson_08_Reading_Real_Parabolas/NEO_Maths_Y9_Quadratics_Lesson_08_Reading_Real_Parabolas_v0.1.html",
+    "constructions-01-the-compass-and-the-circle":
+        "02_Foundations/01_Lessons/Constructions/Lesson_01_The_Compass_and_the_Circle/NEO_Maths_Y9_Constructions_Lesson_01_The_Compass_and_the_Circle_v0.1.html",
     "shapes-06-platonic-solids":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_06_Platonic_Solids/NEO_Maths_Y9_Shapes_Lesson_06_Platonic_Solids_v0.1.html",
     "shapes-07-surface-area":
@@ -528,6 +530,39 @@ def publish_tools() -> None:
     print(f"tools: published {latest.name} -> docs/tools/geometry-studio.html")
 
 
+def validate_studio_links() -> list:
+    """Guard the Constructions unit pattern: every 'Open in the Geometry Studio' launch
+    link in a published lesson must point at the published Studio, name a task id that
+    exists in the Studio's task registry, and carry a return path that resolves to a real
+    lesson file. Returns a list of problem strings (empty = all good)."""
+    import re
+    import urllib.parse
+    studio = DOCS / "tools" / "geometry-studio.html"
+    problems = []
+    if not studio.exists():
+        return ["Geometry Studio not published"]
+    studio_src = studio.read_text(encoding="utf-8", errors="replace")
+    task_ids = set(re.findall(r'"([a-z0-9-]+)":\s*\{\s*tag:', studio_src))
+    for html_file in DOCS.glob("lessons/**/*.html"):
+        html = html_file.read_text(encoding="utf-8", errors="replace")
+        for raw in re.findall(r'href="([^"]*geometry-studio\.html\?[^"]*)"', html):
+            link = raw.replace("&amp;", "&")
+            path, _, query = link.partition("?")
+            qs = urllib.parse.parse_qs(query)
+            task = (qs.get("task") or [""])[0]
+            ret = (qs.get("return") or [""])[0]
+            studio_target = (html_file.parent / path).resolve()
+            if not studio_target.exists():
+                problems.append(f"{html_file.name}: studio link path not found ({path})")
+            if task and task not in task_ids:
+                problems.append(f"{html_file.name}: task id '{task}' not in Studio registry")
+            if ret:
+                ret_target = (studio_target.parent / ret).resolve()
+                if not ret_target.exists():
+                    problems.append(f"{html_file.name}: return path not found ({ret})")
+    return problems
+
+
 def main() -> None:
     data = json.loads(CURRICULUM.read_text(encoding="utf-8"))
     live, missing = [], []
@@ -566,6 +601,14 @@ def main() -> None:
             print(f"  {g}")
     for m in missing:
         print(f"  missing source: {m}")
+
+    studio_problems = validate_studio_links()
+    if studio_problems:
+        print(f"Geometry Studio launch-link problems ({len(studio_problems)}):")
+        for p in studio_problems:
+            print(f"  {p}")
+    else:
+        print("studio links: all Geometry Studio launch links valid")
 
 
 if __name__ == "__main__":
