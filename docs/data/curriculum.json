@@ -269,6 +269,14 @@
           "file": "lessons/constructions/01-the-compass-and-the-circle.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "constructions-02-shapes-that-hold-their-form",
+          "num": "Lesson 02",
+          "title": "Shapes that hold their form",
+          "file": "lessons/constructions/02-shapes-that-hold-their-form.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

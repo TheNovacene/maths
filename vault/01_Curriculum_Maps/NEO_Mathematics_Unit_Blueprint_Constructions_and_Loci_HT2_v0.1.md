@@ -75,3 +75,18 @@ Modelled on an external reference lesson (ThriveNow Geometry) where the dynamic-
 - **Studio v0.4** gains a **task lane** beside the canvas, a **"← Return to lesson"** button, and **save-my-construction / save-what-I-notice** (localStorage, auto-restored per task). It reads `?task=<id>&return=<relative-lesson-url>` from the URL; a single inline `TASKS` registry in the Studio is the one source of truth for task text and steps. Return paths are restricted to same-site relative URLs (no open-redirect).
 - **Lessons launch in context:** each relevant Cornerstone (and the Final Task) carries an "Open in the Geometry Studio →" card linking to `../../tools/geometry-studio.html?task=…&return=…`. Same-tab navigation keeps the learner on the site; the Return button brings them straight back. Guided in-panel reveals stay, reframed as "see *why* it works"; the *doing* happens in the Studio with real instruments.
 - **Build guard:** `build_site.validate_studio_links()` checks every lesson launch link on each build — task id exists in the Studio registry, Studio path resolves, return path resolves — and reports problems. This is the reusable pattern for every Constructions lesson (GC-01 is the first to use it: tasks `gc01-equilateral`, `gc01-sss`, `gc01-final`).
+
+## Build note — GC-02 "Shapes that hold their form" (v0.1, built)
+**Status:** live (`lessons/constructions/02-shapes-that-hold-their-form.html`); Learner + Supporting Adult guides generated; curriculum unit now 2 lessons; first lesson to use the Studio-launch pattern from the start.
+
+**Hero (Gerry's choice):** *Rigidity detective*. Four hand-built SVG interactives sharing GC-01's construction helpers plus small linkage solvers (`circInt2`, `nearer`, 4-bar solve):
+- **Connection — triangles in a truss:** a bridge frame with a "highlight the triangles" reveal; plants *why* structures use triangles.
+- **Movement (hero) — rigidity detective:** a fixed-length **triangle** (apex = intersection of two fixed radii; dragging can only flip it, never deform it) beside a fixed-length **quadrilateral** as a 4-bar linkage (drag one corner on its circle, the opposite corner is solved) that flexes freely. The learner *feels* SSS rigidity vs a quadrilateral's one degree of freedom.
+- **Reflection — why it holds:** both shapes with live angle readouts (quadrilateral draggable) + a reasoning MCQ tying rigidity to "no freedom left once three sides are fixed".
+- **Creativity — brace it:** the flexing quadrilateral plus an "add a diagonal brace" that splits it into two shaded triangles and locks it (triangulation).
+
+**Honest scope note:** rigidity is *demonstrated* in-panel (needs fixed-length bars, which the Studio's free points don't enforce); the Studio hand-off is for *constructing* the shapes and triangulating, with the rigidity insight carried by the panels and reasoning.
+
+**Studio tasks added to the registry:** `gc02-triangle` (SSS build), `gc02-rhombus` (four equal sides), `gc02-final` (triangle + quadrilateral + diagonal). Launch cards in Movement, Creativity, Final Task; all validated by `validate_studio_links()`.
+
+**Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [A,B,C,D,=,cm]; **QA gate 6a** confirmed (Q6 accepts 3/2 or 1.5); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `quad_diagram` (quadrilateral, optional diagonal → two triangles); worked examples: SSS triangle (6-5-7) and a braced quadrilateral.
