@@ -146,6 +146,7 @@ svg{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
       <button data-act="mlength">Length (segment)</button>
       <button data-act="mdistance">Distance (2 points)</button>
       <button data-act="mangle">Angle (3 points)</button>
+      <button data-act="mbearing">Bearing (of 2nd point from 1st)</button>
       <button data-act="mradius">Radius (circle)</button>
     </div>
   </div>
@@ -160,7 +161,7 @@ svg{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
     <div class="dropdown">
       <button class="disabled">Define axes — soon</button>
       <button class="disabled">Plot function… — soon</button>
-      <button class="disabled">Bearings / north mode — soon</button>
+      <button class="disabled">Bearings → use Measure → Bearing</button>
     </div>
   </div>
   <div class="menu"><button data-menu="help">Help</button>
@@ -277,7 +278,7 @@ function pickAny(x,y){var id=nearestPoint(x,y);if(id!=null)return id;var cap=nea
 function freeAncestors(id){var out={};(function walk(x){var o=byId(x);if(!o)return;if(o.type==="point"&&o.kind==="free"){out[x]=1;return;}["a","b","c","v","thru","base","o1","o2","rp","seg","at","of","on"].forEach(function(f){if(typeof o[f]==="number")walk(o[f]);});if(Array.isArray(o.pts))o.pts.forEach(walk);})(id);return Object.keys(out).map(Number);}
 function pointInPoly(pt,verts){var inside=false;for(var i=0,j=verts.length-1;i<verts.length;j=i++){var a=verts[i],b=verts[j];if(((a.y>pt.y)!==(b.y>pt.y))&&(pt.x<(b.x-a.x)*(pt.y-a.y)/((b.y-a.y)||1e-9)+a.x))inside=!inside;}return inside;}
 function nearestPolygon(x,y){for(var i=objects.length-1;i>=0;i--){var o=objects[i];if(o.type==="polygon"&&!o.hidden&&pointInPoly({x:x,y:y},o.pts.map(P)))return o.id;}return null;}
-function enclosed(x0,y0,x1,y1){var lo={x:Math.min(x0,x1),y:Math.min(y0,y1)},hi={x:Math.max(x0,x1),y:Math.max(y0,y1)};var out=[];objects.forEach(function(o){if(o.hidden)return;if(o.type==="measlen"||o.type==="measang"||o.type==="meastext")return;var anc=freeAncestors(o.id);if(!anc.length)return;var all=anc.every(function(pid){var q=P(pid);return q.x>=lo.x&&q.x<=hi.x&&q.y>=lo.y&&q.y<=hi.y;});if(all)out.push(o.id);});return out;}
+function enclosed(x0,y0,x1,y1){var lo={x:Math.min(x0,x1),y:Math.min(y0,y1)},hi={x:Math.max(x0,x1),y:Math.max(y0,y1)};var out=[];objects.forEach(function(o){if(o.hidden)return;if(o.type==="measlen"||o.type==="measang"||o.type==="meastext"||o.type==="measbear")return;var anc=freeAncestors(o.id);if(!anc.length)return;var all=anc.every(function(pid){var q=P(pid);return q.x>=lo.x&&q.x<=hi.x&&q.y>=lo.y&&q.y<=hi.y;});if(all)out.push(o.id);});return out;}
 function updateOnPoint(o,pos){var host=byId(o.on);if(isCircleish(host)){o.ang=ang(circGeom(host).c,pos);}else if(isLineish(host)){var lg=lineGeom(host);var dd=lg.d.x*lg.d.x+lg.d.y*lg.d.y||1;o.t=((pos.x-lg.p.x)*lg.d.x+(pos.y-lg.p.y)*lg.d.y)/dd;}}
 
 /* ---------- rendering ---------- */
@@ -311,6 +312,10 @@ function render(){
     else if(o.type==="measlen"){var ma=P(o.a),mb=P(o.b);var mx=(ma.x+mb.x)/2,my=(ma.y+mb.y)/2;s+='<line x1="'+ma.x.toFixed(1)+'" y1="'+ma.y.toFixed(1)+'" x2="'+mb.x.toFixed(1)+'" y2="'+mb.y.toFixed(1)+'" stroke="#7a4fb0" stroke-width="1" stroke-dasharray="4 3"/><text x="'+mx.toFixed(1)+'" y="'+(my-6).toFixed(1)+'" font-size="12" fill="#7a4fb0" text-anchor="middle" font-weight="bold">'+(dist(ma,mb)/30).toFixed(1)+' cm</text>';}
     else if(o.type==="measang"){var qa=P(o.a),qv=P(o.v),qb=P(o.b);var a1=ang(qv,qa),da=normAng(ang(qv,qb)-a1);var midA=a1+da/2;s+='<path d="'+arcPath(qv,26,a1,da)+'" fill="none" stroke="#7a4fb0" stroke-width="1.5"/><text x="'+(qv.x+46*Math.cos(midA)).toFixed(1)+'" y="'+(qv.y+46*Math.sin(midA)+4).toFixed(1)+'" font-size="12" fill="#7a4fb0" text-anchor="middle" font-weight="bold">'+Math.abs(da*180/Math.PI).toFixed(0)+'°</text>';}
     else if(o.type==="meastext"){var pp=P(o.at);var txt="";if(o.kind==="radius"){var host=byId(o.of);if(host)txt="r = "+(circGeom(host).r/30).toFixed(1)+" cm";}s+='<text x="'+(pp.x+10).toFixed(1)+'" y="'+(pp.y+18).toFixed(1)+'" font-size="12" fill="#7a4fb0" font-weight="bold">'+txt+'</text>';}
+    else if(o.type==="measbear"){var ba=P(o.a),bb=P(o.b);var dx=bb.x-ba.x,dy=bb.y-ba.y;var brg=(Math.atan2(dx,-dy)*180/Math.PI+360)%360;var north=-Math.PI/2,dir=Math.atan2(dy,dx);var da=(((dir-north)%(2*Math.PI))+2*Math.PI)%(2*Math.PI);var mid=north+da/2;var lbl=("00"+Math.round(brg)%360).slice(-3)+"°";
+      s+='<line x1="'+ba.x.toFixed(1)+'" y1="'+ba.y.toFixed(1)+'" x2="'+ba.x.toFixed(1)+'" y2="'+(ba.y-42).toFixed(1)+'" stroke="#7a4fb0" stroke-width="1.5"/><text x="'+ba.x.toFixed(1)+'" y="'+(ba.y-46).toFixed(1)+'" font-size="11" fill="#7a4fb0" text-anchor="middle" font-weight="bold">N</text>';
+      s+='<line x1="'+ba.x.toFixed(1)+'" y1="'+ba.y.toFixed(1)+'" x2="'+bb.x.toFixed(1)+'" y2="'+bb.y.toFixed(1)+'" stroke="#7a4fb0" stroke-width="1" stroke-dasharray="4 3"/>';
+      s+='<path d="'+arcPath(ba,22,north,da)+'" fill="none" stroke="#7a4fb0" stroke-width="1.5"/><text x="'+(ba.x+46*Math.cos(mid)).toFixed(1)+'" y="'+(ba.y+46*Math.sin(mid)+4).toFixed(1)+'" font-size="12" fill="#7a4fb0" text-anchor="middle" font-weight="bold">'+lbl+'</text>';}
     else if(o.type==="ink"&&o.pts.length){var dp=o.pts.map(function(p){return p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ");s+='<polyline points="'+dp+'" fill="none" stroke="'+(isSel(o.id)?"#c1622e":(o.colour||"#2f3429"))+'" stroke-width="'+(o.width||2.5)+'" stroke-linecap="round" stroke-linejoin="round"/>';}
     else if(o.type==="caption"){s+='<text x="'+o.x.toFixed(1)+'" y="'+o.y.toFixed(1)+'" font-size="15" font-family="Arial" fill="'+(isSel(o.id)?"#c1622e":(o.colour||"#2f3429"))+'">'+esc(o.text)+'</text>';if(isSel(o.id))s+='<circle cx="'+o.x.toFixed(1)+'" cy="'+o.y.toFixed(1)+'" r="3" fill="#c1622e"/>';}
   });
@@ -448,6 +453,7 @@ var ACT={
     else{need("1 segment, or 2 points.");return;}sel=[];render();setHint("Length measured.");},
   mdistance:function(){var p=selPoints();if(p.length!==2){need("2 points.");return;}objects.push({id:nextId++,type:"measlen",a:p[0].id,b:p[1].id});sel=[];render();setHint("Distance measured.");},
   mangle:function(){var p=selPoints();if(p.length!==3){need("3 points (arm, vertex, arm).");return;}objects.push({id:nextId++,type:"measang",a:p[0].id,v:p[1].id,b:p[2].id});sel=[];render();setHint("Angle measured.");},
+  mbearing:function(){var p=selPoints();if(p.length!==2){need("2 points, in order: the station first, then the target.");return;}objects.push({id:nextId++,type:"measbear",a:p[0].id,b:p[1].id});sel=[];render();setHint("Bearing measured — of the second point from the first, clockwise from North.");},
   mradius:function(){var c=selCircles();if(c.length!==1){need("1 circle or arc.");return;}objects.push({id:nextId++,type:"meastext",kind:"radius",of:c[0].id,at:c[0].c});sel=[];render();setHint("Radius measured.");},
   pointon:function(){var c=selCircles(),l=selLines();
     if(c.length===1){objects.push({id:nextId++,type:"point",kind:"on",on:c[0].id,ang:-Math.PI/2,label:nextLabel()});}
@@ -683,6 +689,46 @@ var TASKS={
           "Save your construction, and write one sentence naming the locus for each rule."],
    big:"Save your work and a sentence: each rule is a locus; the answer is the region where the loci overlap.",
    conj:"Which single locus would you construct for 'equidistant from two roads'?"},
+ "gc06-bearing":{
+   tag:"Constructions · Lesson 6 · Movement",
+   title:"Measure a bearing",
+   intro:"State the three-figure bearing of a target from a station — clockwise from North.",
+   steps:["Point tool: place a station A, then the target B.",
+          "Switch to Select. Click an empty part of the canvas to clear any selection, then click A and then B (in that order).",
+          "Measure → Bearing — it shows the three-figure bearing of B from A, clockwise from North (North reads 000°, East 090°).",
+          "Drag B around A and watch the bearing change through 000° → 090° → 180° → 270°."],
+   big:"A bearing is the clockwise angle from North to the target, always written with three figures.",
+   conj:"What bearing would B need so that it is exactly North-East of A?"},
+ "gc06-backbearing":{
+   tag:"Constructions · Lesson 6 · Reflection",
+   title:"Forward and back bearings",
+   intro:"Compare the bearing of B from A with the bearing of A from B.",
+   steps:["Point tool: place two points A and B.",
+          "Select (click empty space first, then A then B) → Measure → Bearing: the bearing of B from A.",
+          "Now select B then A → Measure → Bearing: the bearing of A from B.",
+          "Compare the two — they always differ by 180°. Drag B and check it stays true."],
+   big:"The back bearing (A from B) is the forward bearing (B from A) plus or minus 180°.",
+   conj:"If the bearing of B from A is 210°, what is the bearing of A from B?"},
+ "gc06-fix":{
+   tag:"Constructions · Lesson 6 · Creativity",
+   title:"Fix a position from two bearings",
+   intro:"Two stations each report a bearing to a ship — find where it is.",
+   steps:["Point tool: place two stations A and B.",
+          "From A, use the Segment tool to draw a long line; drag its far end until Measure → Bearing (of that end from A) shows A's reported bearing.",
+          "Do the same from B for B's reported bearing.",
+          "Select BOTH lines, then Construct → Intersection(s) — the crossing is the ship's position (use the command, not a free point)."],
+   big:"Two bearings fix a position: the ship is where the two bearing lines cross.",
+   conj:"Why do you need two bearings, not one, to pin down a position?"},
+ "gc06-final":{
+   tag:"Constructions · Lesson 6 · Final Task",
+   title:"Bearings: your evidence",
+   intro:"Use bearings to state a direction and to fix a position.",
+   steps:["State a bearing: place a station and a target, then Measure → Bearing (clear the selection, click station then target).",
+          "Find a back bearing by measuring the reverse direction — check it differs by 180°.",
+          "Fix a position: draw two bearing lines from two stations and use Construct → Intersection(s) for the crossing.",
+          "Save your construction, and write one sentence on how a bearing describes a direction exactly."],
+   big:"Save your work and a sentence: a bearing is a clockwise, three-figure angle from North; two of them fix a position.",
+   conj:"How is a bearing line like a locus?"},
  "studio-open":{
    tag:"Open workspace",
    title:"Your construction space",

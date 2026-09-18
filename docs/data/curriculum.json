@@ -301,6 +301,14 @@
           "file": "lessons/constructions/05-loci.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "constructions-06-bearings",
+          "num": "Lesson 06",
+          "title": "Bearings",
+          "file": "lessons/constructions/06-bearings.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

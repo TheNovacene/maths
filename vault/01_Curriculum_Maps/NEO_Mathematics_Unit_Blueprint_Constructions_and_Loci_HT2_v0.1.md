@@ -139,3 +139,21 @@ Studio task steps MUST: name the exact tool and the exact Construct-menu command
 
 ## Unit status — Constructions & Loci
 Live: GC-01 compass/circle · GC-02 rigidity · GC-03 perpendicular bisector · GC-04 angle bisector · GC-05 loci. Remaining per blueprint: **GC-06 bearings**, **GC-07 compound plans in context**.
+
+## Build note — GC-06 "Bearings" (v0.1, built)
+**Status:** live (`lessons/constructions/06-bearings.html`); Learner + Supporting Adult guides generated; unit now 6 lessons.
+
+**Studio addition:** **Measure → Bearing** (of 2nd point from 1st, clockwise from North, three figures) added to the Studio Measure menu — a new `measbear` object (north line + clockwise arc + 3-figure label) and `ACT.mbearing`; verified N 000 / E 090 / S 180 / W 270 / NE 045. Retired the "Bearings/north — soon" placeholder.
+
+**Hero (Gerry's choice):** *Bearing dial tracer* — others woven across the panels:
+- **Connection — the convention:** the eight compass points and their three-figure bearings on a rose.
+- **Movement (hero) — bearing dial:** drag B round A, read the live three-figure bearing with the clockwise arc from North; a target-bearing challenge to *set* bearings.
+- **Reflection — back bearings:** A and B with parallel North lines; forward and back bearings differ by 180°.
+- **Creativity (stretch) — fix the ship:** two coastguard stations report bearings; drag the ship until both match (triangulation / intersection of loci); Reveal shows the fix.
+
+**Studio tasks (registry):** `gc06-bearing` (Measure → Bearing), `gc06-backbearing` (both ways differ 180°), `gc06-fix` (two bearing lines → Construct → Intersection), `gc06-final`. Explicit tool+menu, "clear the selection first" step (the Point tool leaves a point selected), no-free-point standard.
+
+**Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [N,°,A,B,=,km]; **QA gate 6a incl. number-word check** (Q2 accepts "three"; Q6 accepts "one hundred and thirty five"); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `bearing_diagram` (read a bearing; back bearing); worked examples: reading 072°, and the back bearing 252°.
+
+## Unit status — Constructions & Loci
+Live: GC-01…GC-06 (compass/circle, rigidity, perpendicular bisector, angle bisector, loci, bearings). Remaining per blueprint: **GC-07 compound constructions/plans in context** (the capstone).
