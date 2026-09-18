@@ -293,6 +293,14 @@
           "file": "lessons/constructions/04-the-angle-bisector.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "constructions-05-loci",
+          "num": "Lesson 05",
+          "title": "Loci",
+          "file": "lessons/constructions/05-loci.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

@@ -123,3 +123,19 @@ Studio task steps MUST: name the exact tool and the exact Construct-menu command
 **Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [A,B,V,=,°,cm]; **QA gate 6a** (Q6 accepts 45/2 or 22.5); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `anglebis_diagram` (angle, arc from V cutting arms, equal arcs → R, bisector V–R); worked examples: construct the bisector, and halving an 80° angle → 40°.
 
 **Unit status:** Constructions & Loci now has GC-01…GC-04 live (compass/circle, rigidity, perpendicular bisector, angle bisector). Remaining per blueprint: GC-05 loci, GC-06 bearings, GC-07 compound plans.
+
+## Build note — GC-05 "Loci" (v0.1, built)
+**Status:** live (`lessons/constructions/05-loci.html`); Learner + Supporting Adult guides generated; unit now 5 lessons. Capstone of the bisector run — names and generalises the locus idea.
+
+**Hero (Gerry's choice):** *Rule tracer* — the other three option-bank ideas woven across the panels:
+- **Connection — the tethered goat:** drag the rope length; the circular grazing disc grows (a fixed distance from a point → circle/disc).
+- **Movement (hero) — rule tracer:** pick "fixed distance from point O" or "fixed distance from segment AB", drag P, collect equal-distance marks; *Reveal* draws the locus — a circle, or a racetrack (parallel sides + semicircular ends).
+- **Reflection — why the ends are round:** shows a point beside the segment (distance perpendicular → parallel side) vs beyond the end (nearest point is the endpoint → arc).
+- **Creativity (stretch) — safe-zone region shader:** toggle two rules (within 3 of A; closer to A than B); grid-shaded overlap bounded by a circle and the perpendicular bisector.
+
+**Studio tasks (registry):** `gc05-circle` (Circle + Point on object + Measure → locus is a circle), `gc05-region` (Construct → Perpendicular bisector + Circle → overlap region), `gc05-final` (compound locus: choose each boundary with the correct Construct command). Explicit tool+menu, no-free-point standard.
+
+**Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [A,B,O,=,cm,r]; **QA gate 6a incl. the new number-word check** (Q3 accepts "four", Q6 accepts 7/2 and "three point five"); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `loci_diagram` (circle locus; region = circle ∩ perpendicular-bisector side). Worked examples: circle locus, and a two-rule region.
+
+## Unit status — Constructions & Loci
+Live: GC-01 compass/circle · GC-02 rigidity · GC-03 perpendicular bisector · GC-04 angle bisector · GC-05 loci. Remaining per blueprint: **GC-06 bearings**, **GC-07 compound plans in context**.
