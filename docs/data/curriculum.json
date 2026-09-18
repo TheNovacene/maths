@@ -285,6 +285,14 @@
           "file": "lessons/constructions/03-the-perpendicular-bisector.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "constructions-04-the-angle-bisector",
+          "num": "Lesson 04",
+          "title": "The angle bisector",
+          "file": "lessons/constructions/04-the-angle-bisector.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

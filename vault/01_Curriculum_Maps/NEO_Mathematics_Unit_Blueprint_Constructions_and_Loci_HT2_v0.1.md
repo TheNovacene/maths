@@ -108,3 +108,18 @@ Modelled on an external reference lesson (ThriveNow Geometry) where the dynamic-
 
 ## Standing instruction standard (all Constructions lessons, GC-01 onward)
 Studio task steps MUST: name the exact tool and the exact Construct-menu command; give one action per step; say which objects to select first; and explicitly warn that a point placed by eye with the Point tool is free and will collapse the construction on drag. Dependent points are always built with **Construct → Point on object** or **Construct → Intersection(s)**. This especially serves neurodivergent learners, who take instructions literally and deserve unambiguous, success-enabling steps.
+
+## Build note — GC-04 "The angle bisector" (v0.1, built)
+**Status:** live (`lessons/constructions/04-the-angle-bisector.html`); Learner + Supporting Adult guides generated; unit now 4 lessons.
+
+**Hero (Gerry's choice):** *Equidistant-from-arms tracer* — the other three option-bank ideas woven across the panels, deliberately rhyming with GC-03:
+- **Connection — the equal-distance path:** two roads meet at a junction V; drag P until equidistant from both arms; equal-distance spots line up.
+- **Movement (hero) — equidistant-from-arms tracer:** drag P; live perpendicular-distance readouts to each arm; P turns green + drops a mark when equal; *Reveal* draws the angle bisector as their locus.
+- **Reflection — guided construction + fold:** step-gated (arc from V cuts arms at P,Q → equal arcs → crossing R → join V–R), plus a **Fold** toggle showing the reflection symmetry that makes the halves equal.
+- **Creativity (stretch) — circle touching both arms:** slide centre O along the bisector; equal perpendicular distances to both arms = radius, so the circle is tangent to both.
+
+**Studio tasks (registry):** `gc04-bisector` (arc from V → Intersection(s) for P,Q → equal circles → Intersection(s) for R → join), `gc04-incircle` (bisector → Point on object → Perpendicular line + Intersection for the foot → circle touching both arms), `gc04-final` (bisector + Measure → Angle to confirm equal halves). All follow the explicit tool+menu, one-action-per-step, no-free-point standard.
+
+**Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [A,B,V,=,°,cm]; **QA gate 6a** (Q6 accepts 45/2 or 22.5); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `anglebis_diagram` (angle, arc from V cutting arms, equal arcs → R, bisector V–R); worked examples: construct the bisector, and halving an 80° angle → 40°.
+
+**Unit status:** Constructions & Loci now has GC-01…GC-04 live (compass/circle, rigidity, perpendicular bisector, angle bisector). Remaining per blueprint: GC-05 loci, GC-06 bearings, GC-07 compound plans.
