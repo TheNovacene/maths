@@ -68,6 +68,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/Constructions/Lesson_01_The_Compass_and_the_Circle/NEO_Maths_Y9_Constructions_Lesson_01_The_Compass_and_the_Circle_v0.1.html",
     "constructions-02-shapes-that-hold-their-form":
         "02_Foundations/01_Lessons/Constructions/Lesson_02_Shapes_That_Hold_Their_Form/NEO_Maths_Y9_Constructions_Lesson_02_Shapes_That_Hold_Their_Form_v0.1.html",
+    "constructions-03-the-perpendicular-bisector":
+        "02_Foundations/01_Lessons/Constructions/Lesson_03_The_Perpendicular_Bisector/NEO_Maths_Y9_Constructions_Lesson_03_The_Perpendicular_Bisector_v0.1.html",
     "shapes-06-platonic-solids":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_06_Platonic_Solids/NEO_Maths_Y9_Shapes_Lesson_06_Platonic_Solids_v0.1.html",
     "shapes-07-surface-area":

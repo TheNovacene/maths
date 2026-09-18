@@ -19,6 +19,8 @@ h1{color:#3f5f45;margin:0 0 2px;font-size:1.3em}.sub{color:#6a7f4e;margin:0 0 10
 .tasklane ol{margin:0 0 10px;padding-left:20px;font-size:.86em;line-height:1.5}
 .tasklane ol li{margin:3px 0}
 .tasklane .tl-big{background:#fffaf0;border:1px solid #e2d4bb;border-radius:9px;padding:8px 10px;font-size:.82em;margin:0 0 10px}
+.tasklane .tl-tip{background:#eef3f6;border:1px solid #b9cdd6;border-radius:9px;padding:8px 10px;font-size:.8em;line-height:1.45;margin:0 0 10px}
+.tasklane .tl-tip b{color:#2b5566}
 .tasklane label{display:block;font-weight:700;font-size:.82em;color:#4f554b;margin:6px 0 4px}
 .tasklane textarea{width:100%;box-sizing:border-box;min-height:66px;border:1px solid #bcae98;border-radius:8px;padding:8px;font-family:inherit;font-size:.85em;resize:vertical}
 .tasklane .tl-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -190,6 +192,7 @@ svg{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
     <p id="tlIntro"></p>
     <ol id="tlSteps"></ol>
     <div class="tl-big" id="tlBig" hidden></div>
+    <div class="tl-tip"><b>💡 How constructions work here:</b> build corners with <b>Construct → Point on object</b> or <b>Construct → Intersection(s)</b> — never the plain Point tool. A point built by a command stays attached to its arcs, so your construction holds together when you drag. A point dropped by eye is free and will drift.</div>
     <label for="tlConj">What do you notice?</label>
     <textarea id="tlConj" placeholder="Keep an idea you want to test, break or improve…"></textarea>
     <div class="tl-actions">
@@ -582,6 +585,39 @@ var TASKS={
           "Save your construction, and write which shape is rigid and why."],
    big:"Save your work and a sentence: a triangle is fixed by its sides; a quadrilateral needs a diagonal brace to become rigid.",
    conj:"In one sentence: why is a triangle rigid but a four-sided shape is not?"},
+ "gc03-bisector":{
+   tag:"Constructions · Lesson 3 · Movement",
+   title:"Construct the perpendicular bisector",
+   intro:"Build the line of all points equidistant from A and B, using equal compass arcs.",
+   steps:["Segment tool: draw AB.",
+          "Circle tool: a circle centred A through B (radius AB).",
+          "Circle tool: a circle centred B through A (radius AB).",
+          "Select BOTH circles, then Construct → Intersection(s) to mark the two crossings (above and below AB). Do NOT drop free points by eye.",
+          "Select those two crossings, then Construct → Line — that line is the perpendicular bisector of AB.",
+          "Check: select the line, Construct → Point on object to add a point on it, then measure its distance to A and to B. They stay equal wherever it sits."],
+   big:"Every point on the perpendicular bisector is the same distance from A and from B — that is what the line is.",
+   conj:"Why is each crossing of the two circles the same distance from A and from B?"},
+ "gc03-circle":{
+   tag:"Constructions · Lesson 3 · Creativity",
+   title:"A circle through both A and B",
+   intro:"The centre of any circle through A and B sits on their perpendicular bisector — see why.",
+   steps:["Construct the perpendicular bisector of AB (as in the Movement task).",
+          "Select the bisector line, then Construct → Point on object to add a centre O on it.",
+          "Circle tool: draw a circle centred O through A.",
+          "Notice the circle also passes through B. Drag O along the line — it always catches both.",
+          "Because O is equidistant from A and B, OA and OB are always equal radii."],
+   big:"Any centre equidistant from A and B lies on the perpendicular bisector — so its circle passes through both.",
+   conj:"Where would the centre go to make the smallest circle through A and B?"},
+ "gc03-final":{
+   tag:"Constructions · Lesson 3 · Final Task",
+   title:"Bisector and midpoint: your evidence",
+   intro:"Construct the perpendicular bisector of a segment and use it to find the exact midpoint.",
+   steps:["Construct the perpendicular bisector of AB (two circles → select both → Construct → Intersection(s) → select the two crossings → Construct → Line).",
+          "The bisector crosses AB at the midpoint: select the bisector line and AB, then Construct → Intersection(s) to mark M.",
+          "Measure MA and MB (select two points → Measure → Distance) to confirm they are equal.",
+          "Save your construction, and write one sentence on what every point of the bisector has in common."],
+   big:"Save your work and a sentence: the perpendicular bisector is every point equidistant from the two ends, and it meets AB at the midpoint.",
+   conj:"How does the perpendicular bisector give you the exact midpoint without measuring?"},
  "studio-open":{
    tag:"Open workspace",
    title:"Your construction space",

@@ -90,3 +90,21 @@ Modelled on an external reference lesson (ThriveNow Geometry) where the dynamic-
 **Studio tasks added to the registry:** `gc02-triangle` (SSS build), `gc02-rhombus` (four equal sides), `gc02-final` (triangle + quadrilateral + diagonal). Launch cards in Movement, Creativity, Final Task; all validated by `validate_studio_links()`.
 
 **Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [A,B,C,D,=,cm]; **QA gate 6a** confirmed (Q6 accepts 3/2 or 1.5); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `quad_diagram` (quadrilateral, optional diagonal → two triangles); worked examples: SSS triangle (6-5-7) and a braced quadrilateral.
+
+## Build note — GC-03 "The perpendicular bisector" (v0.1, built)
+**Status:** live (`lessons/constructions/03-the-perpendicular-bisector.html`); Learner + Supporting Adult guides generated; unit now 3 lessons.
+
+**Hero (Gerry's choice):** *Equidistant locus tracer* — with the other three option-bank ideas woven across the panels (specific → general arc):
+- **Connection — the fair meeting point:** two homes A, B; drag M until equidistant; discover more than one fair spot.
+- **Movement (hero) — equidistant locus tracer:** drag P; live PA/PB readouts; P turns green and drops a mark when PA=PB; marks accumulate and *Reveal* draws the perpendicular bisector as their locus.
+- **Reflection — guided construction:** step-gated equal arcs from A and B crossing at P and Q, join → bisector; explains *why* each crossing is equidistant (shared radius).
+- **Creativity (stretch) — circle through two points:** slide centre O along the bisector; OA=OB always, so the circle catches both A and B.
+
+**Studio tasks (registry):** `gc03-bisector` (two circles → Construct → Intersection(s) → Construct → Line), `gc03-circle` (Point on object on the bisector → circle through A catches B), `gc03-final` (bisector + midpoint via intersection, measure MA=MB). All use the explicit tool+menu, one-action-per-step, no-free-point instruction standard.
+
+**Verification milestone (this session):** drove the real Studio through the equilateral, SSS and rhombus tasks in jsdom and drag-tested — the equilateral stayed equal (6.7→8.9 cm all three sides through a drag), proving Construct → Intersection yields genuinely dynamic constructions. Added a persistent "How constructions work here" tip to the Studio task panel (build dependent points with Construct → Point on object / Intersection, never the Point tool).
+
+**Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [A,B,M,P,=,cm]; **QA gate 6a** (Q6 accepts 7/2 or 3.5); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `bisector_diagram` (equal arcs → crossings → bisector, optional midpoint M).
+
+## Standing instruction standard (all Constructions lessons, GC-01 onward)
+Studio task steps MUST: name the exact tool and the exact Construct-menu command; give one action per step; say which objects to select first; and explicitly warn that a point placed by eye with the Point tool is free and will collapse the construction on drag. Dependent points are always built with **Construct → Point on object** or **Construct → Intersection(s)**. This especially serves neurodivergent learners, who take instructions literally and deserve unambiguous, success-enabling steps.

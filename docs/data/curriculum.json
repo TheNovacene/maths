@@ -277,6 +277,14 @@
           "file": "lessons/constructions/02-shapes-that-hold-their-form.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "constructions-03-the-perpendicular-bisector",
+          "num": "Lesson 03",
+          "title": "The perpendicular bisector",
+          "file": "lessons/constructions/03-the-perpendicular-bisector.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
