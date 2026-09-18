@@ -585,7 +585,13 @@ function brReset(){bBraced=false;brDraw();}
     rhombus:{title:'Naming a rhombus',prompt:'A quadrilateral with all four sides equal in length is called a...?',answer:'rhombus',hint:'It begins with r — a rhombus.'},
     rigid:{title:'Rigid shapes',prompt:'A shape that cannot change its form once its side lengths are fixed is described as...?',answer:'rigid',hint:'It begins with r — the shape is rigid.'},
     sss:{title:'Three sides fix a triangle',prompt:'How many sides must you fix to fix a triangle\'s shape completely?',answer:3,hint:'Three sides already tell you the whole triangle (SSS).'}
-  }
+  };
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>\U0001F9ED Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
   window.showReconnect=function(key){
     var r=RECONNECT[key];
     document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
@@ -599,7 +605,7 @@ function brReset(){bBraced=false;brDraw();}
     if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
     else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
   };
-  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>\U0001F4A1 Hint:</b> '+RECONNECT[key].hint;};
   window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
 })();
 

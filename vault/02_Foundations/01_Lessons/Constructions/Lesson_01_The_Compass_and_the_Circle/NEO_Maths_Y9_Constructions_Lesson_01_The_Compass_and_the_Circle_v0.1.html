@@ -518,16 +518,12 @@ function ssInit(){ssChipsRender();ssRender();}
     whatcirc:{title:'What a circle is',prompt:'A circle is every point the same ______ from the centre. Which word fills the gap?',answer:'distance',hint:'It is the fixed length the compass keeps as it swings — the distance from the centre.'},
     radius:{title:'Naming the radius',prompt:'The fixed distance from a circle\'s centre to any point on it is called the...?',answer:'radius',hint:'It begins with r — the radius.'},
     equal:{title:'Equilateral means equal',prompt:'In an equilateral triangle, how many sides are equal in length?',answer:3,hint:'"Equi-lateral" means equal sides — all three.'}
-  }
+  };
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
   window.openReconnect=function(){
     var p=document.getElementById('reconnectionPanel');p.style.display='block';
-    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p>'
-     +'<div class="buttonrow">'
-     +'<button class="guidebtn" onclick="showReconnect(\'whatcirc\')">What a circle is</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'radius\')">Naming the radius</button>'
-     +'<button class="guidebtn" onclick="showReconnect(\'equal\')">Equilateral means equal</button>'
-     +'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>\U0001F9ED Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
   };
   window.showReconnect=function(key){
     var r=RECONNECT[key];
@@ -542,7 +538,7 @@ function ssInit(){ssChipsRender();ssRender();}
     if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
     else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
   };
-  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>\U0001F4A1 Hint:</b> '+RECONNECT[key].hint;};
   window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
 })();
 
