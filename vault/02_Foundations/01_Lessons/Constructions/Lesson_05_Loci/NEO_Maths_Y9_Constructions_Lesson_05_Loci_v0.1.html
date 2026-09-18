@@ -407,7 +407,7 @@ function cnDraw(){
 function cnReset(){gGoat={x:300,y:175};cnDraw();}
 function cnInit(){
   var s=document.getElementById("cnSvg"); if(!s)return;
-  function mv(e){var p=mapPt(s,e);p.x=Math.max(10,Math.min(370,p.x));p.y=Math.max(10,Math.min(290,p.y));gGoat=p;cnDraw();e.preventDefault();}
+  function mv(e){var p=mapPt(s,e);var dx=p.x-gO.x,dy=p.y-gO.y,dd=Math.hypot(dx,dy)||1;var r=Math.max(40,Math.min(140,dd));gGoat={x:gO.x+r*dx/dd,y:gO.y+r*dy/dd};cnDraw();e.preventDefault();}
   s.addEventListener("pointerdown",function(e){if(dist(mapPt(s,e),gGoat)<22){gDrag=true;try{s.setPointerCapture(e.pointerId);}catch(x){}mv(e);}});
   s.addEventListener("pointermove",function(e){if(gDrag)mv(e);});
   s.addEventListener("pointerup",function(e){gDrag=false;try{s.releasePointerCapture(e.pointerId);}catch(x){}});
