@@ -309,6 +309,14 @@
           "file": "lessons/constructions/06-bearings.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "constructions-07-putting-it-together",
+          "num": "Lesson 07",
+          "title": "Putting it together — scale plans",
+          "file": "lessons/constructions/07-putting-it-together.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

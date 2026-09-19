@@ -157,3 +157,19 @@ Live: GC-01 compass/circle · GC-02 rigidity · GC-03 perpendicular bisector · 
 
 ## Unit status — Constructions & Loci
 Live: GC-01…GC-06 (compass/circle, rigidity, perpendicular bisector, angle bisector, loci, bearings). Remaining per blueprint: **GC-07 compound constructions/plans in context** (the capstone).
+
+## Build note — GC-07 "Putting it together — scale plans" (v0.1, built) · UNIT COMPLETE
+**Status:** live (`lessons/constructions/07-putting-it-together.html`); Learner + Supporting Adult guides generated. The capstone — synthesises the whole unit and adds scale.
+
+**Hero (Gerry's choice):** *Compound region solver* — others woven across the panels:
+- **Connection — the scale ruler:** measure across a scale plan (1 cm : 5 m) and read plan cm ↔ real m (× / ÷ the scale).
+- **Movement (hero) — compound region:** toggle three rules (within 15 m of A; closer to A than B; over 10 m from the fence) and watch the grid-shaded overlap region.
+- **Reflection — which locus for which rule:** match a worded rule to its construction (perpendicular bisector / angle bisector / circle / parallel band), with a mini-diagram of the correct locus.
+- **Creativity (stretch) — plan from a brief:** step-gated real problem (bench equidistant from two paths AND within 20 m of a fountain) → angle bisector ∩ circle → the allowed segment.
+
+**Studio tasks (registry):** `gc07-scale` (build a circle to a scale distance, Measure → Length checks cm), `gc07-region` (circle + perpendicular bisector → overlap), `gc07-final` (full compound plan, right construction per rule). Explicit tool+menu, no-free-point.
+
+**Standards:** self-contained; Practice Companion + four-tier ladder; NEO Scratchpad (own key); palette [A,B,cm,m,=,°]; **QA gate 6a incl. word + fraction** (Q6 accepts 5/2 and "two point five"); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained `scale_diagram` (labelled scale bar); worked examples: a scale conversion and a compound region.
+
+## UNIT COMPLETE — Constructions, Loci and Bearings (7/7 lessons live)
+GC-01 The compass and the circle · GC-02 Shapes that hold their form (rigidity) · GC-03 The perpendicular bisector · GC-04 The angle bisector · GC-05 Loci · GC-06 Bearings · GC-07 Putting it together (scale plans). All built on the shared **Dynamic Geometry Studio** (now v0.4.1: task panel + return + save, select/undo/redo/delete, compass, Measure → Bearing) with the in-lesson Studio-launch pattern, guarded by `validate_studio_links()`. Site: 56 lessons live / 0 missing.

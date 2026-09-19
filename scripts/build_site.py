@@ -76,6 +76,8 @@ SOURCES = {
         "02_Foundations/01_Lessons/Constructions/Lesson_05_Loci/NEO_Maths_Y9_Constructions_Lesson_05_Loci_v0.1.html",
     "constructions-06-bearings":
         "02_Foundations/01_Lessons/Constructions/Lesson_06_Bearings/NEO_Maths_Y9_Constructions_Lesson_06_Bearings_v0.1.html",
+    "constructions-07-putting-it-together":
+        "02_Foundations/01_Lessons/Constructions/Lesson_07_Putting_It_Together/NEO_Maths_Y9_Constructions_Lesson_07_Putting_It_Together_v0.1.html",
     "shapes-06-platonic-solids":
         "02_Foundations/01_Lessons/2D_and_3D_Shapes/Lesson_06_Platonic_Solids/NEO_Maths_Y9_Shapes_Lesson_06_Platonic_Solids_v0.1.html",
     "shapes-07-surface-area":
