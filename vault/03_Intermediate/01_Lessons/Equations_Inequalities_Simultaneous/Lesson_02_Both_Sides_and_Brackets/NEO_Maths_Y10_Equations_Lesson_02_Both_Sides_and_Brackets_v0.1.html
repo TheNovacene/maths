@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Both sides, and brackets</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top;text-align:center}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+.uk{font-family:'Times New Roman',Georgia,serif;font-style:italic}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Equations, Inequalities and Simultaneous Relationships</h1>
+<h2>Both sides, and brackets</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What if the unknown is on both sides, or hidden inside brackets?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core — the opening lesson of the algebra unit, where solving becomes <em>keeping the balance</em>.</p>
+<p><b>Stepping Stone:</b> solve <b>linear equations</b> with the unknown on <b>both sides</b> (by collecting like terms) and with <b>brackets</b> (by expanding first), keeping the equation balanced and <b>checking</b> by substitution.</p>
+<p><b>You will need:</b> the four operations and their inverses, working with negative numbers, and the optional <b>✏️ Scratchpad</b>. No calculator needed today.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 14 · Reflect 10 · Create 8 · Rest/Nourish 5</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_02_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_02_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Write an equation with x on both sides, like 5x + 2 = 2x + 11. Collect the x-terms onto one side, then solve. Check your answer by substituting it back.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Tidy first: collect like terms</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">So far the unknown <span class="uk">x</span> sat on one side only. Now it can appear on <b>both</b> sides, or be locked inside <b>brackets</b>. Before solving, you <b>tidy</b>: <b>collect like terms</b> (add up the <span class="uk">x</span>'s, add up the plain numbers) and <b>expand</b> any brackets. Then it is an ordinary balance problem again. <em>Like terms</em> are terms of the same kind — all the <span class="uk">x</span>'s together, all the units together.</p>
+</div>
+<p><b>What to do:</b> the tiles below are a jumble of <span class="uk">x</span>-tiles and unit tiles. Collect them into a tidy expression <span class="uk">ax</span> + <span class="uk">b</span>.</p>
+<p><b>What you are trying to notice:</b> you can only add <b>like</b> to <b>like</b> — <span class="uk">x</span>-tiles join <span class="uk">x</span>-tiles, units join units. They never merge into each other.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧹 Collect the like terms</h3>
+<div id="clEqn" class="bignum" style="font-size:1.15em"></div>
+<div class="card" style="text-align:center"><svg id="clSvg" class="graphsvg" style="max-width:420px" viewBox="0 0 420 130" role="img" aria-label="Algebra tiles to collect"></svg></div>
+<div id="clRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button id="clBx" onclick="clDo('x')">Collect the x-tiles</button><button id="clBu" onclick="clDo('u')">Collect the units</button><button onclick="clNew()">🎲 New jumble</button></div>
+<p><b>Carry this forward:</b> tidy an equation before solving — <b>collect like terms</b> and <b>expand brackets</b> first, then keep the balance as usual.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT (primary) ================= -->
+<details class="hs">
+<summary>🚶 Movement — The unknown on both sides</summary>
+<p><b>What to do:</b> now there are <span class="uk">x</span> bags on <em>both</em> pans. The scales still balance because the two sides are <b>equal</b>. Take the same number of bags off <em>both</em> sides first (that gathers the unknown onto one side), then work as before — take blocks off both sides, then split into equal groups.</p>
+<p><b>What you are trying to notice:</b> removing the same number of <span class="uk">x</span> bags from both pans keeps the balance <em>and</em> clears the unknown from one side. It is the same rule — the same to both sides — used to <b>collect</b> the unknown, not just numbers. Sometimes a side carries red <b>−1 owed tiles</b> (a subtraction); then you <b>add</b> the same number to both pans to cancel them.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">⚖️ Solve with x on both sides</h3>
+<div id="tbEqn" class="bignum" style="font-size:1.3em"></div>
+<div class="card" style="text-align:center"><svg id="tbSvg" class="graphsvg" style="max-width:440px" viewBox="0 0 440 240" role="img" aria-label="A balance with bags on both pans"></svg></div>
+<div id="tbRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button id="tbBag" onclick="tbOp('bag')">🧺 Remove bags from both sides</button><button id="tbSub" onclick="tbOp('sub')" disabled>➖ Subtract from both sides</button><button id="tbDiv" onclick="tbOp('div')" disabled>➗ Divide both sides</button><button onclick="tbNew()">🎲 New equation</button></div>
+<p><b>Carry this forward:</b> collect the unknown onto one side by removing the same bags from both, then finish by keeping the balance.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — The same moves, written down</summary>
+<p><b>What to do:</b> the balancing you just did is the <b>written method</b>. Choose the next move — subtract the smaller number of <span class="uk">x</span>'s from both sides to collect the unknown, then clear the number, then divide — and watch it rewrite, line by line. Then <b>check</b> by substituting back.</p>
+<p><b>What you are trying to notice:</b> collecting the unknown is just "subtract <span class="uk">rx</span> from both sides". Every line stays <b>true</b> because you did the same to both sides — which is why the method is trustworthy. The substitution check is the proof.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">✍️ Solve both-sides equations, then check</h3>
+<div id="rsLines" class="card" style="font-family:'Times New Roman',Georgia,serif;font-size:1.15em;line-height:1.9;text-align:center;min-height:2em"></div>
+<div id="rsOpts" class="buttonrow" style="justify-content:center;flex-wrap:wrap"></div>
+<div id="rsRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="rsNew()">🎲 New equation</button></div>
+<p><b>Carry this forward:</b> collect the unknown onto one side, then it is a two-step equation you already know how to finish — and the <b>check</b> confirms it.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Opening the brackets <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> a bracket like <span class="uk">a</span>(<span class="uk">x</span> + <span class="uk">b</span>) is a shorthand for a rectangle <span class="uk">a</span> tall and (<span class="uk">x</span> + <span class="uk">b</span>) wide. Split the rectangle to see the two pieces it hides, then use the expansion to solve.</p>
+<p><b>What you are trying to notice:</b> <span class="uk">a</span>(<span class="uk">x</span> + <span class="uk">b</span>) = <span class="uk">ax</span> + <span class="uk">ab</span> — the outside multiplies <em>everything</em> inside, not just the first term. Expanding turns a bracket equation into one you can already solve.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🟦 Expand, then solve</h3>
+<div style="text-align:center"><span class="small">height a:</span> <span id="beA"></span> &nbsp; <span class="small">then (x + b), b:</span> <span id="beB"></span></div>
+<div class="card" style="text-align:center"><svg id="beSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 400 150" role="img" aria-label="Area model of a bracket"></svg></div>
+<div id="beExp" class="bignum" style="font-size:1.2em"></div>
+<div id="beSolve" style="text-align:center;margin-top:6px"></div>
+<div id="beRead" class="clue" style="text-align:center"></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw a rectangle a by (x + b). Split it into a·x and a·b to expand the bracket. Then make and solve your own bracket equation.')">✏️ Build on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>Notice how much of this lesson is just <em>tidying</em> — gather the like things, open the brackets — until a tangled equation becomes a familiar one. A lot of mathematics is making something look simpler without changing what it means. Take a breath.</p>
+<div class="card">
+<p><b>Notice one thing:</b> did collecting the <span class="uk">x</span>'s from both sides feel like the same "do it to both sides" move, just used on the unknown instead of a number? There is no right answer; just notice the connection.</p>
+<p class="small">You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> The mathematics is the nourishment here, so we name honestly what the <em>learning</em> feeds.</p>
+<div class="card">
+<p><b>What it feeds:</b> today feeds a <b>tidy mind</b> — the habit of simplifying before solving, of gathering like with like and opening up what is hidden, so that a problem that looked harder turns out to be one you already know. There is real satisfaction in taming a messy-looking equation with a couple of calm, honest moves.</p>
+<p class="small">Carry one idea forward: when something looks complicated, tidy it first — collect, expand — and see what familiar problem is underneath.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> solve equations with the unknown on both sides and with brackets, and prove your answers.</p>
+<ul>
+<li>Solve at least three equations: one with <span class="uk">x</span> on <b>both sides</b> (like 5x + 2 = 2x + 11), one with a <b>bracket</b> (like 3(x + 2) = 18), and one that has <b>both</b>.</li>
+<li>Show the tidying step — <b>collect like terms</b> or <b>expand the bracket</b> — then solve keeping the balance.</li>
+<li><b>Check</b> every answer by substituting it back into the original equation.</li>
+<li><span class="stretch">stretch</span> Make your own both-sides equation with a chosen answer, then solve it back to that answer.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-written solution showing each line, a short spoken walkthrough, or a poster of the method.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_EQ_BOTHSIDES_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows like terms can be collected.</td><td>Expands a simple bracket, or collects x on one side.</td><td>Solves a both-sides or a bracket equation by tidying first.</td><td>Explains why expanding and collecting keep the equation true.</td></tr>
+<tr><td><b>Application</b></td><td>Collects like terms in an expression.</td><td>Solves a both-sides equation.</td><td>Solves a bracket equation.</td><td>Solves an equation with both brackets and unknowns on both sides.</td></tr>
+<tr><td><b>Communication</b></td><td>Writes the answer.</td><td>Shows the tidying step.</td><td>Shows the same operation on both sides each line.</td><td>Sets out a solution another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Checks an answer once.</td><td>Checks every answer by substituting back.</td><td>Connects collecting and expanding as ways of keeping the same value.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Both sides, and brackets — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Expand any brackets, collect the x-terms onto one side, then solve. Show each line and check by substitution.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_equations_l02_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","=","+","\u2212","\u00d7","(",")"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function clean(v){return String(v).toLowerCase().replace(/[,\s]/g,'').replace(/=/g,'').replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-').trim();}
+function NEO_wordNum(str){
+  var s=String(str).toLowerCase().replace(/[-–—]/g,' ').replace(/\band\b/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return NaN;
+  // normalise common fraction phrases to single tokens
+  s=s.replace(/\bone half\b|\ba half\b/g,'half')
+     .replace(/\bthree quarters?\b/g,'threeq')
+     .replace(/\bone quarter\b|\ba quarter\b/g,'quarter')
+     .replace(/\btwo thirds?\b/g,'twothird')
+     .replace(/\bone third\b|\ba third\b/g,'third');
+  var frac={half:0.5,quarter:0.25,threeq:0.75,third:1/3,twothird:2/3};
+  if(frac[s]!=null) return frac[s];
+  var ones={zero:0,nought:0,nil:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+  var tens={twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+  var parts=s.split(' '),total=0,cur=0,used=false,fracAdd=0,i,w;
+  for(i=0;i<parts.length;i++){
+    w=parts[i];
+    if(w==='a'||w==='') continue;
+    if(ones[w]!=null){cur+=ones[w];used=true;}
+    else if(tens[w]!=null){cur+=tens[w];used=true;}
+    else if(w==='hundred'){cur=(cur||1)*100;used=true;}
+    else if(w==='thousand'){total+=(cur||1)*1000;cur=0;used=true;}
+    else if(frac[w]!=null){fracAdd+=frac[w];used=true;}
+    else if(w==='point'){
+      total+=cur;cur=0;var dec='0.',j,any=false;
+      for(j=i+1;j<parts.length;j++){if(ones[parts[j]]!=null&&ones[parts[j]]<10){dec+=ones[parts[j]];any=true;}else return NaN;}
+      if(!any) return NaN;
+      return used?total+parseFloat(dec):NaN;
+    }
+    else return NaN;
+  }
+  return used?total+cur+fracAdd:NaN;
+}
+function num(v){
+  var s=String(v).toLowerCase().trim();
+  if(!s) return NaN;
+  var wn=NEO_wordNum(s); if(!isNaN(wn)) return wn;
+  s=s.replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'');
+  s=s.replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+  if(fm){var d=parseFloat(fm[2]);return d===0?NaN:parseFloat(fm[1])/d;}
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+
+/* ============ CONSTRUCTION ENGINE — shared SVG helpers ============ */
+var SVGNS="http://www.w3.org/2000/svg";
+function svgPt(svg,e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*380/r.width, y:(e.clientY-r.top)*320/r.height};}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function arcPts(cx,cy,r,a0,a1,n){var s="",i,a;for(i=0;i<=n;i++){a=a0+(a1-a0)*i/n;s+=(i?" L ":"M ")+(cx+r*Math.cos(a)).toFixed(1)+" "+(cy+r*Math.sin(a)).toFixed(1);}return s;}
+/* intersection of two circles (centre c1 r1, centre c2 r2) → upper point (smaller y) or null */
+function circInt(c1,r1,c2,r2){
+  var d=dist(c1,c2); if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;
+  var a=(d*d+r1*r1-r2*r2)/(2*d), hh=r1*r1-a*a; if(hh<0)hh=0; var h=Math.sqrt(hh);
+  var ux=(c2.x-c1.x)/d, uy=(c2.y-c1.y)/d, mx=c1.x+a*ux, my=c1.y+a*uy;
+  var p1={x:mx-h*uy,y:my+h*ux}, p2={x:mx+h*uy,y:my-h*ux};
+  return p1.y<=p2.y?p1:p2;
+}
+var U=40; /* pixels per unit */
+function ptDot(p,col,label,dy){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="6.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+(label?'<text x="'+p.x.toFixed(1)+'" y="'+(p.y+(dy||-12)).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+label+'</text>':'');}
+
+/* ============ GC-02 activity helpers ============ */
+function mapPt(svg,e){var a=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);var r=svg.getBoundingClientRect();return {x:a[0]+(e.clientX-r.left)*a[2]/(r.width||1),y:a[1]+(e.clientY-r.top)*a[3]/(r.height||1)};}
+function circInt2(c1,r1,c2,r2){var d=dist(c1,c2);if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;var a=(d*d+r1*r1-r2*r2)/(2*d),hh=r1*r1-a*a;if(hh<0)hh=0;var h=Math.sqrt(hh);var ux=(c2.x-c1.x)/d,uy=(c2.y-c1.y)/d,mx=c1.x+a*ux,my=c1.y+a*uy;return [{x:mx-h*uy,y:my+h*ux},{x:mx+h*uy,y:my-h*ux}];}
+function nearer(cands,ref){if(!cands)return null;return (dist(cands[0],ref)<=dist(cands[1],ref))?cands[0]:cands[1];}
+function seg(p,q,col,w){return '<line x1="'+p.x.toFixed(1)+'" y1="'+p.y.toFixed(1)+'" x2="'+q.x.toFixed(1)+'" y2="'+q.y.toFixed(1)+'" stroke="'+(col||"#2f3429")+'" stroke-width="'+(w||3)+'" stroke-linecap="round"/>';}
+function angleAt(a,b,c){var v1={x:a.x-b.x,y:a.y-b.y},v2={x:c.x-b.x,y:c.y-b.y};var d=(v1.x*v2.x+v1.y*v2.y)/((Math.hypot(v1.x,v1.y)*Math.hypot(v2.x,v2.y))||1);d=Math.max(-1,Math.min(1,d));return Math.round(Math.acos(d)*180/Math.PI);}
+
+/* ============ EQ-02 activities: both sides, and brackets ============ */
+function xtile(x,y){return '<rect x="'+x+'" y="'+y+'" width="26" height="30" rx="5" fill="#cfe0ec" stroke="#365a68" stroke-width="1.5"/><text x="'+(x+13)+'" y="'+(y+20)+'" text-anchor="middle" font-size="14" font-style="italic" font-weight="bold" fill="#2f3429">x</text>';}
+function utile(x,y){return '<rect x="'+x+'" y="'+y+'" width="18" height="18" rx="3" fill="#f0d9a8" stroke="#8a6a3a" stroke-width="1.3"/>';}
+
+/* ---- CONNECTION: collect like terms ---- */
+var cl={ax:2,bu:3,jum:[],xDone:false,uDone:false};
+function clShuffle(){var arr=[];for(var i=0;i<cl.ax;i++)arr.push("x");for(var j=0;j<cl.bu;j++)arr.push("u");for(var k=arr.length-1;k>0;k--){var m=Math.floor(Math.random()*(k+1));var t=arr[k];arr[k]=arr[m];arr[m]=t;}cl.jum=arr;}
+function clDraw(){
+  var s=document.getElementById("clSvg"); if(!s)return; var h="",X=14,gap=8;
+  var order;
+  if(!cl.xDone&&!cl.uDone) order=cl.jum.slice();
+  else { order=[]; for(var i=0;i<cl.ax;i++)order.push("x"); for(var j=0;j<cl.bu;j++)order.push("u"); }
+  var x=X;
+  for(var q=0;q<order.length;q++){
+    if(order[q]==="x"){ h+=xtile(x,26); x+=26+gap; } else { h+=utile(x,32); x+=18+gap; }
+  }
+  if(cl.xDone){ h+='<text x="'+(X+cl.ax*(26+gap)/2)+'" y="80" text-anchor="middle" font-size="13" fill="#365a68" font-weight="bold">'+cl.ax+' x-tiles = '+cl.ax+'x</text>'; }
+  if(cl.uDone){ var ux=X+ (cl.xDone?cl.ax*(26+gap):0); h+='<text x="'+(ux+cl.bu*(18+gap)/2)+'" y="80" text-anchor="middle" font-size="13" fill="#8a6a3a" font-weight="bold">'+cl.bu+' units = '+cl.bu+'</text>'; }
+  s.innerHTML=h;
+  document.getElementById("clBx").disabled=cl.xDone;
+  document.getElementById("clBu").disabled=cl.uDone;
+  document.getElementById("clEqn").innerHTML = (cl.xDone&&cl.uDone) ? ("Collected: <b>"+cl.ax+"x + "+cl.bu+"</b>") : "A jumble of "+cl.ax+" x-tiles and "+cl.bu+" units — collect each kind.";
+  document.getElementById("clRead").innerHTML = (cl.xDone&&cl.uDone)
+    ? "✓ Like joined like: <b>"+cl.ax+"x + "+cl.bu+"</b>. The x-tiles and the units never merged — they are different kinds of term."
+    : cl.xDone ? "The x-tiles are gathered into <b>"+cl.ax+"x</b>. Now collect the units."
+    : cl.uDone ? "The units are gathered into <b>"+cl.bu+"</b>. Now collect the x-tiles."
+    : "Collect the <b>x-tiles</b> together, and the <b>units</b> together — you can only add like to like.";
+}
+function clDo(k){ if(k==="x")cl.xDone=true; else cl.uDone=true; clDraw(); }
+function clNew(){ cl.ax=2+Math.floor(Math.random()*3); cl.bu=2+Math.floor(Math.random()*4); cl.xDone=false; cl.uDone=false; clShuffle(); clDraw(); }
+function clInit(){ clNew(); }
+
+/* ---- MOVEMENT (hero): two-sided balance ---- */
+var tb={p:5,q:2,r:2,s:11};
+function tbSide(coef,cons){var t=coef>0?(coef===1?"x":coef+"x"):"";if(cons>0)t+=(t?" + ":"")+cons;else if(cons<0)t+=(t?" − ":"−")+(-cons);else if(!t)t="0";return t;}
+function tbStr(o){return tbSide(o.p,o.q)+" = "+tbSide(o.r,o.s);}
+function tbTray(cx){
+  var h='<line x1="'+(cx-46)+'" y1="66" x2="'+(cx-44)+'" y2="150" stroke="#8c7a55" stroke-width="1.6"/>';
+  h+='<line x1="'+(cx+46)+'" y1="66" x2="'+(cx+44)+'" y2="150" stroke="#8c7a55" stroke-width="1.6"/>';
+  h+='<rect x="'+(cx-64)+'" y="150" width="128" height="9" rx="3" fill="#d9c79a" stroke="#8c7a55" stroke-width="1.4"/>';
+  return h;
+}
+function tbItems(cx,bags,blocks,neg){
+  var surf=150,h="",x0=cx-58,i,j;
+  for(i=0;i<bags;i++){var bx=x0+i*27;h+='<rect x="'+bx+'" y="'+(surf-32)+'" width="24" height="32" rx="5" fill="#cfe0ec" stroke="#365a68" stroke-width="1.4"/><text x="'+(bx+12)+'" y="'+(surf-12)+'" text-anchor="middle" font-size="13" font-style="italic" font-weight="bold" fill="#2f3429">x</text>';}
+  var startY=surf-(bags>0?32:0),col=0,row=0;
+  for(j=0;j<blocks;j++){var cx0=cx-58+col*15,yy=startY-13-row*15;
+    if(neg)h+='<rect x="'+cx0+'" y="'+yy+'" width="12" height="12" rx="2" fill="#f6dad6" stroke="#b24c4c" stroke-width="1.3"/><text x="'+(cx0+6)+'" y="'+(yy+9.7)+'" text-anchor="middle" font-size="11" font-weight="bold" fill="#b24c4c">−</text>';
+    else h+='<rect x="'+cx0+'" y="'+yy+'" width="12" height="12" rx="2" fill="#f0d9a8" stroke="#8a6a3a" stroke-width="1.2"/>';
+    col++;if(col===8){col=0;row++;}}
+  return h;
+}
+function tbDraw(){
+  var s=document.getElementById("tbSvg"); if(!s)return;
+  var h='<rect x="160" y="222" width="120" height="8" rx="3" fill="#8c7a55"/><rect x="215" y="66" width="10" height="158" fill="#8c7a55"/>';
+  h+='<line x1="86" y1="64" x2="354" y2="64" stroke="#8c7a55" stroke-width="5" stroke-linecap="round"/>';
+  h+='<polygon points="220,64 210,40 230,40" fill="#8c7a55"/>';
+  h+=tbTray(130)+tbTray(310);
+  h+=tbItems(130, tb.p, Math.abs(tb.q), tb.q<0);
+  h+=tbItems(310, tb.r, tb.s, false);
+  s.innerHTML=h;
+  document.getElementById("tbEqn").textContent=tbStr(tb);
+  var solved=(tb.p===1&&tb.q===0&&tb.r===0);
+  var bag=document.getElementById("tbBag"), sub=document.getElementById("tbSub"), div=document.getElementById("tbDiv");
+  bag.disabled=!(tb.p>0&&tb.r>0);
+  bag.textContent="🧺 Remove "+Math.min(tb.p,tb.r)+" bag"+(Math.min(tb.p,tb.r)===1?"":"s")+" from both sides";
+  sub.disabled=!(tb.r===0&&tb.q!==0);
+  sub.textContent = tb.q>0 ? ("➖ Subtract "+tb.q+" from both sides") : tb.q<0 ? ("➕ Add "+(-tb.q)+" to both sides") : "➖ Subtract from both sides";
+  div.disabled=!(tb.r===0&&tb.q===0&&tb.p>1);
+  div.textContent="➗ Divide both sides by "+tb.p;
+  document.getElementById("tbRead").innerHTML = solved
+    ? "✓ One <b>x</b> stands alone, so <b>x = "+tb.s+"</b>. Check it back in the original equation."
+    : (tb.r>0) ? "There are <span class='uk'>x</span> bags on <em>both</em> pans. <b>Remove "+Math.min(tb.p,tb.r)+"</b> from each to gather the unknown on the left."
+    : (tb.q>0) ? "<b>Subtract "+tb.q+"</b> loose block"+(tb.q===1?"":"s")+" from both pans."
+    : (tb.q<0) ? "<b>Add "+(-tb.q)+"</b> to both pans, so the red owed tile"+((-tb.q)===1?"":"s")+" cancel."
+    : "<b>Divide both sides by "+tb.p+"</b> to leave one x.";
+}
+function tbOp(op){
+  if(op==="bag"&&tb.p>0&&tb.r>0){var m=Math.min(tb.p,tb.r);tb.p-=m;tb.r-=m;}
+  else if(op==="sub"&&tb.r===0&&tb.q!==0){tb.s-=tb.q;tb.q=0;}
+  else if(op==="div"&&tb.r===0&&tb.q===0&&tb.p>1){tb.s=tb.s/tb.p;tb.p=1;}
+  tbDraw();
+}
+function tbNew(){
+  var combos=[[2,1],[2,2],[3,1]], cc=combos[Math.floor(Math.random()*combos.length)], a=cc[0], r=cc[1], p=a+r;
+  var x,q,s; do{ x=1+Math.floor(Math.random()*4); q=Math.floor(Math.random()*7)-3; s=q+a*x; }while(s<1||s>15);
+  tb={p:p,q:q,r:r,s:s}; tbDraw();
+}
+function tbInit(){ tbNew(); }
+
+/* ---- REFLECTION: both-sides symbolic solver + check ---- */
+var rs={p:5,q:2,r:2,s:11}, rsHist=[], rs0;
+function rsSide(coef,cons){var t=coef>0?(coef===1?"x":coef+"x"):"";if(cons>0)t+=(t?" + ":"")+cons;else if(cons<0)t+=(t?" − ":"−")+(-cons);else if(!t)t="0";return t;}
+function rsStr(o){return rsSide(o.p,o.q)+" = "+rsSide(o.r,o.s);}
+function rsDraw(){ rsHist=["<div>"+rsStr(rs)+"</div>"]; document.getElementById("rsLines").innerHTML=rsHist.join(""); rsRender(); }
+function rsRender(){
+  var opts=document.getElementById("rsOpts"), solved=(rs.p===1&&rs.q===0&&rs.r===0), h="";
+  if(!solved){
+    if(rs.r>0){ h+='<button onclick="rsApply(\'colx\')">− '+rs.r+'x (both sides)</button>';
+                h+='<button onclick="rsApply(\'early\')">÷ '+rs.p+' (both sides)</button>'; }
+    else if(rs.q!==0){ h+='<button onclick="rsApply(\'subq\')">'+(rs.q>0?"− "+rs.q:"+ "+(-rs.q))+' (both sides)</button>';
+                     if(rs.p>1)h+='<button onclick="rsApply(\'early\')">÷ '+rs.p+' (both sides)</button>'; }
+    else if(rs.p>1){ h+='<button onclick="rsApply(\'div\')">÷ '+rs.p+' (both sides)</button>'; }
+  }
+  opts.innerHTML=h;
+  document.getElementById("rsRead").innerHTML = solved
+    ? "✓ Solved. <b>Check:</b> "+rs._chk+" ✓ — both sides equal, so x = "+rs.s+" is correct."
+    : (rs.r>0? "Collect the unknown first: subtract the smaller number of x's from <em>both</em> sides."
+      : rs.q!==0? "Now clear the number ("+(rs.q>0?"subtract "+rs.q:"add "+(-rs.q))+" from both sides), then divide." : "One step left: undo the × "+rs.p+".");
+}
+function rsApply(op){
+  if(op==="early"){document.getElementById("rsRead").innerHTML="Not yet — you can't divide while "+(rs.r>0?"x is on both sides. Collect the x's onto one side first.":"a number is still attached. Clear it from both sides first.");return;}
+  if(op==="colx"&&rs.r>0){rs.p-=rs.r;rs.r=0;rsHist.push("<div>"+rsStr(rs)+"</div>");}
+  else if(op==="subq"&&rs.q!==0){rs.s-=rs.q;rs.q=0;rsHist.push("<div>"+rsStr(rs)+"</div>");}
+  else if(op==="div"&&rs.p>1){var sol=rs.s/rs.p;rs.s=sol;rs.p=1;rsHist.push("<div><b>x = "+sol+"</b></div>");}
+  document.getElementById("rsLines").innerHTML=rsHist.join("");
+  if(rs.p===1&&rs.q===0&&rs.r===0){rs._chk=rs0.p+"×"+rs.s+(rs0.q>0?" + "+rs0.q:rs0.q<0?" − "+(-rs0.q):"")+" = "+rs0.r+"×"+rs.s+(rs0.s>0?" + "+rs0.s:"");}
+  rsRender();
+}
+function rsNew(){
+  var combos=[[2,1],[2,2],[3,1]], cc=combos[Math.floor(Math.random()*combos.length)], a=cc[0], r=cc[1], p=a+r;
+  var x,q,s; do{ x=1+Math.floor(Math.random()*4); q=Math.floor(Math.random()*7)-3; s=q+a*x; }while(s<1||s>15);
+  rs={p:p,q:q,r:r,s:s}; rs0={p:p,q:q,r:r,s:s}; rsDraw();
+}
+function rsInit(){ rsNew(); }
+
+/* ---- CREATIVITY: bracket expander (area model) + solve; a(x + b) or a(x - b) ---- */
+var be={a:3,b:2,x0:4,sg:1};
+function beChip(val,cur,fn){return '<span class="chip'+(val===cur?" active":"")+'" onclick="'+fn+'('+val+')">'+val+'</span>';}
+function beDraw(){
+  if(be.sg<0 && be.x0<=be.b) be.x0=be.b+1+Math.floor(Math.random()*2);   // keep c positive for a(x - b)
+  document.getElementById("beA").innerHTML=[2,3,4].map(function(v){return beChip(v,be.a,"beSet0");}).join("");
+  document.getElementById("beB").innerHTML=[1,2,3,4,5].map(function(v){return beChip(v,be.b,"beSet1");}).join("");
+  var bstr=(be.sg<0?"x − "+be.b:"x + "+be.b), ax=(be.a===1?"":be.a)+"x", ab=be.a*be.b;
+  var expr=ax+(be.sg<0?" − ":" + ")+ab;
+  var s=document.getElementById("beSvg");
+  var H=70, xW=150, bW=Math.max(40,be.b*22), oy=40, ox=30;
+  var h='';
+  h+='<rect x="'+ox+'" y="'+oy+'" width="'+xW+'" height="'+H+'" fill="#dbe8f2" stroke="#365a68" stroke-width="1.6"/>';
+  if(be.sg<0){
+    h+='<rect x="'+(ox+xW)+'" y="'+oy+'" width="'+bW+'" height="'+H+'" fill="#f6dad6" stroke="#b24c4c" stroke-width="1.6"/>';
+    h+='<text x="'+(ox+xW+bW/2)+'" y="'+(oy+H/2+6)+'" text-anchor="middle" font-size="16" font-weight="bold" fill="#b24c4c">−'+ab+'</text>';
+    h+='<text x="'+(ox+xW+bW/2)+'" y="'+(oy-8)+'" text-anchor="middle" font-size="13" fill="#b24c4c">−'+be.b+'</text>';
+  } else {
+    h+='<rect x="'+(ox+xW)+'" y="'+oy+'" width="'+bW+'" height="'+H+'" fill="#f3e6c8" stroke="#8a6a3a" stroke-width="1.6"/>';
+    h+='<text x="'+(ox+xW+bW/2)+'" y="'+(oy+H/2+6)+'" text-anchor="middle" font-size="17" font-weight="bold" fill="#6a4a1e">'+ab+'</text>';
+    h+='<text x="'+(ox+xW+bW/2)+'" y="'+(oy-8)+'" text-anchor="middle" font-size="13" fill="#8a6a3a">'+be.b+'</text>';
+  }
+  h+='<text x="'+(ox+xW/2)+'" y="'+(oy+H/2+6)+'" text-anchor="middle" font-size="17" font-weight="bold" fill="#2f3429">'+ax+'</text>';
+  h+='<text x="'+(ox-8)+'" y="'+(oy+H/2+5)+'" text-anchor="end" font-size="14" font-weight="bold" fill="#365a68">'+be.a+'</text>';
+  h+='<text x="'+(ox+xW/2)+'" y="'+(oy-8)+'" text-anchor="middle" font-size="13" fill="#365a68">x</text>';
+  s.innerHTML=h;
+  document.getElementById("beExp").innerHTML=be.a+"("+bstr+") = <b>"+expr+"</b>";
+  var c=be.a*(be.x0+be.sg*be.b);
+  document.getElementById("beSolve").innerHTML='<div class="toolbox" style="margin:6px 0"><b>Now solve:</b> '+be.a+'('+bstr+') = '+c+' &nbsp; x = <input id="beAns" autocomplete="off" placeholder="?" style="width:60px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> <button onclick="beCheck()">✅ Check</button></div>';
+  document.getElementById("beRead").innerHTML="Expand first: "+be.a+"("+bstr+") becomes "+expr+". Then solve as usual.";
+}
+function beCheck(){
+  var v=num(document.getElementById("beAns").value), r=document.getElementById("beRead"), ab=be.a*be.b, ax=(be.a===1?"":be.a)+"x";
+  var c=be.a*(be.x0+be.sg*be.b), expr=ax+(be.sg<0?" − ":" + ")+ab, rhs=(be.sg<0?c+ab:c-ab), opword=(be.sg<0?"add "+ab:"subtract "+ab);
+  if(!isNaN(v)&&Math.abs(v-be.x0)<1e-9){ r.innerHTML="✓ <b>x = "+be.x0+"</b>. Expand: "+expr+" = "+c+"; "+opword+" → "+ax+" = "+rhs+"; divide by "+be.a+" → x = "+be.x0+". ✓"; }
+  else { r.innerHTML="Not yet — expand "+be.a+"("+(be.sg<0?"x − "+be.b:"x + "+be.b)+") to "+expr+" = "+c+", then "+opword+" and divide by "+be.a+"."; }
+}
+function beSet0(v){be.a=v;beDraw();}
+function beSet1(v){be.b=v;beDraw();}
+function beNew(){be.sg=(Math.random()<0.5?-1:1);be.x0=1+Math.floor(Math.random()*5);beDraw();}
+function beInit(){be.sg=1;be.x0=4;beDraw();}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    collect:{title:'Collecting like terms',prompt:'Simplify 3x + 2x. How many x is that? (write the number)',answer:5,hint:'3 x-tiles and 2 x-tiles make 5 x-tiles: 3x + 2x = 5x.'},
+    expand:{title:'Expanding a bracket',prompt:'Expand 3(x + 2). It becomes 3x + ? — what number fills the gap?',answer:6,hint:'The 3 multiplies everything inside: 3 × x and 3 × 2, so 3x + 6.'},
+    balance:{title:'Keeping it balanced',prompt:'To keep an equation true, whatever you do to one side you must do to the ______ side.',answer:'other',hint:'The two sides are equal — treat them the same, so the other side too.'}
+  };;
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer" style="width:100%;max-width:220px;padding:9px;border:1px solid #bcae98;border-radius:8px;margin-top:8px">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · x on both sides",q:"Solve: 3x + 1 = x + 7. What is x?",a:[],eq:function(v){return num(v)===3;},prompt:"Get the x-terms onto one side: subtract x from both sides.",hint:"3x + 1 = x + 7 → subtract x: 2x + 1 = 7 → subtract 1: 2x = 6 → x = 3.",sol:"x = 3 — subtract x (both sides): 2x + 1 = 7; subtract 1: 2x = 6; divide by 2: x = 3. Check: 3×3+1 = 3+7 = 10. ✓"},
+ {label:"2 of 6 · both sides (subtract)",q:"Solve: 5x − 2 = 2x + 10. What is x?",a:[],eq:function(v){return num(v)===4;},prompt:"Collect the x-terms first: subtract 2x from both sides.",hint:"5x − 2 = 2x + 10 → subtract 2x: 3x − 2 = 10 → add 2: 3x = 12 → x = 4.",sol:"x = 4 — subtract 2x: 3x − 2 = 10; add 2: 3x = 12; divide by 3: x = 4. Check: 5×4−2 = 2×4+10 = 18. ✓"},
+ {label:"3 of 6 · a bracket",q:"Solve: 2(x + 3) = 16. What is x?",a:[],eq:function(v){return num(v)===5;},prompt:"Expand the bracket first, or divide both sides by 2.",hint:"2(x + 3) = 16 → expand: 2x + 6 = 16 → subtract 6: 2x = 10 → x = 5. (Or ÷2 first: x + 3 = 8.)",sol:"x = 5 — expand: 2x + 6 = 16; subtract 6: 2x = 10; divide by 2: x = 5. Check: 2(5+3) = 16. ✓"},
+ {label:"4 of 6 · bracket (subtract inside)",q:"Solve: 4(x − 1) = 12. What is x?",a:[],eq:function(v){return num(v)===4;},prompt:"Expand: 4×x and 4×(−1). Or divide both sides by 4 first.",hint:"4(x − 1) = 12 → expand: 4x − 4 = 12 → add 4: 4x = 16 → x = 4.",sol:"x = 4 — expand: 4x − 4 = 12; add 4: 4x = 16; divide by 4: x = 4. Check: 4(4−1) = 12. ✓"},
+ {label:"5 of 6 · unknown bigger on the right",q:"Solve: 2x + 9 = 5x. What is x?",a:[],eq:function(v){return num(v)===3;},prompt:"Collect x on the side with more of them: subtract 2x from both sides.",hint:"2x + 9 = 5x → subtract 2x: 9 = 3x → divide by 3: x = 3.",sol:"x = 3 — subtract 2x (both sides): 9 = 3x; divide by 3: x = 3. Check: 2×3+9 = 5×3 = 15. ✓"},
+ {label:"6 of 6 · a non-whole answer (stretch)",q:"Solve: 2(x + 1) = 7. What is x?",a:[],eq:function(v){return num(v)===2.5;},prompt:"Expand or divide by 2 — the answer need not be a whole number.",hint:"2(x + 1) = 7 → x + 1 = 3.5 → x = 2.5 (you may write 5/2).",sol:"x = 2.5 (or 5/2) — divide by 2: x + 1 = 3.5; subtract 1: x = 2.5. Check: 2(2.5+1) = 7. ✓"}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Tidy first — collect like terms or expand the bracket — then keep the balance. Try the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  clInit();
+  tbInit();
+  rsInit();
+  beInit();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

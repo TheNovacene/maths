@@ -108,6 +108,10 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_09_Conversion_Graphs/NEO_Maths_Y10_Straight_Lines_Lesson_09_Conversion_Graphs_v0.1.html",
     "straight-lines-10-what-can-i-explain":
         "03_Intermediate/01_Lessons/Straight_Lines/Lesson_10_What_Can_I_Explain/NEO_Maths_Y10_Straight_Lines_Lesson_10_What_Can_I_Explain_v0.1.html",
+    "equations-01-keeping-the-balance":
+        "03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous/Lesson_01_Keeping_the_Balance/NEO_Maths_Y10_Equations_Lesson_01_Keeping_the_Balance_v0.1.html",
+    "equations-02-both-sides-and-brackets":
+        "03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous/Lesson_02_Both_Sides_and_Brackets/NEO_Maths_Y10_Equations_Lesson_02_Both_Sides_and_Brackets_v0.1.html",
     "trigonometry-01-the-constant-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":

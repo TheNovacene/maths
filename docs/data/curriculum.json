@@ -483,6 +483,31 @@
       ]
     },
     {
+      "id": "equations-inequalities-simultaneous",
+      "title": "Equations, Inequalities and Simultaneous Relationships",
+      "stage": "Intermediate",
+      "strand": "Algebra",
+      "source": "vault/03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous",
+      "lessons": [
+        {
+          "id": "equations-01-keeping-the-balance",
+          "num": "Lesson 01",
+          "title": "Keeping the balance",
+          "file": "lessons/equations/01-keeping-the-balance.html",
+          "status": "live",
+          "cornerstones": []
+        },
+        {
+          "id": "equations-02-both-sides-and-brackets",
+          "num": "Lesson 02",
+          "title": "Both sides, and brackets",
+          "file": "lessons/equations/02-both-sides-and-brackets.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
       "id": "ks3-interactive-library",
       "title": "KS3 Interactive Library",
       "stage": "Key Stage 3",
