@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: A line is a set of solutions</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top;text-align:center}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+.uk{font-family:'Times New Roman',Georgia,serif;font-style:italic}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Equations, Inequalities and Simultaneous Relationships</h1>
+<h2>A line is a set of solutions</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>If x and y can both change, what does &ldquo;solution&rdquo; mean now?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core — the opening lesson of the algebra unit, where solving becomes <em>keeping the balance</em>.</p>
+<p><b>Stepping Stone:</b> understand a linear relationship in two variables as a <b>set of solutions</b> — every point on the line y = mx + c is a solution and every solution is a point on the line — and read solutions off the line.</p>
+<p><b>You will need:</b> the four operations and their inverses, working with negative numbers, and the optional <b>✏️ Scratchpad</b>. No calculator needed today.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 14 · Reflect 10 · Create 8 · Rest/Nourish 5</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_05_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_05_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Plot y = 2x + 1. Choose several x values, work out y, plot the points. Notice they all lie on one line — the set of all its solutions.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — One equation, many answers</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">Every equation so far had <em>one</em> unknown and (usually) <em>one</em> answer. But an equation with <b>two</b> unknowns, like <span class="uk">x</span> + <span class="uk">y</span> = 6, is different: <b>(0, 6)</b> works, so does <b>(1, 5)</b>, and <b>(2, 4)</b>… there are <em>infinitely many</em> pairs that make it true. A <b>solution</b> is now a <b>pair</b> (<span class="uk">x</span>, <span class="uk">y</span>), and if you plot all of them they line up — the equation's answers <em>are</em> a straight line.</p>
+</div>
+<p><b>What to do:</b> add solution pairs to <span class="uk">x</span> + <span class="uk">y</span> = 6 one at a time and watch them appear. Then join them.</p>
+<p><b>What you are trying to notice:</b> the pairs are not scattered — they fall exactly on a straight line. Every pair that works is a point on it; every point on it is a pair that works.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📍 Many pairs, one line</h3>
+<div id="mnEqn" class="bignum" style="font-size:1.25em"></div>
+<div class="card" style="text-align:center"><svg id="mnSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="Solution pairs of x + y = 6"></svg></div>
+<div id="mnList" style="text-align:center;font-weight:600;color:#3f7a45;min-height:1.4em"></div>
+<div id="mnRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button id="mnAddBtn" onclick="mnAdd()">➕ Add a solution pair</button><button id="mnLineBtn" onclick="mnJoin()">📈 Join them into a line</button><button onclick="mnNew()">🎲 New equation</button></div>
+<p><b>Carry this forward:</b> with two unknowns, a solution is a pair (<span class="uk">x</span>, <span class="uk">y</span>) — and the whole set of solutions is a line.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — From a table to the line</summary>
+<p><b>What to do:</b> a relationship like <span class="uk">y</span> = 2<span class="uk">x</span> + 1 gives a <span class="uk">y</span> for every <span class="uk">x</span>. Work out <span class="uk">y</span> for each <span class="uk">x</span> in the table; each pair plots as a point, and the points build the line.</p>
+<p><b>What you are trying to notice:</b> the table and the line are the <em>same</em> set of solutions, shown two ways. Every row is a point; the points are never scattered — they form the line.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📊 Fill the table, build the line</h3>
+<div id="tpEqn" class="bignum" style="font-size:1.2em"></div>
+<div id="tpTable" style="text-align:center;margin:6px 0"></div>
+<div id="tpAsk" style="text-align:center;margin:6px 0"></div>
+<div class="card" style="text-align:center"><svg id="tpSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="Points from the table forming a line"></svg></div>
+<div id="tpRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="tpNew()">🎲 New relationship</button></div>
+<p><b>Carry this forward:</b> a table of (x, y) pairs and the line are two views of one solution set.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION (HERO) ================= -->
+<details class="es">
+<summary>🪞 Reflection — On the line, or not?</summary>
+<p><b>What to do:</b> the line <span class="uk">y</span> = <span class="uk">mx</span> + <span class="uk">c</span> is drawn, and a point is marked. Decide: is it a <b>solution</b> (does it make the equation true)? Then the tool checks by <b>substituting</b>.</p>
+<p><b>What you are trying to notice:</b> a point is a solution <em>exactly when</em> it lies on the line. Substituting its <span class="uk">x</span> and <span class="uk">y</span> either makes the equation true (on the line) or not (off it). The line <em>is</em> the set of all solutions — nothing more, nothing less.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">✅ Test the point against the equation</h3>
+<div id="stEqn" class="bignum" style="font-size:1.25em"></div>
+<div class="card" style="text-align:center"><svg id="stSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="A line with a point to test"></svg></div>
+<div id="stPt" style="text-align:center;font-weight:600;font-size:1.05em"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button onclick="stAnswer(true)">✔️ On the line (solution)</button><button onclick="stAnswer(false)">✖️ Off the line (not)</button><button id="stNextBtn" onclick="stNext()" disabled>Next point →</button></div>
+<div id="stRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="stNew()">🎲 New line</button></div>
+<p><b>Carry this forward:</b> a point is a solution precisely when it lies on the line; the line is the whole solution set.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Read a solution off the line <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> because the line holds every solution, you can <em>read one off</em>. Given an <span class="uk">x</span>, find the <span class="uk">y</span> the line pairs with it (or the other way round). Answer, then see the point highlighted on the line.</p>
+<p><b>What you are trying to notice:</b> the line works <em>both</em> ways — give it an <span class="uk">x</span> and it hands back a <span class="uk">y</span>; give it a <span class="uk">y</span> and it hands back an <span class="uk">x</span>. Each is one solution pair, picked from the infinite set.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 Pick a solution from the line</h3>
+<div id="crEqn" class="bignum" style="font-size:1.2em"></div>
+<div class="card" style="text-align:center"><svg id="crSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="Read a solution off the line"></svg></div>
+<div id="crQ" style="text-align:center;margin:6px 0"></div>
+<div id="crRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="crNew()">🎲 New question</button></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Draw the line y = 2x + 1. Pick an x, read its y off the line, and check by substituting. Then pick a y and read its x.')">✏️ Build on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>There is a quiet shift happening here: an answer has grown from a single number into a whole line of possibilities. Nothing has been lost — the line simply holds <em>every</em> pair that works, all at once, in one clean stroke. Take a breath and let the idea widen.</p>
+<div class="card">
+<p><b>Notice one thing:</b> did "solution" feel different once it became a <em>pair</em> you could see on a graph, rather than one number to find? Just notice how the meaning stretched.</p>
+<p class="small">You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> The mathematics is the nourishment here, so we name honestly what the <em>learning</em> feeds.</p>
+<div class="card">
+<p><b>What it feeds:</b> today feeds a taste for <b>seeing the whole at once</b> — the leap from hunting one answer to holding an entire set of them in a single picture. That a line can <em>be</em> a set of solutions is one of the most powerful ideas in algebra: it lets a graph answer questions a single number never could, and it is the doorway to solving two relationships together.</p>
+<p class="small">Carry one idea forward: a straight line is not just a shape — it is every (x, y) pair that obeys a rule, drawn all at once.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> show that a line is the set of all solutions of its equation.</p>
+<ul>
+<li>Take a relationship like <span class="uk">y</span> = 2<span class="uk">x</span> + 1. Make a table of at least four (<span class="uk">x</span>, <span class="uk">y</span>) pairs and plot them — they should fall on one line.</li>
+<li>Test <b>two</b> points not in your table: one <em>on</em> the line and one <em>off</em> it. Substitute each into the equation and say which is a solution.</li>
+<li>Read <b>one</b> new solution straight off the line (choose an <span class="uk">x</span>, read its <span class="uk">y</span>), and check it by substituting.</li>
+<li><span class="stretch">stretch</span> Explain in a sentence why every point on the line is a solution and every solution is a point on the line.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a plotted graph with your table, a short spoken explanation, or a poster linking the table, the line and the equation.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_EQ_LINE_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows a solution is now a pair (x, y).</td><td>Finds a pair that satisfies the equation.</td><td>Sees the line as the set of all solutions.</td><td>Explains why on-the-line ⇔ solution.</td></tr>
+<tr><td><b>Application</b></td><td>Plots a given point.</td><td>Makes a table and plots the line.</td><td>Tests whether a point is a solution by substituting.</td><td>Reads solutions off the line both ways (x→y and y→x).</td></tr>
+<tr><td><b>Communication</b></td><td>Writes a pair.</td><td>Shows a table.</td><td>Links the table, the line and the equation.</td><td>Presents the solution-set idea another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Checks one pair.</td><td>Checks a point on and a point off the line.</td><td>Articulates 'a line is a set of solutions' in their own words.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>A line is a set of solutions — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Take a point on the line and a point off it. Substitute each into y = mx + c. On the line makes it true; off the line does not.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_equations_l05_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","y","=","+","\u2212","(",")"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function clean(v){return String(v).toLowerCase().replace(/[,\s]/g,'').replace(/=/g,'').replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-').trim();}
+function NEO_wordNum(str){
+  var s=String(str).toLowerCase().replace(/[-–—]/g,' ').replace(/\band\b/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return NaN;
+  // normalise common fraction phrases to single tokens
+  s=s.replace(/\bone half\b|\ba half\b/g,'half')
+     .replace(/\bthree quarters?\b/g,'threeq')
+     .replace(/\bone quarter\b|\ba quarter\b/g,'quarter')
+     .replace(/\btwo thirds?\b/g,'twothird')
+     .replace(/\bone third\b|\ba third\b/g,'third');
+  var frac={half:0.5,quarter:0.25,threeq:0.75,third:1/3,twothird:2/3};
+  if(frac[s]!=null) return frac[s];
+  var ones={zero:0,nought:0,nil:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+  var tens={twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+  var parts=s.split(' '),total=0,cur=0,used=false,fracAdd=0,i,w;
+  for(i=0;i<parts.length;i++){
+    w=parts[i];
+    if(w==='a'||w==='') continue;
+    if(ones[w]!=null){cur+=ones[w];used=true;}
+    else if(tens[w]!=null){cur+=tens[w];used=true;}
+    else if(w==='hundred'){cur=(cur||1)*100;used=true;}
+    else if(w==='thousand'){total+=(cur||1)*1000;cur=0;used=true;}
+    else if(frac[w]!=null){fracAdd+=frac[w];used=true;}
+    else if(w==='point'){
+      total+=cur;cur=0;var dec='0.',j,any=false;
+      for(j=i+1;j<parts.length;j++){if(ones[parts[j]]!=null&&ones[parts[j]]<10){dec+=ones[parts[j]];any=true;}else return NaN;}
+      if(!any) return NaN;
+      return used?total+parseFloat(dec):NaN;
+    }
+    else return NaN;
+  }
+  return used?total+cur+fracAdd:NaN;
+}
+function num(v){
+  var s=String(v).toLowerCase().trim();
+  if(!s) return NaN;
+  var wn=NEO_wordNum(s); if(!isNaN(wn)) return wn;
+  s=s.replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'');
+  s=s.replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+  if(fm){var d=parseFloat(fm[2]);return d===0?NaN:parseFloat(fm[1])/d;}
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+
+/* ============ CONSTRUCTION ENGINE — shared SVG helpers ============ */
+var SVGNS="http://www.w3.org/2000/svg";
+function svgPt(svg,e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*380/r.width, y:(e.clientY-r.top)*320/r.height};}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function arcPts(cx,cy,r,a0,a1,n){var s="",i,a;for(i=0;i<=n;i++){a=a0+(a1-a0)*i/n;s+=(i?" L ":"M ")+(cx+r*Math.cos(a)).toFixed(1)+" "+(cy+r*Math.sin(a)).toFixed(1);}return s;}
+/* intersection of two circles (centre c1 r1, centre c2 r2) → upper point (smaller y) or null */
+function circInt(c1,r1,c2,r2){
+  var d=dist(c1,c2); if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;
+  var a=(d*d+r1*r1-r2*r2)/(2*d), hh=r1*r1-a*a; if(hh<0)hh=0; var h=Math.sqrt(hh);
+  var ux=(c2.x-c1.x)/d, uy=(c2.y-c1.y)/d, mx=c1.x+a*ux, my=c1.y+a*uy;
+  var p1={x:mx-h*uy,y:my+h*ux}, p2={x:mx+h*uy,y:my-h*ux};
+  return p1.y<=p2.y?p1:p2;
+}
+var U=40; /* pixels per unit */
+function ptDot(p,col,label,dy){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="6.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+(label?'<text x="'+p.x.toFixed(1)+'" y="'+(p.y+(dy||-12)).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+label+'</text>':'');}
+
+/* ============ GC-02 activity helpers ============ */
+function mapPt(svg,e){var a=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);var r=svg.getBoundingClientRect();return {x:a[0]+(e.clientX-r.left)*a[2]/(r.width||1),y:a[1]+(e.clientY-r.top)*a[3]/(r.height||1)};}
+function circInt2(c1,r1,c2,r2){var d=dist(c1,c2);if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;var a=(d*d+r1*r1-r2*r2)/(2*d),hh=r1*r1-a*a;if(hh<0)hh=0;var h=Math.sqrt(hh);var ux=(c2.x-c1.x)/d,uy=(c2.y-c1.y)/d,mx=c1.x+a*ux,my=c1.y+a*uy;return [{x:mx-h*uy,y:my+h*ux},{x:mx+h*uy,y:my-h*ux}];}
+function nearer(cands,ref){if(!cands)return null;return (dist(cands[0],ref)<=dist(cands[1],ref))?cands[0]:cands[1];}
+function seg(p,q,col,w){return '<line x1="'+p.x.toFixed(1)+'" y1="'+p.y.toFixed(1)+'" x2="'+q.x.toFixed(1)+'" y2="'+q.y.toFixed(1)+'" stroke="'+(col||"#2f3429")+'" stroke-width="'+(w||3)+'" stroke-linecap="round"/>';}
+function angleAt(a,b,c){var v1={x:a.x-b.x,y:a.y-b.y},v2={x:c.x-b.x,y:c.y-b.y};var d=(v1.x*v2.x+v1.y*v2.y)/((Math.hypot(v1.x,v1.y)*Math.hypot(v2.x,v2.y))||1);d=Math.max(-1,Math.min(1,d));return Math.round(Math.acos(d)*180/Math.PI);}
+
+function drawGraph(svgId,m,c,opts){
+  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg)return;
+  var VW=360,VH=360,pad=34, xmin=(opts.xRange?opts.xRange[0]:-1), xmax=(opts.xRange?opts.xRange[1]:6);
+  var fam=opts.family||[{m:m,c:c}];
+  var exts=[0]; fam.forEach(function(f){ exts.push(f.m*xmin+f.c); exts.push(f.m*xmax+f.c); });
+  if(opts.targetY!=null) exts.push(opts.targetY);
+  var yA=m*xmin+c, yB=m*xmax+c;
+  var ylo=Math.floor(Math.min.apply(0,exts)-1), yhi=Math.ceil(Math.max.apply(0,exts)+1);
+  if(yhi-ylo<8){ var mid=(yhi+ylo)/2; ylo=Math.floor(mid-4); yhi=ylo+8; }
+  if(opts.fixedY){ ylo=opts.fixedY[0]; yhi=opts.fixedY[1]; }   /* fixed window: scale never changes as c/m change */
+  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(yhi-ylo);
+  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ylo)*uy;}
+  var s="", y0=SY(0), x0=SX(0);
+  for(var gx=xmin;gx<=xmax;gx++) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  for(var gy=ylo;gy<=yhi;gy++) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ylo).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(yhi).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  for(var lx=xmin+1;lx<=xmax;lx++){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
+  var yrange=yhi-ylo, ystep=yrange>40?10:yrange>20?5:yrange>12?2:1;
+  for(var ly=Math.ceil(ylo/ystep)*ystep;ly<=yhi;ly+=ystep){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
+  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="11" fill="#6a7080" text-anchor="end" font-style="italic">x</text>';
+  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(yhi)+10).toFixed(1)+'" font-size="11" fill="#6a7080" font-style="italic">y</text>';
+  if(opts.ghost){ var g=opts.ghost; s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(g.m*xmin+g.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(g.m*xmax+g.c).toFixed(1)+'" stroke="#b9a05f" stroke-width="2" stroke-dasharray="5 4"/>'; }
+  if(opts.targetY!=null){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(opts.targetY).toFixed(1)+'" r="8" fill="none" stroke="#b24c4c" stroke-width="2.4"/><text x="'+(SX(0)-9).toFixed(1)+'" y="'+(SY(opts.targetY)+3).toFixed(1)+'" font-size="10" fill="#b24c4c" text-anchor="end">target</text>'; }
+  if(opts.family){
+    opts.family.forEach(function(f){ var col=f.col||"#3f7a45";
+      s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(f.m*xmin+f.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(f.m*xmax+f.c).toFixed(1)+'" stroke="'+col+'" stroke-width="2.4"/>';
+      if(!opts.hideFamilyDots && f.c>=ylo&&f.c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(f.c).toFixed(1)+'" r="4.5" fill="'+col+'"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(f.c)-6).toFixed(1)+'" font-size="10" fill="'+col+'">(0, '+f.c+')</text>'; }
+    });
+    if(opts.vmark!=null){ var mvx=SX(opts.vmark);
+      s+='<line x1="'+mvx.toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+mvx.toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#365a68" stroke-width="1.6" stroke-dasharray="4 3"/>';
+      opts.family.forEach(function(f){ var yv=f.m*opts.vmark+f.c; if(yv>=ylo&&yv<=yhi){ s+='<circle cx="'+mvx.toFixed(1)+'" cy="'+SY(yv).toFixed(1)+'" r="4.5" fill="'+(f.col||"#3f7a45")+'"/>'; } });
+      s+='<text x="'+mvx.toFixed(1)+'" y="'+(SY(yhi)+11).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">x = '+opts.vmark+'</text>';
+    }
+    if(opts.markPoint){ var pX=SX(opts.markPoint.x), pY=SY(opts.markPoint.y);
+      s+='<circle cx="'+pX.toFixed(1)+'" cy="'+pY.toFixed(1)+'" r="7" fill="none" stroke="#b24c4c" stroke-width="2.6"/>';
+      if(opts.markPoint.label){ s+='<text x="'+(pX+10).toFixed(1)+'" y="'+(pY-8).toFixed(1)+'" font-size="10" fill="#b24c4c" font-weight="bold">'+opts.markPoint.label+'</text>'; }
+    }
+    svg.innerHTML=s; return;
+  }
+  if(opts.segTo!=null){ s+='<line x1="'+SX(0).toFixed(1)+'" y1="'+SY(c).toFixed(1)+'" x2="'+SX(opts.segTo).toFixed(1)+'" y2="'+SY(m*opts.segTo+c).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  else if(!opts.hideLine){ s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(yA).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(yB).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.showPoints){ var maxp=(opts.showPoints===true)?4:opts.showPoints; for(var px=0;px<=maxp;px++){ var py=m*px+c; if(py<ylo||py>yhi)continue; s+='<circle cx="'+SX(px).toFixed(1)+'" cy="'+SY(py).toFixed(1)+'" r="3.2" fill="#2f6a35"/>'; } }
+  if(opts.dots){ opts.dots.forEach(function(p){ if(p.x>=xmin&&p.x<=xmax&&p.y>=ylo&&p.y<=yhi){ var col=p.col||"#2f6a35"; s+='<circle cx="'+SX(p.x).toFixed(1)+'" cy="'+SY(p.y).toFixed(1)+'" r="4.6" fill="'+col+'"/>'; if(p.label) s+='<text x="'+(SX(p.x)+8).toFixed(1)+'" y="'+(SY(p.y)-6).toFixed(1)+'" font-size="10" fill="'+col+'">'+p.label+'</text>'; } }); }
+  if(!opts.hideIntercept && c>=ylo&&c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(c).toFixed(1)+'" r="4.5" fill="#b25f2e"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(c)-6).toFixed(1)+'" font-size="10" fill="#b25f2e">(0, '+c+')</text>'; }
+  if(opts.lineThrough){ var LA=opts.lineThrough.A, LB=opts.lineThrough.B, lm=(LB.y-LA.y)/(LB.x-LA.x), lc=LA.y-lm*LA.x;
+    s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(lm*xmin+lc).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(lm*xmax+lc).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.tris){ opts.tris.forEach(function(t){ var col=t.col||"#365a68", ax=SX(t.A.x),ay=SY(t.A.y),bx=SX(t.B.x),by=SY(t.B.y),cornerX=bx,cornerY=ay;
+    var run=t.B.x-t.A.x, rise=t.B.y-t.A.y;
+    s+='<line x1="'+ax.toFixed(1)+'" y1="'+ay.toFixed(1)+'" x2="'+cornerX.toFixed(1)+'" y2="'+cornerY.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<line x1="'+cornerX.toFixed(1)+'" y1="'+cornerY.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<text x="'+((ax+cornerX)/2).toFixed(1)+'" y="'+(cornerY+(rise>=0?15:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="middle">run '+run+'</text>';
+    var riseLeft = cornerX>295;   /* near right edge: put the rise label on the inside to avoid clipping */
+    s+='<text x="'+(cornerX+(riseLeft?-6:6)).toFixed(1)+'" y="'+((cornerY+by)/2+3).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="'+(riseLeft?'end':'start')+'">rise '+(rise>=0?"+"+rise:rise)+'</text>';
+    s+='<circle cx="'+ax.toFixed(1)+'" cy="'+ay.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(ax-8).toFixed(1)+'" y="'+(ay+(rise>=0?14:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="end">'+(t.aLabel||"A")+'</text>';
+    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(bx+7).toFixed(1)+'" y="'+(by-7).toFixed(1)+'" font-size="10" fill="'+col+'">'+(t.bLabel||"B")+'</text>';
+  }); }
+  if(opts.stepTri && m!==0){ var rx0=SX(0),ry0=SY(c),rx1=SX(1),ry1c=SY(c),ry1=SY(m+c);
+    s+='<line x1="'+rx0.toFixed(1)+'" y1="'+ry0.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1c.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<line x1="'+rx1.toFixed(1)+'" y1="'+ry1c.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<text x="'+(rx0+3).toFixed(1)+'" y="'+(ry1c+16).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="start">1 across</text>';
+    s+='<text x="'+(rx1+5).toFixed(1)+'" y="'+((ry1c+ry1)/2+3).toFixed(1)+'" font-size="10" fill="#365a68">'+(m>0?"+"+m:m)+" up</text>";
+  }
+  if(opts.stepTri && m===0){ s+='<text x="'+SX(3).toFixed(1)+'" y="'+(SY(c)-8).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">flat: no change</text>'; }
+  if(opts.highlightX!=null){ var hx=opts.highlightX, hy=m*hx+c; if(hy>=ylo&&hy<=yhi){
+    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+hx+', '+hy+')</text>';
+  }}
+  svg.innerHTML=s;
+}
+
+/* ============ EQ-05 activities: a line is a set of solutions ============ */
+function lnStr(m,c){var mp=(m===1?"x":m===-1?"−x":m+"x");return "y = "+mp+(c>0?" + "+c:c<0?" − "+(-c):"");}
+
+/* ---- CONNECTION: one equation, many answers (x + y = s) ---- */
+var mn={s:6,k:-1,joined:false};
+function mnDots(){var a=[];for(var x=0;x<=mn.k;x++)a.push({x:x,y:mn.s-x});return a;}
+function mnDraw(){
+  drawGraph("mnSvg",-1,mn.s,{xRange:[0,mn.s],fixedY:[0,mn.s+1],dots:mnDots(),hideLine:!mn.joined,hideIntercept:true});
+  document.getElementById("mnEqn").textContent="x + y = "+mn.s;
+  var pairs=[];for(var x=0;x<=mn.k;x++)pairs.push("("+x+", "+(mn.s-x)+")");
+  document.getElementById("mnList").textContent=pairs.join("   ");
+  var maxk=Math.min(5,mn.s);
+  document.getElementById("mnAddBtn").disabled=(mn.k>=maxk);
+  document.getElementById("mnLineBtn").disabled=(mn.k<2||mn.joined);
+  document.getElementById("mnRead").innerHTML = mn.joined
+    ? "✓ Every pair sits on one straight line. Unlike x + 2 = "+mn.s+" (one answer), <b>x + y = "+mn.s+"</b> has a <b>whole line</b> of solutions."
+    : mn.k<0 ? "Add a solution pair to begin. How many pairs of numbers add to "+mn.s+"?"
+    : mn.k<2 ? "That is one solution. Add more — are they scattered, or lining up?"
+    : "See how the pairs line up? Join them to reveal the line of <em>all</em> solutions.";
+}
+function mnAdd(){var maxk=Math.min(5,mn.s);if(mn.k<maxk)mn.k++;mnDraw();}
+function mnJoin(){if(mn.k>=2)mn.joined=true;mnDraw();}
+function mnNew(){mn={s:[6,7,8][Math.floor(Math.random()*3)],k:-1,joined:false};mnDraw();}
+function mnInit(){mn={s:6,k:-1,joined:false};mnDraw();}
+
+/* ---- MOVEMENT: table -> line ---- */
+var TPBANK=[{m:2,c:1},{m:1,c:2},{m:3,c:-2},{m:2,c:-1}];
+var tp={m:2,c:1,i:0,done:[]};
+function tpXs(){return [0,1,2,3];}
+function tpDraw(){
+  var xs=tpXs(), dots=[];
+  for(var j=0;j<tp.done.length;j++){var x=xs[j];dots.push({x:x,y:tp.m*x+tp.c});}
+  var allDone=(tp.done.length===xs.length);
+  drawGraph("tpSvg",tp.m,tp.c,{xRange:[-1,4],dots:dots,hideLine:!allDone,hideIntercept:true,showPoints:false});
+  document.getElementById("tpEqn").textContent=lnStr(tp.m,tp.c);
+  var rows='<table style="margin:0 auto;border-collapse:collapse"><tr><th style="border:1px solid #bcae98;padding:4px 12px">x</th>';
+  for(var a=0;a<xs.length;a++)rows+='<td style="border:1px solid #bcae98;padding:4px 12px">'+xs[a]+'</td>';
+  rows+='</tr><tr><th style="border:1px solid #bcae98;padding:4px 12px">y</th>';
+  for(var b=0;b<xs.length;b++)rows+='<td style="border:1px solid #bcae98;padding:4px 12px">'+(b<tp.done.length?(tp.m*xs[b]+tp.c):"?")+'</td>';
+  rows+='</tr></table>';
+  document.getElementById("tpTable").innerHTML=rows;
+  if(!allDone){
+    var cx=xs[tp.done.length];
+    document.getElementById("tpAsk").innerHTML='When x = <b>'+cx+'</b>, &nbsp; y = <input id="tpY" autocomplete="off" placeholder="?" style="width:56px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> <button onclick="tpCheck()">✅ Plot it</button>';
+    document.getElementById("tpRead").innerHTML="Work out y for x = "+cx+" using "+lnStr(tp.m,tp.c)+", then plot the pair.";
+  } else {
+    document.getElementById("tpAsk").innerHTML="";
+    document.getElementById("tpRead").innerHTML="✓ All four pairs plotted — and they fall on one line. The table and the line are the <b>same</b> set of solutions.";
+  }
+}
+function tpCheck(){
+  var xs=tpXs(), cx=xs[tp.done.length], want=tp.m*cx+tp.c, v=num(document.getElementById("tpY").value);
+  if(!isNaN(v)&&v===want){ tp.done.push(cx); tpDraw(); }
+  else { document.getElementById("tpRead").innerHTML="Not quite — for x = "+cx+", work out "+(tp.m===1?"":tp.m)+"×"+cx+(tp.c>=0?" + "+tp.c:" − "+(-tp.c))+"."; }
+}
+function tpNew(){var p=TPBANK[Math.floor(Math.random()*TPBANK.length)];tp={m:p.m,c:p.c,i:0,done:[]};tpDraw();}
+function tpInit(){tp={m:2,c:1,i:0,done:[]};tpDraw();}
+
+/* ---- REFLECTION (hero): on-the-line solution tester ---- */
+var STBANK=[
+ {m:2,c:1,pts:[{x:3,y:7},{x:3,y:5},{x:1,y:3},{x:2,y:4},{x:0,y:1}]},
+ {m:1,c:2,pts:[{x:4,y:6},{x:4,y:5},{x:2,y:4},{x:5,y:6},{x:3,y:5}]},
+ {m:3,c:-1,pts:[{x:2,y:5},{x:2,y:6},{x:1,y:2},{x:3,y:9},{x:3,y:7}]}
+];
+var st={}, stI=0, stAnswered=false;
+function stCur(){return st.pts[stI];}
+function stDraw(){
+  var p=stCur(), onLine=(st.m*p.x+st.c===p.y);
+  drawGraph("stSvg",st.m,st.c,{xRange:[-1,6],family:[{m:st.m,c:st.c}],markPoint:{x:p.x,y:p.y,label:"("+p.x+", "+p.y+")"},hideFamilyDots:true});
+  document.getElementById("stEqn").textContent=lnStr(st.m,st.c);
+  document.getElementById("stPt").innerHTML="Is <b>("+p.x+", "+p.y+")</b> a solution?";
+  document.getElementById("stNextBtn").disabled=!stAnswered;
+  if(!stAnswered)document.getElementById("stRead").innerHTML="Look at the marked point. Is it <em>on</em> the line? Decide, then the tool substitutes to check.";
+}
+function stAnswer(said){
+  var p=stCur(), val=st.m*p.x+st.c, onLine=(val===p.y);
+  stAnswered=true;
+  var sub=(st.m===1?"":st.m)+"×"+p.x+(st.c>=0?" + "+st.c:" − "+(-st.c))+" = "+val;
+  var r=document.getElementById("stRead");
+  var correct=(said===onLine);
+  if(onLine) r.innerHTML=(correct?"✓ ":"Actually — ")+"<b>("+p.x+", "+p.y+")</b> <b>is</b> a solution. Substitute: "+sub+", and y = "+p.y+", so "+val+" = "+p.y+" ✓. It lies <b>on</b> the line.";
+  else r.innerHTML=(correct?"✓ ":"Actually — ")+"<b>("+p.x+", "+p.y+")</b> is <b>not</b> a solution. Substitute: "+sub+", but y = "+p.y+", so "+val+" ≠ "+p.y+". It lies <b>off</b> the line.";
+  document.getElementById("stNextBtn").disabled=false;
+}
+function stNext(){ if(stI<st.pts.length-1){stI++;stAnswered=false;stDraw();} else {document.getElementById("stRead").innerHTML="✓ You have tested them all. <b>Every</b> point on the line is a solution, and every solution is on the line — the line is the whole set. Try a new line.";} }
+function stSet(p){st={m:p.m,c:p.c,pts:p.pts};stI=0;stAnswered=false;stDraw();}
+function stNew(){var p;do{p=STBANK[Math.floor(Math.random()*STBANK.length)];}while(p.m===st.m&&p.c===st.c&&STBANK.length>1);stSet(p);}
+function stInit(){stSet(STBANK[0]);}
+
+/* ---- CREATIVITY (stretch): read a solution off the line ---- */
+var CRBANK=[
+ {m:2,c:1,ask:"y",given:4,ans:9},
+ {m:2,c:1,ask:"x",given:7,ans:3},
+ {m:1,c:2,ask:"y",given:5,ans:7},
+ {m:3,c:-2,ask:"x",given:7,ans:3}
+];
+var cr={}, crShown=false;
+function crDraw(){
+  var opts={xRange:[-1,6],hideIntercept:true};
+  if(crShown){ var x=(cr.ask==="y")?cr.given:cr.ans; opts.highlightX=x; }
+  drawGraph("crSvg",cr.m,cr.c,opts);
+  document.getElementById("crEqn").textContent=lnStr(cr.m,cr.c);
+  var q=(cr.ask==="y")
+    ? 'On this line, when <b>x = '+cr.given+'</b>, what is <b>y</b>?'
+    : 'On this line, when <b>y = '+cr.given+'</b>, what is <b>x</b>?';
+  document.getElementById("crQ").innerHTML=q+' &nbsp; <input id="crAns" autocomplete="off" placeholder="?" style="width:56px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> <button onclick="crCheck()">✅ Check</button>';
+  if(!crShown)document.getElementById("crRead").innerHTML="Use "+lnStr(cr.m,cr.c)+" to find the missing coordinate, then see the point on the line.";
+}
+function crCheck(){
+  var v=num(document.getElementById("crAns").value), r=document.getElementById("crRead");
+  if(!isNaN(v)&&Math.abs(v-cr.ans)<1e-9){ crShown=true; crDraw();
+    var pt=(cr.ask==="y")?("("+cr.given+", "+cr.ans+")"):("("+cr.ans+", "+cr.given+")");
+    r.innerHTML="✓ The solution is <b>"+pt+"</b> — one pair picked from the whole line.";
+  } else {
+    if(cr.ask==="y") r.innerHTML="Not yet — substitute x = "+cr.given+" into "+lnStr(cr.m,cr.c)+".";
+    else r.innerHTML="Not yet — put y = "+cr.given+" into "+lnStr(cr.m,cr.c)+" and solve for x.";
+  }
+}
+function crNew(){var p;do{p=CRBANK[Math.floor(Math.random()*CRBANK.length)];}while(p===cr.src&&CRBANK.length>1);cr={m:p.m,c:p.c,ask:p.ask,given:p.given,ans:p.ans,src:p};crShown=false;crDraw();}
+function crInit(){var p=CRBANK[0];cr={m:p.m,c:p.c,ask:p.ask,given:p.given,ans:p.ans,src:p};crShown=false;crDraw();}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    coord:{title:'Reading coordinates',prompt:'In the point (3, 7), what is the y-coordinate?',answer:7,hint:'A point is written (x, y); the second number is y, so 7.'},
+    evaluate:{title:'Finding y from x',prompt:'For y = 2x + 1, what is y when x = 4?',answer:9,hint:'2\u00d74 = 8, then + 1 = 9.'},
+    substitute:{title:'Testing a point',prompt:'To test whether (2, 5) is on y = 2x + 1, work out 2\u00d72 + 1.',answer:5,hint:'2\u00d72 = 4, then + 1 = 5 \u2014 which matches y = 5, so (2, 5) is on the line.'}
+  };;;;;
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer" style="width:100%;max-width:220px;padding:9px;border:1px solid #bcae98;border-radius:8px;margin-top:8px">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 \u00b7 find y",q:"For y = 2x + 1, what is y when x = 3?",a:[],eq:function(v){return num(v)===7;},prompt:"Substitute x = 3 into y = 2x + 1.",hint:"2\u00d73 + 1 = 7.",sol:"y = 7 \u2014 substitute x = 3: y = 2\u00d73 + 1 = 7. So (3, 7) is a solution."},
+ {label:"2 of 6 \u00b7 find y",q:"For y = 3x \u2212 2, what is y when x = 5?",a:[],eq:function(v){return num(v)===13;},prompt:"Substitute x = 5 into y = 3x \u2212 2.",hint:"3\u00d75 \u2212 2 = 13.",sol:"y = 13 \u2014 substitute x = 5: y = 3\u00d75 \u2212 2 = 13. So (5, 13) is a solution."},
+ {label:"3 of 6 \u00b7 a point on the line",q:"A point on y = x + 4 has x = 6. What is its y-coordinate?",a:[],eq:function(v){return num(v)===10;},prompt:"y = x + 4, so add 4 to x.",hint:"6 + 4 = 10.",sol:"y = 10 \u2014 y = 6 + 4 = 10, so (6, 10) lies on the line."},
+ {label:"4 of 6 \u00b7 find x from y",q:"The line y = 2x + 1 passes through (a, 11). What is a?",a:[],eq:function(v){return num(v)===5;},prompt:"Put y = 11 into 2x + 1 = 11 and solve for x.",hint:"2x + 1 = 11 \u2192 2x = 10 \u2192 x = 5.",sol:"a = 5 \u2014 11 = 2a + 1, so 2a = 10 and a = 5. The point is (5, 11)."},
+ {label:"5 of 6 \u00b7 which x?",q:"For y = 2x, which value of x gives y = 10?",a:[],eq:function(v){return num(v)===5;},prompt:"Solve 2x = 10.",hint:"2x = 10 \u2192 x = 5.",sol:"x = 5 \u2014 2x = 10, so x = 5. The point (5, 10) is on the line."},
+ {label:"6 of 6 \u00b7 a non-whole answer (stretch)",q:"The line y = 4x \u2212 1 passes through (a, 9). What is a?",a:[],eq:function(v){return num(v)===2.5;},prompt:"Put y = 9 into 4x \u2212 1 = 9 and solve \u2014 the answer need not be whole.",hint:"4x \u2212 1 = 9 \u2192 4x = 10 \u2192 x = 2.5 (or 5/2).",sol:"a = 2.5 (or 5/2) \u2014 9 = 4a \u2212 1, so 4a = 10 and a = 2.5. The point is (2.5, 9)."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Substitute the value into y = mx + c, or read the pair off the line. Try the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  mnInit();
+  tpInit();
+  stInit();
+  crInit();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

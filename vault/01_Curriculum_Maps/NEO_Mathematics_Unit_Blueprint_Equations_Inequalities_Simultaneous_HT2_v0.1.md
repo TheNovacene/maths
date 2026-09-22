@@ -140,3 +140,20 @@ jsdom QA (21 checks) all pass — story-builder forming (incl. negatives + wrong
 
 ### Unit status — Equations, Inequalities & Simultaneous
 Live: EQ-01…EQ-04 (keeping the balance; both sides & brackets; fractions; forming). **★ Mid-unit checkpoint reached** — balancing-and-checking, forming, and (next) reading a line as a set of solutions. Remaining: EQ-05 (a line is a set of solutions) onward.
+
+## Build note — EQ-05 "A line is a set of solutions" (v0.1, built)
+**Status:** live (`lessons/equations/05-a-line-is-a-set-of-solutions.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Reflection**. The unit's conceptual turn: from one value to a whole **set** of (x, y) solutions shown as a line — groundwork for simultaneous work.
+
+**Engine reuse (per blueprint):** the Straight Lines `drawGraph(svgId,m,c,opts)` engine was copied in and **preset**, not rebuilt. One small local addition: a `dots:[{x,y,col,label}]` opt for plotting arbitrary accumulating points (used by Connection + Movement). `family`+`markPoint` (Reflection) and `highlightX` (Creativity) reused as-is.
+
+**Hero (Gerry's choice — points-on-the-line solution tester, in Reflection):**
+- **Connection — many pairs, one line:** add solution pairs to x + y = 6 one at a time; they plot and line up; "Join them" reveals the line. Contrasts one answer (x+2=6) vs a whole line of them.
+- **Movement — table→line:** for y = mx + c, learner computes y for each x in a table (input+check); each correct pair plots, and the four points build the line.
+- **Reflection (hero) — on-the-line tester:** line drawn, a point marked; learner judges solution/not, tool **substitutes** to verify (on the line ⇔ makes the equation true). Curated on/off points per line; corrects wrong judgements.
+- **Creativity (stretch) — read a solution off:** given x find y, or given y find x; answer checked, then the point is highlighted on the line (works both ways).
+
+**Reconnection Routes:** reading coordinates (y of (3,7)=7) · finding y from x (y=2x+1 at x=4 → 9) · testing a point (2×2+1=5).
+
+**Standards:** self-contained (engine inlined, no CDN); canonical parser; Practice of six (find y, point-on-line, find x from y, which-x, and a **gate-6a stretch** y=4x−1 through (a,9) → 2.5/5/2); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l05_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`solnline_diagram`**; worked examples: testing (3,7) on y=2x+1, and a table→line for y=x+2.
+
+jsdom QA (21 checks) all pass — pair accumulation + join, table plotter (accept/reject + completion), on/off tester (confirm + correct), read-off both ways, gate 6a, engine axis-label render. Visual QA confirmed (three graphs). Site: **61 lessons live / 0 missing**.

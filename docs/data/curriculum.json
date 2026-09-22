@@ -520,6 +520,14 @@
           "file": "lessons/equations/04-forming-an-equation.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-05-a-line-is-a-set-of-solutions",
+          "num": "Lesson 05",
+          "title": "A line is a set of solutions",
+          "file": "lessons/equations/05-a-line-is-a-set-of-solutions.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
