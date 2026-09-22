@@ -107,3 +107,18 @@ Gerry noted the interactives always collected to **ax + b = c**, never **ax − 
 - **Bracket expander:** now also generates **a(x − b)** → ax − ab, drawn as a red "removed" area piece; x₀ is clamped above b so the target stays positive.
 
 QA (19 checks) all pass; both minus forms visually confirmed. Practice already contained a minus-collecting item (Q2, 5x − 2 = 2x + 10). Site: 58 live / 0 missing.
+
+## Build note — EQ-03 "Equations with fractions" (v0.1, built)
+**Status:** live (`lessons/equations/03-equations-with-fractions.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Reflection**. Organising move: **clear the fraction first** by multiplying every term by the denominator (or the LCM), reducing to an EQ-01/02 equation.
+
+**Hero (Gerry's choice — multiply-through solver, in Reflection):**
+- **Connection — fraction bar:** x/n shown as one of n equal parts; "Stack n copies" rebuilds the whole x (n × x/n = x), motivating "multiply by the denominator".
+- **Movement — clear one fraction (stepper):** x/n + b = c; a "Multiply every term by n" button clears it (with an early-op nudge), then subtract/divide to finish, with a substitution check.
+- **Reflection (hero) — multiply-through solver:** curated bank of single-fraction forms — **x/n + b = c** (form A) and **(ax + b)/n = c** (form B, whole numerator over n), incl. an `a>1` divide step. Step-chooser with an early-op distractor ("clear the fraction first") and an auto substitution check.
+- **Creativity (stretch) — LCM clearer:** x/m + x/n = c; learner enters the **LCM** (checked), sees both fractions clear in one move, then solves for x (checked).
+
+**Reconnection Routes:** a fraction of a number (⅓ of 12 = 4) · lowest common multiple (LCM 2,3 = 6) · keeping it balanced (do the same to the other side).
+
+**Standards:** self-contained; canonical parser; Practice of six (single fraction ±, whole numerator, coefficient-on-top, a two-denominator LCM item, and a **gate-6a stretch** (2x−1)/4 = 1 → 2.5 / 5/2); palette [x,=,+,−,÷,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l03_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`fracbar_diagram`**; worked examples: x/3 + 2 = 5 and x/2 + x/3 = 10 (LCM).
+
+jsdom QA (24 checks) all pass — fraction-bar stack, clear-one-fraction solve+nudge, hero solver forms A & B incl. divide + early-op nudge + check, LCM clearer (LCM check + solve + wrong-LCM nudge), gate 6a word+fraction. Visual QA confirmed. Site: **59 lessons live / 0 missing**.

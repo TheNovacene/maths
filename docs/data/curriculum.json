@@ -504,6 +504,14 @@
           "file": "lessons/equations/02-both-sides-and-brackets.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-03-equations-with-fractions",
+          "num": "Lesson 03",
+          "title": "Equations with fractions",
+          "file": "lessons/equations/03-equations-with-fractions.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
