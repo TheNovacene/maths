@@ -157,3 +157,20 @@ Live: EQ-01…EQ-04 (keeping the balance; both sides & brackets; fractions; form
 **Standards:** self-contained (engine inlined, no CDN); canonical parser; Practice of six (find y, point-on-line, find x from y, which-x, and a **gate-6a stretch** y=4x−1 through (a,9) → 2.5/5/2); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l05_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`solnline_diagram`**; worked examples: testing (3,7) on y=2x+1, and a table→line for y=x+2.
 
 jsdom QA (21 checks) all pass — pair accumulation + join, table plotter (accept/reject + completion), on/off tester (confirm + correct), read-off both ways, gate 6a, engine axis-label render. Visual QA confirmed (three graphs). Site: **61 lessons live / 0 missing**.
+
+## Build note — EQ-06 "Where two lines meet" (v0.1, built)
+**Status:** live (`lessons/equations/06-where-two-lines-meet.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Connection**. Interprets the **intersection = common solution**; graphical foundation for substitution/elimination next.
+
+**Engine reuse:** copied EQ-05 as base (graph engine already inlined); replaced only the activities. Uses `family` (two coloured lines), `markPoint` (crossing), and `vmark` (slide) — all reused as-is, no engine change.
+
+**Hero (Gerry's choice — crossing = common solution, in Connection):**
+- **Connection (hero):** two lines drawn; learner reads and enters the crossing (x, y); on correct, the point is ringed and **substituted into both** equations to prove it satisfies each. Socratic/Hint (set the sides equal).
+- **Movement — slide-to-find:** step a vertical x-line; at each x the two lines give two y-values; find the x where they agree (the meeting).
+- **Reflection — on both, or one?** points tested against both lines; only the crossing satisfies both; wrong judgements corrected with substitution into each.
+- **Creativity (stretch) — break-even:** two cost plans; find where they cost the same (x and shared cost), then which plan is cheaper before/after the crossing.
+
+**Reconnection Routes:** reading a crossing (x of (3,5)=3) · setting two lines equal (2x−1=x+1 → 2) · checking a point (2+1=3).
+
+**Standards:** self-contained (engine inlined); canonical parser; Practice of six (find crossing x then y, check a crossing, where-do-they-meet, common solution, and a **gate-6a stretch** y=2x+1 & y=4x → x=0.5/½); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l06_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`twoline_diagram`**; worked examples: y=2x−1 & y=x+1 → (2,3), and a break-even (3,£11).
+
+jsdom QA (19 checks) all pass — crossing check + both-sub proof, slide meeting detection, which-point tester (confirm + correct), break-even solve + cheaper-side interpretation, gate 6a. Visual QA confirmed (three two-line graphs). Site: **62 lessons live / 0 missing**.

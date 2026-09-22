@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Where two lines meet</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top;text-align:center}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+.uk{font-family:'Times New Roman',Georgia,serif;font-style:italic}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Equations, Inequalities and Simultaneous Relationships</h1>
+<h2>Where two lines meet</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>When must two relationships both be true &mdash; and where is that?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core — the opening lesson of the algebra unit, where solving becomes <em>keeping the balance</em>.</p>
+<p><b>Stepping Stone:</b> interpret the <b>intersection</b> of two lines as the <b>common solution</b> of a pair of simultaneous equations — the single (x, y) that satisfies <em>both</em> — and read it off the graph, checking by substitution into each equation.</p>
+<p><b>You will need:</b> the four operations and their inverses, working with negative numbers, and the optional <b>✏️ Scratchpad</b>. No calculator needed today.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 14 · Reflect 10 · Create 8 · Rest/Nourish 5</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_06_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_06_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Plot y = 2x − 1 and y = x + 1 on the same axes. Find where they cross, then substitute that point into BOTH equations to check it satisfies each.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION (HERO) ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Both true at once</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">A single line is a whole set of solutions. Now take <b>two</b> lines and ask: which pair (<span class="uk">x</span>, <span class="uk">y</span>) makes <em>both</em> equations true at once? Each line is that equation's solution set, so a pair on <b>both</b> lines must be where they <b>cross</b>. That crossing point is the <b>common solution</b> — the answer to the two equations taken together, or <b>simultaneously</b>.</p>
+</div>
+<p><b>What to do:</b> two lines are drawn. Read where they cross, enter that point, then watch it substituted into <em>both</em> equations to prove it satisfies each.</p>
+<p><b>What you are trying to notice:</b> only one point lies on <em>both</em> lines. Points on just one line satisfy only that equation; the crossing satisfies <b>both</b> — that is what "common" means.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📍 Find the common solution</h3>
+<div id="csEqn" class="bignum" style="font-size:1.15em"></div>
+<div class="card" style="text-align:center"><svg id="csSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="Two lines crossing"></svg></div>
+<div style="text-align:center;font-size:1.05em;margin:6px 0">They cross at ( <input id="csX" autocomplete="off" placeholder="x" style="width:48px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> , <input id="csY" autocomplete="off" placeholder="y" style="width:48px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> )</div>
+<div id="csSupport" class="clue" style="text-align:center;display:none"></div>
+<div id="csFeedback" class="feedback" style="display:none"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button onclick="csPrompt()">🤔 Socratic prompt</button><button onclick="csHint()">💡 Hint</button><button onclick="csCheck()">✅ Check</button><button onclick="csNew()">🎲 New pair</button></div>
+<p><b>Carry this forward:</b> the point where two lines cross is the <b>common solution</b> — the one pair that satisfies both equations.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — Slide across to the meeting</summary>
+<p><b>What to do:</b> step the vertical line left and right. At each <span class="uk">x</span> the two lines give two <span class="uk">y</span>-values. Hunt for the <span class="uk">x</span> where the two <span class="uk">y</span>-values become <em>equal</em> — that is where the lines meet.</p>
+<p><b>What you are trying to notice:</b> away from the crossing the two lines disagree (two different <span class="uk">y</span>-values for the same <span class="uk">x</span>); at exactly one <span class="uk">x</span> they agree. That shared (<span class="uk">x</span>, <span class="uk">y</span>) is the common solution.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">↔️ Where do the two agree?</h3>
+<div id="slEqn" class="bignum" style="font-size:1.1em"></div>
+<div class="card" style="text-align:center"><svg id="slSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="Stepping an x-line across two lines"></svg></div>
+<div id="slVals" style="text-align:center;font-weight:600;min-height:1.4em"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="slStep(-1)">◀ x − 1</button><button onclick="slStep(1)">x + 1 ▶</button><button onclick="slNew()">🎲 New pair</button></div>
+<div id="slRead" class="clue" style="text-align:center"></div>
+<p><b>Carry this forward:</b> the meeting is the one <span class="uk">x</span> where both relationships give the same <span class="uk">y</span>.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — On both, or just one?</summary>
+<p><b>What to do:</b> a point is marked against two lines. Decide whether it is the <b>common solution</b> (on <em>both</em> lines) or not. The tool substitutes it into each equation to check.</p>
+<p><b>What you are trying to notice:</b> a point on just one line satisfies only that equation; only the crossing satisfies <b>both</b>. "Common solution" means "makes both true" — and that is exactly the intersection.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">✅ Does it satisfy both?</h3>
+<div id="wpEqn" class="bignum" style="font-size:1.15em"></div>
+<div class="card" style="text-align:center"><svg id="wpSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="Testing a point against two lines"></svg></div>
+<div id="wpPt" style="text-align:center;font-weight:600;font-size:1.05em"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button onclick="wpAnswer(true)">✔️ Common solution (both)</button><button onclick="wpAnswer(false)">✖️ Not (one or neither)</button><button id="wpNextBtn" onclick="wpNext()" disabled>Next point →</button></div>
+<div id="wpRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="wpNew()">🎲 New pair</button></div>
+<p><b>Carry this forward:</b> the common solution is the point that lies on <em>both</em> lines — nothing else does.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — The break-even point <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> two plans cost different amounts as the hours (or miles) grow. Each is a line. Where they <b>cross</b> is where they cost the <em>same</em> — the break-even point. Find it, and see which plan is cheaper on each side.</p>
+<p><b>What you are trying to notice:</b> a crossing is not just geometry — it is a <b>decision point</b>. Before it, one plan wins; after it, the other. The common solution is where they are equal.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">💷 When do the plans cost the same?</h3>
+<div id="beStory" class="card" style="font-size:1.0em;text-align:center;background:#eef3e8"></div>
+<div class="card" style="text-align:center"><svg id="beSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="Two cost plans crossing"></svg></div>
+<div id="beQ" style="text-align:center;margin:6px 0"></div>
+<div id="beRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="beNew()">🎲 New plans</button></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Two plans: y = 2x + 5 and y = 3x + 2. Set them equal to find the break-even x, then the shared cost y. Which is cheaper before and after?')">✏️ Build on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>Two separate rules, each with endless solutions of its own — and yet there is a single place where they agree completely. There is something satisfying in that: out of two whole lines of possibility, one shared point. Take a breath and enjoy the neatness of it.</p>
+<div class="card">
+<p><b>Notice one thing:</b> did "solve two equations at once" feel less daunting once you saw it was simply "where do the two lines cross?" Just notice the shift from algebra to a picture and back.</p>
+<p class="small">You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> The mathematics is the nourishment here, so we name honestly what the <em>learning</em> feeds.</p>
+<div class="card">
+<p><b>What it feeds:</b> today feeds the power of <b>two conditions at once</b> — the everyday reasoning behind "which deal is better, and when?" A single point that satisfies two demands together is one of the most useful ideas in mathematics, from choosing a phone plan to balancing a design against a budget. Seeing it as a crossing makes an abstract "solve these together" suddenly concrete.</p>
+<p class="small">Carry one idea forward: when two rules must both hold, look for where they meet — that shared point is the answer to both.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> find the common solution of two equations from where their lines cross.</p>
+<ul>
+<li>Plot two lines on the same axes (for example <span class="uk">y</span> = 2<span class="uk">x</span> − 1 and <span class="uk">y</span> = <span class="uk">x</span> + 1) and read the point where they cross.</li>
+<li><b>Check</b> the crossing by substituting it into <em>both</em> equations — it must make each one true.</li>
+<li>Test one other point that is on only <em>one</em> line, and explain why it is <b>not</b> the common solution.</li>
+<li><span class="stretch">stretch</span> Set up a break-even question of your own (two cost plans) and find where they cost the same.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a plotted graph with the crossing marked and checked, a short spoken explanation, or a poster of a break-even decision.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_EQ_MEET_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows two lines can cross.</td><td>Reads a crossing point off a graph.</td><td>Interprets the crossing as the common solution of both equations.</td><td>Explains why the intersection satisfies both, and points on one line do not.</td></tr>
+<tr><td><b>Application</b></td><td>Plots a line.</td><td>Plots two lines and locates the crossing.</td><td>Checks the crossing by substituting into both equations.</td><td>Solves a break-even problem and interprets it.</td></tr>
+<tr><td><b>Communication</b></td><td>Writes a point.</td><td>Shows the two lines.</td><td>Links the crossing to both equations.</td><td>Presents 'intersection = common solution' another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Checks the crossing in one equation.</td><td>Checks it in both.</td><td>Explains why only the crossing is common, using a point on one line.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Where two lines meet — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Read the crossing point of two lines off the graph. Substitute it into each equation — the common solution makes BOTH true.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_equations_l06_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","y","=","+","\u2212","(",")"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function clean(v){return String(v).toLowerCase().replace(/[,\s]/g,'').replace(/=/g,'').replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-').trim();}
+function NEO_wordNum(str){
+  var s=String(str).toLowerCase().replace(/[-–—]/g,' ').replace(/\band\b/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return NaN;
+  // normalise common fraction phrases to single tokens
+  s=s.replace(/\bone half\b|\ba half\b/g,'half')
+     .replace(/\bthree quarters?\b/g,'threeq')
+     .replace(/\bone quarter\b|\ba quarter\b/g,'quarter')
+     .replace(/\btwo thirds?\b/g,'twothird')
+     .replace(/\bone third\b|\ba third\b/g,'third');
+  var frac={half:0.5,quarter:0.25,threeq:0.75,third:1/3,twothird:2/3};
+  if(frac[s]!=null) return frac[s];
+  var ones={zero:0,nought:0,nil:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+  var tens={twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+  var parts=s.split(' '),total=0,cur=0,used=false,fracAdd=0,i,w;
+  for(i=0;i<parts.length;i++){
+    w=parts[i];
+    if(w==='a'||w==='') continue;
+    if(ones[w]!=null){cur+=ones[w];used=true;}
+    else if(tens[w]!=null){cur+=tens[w];used=true;}
+    else if(w==='hundred'){cur=(cur||1)*100;used=true;}
+    else if(w==='thousand'){total+=(cur||1)*1000;cur=0;used=true;}
+    else if(frac[w]!=null){fracAdd+=frac[w];used=true;}
+    else if(w==='point'){
+      total+=cur;cur=0;var dec='0.',j,any=false;
+      for(j=i+1;j<parts.length;j++){if(ones[parts[j]]!=null&&ones[parts[j]]<10){dec+=ones[parts[j]];any=true;}else return NaN;}
+      if(!any) return NaN;
+      return used?total+parseFloat(dec):NaN;
+    }
+    else return NaN;
+  }
+  return used?total+cur+fracAdd:NaN;
+}
+function num(v){
+  var s=String(v).toLowerCase().trim();
+  if(!s) return NaN;
+  var wn=NEO_wordNum(s); if(!isNaN(wn)) return wn;
+  s=s.replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'');
+  s=s.replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+  if(fm){var d=parseFloat(fm[2]);return d===0?NaN:parseFloat(fm[1])/d;}
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+
+/* ============ CONSTRUCTION ENGINE — shared SVG helpers ============ */
+var SVGNS="http://www.w3.org/2000/svg";
+function svgPt(svg,e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*380/r.width, y:(e.clientY-r.top)*320/r.height};}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function arcPts(cx,cy,r,a0,a1,n){var s="",i,a;for(i=0;i<=n;i++){a=a0+(a1-a0)*i/n;s+=(i?" L ":"M ")+(cx+r*Math.cos(a)).toFixed(1)+" "+(cy+r*Math.sin(a)).toFixed(1);}return s;}
+/* intersection of two circles (centre c1 r1, centre c2 r2) → upper point (smaller y) or null */
+function circInt(c1,r1,c2,r2){
+  var d=dist(c1,c2); if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;
+  var a=(d*d+r1*r1-r2*r2)/(2*d), hh=r1*r1-a*a; if(hh<0)hh=0; var h=Math.sqrt(hh);
+  var ux=(c2.x-c1.x)/d, uy=(c2.y-c1.y)/d, mx=c1.x+a*ux, my=c1.y+a*uy;
+  var p1={x:mx-h*uy,y:my+h*ux}, p2={x:mx+h*uy,y:my-h*ux};
+  return p1.y<=p2.y?p1:p2;
+}
+var U=40; /* pixels per unit */
+function ptDot(p,col,label,dy){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="6.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+(label?'<text x="'+p.x.toFixed(1)+'" y="'+(p.y+(dy||-12)).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+label+'</text>':'');}
+
+/* ============ GC-02 activity helpers ============ */
+function mapPt(svg,e){var a=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);var r=svg.getBoundingClientRect();return {x:a[0]+(e.clientX-r.left)*a[2]/(r.width||1),y:a[1]+(e.clientY-r.top)*a[3]/(r.height||1)};}
+function circInt2(c1,r1,c2,r2){var d=dist(c1,c2);if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;var a=(d*d+r1*r1-r2*r2)/(2*d),hh=r1*r1-a*a;if(hh<0)hh=0;var h=Math.sqrt(hh);var ux=(c2.x-c1.x)/d,uy=(c2.y-c1.y)/d,mx=c1.x+a*ux,my=c1.y+a*uy;return [{x:mx-h*uy,y:my+h*ux},{x:mx+h*uy,y:my-h*ux}];}
+function nearer(cands,ref){if(!cands)return null;return (dist(cands[0],ref)<=dist(cands[1],ref))?cands[0]:cands[1];}
+function seg(p,q,col,w){return '<line x1="'+p.x.toFixed(1)+'" y1="'+p.y.toFixed(1)+'" x2="'+q.x.toFixed(1)+'" y2="'+q.y.toFixed(1)+'" stroke="'+(col||"#2f3429")+'" stroke-width="'+(w||3)+'" stroke-linecap="round"/>';}
+function angleAt(a,b,c){var v1={x:a.x-b.x,y:a.y-b.y},v2={x:c.x-b.x,y:c.y-b.y};var d=(v1.x*v2.x+v1.y*v2.y)/((Math.hypot(v1.x,v1.y)*Math.hypot(v2.x,v2.y))||1);d=Math.max(-1,Math.min(1,d));return Math.round(Math.acos(d)*180/Math.PI);}
+
+function drawGraph(svgId,m,c,opts){
+  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg)return;
+  var VW=360,VH=360,pad=34, xmin=(opts.xRange?opts.xRange[0]:-1), xmax=(opts.xRange?opts.xRange[1]:6);
+  var fam=opts.family||[{m:m,c:c}];
+  var exts=[0]; fam.forEach(function(f){ exts.push(f.m*xmin+f.c); exts.push(f.m*xmax+f.c); });
+  if(opts.targetY!=null) exts.push(opts.targetY);
+  var yA=m*xmin+c, yB=m*xmax+c;
+  var ylo=Math.floor(Math.min.apply(0,exts)-1), yhi=Math.ceil(Math.max.apply(0,exts)+1);
+  if(yhi-ylo<8){ var mid=(yhi+ylo)/2; ylo=Math.floor(mid-4); yhi=ylo+8; }
+  if(opts.fixedY){ ylo=opts.fixedY[0]; yhi=opts.fixedY[1]; }   /* fixed window: scale never changes as c/m change */
+  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(yhi-ylo);
+  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ylo)*uy;}
+  var s="", y0=SY(0), x0=SX(0);
+  for(var gx=xmin;gx<=xmax;gx++) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  for(var gy=ylo;gy<=yhi;gy++) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
+  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ylo).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(yhi).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
+  for(var lx=xmin+1;lx<=xmax;lx++){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
+  var yrange=yhi-ylo, ystep=yrange>40?10:yrange>20?5:yrange>12?2:1;
+  for(var ly=Math.ceil(ylo/ystep)*ystep;ly<=yhi;ly+=ystep){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
+  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="11" fill="#6a7080" text-anchor="end" font-style="italic">x</text>';
+  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(yhi)+10).toFixed(1)+'" font-size="11" fill="#6a7080" font-style="italic">y</text>';
+  if(opts.ghost){ var g=opts.ghost; s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(g.m*xmin+g.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(g.m*xmax+g.c).toFixed(1)+'" stroke="#b9a05f" stroke-width="2" stroke-dasharray="5 4"/>'; }
+  if(opts.targetY!=null){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(opts.targetY).toFixed(1)+'" r="8" fill="none" stroke="#b24c4c" stroke-width="2.4"/><text x="'+(SX(0)-9).toFixed(1)+'" y="'+(SY(opts.targetY)+3).toFixed(1)+'" font-size="10" fill="#b24c4c" text-anchor="end">target</text>'; }
+  if(opts.family){
+    opts.family.forEach(function(f){ var col=f.col||"#3f7a45";
+      s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(f.m*xmin+f.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(f.m*xmax+f.c).toFixed(1)+'" stroke="'+col+'" stroke-width="2.4"/>';
+      if(!opts.hideFamilyDots && f.c>=ylo&&f.c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(f.c).toFixed(1)+'" r="4.5" fill="'+col+'"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(f.c)-6).toFixed(1)+'" font-size="10" fill="'+col+'">(0, '+f.c+')</text>'; }
+    });
+    if(opts.vmark!=null){ var mvx=SX(opts.vmark);
+      s+='<line x1="'+mvx.toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+mvx.toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#365a68" stroke-width="1.6" stroke-dasharray="4 3"/>';
+      opts.family.forEach(function(f){ var yv=f.m*opts.vmark+f.c; if(yv>=ylo&&yv<=yhi){ s+='<circle cx="'+mvx.toFixed(1)+'" cy="'+SY(yv).toFixed(1)+'" r="4.5" fill="'+(f.col||"#3f7a45")+'"/>'; } });
+      s+='<text x="'+mvx.toFixed(1)+'" y="'+(SY(yhi)+11).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">x = '+opts.vmark+'</text>';
+    }
+    if(opts.markPoint){ var pX=SX(opts.markPoint.x), pY=SY(opts.markPoint.y);
+      s+='<circle cx="'+pX.toFixed(1)+'" cy="'+pY.toFixed(1)+'" r="7" fill="none" stroke="#b24c4c" stroke-width="2.6"/>';
+      if(opts.markPoint.label){ s+='<text x="'+(pX+10).toFixed(1)+'" y="'+(pY-8).toFixed(1)+'" font-size="10" fill="#b24c4c" font-weight="bold">'+opts.markPoint.label+'</text>'; }
+    }
+    svg.innerHTML=s; return;
+  }
+  if(opts.segTo!=null){ s+='<line x1="'+SX(0).toFixed(1)+'" y1="'+SY(c).toFixed(1)+'" x2="'+SX(opts.segTo).toFixed(1)+'" y2="'+SY(m*opts.segTo+c).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  else if(!opts.hideLine){ s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(yA).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(yB).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.showPoints){ var maxp=(opts.showPoints===true)?4:opts.showPoints; for(var px=0;px<=maxp;px++){ var py=m*px+c; if(py<ylo||py>yhi)continue; s+='<circle cx="'+SX(px).toFixed(1)+'" cy="'+SY(py).toFixed(1)+'" r="3.2" fill="#2f6a35"/>'; } }
+  if(opts.dots){ opts.dots.forEach(function(p){ if(p.x>=xmin&&p.x<=xmax&&p.y>=ylo&&p.y<=yhi){ var col=p.col||"#2f6a35"; s+='<circle cx="'+SX(p.x).toFixed(1)+'" cy="'+SY(p.y).toFixed(1)+'" r="4.6" fill="'+col+'"/>'; if(p.label) s+='<text x="'+(SX(p.x)+8).toFixed(1)+'" y="'+(SY(p.y)-6).toFixed(1)+'" font-size="10" fill="'+col+'">'+p.label+'</text>'; } }); }
+  if(!opts.hideIntercept && c>=ylo&&c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(c).toFixed(1)+'" r="4.5" fill="#b25f2e"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(c)-6).toFixed(1)+'" font-size="10" fill="#b25f2e">(0, '+c+')</text>'; }
+  if(opts.lineThrough){ var LA=opts.lineThrough.A, LB=opts.lineThrough.B, lm=(LB.y-LA.y)/(LB.x-LA.x), lc=LA.y-lm*LA.x;
+    s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(lm*xmin+lc).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(lm*xmax+lc).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
+  if(opts.tris){ opts.tris.forEach(function(t){ var col=t.col||"#365a68", ax=SX(t.A.x),ay=SY(t.A.y),bx=SX(t.B.x),by=SY(t.B.y),cornerX=bx,cornerY=ay;
+    var run=t.B.x-t.A.x, rise=t.B.y-t.A.y;
+    s+='<line x1="'+ax.toFixed(1)+'" y1="'+ay.toFixed(1)+'" x2="'+cornerX.toFixed(1)+'" y2="'+cornerY.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<line x1="'+cornerX.toFixed(1)+'" y1="'+cornerY.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
+    s+='<text x="'+((ax+cornerX)/2).toFixed(1)+'" y="'+(cornerY+(rise>=0?15:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="middle">run '+run+'</text>';
+    var riseLeft = cornerX>295;   /* near right edge: put the rise label on the inside to avoid clipping */
+    s+='<text x="'+(cornerX+(riseLeft?-6:6)).toFixed(1)+'" y="'+((cornerY+by)/2+3).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="'+(riseLeft?'end':'start')+'">rise '+(rise>=0?"+"+rise:rise)+'</text>';
+    s+='<circle cx="'+ax.toFixed(1)+'" cy="'+ay.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(ax-8).toFixed(1)+'" y="'+(ay+(rise>=0?14:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="end">'+(t.aLabel||"A")+'</text>';
+    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(bx+7).toFixed(1)+'" y="'+(by-7).toFixed(1)+'" font-size="10" fill="'+col+'">'+(t.bLabel||"B")+'</text>';
+  }); }
+  if(opts.stepTri && m!==0){ var rx0=SX(0),ry0=SY(c),rx1=SX(1),ry1c=SY(c),ry1=SY(m+c);
+    s+='<line x1="'+rx0.toFixed(1)+'" y1="'+ry0.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1c.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<line x1="'+rx1.toFixed(1)+'" y1="'+ry1c.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
+    s+='<text x="'+(rx0+3).toFixed(1)+'" y="'+(ry1c+16).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="start">1 across</text>';
+    s+='<text x="'+(rx1+5).toFixed(1)+'" y="'+((ry1c+ry1)/2+3).toFixed(1)+'" font-size="10" fill="#365a68">'+(m>0?"+"+m:m)+" up</text>";
+  }
+  if(opts.stepTri && m===0){ s+='<text x="'+SX(3).toFixed(1)+'" y="'+(SY(c)-8).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">flat: no change</text>'; }
+  if(opts.highlightX!=null){ var hx=opts.highlightX, hy=m*hx+c; if(hy>=ylo&&hy<=yhi){
+    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
+    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+hx+', '+hy+')</text>';
+  }}
+  svg.innerHTML=s;
+}
+
+/* ============ EQ-06 activities: where two lines meet ============ */
+function lnStr(m,c){var mp=(m===1?"x":m===-1?"−x":m+"x");return "y = "+mp+(c>0?" + "+c:c<0?" − "+(-c):"");}
+function sub1(m,x,c){return (m===1?"":m===-1?"−":m)+"×"+x+(c>=0?" + "+c:" − "+(-c));}
+var G1="#3f7a45", G2="#2b6cb0";
+
+/* ---- CONNECTION (hero): crossing = common solution ---- */
+var CSBANK=[
+ {m1:2,c1:-1,m2:1,c2:1,ix:2,iy:3},
+ {m1:2,c1:0,m2:1,c2:3,ix:3,iy:6},
+ {m1:-1,c1:6,m2:1,c2:2,ix:2,iy:4},
+ {m1:3,c1:-4,m2:1,c2:2,ix:3,iy:5}
+];
+var cs={}, csRevealed=false;
+function csDraw(){
+  drawGraph("csSvg",cs.m1,cs.c1,{xRange:[-1,6],family:[{m:cs.m1,c:cs.c1,col:G1},{m:cs.m2,c:cs.c2,col:G2}],hideFamilyDots:true,markPoint:csRevealed?{x:cs.ix,y:cs.iy,label:"("+cs.ix+", "+cs.iy+")"}:null});
+  document.getElementById("csEqn").innerHTML='<span style="color:'+G1+'">'+lnStr(cs.m1,cs.c1)+'</span> &nbsp;and&nbsp; <span style="color:'+G2+'">'+lnStr(cs.m2,cs.c2)+'</span>';
+}
+function csCheck(){
+  var fb=document.getElementById("csFeedback"); fb.style.display="block";
+  var x=num(document.getElementById("csX").value), y=num(document.getElementById("csY").value);
+  if(x===cs.ix&&y===cs.iy){
+    csRevealed=true; csDraw();
+    fb.className="feedback good";
+    fb.innerHTML="✓ They cross at <b>("+cs.ix+", "+cs.iy+")</b>. Into "+lnStr(cs.m1,cs.c1)+": "+sub1(cs.m1,cs.ix,cs.c1)+" = "+cs.iy+" ✓. Into "+lnStr(cs.m2,cs.c2)+": "+sub1(cs.m2,cs.ix,cs.c2)+" = "+cs.iy+" ✓. It satisfies <b>both</b> — the <b>common solution</b>.";
+    return;
+  }
+  fb.className="feedback bad";
+  fb.innerHTML="Not yet — read the point where the two lines actually cross (both coordinates). Use the prompt or hint.";
+}
+function csPrompt(){var s=document.getElementById("csSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> follow each line to the single point they share. Read its <span class='uk'>x</span> across and its <span class='uk'>y</span> up — that pair is on both lines.";}
+function csHint(){var s=document.getElementById("csSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> set the right-hand sides equal: "+(cs.m1===1?"x":cs.m1+"x")+(cs.c1>=0?" + "+cs.c1:" − "+(-cs.c1))+" = "+(cs.m2===1?"x":cs.m2+"x")+(cs.c2>=0?" + "+cs.c2:" − "+(-cs.c2))+" and solve for x, then find y.";}
+function csNew(){var p;do{p=CSBANK[Math.floor(Math.random()*CSBANK.length)];}while(p===cs.src&&CSBANK.length>1);cs={m1:p.m1,c1:p.c1,m2:p.m2,c2:p.c2,ix:p.ix,iy:p.iy,src:p};csRevealed=false;document.getElementById("csX").value="";document.getElementById("csY").value="";document.getElementById("csFeedback").style.display="none";document.getElementById("csSupport").style.display="none";csDraw();}
+function csInit(){var p=CSBANK[0];cs={m1:p.m1,c1:p.c1,m2:p.m2,c2:p.c2,ix:p.ix,iy:p.iy,src:p};csRevealed=false;csDraw();}
+
+/* ---- MOVEMENT: slide to the meeting ---- */
+var sl={};
+function slDraw(){
+  drawGraph("slSvg",sl.m1,sl.c1,{xRange:[-1,6],family:[{m:sl.m1,c:sl.c1,col:G1},{m:sl.m2,c:sl.c2,col:G2}],hideFamilyDots:true,vmark:sl.x});
+  document.getElementById("slEqn").innerHTML='<span style="color:'+G1+'">'+lnStr(sl.m1,sl.c1)+'</span> &nbsp;and&nbsp; <span style="color:'+G2+'">'+lnStr(sl.m2,sl.c2)+'</span>';
+  var y1=sl.m1*sl.x+sl.c1, y2=sl.m2*sl.x+sl.c2, meet=(y1===y2);
+  document.getElementById("slVals").innerHTML='At x = <b>'+sl.x+'</b>: &nbsp;<span style="color:'+G1+'">y = '+y1+'</span> &nbsp;vs&nbsp; <span style="color:'+G2+'">y = '+y2+'</span>';
+  document.getElementById("slRead").innerHTML = meet
+    ? "✓ They <b>meet</b> at ("+sl.x+", "+y1+") — the two lines agree, so this is the common solution."
+    : "Not equal yet ("+y1+" ≠ "+y2+"). Step "+(y1<y2===(sl.m1>sl.m2)?"":"")+"towards where the gap closes.";
+}
+function slStep(d){sl.x=Math.max(-1,Math.min(6,sl.x+d));slDraw();}
+function slNew(){var p;do{p=CSBANK[Math.floor(Math.random()*CSBANK.length)];}while(p===sl.src&&CSBANK.length>1);sl={m1:p.m1,c1:p.c1,m2:p.m2,c2:p.c2,ix:p.ix,iy:p.iy,x:0,src:p};slDraw();}
+function slInit(){var p=CSBANK[0];sl={m1:p.m1,c1:p.c1,m2:p.m2,c2:p.c2,ix:p.ix,iy:p.iy,x:0,src:p};slDraw();}
+
+/* ---- REFLECTION: which point satisfies both? ---- */
+var wp={}, wpI=0, wpAnswered=false;
+function wpPts(p){
+  var e=p.ix+1;
+  return [
+   {x:p.ix,y:p.iy},                          /* both */
+   {x:e,y:p.m1*e+p.c1},                       /* line1 only */
+   {x:e,y:p.m2*e+p.c2},                       /* line2 only */
+   {x:e,y:p.m1*e+p.c1+2}                      /* neither */
+  ];
+}
+function wpCur(){return wp.pts[wpI];}
+function wpDraw(){
+  var pt=wpCur();
+  drawGraph("wpSvg",wp.m1,wp.c1,{xRange:[-1,6],family:[{m:wp.m1,c:wp.c1,col:G1},{m:wp.m2,c:wp.c2,col:G2}],hideFamilyDots:true,markPoint:{x:pt.x,y:pt.y,label:"("+pt.x+", "+pt.y+")"}});
+  document.getElementById("wpEqn").innerHTML='<span style="color:'+G1+'">'+lnStr(wp.m1,wp.c1)+'</span> &nbsp;and&nbsp; <span style="color:'+G2+'">'+lnStr(wp.m2,wp.c2)+'</span>';
+  document.getElementById("wpPt").innerHTML="Is <b>("+pt.x+", "+pt.y+")</b> the common solution?";
+  document.getElementById("wpNextBtn").disabled=!wpAnswered;
+  if(!wpAnswered)document.getElementById("wpRead").innerHTML="Is the marked point on <em>both</em> lines? Decide, then the tool substitutes into each.";
+}
+function wpAnswer(said){
+  var pt=wpCur(), on1=(wp.m1*pt.x+wp.c1===pt.y), on2=(wp.m2*pt.x+wp.c2===pt.y), both=on1&&on2;
+  wpAnswered=true;
+  var r=document.getElementById("wpRead"), correct=(said===both);
+  var t1=sub1(wp.m1,pt.x,wp.c1)+" = "+(wp.m1*pt.x+wp.c1)+(on1?" = "+pt.y+" ✓":" ≠ "+pt.y+" ✗");
+  var t2=sub1(wp.m2,pt.x,wp.c2)+" = "+(wp.m2*pt.x+wp.c2)+(on2?" = "+pt.y+" ✓":" ≠ "+pt.y+" ✗");
+  var verdict=both?"the <b>common solution</b> (on both)":on1?"on line 1 only — <b>not</b> common":on2?"on line 2 only — <b>not</b> common":"on <b>neither</b> line";
+  r.innerHTML=(correct?"✓ ":"Actually — ")+"("+pt.x+", "+pt.y+") is "+verdict+".<br>Line 1: "+t1+". &nbsp; Line 2: "+t2+".";
+  document.getElementById("wpNextBtn").disabled=false;
+}
+function wpNext(){ if(wpI<wp.pts.length-1){wpI++;wpAnswered=false;wpDraw();} else {document.getElementById("wpRead").innerHTML="✓ Only the crossing lies on <b>both</b> lines — that one point is the common solution. Try a new pair.";} }
+function wpSet(p){wp={m1:p.m1,c1:p.c1,m2:p.m2,c2:p.c2,pts:wpPts(p)};wpI=0;wpAnswered=false;wpDraw();}
+function wpNew(){var p;do{p=CSBANK[Math.floor(Math.random()*CSBANK.length)];}while(p===wp.src&&CSBANK.length>1);wp.src=p;wpSet(p);wp.src=p;}
+function wpInit(){wp.src=CSBANK[0];wpSet(CSBANK[0]);wp.src=CSBANK[0];}
+
+/* ---- CREATIVITY (stretch): break-even ---- */
+var BEBANK=[
+ {story:"Plan A costs £5 plus £2 an hour: y = 2x + 5. Plan B costs £2 plus £3 an hour: y = 3x + 2.",m1:2,c1:5,m2:3,c2:2,ix:3,iy:11},
+ {story:"Van A: £6 plus £1 a mile: y = x + 6. Van B: £2 plus £3 a mile: y = 3x + 2.",m1:1,c1:6,m2:3,c2:2,ix:2,iy:8},
+ {story:"Deal A: y = 2x + 1. Deal B: y = 4x − 3.",m1:2,c1:1,m2:4,c2:-3,ix:2,iy:5}
+];
+var be={}, beSolved=false;
+function beDraw(){
+  drawGraph("beSvg",be.m1,be.c1,{xRange:[0,6],family:[{m:be.m1,c:be.c1,col:G1},{m:be.m2,c:be.c2,col:G2}],hideFamilyDots:true,markPoint:beSolved?{x:be.ix,y:be.iy,label:"("+be.ix+", "+be.iy+")"}:null});
+  document.getElementById("beStory").innerHTML='<span style="color:'+G1+'">Plan A</span> &nbsp;vs&nbsp; <span style="color:'+G2+'">Plan B</span> — '+be.story;
+  document.getElementById("beQ").innerHTML='Same cost when x = <input id="beX" autocomplete="off" placeholder="?" style="width:46px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600">, costing £ <input id="beY" autocomplete="off" placeholder="?" style="width:46px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> <button onclick="beCheck()">✅ Check</button>';
+  if(!beSolved)document.getElementById("beRead").innerHTML="Set the two costs equal: "+(be.m1===1?"x":be.m1+"x")+" + "+be.c1+" = "+be.m2+"x + "+be.c2+", solve for x, then find the shared cost.";
+}
+function beCheck(){
+  var x=num(document.getElementById("beX").value), y=num(document.getElementById("beY").value), r=document.getElementById("beRead");
+  if(x===be.ix&&y===be.iy){
+    beSolved=true; beDraw();
+    var cheapEarly=(be.c1<be.c2)?"A":"B", cheapLate=(be.m1<be.m2)?"A":"B";
+    r.innerHTML="✓ They break even at <b>("+be.ix+", £"+be.iy+")</b>. Before x = "+be.ix+", <b>Plan "+cheapEarly+"</b> is cheaper; after it, <b>Plan "+cheapLate+"</b> is. The crossing is the decision point.";
+  } else {
+    r.innerHTML="Not yet — set "+(be.m1===1?"x":be.m1+"x")+" + "+be.c1+" = "+be.m2+"x + "+be.c2+", solve for x, then substitute to get the shared cost.";
+  }
+}
+function beNew(){var p;do{p=BEBANK[Math.floor(Math.random()*BEBANK.length)];}while(p===be.src&&BEBANK.length>1);be={story:p.story,m1:p.m1,c1:p.c1,m2:p.m2,c2:p.c2,ix:p.ix,iy:p.iy,src:p};beSolved=false;beDraw();}
+function beInit(){var p=BEBANK[0];be={story:p.story,m1:p.m1,c1:p.c1,m2:p.m2,c2:p.c2,ix:p.ix,iy:p.iy,src:p};beSolved=false;beDraw();}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    readcross:{title:'Reading a crossing',prompt:'Two lines cross at (3, 5). What is the x-coordinate of the crossing?',answer:3,hint:'A point is (x, y); the first number is x, so 3.'},
+    setequal:{title:'Setting two lines equal',prompt:'Where y = 2x \u2212 1 and y = x + 1 are equal, solve 2x \u2212 1 = x + 1 for x.',answer:2,hint:'2x \u2212 1 = x + 1 \u2192 subtract x: x \u2212 1 = 1 \u2192 x = 2.'},
+    substitute:{title:'Checking a point',prompt:'Is (2, 3) on y = x + 1? Work out 2 + 1.',answer:3,hint:'2 + 1 = 3, which matches y = 3 \u2014 so (2, 3) is on the line.'}
+  };;;;;;
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer" style="width:100%;max-width:220px;padding:9px;border:1px solid #bcae98;border-radius:8px;margin-top:8px">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 \u00b7 find the crossing x",q:"The lines y = 2x \u2212 1 and y = x + 1 cross at (a, b). Find a (solve 2x \u2212 1 = x + 1).",a:[],eq:function(v){return num(v)===2;},prompt:"Set the right-hand sides equal and solve for x.",hint:"2x \u2212 1 = x + 1 \u2192 x = 2.",sol:"a = 2 \u2014 2x \u2212 1 = x + 1 gives x = 2. (Then b = 2 + 1 = 3.)"},
+ {label:"2 of 6 \u00b7 find the crossing y",q:"For that same crossing, what is b (the y-coordinate)?",a:[],eq:function(v){return num(v)===3;},prompt:"Put x = 2 into either equation.",hint:"y = 2 + 1 = 3 (or 2\u00d72 \u2212 1 = 3).",sol:"b = 3 \u2014 substitute x = 2: y = 2 + 1 = 3. The crossing is (2, 3)."},
+ {label:"3 of 6 \u00b7 check a crossing",q:"Two lines meet at (4, 7). Is this point on y = x + 3? Work out x + 3 at x = 4.",a:[],eq:function(v){return num(v)===7;},prompt:"Substitute x = 4 into x + 3.",hint:"4 + 3 = 7, which matches y = 7.",sol:"7 \u2014 4 + 3 = 7 = y, so (4, 7) is on y = x + 3 too. A crossing lies on both lines."},
+ {label:"4 of 6 \u00b7 where do they meet?",q:"Where do y = 2x and y = x + 3 meet? Find the x-coordinate.",a:[],eq:function(v){return num(v)===3;},prompt:"Solve 2x = x + 3.",hint:"2x = x + 3 \u2192 x = 3.",sol:"x = 3 \u2014 2x = x + 3 gives x = 3 (and y = 6). They meet at (3, 6)."},
+ {label:"5 of 6 \u00b7 common solution",q:"The common solution of y = x + 2 and y = \u2212x + 6: find the x-coordinate (solve x + 2 = \u2212x + 6).",a:[],eq:function(v){return num(v)===2;},prompt:"x + 2 = \u2212x + 6 \u2014 collect the x-terms.",hint:"x + 2 = \u2212x + 6 \u2192 2x = 4 \u2192 x = 2.",sol:"x = 2 \u2014 x + 2 = \u2212x + 6 gives 2x = 4, so x = 2 (and y = 4). Common solution (2, 4)."},
+ {label:"6 of 6 \u00b7 a non-whole meeting (stretch)",q:"Where do y = 2x + 1 and y = 4x meet? Find the x-coordinate (solve 2x + 1 = 4x).",a:[],eq:function(v){return num(v)===0.5;},prompt:"2x + 1 = 4x \u2014 the answer need not be whole.",hint:"2x + 1 = 4x \u2192 1 = 2x \u2192 x = 0.5 (or 1/2).",sol:"x = 0.5 (or 1/2) \u2014 2x + 1 = 4x gives 1 = 2x, so x = 0.5 (and y = 2). They meet at (0.5, 2)."}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Set the two right-hand sides equal and solve, or read the crossing off the graph. Try the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  csInit();
+  slInit();
+  wpInit();
+  beInit();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

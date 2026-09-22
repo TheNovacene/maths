@@ -528,6 +528,14 @@
           "file": "lessons/equations/05-a-line-is-a-set-of-solutions.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-06-where-two-lines-meet",
+          "num": "Lesson 06",
+          "title": "Where two lines meet",
+          "file": "lessons/equations/06-where-two-lines-meet.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
