@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: Forming an equation</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top;text-align:center}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+.uk{font-family:'Times New Roman',Georgia,serif;font-style:italic}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Equations, Inequalities and Simultaneous Relationships</h1>
+<h2>Forming an equation</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How do I turn a situation into an equation I can solve?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core — the opening lesson of the algebra unit, where solving becomes <em>keeping the balance</em>.</p>
+<p><b>Stepping Stone:</b> <b>form</b> a linear equation from a worded or geometric situation by naming the unknown and writing what the situation says, then <b>solve</b> it and <b>interpret</b> the answer back in the context, checking it makes the story true.</p>
+<p><b>You will need:</b> the four operations and their inverses, working with negative numbers, and the optional <b>✏️ Scratchpad</b>. No calculator needed today.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 8 · Move 14 · Reflect 10 · Create 8 · Rest/Nourish 5</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_04_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_04_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Pick a situation. Name the unknown (let x be...), write what the story says as an equation, solve it, then check the answer makes the story true.')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION (HERO) ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — Turn the words into an equation</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">An equation is a <b>question in disguise</b>. When a situation asks "what number makes this work?", you can capture it exactly: <b>name the unknown</b> (let <span class="uk">x</span> be the thing you don't know), then <b>write what the situation says</b> as an equation. Once it is written, you already know how to solve it — and the final move is to <b>check the answer against the story</b>, not just the algebra.</p>
+</div>
+<p><b>What to do:</b> read the situation, then build its equation by filling in the multiplier, the number added or subtracted, and the result. Press <b>Check</b>, then see it solved and tested against the story.</p>
+<p><b>What you are trying to notice:</b> the words map straight onto the equation — "multiply by 3" is the <b>3</b> in front of <span class="uk">x</span>, "add 4" is <b>+ 4</b>, "the result is 19" is <b>= 19</b>. Forming is just careful translation.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📝 From story to equation</h3>
+<div id="sbStory" class="card" style="font-size:1.05em;text-align:center;background:#eef3e8"></div>
+<div style="text-align:center;font-size:1.15em;margin:8px 0">Let <span class="uk">x</span> be the number. &nbsp; <input id="sbM" autocomplete="off" placeholder="?" style="width:44px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> · x &nbsp;+&nbsp; <input id="sbK" autocomplete="off" placeholder="?" style="width:52px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> &nbsp;=&nbsp; <input id="sbR" autocomplete="off" placeholder="?" style="width:52px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"></div>
+<div id="sbSupport" class="clue" style="text-align:center;display:none"></div>
+<div id="sbFeedback" class="feedback" style="display:none"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button onclick="sbPrompt()">🤔 Socratic prompt</button><button onclick="sbHint()">💡 Hint</button><button onclick="sbCheck()">✅ Check</button><button onclick="sbNew()">🎲 New situation</button></div>
+<p class="small" style="text-align:center">Tip: for "subtract", enter a negative number in the middle box (e.g. −5).</p>
+<p><b>Carry this forward:</b> name the unknown, write what the story says, solve, then check the answer fits the story.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT ================= -->
+<details class="hs">
+<summary>🚶 Movement — See it as a bar</summary>
+<p><b>What to do:</b> a <b>bar model</b> lays a situation out as parts of a whole. Each <span class="uk">x</span> block is the unknown; number blocks are known amounts; the whole bar is the total. Read the equation straight off the bar, then solve it.</p>
+<p><b>What you are trying to notice:</b> the bar makes the equation obvious — count the <span class="uk">x</span> blocks (the coefficient), add the number block, set it equal to the total. Then it is a two-step equation you already know.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">📊 Read the bar, solve the equation</h3>
+<div id="bmStory" class="card" style="font-size:1.02em;text-align:center;background:#eef3e8"></div>
+<div class="card" style="text-align:center"><svg id="bmBar" class="graphsvg" style="max-width:440px" viewBox="0 0 440 110" role="img" aria-label="A bar model of the situation"></svg></div>
+<div id="bmEqn" class="bignum" style="font-size:1.2em"></div>
+<div id="bmOpts" class="buttonrow" style="justify-content:center;flex-wrap:wrap"></div>
+<div id="bmRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="bmNew()">🎲 New situation</button></div>
+<p><b>Carry this forward:</b> a bar model turns a story into an equation you can see, then solve.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Solve, then answer the real question</summary>
+<p><b>What to do:</b> here the equation is already formed. Solve it, then read the situation again — because the question often asks for something <em>other</em> than <span class="uk">x</span> (a sister's age, the larger number, a length). Give the answer the story actually wants.</p>
+<p><b>What you are trying to notice:</b> solving finds <span class="uk">x</span>; <b>interpreting</b> turns <span class="uk">x</span> back into the answer the situation asked for. An unchecked or uninterpreted answer is only half the job.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔎 From x back to the story</h3>
+<div id="rfStory" class="card" style="font-size:1.02em;text-align:center;background:#eef3e8"></div>
+<div id="rfLines" class="card" style="font-family:'Times New Roman',Georgia,serif;font-size:1.15em;line-height:1.9;text-align:center;min-height:1.6em"></div>
+<div id="rfOpts" class="buttonrow" style="justify-content:center;flex-wrap:wrap"></div>
+<div id="rfInterp" style="text-align:center;margin:6px 0;display:none"></div>
+<div id="rfRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="rfNew()">🎲 New situation</button></div>
+<p><b>Carry this forward:</b> solve for <span class="uk">x</span>, then interpret — answer what the situation actually asked, and check it fits.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — Write your own puzzle <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> forming is just <em>doing</em> to a chosen number. Pick the answer you want, choose what to do to it, and watch your own worded puzzle appear — one whose answer you already know.</p>
+<p><b>What you are trying to notice:</b> every "think of a number" puzzle is built forwards from its answer, so it can always be solved backwards to it. Writing one is the exact reverse of solving one.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">✍️ Build a "think of a number" puzzle</h3>
+<div style="text-align:center"><span class="small">let the answer be:</span> <span id="cwX"></span></div>
+<div style="text-align:center;margin-top:6px"><span class="small">multiply by:</span> <span id="cwM"></span></div>
+<div style="text-align:center;margin-top:6px"><span class="small">then add:</span> <span id="cwK"></span></div>
+<div id="cwStory" class="card" style="font-size:1.05em;text-align:center;margin-top:10px"></div>
+<div id="cwRead" class="clue" style="text-align:center"></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Choose an answer, then multiply and add to build a think-of-a-number puzzle. Write it in words, then swap with a friend and solve each other back to the chosen number.')">✏️ Build on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>There is something quietly powerful about turning a sentence into an equation: a everyday situation, captured exactly in symbols, and then answered for certain. Words become maths, maths becomes an answer, and the answer speaks back to the words. Take a breath.</p>
+<div class="card">
+<p><b>Notice one thing:</b> did naming the unknown ("let <span class="uk">x</span> be…") make a woolly problem suddenly feel handleable? That single move is often the hardest and most useful step. Just notice how it felt.</p>
+<p class="small">You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: contextual.</b> Forming equations genuinely lives in everyday budgeting and planning, so here the context is honest — not a disguise for abstract algebra.</p>
+<div class="card">
+<p><b>What it feeds:</b> the skill in this lesson is exactly what makes a <b>budget</b> or a plan work out. "A bus pass is £15 plus £2 a journey — how many journeys before it's worth £29?" is a formed equation. Being able to name an unknown and write the situation down puts you in control of real decisions about money, time and resources, instead of guessing.</p>
+<p class="small">Carry one idea forward: when a real choice depends on an unknown amount, name it <span class="uk">x</span> and write the situation as an equation — then solve for the answer.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> form equations from situations, solve them, and interpret the answers.</p>
+<ul>
+<li>Solve at least three worded problems: a "think of a number" puzzle, a money/cost situation, and one where the question asks for something other than <span class="uk">x</span> (an age, a length, the larger number).</li>
+<li>For each, <b>name the unknown</b>, <b>write the equation</b>, solve it, then <b>interpret</b> the answer in the situation.</li>
+<li><b>Check</b> each answer makes the original story true.</li>
+<li><span class="stretch">stretch</span> Write your own worded puzzle with a chosen answer, then hand it to someone to solve back.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-written solution showing each line, a short spoken walkthrough, or a poster of one problem from story to answer.</p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_EQ_FORMING_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Names the unknown.</td><td>Writes part of the equation from the words.</td><td>Forms and solves an equation from a situation.</td><td>Explains how each part of the equation matches the story.</td></tr>
+<tr><td><b>Application</b></td><td>Reads a value from a simple situation.</td><td>Forms a one-step equation.</td><td>Forms and solves a two-step equation.</td><td>Handles a situation where the answer must be interpreted (age, length, larger number).</td></tr>
+<tr><td><b>Communication</b></td><td>Writes the answer.</td><td>Shows the equation.</td><td>Shows forming and solving clearly.</td><td>Presents story → equation → answer another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Checks the arithmetic.</td><td>Checks the answer against the story.</td><td>Interprets the answer in context and judges whether it is sensible.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+<div id="practiceView" hidden><div class="practice">
+<h1>Forming an equation — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Name the unknown, form the equation from the words, solve it, then interpret the answer in the situation. Check it makes the story true.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_equations_l04_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["x","=","+","\u2212","\u00d7","(",")"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function clean(v){return String(v).toLowerCase().replace(/[,\s]/g,'').replace(/=/g,'').replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-').trim();}
+function NEO_wordNum(str){
+  var s=String(str).toLowerCase().replace(/[-–—]/g,' ').replace(/\band\b/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return NaN;
+  // normalise common fraction phrases to single tokens
+  s=s.replace(/\bone half\b|\ba half\b/g,'half')
+     .replace(/\bthree quarters?\b/g,'threeq')
+     .replace(/\bone quarter\b|\ba quarter\b/g,'quarter')
+     .replace(/\btwo thirds?\b/g,'twothird')
+     .replace(/\bone third\b|\ba third\b/g,'third');
+  var frac={half:0.5,quarter:0.25,threeq:0.75,third:1/3,twothird:2/3};
+  if(frac[s]!=null) return frac[s];
+  var ones={zero:0,nought:0,nil:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+  var tens={twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+  var parts=s.split(' '),total=0,cur=0,used=false,fracAdd=0,i,w;
+  for(i=0;i<parts.length;i++){
+    w=parts[i];
+    if(w==='a'||w==='') continue;
+    if(ones[w]!=null){cur+=ones[w];used=true;}
+    else if(tens[w]!=null){cur+=tens[w];used=true;}
+    else if(w==='hundred'){cur=(cur||1)*100;used=true;}
+    else if(w==='thousand'){total+=(cur||1)*1000;cur=0;used=true;}
+    else if(frac[w]!=null){fracAdd+=frac[w];used=true;}
+    else if(w==='point'){
+      total+=cur;cur=0;var dec='0.',j,any=false;
+      for(j=i+1;j<parts.length;j++){if(ones[parts[j]]!=null&&ones[parts[j]]<10){dec+=ones[parts[j]];any=true;}else return NaN;}
+      if(!any) return NaN;
+      return used?total+parseFloat(dec):NaN;
+    }
+    else return NaN;
+  }
+  return used?total+cur+fracAdd:NaN;
+}
+function num(v){
+  var s=String(v).toLowerCase().trim();
+  if(!s) return NaN;
+  var wn=NEO_wordNum(s); if(!isNaN(wn)) return wn;
+  s=s.replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'');
+  s=s.replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+  if(fm){var d=parseFloat(fm[2]);return d===0?NaN:parseFloat(fm[1])/d;}
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+
+/* ============ CONSTRUCTION ENGINE — shared SVG helpers ============ */
+var SVGNS="http://www.w3.org/2000/svg";
+function svgPt(svg,e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*380/r.width, y:(e.clientY-r.top)*320/r.height};}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function arcPts(cx,cy,r,a0,a1,n){var s="",i,a;for(i=0;i<=n;i++){a=a0+(a1-a0)*i/n;s+=(i?" L ":"M ")+(cx+r*Math.cos(a)).toFixed(1)+" "+(cy+r*Math.sin(a)).toFixed(1);}return s;}
+/* intersection of two circles (centre c1 r1, centre c2 r2) → upper point (smaller y) or null */
+function circInt(c1,r1,c2,r2){
+  var d=dist(c1,c2); if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;
+  var a=(d*d+r1*r1-r2*r2)/(2*d), hh=r1*r1-a*a; if(hh<0)hh=0; var h=Math.sqrt(hh);
+  var ux=(c2.x-c1.x)/d, uy=(c2.y-c1.y)/d, mx=c1.x+a*ux, my=c1.y+a*uy;
+  var p1={x:mx-h*uy,y:my+h*ux}, p2={x:mx+h*uy,y:my-h*ux};
+  return p1.y<=p2.y?p1:p2;
+}
+var U=40; /* pixels per unit */
+function ptDot(p,col,label,dy){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="6.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+(label?'<text x="'+p.x.toFixed(1)+'" y="'+(p.y+(dy||-12)).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+label+'</text>':'');}
+
+/* ============ GC-02 activity helpers ============ */
+function mapPt(svg,e){var a=(svg.getAttribute("viewBox")||"0 0 360 300").split(/\s+/).map(Number);var r=svg.getBoundingClientRect();return {x:a[0]+(e.clientX-r.left)*a[2]/(r.width||1),y:a[1]+(e.clientY-r.top)*a[3]/(r.height||1)};}
+function circInt2(c1,r1,c2,r2){var d=dist(c1,c2);if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;var a=(d*d+r1*r1-r2*r2)/(2*d),hh=r1*r1-a*a;if(hh<0)hh=0;var h=Math.sqrt(hh);var ux=(c2.x-c1.x)/d,uy=(c2.y-c1.y)/d,mx=c1.x+a*ux,my=c1.y+a*uy;return [{x:mx-h*uy,y:my+h*ux},{x:mx+h*uy,y:my-h*ux}];}
+function nearer(cands,ref){if(!cands)return null;return (dist(cands[0],ref)<=dist(cands[1],ref))?cands[0]:cands[1];}
+function seg(p,q,col,w){return '<line x1="'+p.x.toFixed(1)+'" y1="'+p.y.toFixed(1)+'" x2="'+q.x.toFixed(1)+'" y2="'+q.y.toFixed(1)+'" stroke="'+(col||"#2f3429")+'" stroke-width="'+(w||3)+'" stroke-linecap="round"/>';}
+function angleAt(a,b,c){var v1={x:a.x-b.x,y:a.y-b.y},v2={x:c.x-b.x,y:c.y-b.y};var d=(v1.x*v2.x+v1.y*v2.y)/((Math.hypot(v1.x,v1.y)*Math.hypot(v2.x,v2.y))||1);d=Math.max(-1,Math.min(1,d));return Math.round(Math.acos(d)*180/Math.PI);}
+
+/* ============ EQ-04 activities: forming an equation ============ */
+function eqSide(coef,cons){var t=coef>0?(coef===1?"x":coef+"x"):"";if(cons>0)t+=(t?" + ":"")+cons;else if(cons<0)t+=(t?" − ":"−")+(-cons);else if(!t)t="0";return t;}
+
+/* ---- CONNECTION (hero): story -> equation builder ---- */
+var SBBANK=[
+ {text:'"I think of a number, multiply it by 3, then add 4. The result is 19."',m:3,k:4,r:19},
+ {text:'"I think of a number, double it, then subtract 5. The answer is 7."',m:2,k:-5,r:7},
+ {text:'"A number is multiplied by 4 and 3 is added, giving 27."',m:4,k:3,r:27},
+ {text:'"Multiply a number by 5, then take away 2, and you get 18."',m:5,k:-2,r:18},
+ {text:'"A taxi costs £3 plus £2 for each mile. A journey costs £13." (let x be the number of miles)',m:2,k:3,r:13}
+];
+var sb={};
+function sbDraw(){
+  document.getElementById("sbStory").innerHTML=sb.text;
+  document.getElementById("sbM").value=""; document.getElementById("sbK").value=""; document.getElementById("sbR").value="";
+  document.getElementById("sbFeedback").style.display="none";
+  document.getElementById("sbSupport").style.display="none";
+}
+function sbCheck(){
+  var fb=document.getElementById("sbFeedback"); fb.style.display="block";
+  var m=num(document.getElementById("sbM").value), k=num(document.getElementById("sbK").value), r=num(document.getElementById("sbR").value);
+  var okm=(m===sb.m), okk=(k===sb.k), okr=(r===sb.r);
+  if(okm&&okk&&okr){
+    var x=(sb.r-sb.k)/sb.m, mid=sb.r-sb.k;
+    var solve="subtract "+(sb.k>=0?sb.k:"("+sb.k+")")+" → "+sb.m+"x = "+mid+(sb.m>1?"; divide by "+sb.m+" → x = "+x:"");
+    if(sb.k<0) solve="add "+(-sb.k)+" → "+sb.m+"x = "+mid+(sb.m>1?"; divide by "+sb.m+" → x = "+x:"");
+    var chk=x+" × "+sb.m+" = "+(x*sb.m)+", then "+(sb.k>=0?"+ "+sb.k:"− "+(-sb.k))+" = "+sb.r;
+    fb.className="feedback good";
+    fb.innerHTML="✓ Equation: <b>"+eqSide(sb.m,sb.k)+" = "+sb.r+"</b>. Solve: "+solve+". <b>Against the story:</b> "+chk+" ✓ — the number is <b>"+x+"</b>.";
+    return;
+  }
+  fb.className="feedback bad";
+  var msg=[];
+  if(!okm)msg.push("the <b>multiplier</b> (what x is multiplied by)");
+  if(!okk)msg.push("the <b>number added</b> (use a negative for 'subtract')");
+  if(!okr)msg.push("the <b>result</b> (what it equals)");
+  fb.innerHTML="Not yet — look again at "+msg.join(", and ")+". Try the prompt or hint.";
+}
+function sbPrompt(){var s=document.getElementById("sbSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> what is x <em>multiplied</em> by in the story? What is <em>added or subtracted</em>? What does it all <em>equal</em>? Those three numbers fill the three boxes.";}
+function sbHint(){var s=document.getElementById("sbSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> the equation is <b>"+eqSide(sb.m,sb.k)+" = "+sb.r+"</b>. So the boxes are "+sb.m+", "+sb.k+" and "+sb.r+"."+(sb.k<0?" (The middle box is negative because the story subtracts.)":"");}
+function sbNew(){var p;do{p=SBBANK[Math.floor(Math.random()*SBBANK.length)];}while(p===sb&&SBBANK.length>1);sb=p;sbDraw();}
+function sbInit(){sb=SBBANK[0];sbDraw();}
+
+/* ---- MOVEMENT: bar model + solve ---- */
+var BMBANK=[
+ {text:'Two lunches and a £2 drink cost £8 in total.',a:2,b:2,c:8,unit:'£'},
+ {text:'Three pens and a £1 ruler cost £10 in total.',a:3,b:1,c:10,unit:'£'},
+ {text:'Emma is x years old; her sister is 4 years older. Together they are 20.',a:2,b:4,c:20,unit:''},
+ {text:'Four cinema tickets and a £2 booking fee cost £26.',a:4,b:2,c:26,unit:'£'}
+];
+var bm={}, bm0={};
+function bmDraw(){
+  document.getElementById("bmStory").innerHTML=bm.text;
+  var s=document.getElementById("bmBar"); 
+  var X=20,W=400,Y=34,H=40, total=bm0.c, xval=(bm0.c-bm0.b)/bm0.a, h="";
+  var xw=W*(xval/total), bw=W*(bm0.b/total), px=X;
+  for(var i=0;i<bm0.a;i++){h+='<rect x="'+px+'" y="'+Y+'" width="'+xw+'" height="'+H+'" fill="#cfe0ec" stroke="#365a68" stroke-width="1.5"/><text x="'+(px+xw/2)+'" y="'+(Y+H/2+5)+'" text-anchor="middle" font-size="14" font-style="italic" font-weight="bold" fill="#2f3429">x</text>';px+=xw;}
+  if(bm0.b>0){h+='<rect x="'+px+'" y="'+Y+'" width="'+bw+'" height="'+H+'" fill="#f0d9a8" stroke="#8a6a3a" stroke-width="1.5"/><text x="'+(px+bw/2)+'" y="'+(Y+H/2+5)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#6a4a1e">'+bm0.b+'</text>';}
+  h+='<path d="M'+X+' 86 L'+X+' 92 L'+(X+W)+' 92 L'+(X+W)+' 86" fill="none" stroke="#5c6b4f" stroke-width="1.3"/>';
+  h+='<text x="'+(X+W/2)+'" y="106" text-anchor="middle" font-size="13" fill="#5c6b4f">total = '+bm0.unit+bm0.c+'</text>';
+  s.innerHTML=h;
+  document.getElementById("bmEqn").textContent=eqSide(bm.a,bm.b)+" = "+bm.c;
+  var solved=(bm.a===1&&bm.b===0), opt="";
+  if(!solved){
+    if(bm.b>0)opt+='<button onclick="bmPick(\'sub\')">− '+bm.b+' (both sides)</button>';
+    else if(bm.a>1)opt+='<button onclick="bmPick(\'div\')">÷ '+bm.a+' (both sides)</button>';
+  }
+  document.getElementById("bmOpts").innerHTML=opt;
+  document.getElementById("bmRead").innerHTML = solved
+    ? "✓ <b>x = "+bm.c+"</b>"+(bm0.unit?" (so each is "+bm0.unit+bm.c+")":"")+". Read from the bar: "+bm0.a+" equal parts and "+bm0.b+" make "+bm0.c+"."
+    : (bm.b>0? "Take the known <b>"+bm.b+"</b> off both sides." : "Split both sides into <b>"+bm.a+"</b> equal parts.");
+}
+function bmPick(op){
+  if(op==="sub"&&bm.b>0){bm.c-=bm.b;bm.b=0;}
+  else if(op==="div"&&bm.a>1){bm.c=bm.c/bm.a;bm.a=1;}
+  bmDraw();
+}
+function bmNew(){var p=BMBANK[Math.floor(Math.random()*BMBANK.length)];bm={a:p.a,b:p.b,c:p.c};bm0={a:p.a,b:p.b,c:p.c,unit:p.unit,text:p.text};bm.text=p.text;bmDraw();}
+function bmInit(){bmNew();}
+
+/* ---- REFLECTION: solve, then interpret ---- */
+var RFBANK=[
+ {text:'Emma is x years old. Her sister is 4 years older. Together they are 20.',a:2,b:4,c:20,q:'How old is the <b>sister</b>?',fn:function(x){return x+4;}},
+ {text:'Two consecutive whole numbers add up to 27 (x and x + 1).',a:2,b:1,c:27,q:'What is the <b>larger</b> number?',fn:function(x){return x+1;}},
+ {text:'A rectangle is x cm wide; its length is 5 cm more. The perimeter is 26 cm.',a:4,b:10,c:26,q:'What is the <b>length</b>?',fn:function(x){return x+5;}}
+];
+var rf={}, rf0={}, rfHist=[];
+function rfDraw(){
+  document.getElementById("rfStory").innerHTML=rf.text+" &nbsp;→&nbsp; <b>"+eqSide(rf.a,rf.b)+" = "+rf.c+"</b>";
+  rfHist=["<div>"+eqSide(rf.a,rf.b)+" = "+rf.c+"</div>"];
+  document.getElementById("rfLines").innerHTML=rfHist.join("");
+  document.getElementById("rfInterp").style.display="none";
+  document.getElementById("rfInterp").innerHTML="";
+  rfRender();
+}
+function rfRender(){
+  var solved=(rf.a===1&&rf.b===0), opt="";
+  if(!solved){
+    if(rf.b>0)opt+='<button onclick="rfPick(\'sub\')">− '+rf.b+' (both sides)</button>';
+    else if(rf.a>1)opt+='<button onclick="rfPick(\'div\')">÷ '+rf.a+' (both sides)</button>';
+  }
+  document.getElementById("rfOpts").innerHTML=opt;
+  if(solved){
+    document.getElementById("rfInterp").style.display="block";
+    if(!document.getElementById("rfAns")){
+      document.getElementById("rfInterp").innerHTML='<div class="toolbox" style="margin:6px 0">x = '+rf.c+'. <b>The question asks:</b> '+rf0.q+' &nbsp; <input id="rfAns" autocomplete="off" placeholder="?" style="width:56px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> <button onclick="rfCheck()">✅ Check</button></div>';
+    }
+    document.getElementById("rfRead").innerHTML="Solved: <b>x = "+rf.c+"</b>. Now answer what the situation actually asked.";
+  } else {
+    document.getElementById("rfRead").innerHTML = rf.b>0? "Subtract the known "+rf.b+" from both sides." : "Divide both sides by "+rf.a+" to find x.";
+  }
+}
+function rfPick(op){
+  if(op==="sub"&&rf.b>0){rf.c-=rf.b;rf.b=0;rfHist.push("<div>"+eqSide(rf.a,rf.b)+" = "+rf.c+"</div>");}
+  else if(op==="div"&&rf.a>1){rf.c=rf.c/rf.a;rf.a=1;rfHist.push("<div><b>x = "+rf.c+"</b></div>");}
+  document.getElementById("rfLines").innerHTML=rfHist.join("");
+  rfRender();
+}
+function rfCheck(){
+  var v=num(document.getElementById("rfAns").value), want=rf0.fn(rf.c), r=document.getElementById("rfRead");
+  if(!isNaN(v)&&Math.abs(v-want)<1e-9){ r.innerHTML="✓ Correct — the answer the story wanted is <b>"+want+"</b>"+(want===rf.c?" (here it is x itself)":" (not x = "+rf.c+", but "+want+")")+". Interpreting matters."; }
+  else { r.innerHTML="Not quite — x = "+rf.c+", but re-read the question: it asks "+rf0.q.replace(/<[^>]+>/g,"")+" Use x to work it out."; }
+}
+function rfNew(){var p;do{p=RFBANK[Math.floor(Math.random()*RFBANK.length)];}while(p===rf0.src&&RFBANK.length>1);rf={a:p.a,b:p.b,c:p.c,text:p.text};rf0={a:p.a,b:p.b,c:p.c,q:p.q,fn:p.fn,src:p};rfDraw();}
+function rfInit(){var p=RFBANK[0];rf={a:p.a,b:p.b,c:p.c,text:p.text};rf0={a:p.a,b:p.b,c:p.c,q:p.q,fn:p.fn,src:p};rfDraw();}
+
+/* ---- CREATIVITY (stretch): build your own story ---- */
+var cw={x:5,m:3,k:4};
+function cwChip(val,cur,fn){return '<span class="chip'+(val===cur?" active":"")+'" onclick="'+fn+'('+val+')">'+val+'</span>';}
+function cwDraw(){
+  document.getElementById("cwX").innerHTML=[1,2,3,4,5,6].map(function(v){return cwChip(v,cw.x,"cwSetX");}).join("");
+  document.getElementById("cwM").innerHTML=[2,3,4,5].map(function(v){return cwChip(v,cw.m,"cwSetM");}).join("");
+  document.getElementById("cwK").innerHTML=[0,1,2,3,4,5,6].map(function(v){return cwChip(v,cw.k,"cwSetK");}).join("");
+  var r=cw.m*cw.x+cw.k;
+  document.getElementById("cwStory").innerHTML='"I think of a number. I multiply it by <b>'+cw.m+'</b>'+(cw.k>0?', then add <b>'+cw.k+'</b>':'')+', and the result is <b>'+r+'</b>. What was my number?"';
+  document.getElementById("cwRead").innerHTML="The answer is <b>x = "+cw.x+"</b>. Solving your puzzle (undo: "+(cw.k>0?"subtract "+cw.k+", ":"")+"divide by "+cw.m+") returns "+cw.x+" — forming and solving are inverses.";
+}
+function cwSetX(v){cw.x=v;cwDraw();}
+function cwSetM(v){cw.m=v;cwDraw();}
+function cwSetK(v){cw.k=v;cwDraw();}
+function cwInit(){cwDraw();}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    evaluate:{title:'Working out an expression',prompt:'When x = 5, what is 2\u00d7x + 3?',answer:13,hint:'2\u00d75 = 10, then + 3 = 13.'},
+    undo:{title:'Undoing to solve',prompt:'To solve 3x + 4 = 19, subtract 4, then ______ by 3 (one word).',answer:'divide',hint:'The opposite of multiplying by 3 is dividing by 3.'},
+    interpret:{title:'Answering in context',prompt:'Emma is 8. Her sister is 4 years older. How old is the sister?',answer:12,hint:'4 years older than 8 is 8 + 4 = 12.'}
+  };;;;
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer" style="width:100%;max-width:220px;padding:9px;border:1px solid #bcae98;border-radius:8px;margin-top:8px">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 \u00b7 think of a number",q:"I think of a number, multiply it by 3, then add 4. The result is 19. What was the number?",a:[],eq:function(v){return num(v)===5;},prompt:"Let the number be x. Write '\u00d73 then +4 equals 19' as an equation.",hint:"3x + 4 = 19 \u2192 subtract 4: 3x = 15 \u2192 divide by 3: x = 5.",sol:"x = 5 \u2014 form 3x + 4 = 19; subtract 4: 3x = 15; divide by 3: x = 5. Check: 5\u00d73 + 4 = 19. \u2713"},
+ {label:"2 of 6 \u00b7 double and subtract",q:"Double a number and subtract 5 to get 7. What is the number?",a:[],eq:function(v){return num(v)===6;},prompt:"Let it be x: 2x \u2212 5 = 7.",hint:"2x \u2212 5 = 7 \u2192 add 5: 2x = 12 \u2192 divide by 2: x = 6.",sol:"x = 6 \u2014 form 2x \u2212 5 = 7; add 5: 2x = 12; divide by 2: x = 6. Check: 2\u00d76 \u2212 5 = 7. \u2713"},
+ {label:"3 of 6 \u00b7 a cost",q:"A taxi charges \u00a33 plus \u00a32 per mile. A journey costs \u00a313. How many miles was it?",a:[],eq:function(v){return num(v)===5;},prompt:"Let miles be x: cost is 2x + 3 = 13.",hint:"2x + 3 = 13 \u2192 subtract 3: 2x = 10 \u2192 divide by 2: x = 5.",sol:"5 miles \u2014 form 2x + 3 = 13; subtract 3: 2x = 10; divide by 2: x = 5. Check: 2\u00d75 + 3 = 13. \u2713"},
+ {label:"4 of 6 \u00b7 consecutive numbers",q:"Two consecutive whole numbers (x and x + 1) add up to 27. What is the smaller number?",a:[],eq:function(v){return num(v)===13;},prompt:"x + (x + 1) = 27, so 2x + 1 = 27.",hint:"2x + 1 = 27 \u2192 subtract 1: 2x = 26 \u2192 divide by 2: x = 13.",sol:"13 \u2014 form 2x + 1 = 27; subtract 1: 2x = 26; x = 13. The numbers are 13 and 14. Check: 13 + 14 = 27. \u2713"},
+ {label:"5 of 6 \u00b7 interpret the answer",q:"Emma is x years old; her sister is 4 years older. Together they are 20. How old is Emma?",a:[],eq:function(v){return num(v)===8;},prompt:"x + (x + 4) = 20, so 2x + 4 = 20. Emma is x.",hint:"2x + 4 = 20 \u2192 subtract 4: 2x = 16 \u2192 x = 8.",sol:"Emma is 8 \u2014 form 2x + 4 = 20; subtract 4: 2x = 16; x = 8 (the sister is 12). Check: 8 + 12 = 20. \u2713"},
+ {label:"6 of 6 \u00b7 a non-whole answer (stretch)",q:"Multiply a number by 4 and subtract 1 to get 9. What is the number?",a:[],eq:function(v){return num(v)===2.5;},prompt:"4x \u2212 1 = 9 \u2014 the answer need not be a whole number.",hint:"4x \u2212 1 = 9 \u2192 add 1: 4x = 10 \u2192 divide by 4: x = 2.5 (or 5/2).",sol:"x = 2.5 (or 5/2) \u2014 form 4x \u2212 1 = 9; add 1: 4x = 10; divide by 4: x = 2.5. Check: 4\u00d72.5 \u2212 1 = 9. \u2713"}
+];
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Name the unknown, write what the story says as an equation, solve it, then interpret. Try the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  sbInit();
+  bmInit();
+  rfInit();
+  cwInit();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

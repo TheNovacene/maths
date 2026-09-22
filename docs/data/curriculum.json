@@ -512,6 +512,14 @@
           "file": "lessons/equations/03-equations-with-fractions.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-04-forming-an-equation",
+          "num": "Lesson 04",
+          "title": "Forming an equation",
+          "file": "lessons/equations/04-forming-an-equation.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

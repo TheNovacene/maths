@@ -122,3 +122,21 @@ QA (19 checks) all pass; both minus forms visually confirmed. Practice already c
 **Standards:** self-contained; canonical parser; Practice of six (single fraction ±, whole numerator, coefficient-on-top, a two-denominator LCM item, and a **gate-6a stretch** (2x−1)/4 = 1 → 2.5 / 5/2); palette [x,=,+,−,÷,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l03_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`fracbar_diagram`**; worked examples: x/3 + 2 = 5 and x/2 + x/3 = 10 (LCM).
 
 jsdom QA (24 checks) all pass — fraction-bar stack, clear-one-fraction solve+nudge, hero solver forms A & B incl. divide + early-op nudge + check, LCM clearer (LCM check + solve + wrong-LCM nudge), gate 6a word+fraction. Visual QA confirmed. Site: **59 lessons live / 0 missing**.
+
+## Build note — EQ-04 "Forming an equation" (v0.1, built)
+**Status:** live (`lessons/equations/04-forming-an-equation.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Connection**. Organising sequence: **name, write, solve, interpret, check**. Draws the solving methods of EQ-01–03 together and adds modelling.
+
+**Hero (Gerry's choice — story → equation builder, in Connection):**
+- **Connection (hero) — story→equation builder:** a worded situation; learner fills the multiplier, the ± constant and the result into a template ([m]·x + [k] = [r]), Checks, then sees it solved and tested **against the story**. Bank of five (think-of-a-number ± and a taxi-cost context); Socratic/Hint ladder; negatives for "subtract".
+- **Movement — bar/tape model:** the situation as a to-scale part-whole bar (x-blocks + number block = total); read the equation off it and solve with subtract/divide buttons. The bar length encodes the answer visually.
+- **Reflection — solve then interpret:** equation pre-formed; solve stepper, then an **interpret** input asking what the story actually wants (sister's age, larger number, a length) — rejects x when the question wants something built from x.
+- **Creativity (stretch) — build-your-own puzzle:** chips (answer, ×m, +k) generate a worded "think of a number" puzzle; framed as forming and solving being inverses.
+
+**Reconnection Routes:** evaluating an expression (2×5+3=13) · undoing to solve (…then divide) · answering in context (sister 8+4=12).
+
+**Standards:** self-contained; canonical parser; Practice of six (think-of-a-number ±, a cost context, consecutive numbers, an **interpret** item, and a **gate-6a stretch** 4x−1=9 → 2.5/5/2); palette [x,=,+,−,×,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l04_v01`); **Nutrition Mode A (contextual — budgeting)**, honest per D6 since forming genuinely lives in money/planning; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`barmodel_diagram`**; worked examples: 3x+4=19 and the Emma/sister interpret case.
+
+jsdom QA (21 checks) all pass — story-builder forming (incl. negatives + wrong-entry flags), bar-model solve, interpret (accept sister=12, reject x=8), build-your-own, gate 6a word+fraction. Visual QA confirmed. Site: **60 lessons live / 0 missing**.
+
+### Unit status — Equations, Inequalities & Simultaneous
+Live: EQ-01…EQ-04 (keeping the balance; both sides & brackets; fractions; forming). **★ Mid-unit checkpoint reached** — balancing-and-checking, forming, and (next) reading a line as a set of solutions. Remaining: EQ-05 (a line is a set of solutions) onward.
