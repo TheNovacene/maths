@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: Solving by substitution</title>
+<title>NEO Mathematics: Solving by elimination</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -40,12 +40,12 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div id="lessonView">
 <div class="neo">
 <h1>NEO Mathematics: Equations, Inequalities and Simultaneous Relationships</h1>
-<h2>Solving by substitution</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>How do I find the meeting point without drawing?</em></h2>
+<h2>Solving by elimination</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>How do I combine two equations to remove an unknown?</em></h2>
 
 <div class="info">
 <p><b>Lesson type:</b> Core — the opening lesson of the algebra unit, where solving becomes <em>keeping the balance</em>.</p>
-<p><b>Stepping Stone:</b> solve a pair of <b>simultaneous linear equations</b> by <b>substitution</b> — use one equation to express a variable, substitute it into the other, solve, then find the second variable and <b>check in both</b> equations.</p>
+<p><b>Stepping Stone:</b> solve a pair of <b>simultaneous linear equations</b> by <b>elimination</b> — add or subtract the equations (scaling a row first when needed) so one variable cancels, then solve, find the second variable and <b>check in both</b>.</p>
 <p><b>You will need:</b> the four operations and their inverses, working with negative numbers, and the optional <b>✏️ Scratchpad</b>. No calculator needed today.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
 <p><b>45-minute shape:</b> Connect 8 · Move 14 · Reflect 10 · Create 8 · Rest/Nourish 5</p>
@@ -55,10 +55,10 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_07_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_07_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_08_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Equations_Lesson_08_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use y = 2x + 1 and 3x + y = 11. Substitute (2x + 1) for y in the second equation, solve for x, then find y. Check in both equations.')">✏️ Open Maths Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Use 3x + y = 9 and 2x − y = 1. The y-terms are opposite, so ADD the equations to remove y, solve for x, then find y. Check in both.')">✏️ Open Maths Scratchpad</button>
 <button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
@@ -66,77 +66,75 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — If y equals it, swap it in</summary>
+<summary>🌿 Connection — Add them and watch one vanish</summary>
 <div class="card">
 <h3 style="margin-top:0">🔤 The idea for this lesson</h3>
-<p style="margin:6px 0">Reading a crossing off a graph is quick but only as accurate as your drawing. There is an exact way. If one equation says <b><span class="uk">y</span> = 2<span class="uk">x</span> + 1</b>, then <span class="uk">y</span> and <b>2<span class="uk">x</span> + 1</b> are the <em>same number</em> — so anywhere the other equation has a <span class="uk">y</span>, you may <b>swap in</b> (2<span class="uk">x</span> + 1). That leaves one equation in one unknown, which you already know how to solve. This is <b>substitution</b>.</p>
+<p style="margin:6px 0">Two true equations can be <b>added</b> (or subtracted) to make another true equation. The clever part: if one variable appears as <b>+ <span class="uk">y</span></b> in one equation and <b>− <span class="uk">y</span></b> in the other, then <b>adding</b> makes it <b>cancel</b> — gone. That leaves a single equation in one unknown. This is <b>elimination</b>, and the easiest case to spot is <em>opposite signs</em>, where adding does the work.</p>
 </div>
-<p><b>What to do:</b> one equation gives <span class="uk">y</span> in terms of <span class="uk">x</span>. Substitute that expression into the other equation and watch the <span class="uk">y</span> disappear.</p>
-<p><b>What you are trying to notice:</b> swapping <span class="uk">y</span> for what it equals does not change anything — the equation is still true — but now there is only <b>one</b> unknown left.</p>
+<p><b>What to do:</b> the two equations have <span class="uk">y</span> with <em>opposite</em> signs. Add them and watch the <span class="uk">y</span> disappear.</p>
+<p><b>What you are trying to notice:</b> + <span class="uk">y</span> and − <span class="uk">y</span> add to <b>zero</b>. Adding the whole equations keeps them true, but removes <span class="uk">y</span> — leaving something you can solve.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔁 Swap y for its expression</h3>
-<div id="swEq1" class="bignum" style="font-size:1.15em"></div>
-<div id="swEq2" style="text-align:center;font-size:1.25em;margin:8px 0;font-family:Georgia,serif"></div>
-<div id="swRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center"><button id="swBtn" onclick="swSwap()">🔁 Substitute for y</button><button onclick="swReset()">↺ Reset</button><button onclick="swNew()">🎲 New pair</button></div>
-<p><b>Carry this forward:</b> if <span class="uk">y</span> equals an expression, you may put that expression wherever <span class="uk">y</span> appears — leaving one unknown.</p>
+<h3 style="margin-top:0">➕ Add to eliminate</h3>
+<div id="cnSum" class="card" style="font-family:'Times New Roman',Georgia,serif;font-size:1.3em;line-height:1.7;text-align:center"></div>
+<div id="cnRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button id="cnBtn" onclick="cnAdd()">➕ Add the two equations</button><button onclick="cnReset()">↺ Reset</button><button onclick="cnNew()">🎲 New pair</button></div>
+<p><b>Carry this forward:</b> opposite signs on a variable mean <b>adding</b> the equations cancels it.</p>
 </div>
 </details>
 
 <!-- ================= MOVEMENT (HERO) ================= -->
 <details class="hs">
-<summary>🚶 Movement — The substitution method, step by step</summary>
-<p><b>What to do:</b> solve the pair in full. Choose each move in turn — <b>substitute</b>, <b>collect</b>, <b>solve for x</b>, <b>back-substitute for y</b> — then <b>check in both</b>. The wrong first move is offered too; pick the substitution.</p>
-<p><b>What you are trying to notice:</b> substitution turns two equations in two unknowns into <em>one</em> equation in one unknown. Solve that, put the value back to get the other unknown, and both equations come out true.</p>
+<summary>🚶 Movement — The elimination method, step by step</summary>
+<p><b>What to do:</b> solve each pair in full. First decide the move that cancels a variable — <b>add</b> when the signs are opposite, <b>subtract</b> when they are the same — and when the coefficients do not match, <b>scale a row</b> first. Then solve, find the other variable, and check both.</p>
+<p><b>What you are trying to notice:</b> the whole method is one idea used carefully — combine the equations so a variable vanishes. Opposite signs → add; same signs → subtract; mismatched sizes → multiply a row until they match.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">✍️ Solve by substitution</h3>
-<div id="suPair" class="bignum" style="font-size:1.1em"></div>
-<div id="suLines" class="card" style="font-family:'Times New Roman',Georgia,serif;font-size:1.15em;line-height:1.9;text-align:center;min-height:2em"></div>
-<div id="suOpts" class="buttonrow" style="justify-content:center;flex-wrap:wrap"></div>
-<div id="suRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="suNew()">🎲 New pair</button></div>
-<p><b>Carry this forward:</b> substitute → collect → solve for x → back-substitute for y → check both.</p>
+<h3 style="margin-top:0">✍️ Solve by elimination</h3>
+<div id="elEq" class="card" style="font-family:'Times New Roman',Georgia,serif;font-size:1.15em;line-height:1.8;text-align:center;min-height:2.6em"></div>
+<div id="elLines" style="text-align:center;font-family:Georgia,serif;font-size:1.1em;line-height:1.7;min-height:1.2em"></div>
+<div id="elOpts" class="buttonrow" style="justify-content:center;flex-wrap:wrap"></div>
+<div id="elRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="elNew()">🎲 New pair</button></div>
+<p><b>Carry this forward:</b> decide add / subtract (scale first if needed) → cancel → solve → find the other → check both.</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION ================= -->
 <details class="es">
-<summary>🪞 Reflection — The algebra lands on the crossing</summary>
-<p><b>What to do:</b> solve the pair by substitution, enter your answer, and see it land exactly where the two lines cross. The algebra and the graph give the <em>same</em> point.</p>
-<p><b>What you are trying to notice:</b> substitution is not a different answer from the graph — it is the <em>exact</em> version of it. The pair (<span class="uk">x</span>, <span class="uk">y</span>) you compute is precisely the intersection you would have read off.</p>
+<summary>🪞 Reflection — Add or subtract?</summary>
+<p><b>What to do:</b> for each pair, decide the single move that makes a variable cancel: <b>add</b> or <b>subtract</b>. The tool shows the chosen variable cancelling — or not.</p>
+<p><b>What you are trying to notice:</b> it is a quick read of the signs. If the matching variable has the <em>same</em> sign in both, subtracting cancels it; if it has <em>opposite</em> signs, adding does. Getting this decision right is the heart of the method.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🎯 Same point, found exactly</h3>
-<div id="rfPair" class="bignum" style="font-size:1.1em"></div>
-<div style="text-align:center;font-size:1.05em;margin:6px 0">Solve, then enter the point: ( <input id="rfX" autocomplete="off" placeholder="x" style="width:46px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> , <input id="rfY" autocomplete="off" placeholder="y" style="width:46px;padding:7px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> ) <button onclick="rfCheck()">✅ Check</button></div>
-<div class="card" style="text-align:center"><svg id="rfSvg" class="graphsvg" style="max-width:330px" viewBox="0 0 360 360" role="img" aria-label="The crossing found by substitution"></svg></div>
-<div id="rfRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="rfNew()">🎲 New pair</button></div>
-<p><b>Carry this forward:</b> substitution finds the exact crossing — the same common solution the graph shows.</p>
+<h3 style="margin-top:0">⚖️ Which move cancels a variable?</h3>
+<div id="dcEq" class="card" style="font-family:'Times New Roman',Georgia,serif;font-size:1.2em;line-height:1.7;text-align:center"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button onclick="dcAnswer('add')">➕ Add</button><button onclick="dcAnswer('sub')">➖ Subtract</button><button id="dcNextBtn" onclick="dcNext()" disabled>Next pair →</button></div>
+<div id="dcRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="dcNew()">🎲 New set</button></div>
+<p><b>Carry this forward:</b> same sign → subtract; opposite sign → add. Read the signs first.</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY (stretch) ================= -->
 <details class="dw">
-<summary>🎨 Creativity — Rearrange first <span class="stretch">stretch</span></summary>
-<p><b>What to do:</b> sometimes neither equation is ready as <span class="uk">y</span> = … . First <b>rearrange</b> one to make a variable the subject, <em>then</em> substitute. Watch the two steps, then find the solution.</p>
-<p><b>What you are trying to notice:</b> substitution always needs one variable made the subject. If it is not handed to you, a quick rearrangement creates it — then the method runs exactly as before.</p>
+<summary>🎨 Creativity — When nothing matches: scale a row <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> sometimes neither variable has matching coefficients, so nothing cancels yet. <b>Multiply</b> one equation through until a variable's coefficients match — then add or subtract as usual.</p>
+<p><b>What you are trying to notice:</b> multiplying a whole equation by a number keeps it true but changes the coefficients. Choose the multiplier that makes one variable line up; then the ordinary elimination move works.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔧 Make the subject, then substitute</h3>
-<div id="raPair" class="bignum" style="font-size:1.1em"></div>
-<div id="raWork" class="card" style="font-family:Georgia,serif;font-size:1.1em;line-height:1.8;text-align:center;min-height:1.6em"></div>
-<div id="raStep" style="text-align:center;margin:6px 0"></div>
-<div id="raRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button id="raBtn" onclick="raNext()">Show the rearrangement</button><button onclick="raNew()">🎲 New pair</button></div>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Take x + y = 7 and 2x − y = 5. Rearrange the first to y = 7 − x, substitute into the second, solve for x, then find y. Check both.')">✏️ Build on the Scratchpad</button>
+<h3 style="margin-top:0">🔧 Scale, then eliminate</h3>
+<div id="scEq" class="card" style="font-family:'Times New Roman',Georgia,serif;font-size:1.15em;line-height:1.8;text-align:center"></div>
+<div id="scWork" style="text-align:center;font-family:Georgia,serif;font-size:1.1em;line-height:1.7;min-height:1.2em"></div>
+<div id="scStep" style="text-align:center;margin:6px 0"></div>
+<div id="scRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center;flex-wrap:wrap"><button id="scBtn" onclick="scNext()">Show the scaling</button><button onclick="scNew()">🎲 New pair</button></div>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Take x + 2y = 11 and 3x + y = 13. Multiply the second by 2 so the y-terms match, subtract to remove y, solve for x, then find y. Check both.')">✏️ Build on the Scratchpad</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
 <summary>🌙 Rest — A pause to let it settle</summary>
-<p>Substitution is a small act of trust: because two things are equal, one can stand in for the other with nothing lost. From that single idea, two tangled equations quietly become one you can already solve. Take a breath and notice how little it really takes.</p>
+<p>Elimination has a certain boldness to it: instead of tiptoeing around the unknowns, you combine the two equations head-on and let one simply disappear. Two lines of algebra collapse into one. There is a satisfying economy in that. Take a breath.</p>
 <div class="card">
-<p><b>Notice one thing:</b> did "solve two equations at once" stop feeling mysterious once it became "swap y for what it equals, then solve as usual"? Just notice the method settling into something familiar.</p>
+<p><b>Notice one thing:</b> did adding two whole equations together feel strange at first — and then obvious, once a variable vanished? Just notice the moment it clicked.</p>
 <p class="small">You can pause here and return whenever you are ready.</p>
 </div>
 </details>
@@ -146,29 +144,29 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <summary>🍎 Nutrition — What this feeds</summary>
 <p><b>Mode: intellectual.</b> The mathematics is the nourishment here, so we name honestly what the <em>learning</em> feeds.</p>
 <div class="card">
-<p><b>What it feeds:</b> today feeds the elegance of an <b>exact method</b> — no drawing, no estimating, just an answer you can trust to the last digit. Substitution also feeds a deeper habit: reducing a hard problem to an easier one you have already solved, by using what you know to be equal. That move — trade the unknown for what it equals — reaches far beyond simultaneous equations.</p>
-<p class="small">Carry one idea forward: when two things are equal, either can stand for the other — and that swap can turn a hard problem into a familiar one.</p>
+<p><b>What it feeds:</b> today feeds a sense of <b>leverage</b> — the realisation that you can act on two equations <em>at once</em>, combining them so a difficulty cancels itself out. Choosing the move that makes a problem simpler, rather than grinding through it, is a habit of elegant thinking that pays off far beyond algebra.</p>
+<p class="small">Carry one idea forward: sometimes the cleverest step is to combine two things so that part of the problem cancels.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> solve pairs of simultaneous equations by substitution, and check them.</p>
+<p><b>Your task:</b> solve pairs of simultaneous equations by elimination, and check them.</p>
 <ul>
-<li>Solve at least three pairs, showing every step: <b>substitute</b>, collect, <b>solve for x</b>, <b>back-substitute for y</b>.</li>
-<li>Include one pair where you must <b>rearrange</b> an equation before substituting.</li>
+<li>Solve at least three pairs: one where you <b>add</b> (opposite signs), one where you <b>subtract</b> (same signs), and one where you must <b>scale a row</b> first.</li>
+<li>For each, show the elimination, <b>solve for one variable</b>, then <b>find the other</b>.</li>
 <li><b>Check</b> each solution in <em>both</em> original equations.</li>
-<li><span class="stretch">stretch</span> Explain why substituting the expression for <span class="uk">y</span> does not change the equation's truth.</li>
+<li><span class="stretch">stretch</span> Explain how you decide, just from the signs, whether to add or subtract.</li>
 </ul>
 <p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-written solution showing each line, a short spoken walkthrough of one solve, or a poster of the method.</p>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_EQ_SUBSTITUTION_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_EQ_ELIMINATION_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows y can be replaced by its expression.</td><td>Substitutes to remove a variable.</td><td>Solves a pair by substitution.</td><td>Explains why substituting preserves the equation's truth.</td></tr>
-<tr><td><b>Application</b></td><td>Substitutes a given expression.</td><td>Solves for x after substituting.</td><td>Back-substitutes to find y and checks.</td><td>Rearranges first when needed, then substitutes.</td></tr>
-<tr><td><b>Communication</b></td><td>Writes the answer.</td><td>Shows the substitution.</td><td>Shows all four steps clearly.</td><td>Sets out a solution another learner could follow.</td></tr>
-<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Checks in one equation.</td><td>Checks in both equations.</td><td>Connects the algebraic answer to the graphical crossing.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows two equations can be added or subtracted.</td><td>Adds opposite-sign equations to cancel a variable.</td><td>Chooses add or subtract correctly and solves.</td><td>Explains why combining the equations keeps them true.</td></tr>
+<tr><td><b>Application</b></td><td>Combines two equations.</td><td>Solves after a variable cancels.</td><td>Finds the second variable and checks.</td><td>Scales a row first when coefficients do not match.</td></tr>
+<tr><td><b>Communication</b></td><td>Writes the answer.</td><td>Shows the elimination.</td><td>Shows all steps clearly.</td><td>Sets out a solution another learner could follow.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Checks in one equation.</td><td>Checks in both equations.</td><td>Explains the add/subtract decision from the signs.</td></tr>
 </table>
 </details>
 
@@ -176,7 +174,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= PRACTICE COMPANION ================= -->
 <div id="practiceView" hidden><div class="practice">
-<h1>Solving by substitution — Practice Companion</h1>
+<h1>Solving by elimination — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -190,7 +188,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Substitute one equation into the other to remove a variable, solve for x, back-substitute for y, then check in both equations.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('square-grid','Line the two equations up. Decide add (opposite signs) or subtract (same signs) to cancel a variable — scale a row first if the coefficients differ. Solve, then check both.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -258,7 +256,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   const bg = bgCanvas.getContext("2d");
   let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
   let drawing = false, current = null, strokes = [], redo = [], notes = [];
-  const storageKey = "neoMathsScratchpad_equations_l07_v01";
+  const storageKey = "neoMathsScratchpad_equations_l08_v01";
   function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
   function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
   function drawBackground(){
@@ -374,197 +372,154 @@ function nearer(cands,ref){if(!cands)return null;return (dist(cands[0],ref)<=dis
 function seg(p,q,col,w){return '<line x1="'+p.x.toFixed(1)+'" y1="'+p.y.toFixed(1)+'" x2="'+q.x.toFixed(1)+'" y2="'+q.y.toFixed(1)+'" stroke="'+(col||"#2f3429")+'" stroke-width="'+(w||3)+'" stroke-linecap="round"/>';}
 function angleAt(a,b,c){var v1={x:a.x-b.x,y:a.y-b.y},v2={x:c.x-b.x,y:c.y-b.y};var d=(v1.x*v2.x+v1.y*v2.y)/((Math.hypot(v1.x,v1.y)*Math.hypot(v2.x,v2.y))||1);d=Math.max(-1,Math.min(1,d));return Math.round(Math.acos(d)*180/Math.PI);}
 
-function drawGraph(svgId,m,c,opts){
-  opts=opts||{}; var svg=document.getElementById(svgId); if(!svg)return;
-  var VW=360,VH=360,pad=34, xmin=(opts.xRange?opts.xRange[0]:-1), xmax=(opts.xRange?opts.xRange[1]:6);
-  var fam=opts.family||[{m:m,c:c}];
-  var exts=[0]; fam.forEach(function(f){ exts.push(f.m*xmin+f.c); exts.push(f.m*xmax+f.c); });
-  if(opts.targetY!=null) exts.push(opts.targetY);
-  var yA=m*xmin+c, yB=m*xmax+c;
-  var ylo=Math.floor(Math.min.apply(0,exts)-1), yhi=Math.ceil(Math.max.apply(0,exts)+1);
-  if(yhi-ylo<8){ var mid=(yhi+ylo)/2; ylo=Math.floor(mid-4); yhi=ylo+8; }
-  if(opts.fixedY){ ylo=opts.fixedY[0]; yhi=opts.fixedY[1]; }   /* fixed window: scale never changes as c/m change */
-  var ux=(VW-2*pad)/(xmax-xmin), uy=(VH-2*pad)/(yhi-ylo);
-  function SX(x){return pad+(x-xmin)*ux;} function SY(y){return VH-pad-(y-ylo)*uy;}
-  var s="", y0=SY(0), x0=SX(0);
-  for(var gx=xmin;gx<=xmax;gx++) s+='<line x1="'+SX(gx).toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+SX(gx).toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
-  for(var gy=ylo;gy<=yhi;gy++) s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(gy).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(gy).toFixed(1)+'" stroke="#e6ddcb" stroke-width="1"/>';
-  s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+y0.toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
-  s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(ylo).toFixed(1)+'" x2="'+x0.toFixed(1)+'" y2="'+SY(yhi).toFixed(1)+'" stroke="#6a7080" stroke-width="1.6"/>';
-  for(var lx=xmin+1;lx<=xmax;lx++){ if(lx===0)continue; s+='<text x="'+SX(lx).toFixed(1)+'" y="'+(y0+13).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="middle">'+lx+'</text>'; }
-  var yrange=yhi-ylo, ystep=yrange>40?10:yrange>20?5:yrange>12?2:1;
-  for(var ly=Math.ceil(ylo/ystep)*ystep;ly<=yhi;ly+=ystep){ if(ly===0)continue; s+='<text x="'+(x0-6).toFixed(1)+'" y="'+(SY(ly)+3).toFixed(1)+'" font-size="9" fill="#6a7080" text-anchor="end">'+ly+'</text>'; }
-  s+='<text x="'+(SX(xmax)-2).toFixed(1)+'" y="'+(y0-5).toFixed(1)+'" font-size="11" fill="#6a7080" text-anchor="end" font-style="italic">x</text>';
-  s+='<text x="'+(x0+7).toFixed(1)+'" y="'+(SY(yhi)+10).toFixed(1)+'" font-size="11" fill="#6a7080" font-style="italic">y</text>';
-  if(opts.ghost){ var g=opts.ghost; s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(g.m*xmin+g.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(g.m*xmax+g.c).toFixed(1)+'" stroke="#b9a05f" stroke-width="2" stroke-dasharray="5 4"/>'; }
-  if(opts.targetY!=null){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(opts.targetY).toFixed(1)+'" r="8" fill="none" stroke="#b24c4c" stroke-width="2.4"/><text x="'+(SX(0)-9).toFixed(1)+'" y="'+(SY(opts.targetY)+3).toFixed(1)+'" font-size="10" fill="#b24c4c" text-anchor="end">target</text>'; }
-  if(opts.family){
-    opts.family.forEach(function(f){ var col=f.col||"#3f7a45";
-      s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(f.m*xmin+f.c).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(f.m*xmax+f.c).toFixed(1)+'" stroke="'+col+'" stroke-width="2.4"/>';
-      if(!opts.hideFamilyDots && f.c>=ylo&&f.c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(f.c).toFixed(1)+'" r="4.5" fill="'+col+'"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(f.c)-6).toFixed(1)+'" font-size="10" fill="'+col+'">(0, '+f.c+')</text>'; }
-    });
-    if(opts.vmark!=null){ var mvx=SX(opts.vmark);
-      s+='<line x1="'+mvx.toFixed(1)+'" y1="'+SY(yhi).toFixed(1)+'" x2="'+mvx.toFixed(1)+'" y2="'+SY(ylo).toFixed(1)+'" stroke="#365a68" stroke-width="1.6" stroke-dasharray="4 3"/>';
-      opts.family.forEach(function(f){ var yv=f.m*opts.vmark+f.c; if(yv>=ylo&&yv<=yhi){ s+='<circle cx="'+mvx.toFixed(1)+'" cy="'+SY(yv).toFixed(1)+'" r="4.5" fill="'+(f.col||"#3f7a45")+'"/>'; } });
-      s+='<text x="'+mvx.toFixed(1)+'" y="'+(SY(yhi)+11).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">x = '+opts.vmark+'</text>';
-    }
-    if(opts.markPoint){ var pX=SX(opts.markPoint.x), pY=SY(opts.markPoint.y);
-      s+='<circle cx="'+pX.toFixed(1)+'" cy="'+pY.toFixed(1)+'" r="7" fill="none" stroke="#b24c4c" stroke-width="2.6"/>';
-      if(opts.markPoint.label){ s+='<text x="'+(pX+10).toFixed(1)+'" y="'+(pY-8).toFixed(1)+'" font-size="10" fill="#b24c4c" font-weight="bold">'+opts.markPoint.label+'</text>'; }
-    }
-    svg.innerHTML=s; return;
-  }
-  if(opts.segTo!=null){ s+='<line x1="'+SX(0).toFixed(1)+'" y1="'+SY(c).toFixed(1)+'" x2="'+SX(opts.segTo).toFixed(1)+'" y2="'+SY(m*opts.segTo+c).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  else if(!opts.hideLine){ s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(yA).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(yB).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  if(opts.showPoints){ var maxp=(opts.showPoints===true)?4:opts.showPoints; for(var px=0;px<=maxp;px++){ var py=m*px+c; if(py<ylo||py>yhi)continue; s+='<circle cx="'+SX(px).toFixed(1)+'" cy="'+SY(py).toFixed(1)+'" r="3.2" fill="#2f6a35"/>'; } }
-  if(opts.dots){ opts.dots.forEach(function(p){ if(p.x>=xmin&&p.x<=xmax&&p.y>=ylo&&p.y<=yhi){ var col=p.col||"#2f6a35"; s+='<circle cx="'+SX(p.x).toFixed(1)+'" cy="'+SY(p.y).toFixed(1)+'" r="4.6" fill="'+col+'"/>'; if(p.label) s+='<text x="'+(SX(p.x)+8).toFixed(1)+'" y="'+(SY(p.y)-6).toFixed(1)+'" font-size="10" fill="'+col+'">'+p.label+'</text>'; } }); }
-  if(!opts.hideIntercept && c>=ylo&&c<=yhi){ s+='<circle cx="'+SX(0).toFixed(1)+'" cy="'+SY(c).toFixed(1)+'" r="4.5" fill="#b25f2e"/><text x="'+(SX(0)+8).toFixed(1)+'" y="'+(SY(c)-6).toFixed(1)+'" font-size="10" fill="#b25f2e">(0, '+c+')</text>'; }
-  if(opts.lineThrough){ var LA=opts.lineThrough.A, LB=opts.lineThrough.B, lm=(LB.y-LA.y)/(LB.x-LA.x), lc=LA.y-lm*LA.x;
-    s+='<line x1="'+SX(xmin).toFixed(1)+'" y1="'+SY(lm*xmin+lc).toFixed(1)+'" x2="'+SX(xmax).toFixed(1)+'" y2="'+SY(lm*xmax+lc).toFixed(1)+'" stroke="#3f7a45" stroke-width="2.6"/>'; }
-  if(opts.tris){ opts.tris.forEach(function(t){ var col=t.col||"#365a68", ax=SX(t.A.x),ay=SY(t.A.y),bx=SX(t.B.x),by=SY(t.B.y),cornerX=bx,cornerY=ay;
-    var run=t.B.x-t.A.x, rise=t.B.y-t.A.y;
-    s+='<line x1="'+ax.toFixed(1)+'" y1="'+ay.toFixed(1)+'" x2="'+cornerX.toFixed(1)+'" y2="'+cornerY.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
-    s+='<line x1="'+cornerX.toFixed(1)+'" y1="'+cornerY.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="1.8"/>';
-    s+='<text x="'+((ax+cornerX)/2).toFixed(1)+'" y="'+(cornerY+(rise>=0?15:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="middle">run '+run+'</text>';
-    var riseLeft = cornerX>295;   /* near right edge: put the rise label on the inside to avoid clipping */
-    s+='<text x="'+(cornerX+(riseLeft?-6:6)).toFixed(1)+'" y="'+((cornerY+by)/2+3).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="'+(riseLeft?'end':'start')+'">rise '+(rise>=0?"+"+rise:rise)+'</text>';
-    s+='<circle cx="'+ax.toFixed(1)+'" cy="'+ay.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(ax-8).toFixed(1)+'" y="'+(ay+(rise>=0?14:-8)).toFixed(1)+'" font-size="10" fill="'+col+'" text-anchor="end">'+(t.aLabel||"A")+'</text>';
-    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="5" fill="'+col+'"/><text x="'+(bx+7).toFixed(1)+'" y="'+(by-7).toFixed(1)+'" font-size="10" fill="'+col+'">'+(t.bLabel||"B")+'</text>';
-  }); }
-  if(opts.stepTri && m!==0){ var rx0=SX(0),ry0=SY(c),rx1=SX(1),ry1c=SY(c),ry1=SY(m+c);
-    s+='<line x1="'+rx0.toFixed(1)+'" y1="'+ry0.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1c.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
-    s+='<line x1="'+rx1.toFixed(1)+'" y1="'+ry1c.toFixed(1)+'" x2="'+rx1.toFixed(1)+'" y2="'+ry1.toFixed(1)+'" stroke="#365a68" stroke-width="1.6"/>';
-    s+='<text x="'+(rx0+3).toFixed(1)+'" y="'+(ry1c+16).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="start">1 across</text>';
-    s+='<text x="'+(rx1+5).toFixed(1)+'" y="'+((ry1c+ry1)/2+3).toFixed(1)+'" font-size="10" fill="#365a68">'+(m>0?"+"+m:m)+" up</text>";
-  }
-  if(opts.stepTri && m===0){ s+='<text x="'+SX(3).toFixed(1)+'" y="'+(SY(c)-8).toFixed(1)+'" font-size="10" fill="#365a68" text-anchor="middle">flat: no change</text>'; }
-  if(opts.highlightX!=null){ var hx=opts.highlightX, hy=m*hx+c; if(hy>=ylo&&hy<=yhi){
-    s+='<line x1="'+SX(hx).toFixed(1)+'" y1="'+y0.toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
-    s+='<line x1="'+x0.toFixed(1)+'" y1="'+SY(hy).toFixed(1)+'" x2="'+SX(hx).toFixed(1)+'" y2="'+SY(hy).toFixed(1)+'" stroke="#365a68" stroke-width="1" stroke-dasharray="3 3"/>';
-    s+='<circle cx="'+SX(hx).toFixed(1)+'" cy="'+SY(hy).toFixed(1)+'" r="5.5" fill="#365a68"/><text x="'+(SX(hx)+8).toFixed(1)+'" y="'+(SY(hy)-6).toFixed(1)+'" font-size="10" fill="#365a68">('+hx+', '+hy+')</text>';
-  }}
-  svg.innerHTML=s;
+/* ============ EQ-08 activities: solving by elimination ============ */
+function eqLine(a,b,c){
+  var t=(a===1?"x":a===-1?"−x":a+"x");
+  t += (b>0?" + "+(b===1?"":b)+"y":b<0?" − "+(b===-1?"":(-b))+"y":"");
+  return t+" = "+c;
 }
 
-/* ============ EQ-07 activities: solving by substitution ============ */
-function lnStr(m,c){var mp=(m===1?"x":m===-1?"−x":m+"x");return "y = "+mp+(c>0?" + "+c:c<0?" − "+(-c):"");}
-function e1str(m,k){return "y = "+(m===1?"x":m+"x")+(k>0?" + "+k:k<0?" − "+(-k):"");}
-function e2str(a,c){return (a===1?"x":a+"x")+" + y = "+c;}
-function expr(m,k){return "("+(m===1?"x":m+"x")+(k>0?" + "+k:k<0?" − "+(-k):"")+")";}
-var SUBANK=[{m:2,k:1,a:3,c:11},{m:1,k:-1,a:2,c:8},{m:3,k:0,a:1,c:8},{m:1,k:2,a:2,c:11}];
-function suSolve(p){var X=(p.c-p.k)/(p.a+p.m);return {X:X,Y:p.m*X+p.k};}
-
-/* ---- CONNECTION: swap-in ---- */
-var sw={}, swSwapped=false;
-function swDraw(){
-  document.getElementById("swEq1").innerHTML="<b>"+e1str(sw.m,sw.k)+"</b>";
-  document.getElementById("swEq2").innerHTML = swSwapped
-    ? (sw.a===1?"x":sw.a+"x")+" + <span style='color:#b25f2e'>"+expr(sw.m,sw.k)+"</span> = "+sw.c
-    : (sw.a===1?"x":sw.a+"x")+" + <span style='color:#b25f2e;font-weight:bold'>y</span> = "+sw.c;
-  document.getElementById("swBtn").disabled=swSwapped;
-  document.getElementById("swRead").innerHTML = swSwapped
-    ? "✓ The <b>y</b> is gone — only <b>x</b> is left. Because y and "+expr(sw.m,sw.k)+" are equal, the swap kept the equation true."
-    : "The first equation says y = "+(sw.m===1?"x":sw.m+"x")+(sw.k>0?" + "+sw.k:sw.k<0?" − "+(-sw.k):"")+". Replace the <b>y</b> in the second equation with what it equals.";
-}
-function swSwap(){swSwapped=true;swDraw();}
-function swReset(){swSwapped=false;swDraw();}
-function swNew(){var p;do{p=SUBANK[Math.floor(Math.random()*SUBANK.length)];}while(p===sw.src&&SUBANK.length>1);sw={m:p.m,k:p.k,a:p.a,c:p.c,src:p};swSwapped=false;swDraw();}
-function swInit(){var p=SUBANK[0];sw={m:p.m,k:p.k,a:p.a,c:p.c,src:p};swSwapped=false;swDraw();}
-
-/* ---- MOVEMENT (hero): substitution stepper ---- */
-var su={}, suStage=0, suHist=[];
-function suDraw(){
-  document.getElementById("suPair").innerHTML='<span style="color:#3f7a45">'+e1str(su.m,su.k)+'</span> &nbsp;and&nbsp; <span style="color:#2b6cb0">'+e2str(su.a,su.c)+'</span>';
-  suStage=0; suHist=[]; document.getElementById("suLines").innerHTML='<span class="small">Choose the first move below.</span>';
-  suRender();
-}
-function suRender(){
-  var sv=suSolve(su), h="";
-  if(suStage===0){ h+='<button onclick="suPick(\'sub\')">Substitute '+expr(su.m,su.k)+' for y</button><button onclick="suPick(\'add\')">Add the two equations</button>'; }
-  else if(suStage===1){ h+='<button onclick="suPick(\'collect\')">Expand &amp; collect</button>'; }
-  else if(suStage===2){ h+='<button onclick="suPick(\'solve\')">Solve for x</button>'; }
-  else if(suStage===3){ h+='<button onclick="suPick(\'back\')">Back-substitute for y</button>'; }
-  document.getElementById("suOpts").innerHTML=h;
-  var msg=["Substitute the expression for y into the second equation.","Now expand the bracket and collect like terms.","Solve the one-variable equation for x.","Put x back into y = "+e1str(su.m,su.k).slice(4)+" to find y.","Solved — check below."][suStage];
-  if(suStage<4)document.getElementById("suRead").innerHTML=msg;
-}
-function suPick(op){
-  var sv=suSolve(su);
-  if(op==="add"){document.getElementById("suRead").innerHTML="Not here — adding the equations is <em>elimination</em> (next lesson). For substitution, swap y for its expression first.";return;}
-  if(op==="sub"&&suStage===0){ suHist.push((su.a===1?"x":su.a+"x")+" + "+expr(su.m,su.k)+" = "+su.c); suStage=1; }
-  else if(op==="collect"&&suStage===1){ var coef=su.a+su.m; suHist.push((coef===1?"x":coef+"x")+(su.k>0?" + "+su.k:su.k<0?" − "+(-su.k):"")+" = "+su.c); suStage=2; }
-  else if(op==="solve"&&suStage===2){ suHist.push("x = "+sv.X); suStage=3; }
-  else if(op==="back"&&suStage===3){ suHist.push("y = "+sv.Y); suStage=4; }
-  document.getElementById("suLines").innerHTML=suHist.map(function(l){return "<div>"+l+"</div>";}).join("");
-  if(suStage===4){
-    document.getElementById("suOpts").innerHTML="";
-    document.getElementById("suRead").innerHTML="✓ <b>x = "+sv.X+", y = "+sv.Y+"</b>. Check: "+e1str(su.m,su.k)+" → "+su.m+"×"+sv.X+(su.k?(su.k>0?" + "+su.k:" − "+(-su.k)):"")+" = "+sv.Y+" ✓; &nbsp; "+e2str(su.a,su.c)+" → "+su.a+"×"+sv.X+" + "+sv.Y+" = "+su.c+" ✓. Both true.";
-  } else suRender();
-}
-function suNew(){var p;do{p=SUBANK[Math.floor(Math.random()*SUBANK.length)];}while(p===su.src&&SUBANK.length>1);su={m:p.m,k:p.k,a:p.a,c:p.c,src:p};suDraw();}
-function suInit(){var p=SUBANK[0];su={m:p.m,k:p.k,a:p.a,c:p.c,src:p};suDraw();}
-
-/* ---- REFLECTION: algebra lands on the crossing ---- */
-var rf={}, rfRevealed=false;
-function rfDraw(){
-  var sv=suSolve(rf);
-  document.getElementById("rfPair").innerHTML='<span style="color:#3f7a45">'+e1str(rf.m,rf.k)+'</span> &nbsp;and&nbsp; <span style="color:#2b6cb0">'+e2str(rf.a,rf.c)+'</span>';
-  drawGraph("rfSvg",rf.m,rf.k,{xRange:[-1,6],family:[{m:rf.m,c:rf.k,col:"#3f7a45"},{m:-rf.a,c:rf.c,col:"#2b6cb0"}],hideFamilyDots:true,markPoint:rfRevealed?{x:sv.X,y:sv.Y,label:"("+sv.X+", "+sv.Y+")"}:null});
-  if(!rfRevealed)document.getElementById("rfRead").innerHTML="Solve by substitution, then enter the (x, y) you get — it will land on the crossing.";
-}
-function rfCheck(){
-  var sv=suSolve(rf), x=num(document.getElementById("rfX").value), y=num(document.getElementById("rfY").value), r=document.getElementById("rfRead");
-  if(x===sv.X&&y===sv.Y){ rfRevealed=true; rfDraw(); r.innerHTML="✓ Substitution gives <b>("+sv.X+", "+sv.Y+")</b> — exactly where the two lines cross. The exact method and the picture agree."; }
-  else { r.innerHTML="Not yet — substitute "+expr(rf.m,rf.k)+" for y in "+e2str(rf.a,rf.c)+", solve for x, then find y."; }
-}
-function rfNew(){var p;do{p=SUBANK[Math.floor(Math.random()*SUBANK.length)];}while(p===rf.src&&SUBANK.length>1);rf={m:p.m,k:p.k,a:p.a,c:p.c,src:p};rfRevealed=false;document.getElementById("rfX").value="";document.getElementById("rfY").value="";rfDraw();}
-function rfInit(){var p=SUBANK[1];rf={m:p.m,k:p.k,a:p.a,c:p.c,src:p};rfRevealed=false;rfDraw();}
-
-/* ---- CREATIVITY (stretch): rearrange first ---- */
-var RABANK=[
- {e1:"x + y = 7",e2:"2x − y = 5",rearr:"y = 7 − x",steps:["2x − (7 − x) = 5","2x − 7 + x = 5","3x − 7 = 5","3x = 12","x = 4"],X:4,Y:3},
- {e1:"x + y = 10",e2:"3x − y = 6",rearr:"y = 10 − x",steps:["3x − (10 − x) = 6","3x − 10 + x = 6","4x − 10 = 6","4x = 16","x = 4"],X:4,Y:6},
- {e1:"x + y = 5",e2:"2x + y = 8",rearr:"y = 5 − x",steps:["2x + (5 − x) = 8","x + 5 = 8","x = 3"],X:3,Y:2}
+/* ---- CONNECTION: add to eliminate (opposite signs) ---- */
+var CNBANK=[
+ {a1:2,b1:1,c1:7,a2:1,b2:-1,c2:2},
+ {a1:3,b1:1,c1:9,a2:2,b2:-1,c2:1},
+ {a1:1,b1:2,c1:8,a2:1,b2:-2,c2:0}
 ];
-var ra={}, raStage=0;
-function raDraw(){
-  document.getElementById("raPair").innerHTML='<span style="color:#3f7a45">'+ra.e1+'</span> &nbsp;and&nbsp; <span style="color:#2b6cb0">'+ra.e2+'</span>';
-  raStage=0;
-  document.getElementById("raWork").innerHTML='<span class="small">Neither is in the form y = … yet.</span>';
-  document.getElementById("raStep").innerHTML="";
-  document.getElementById("raBtn").textContent="Show the rearrangement";
-  document.getElementById("raBtn").disabled=false;
-  document.getElementById("raRead").innerHTML="First rearrange one equation to make a variable the subject.";
+var cn={}, cnAdded=false;
+function cnDraw(){
+  var A=cn.a1+cn.a2, C=cn.c1+cn.c2, X=C/A;
+  var h='<div>'+eqLine(cn.a1,cn.b1,cn.c1)+'</div>';
+  h+='<div>+&nbsp;&nbsp;'+eqLine(cn.a2,cn.b2,cn.c2)+'</div>';
+  h+='<div style="border-top:1.6px solid #5c6b4f;display:inline-block;padding-top:3px;min-width:150px">'+(cnAdded?(A===1?"x":A+"x")+' = '+C:'&nbsp;')+'</div>';
+  document.getElementById("cnSum").innerHTML=h;
+  document.getElementById("cnBtn").disabled=cnAdded;
+  document.getElementById("cnRead").innerHTML = cnAdded
+    ? "✓ The <b>y</b> cancelled ("+(cn.b1>0?"+":"")+(cn.b1===1?"":cn.b1)+"y and "+(cn.b2===-1?"−":cn.b2)+"y make 0). Now "+(A===1?"x":A+"x")+" = "+C+", so <b>x = "+X+"</b>."
+    : "The y-terms are <b>"+(cn.b1===1?"+y":"+"+cn.b1+"y")+"</b> and <b>"+(cn.b2===-1?"−y":cn.b2+"y")+"</b> — opposite signs. Add the equations to cancel y.";
 }
-function raNext(){
-  if(raStage===0){
-    document.getElementById("raWork").innerHTML="Rearrange "+ra.e1+" → <b>"+ra.rearr+"</b>";
-    document.getElementById("raBtn").textContent="Show the substitution & solve";
-    document.getElementById("raRead").innerHTML="Now substitute "+ra.rearr+" into "+ra.e2+".";
-    raStage=1;
-  } else if(raStage===1){
-    document.getElementById("raWork").innerHTML="Rearrange "+ra.e1+" → <b>"+ra.rearr+"</b><br>"+ra.steps.map(function(l){return l;}).join("<br>");
-    document.getElementById("raBtn").disabled=true;
-    document.getElementById("raStep").innerHTML='Now find y and check: ( <input id="raX" autocomplete="off" placeholder="x" style="width:44px;padding:6px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> , <input id="raY" autocomplete="off" placeholder="y" style="width:44px;padding:6px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> ) <button onclick="raCheck()">✅ Check</button>';
-    document.getElementById("raRead").innerHTML="You have x. Substitute it into "+ra.rearr+" to find y, then enter the pair.";
-    raStage=2;
+function cnAdd(){cnAdded=true;cnDraw();}
+function cnReset(){cnAdded=false;cnDraw();}
+function cnNew(){var p;do{p=CNBANK[Math.floor(Math.random()*CNBANK.length)];}while(p===cn.src&&CNBANK.length>1);cn={a1:p.a1,b1:p.b1,c1:p.c1,a2:p.a2,b2:p.b2,c2:p.c2,src:p};cnAdded=false;cnDraw();}
+function cnInit(){var p=CNBANK[0];cn={a1:p.a1,b1:p.b1,c1:p.c1,a2:p.a2,b2:p.b2,c2:p.c2,src:p};cnAdded=false;cnDraw();}
+
+/* ---- MOVEMENT (hero): elimination scaffold (add -> subtract -> scale) ---- */
+var ELBANK=[
+ {e1:[3,1,9],e2:[2,-1,1],x:2,y:3,plan:[
+   {opts:[{l:"Add the equations",c:true},{l:"Subtract the equations",c:false,m:"Subtracting would leave 2y — the y's don't cancel. They have opposite signs, so ADD."}],line:"5x = 10",read:"Opposite y-signs — add to cancel y."},
+   {opts:[{l:"Solve for x",c:true}],line:"x = 2",read:"Solve the one-variable equation."},
+   {opts:[{l:"Back-substitute for y",c:true}],line:"y = 3",read:"Put x = 2 into either equation to find y."}]},
+ {e1:[3,1,11],e2:[1,1,5],x:3,y:2,plan:[
+   {opts:[{l:"Subtract the equations",c:true},{l:"Add the equations",c:false,m:"Adding would give 2y — they don't cancel. Same signs, so SUBTRACT."}],line:"2x = 6",read:"Same y-signs — subtract to cancel y."},
+   {opts:[{l:"Solve for x",c:true}],line:"x = 3",read:"Solve for x."},
+   {opts:[{l:"Back-substitute for y",c:true}],line:"y = 2",read:"Find y from either equation."}]},
+ {e1:[1,2,11],e2:[3,1,13],x:3,y:4,plan:[
+   {opts:[{l:"Multiply equation 2 by 2",c:true},{l:"Add the equations",c:false,m:"The y-coefficients (2 and 1) don't match yet — scale a row first."}],setEq2:"6x + 2y = 26",read:"Coefficients differ — scale equation 2 so the y-terms match."},
+   {opts:[{l:"Subtract the equations",c:true},{l:"Add the equations",c:false,m:"Both y-terms are now +2y (same sign) — SUBTRACT to cancel."}],line:"5x = 15",read:"Now the y-terms match (both +2y) — subtract."},
+   {opts:[{l:"Solve for x",c:true}],line:"x = 3",read:"Solve for x."},
+   {opts:[{l:"Back-substitute for y",c:true}],line:"y = 4",read:"Find y from x + 2y = 11."}]}
+];
+var el={}, elStep=0, elHist=[], elEq2;
+function elDraw(){
+  el.item=el.item||ELBANK[0];
+  elStep=0; elHist=[]; elEq2=eqLine(el.item.e2[0],el.item.e2[1],el.item.e2[2]);
+  elRender();
+}
+function elRender(){
+  var it=el.item;
+  document.getElementById("elEq").innerHTML='<div><span style="color:#3f7a45">'+eqLine(it.e1[0],it.e1[1],it.e1[2])+'</span></div><div><span style="color:#2b6cb0">'+elEq2+'</span></div>';
+  document.getElementById("elLines").innerHTML=elHist.map(function(l){return "<div>"+l+"</div>";}).join("");
+  if(elStep<it.plan.length){
+    var step=it.plan[elStep], h="";
+    step.opts.forEach(function(o,ix){h+='<button onclick="elPick('+ix+')">'+o.l+'</button>';});
+    document.getElementById("elOpts").innerHTML=h;
+    document.getElementById("elRead").innerHTML=step.read;
+  } else {
+    document.getElementById("elOpts").innerHTML="";
+    var e1=it.e1,e2=it.e2;
+    document.getElementById("elRead").innerHTML="✓ <b>x = "+it.x+", y = "+it.y+"</b>. Check: "+eqLine(e1[0],e1[1],e1[2]).replace(" = "+e1[2],"")+" → "+(e1[0]*it.x)+(e1[1]?(e1[1]>0?" + "+(e1[1]*it.y):" − "+(-e1[1]*it.y)):"")+" = "+e1[2]+" ✓; &nbsp; "+eqLine(e2[0],e2[1],e2[2]).replace(" = "+e2[2],"")+" → "+(e2[0]*it.x)+(e2[1]?(e2[1]>0?" + "+(e2[1]*it.y):" − "+(-e2[1]*it.y)):"")+" = "+e2[2]+" ✓. Both true.";
   }
 }
-function raCheck(){
-  var x=num(document.getElementById("raX").value), y=num(document.getElementById("raY").value), r=document.getElementById("raRead");
-  if(x===ra.X&&y===ra.Y){ r.innerHTML="✓ <b>("+ra.X+", "+ra.Y+")</b>. Check: "+ra.e1+" → "+ra.X+" + "+ra.Y+" = "+(ra.X+ra.Y)+" ✓, and it satisfies "+ra.e2+" too. Rearranging first let substitution run as usual."; }
-  else { r.innerHTML="Not yet — x = "+ra.X+"; put it into "+ra.rearr+" to get y."; }
+function elPick(ix){
+  var step=el.item.plan[elStep], o=step.opts[ix];
+  if(!o.c){document.getElementById("elRead").innerHTML=o.m;return;}
+  if(step.setEq2){elEq2=step.setEq2;elHist.push("× 2:  "+step.setEq2);}
+  else if(step.line){elHist.push(step.line);}
+  elStep++;
+  elRender();
 }
-function raNew(){var p;do{p=RABANK[Math.floor(Math.random()*RABANK.length)];}while(p===ra.src&&RABANK.length>1);ra={e1:p.e1,e2:p.e2,rearr:p.rearr,steps:p.steps,X:p.X,Y:p.Y,src:p};raDraw();}
-function raInit(){var p=RABANK[0];ra={e1:p.e1,e2:p.e2,rearr:p.rearr,steps:p.steps,X:p.X,Y:p.Y,src:p};raDraw();}
+function elNew(){var p;do{p=ELBANK[Math.floor(Math.random()*ELBANK.length)];}while(p===el.src&&ELBANK.length>1);el={item:p,src:p};elDraw();}
+function elInit(){el={item:ELBANK[0],src:ELBANK[0]};elDraw();}
+
+/* ---- REFLECTION: add or subtract? decider ---- */
+var DCBANK=[
+ {e1:[3,2,12],e2:[1,2,8],op:"sub",v:"y",why:"both y-terms are +2y (same sign)"},
+ {e1:[4,1,9],e2:[2,-1,3],op:"add",v:"y",why:"the y-terms are +y and −y (opposite signs)"},
+ {e1:[5,2,16],e2:[3,-2,0],op:"add",v:"y",why:"the y-terms are +2y and −2y (opposite signs)"},
+ {e1:[2,5,12],e2:[2,3,8],op:"sub",v:"x",why:"both x-terms are 2x (same sign)"}
+];
+var dc={}, dcI=0, dcAnswered=false;
+function dcCur(){return dc.pairs[dcI];}
+function dcDraw(){
+  var p=dcCur();
+  document.getElementById("dcEq").innerHTML='<div><span style="color:#3f7a45">'+eqLine(p.e1[0],p.e1[1],p.e1[2])+'</span></div><div><span style="color:#2b6cb0">'+eqLine(p.e2[0],p.e2[1],p.e2[2])+'</span></div>';
+  document.getElementById("dcNextBtn").disabled=!dcAnswered;
+  if(!dcAnswered)document.getElementById("dcRead").innerHTML="Which move makes a variable cancel — add or subtract? Read the matching signs.";
+}
+function dcAnswer(said){
+  var p=dcCur(); dcAnswered=true;
+  var correct=(said===p.op);
+  document.getElementById("dcRead").innerHTML=(correct?"✓ ":"Not quite — ")+"<b>"+(p.op==="add"?"Add":"Subtract")+"</b>, because "+p.why+", so "+(p.op==="add"?"adding":"subtracting")+" cancels <b>"+p.v+"</b>.";
+  document.getElementById("dcNextBtn").disabled=false;
+}
+function dcNext(){ if(dcI<dc.pairs.length-1){dcI++;dcAnswered=false;dcDraw();} else {document.getElementById("dcRead").innerHTML="✓ Done. Same sign → subtract; opposite sign → add. Read the signs first, every time.";} }
+function dcShuffle(){var a=DCBANK.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function dcNew(){dc={pairs:dcShuffle()};dcI=0;dcAnswered=false;dcDraw();}
+function dcInit(){dc={pairs:DCBANK.slice()};dcI=0;dcAnswered=false;dcDraw();}
+
+/* ---- CREATIVITY (stretch): scale then eliminate ---- */
+var SCBANK=[
+ {e1:"x + 2y = 11",e2:"3x + y = 13",scaleTxt:"Multiply equation 2 by 2 → 6x + 2y = 26",steps:["(6x + 2y) − (x + 2y) = 26 − 11","5x = 15","x = 3"],X:3,Y:4,chk:"x + 2y = 11 → 3 + 8 = 11 ✓"},
+ {e1:"2x + y = 8",e2:"x + 3y = 9",scaleTxt:"Multiply equation 1 by 3 → 6x + 3y = 24",steps:["(6x + 3y) − (x + 3y) = 24 − 9","5x = 15","x = 3"],X:3,Y:2,chk:"2x + y = 8 → 6 + 2 = 8 ✓"},
+ {e1:"3x + 2y = 16",e2:"x + y = 6",scaleTxt:"Multiply equation 2 by 2 → 2x + 2y = 12",steps:["(3x + 2y) − (2x + 2y) = 16 − 12","x = 4"],X:4,Y:2,chk:"x + y = 6 → 4 + 2 = 6 ✓"}
+];
+var sc={}, scStage=0;
+function scDraw(){
+  document.getElementById("scEq").innerHTML='<div><span style="color:#3f7a45">'+sc.e1+'</span></div><div><span style="color:#2b6cb0">'+sc.e2+'</span></div>';
+  scStage=0;
+  document.getElementById("scWork").innerHTML='<span class="small">The coefficients don’t match — nothing cancels yet.</span>';
+  document.getElementById("scStep").innerHTML="";
+  document.getElementById("scBtn").textContent="Show the scaling"; document.getElementById("scBtn").disabled=false;
+  document.getElementById("scRead").innerHTML="Multiply one equation so a variable’s coefficients match, then eliminate.";
+}
+function scNext(){
+  if(scStage===0){
+    document.getElementById("scWork").innerHTML="<b>"+sc.scaleTxt+"</b>";
+    document.getElementById("scBtn").textContent="Show the elimination & solve";
+    document.getElementById("scRead").innerHTML="Now the matched variable cancels — subtract to remove it.";
+    scStage=1;
+  } else if(scStage===1){
+    document.getElementById("scWork").innerHTML="<b>"+sc.scaleTxt+"</b><br>"+sc.steps.join("<br>");
+    document.getElementById("scBtn").disabled=true;
+    document.getElementById("scStep").innerHTML='Find y and check: ( <input id="scX" autocomplete="off" placeholder="x" style="width:44px;padding:6px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> , <input id="scY" autocomplete="off" placeholder="y" style="width:44px;padding:6px;border:1.6px solid #5c6b4f;border-radius:8px;text-align:center;font-weight:600"> ) <button onclick="scCheck()">✅ Check</button>';
+    document.getElementById("scRead").innerHTML="You have x. Substitute it into an original equation to find y, then enter the pair.";
+    scStage=2;
+  }
+}
+function scCheck(){
+  var x=num(document.getElementById("scX").value), y=num(document.getElementById("scY").value), r=document.getElementById("scRead");
+  if(x===sc.X&&y===sc.Y){ r.innerHTML="✓ <b>("+sc.X+", "+sc.Y+")</b>. Check: "+sc.chk+" (and it satisfies the other equation too). Scaling a row let elimination run as usual."; }
+  else { r.innerHTML="Not yet — x = "+sc.X+"; substitute it into "+sc.e1+" (or "+sc.e2+") to find y."; }
+}
+function scNew(){var p;do{p=SCBANK[Math.floor(Math.random()*SCBANK.length)];}while(p===sc.src&&SCBANK.length>1);sc={e1:p.e1,e2:p.e2,scaleTxt:p.scaleTxt,steps:p.steps,X:p.X,Y:p.Y,chk:p.chk,src:p};scDraw();}
+function scInit(){var p=SCBANK[0];sc={e1:p.e1,e2:p.e2,scaleTxt:p.scaleTxt,steps:p.steps,X:p.X,Y:p.Y,chk:p.chk,src:p};scDraw();}
 
 /* ---------------- Reconnection Routes ---------------- */
 (function(){
   var RECONNECT={
-    subst:{title:'Substituting a value',prompt:'If y = 2x + 1 and x = 2, what is y?',answer:5,hint:'2\u00d72 + 1 = 5.'},
-    rearrange:{title:'Making y the subject',prompt:'In x + y = 7, if x = 3, what is y?',answer:4,hint:'x + y = 7, so y = 7 \u2212 3 = 4.'},
-    solve:{title:'Solving one equation',prompt:'Solve 5x + 1 = 11.',answer:2,hint:'5x + 1 = 11 \u2192 5x = 10 \u2192 x = 2.'}
-  };;;;;;;
+    addterms:{title:'Adding like terms',prompt:'Add 3x and 2x: the result is ______ x (just the number).',answer:5,hint:'3x + 2x = 5x, so the number is 5.'},
+    cancel:{title:'When terms cancel',prompt:'What is (+y) + (\u2212y)?',answer:0,hint:'+y and \u2212y add to 0 \u2014 they cancel.'},
+    scale:{title:'Scaling an equation',prompt:'Multiply x + 2y = 11 by 3. The right-hand side becomes ______.',answer:33,hint:'Every term \u00d7 3, so 11 \u00d7 3 = 33.'}
+  };;;;;
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
   window.openReconnect=function(){
     var p=document.getElementById('reconnectionPanel');p.style.display='block';
@@ -590,12 +545,12 @@ function raInit(){var p=RABANK[0];ra={e1:p.e1,e2:p.e2,rearr:p.rearr,steps:p.step
 
 /* ---------------- PRACTICE COMPANION ---------------- */
 var PRACTICE=[
- {label:"1 of 6 \u00b7 substitute",q:"y = 2x + 1 and 3x + y = 11. Solve for x and y.",xy:true,ax:2,ay:5,prompt:"Replace y in 3x + y = 11 with (2x + 1), solve for x, then find y.",hint:"3x + (2x + 1) = 11 \u2192 5x + 1 = 11 \u2192 x = 2; then y = 2\u00d72 + 1 = 5.",sol:"x = 2, y = 5 \u2014 5x + 1 = 11 gives x = 2; back-substitute: y = 5. Check both \u2713."},
- {label:"2 of 6 \u00b7 a subtraction",q:"y = x \u2212 1 and 2x + y = 8. Solve for x and y.",xy:true,ax:3,ay:2,prompt:"Substitute (x \u2212 1) for y, solve, then find y.",hint:"2x + (x \u2212 1) = 8 \u2192 3x \u2212 1 = 8 \u2192 x = 3; then y = 3 \u2212 1 = 2.",sol:"x = 3, y = 2 \u2014 3x \u2212 1 = 8 gives x = 3; y = 2. Check both \u2713."},
- {label:"3 of 6 \u00b7 y = 3x",q:"y = 3x and x + y = 8. Solve for x and y.",xy:true,ax:2,ay:6,prompt:"Replace y with 3x, solve, then find y.",hint:"x + 3x = 8 \u2192 4x = 8 \u2192 x = 2; then y = 3\u00d72 = 6.",sol:"x = 2, y = 6 \u2014 4x = 8 gives x = 2; y = 6. Check both \u2713."},
- {label:"4 of 6 \u00b7 two steps",q:"y = x + 2 and 2x + y = 11. Solve for x and y.",xy:true,ax:3,ay:5,prompt:"Substitute (x + 2) for y, solve, then find y.",hint:"2x + (x + 2) = 11 \u2192 3x + 2 = 11 \u2192 x = 3; then y = 5.",sol:"x = 3, y = 5 \u2014 3x + 2 = 11 gives x = 3; y = 5. Check both \u2713."},
- {label:"5 of 6 \u00b7 rearrange first",q:"x + y = 7 and 2x \u2212 y = 5. Solve for x and y.",xy:true,ax:4,ay:3,prompt:"Rearrange the first to y = 7 \u2212 x, substitute, solve, then find y.",hint:"2x \u2212 (7 \u2212 x) = 5 \u2192 3x \u2212 7 = 5 \u2192 x = 4; then y = 7 \u2212 4 = 3.",sol:"x = 4, y = 3 \u2014 rearranging gives y = 7 \u2212 x; 3x \u2212 7 = 5 gives x = 4; y = 3. Check both \u2713."},
- {label:"6 of 6 \u00b7 a non-whole answer (stretch)",q:"y = 2x + 1 and 4x + y = 4. Solve for x and y.",xy:true,ax:0.5,ay:2,prompt:"Substitute (2x + 1) for y \u2014 the x need not be whole.",hint:"4x + (2x + 1) = 4 \u2192 6x + 1 = 4 \u2192 x = 0.5 (or 1/2); then y = 2\u00d70.5 + 1 = 2.",sol:"x = 0.5 (or 1/2), y = 2 \u2014 6x + 1 = 4 gives x = 0.5; y = 2. Check both \u2713."}
+ {label:"1 of 6 \u00b7 add to eliminate",q:"3x + y = 9 and 2x \u2212 y = 1. Solve for x and y.",xy:true,ax:2,ay:3,prompt:"Opposite y-signs \u2014 add to remove y, then substitute back for y.",hint:"Add: 5x = 10 \u2192 x = 2; then 3\u00d72 + y = 9 \u2192 y = 3.",sol:"x = 2, y = 3 \u2014 adding gives 5x = 10 (x = 2); back-substitute: y = 3. Check: 3\u00d72+3 = 9 \u2713 and 2\u00d72\u22123 = 1 \u2713."},
+ {label:"2 of 6 \u00b7 subtract to eliminate",q:"3x + y = 11 and x + y = 5. Solve for x and y.",xy:true,ax:3,ay:2,prompt:"Same y-signs \u2014 subtract, then find y.",hint:"Subtract: 2x = 6 \u2192 x = 3; then 3 + y = 5 \u2192 y = 2.",sol:"x = 3, y = 2 \u2014 subtracting gives 2x = 6 (x = 3); y = 2. Check both \u2713."},
+ {label:"3 of 6 \u00b7 add to eliminate",q:"4x + y = 14 and 2x \u2212 y = 4. Solve for x and y.",xy:true,ax:3,ay:2,prompt:"Opposite y-signs \u2014 add, then find y.",hint:"Add: 6x = 18 \u2192 x = 3; then 4\u00d73 + y = 14 \u2192 y = 2.",sol:"x = 3, y = 2 \u2014 adding gives 6x = 18 (x = 3); y = 2. Check both \u2713."},
+ {label:"4 of 6 \u00b7 add (2y opposite)",q:"5x + 2y = 16 and 3x \u2212 2y = 0. Solve for x and y.",xy:true,ax:2,ay:3,prompt:"The 2y-terms are opposite \u2014 add to remove them.",hint:"Add: 8x = 16 \u2192 x = 2; then 3\u00d72 \u2212 2y = 0 \u2192 y = 3.",sol:"x = 2, y = 3 \u2014 adding gives 8x = 16 (x = 2); y = 3. Check both \u2713."},
+ {label:"5 of 6 \u00b7 scale first",q:"x + 2y = 11 and 3x + y = 13. Solve for x and y.",xy:true,ax:3,ay:4,prompt:"Multiply the second by 2 so the y-terms match, then subtract.",hint:"\u00d72 the second: 6x + 2y = 26; subtract x + 2y = 11 \u2192 5x = 15 (x = 3); then y = 4.",sol:"x = 3, y = 4 \u2014 scaling then subtracting gives 5x = 15 (x = 3); y = 4. Check both \u2713."},
+ {label:"6 of 6 \u00b7 a non-whole answer (stretch)",q:"2x \u2212 y = 0 and 4x + y = 3. Solve for x and y.",xy:true,ax:0.5,ay:1,prompt:"Opposite y-signs \u2014 add; the x need not be whole.",hint:"Add: 6x = 3 \u2192 x = 0.5 (or 1/2); then 2\u00d70.5 \u2212 y = 0 \u2192 y = 1.",sol:"x = 0.5 (or 1/2), y = 1 \u2014 adding gives 6x = 3 (x = 0.5); y = 1. Check both \u2713."}
 ];
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -643,7 +598,7 @@ function pCheck(){
   var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Substitute the expression for y into the other equation, solve for x, then back-substitute. Try the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Add (opposite signs) or subtract (same signs) to cancel a variable \u2014 scale a row first if needed. Try the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -659,10 +614,10 @@ function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{va
 
 /* ---------------- init ---------------- */
 function initLesson(){
-  swInit();
-  suInit();
-  rfInit();
-  raInit();
+  cnInit();
+  elInit();
+  dcInit();
+  scInit();
   renderPractice();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();

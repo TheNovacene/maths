@@ -191,3 +191,23 @@ jsdom QA (19 checks) all pass — crossing check + both-sub proof, slide meeting
 **Standards:** self-contained (engine inlined); canonical parser; Practice of six (substitute & solve, back-substitute, subtraction, y=3x, rearrange-first, and a **gate-6a stretch** y=2x+1 & 4x+y=4 → x=0.5/½); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l07_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine `twoline_diagram` y-window **bounded around the crossing** (fixed a PDF layout overflow when lines diverge); worked examples: y=2x+1 & 3x+y=11 → (2,5), and a rearrange-first → (4,3).
 
 jsdom QA (19 checks) all pass — swap-in, full substitution stepper + elimination-distractor nudge + both-check, algebra→crossing graph, rearrange-first reveal+solve, gate 6a. Visual QA confirmed (Reflection graph + both guide diagrams). Site: **63 lessons live / 0 missing**.
+
+## Build note — EQ-08 "Solving by elimination" (v0.1, built)
+**Status:** live (`lessons/equations/08-solving-by-elimination.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Movement**. Second exact method; **Gerry's ordering adopted** — opposite-sign **add** first (most visible cancellation), then same-sign **subtract**, then **scale-then-eliminate**.
+
+**Build base:** copied EQ-04 (lean — no graph engine needed for algebraic elimination).
+
+**Hero (Gerry's choice — elimination scaffold, in Movement):**
+- **Connection — add to eliminate:** vertical addition of an opposite-sign pair; the y-terms (+y, −y) sum to 0 and cancel, leaving one unknown.
+- **Movement (hero) — data-driven stepper:** three tiers in order — add (opposite), subtract (same), scale-then-subtract — each with the correct move + a wrong-op distractor nudge, then solve → back-substitute → check both. The scale tier updates the displayed equation to the scaled form.
+- **Reflection — add or subtract?** a rapid decider drill: choose the operation that cancels a variable; feedback names the matching signs (same → subtract, opposite → add).
+- **Creativity (stretch) — scale, then eliminate:** guided reveal of the scaling and the elimination, then a solve check.
+
+**Reconnection Routes:** adding like terms (3x+2x → 5) · cancelling (+y)+(−y) → 0 · scaling an equation (×3 → RHS 33).
+
+**Standards:** self-contained; canonical parser; Practice of six (add, find-y, subtract, add, scale-first, and a **gate-6a stretch** 2x−y=0 & 4x+y=3 → x=0.5/½); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l08_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides reuse `twoline_diagram`; worked examples: 3x+y=9 & 2x−y=1 → (2,3) (add), and x+2y=11 & 3x+y=13 → (3,4) (scale then subtract).
+
+jsdom QA (22 checks) all pass — add-to-cancel, full stepper across all three tiers incl. distractor nudges + both-check, decider (correct + wrong flagged), scale-then-eliminate solve, gate 6a. Site: **64 lessons live / 0 missing**.
+
+### Practice Companion — two-field (x, y) mode (post-review, Gerry)
+Gerry noted that asking only for x lets learners skip the final back-substitution. Added a **two-field answer mode** to the Practice Companion machinery: a question flagged `xy:true` shows separate **x =** and **y =** inputs (single field hidden), checked against `ax`/`ay` via the canonical `num()` parser (so word/fraction forms still pass). Feedback gives **partial credit** — "x is right — now find y: substitute your x back" — which directly targets the forgotten step. Applied to the three simultaneous-solving lessons **EQ-06, EQ-07, EQ-08**: every solving question now asks for the full pair (crossings for EQ-06; substitution/elimination solves for EQ-07/08). Single-field mode untouched for all other lessons (e.g. EQ-05's read-a-coordinate questions). jsdom QA: 66 checks across the three lessons pass (pair accepted, x-only nudged, gate-6a fraction on x). Future simultaneous lessons (EQ-09) inherit the machinery by copy.

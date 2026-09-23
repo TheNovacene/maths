@@ -544,6 +544,14 @@
           "file": "lessons/equations/07-solving-by-substitution.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-08-solving-by-elimination",
+          "num": "Lesson 08",
+          "title": "Solving by elimination",
+          "file": "lessons/equations/08-solving-by-elimination.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
