@@ -560,6 +560,14 @@
           "file": "lessons/equations/09-forming-and-solving-a-pair.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-10-inequalities-on-a-number-line",
+          "num": "Lesson 10",
+          "title": "Inequalities on a number line",
+          "file": "lessons/equations/10-inequalities-on-a-number-line.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

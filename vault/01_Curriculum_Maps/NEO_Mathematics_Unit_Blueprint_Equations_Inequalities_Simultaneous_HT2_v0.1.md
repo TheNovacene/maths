@@ -228,3 +228,27 @@ Gerry noted that asking only for x lets learners skip the final back-substitutio
 **Standards:** self-contained; canonical parser; **two-field xy Practice** of six context pairs (café, stationery, tickets, fruit, and a **gate-6a stretch** 2 coffees + muffin £7 / 1 + muffin £4.50 → coffee £2.50 = 5/2); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l09_v01`); Mode A Nutrition; six Cornerstones in order; British English, "learner", no year labels. Guides reuse `twoline_diagram`; worked examples: café (2x+y=8, 3x+2y=13 → £3/£2) and tickets (2x+y=23, x+y=14 → £9/£5).
 
 jsdom QA (20 checks) all pass — pair builder (form + interpret + wrong-eqn flag), solve+interpret, interpret drill, build-your-own, two-field xy practice incl. partial-credit + gate 6a. Site: **65 lessons live / 0 missing**.
+
+## Build note — EQ-10 "Inequalities on a number line" (v0.1, built)
+**Status:** live (`lessons/equations/10-inequalities-on-a-number-line.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Reflection**. Loosens "equals" into ranges; introduces solving inequalities (incl. the negative sign-flip) and number-line representation.
+
+**New component (per blueprint audit):** a small self-contained **`numLine(id, opts)`** SVG helper — axis with ticks, open/closed endpoint circle, a direction ray with arrowhead, and a bounded `seg` mode (two endpoints, each open/closed). Inlined, no CDN.
+
+**Hero (Gerry's choice — solve & represent, in Reflection):**
+- **Connection — read a range:** switch between x>2, x≥2, x<2, x≤2 at a fixed boundary; watch the circle (open/closed) and arrow change, with the at-least/at-most wording.
+- **Movement — solve the inequality:** step-chooser like an equation, with a **flip decision** — dividing/multiplying by a negative offers "…and flip the sign" vs a no-flip distractor (nudged); the solved range then draws on a number line.
+- **Reflection (hero) — solve & represent:** learner solves, enters the boundary value and picks the relation (> ≥ < ≤); the number line renders and confirms, with partial-credit feedback (value-right/relation-wrong).
+- **Creativity (stretch) — double inequality:** solve a bounded inequality (e.g. 1 ≤ 2x−1 < 7) by operating on all three parts; draws the segment (closed/open ends).
+
+**Reconnection Routes:** directed numbers (−2+5=3) · solving a step (2x>6 → 3) · open/closed (5 allowed by x≤5? → 1).
+
+**Standards:** self-contained; canonical parser; Practice of six (two-step, at-most, one-step, **two sign-flip** cases, and a **gate-6a stretch** 2x−1≤4 → x≤2.5/5⁄2); palette [x,<,>,≤,≥,+,−]; NEO Scratchpad (key `neoMathsScratchpad_equations_l10_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`numline_diagram`**; worked examples: 2x+1>7 → x>3 (open) and 5−2x≥1 → x≤2 (flip, closed).
+
+jsdom QA all pass (solve incl. both flips, solve-&-represent incl. flip + partial credit, double inequality segment, gate 6a; the only apparent misses were test-string artifacts — innerHTML escaping of >/< and ASCII vs unicode minus — confirmed correct). Visual QA: four number lines render correctly (x≥2 closed-right, x<2 open-left, x>−3 open-right, 1≤x<4 segment). Site: **66 lessons live / 0 missing**.
+
+### EQ-10 revision (post-review, Gerry) — show WHY the sign reverses
+Gerry flagged that "flip the sign when you multiply/divide by a negative" was presented as a rabbit-from-hat rule to memorise, against NEO's reasoning-first standard. Fixed:
+- **New "Why the sign reverses" demonstration** added to the Movement panel (before the solver): a true inequality (e.g. 2 < 5) is shown on a number line; "× −1" **reflects both sides across 0** (2→−2, 5→−5, drawn with dashed reflection arcs), and the learner sees −2 land to the right of −5, so −2 > −5 — the order reversed. The flip becomes an observed consequence, not a rule.
+- **Solver reframed:** the flip-step distractor feedback now points back to the reflection ("dividing by −1 flips both sides across 0, so the order reverses"), and the positive-divide distractor explains there is no reflection for a positive.
+- **Panel + guide wording** updated throughout from "the one new rule: flip" to "the one difference: a negative reflects both sides across 0, which reverses the sign — you can watch it happen." Guide learner-method, notice bullet, worked-example step and order_body all reframed to *show, not assert*.
+QA: WF demo verified (2<5 → −2>−5, negatives too, reflection arcs + red reflected points drawn); solver still solves both flip cases with the reframed reasoning. Standing principle for the unit: introduce the sign-reversal only via the reflection-across-zero demonstration, never as a bare rule.
