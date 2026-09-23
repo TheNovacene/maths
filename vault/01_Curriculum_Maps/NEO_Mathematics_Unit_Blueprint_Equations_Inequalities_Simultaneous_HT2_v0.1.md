@@ -211,3 +211,20 @@ jsdom QA (22 checks) all pass — add-to-cancel, full stepper across all three t
 
 ### Practice Companion — two-field (x, y) mode (post-review, Gerry)
 Gerry noted that asking only for x lets learners skip the final back-substitution. Added a **two-field answer mode** to the Practice Companion machinery: a question flagged `xy:true` shows separate **x =** and **y =** inputs (single field hidden), checked against `ax`/`ay` via the canonical `num()` parser (so word/fraction forms still pass). Feedback gives **partial credit** — "x is right — now find y: substitute your x back" — which directly targets the forgotten step. Applied to the three simultaneous-solving lessons **EQ-06, EQ-07, EQ-08**: every solving question now asks for the full pair (crossings for EQ-06; substitution/elimination solves for EQ-07/08). Single-field mode untouched for all other lessons (e.g. EQ-05's read-a-coordinate questions). jsdom QA: 66 checks across the three lessons pass (pair accepted, x-only nudged, gate-6a fraction on x). Future simultaneous lessons (EQ-09) inherit the machinery by copy.
+
+## Build note — EQ-09 "Forming and solving a pair" (v0.1, built)
+**Status:** live (`lessons/equations/09-forming-and-solving-a-pair.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Creativity/Connection**. Combines forming (EQ-04) with solving pairs (EQ-07/08). **Nutrition Mode A (contextual — budgeting/shopping)**, honest per D6.
+
+**Build base:** copied EQ-08 (inherits the two-field xy Practice machinery).
+
+**Hero (Gerry's choice — context → pair builder, in Connection):**
+- **Connection (hero):** a two-item café/shop/ticket situation; learner names the unknowns and fills BOTH equation templates (six coefficient boxes), Checks, then sees the pair solved and each price read back and checked in both facts. Socratic/Hint.
+- **Movement — solve the pair:** a ready-formed context pair with a matching variable; subtract → solve → back-substitute → interpret (states each price). Add-distractor nudged.
+- **Reflection — use the prices:** with the values found, cost a *new* combination (interpret the solution to answer a fresh question).
+- **Creativity (stretch) — build your own shop:** pick two prices; the shop writes two receipts (a solvable pair); framed as forming being solving in reverse.
+
+**Reconnection Routes:** writing a cost (2×£3 = £6) · eliminating a variable (subtract t+c=5 from 2t+c=7 → t=2) · using the prices (2 pens + 1 rubber = £5).
+
+**Standards:** self-contained; canonical parser; **two-field xy Practice** of six context pairs (café, stationery, tickets, fruit, and a **gate-6a stretch** 2 coffees + muffin £7 / 1 + muffin £4.50 → coffee £2.50 = 5/2); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l09_v01`); Mode A Nutrition; six Cornerstones in order; British English, "learner", no year labels. Guides reuse `twoline_diagram`; worked examples: café (2x+y=8, 3x+2y=13 → £3/£2) and tickets (2x+y=23, x+y=14 → £9/£5).
+
+jsdom QA (20 checks) all pass — pair builder (form + interpret + wrong-eqn flag), solve+interpret, interpret drill, build-your-own, two-field xy practice incl. partial-credit + gate 6a. Site: **65 lessons live / 0 missing**.

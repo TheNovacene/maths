@@ -552,6 +552,14 @@
           "file": "lessons/equations/08-solving-by-elimination.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-09-forming-and-solving-a-pair",
+          "num": "Lesson 09",
+          "title": "Forming and solving a pair",
+          "file": "lessons/equations/09-forming-and-solving-a-pair.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

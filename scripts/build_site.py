@@ -124,6 +124,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous/Lesson_07_Solving_by_Substitution/NEO_Maths_Y10_Equations_Lesson_07_Solving_by_Substitution_v0.1.html",
     "equations-08-solving-by-elimination":
         "03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous/Lesson_08_Solving_by_Elimination/NEO_Maths_Y10_Equations_Lesson_08_Solving_by_Elimination_v0.1.html",
+    "equations-09-forming-and-solving-a-pair":
+        "03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous/Lesson_09_Forming_and_Solving_a_Pair/NEO_Maths_Y10_Equations_Lesson_09_Forming_and_Solving_a_Pair_v0.1.html",
     "trigonometry-01-the-constant-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":
