@@ -174,3 +174,20 @@ jsdom QA (21 checks) all pass — pair accumulation + join, table plotter (accep
 **Standards:** self-contained (engine inlined); canonical parser; Practice of six (find crossing x then y, check a crossing, where-do-they-meet, common solution, and a **gate-6a stretch** y=2x+1 & y=4x → x=0.5/½); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l06_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`twoline_diagram`**; worked examples: y=2x−1 & y=x+1 → (2,3), and a break-even (3,£11).
 
 jsdom QA (19 checks) all pass — crossing check + both-sub proof, slide meeting detection, which-point tester (confirm + correct), break-even solve + cheaper-side interpretation, gate 6a. Visual QA confirmed (three two-line graphs). Site: **62 lessons live / 0 missing**.
+
+## Build note — EQ-07 "Solving by substitution" (v0.1, built)
+**Status:** live (`lessons/equations/07-solving-by-substitution.html`); Learner + Supporting Adult guides generated. Primary Cornerstone **Movement**. Finds the crossing **exactly** (no drawing) by substitution; includes the rearrange-first case.
+
+**Engine reuse:** copied EQ-06 (engine inlined); replaced activities. Reflection reuses the graph (`family`+`markPoint`) to show the algebraic answer landing on the crossing.
+
+**Hero (Gerry's choice — substitution scaffold, in Movement):**
+- **Connection — swap-in:** y = 2x+1, so replace the y in the other equation with (2x+1); the y disappears, one unknown remains. Shows why the swap is valid (equal things).
+- **Movement (hero) — substitution stepper:** step-chooser (substitute → collect → solve for x → back-substitute for y → check both), with an "add the two equations" distractor nudged toward elimination (next lesson).
+- **Reflection — algebra lands on the crossing:** solve, enter (x,y); it's ringed on the two-line graph, tying the exact method to EQ-06's picture.
+- **Creativity (stretch) — rearrange first:** neither equation in y= form (x+y=7, 2x−y=5); reveal the rearrangement (y = 7−x), then the substitution steps, then check.
+
+**Reconnection Routes:** substituting a value (y=2x+1, x=2 → 5) · making y the subject (x+y=7, x=3 → 4) · solving one equation (5x+1=11 → 2).
+
+**Standards:** self-contained (engine inlined); canonical parser; Practice of six (substitute & solve, back-substitute, subtraction, y=3x, rearrange-first, and a **gate-6a stretch** y=2x+1 & 4x+y=4 → x=0.5/½); palette [x,y,=,+,−,(,)]; NEO Scratchpad (key `neoMathsScratchpad_equations_l07_v01`); Nutrition Mode B; six Cornerstones in order; British English, "learner", no year labels. Guides engine `twoline_diagram` y-window **bounded around the crossing** (fixed a PDF layout overflow when lines diverge); worked examples: y=2x+1 & 3x+y=11 → (2,5), and a rearrange-first → (4,3).
+
+jsdom QA (19 checks) all pass — swap-in, full substitution stepper + elimination-distractor nudge + both-check, algebra→crossing graph, rearrange-first reveal+solve, gate 6a. Visual QA confirmed (Reflection graph + both guide diagrams). Site: **63 lessons live / 0 missing**.

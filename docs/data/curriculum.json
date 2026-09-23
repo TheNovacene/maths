@@ -536,6 +536,14 @@
           "file": "lessons/equations/06-where-two-lines-meet.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-07-solving-by-substitution",
+          "num": "Lesson 07",
+          "title": "Solving by substitution",
+          "file": "lessons/equations/07-solving-by-substitution.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
