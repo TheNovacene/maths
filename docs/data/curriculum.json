@@ -568,6 +568,14 @@
           "file": "lessons/equations/10-inequalities-on-a-number-line.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "equations-11-inequalities-as-regions",
+          "num": "Lesson 11",
+          "title": "Inequalities as regions",
+          "file": "lessons/equations/11-inequalities-as-regions.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

@@ -252,3 +252,25 @@ Gerry flagged that "flip the sign when you multiply/divide by a negative" was pr
 - **Solver reframed:** the flip-step distractor feedback now points back to the reflection ("dividing by −1 flips both sides across 0, so the order reverses"), and the positive-divide distractor explains there is no reflection for a positive.
 - **Panel + guide wording** updated throughout from "the one new rule: flip" to "the one difference: a negative reflects both sides across 0, which reverses the sign — you can watch it happen." Guide learner-method, notice bullet, worked-example step and order_body all reframed to *show, not assert*.
 QA: WF demo verified (2<5 → −2>−5, negatives too, reflection arcs + red reflected points drawn); solver still solves both flip cases with the reframed reasoning. Standing principle for the unit: introduce the sign-reversal only via the reflection-across-zero demonstration, never as a bare rule.
+
+## Build note — EQ-11 "Inequalities as regions" (v0.1, built) · UNIT COMPLETE
+**Status:** live (`lessons/equations/11-inequalities-as-regions.html`); Learner + Supporting Adult guides generated. Final lesson. Primary Cornerstone **Reflection/Creativity**. Extends inequalities from the number line to the plane: a two-variable inequality is a shaded **region** (half-plane); consolidates the unit and links to compound loci from Constructions.
+
+**New component:** a self-contained **`regionGraph(svgId, opts)`** SVG helper — axes + grid, **grid-sample shading** (0.5 steps, translucent cells satisfying all `ineqs`), boundary lines **dashed for strict / solid for inclusive**, vertical boundaries for x-relations, origin marker. Handles single inequalities and overlaps. Inlined, no CDN.
+
+**Hero (Gerry's choice — shade the region, in Reflection):**
+- **Connection — see the region:** each inequality shown shaded with boundary + origin; read explains dashed/solid and the origin test.
+- **Movement — which side?** boundary + origin drawn; "Test the origin" reveals true/false, then choose the side (with/other) — one test settles the region.
+- **Reflection (hero) — shade step by step:** a 3-decision pipeline — boundary style (strict→dashed) → test origin → which side — each checked with reasoning feedback; the region shades on completion.
+- **Creativity (stretch) — overlap:** two inequalities; shade where both hold — explicitly framed as the compound-region idea from Constructions with straight boundaries.
+
+**Reconnection Routes:** a range on a line (2x>6 → 3) · a boundary line (y=x+1 at x=2 → 3) · testing a point ((0,0) in y>x+1? → 0/no).
+
+**Standards:** self-contained; canonical parser; Practice of six (boundary intercept, four membership/side tests incl. a vertical boundary, and a **gate-6a stretch** boundary y=4x−1 through (a,9) → 2.5/5⁄2); palette [x,y,<,>,≤,≥]; NEO Scratchpad (key `neoMathsScratchpad_equations_l11_v01`); Nutrition Mode B (constraints/linear-programming framing); six Cornerstones in order; British English, "learner", no year labels. Guides engine gained **`region_diagram`** (matplotlib contourf shade + dashed/solid boundaries); worked examples: y>x+1 (dashed, above) and the y≥1 ∧ y≤x overlap wedge.
+
+jsdom QA (30 checks) all pass — helpers, region shading + boundary style, which-side decider, 3-step hero pipeline (both strict and inclusive), overlap, gate 6a. Visual QA: four regions render correctly (dashed above, solid vertical, solid below, overlap wedge). Site: **67 lessons live / 0 missing**.
+
+## ★ UNIT COMPLETE — Equations, Inequalities & Simultaneous Relationships (11/11 lessons live)
+EQ-01 Keeping the balance · EQ-02 Both sides, and brackets · EQ-03 Equations with fractions · EQ-04 Forming an equation · **★ mid-unit checkpoint** · EQ-05 A line is a set of solutions · EQ-06 Where two lines meet · EQ-07 Solving by substitution · EQ-08 Solving by elimination · EQ-09 Forming and solving a pair · EQ-10 Inequalities on a number line · EQ-11 Inequalities as regions.
+**The arc delivered:** one value → a pair → a whole line of solutions → the common solution at an intersection → two exact algebraic methods (substitution, elimination) → forming a pair from context → a range on a number line → a region in the plane. Reasoning-first throughout (e.g. the sign-reversal shown via reflection-across-zero, not asserted). Reusable components built or reused: the Straight Lines **Graph Lab** (EQ-05–07, with a `dots` option), the equation **balance/solver** family, the **two-field (x,y) Practice mode** (EQ-06–09), the **number-line** component (EQ-10), and the **region grapher** (EQ-11). Guides engine gained balance/twoside/bracket/fracbar/barmodel/solnline/twoline/numline/region diagrams. British English, learner-facing, no year labels; QA gate 6a (word + fraction) everywhere.
+**HT2 status:** Equations unit = 11 of the planned 21 HT2 lessons. Remaining for HT2: the **Circle Theorems** unit (10 lessons, reusing the Dynamic Geometry Studio).
