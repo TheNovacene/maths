@@ -152,10 +152,6 @@ SOURCES = {
         "KS3 (1)/ratio (1)/NEO_Maths_KS3_Ratio_Proportion_Interactive_v6.html",
     "ks3-place-value":
         "KS3 (1)/place-value-recycled/NEO_Maths_Y7_Place_Value_Interactive_v0.2.html",
-    "ks4-straight-line-graphs":
-        "KS4 (1)/straight-lines (1)/NEO_Maths_KS4_Straight_Line_Graphs_Interactive_v6.html",
-    "ks4-equation-of-a-straight-line":
-        "KS4 (1)/Example Lesson - Straight Lines (1)/equation-of-a-straight-line (1).html",
 }
 
 SNIPPET = (

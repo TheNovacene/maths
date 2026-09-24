@@ -620,31 +620,6 @@
           "cornerstones": []
         }
       ]
-    },
-    {
-      "id": "ks4-interactive-library",
-      "title": "KS4 Interactive Library",
-      "stage": "Key Stage 4",
-      "strand": "Algebra",
-      "source": "vault/KS4 (1)",
-      "lessons": [
-        {
-          "id": "ks4-straight-line-graphs",
-          "num": "Interactive",
-          "title": "Straight Line Graphs",
-          "file": "lessons/ks4/straight-line-graphs.html",
-          "status": "live",
-          "cornerstones": []
-        },
-        {
-          "id": "ks4-equation-of-a-straight-line",
-          "num": "Interactive",
-          "title": "Equation of a Straight Line",
-          "file": "lessons/ks4/equation-of-a-straight-line.html",
-          "status": "live",
-          "cornerstones": []
-        }
-      ]
     }
   ]
 }
