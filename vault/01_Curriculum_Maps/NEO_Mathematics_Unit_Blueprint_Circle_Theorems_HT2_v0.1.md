@@ -82,3 +82,19 @@ Hero = **Parts identifier / label-matcher** (Gerry-approved). Full cornerstone e
 *Reusable "Circle Theorem Lab" component: deferred — the CT-01 Reflection spotlight is a bespoke forerunner; the general presettable Lab is warranted from CT-02 (angle at the centre) onward, where draggable-point + live-ratio readouts do the discovery work.*
 
 **CT-01 label-layout revision (post-review):** clock-zone label layout adopted for both the interactive "Name that part" reveal and the `circleparts` guide diagram — each of the nine parts labelled in its own angular zone with a light leader line, eliminating label/feature clashes. Interactive part-detection also hardened: every line (diameter/radius/chord/tangent) is clickable along its **whole length** (sampled hotspots), fixing an earlier bug where the left half of the diameter registered as circumference. Re-QA green (detection + drive-through + visual).
+
+**CT-02 — The angle at the centre — ★ BUILT & LIVE (v0.1)**
+Keystone lesson. Hero staged as the **Circle Theorem Lab: 2:1 discovery** (Gerry-approved). Built the **reusable `makeCTLab` component** (fixed + draggable circumference points, live central + inscribed angle readouts, ratio reveal, trail, reflex-aware) — the circle-theorem analogue of the Graph/Parabola Lab, to be reused across CT-03–05, CT-07, CT-09.
+- **Connection:** `cnLab` — name the centre angle ∠AOB and the circumference angle ∠APB on the same arc (ratio hidden).
+- **Movement:** numeric half/double apply, reason required (centre→halve, circumference→double).
+- **Reflection (hero):** `rfLab` — drag P: ∠APB invariant, reveal ∠AOB = 2∠APB, trail of P.
+- **Creativity:** four-step isosceles proof (join P–O→Q, equal radii, base angles x/x & y/y, exterior 2x+2y) + reflex-case toggle.
+- **Practice:** 6 reason-first Qs; gate 6a exercised (Q1 40/forty; Q3 half / 0.5 / 1/2; Q6 reflex 260→130).
+- **Guides:** new reusable `circleangle` guide diagram (theorem + full proof), both verified.
+- **QA:** jsdom proved inscribed = ½ central across positions AND invariance of ∠APB on its arc; MOVEMENT answers/checks; PROOF concludes 2×∠APB; visual QA of all four states + guide diagrams. Studio `ct02-final` added. Site 67 lessons / 0 missing / links valid.
+
+**CT-02 Lab rounding fix (post-review):** the two angle readouts were rounded independently, so a true 79.4°/39.7° pair displayed as 79°/40° and broke the 2:1 learners must discover. Fixed: the circumference angle is rounded once and the centre angle is shown as exactly twice it, so every displayed pair is a perfect 2:1 while the drawn geometry is unchanged. Verified across all P positions and random arcs.
+
+**CT-02 proof clarity (post-review):** Creativity proof upgraded — angle labels (x, y, 2x, 2y, 180−2x, 180−2y) now placed on each angle bisector with a background halo so they lift clear of the arms; and a new intermediate step shows the isosceles apex angles ∠AOP = 180−2x, ∠BOP = 180−2y, deriving 2x/2y from the straight line P-O-Q (angle sum) rather than assuming the exterior-angle fact learners may have forgotten. Now a 5-step build.
+
+**CT-02 guide PDFs aligned (post-review):** the `circleangle` proof diagram and the Learner/Adult worked example were updated to match the interactive — halo bisector labels, the 180−2x/180−2y apex-angle step, and the straight-line (angle-sum) derivation replacing the exterior-angle assumption.

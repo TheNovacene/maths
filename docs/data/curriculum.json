@@ -593,6 +593,14 @@
           "file": "lessons/circle-theorems/01-the-circle-and-its-parts.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-02-the-angle-at-the-centre",
+          "num": "Lesson 02",
+          "title": "The angle at the centre",
+          "file": "lessons/circle-theorems/02-the-angle-at-the-centre.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
