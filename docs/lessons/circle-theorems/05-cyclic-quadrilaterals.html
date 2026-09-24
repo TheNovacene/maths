@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: Angles in the same segment</title>
+<title>NEO Mathematics: Cyclic quadrilaterals</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -37,16 +37,77 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 </style>
 </head>
 <body>
+
+<style>
+  .neo-chrome, .neo-chrome * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; }
+  .neo-chrome-header { background: #1A2E3B; color: #F7F7F5; padding: 0.6rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .neo-chrome-header a.neo-home { color: #2AB3A0; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
+  .neo-chrome-header a.neo-home:hover { text-decoration: underline; }
+  .neo-chrome-header .neo-crumb { font-size: 0.8rem; color: rgba(247,247,245,0.85); text-align: right; }
+  .neo-chrome-header .neo-crumb strong { color: #FFFFFF; font-weight: 600; }
+  .neo-chrome-footer { background: #1A2E3B; color: rgba(247,247,245,0.85); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.8rem; margin-top: 2rem; }
+  .neo-chrome-footer a { color: #2AB3A0; text-decoration: none; margin: 0 0.6rem; }
+  .neo-chrome-footer a:hover { text-decoration: underline; }
+  .neo-chrome-footer .neo-mark { font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .neo-chrome-footer .neo-mark span { color: #2AB3A0; }
+  /* --- Comfort & Access --- */
+  .neo-comfort-btn{background:#2AB3A0;color:#08312b;border:none;border-radius:8px;padding:0.35rem 0.7rem;font-weight:700;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;white-space:nowrap}
+  .neo-comfort-btn:hover{filter:brightness(1.06)}
+  .neo-comfort-panel{background:#12242e;color:#F7F7F5;padding:0.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;border-top:1px solid rgba(255,255,255,0.12);font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
+  .neo-comfort-panel[hidden]{display:none}
+  .neo-comfort-group{display:flex;flex-direction:column;gap:0.35rem}
+  .neo-comfort-group>span{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(247,247,245,0.65)}
+  .neo-comfort-row{display:flex;gap:0.4rem}
+  .neo-comfort-panel button.opt{background:rgba(255,255,255,0.10);color:#F7F7F5;border:1px solid rgba(255,255,255,0.25);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem}
+  .neo-comfort-panel button.opt[aria-pressed="true"]{background:#2AB3A0;color:#08312b;border-color:#2AB3A0;font-weight:700}
+  .neo-comfort-reset{margin-left:auto;align-self:center;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(247,247,245,0.85);border-radius:7px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem}
+  html[data-neo-text="large"]{font-size:112.5%}
+  html[data-neo-text="larger"]{font-size:125%}
+  html[data-neo-spacing="on"] .neo-lesson-root{letter-spacing:0.012em}
+  html[data-neo-spacing="on"] .neo-lesson-root p,html[data-neo-spacing="on"] .neo-lesson-root li,html[data-neo-spacing="on"] .neo-lesson-root summary,html[data-neo-spacing="on"] .neo-lesson-root h2,html[data-neo-spacing="on"] .neo-lesson-root h3,html[data-neo-spacing="on"] .neo-lesson-root label{line-height:1.9!important;margin-bottom:0.7em!important}
+  html[data-neo-calm="on"]{filter:saturate(0.82) brightness(1.02)}
+  html[data-neo-motion="reduced"] *,html[data-neo-motion="reduced"] *::before,html[data-neo-motion="reduced"] *::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+  .mathpalette{margin:6px 0}
+  .palette-toggle{background:#365a68;color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+  .palette-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .palette-keys[hidden]{display:none}
+  .palette-keys button{min-width:42px;padding:8px 10px;font-size:1.05em;background:#fff;border:1px solid #bcae98;border-radius:8px;cursor:pointer;color:#2f3429}
+  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em;line-height:1.05}
+  .frac .fnum{padding:0 .25em .5px}
+  .frac .fden{padding:.5px .25em 0;border-top:1.6px solid currentColor}
+  .fracpreview{margin-top:6px;font-size:1.05em;color:#2f3429}
+  .fracpreview[hidden]{display:none}
+  .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
+</style>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Circle Theorems &middot; <strong>Lesson 05 &mdash; Cyclic quadrilaterals</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<script>
+(function(){
+ var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
+ try{var sv=JSON.parse(localStorage.getItem(KEY)||"null");if(sv)st=Object.assign(st,sv);}catch(e){}
+ function apply(){d.setAttribute("data-neo-text",st.text);st.spacing?d.setAttribute("data-neo-spacing","on"):d.removeAttribute("data-neo-spacing");st.calm?d.setAttribute("data-neo-calm","on"):d.removeAttribute("data-neo-calm");st.motion?d.setAttribute("data-neo-motion","reduced"):d.removeAttribute("data-neo-motion");}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+ function sync(){var ps=document.querySelectorAll("#neoComfortPanel .opt");for(var i=0;i<ps.length;i++){var b=ps[i],k=b.getAttribute("data-k");if(k==="text"){b.setAttribute("aria-pressed",st.text===b.getAttribute("data-v")?"true":"false");}else{b.setAttribute("aria-pressed",st[k]?"true":"false");}}}
+ window.neoComfortToggle=function(){var p=document.getElementById("neoComfortPanel"),btn=document.querySelector(".neo-comfort-btn"),willOpen=p.hasAttribute("hidden");willOpen?p.removeAttribute("hidden"):p.setAttribute("hidden","");if(btn)btn.setAttribute("aria-expanded",willOpen?"true":"false");};
+ window.neoComfortSet=function(k,v){st[k]=v;apply();save();sync();};
+ window.neoComfortToggleOpt=function(k){st[k]=!st[k];apply();save();sync();};
+ window.neoComfortReset=function(){st={text:"normal",spacing:false,calm:false,motion:false};apply();save();sync();};
+ apply();
+ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
+})();
+</script>
+<div class="neo-lesson-root">
+
 <div id="lessonView">
 <div class="neo">
 <h1>NEO Mathematics: Circle Theorems</h1>
-<h2>Angles in the same segment</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>Why don't these angles change as the point slides round?</em></h2>
+<h2>Cyclic quadrilaterals</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>Why do opposite corners of a circle-quad always add to 180°?</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Core — a second <b>consequence</b> of the keystone: every point in the same segment sees a chord at the same angle.</p>
-<p><b>Stepping Stone:</b> discover, and then <b>justify</b>, that <b>angles in the same segment are equal</b> — two points on the same arc subtend a chord at the same angle — and use it (with the reason) to find missing angles.</p>
-<p><b>You will need:</b> the <b>angle at the centre theorem</b> (Lesson 2), the idea of an angle <b>standing on an arc</b>, and what a <b>segment</b> of a circle is (Lesson 1).</p>
+<p><b>Lesson type:</b> Core — the fourth angle-in-a-circle theorem, completing the set. It marks the <b>mid-unit checkpoint</b> before tangents and chords.</p>
+<p><b>Stepping Stone:</b> discover, and then <b>justify</b>, that <b>opposite angles of a cyclic quadrilateral add to 180°</b> — and use it (with the reason) to find missing angles.</p>
+<p><b>You will need:</b> the <b>angle at the centre theorem</b> (Lesson 2), that angles at a point add to <b>360°</b>, and that the angles of a quadrilateral add to <b>360°</b>. A <b>cyclic quadrilateral</b> has all four vertices on the circle.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
 <p><b>45-minute shape:</b> Connect 9 · Move 11 · Reflect 12 · Create 9 · Rest/Nourish 4</p>
 </div>
@@ -55,41 +116,41 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_04_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_04_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_05_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_05_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle and a chord AB. Pick two points P and Q on the same arc (the same side of AB). Measure angle APB and angle AQB. Move them along the arc and measure again. What do you notice?')">✏️ Open Maths Scratchpad</button>
-<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle and mark four points A, B, C, D in order around it. Join them into a quadrilateral. Measure the four angles. Add opposite pairs (A + C, and B + D). What do you notice?')">✏️ Open Maths Scratchpad</button>
+
 </div>
 <div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
 </div>
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — Two viewpoints, one angle</summary>
+<summary>🌿 Connection — Four corners on a circle</summary>
 <div class="card">
 <h3 style="margin-top:0">🔤 The idea for this lesson</h3>
-<p style="margin:6px 0">A chord <b>AB</b> cuts a circle into two <b>segments</b>. Stand anywhere on the arc of one segment — at <b>P</b>, or at <b>Q</b>, or anywhere else on that same arc — and look back at the chord AB. The astonishing thing is that you always see it at the <em>same</em> angle. Why? Because every one of those angles at the circumference is <b>half the same angle at the centre</b>, ∠AOB. One central angle, so one shared half — and all the angles on that arc come out equal. This is the theorem: <b>angles in the same segment are equal</b>.</p>
+<p style="margin:6px 0">A <b>cyclic quadrilateral</b> is a four-sided shape whose <em>four corners all lie on a circle</em>. Draw one and measure its angles, and something surprising shows up: the two pairs of <b>opposite</b> corners each add to exactly <b>180°</b>. ∠A + ∠C = 180° and ∠B + ∠D = 180° — the opposite angles are <b>supplementary</b>. Like the last two theorems, it comes straight from the keystone: opposite corners look across the two arcs of a diagonal, and those two arcs make a full turn of 360° at the centre, so the two angles are half of that — 180°.</p>
 </div>
-<p><b>What to do:</b> A and B are fixed. There are two points, <b>P</b> and <b>Q</b>, on the same arc — <b>drag either one</b> along the arc and watch the two angles ∠APB (blue) and ∠AQB (purple).</p>
-<p><b>What you are trying to notice:</b> the two angles stay <b>equal</b>, however you move P or Q, because both look back at the same chord from the same arc.</p>
+<p><b>What to do:</b> the four vertices A, B, C, D all sit on the circle. <b>Drag any vertex</b> around and watch the four angles — and especially the two opposite-pair sums.</p>
+<p><b>What you are trying to notice:</b> whatever shape you drag it into, ∠A + ∠C stays 180°, and ∠B + ∠D stays 180°. The individual angles change; the opposite sums do not.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔦 The same-segment angles</h3>
-<div class="card" style="text-align:center"><svg id="cnSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="A chord AB with two points P and Q on the same arc, showing equal angles"></svg></div>
+<h3 style="margin-top:0">🔦 The cyclic quadrilateral</h3>
+<div class="card" style="text-align:center"><svg id="cnSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="A cyclic quadrilateral ABCD with four draggable vertices and its angles"></svg></div>
 <div id="cnRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="cnLab.newAB()">↔ Move the chord AB</button></div>
-<p><b>Carry this forward:</b> two points on the same arc see a chord at the same angle — <b>angles in the same segment are equal</b>.</p>
+<div class="buttonrow" style="justify-content:center"><button onclick="cnLab.newQuad()">🔀 New quadrilateral</button></div>
+<p><b>Carry this forward:</b> in a cyclic quadrilateral, <b>opposite angles add to 180°</b> (they are supplementary).</p>
 </div>
 </details>
 
 <!-- ================= MOVEMENT (primary) ================= -->
 <details class="hs">
-<summary>🚶 Movement — Equal angles, found fast</summary>
-<p><b>What to do:</b> P and Q sit on the same arc, so ∠APB and ∠AQB are equal. For each diagram, one angle is given — work out the marked angle and type it in (degrees), with the reason.</p>
-<p><b>What you are trying to notice:</b> there is nothing to calculate — the theorem hands you the answer. The skill is <b>spotting</b> that two angles stand on the same arc (from the same chord), so they must be equal, and saying why.</p>
+<summary>🚶 Movement — Find the opposite angle</summary>
+<p><b>What to do:</b> ABCD is a cyclic quadrilateral. One angle is given — find the angle <b>opposite</b> it and type it in (degrees), with the reason.</p>
+<p><b>What you are trying to notice:</b> opposite angles add to 180°, so the missing one is simply <b>180° minus</b> the given one. The skill is spotting which angle is <em>opposite</em> (across the shape, not next to it) and naming the theorem.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🧮 Find the equal angle</h3>
-<div class="card" style="text-align:center"><svg id="mvSvg" class="graphsvg" style="max-width:360px" viewBox="0 0 380 280" role="img" aria-label="Two angles in the same segment, one given and one to find"></svg></div>
+<h3 style="margin-top:0">🧮 Find the opposite angle</h3>
+<div class="card" style="text-align:center"><svg id="mvSvg" class="graphsvg" style="max-width:360px" viewBox="0 0 380 300" role="img" aria-label="A cyclic quadrilateral with one angle given and the opposite to find"></svg></div>
 <div id="mvRead" class="readout" style="font-weight:bold"></div>
 <div class="buttonrow" style="justify-content:center;align-items:center">
 <input id="mvAns" class="numin" style="max-width:90px" placeholder="angle°" inputmode="numeric">
@@ -98,50 +159,50 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="mvNext()">Next →</button>
 </div>
 <div id="mvFb" class="feedback"></div>
-<p><b>Carry this forward:</b> angles in the same segment are equal — spot the shared chord and arc, then state the reason.</p>
+<p><b>Carry this forward:</b> opposite angle = 180° − the given angle. Always name the reason.</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION (hero) ================= -->
 <details class="es">
-<summary>🪞 Reflection — The angle that follows you round <span class="stretch">keystone case</span></summary>
-<p><b>What to do:</b> A and B are fixed, and P and Q sit on the same arc. <b>Drag P and Q</b> anywhere along that arc, watching both angles. Then press <b>Why equal?</b>.</p>
-<p><b>What you are trying to notice:</b> the two angles are <em>always</em> equal — move P close to A, move Q near the top, it makes no difference. And the reason is the keystone again: each angle is half of the <em>one</em> central angle ∠AOB, so they must match.</p>
+<summary>🪞 Reflection — The sum that will not budge <span class="stretch">keystone case</span></summary>
+<p><b>What to do:</b> all four vertices are draggable. <b>Reshape the quadrilateral</b> however you like — tall, wide, lopsided — watching the two opposite-pair sums. Then press <b>Why 180°?</b>.</p>
+<p><b>What you are trying to notice:</b> the four angles change wildly as you drag, but ∠A + ∠C and ∠B + ∠D are <em>always</em> 180°. And the reason is the keystone again: opposite angles are each half of the two central angles that fill a whole 360° turn.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔬 The Circle Theorem Lab — two apexes</h3>
-<div class="card" style="text-align:center"><svg id="rfSvg" class="graphsvg" style="max-width:410px" viewBox="0 0 380 320" role="img" aria-label="Circle Theorem Lab: two draggable apexes P and Q on the same arc, with equal angles"></svg></div>
+<h3 style="margin-top:0">🔬 The Circle Theorem Lab — cyclic quad</h3>
+<div class="card" style="text-align:center"><svg id="rfSvg" class="graphsvg" style="max-width:410px" viewBox="0 0 380 320" role="img" aria-label="Circle Theorem Lab: a draggable cyclic quadrilateral with opposite-angle sums"></svg></div>
 <div id="rfRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center"><button id="rfRatioBtn" onclick="rfLab.toggleRatio()">🔗 Why equal?</button><button onclick="rfLab.newAB()">↔ Move the chord AB</button></div>
-<p><b>Carry this forward:</b> <b>angles in the same segment are equal</b> — because each is half of the same angle at the centre.</p>
+<div class="buttonrow" style="justify-content:center"><button id="rfRatioBtn" onclick="rfLab.reveal()">🔗 Why 180°?</button><button onclick="rfLab.newQuad()">🔀 New quadrilateral</button></div>
+<p><b>Carry this forward:</b> <b>opposite angles of a cyclic quadrilateral add to 180°</b> — because each pair is half of a full 360° turn at the centre.</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY (stretch) ================= -->
 <details class="dw">
-<summary>🎨 Creativity — <em>Why</em> are they equal? <span class="stretch">stretch</span></summary>
-<p><b>What to do:</b> press the steps to build the proof. Like the semicircle, it is just the keystone applied twice.</p>
-<p><b>What you are trying to notice:</b> the single central angle ∠AOB is shared by both P and Q. Each angle at the circumference is exactly half of it, so they cannot help being equal.</p>
+<summary>🎨 Creativity — <em>Why</em> do they add to 180°? <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> press the steps to build the proof — the keystone one last time.</p>
+<p><b>What you are trying to notice:</b> ∠A and ∠C look across the two arcs on either side of the diagonal BD. The central angles for those two arcs together make a <b>full turn (360°)</b>, and each corner angle is half its own central angle — so the two corner angles add to half of 360°, which is 180°.</p>
 <div class="toolbox">
 <h3 style="margin-top:0">🧩 Build the proof</h3>
 <div class="buttonrow" style="justify-content:center">
-<button id="pfB1" onclick="pfStep(1)">① The angle at the centre ∠AOB</button>
-<button id="pfB2" onclick="pfStep(2)" disabled>② ∠APB = ½ ∠AOB</button>
-<button id="pfB3" onclick="pfStep(3)" disabled>③ ∠AQB = ½ ∠AOB too</button>
+<button id="pfB1" onclick="pfStep(1)">① Mark opposite angles a, c</button>
+<button id="pfB2" onclick="pfStep(2)" disabled>② Their centre angles 2a, 2c</button>
+<button id="pfB3" onclick="pfStep(3)" disabled>③ 2a + 2c = 360°</button>
 <button onclick="pfReset()">↺ Reset</button>
 </div>
 <div class="card" style="text-align:center"><svg id="pfSvg" class="graphsvg" style="max-width:380px" viewBox="0 0 380 320"></svg></div>
 <div id="pfRead" class="clue" style="text-align:center"></div>
-<p><b>Looking ahead:</b> what if P and Q are in <em>different</em> segments, on opposite sides of the chord? Then the angles are no longer equal — they add to 180°. That is the next lesson: cyclic quadrilaterals.</p>
-<button class="scratchbtn" onclick="openMathsScratchpad('blank','Prove that angles in the same segment are equal. Draw the angle at the centre AOB, and show that the angle at P and the angle at Q are each half of it, so they are equal.')">✏️ Write the proof yourself</button>
+<p><b>Connecting back:</b> this is the "opposite side of the chord" case teased last lesson. Same segment → equal angles; opposite segments → angles that add to 180°.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Prove that opposite angles of a cyclic quadrilateral add to 180 degrees. Use the angle at the centre: each corner angle is half its central angle, and the two central angles make a full turn of 360 degrees.')">✏️ Write the proof yourself</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
-<summary>🌙 Rest — A pause to let it settle</summary>
-<p>An angle that follows you all the way round an arc, never changing. Notice, again, how last lesson's keystone has quietly done all the work — a third result for free. Take a breath before moving on.</p>
+<summary>🌙 Rest — A checkpoint pause</summary>
+<p>Take a proper pause here — this is the <b>mid-unit checkpoint</b>. You now hold all four of the angle-in-a-circle theorems: the <b>angle at the centre</b> (double), the <b>angle in a semicircle</b> (90°), <b>angles in the same segment</b> (equal), and now the <b>cyclic quadrilateral</b> (opposite angles 180°). Remarkably, the last three all grew from the first. The unit now turns to a new family — lines that <em>touch</em> the circle rather than cross it.</p>
 <div class="card">
-<p><b>Notice one thing:</b> the three theorems so far — double at the centre, right angle in a semicircle, equal in the same segment — are really <em>one</em> idea seen from three positions. Does thinking of them that way make them easier to hold?</p>
+<p><b>Notice one thing:</b> which of the four theorems feels most secure, and which would you most like to revisit? Naming that is exactly the kind of self-check a strong mathematician does at a milestone.</p>
 <p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
 </div>
 </details>
@@ -151,46 +212,49 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <summary>🍎 Nutrition — What this feeds</summary>
 <p><b>Mode: intellectual.</b> We name honestly what the <em>learning</em> feeds.</p>
 <div class="card">
-<p><b>What it feeds:</b> today feeds a sense of <b>economy</b> — the quiet delight of getting a whole new theorem from one you already have, with no extra machinery. It is the same pleasure a designer feels when one good component solves three problems, or a musician when one motif carries a whole piece. And it feeds <b>perspective-taking</b>: every point on the arc is a different vantage point, yet they all agree on the angle — a small lesson in how different viewpoints can share a truth.</p>
-<p class="small">Carry one idea forward: before reaching for something new, ask what the tool you already have can be made to do.</p>
+<p><b>What it feeds:</b> today feeds a sense of <b>completeness</b> — the quiet satisfaction of a set of ideas closing into a whole. Four theorems, one root; a small, complete theory you can hold in your head. That is what mathematicians chase: not a heap of facts, but a structure where each piece explains the next. Cyclic quadrilaterals also turn up wherever things must fit exactly on a circle — gear teeth, clock faces, the geometry of a camera's view — so the pattern earns its keep well beyond the exam.</p>
+<p class="small">Carry one idea forward: when a set of results all trace back to one root, you understand them far better than by memorising each alone.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> show you can state, use and justify angles in the same segment.</p>
+<p><b>Your task:</b> show you can state, use and justify the cyclic-quadrilateral rule.</p>
 <ul>
-<li>Draw a circle and a chord AB, mark two points P and Q on the same arc, and join them to A and B. State that <b>∠APB = ∠AQB</b> and give the reason (angles in the same segment).</li>
-<li>Use the theorem to find a missing angle in a diagram, <b>writing the reason</b> at each step.</li>
-<li>Explain in your own words <b>why</b> the angles are equal — using the angle at the centre.</li>
-<li><span class="stretch">stretch</span> Describe what changes if P and Q are on <em>opposite</em> sides of the chord (in different segments).</li>
+<li>Draw a circle with four points A, B, C, D on it, join them into a quadrilateral, and show that <b>∠A + ∠C = 180°</b> and <b>∠B + ∠D = 180°</b>, giving the reason.</li>
+<li>Use the theorem to find missing angles in a cyclic quadrilateral, <b>writing the reason</b> at each step.</li>
+<li>Explain in your own words <b>why</b> opposite angles add to 180° — using the angle at the centre and the full 360° turn.</li>
+<li><span class="stretch">stretch</span> The <b>exterior</b> angle of a cyclic quadrilateral equals the opposite <b>interior</b> angle. Explain why, using the 180° rule and angles on a straight line.</li>
 </ul>
-<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-drawn diagram, a construction measured in the <b>Geometry Studio</b> (Measure → Angle), a written proof, or a spoken/video explanation.</p>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-drawn diagram, a quadrilateral measured in the <b>Geometry Studio</b> (Measure → Angle), a written proof, or a spoken/video explanation.</p>
 <div class="card" style="border:2px solid #365a68;background:#eef3f6">
 <h3 style="margin-top:0">📐 Verify it in the Geometry Studio</h3>
-<p>Draw a circle and a chord AB, place P and Q on the same arc, and use <b>Measure → Angle</b> to read ∠APB and ∠AQB. Drag them along the arc and confirm the two stay equal, then save it with a sentence on why.</p>
-<a class="guidebtn" style="background:#365a68" href="../../tools/geometry-studio.html?task=ct04-final&amp;return=../lessons/circle-theorems/04-angles-in-the-same-segment.html">📐 Open in the Geometry Studio →</a>
+<p>Draw a circle, place four points on it and join them, then use <b>Measure → Angle</b> to read all four angles. Add opposite pairs, drag a vertex, and confirm each pair stays 180°. Save it with a sentence on why.</p>
+<a class="guidebtn" style="background:#365a68" href="../../tools/geometry-studio.html?task=ct05-final&amp;return=../lessons/circle-theorems/05-cyclic-quadrilaterals.html">📐 Open in the Geometry Studio →</a>
 </div>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_CIRCLE_SAMESEG_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_CIRCLE_CYCLICQUAD_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows two angles on an arc can be equal.</td><td>States "angles in the same segment are equal".</td><td>Uses it with the reason to find angles.</td><td>Explains why via the angle at the centre.</td></tr>
-<tr><td><b>Application</b></td><td>Identifies two equal angles.</td><td>Finds one missing angle.</td><td>Solves a multi-step angle problem with reasons.</td><td>Distinguishes same vs different segment.</td></tr>
-<tr><td><b>Communication</b></td><td>Marks the equal angles.</td><td>Names the theorem once.</td><td>Gives a reason at each step.</td><td>Writes a clear, ordered proof.</td></tr>
-<tr><td><b>Reflection</b></td><td>Notices the angles look equal.</td><td>Notices they stay equal as P moves.</td><td>Connects both to the same centre angle.</td><td>Sees it as the keystone applied twice.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows a cyclic quad has vertices on a circle.</td><td>States opposite angles add to 180°.</td><td>Uses it with the reason to find angles.</td><td>Explains why via the angle at the centre.</td></tr>
+<tr><td><b>Application</b></td><td>Identifies an opposite pair.</td><td>Finds one missing angle.</td><td>Finds several angles with reasons.</td><td>Uses the exterior-angle result too.</td></tr>
+<tr><td><b>Communication</b></td><td>Marks an opposite pair.</td><td>Names the theorem once.</td><td>Gives a reason at each step.</td><td>Writes a clear, ordered proof.</td></tr>
+<tr><td><b>Reflection</b></td><td>Notices the sum looks like 180°.</td><td>Notices it stays 180° when dragged.</td><td>Connects both pairs to the 360° turn.</td><td>Sees all four theorems as one idea.</td></tr>
 </table>
 </details>
 
-</div></div>
+</div>
+<div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
+</div>
 
 <!-- ================= PRACTICE COMPANION ================= -->
 
 
 
 
+
 <div id="practiceView" hidden><div class="practice">
-<h1>Angles in the same segment — Practice Companion</h1>
+<h1>Cyclic quadrilaterals — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -203,7 +267,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle and a chord AB with two points P and Q on the same arc. Show angle APB equals angle AQB, and explain why using the angle at the centre.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a cyclic quadrilateral ABCD. Show angle A + angle C = 180 and angle B + angle D = 180, and explain why using the angle at the centre and the full 360 degree turn.')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -271,7 +335,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   const bg = bgCanvas.getContext("2d");
   let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
   let drawing = false, current = null, strokes = [], redo = [], notes = [];
-  const storageKey = "neoMathsScratchpad_circle_l04_v01";
+  const storageKey = "neoMathsScratchpad_circle_l05_v01";
   function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
   function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
   function drawBackground(){
@@ -516,82 +580,122 @@ function makeCTLab(opt){
   return api;
 }
 
-/* ---- Connection instance: two apexes on the same arc ---- */
-var cnLab=makeCTLab({svg:"cnSvg", read:"cnRead", twoApex:true, aA:150, aB:30, aP:210, aQ:335});
-/* ---- Reflection HERO instance: two-apex Lab with "Why equal?" ---- */
-var rfLab=makeCTLab({svg:"rfSvg", read:"rfRead", ratioBtn:"rfRatioBtn", twoApex:true, aA:150, aB:30, aP:205, aQ:340});
+/* ============ CYCLIC-QUAD LAB — four draggable vertices ============ */
+function makeCQLab(opt){
+  var st={ang:opt.ang.slice(), reveal:false, drag:-1};
+  function P(){return st.ang.map(function(a){return ocp(a);});}
+  function interior(i,pp){var v=pp[i],u=pp[(i+3)%4],w=pp[(i+1)%4];var a1=Math.atan2(u.y-v.y,u.x-v.x),a2=Math.atan2(w.y-v.y,w.x-v.x),d=Math.abs(a1-a2)*180/Math.PI;if(d>180)d=360-d;return d;}
+  function vals(){var pp=P();var Aa=Math.round(interior(0,pp)),Bb=Math.round(interior(1,pp));return [Aa,Bb,180-Aa,180-Bb];} /* opposite pairs forced to 180 */
+  function clampV(i,t){var g=13,lo=(i===0?st.ang[3]-360:st.ang[i-1])+g,hi=(i===3?st.ang[0]+360:st.ang[i+1])-g,tt=norm360(t);while(tt<lo-180)tt+=360;while(tt>hi+180)tt-=360;return Math.max(lo,Math.min(hi,tt));}
+  function angArc(vx,u,w,rr,col){var a1=angDeg(vx,u),a2=angDeg(vx,w),thr=angDeg(vx,{x:(u.x+w.x)/2,y:(u.y+w.y)/2});return '<path d="'+arcSweepPath(vx.x,vx.y,rr,a1,shortSweep(a1,a2,thr))+'" fill="none" stroke="'+col+'" stroke-width="3"/>';}
+  function angLab(vx,u,w,d,t,col){var a1=Math.atan2(u.y-vx.y,u.x-vx.x),a2=Math.atan2(w.y-vx.y,w.x-vx.x),bx=Math.cos(a1)+Math.cos(a2),by=Math.sin(a1)+Math.sin(a2),L=Math.hypot(bx,by)||1,x=vx.x+d*bx/L,y=vx.y+d*by/L;return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="13" font-weight="bold" fill="'+col+'">'+t+'</text>';}
+  function render(){
+    var s=document.getElementById(opt.svg); if(!s)return; var pp=P(),V=vals(),h="",names=["A","B","C","D"],cols=["#365a68","#7a3fb0","#365a68","#7a3fb0"];
+    h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
+    for(var i=0;i<4;i++){ h+=segLine(pp[i],pp[(i+1)%4],"#2f3429",2.5); }
+    for(i=0;i<4;i++){ var u=pp[(i+3)%4],w=pp[(i+1)%4]; h+=angArc(pp[i],u,w,18,cols[i]); h+=angLab(pp[i],u,w,34,V[i]+"°",cols[i]); }
+    for(i=0;i<4;i++){ var dy=(pp[i].y<cO.y?-13:20); h+=labDot(pp[i],cols[i],names[i],dy); }
+    s.innerHTML=h;
+    var r=document.getElementById(opt.read); if(!r)return;
+    if(st.reveal){
+      r.innerHTML='∠A + ∠C = <b>'+V[0]+'° + '+V[2]+'° = 180°</b> &nbsp;·&nbsp; ∠B + ∠D = <b>'+V[1]+'° + '+V[3]+'° = 180°</b><br>∠A and ∠C stand on the two arcs either side of the diagonal, whose central angles fill <b>360°</b> — so each pair is half of that: <b>180°</b>.';
+    } else {
+      r.innerHTML='<span style="color:#365a68">∠A = '+V[0]+'°, ∠C = '+V[2]+'°</span> &nbsp;·&nbsp; <span style="color:#7a3fb0">∠B = '+V[1]+'°, ∠D = '+V[3]+'°</span>.<br>Opposite pairs: ∠A + ∠C = <b>'+(V[0]+V[2])+'°</b>, ∠B + ∠D = <b>'+(V[1]+V[3])+'°</b>. Drag any vertex; press <b>Why 180°?</b>';
+    }
+  }
+  function setV(i,t){st.ang[i]=clampV(i,t);render();}
+  var api={render:render,setV:setV,state:st,
+    reveal:function(){st.reveal=!st.reveal;var b=document.getElementById(opt.ratioBtn);if(b)b.textContent=st.reveal?'🔗 Hide why':'🔗 Why 180°?';render();},
+    newQuad:function(){var base=10+Math.floor(Math.random()*30),g=[];var acc=base;for(var k=0;k<4;k++){acc+=55+Math.floor(Math.random()*45);g.push(acc);}var off=Math.floor(Math.random()*40);st.ang=g.map(function(x){return norm360(x+off);}).sort(function(a,b){return a-b;});st.reveal=false;var bb=document.getElementById(opt.ratioBtn);if(bb)bb.textContent='🔗 Why 180°?';render();}
+  };
+  function init(){var s=document.getElementById(opt.svg);if(!s)return;
+    function move(e){var q=svgPt(s,e),ang=angDeg(cO,q);if(st.drag>=0)setV(st.drag,ang);e.preventDefault();}
+    s.addEventListener("pointerdown",function(e){var q=svgPt(s,e),ang=norm360(angDeg(cO,q)),best=0,bd=1e9;for(var i=0;i<4;i++){var d=Math.min(norm360(ang-st.ang[i]),norm360(st.ang[i]-ang));if(d<bd){bd=d;best=i;}}st.drag=best;try{s.setPointerCapture(e.pointerId);}catch(x){}move(e);});
+    s.addEventListener("pointermove",function(e){if(st.drag>=0)move(e);});
+    s.addEventListener("pointerup",function(e){st.drag=-1;try{s.releasePointerCapture(e.pointerId);}catch(x){}});
+    s.addEventListener("pointercancel",function(){st.drag=-1;});
+    render();}
+  api.init=init; return api;
+}
 
-/* ============ MOVEMENT: same segment, same angle ============ */
+/* ---- Connection + Reflection instances ---- */
+var cnLab=makeCQLab({svg:"cnSvg", read:"cnRead", ang:[40,130,215,320]});
+var rfLab=makeCQLab({svg:"rfSvg", read:"rfRead", ratioBtn:"rfRatioBtn", ang:[45,135,210,325]});
+
+/* ============ MOVEMENT: find the opposite angle ============ */
 var MV=[
- {val:36, ask:"Q"},   /* given ∠APB, find ∠AQB (equal) */
- {val:52, ask:"P"},
- {val:28, ask:"Q"},
- {val:63, ask:"P"},
- {val:44, ask:"Q"}
+ {given:100, at:"A"},   /* opposite ∠C = 80 */
+ {given:71,  at:"B"},   /* ∠D = 109 */
+ {given:118, at:"C"},   /* ∠A = 62 */
+ {given:95,  at:"D"},   /* ∠B = 85 */
+ {given:64,  at:"A"}    /* ∠C = 116 */
 ];
 var mvIdx=0;
-function mvC(){return {O:{x:190,y:140}, R:98};}
+function mvC(){return {O:{x:190,y:150}, R:104};}
 function mvP(d){var c=mvC(),t=d*Math.PI/180;return {x:c.O.x+c.R*Math.cos(t),y:c.O.y+c.R*Math.sin(t)};}
+function mvAB(vx,u,w,d,t,col){var a1=Math.atan2(u.y-vx.y,u.x-vx.x),a2=Math.atan2(w.y-vx.y,w.x-vx.x),bx=Math.cos(a1)+Math.cos(a2),by=Math.sin(a1)+Math.sin(a2),L=Math.hypot(bx,by)||1,x=vx.x+d*bx/L,y=vx.y+d*by/L;return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="'+col+'">'+t+'</text>';}
 function mvArc(vx,u,w,rr,col){var a1=angDeg(vx,u),a2=angDeg(vx,w),thr=angDeg(vx,{x:(u.x+w.x)/2,y:(u.y+w.y)/2});return '<path d="'+arcSweepPath(vx.x,vx.y,rr,a1,shortSweep(a1,a2,thr))+'" fill="none" stroke="'+col+'" stroke-width="2.5"/>';}
-function mvBis(vx,u,w,d){var a1=Math.atan2(u.y-vx.y,u.x-vx.x),a2=Math.atan2(w.y-vx.y,w.x-vx.x),bx=Math.cos(a1)+Math.cos(a2),by=Math.sin(a1)+Math.sin(a2),L=Math.hypot(bx,by)||1;return {x:vx.x+d*bx/L,y:vx.y+d*by/L};}
-function mvTxt(p,t,col){return '<text x="'+p.x.toFixed(1)+'" y="'+p.y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+p.x.toFixed(1)+'" y="'+p.y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="'+col+'">'+t+'</text>';}
 function mvRender(){
-  var q=MV[mvIdx], c=mvC(), A=mvP(90-q.val), B=mvP(90+q.val), P=mvP(240), Q=mvP(300), h="";
+  var q=MV[mvIdx], V=mvP(40),W=mvP(135),X=mvP(215),Y=mvP(320), pts=[V,W,X,Y], names=["A","B","C","D"], h="";
+  var c=mvC();
   h+='<circle cx="'+c.O.x+'" cy="'+c.O.y+'" r="'+c.R+'" fill="none" stroke="#cdbfa9" stroke-width="1.5"/>';
-  h+=segLine(A,B,"#8a6a1f",2.5);
-  h+=segLine(P,A,"#365a68",2.5)+segLine(P,B,"#365a68",2.5);
-  h+=segLine(Q,A,"#7a3fb0",2.5)+segLine(Q,B,"#7a3fb0",2.5);
-  h+=labDot(A,"#3f5f45","A",22)+labDot(B,"#3f5f45","B",22)+labDot(P,"#b24c4c","P",-13)+labDot(Q,"#7a3fb0","Q",-13);
-  h+=mvArc(P,A,B,20,"#365a68")+mvArc(Q,A,B,20,"#7a3fb0");
-  var givenP=(q.ask==="Q");   /* given at P, ask Q; else given at Q, ask P */
-  h+=mvTxt(mvBis(P,A,B,32), givenP?(q.val+"°"):"?", "#365a68");
-  h+=mvTxt(mvBis(Q,A,B,32), givenP?"?":(q.val+"°"), "#7a3fb0");
+  for(var i=0;i<4;i++) h+=segLine(pts[i],pts[(i+1)%4],"#2f3429",2.5);
+  var idx={A:0,B:1,C:2,D:3}[q.at], opp=(idx+2)%4;
+  for(i=0;i<4;i++){var u=pts[(i+3)%4],w=pts[(i+1)%4];var col=(i===idx?"#365a68":(i===opp?"#b24c4c":"#8a8f83"));
+    if(i===idx||i===opp){h+=mvArc(pts[i],u,w,17,col);h+=mvAB(pts[i],u,w,32,(i===idx?q.given+"°":"?"),col);}
+  }
+  for(i=0;i<4;i++){var dy=(pts[i].y<c.O.y?-12:20);h+=labDot(pts[i],"#3f5f45",names[i],dy);}
   document.getElementById("mvSvg").innerHTML=h;
-  document.getElementById("mvRead").innerHTML="Question "+(mvIdx+1)+" of "+MV.length+": P and Q are on the same arc. Find the angle marked <b>?</b>, in degrees.";
+  document.getElementById("mvRead").innerHTML="Question "+(mvIdx+1)+" of "+MV.length+": ABCD is a cyclic quadrilateral. ∠"+q.at+" = "+q.given+"°. Find the opposite angle (marked <b>?</b>), in degrees.";
   document.getElementById("mvAns").value="";
-  var fb=document.getElementById("mvFb"); fb.style.display="none"; fb.textContent="";
+  var fb=document.getElementById("mvFb");fb.style.display="none";fb.textContent="";
 }
-function mvAnswer(){return MV[mvIdx].val;}
+function mvAnswer(){return 180-MV[mvIdx].given;}
 function mvCheck(){
-  var fb=document.getElementById("mvFb"), val=document.getElementById("mvAns").value;
-  fb.style.display="block";
+  var fb=document.getElementById("mvFb"), val=document.getElementById("mvAns").value;fb.style.display="block";
   if(!val.trim()){fb.className="feedback warn";fb.textContent="Type an angle in degrees first.";return;}
-  if(num(val)===mvAnswer()){fb.className="feedback good";fb.innerHTML="✓ Correct — "+mvAnswer()+"°. Reason: <b>angles in the same segment are equal</b> (both stand on the same arc AB).";}
-  else{fb.className="feedback bad";fb.innerHTML="Not yet — P and Q are on the <b>same arc</b>, so ∠APB and ∠AQB are <b>equal</b>. They are the same size.";}
+  if(num(val)===mvAnswer()){fb.className="feedback good";fb.innerHTML="✓ Correct — "+mvAnswer()+"°. Reason: <b>opposite angles of a cyclic quadrilateral add to 180°</b>, so 180 − "+MV[mvIdx].given+" = "+mvAnswer()+".";}
+  else{fb.className="feedback bad";fb.innerHTML="Not yet — opposite angles of a cyclic quadrilateral add to <b>180°</b>. Subtract "+MV[mvIdx].given+" from 180.";}
 }
-function mvHintBtn(){var fb=document.getElementById("mvFb");fb.style.display="block";fb.className="feedback warn";fb.innerHTML="💡 Angles in the same segment are equal — the two marked angles are the same.";}
+function mvHintBtn(){var fb=document.getElementById("mvFb");fb.style.display="block";fb.className="feedback warn";fb.innerHTML="💡 Opposite angles add to 180°, so 180 − "+MV[mvIdx].given+".";}
 function mvNext(){mvIdx=(mvIdx+1)%MV.length;mvRender();}
 function mvInit(){mvRender();}
 
-/* ============ CREATIVITY: why are they equal? (both are half the same centre angle) ============ */
-var pfA=150, pfB=30, pfP=205, pfQ=335, pfStep_=0;
+/* ============ CREATIVITY: why opposite angles add to 180° ============ */
+var pfAng=[40,130,215,320], pfStep_=0;
 function pfStep(n){var b=document.getElementById("pfB"+n);if(b&&b.disabled)return;pfStep_=Math.max(pfStep_,n);pfBtns();pfRender();}
 function pfBtns(){for(var k=1;k<=3;k++){var b=document.getElementById("pfB"+k);if(b)b.disabled=(pfStep_<k-1);}}
 function pfReset(){pfStep_=0;pfBtns();pfRender();}
-function pfCentral(){var a=norm360(pfA),b=norm360(pfB),p=norm360(pfP),ccw=norm360(b-a),pIn=(norm360(p-a)<ccw);return pIn?{start:b,sweep:norm360(360-ccw),m:norm360(360-ccw)}:{start:a,sweep:ccw,m:ccw};}
-function pfInsArc(vx,a,b,rr,col){var a1=angDeg(vx,a),a2=angDeg(vx,b),thr=angDeg(vx,{x:(a.x+b.x)/2,y:(a.y+b.y)/2});return '<path d="'+arcSweepPath(vx.x,vx.y,rr,a1,shortSweep(a1,a2,thr))+'" fill="none" stroke="'+col+'" stroke-width="3"/>';}
+function pfArcO(a0,a1through,rr,col){/* central arc between OB and OD passing through 'a1through' side */return '';}
 function pfRender(){
   var s=document.getElementById("pfSvg"); if(!s)return;
-  var A=ocp(pfA),B=ocp(pfB),P=ocp(pfP),Q=ocp(pfQ),c=pfCentral(),half=Math.round(c.m/2),h="";
+  var pp=pfAng.map(function(a){return ocp(a);}),A=pp[0],B=pp[1],C=pp[2],D=pp[3],h="";
+  function interior(i){var v=pp[i],u=pp[(i+3)%4],w=pp[(i+1)%4];var a1=Math.atan2(u.y-v.y,u.x-v.x),a2=Math.atan2(w.y-v.y,w.x-v.x),d=Math.abs(a1-a2)*180/Math.PI;if(d>180)d=360-d;return d;}
+  var angA=Math.round(interior(0)), angC=180-angA;
   h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
-  h+=segLine(A,B,"#8a6a1f",2);
-  h+=segLine(P,A,"#365a68",2.5)+segLine(P,B,"#365a68",2.5);
-  h+=segLine(Q,A,"#7a3fb0",2.5)+segLine(Q,B,"#7a3fb0",2.5);
-  function midlab(start,sweep,rr,t,col){var m=(start+sweep/2)*Math.PI/180;return '<text x="'+(cO.x+rr*Math.cos(m)).toFixed(1)+'" y="'+(cO.y+rr*Math.sin(m)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+(cO.x+rr*Math.cos(m)).toFixed(1)+'" y="'+(cO.y+rr*Math.sin(m)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+t+'</text>';}
-  if(pfStep_>=1){
-    h+=segLine(cO,A,"#c9a24b",2.5)+segLine(cO,B,"#c9a24b",2.5);
-    h+='<path d="'+arcSweepPath(cO.x,cO.y,24,c.start,c.sweep)+'" fill="none" stroke="#b8860b" stroke-width="3"/>';
-    h+=midlab(c.start,c.sweep,42,"2x","#8a6a1f");
+  for(var i=0;i<4;i++) h+=segLine(pp[i],pp[(i+1)%4],"#2f3429",2.5);
+  function amark(vx,u,w,rr,col){var a1=angDeg(vx,u),a2=angDeg(vx,w),thr=angDeg(vx,{x:(u.x+w.x)/2,y:(u.y+w.y)/2});return '<path d="'+arcSweepPath(vx.x,vx.y,rr,a1,shortSweep(a1,a2,thr))+'" fill="none" stroke="'+col+'" stroke-width="3"/>';}
+  function alab(vx,u,w,d,t,col){var a1=Math.atan2(u.y-vx.y,u.x-vx.x),a2=Math.atan2(w.y-vx.y,w.x-vx.x),bx=Math.cos(a1)+Math.cos(a2),by=Math.sin(a1)+Math.sin(a2),L=Math.hypot(bx,by)||1,x=vx.x+d*bx/L,y=vx.y+d*by/L;return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="13" font-weight="bold" fill="'+col+'">'+t+'</text>';}
+  if(pfStep_>=1){ h+=amark(A,pp[3],pp[1],18,"#365a68")+alab(A,pp[3],pp[1],34,"a","#365a68"); h+=amark(C,pp[1],pp[3],18,"#b24c4c")+alab(C,pp[1],pp[3],34,"c","#b24c4c"); }
+  if(pfStep_>=2){ h+=segLine(cO,B,"#c9a24b",2)+segLine(cO,D,"#c9a24b",2);
+    /* two central angles ∠BOD either side */
+    /* 2∠C is the arc through the A-side; 2∠A is the arc through the C-side (each corner angle stands on the far arc) */
+    var swC=shortSweep(angDeg(cO,B),angDeg(cO,D),angDeg(cO,A)), swA=shortSweep(angDeg(cO,B),angDeg(cO,D),angDeg(cO,C));
+    h+='<path d="'+arcSweepPath(cO.x,cO.y,26,angDeg(cO,B),swC)+'" fill="none" stroke="#b24c4c" stroke-width="3"/>';
+    h+='<path d="'+arcSweepPath(cO.x,cO.y,33,angDeg(cO,B),swA)+'" fill="none" stroke="#365a68" stroke-width="3"/>';
+    var mA=(angDeg(cO,B)+swA/2)*Math.PI/180, mC=(angDeg(cO,B)+swC/2)*Math.PI/180;
+    var lAx=cO.x+52*Math.cos(mA), lAy=cO.y+52*Math.sin(mA), lCx=cO.x+52*Math.cos(mC), lCy=cO.y+52*Math.sin(mC);
+    h+='<text x="'+lAx.toFixed(1)+'" y="'+(lAy+4).toFixed(1)+'" text-anchor="middle" font-size="12.5" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">2a</text><text x="'+lAx.toFixed(1)+'" y="'+(lAy+4).toFixed(1)+'" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#365a68">2a</text>';
+    h+='<text x="'+lCx.toFixed(1)+'" y="'+(lCy+4).toFixed(1)+'" text-anchor="middle" font-size="12.5" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">2c</text><text x="'+lCx.toFixed(1)+'" y="'+(lCy+4).toFixed(1)+'" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b24c4c">2c</text>';
   }
-  if(pfStep_>=2){ h+=pfInsArc(P,A,B,20,"#365a68"); var pm=(angDeg(P,A)+shortSweep(angDeg(P,A),angDeg(P,B),angDeg(P,{x:(A.x+B.x)/2,y:(A.y+B.y)/2}))/2)*Math.PI/180; h+='<text x="'+(P.x+34*Math.cos(pm)).toFixed(1)+'" y="'+(P.y+34*Math.sin(pm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">x</text><text x="'+(P.x+34*Math.cos(pm)).toFixed(1)+'" y="'+(P.y+34*Math.sin(pm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#365a68">x</text>'; }
-  if(pfStep_>=3){ h+=pfInsArc(Q,A,B,20,"#7a3fb0"); var qm=(angDeg(Q,A)+shortSweep(angDeg(Q,A),angDeg(Q,B),angDeg(Q,{x:(A.x+B.x)/2,y:(A.y+B.y)/2}))/2)*Math.PI/180; h+='<text x="'+(Q.x+34*Math.cos(qm)).toFixed(1)+'" y="'+(Q.y+34*Math.sin(qm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">x</text><text x="'+(Q.x+34*Math.cos(qm)).toFixed(1)+'" y="'+(Q.y+34*Math.sin(qm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a3fb0">x</text>'; }
-  h+=labDot(cO,"#2f3429","O",18)+labDot(A,"#3f5f45","A",20)+labDot(B,"#3f5f45","B",20)+labDot(P,"#b24c4c","P",-13)+labDot(Q,"#7a3fb0","Q",-13);
+  for(i=0;i<4;i++){var dy=(pp[i].y<cO.y?-13:20);h+=labDot(pp[i],(i===0?"#365a68":i===2?"#b24c4c":"#3f5f45"),["A","B","C","D"][i],dy);}
+  if(pfStep_>=2) h+=labDot(cO,"#8a6a1f","O",-12);
   s.innerHTML=h;
   var r=document.getElementById("pfRead");
-  if(pfStep_===0) r.innerHTML='We want to show ∠APB = ∠AQB. Press ① to draw the angle at the centre.';
-  else if(pfStep_===1) r.innerHTML='Draw the <b>angle at the centre</b>, ∠AOB, standing on the same arc AB. Call it <b>2x</b>.';
-  else if(pfStep_===2) r.innerHTML='By the keystone, ∠APB = ½ × ∠AOB = <b>x</b>.';
-  else r.innerHTML='∠AQB is also half the <em>same</em> centre angle: ∠AQB = ½ × ∠AOB = <b>x</b>. So <b>∠APB = ∠AQB</b> — angles in the same segment are equal. ∎';
+  if(pfStep_===0) r.innerHTML='We want to show ∠A + ∠C = 180°. Press ① to mark the opposite pair.';
+  else if(pfStep_===1) r.innerHTML='Call the two <b>opposite angles</b> <b>a</b> (at A) and <b>c</b> (at C). We will show a + c = 180°.';
+  else if(pfStep_===2) r.innerHTML='∠A stands on arc BCD and ∠C on arc BAD. By the angle at the centre, their central angles are <b>2a</b> and <b>2c</b>. These sit either side of BD and together make a <b>full turn, 360°</b>.';
+  else r.innerHTML='So 2a + 2c = 360°. Dividing by 2: <b>a + c = 180°</b> — that is, ∠A + ∠C = 180°. Opposite angles of a cyclic quadrilateral are supplementary. ∎';
 }
 function pfInit(){pfBtns();pfRender();}
 
@@ -599,21 +703,20 @@ function pfInit(){pfBtns();pfRender();}
 (function(){
   var RECONNECT={
     keystone:{title:'Centre and circumference',prompt:'The angle at the centre is how many times the angle at the circumference on the same arc?',answer:2,hint:'Twice — the keystone theorem from Lesson 2.'},
-    segment:{title:'What is a segment?',prompt:'The region of a circle between a chord and its arc is called a...?',answer:'segment',hint:'A chord cuts the circle into two segments.'},
-    samearc:{title:'Standing on an arc',prompt:'Two angles at the circumference that stand on the same arc are... (equal / different)?',answer:'equal',hint:'Each is half the same central angle, so they are equal.'}
+    fullturn:{title:'A full turn',prompt:'Angles all the way around a point add up to how many degrees?',answer:360,hint:'A full turn is 360 degrees.'},
+    supp:{title:'Supplementary angles',prompt:'Two angles that add up to 180 degrees are called...?',answer:'supplementary',hint:'Together they make a straight line.'}
   }
-  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
   window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
 })();
 
 /* ---------------- PRACTICE COMPANION ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · Same segment",q:"P and Q are on the same arc of a circle, both joined to the ends of a chord AB. If ∠APB = 47°, what is ∠AQB, in degrees?",a:[],eq:function(v){return num(v)===47;},prompt:"Angles in the same segment are equal.",hint:"∠AQB is the same as ∠APB.",sol:"47° — angles in the same segment are equal, so ∠AQB = ∠APB = 47°."},
- {label:"2 of 6 · Name the reason",q:"What is the name of the theorem stating that two angles standing on the same arc are equal?",a:["angles in the same segment","angles in the same segment are equal","same segment"],eq:function(v){return false;},prompt:"They lie in the same part of the circle cut off by the chord.",hint:"Angles in the same s______.",sol:"'Angles in the same segment (are equal)' — two angles at the circumference standing on the same arc are equal."},
- {label:"3 of 6 · Why equal (fraction)",q:"Two angles in the same segment are each what fraction of the angle at the centre standing on the same arc? (Give a fraction or a decimal.)",a:["half","one half","a half"],eq:function(v){return Math.abs(num(v)-0.5)<1e-9;},prompt:"Angle at the centre = 2 × angle at the circumference.",hint:"Each is one half — write 1/2 or 0.5.",sol:"One half (1/2 = 0.5) — each angle at the circumference is half the same central angle, which is why they are equal."},
- {label:"4 of 6 · From the centre",q:"The angle at the centre standing on arc AB is 96°. What is the angle ∠APB at the circumference (in the same segment), in degrees?",a:[],eq:function(v){return num(v)===48;},prompt:"The circumference angle is half the centre angle.",hint:"Half of 96.",sol:"48° — the angle at the circumference is half the angle at the centre: 96 ÷ 2 = 48°. Every angle in that segment is 48°."},
- {label:"5 of 6 · Spotting the pair",q:"In a diagram, ∠ADB and ∠ACB both stand on the same arc AB, on the same side. ∠ADB = 33°. What is ∠ACB, in degrees?",a:[],eq:function(v){return num(v)===33;},prompt:"Same arc, same side — same segment.",hint:"They are in the same segment, so they are equal.",sol:"33° — ∠ACB and ∠ADB are in the same segment (same arc, same side of AB), so they are equal: 33°."},
- {label:"6 of 6 · Same or different?",q:"Two points sit on OPPOSITE sides of a chord (in different segments). Are the angles they make with the chord equal? Answer yes or no.",a:["no","not equal","different","they are not equal"],eq:function(v){return false;},prompt:"The 'same segment' rule needs the SAME side of the chord.",hint:"Different segments — the angles are not equal (they add to 180°).",sol:"No — the theorem needs the same segment. On opposite sides the angles are supplementary (they add to 180°), which is the cyclic-quadrilateral rule coming next."}
+ {label:"1 of 6 · Opposite angle",q:"ABCD is a cyclic quadrilateral. ∠A = 85°. What is ∠C, the opposite angle, in degrees?",a:[],eq:function(v){return num(v)===95;},prompt:"Opposite angles of a cyclic quadrilateral add to 180°.",hint:"180 − 85.",sol:"95° — opposite angles of a cyclic quadrilateral add to 180°, so ∠C = 180 − 85 = 95°."},
+ {label:"2 of 6 · The other pair",q:"In a cyclic quadrilateral, ∠B = 110°. Find the opposite angle ∠D, in degrees.",a:[],eq:function(v){return num(v)===70;},prompt:"∠B and ∠D are the other opposite pair.",hint:"180 − 110.",sol:"70° — ∠B and ∠D are opposite, so ∠D = 180 − 110 = 70°."},
+ {label:"3 of 6 · Name it",q:"What is the name for a four-sided shape whose four vertices all lie on a circle?",a:["cyclic quadrilateral","a cyclic quadrilateral","cyclic quad"],eq:function(v){return false;},prompt:"'Cyclic' means the vertices lie on a circle.",hint:"Cyclic q____________.",sol:"A cyclic quadrilateral — a quadrilateral with all four vertices on a circle."},
+ {label:"4 of 6 · Fraction of a turn",q:"Opposite angles of a cyclic quadrilateral add to 180°. What fraction of a full turn (360°) is that? (Give a fraction or a decimal.)",a:["half","one half","a half"],eq:function(v){return Math.abs(num(v)-0.5)<1e-9;},prompt:"180 out of 360.",hint:"180 is one half of 360 — write 1/2 or 0.5.",sol:"One half (1/2 = 0.5) — the two opposite angles together make half of the full 360° turn at the centre."},
+ {label:"5 of 6 · Find the last angle",q:"In cyclic quadrilateral ABCD, going round, ∠A = 95°, ∠B = 70° and ∠C = 85°. Find ∠D, in degrees.",a:[],eq:function(v){return num(v)===110;},prompt:"∠B and ∠D are opposite, so they add to 180°.",hint:"∠D = 180 − ∠B = 180 − 70.",sol:"110° — ∠B and ∠D are opposite angles, so ∠D = 180 − 70 = 110°. (Check: ∠A + ∠C = 95 + 85 = 180 too.)"},
+ {label:"6 of 6 · Which pair?",q:"Two angles of a cyclic quadrilateral that add to 180° must be OPPOSITE or ADJACENT? (one word)",a:["opposite","the opposite ones","opposite ones"],eq:function(v){return false;},prompt:"The theorem is about angles across the shape from each other.",hint:"Not next to each other — across the shape.",sol:"Opposite — it is the OPPOSITE angles of a cyclic quadrilateral that add to 180° (adjacent angles do not, in general)."}
 ]
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -642,7 +745,7 @@ function pCheck(){
   var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Remember: angles in the same segment are equal. Use the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Remember: opposite angles of a cyclic quadrilateral add to 180°. Use the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -666,5 +769,160 @@ function initLesson(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
 </script>
+
+<script src="../../assets/progress.js"></script>
+<script>NEOProgress.autoTrack('circle-theorems-05-cyclic-quadrilaterals');</script>
+
+<script>
+/* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */
+(function(){
+  if(window.__neoPaletteInstalled)return; window.__neoPaletteInstalled=true;
+  var DEFAULT=["a","b","c","x","y","²","³","√","π","+","-","×","÷","=","≈","°"];
+  function syms(){ return (window.NEO_PALETTE_SYMBOLS&&window.NEO_PALETTE_SYMBOLS.length)?window.NEO_PALETTE_SYMBOLS:DEFAULT; }
+  function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  /* render any a/b in a plain string as a stacked fraction (numerator over denominator) */
+  function renderFractions(t){ var re=new RegExp("([A-Za-z0-9.²³]+) */ *([A-Za-z0-9.²³]+)","g"); return esc(t).replace(re, function(_,n,d){ return '<span class="frac"><span class="fnum">'+n+'</span><span class="fden">'+d+'</span></span>'; }); }
+  function insert(f,s){ f.focus(); var a=f.selectionStart,b=f.selectionEnd; if(a==null){a=b=f.value.length;} f.value=f.value.slice(0,a)+s+f.value.slice(b); var p=a+s.length; try{f.selectionStart=f.selectionEnd=p;}catch(e){} f.focus(); }
+  function updatePreview(f,pv){ var v=f.value||""; if(v.indexOf("/")>=0){ pv.hidden=false; pv.innerHTML='<span class="flabel">Reads as:</span> '+renderFractions(v); } else { pv.hidden=true; pv.innerHTML=""; } }
+  function attach(f){ if(f.dataset.paletteReady)return; f.dataset.paletteReady="1";
+    var w=document.createElement("div"); w.className="mathpalette";
+    var t=document.createElement("button"); t.type="button"; t.className="palette-toggle"; t.textContent="√ Symbols";
+    var k=document.createElement("div"); k.className="palette-keys"; k.hidden=true;
+    var pv=document.createElement("div"); pv.className="fracpreview"; pv.hidden=true; pv.setAttribute("aria-live","polite");
+    syms().forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.textContent=s; b.addEventListener("click",function(){insert(f,s);updatePreview(f,pv);}); k.appendChild(b); });
+    var fr=document.createElement("button"); fr.type="button"; fr.title="Insert a fraction (numerator / denominator)"; fr.innerHTML='<span class="frac"><span class="fnum">a</span><span class="fden">b</span></span>';
+    fr.addEventListener("click",function(){ insert(f,"/"); updatePreview(f,pv); }); k.appendChild(fr);
+    t.addEventListener("click",function(){ k.hidden=!k.hidden; });
+    f.addEventListener("input",function(){ updatePreview(f,pv); });
+    w.appendChild(t); w.appendChild(k); f.insertAdjacentElement("afterend",w); w.insertAdjacentElement("afterend",pv);
+  }
+  function init(){ document.querySelectorAll('input[id$="Answer"], .neo-mathfield').forEach(attach); }
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
+})();
+</script>
+
+<script>
+/* Single-open accordion: opening one panel closes the others (data-keep-open opts out). */
+(function(){
+  if(window.__neoAccordionInstalled)return; window.__neoAccordionInstalled=true;
+  function closeOthers(cur){
+    var scope=cur.closest("#lessonView")||document;
+    scope.querySelectorAll("details").forEach(function(d){
+      if(d!==cur && !d.contains(cur) && d.dataset.keepOpen!=="true") d.open=false;
+    });
+  }
+  document.addEventListener("toggle",function(e){
+    var d=e.target;
+    if(d && d.tagName==="DETAILS" && d.open && (d.closest("#lessonView")||d.closest(".neo-lesson-root"))) closeOthers(d);
+  },true);
+})();
+</script>
+</div>
+<style>
+#neoCalcWrap{position:fixed;right:16px;bottom:16px;z-index:9990;font-family:Arial,sans-serif}
+#neoCalcToggle{background:#365a68;color:#fff;border:none;border-radius:24px;padding:11px 16px;font-weight:700;font-size:1em;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+#neoCalcPanel{position:absolute;right:0;bottom:56px;width:246px;background:#f7f3ea;border:1px solid #cdbfa9;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.30);padding:12px}
+#neoCalcPanel[hidden]{display:none}
+.neoCalcHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.neoCalcHead b{color:#3f5f45}
+.neoCalcDeg{font-size:.72em;font-weight:700;color:#fff;background:#5c6b4f;border-radius:6px;padding:2px 7px;letter-spacing:.05em}
+#neoCalcExpr{min-height:22px;background:#fff;border:1px solid #cdbfa9;border-radius:8px;padding:7px 9px;font-size:1.05em;text-align:right;word-break:break-all;color:#2f3429}
+#neoCalcResult{min-height:20px;text-align:right;font-size:1.15em;font-weight:700;color:#2f6b46;padding:3px 4px 8px}
+.neoCalcGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.neoCalcGrid button{padding:11px 0;font-size:1em;border:1px solid #bcae98;border-radius:9px;background:#fff;cursor:pointer;color:#2f3429;font-weight:600}
+.neoCalcGrid button:hover{background:#f0ebe0}
+.neoCalcGrid button.fn{background:#e5eef2;border-color:#7d97a6;font-size:.92em}
+.neoCalcGrid button.op{background:#eef3e8}
+.neoCalcGrid button.eq{background:#2f6b46;color:#fff;border:none}
+.neoCalcGrid button.clr{background:#f6e6de;border-color:#c69}
+@media print{#neoCalcWrap{display:none}}
+</style>
+<div id="neoCalcWrap">
+  <button id="neoCalcToggle" type="button" onclick="neoCalcToggle()" aria-expanded="false" aria-controls="neoCalcPanel">&#129518; Calculator</button>
+  <div id="neoCalcPanel" hidden role="dialog" aria-label="Scientific calculator, degrees">
+    <div class="neoCalcHead"><b>Calculator</b><span class="neoCalcDeg">DEG</span></div>
+    <div id="neoCalcExpr" aria-live="polite">0</div>
+    <div id="neoCalcResult" aria-live="polite"></div>
+    <div class="neoCalcGrid">
+      <button type="button" class="fn" onclick="neoCalcFn('sin')">sin</button>
+      <button type="button" class="fn" onclick="neoCalcFn('cos')">cos</button>
+      <button type="button" class="fn" onclick="neoCalcFn('tan')">tan</button>
+      <button type="button" class="clr" onclick="neoCalcBack()">&#9003;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('asin')">sin&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('acos')">cos&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('atan')">tan&#8315;&#185;</button>
+      <button type="button" class="fn" onclick="neoCalcFn('sqrt')">&#8730;</button>
+      <button type="button" class="fn" onclick="neoCalcKey('(')">(</button>
+      <button type="button" class="fn" onclick="neoCalcKey(')')">)</button>
+      <button type="button" class="clr" onclick="neoCalcClear()">C</button>
+      <button type="button" class="op" onclick="neoCalcKey('÷')">&#247;</button>
+      <button type="button" onclick="neoCalcKey('7')">7</button>
+      <button type="button" onclick="neoCalcKey('8')">8</button>
+      <button type="button" onclick="neoCalcKey('9')">9</button>
+      <button type="button" class="op" onclick="neoCalcKey('×')">&#215;</button>
+      <button type="button" onclick="neoCalcKey('4')">4</button>
+      <button type="button" onclick="neoCalcKey('5')">5</button>
+      <button type="button" onclick="neoCalcKey('6')">6</button>
+      <button type="button" class="op" onclick="neoCalcKey('-')">&#8722;</button>
+      <button type="button" onclick="neoCalcKey('1')">1</button>
+      <button type="button" onclick="neoCalcKey('2')">2</button>
+      <button type="button" onclick="neoCalcKey('3')">3</button>
+      <button type="button" class="op" onclick="neoCalcKey('+')">+</button>
+      <button type="button" onclick="neoCalcKey('0')">0</button>
+      <button type="button" onclick="neoCalcKey('.')">.</button>
+      <button type="button" class="eq" style="grid-column:span 2" onclick="neoCalcEq()">=</button>
+    </div>
+    <p style="font-size:.78em;color:#5c6b4f;margin:8px 2px 0">Angles are in <b>degrees</b>. Examples: 9 &#215; sin(37) = 5.42; &nbsp;sin&#8315;&#185;(0.5) = 30</p>
+  </div>
+</div>
+<script>
+(function(){
+  if(window.__neoCalcInstalled)return; window.__neoCalcInstalled=true;
+  var expr="";
+  function isFn(x){return x==="sin"||x==="cos"||x==="tan"||x==="sqrt"||x==="asin"||x==="acos"||x==="atan";}
+  function evalExpr(input){
+    var s=String(input).replace(/×/g,"*").replace(/÷/g,"/").replace(/−/g,"-").replace(/°/g,"");
+    var toks=s.match(/\d+\.?\d*|\.\d+|asin|acos|atan|sin|cos|tan|sqrt|√|[()+\-*/]/g);
+    if(!toks) return NaN;
+    var out=[], ops=[], prec={"+":1,"-":1,"*":2,"/":2,"u":4}, prev=null;
+    for(var i=0;i<toks.length;i++){ var t=toks[i]; if(t==="√")t="sqrt";
+      if(/^[\d.]/.test(t)){ out.push(parseFloat(t)); prev="n"; }
+      else if(isFn(t)){ ops.push(t); prev="f"; }
+      else if(t==="("){ ops.push("("); prev="("; }
+      else if(t===")"){ while(ops.length&&ops[ops.length-1]!=="(") out.push(ops.pop()); if(ops.length) ops.pop(); if(ops.length&&isFn(ops[ops.length-1])) out.push(ops.pop()); prev="n"; }
+      else { var op=t; if(op==="-"&&(prev===null||prev==="("||prev==="o"||prev==="f")) op="u";
+        while(ops.length){ var tp=ops[ops.length-1]; if(tp!=="(" && (isFn(tp) || (prec[tp] && prec[tp]>=prec[op]))) out.push(ops.pop()); else break; }
+        ops.push(op); prev="o"; }
+    }
+    while(ops.length){ var o=ops.pop(); if(o!=="(") out.push(o); }
+    var st=[];
+    for(var j=0;j<out.length;j++){ var x=out[j];
+      if(typeof x==="number"){ st.push(x); }
+      else if(x==="u"){ if(!st.length)return NaN; st.push(-st.pop()); }
+      else if(isFn(x)){ if(!st.length)return NaN; var a=st.pop(), r;
+        if(x==="sin")r=Math.sin(a*Math.PI/180); else if(x==="cos")r=Math.cos(a*Math.PI/180); else if(x==="tan")r=Math.tan(a*Math.PI/180);
+        else if(x==="sqrt")r=Math.sqrt(a);
+        else if(x==="asin")r=(a<-1||a>1)?NaN:Math.asin(a)*180/Math.PI; else if(x==="acos")r=(a<-1||a>1)?NaN:Math.acos(a)*180/Math.PI; else if(x==="atan")r=Math.atan(a)*180/Math.PI;
+        st.push(r); }
+      else { if(st.length<2)return NaN; var b=st.pop(), a2=st.pop(); st.push(x==="+"?a2+b:x==="-"?a2-b:x==="*"?a2*b:a2/b); }
+    }
+    return st.length===1?st[0]:NaN;
+  }
+  function render(){
+    document.getElementById("neoCalcExpr").textContent = (expr||"0").replace(/asin/g,"sin⁻¹").replace(/acos/g,"cos⁻¹").replace(/atan/g,"tan⁻¹");
+    var v=evalExpr(expr);
+    document.getElementById("neoCalcResult").textContent = (expr && isFinite(v)) ? "= "+(Math.round(v*1e6)/1e6) : "";
+  }
+  window.neoCalcEval=evalExpr;
+  window.neoCalcToggle=function(){ var p=document.getElementById("neoCalcPanel"); p.hidden=!p.hidden; document.getElementById("neoCalcToggle").setAttribute("aria-expanded", String(!p.hidden)); };
+  window.neoCalcKey=function(s){ expr+=s; render(); };
+  window.neoCalcFn=function(f){ expr+=(f==="sqrt"?"√":f)+"("; render(); };
+  window.neoCalcClear=function(){ expr=""; render(); };
+  window.neoCalcBack=function(){ var m=expr.match(/(asin\(|acos\(|atan\(|sin\(|cos\(|tan\(|√\()$/); expr=m?expr.slice(0,-m[0].length):expr.slice(0,-1); render(); };
+  window.neoCalcEq=function(){ var v=evalExpr(expr); document.getElementById("neoCalcResult").textContent = isFinite(v) ? "= "+(Math.round(v*1e6)/1e6) : "= —"; };
+  render();
+})();
+</script>
+<div class="neo-chrome neo-chrome-footer"><div class="neo-mark">NE<span>O</span> by Nudge Education</div><div><a href="../../index.html">All lessons</a><a href="../../cornerstones.html">The Six Cornerstones</a><a href="../../curriculum.html">Our curriculum</a><a href="../../tools/geometry-studio.html">Geometry Studio</a></div></div>
 </body>
 </html>

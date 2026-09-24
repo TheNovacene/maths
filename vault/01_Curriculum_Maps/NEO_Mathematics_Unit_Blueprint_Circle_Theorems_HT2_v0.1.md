@@ -118,3 +118,20 @@ Second corollary of the keystone. Hero = **Circle Theorem Lab, two apexes on the
 - **Practice:** 6 reason-first Qs; gate 6a (Q3 half/0.5/1⁄2), same-vs-different-segment.
 - **Guides:** new reusable `sameseg` (bowtie) diagram; same-segment worked examples.
 - **QA:** jsdom proved ∠APB = ∠AQB across a grid of P,Q positions + clamp keeps them off the minor arc; MOVEMENT/PROOF/gate 6a green; visual QA. Studio `ct04-final` added. Site 69 lessons / 0 missing / links valid.
+
+**CT-05 — Cyclic quadrilaterals — ★ BUILT & LIVE (v0.1) · ★ MID-UNIT CHECKPOINT**
+Fourth angle-in-a-circle theorem; completes the family. Hero = **Cyclic-quad Lab, four draggable vertices** (Gerry-approved). Built a **new `cqLab` component** (4 ordered vertices A,B,C,D, nearest-vertex drag, order-preserving clamp so the quad never self-crosses, interior angles, opposite pairs locked to 180° by linked rounding, "Why 180°?" reveal tying to the 360° turn).
+- **Connection:** cyclic-quad lab, both opposite sums shown.
+- **Movement:** find the opposite angle (180 − given), reason required.
+- **Reflection (hero):** reshape the quad freely — ∠A+∠C and ∠B+∠D stay 180°; reveal explains via the two central angles filling 360°.
+- **Creativity:** 3-step proof (opposite pair → central angles 2∠A, 2∠C → sum 360° ⇒ ∠A+∠C=180°); ties back to CT-04 (same vs opposite segment).
+- **Rest:** the **mid-unit checkpoint** — all four angle theorems now in hand; unit turns to tangents/chords next.
+- **Practice:** 6 reason-first Qs; gate 6a (Q1 95/ninety-five, Q4 half/0.5/1⁄2), opposite-vs-adjacent, find-the-fourth.
+- **Guides:** new reusable `cyclicquad` diagram; worked examples aligned to the diagram angles.
+- **QA:** jsdom proved both opposite sums = 180° across drags of every vertex + cyclic order preserved; MOVEMENT/PROOF/gate 6a green; visual QA. Studio `ct05-final` added. Site 70 lessons / 0 missing / links valid.
+
+★ **Checkpoint reached (after CT-05):** the four angle-in-a-circle theorems (centre/circumference, semicircle, same segment, cyclic quad) are all built and live. The unit now turns to the tangent/chord family (CT-06–10).
+
+**CT-05 proof fix (post-review):** in the Creativity proof, the two central-angle labels (2∠A, 2∠C) were on the wrong sides of diagonal BD — ∠A subtends the arc through C so 2∠A belongs on the C-side, and 2∠C on the A-side. Corrected, and each central angle is now drawn as its own coloured arc (2∠A blue on the C-side, 2∠C red on the A-side) matching the vertex colours.
+
+**Proof house-style (post-review):** generalised the *proof* moments to symbols rather than measured values, per Gerry — CT-04 Creativity proof + Learner/Adult guide proof now use ∠AOB = 2x and inscribed x; CT-05 proof + guides use ∠A = a, ∠C = c with central 2a, 2c. Added a reusable `symbolic` flag to the `sameseg` and `cyclicquad` guide diagrams (label x, or a/b/c/d, instead of degrees). Discovery/Movement panels keep real measured angles. CT-02 proof already used x,y; CT-03 legitimately uses 180/90 as the special-case values.

@@ -644,17 +644,17 @@ function pfRender(){
   if(pfStep_>=1){
     h+=segLine(cO,A,"#c9a24b",2.5)+segLine(cO,B,"#c9a24b",2.5);
     h+='<path d="'+arcSweepPath(cO.x,cO.y,24,c.start,c.sweep)+'" fill="none" stroke="#b8860b" stroke-width="3"/>';
-    h+=midlab(c.start,c.sweep,42,c.m+"°","#8a6a1f");
+    h+=midlab(c.start,c.sweep,42,"2x","#8a6a1f");
   }
-  if(pfStep_>=2){ h+=pfInsArc(P,A,B,20,"#365a68"); var pm=(angDeg(P,A)+shortSweep(angDeg(P,A),angDeg(P,B),angDeg(P,{x:(A.x+B.x)/2,y:(A.y+B.y)/2}))/2)*Math.PI/180; h+='<text x="'+(P.x+34*Math.cos(pm)).toFixed(1)+'" y="'+(P.y+34*Math.sin(pm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+half+'°</text><text x="'+(P.x+34*Math.cos(pm)).toFixed(1)+'" y="'+(P.y+34*Math.sin(pm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#365a68">'+half+'°</text>'; }
-  if(pfStep_>=3){ h+=pfInsArc(Q,A,B,20,"#7a3fb0"); var qm=(angDeg(Q,A)+shortSweep(angDeg(Q,A),angDeg(Q,B),angDeg(Q,{x:(A.x+B.x)/2,y:(A.y+B.y)/2}))/2)*Math.PI/180; h+='<text x="'+(Q.x+34*Math.cos(qm)).toFixed(1)+'" y="'+(Q.y+34*Math.sin(qm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+half+'°</text><text x="'+(Q.x+34*Math.cos(qm)).toFixed(1)+'" y="'+(Q.y+34*Math.sin(qm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a3fb0">'+half+'°</text>'; }
+  if(pfStep_>=2){ h+=pfInsArc(P,A,B,20,"#365a68"); var pm=(angDeg(P,A)+shortSweep(angDeg(P,A),angDeg(P,B),angDeg(P,{x:(A.x+B.x)/2,y:(A.y+B.y)/2}))/2)*Math.PI/180; h+='<text x="'+(P.x+34*Math.cos(pm)).toFixed(1)+'" y="'+(P.y+34*Math.sin(pm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">x</text><text x="'+(P.x+34*Math.cos(pm)).toFixed(1)+'" y="'+(P.y+34*Math.sin(pm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#365a68">x</text>'; }
+  if(pfStep_>=3){ h+=pfInsArc(Q,A,B,20,"#7a3fb0"); var qm=(angDeg(Q,A)+shortSweep(angDeg(Q,A),angDeg(Q,B),angDeg(Q,{x:(A.x+B.x)/2,y:(A.y+B.y)/2}))/2)*Math.PI/180; h+='<text x="'+(Q.x+34*Math.cos(qm)).toFixed(1)+'" y="'+(Q.y+34*Math.sin(qm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">x</text><text x="'+(Q.x+34*Math.cos(qm)).toFixed(1)+'" y="'+(Q.y+34*Math.sin(qm)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a3fb0">x</text>'; }
   h+=labDot(cO,"#2f3429","O",18)+labDot(A,"#3f5f45","A",20)+labDot(B,"#3f5f45","B",20)+labDot(P,"#b24c4c","P",-13)+labDot(Q,"#7a3fb0","Q",-13);
   s.innerHTML=h;
   var r=document.getElementById("pfRead");
   if(pfStep_===0) r.innerHTML='We want to show ∠APB = ∠AQB. Press ① to draw the angle at the centre.';
-  else if(pfStep_===1) r.innerHTML='Draw the <b>angle at the centre</b>, ∠AOB = <b>'+c.m+'°</b>, standing on the same arc AB.';
-  else if(pfStep_===2) r.innerHTML='By the keystone, ∠APB = ½ × ∠AOB = <b>'+half+'°</b>.';
-  else r.innerHTML='∠AQB is also half the <em>same</em> centre angle: ∠AQB = ½ × ∠AOB = <b>'+half+'°</b>. So <b>∠APB = ∠AQB</b> — angles in the same segment are equal. ∎';
+  else if(pfStep_===1) r.innerHTML='Draw the <b>angle at the centre</b>, ∠AOB, standing on the same arc AB. Call it <b>2x</b>.';
+  else if(pfStep_===2) r.innerHTML='By the keystone, ∠APB = ½ × ∠AOB = <b>x</b>.';
+  else r.innerHTML='∠AQB is also half the <em>same</em> centre angle: ∠AQB = ½ × ∠AOB = <b>x</b>. So <b>∠APB = ∠AQB</b> — angles in the same segment are equal. ∎';
 }
 function pfInit(){pfBtns();pfRender();}
 

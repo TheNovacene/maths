@@ -617,6 +617,14 @@
           "file": "lessons/circle-theorems/04-angles-in-the-same-segment.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-05-cyclic-quadrilaterals",
+          "num": "Lesson 05",
+          "title": "Cyclic quadrilaterals",
+          "file": "lessons/circle-theorems/05-cyclic-quadrilaterals.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
