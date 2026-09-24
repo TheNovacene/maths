@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: The angle in a semicircle</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top;text-align:center}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+.uk{font-family:'Times New Roman',Georgia,serif;font-style:italic}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Circle Theorems</h1>
+<h2>The angle in a semicircle</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What is special about an angle drawn on a diameter?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core — the first and cleanest <b>consequence</b> of the keystone: the special case where the two points are ends of a diameter.</p>
+<p><b>Stepping Stone:</b> discover, and then <b>justify</b>, that the <b>angle in a semicircle is 90°</b> — every triangle drawn on a diameter has a right angle at the third vertex — and use it (with the reason) to find missing angles.</p>
+<p><b>You will need:</b> the <b>angle at the centre theorem</b> (Lesson 2), that a <b>diameter</b> passes through the centre, that angles on a <b>straight line</b> sum to 180°, and that angles in a triangle sum to 180°.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 9 · Move 11 · Reflect 12 · Create 9 · Rest/Nourish 4</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_03_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_03_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle with centre O and a diameter AB. Pick a point P on the circle and join PA and PB. Measure angle APB. Move P and measure again. What do you notice?')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — An angle drawn on a diameter</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">Last lesson gave us the keystone: the angle at the centre is <em>twice</em> the angle at the circumference on the same arc. Now try the most special arc of all. Let the two points <b>A</b> and <b>B</b> be the ends of a <b>diameter</b> — a chord straight through the centre <b>O</b>. Then the "arc" AB is a whole <b>semicircle</b>, and the angle at the centre, ∠AOB, is a <b>straight line</b>: 180°. Halve it, and the angle at the circumference ∠APB must be <b>90°</b>. So every triangle you draw on a diameter has a <b>right angle</b> at the third corner — a fact worth its own lesson.</p>
+</div>
+<p><b>What to do:</b> A and B are the ends of a diameter. <b>Drag P</b> around the semicircle and watch the angle <b>∠APB</b> at P.</p>
+<p><b>What you are trying to notice:</b> the diameter is a straight line through O, so the "angle at the centre" is 180°. The angle at P is half of that — and it never moves off 90°.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔦 The angle on a diameter</h3>
+<div class="card" style="text-align:center"><svg id="cnSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="A diameter AB and a draggable point P, showing the right angle at P"></svg></div>
+<div id="cnRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="cnLab.newAB()">↔ Turn the diameter</button></div>
+<p><b>Carry this forward:</b> a diameter subtends a straight angle (180°) at the centre, so it subtends a <b>right angle</b> (90°) at the circumference.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT (primary) ================= -->
+<details class="hs">
+<summary>🚶 Movement — The right angle, and the other two</summary>
+<p><b>What to do:</b> triangle APB sits on a diameter AB, so the angle at <b>P is 90°</b>. That leaves 90° to share between the other two angles. For each diagram, work out the marked angle and type it in (degrees), and be ready to give the reason.</p>
+<p><b>What you are trying to notice:</b> once you know ∠APB = 90° (angle in a semicircle), the two acute angles of the triangle must add to <b>90°</b> — so if you know one, you subtract from 90° to get the other.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧮 Find the missing angle</h3>
+<div class="card" style="text-align:center"><svg id="mvSvg" class="graphsvg" style="max-width:360px" viewBox="0 0 380 260" role="img" aria-label="A right-angled triangle drawn on a diameter"></svg></div>
+<div id="mvRead" class="readout" style="font-weight:bold"></div>
+<div class="buttonrow" style="justify-content:center;align-items:center">
+<input id="mvAns" class="numin" style="max-width:90px" placeholder="angle°" inputmode="numeric">
+<button onclick="mvCheck()">✅ Check</button>
+<button onclick="mvHintBtn()">💡 Hint</button>
+<button onclick="mvNext()">Next →</button>
+</div>
+<div id="mvFb" class="feedback"></div>
+<p><b>Carry this forward:</b> angle in a semicircle = 90°; the other two angles of the triangle then add to 90°.</p>
+</div>
+</details>
+
+<!-- ================= REFLECTION (hero) ================= -->
+<details class="es">
+<summary>🪞 Reflection — The right angle that will not move <span class="stretch">keystone case</span></summary>
+<p><b>What to do:</b> A and B are the ends of a diameter. <b>Drag P</b> slowly around the whole semicircle, keeping your eye on ∠APB and the small square at P. Then press <b>Why 90°?</b>.</p>
+<p><b>What you are trying to notice:</b> the right angle at P <em>never changes</em> — a tall thin triangle, a short wide one, it is always exactly 90°. And you can see <em>why</em>: the diameter makes a 180° angle at the centre, and the angle at the circumference is always half of it. This is the <b>angle in a semicircle</b> theorem.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔬 The Circle Theorem Lab — diameter case</h3>
+<div class="card" style="text-align:center"><svg id="rfSvg" class="graphsvg" style="max-width:410px" viewBox="0 0 380 320" role="img" aria-label="Circle Theorem Lab in diameter mode: draggable P with a constant right angle"></svg></div>
+<div id="rfRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button id="rfRatioBtn" onclick="rfLab.toggleRatio()">🔗 Why 90°?</button><button onclick="rfLab.newAB()">↔ Turn the diameter</button><button onclick="rfLab.trail()">👣 Leave a trail of P</button></div>
+<p><b>Carry this forward:</b> <b>the angle in a semicircle is a right angle</b> (90°) — because a diameter subtends 180° at the centre, and the circumference angle is half of it.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — <em>Why</em> is it a right angle? <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> press the steps to build the proof straight from last lesson's keystone. It takes just three lines.</p>
+<p><b>What you are trying to notice:</b> the whole proof is the angle-at-the-centre theorem applied to the most special arc. The diameter forces the centre angle to be a straight line, and half of a straight line is a right angle.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧩 Build the proof</h3>
+<div class="buttonrow" style="justify-content:center">
+<button id="pfB1" onclick="pfStep(1)">① AB is a diameter</button>
+<button id="pfB2" onclick="pfStep(2)" disabled>② ∠AOB = 180° (straight line)</button>
+<button id="pfB3" onclick="pfStep(3)" disabled>③ ∠APB = ½ × 180° = 90°</button>
+<button onclick="pfReset()">↺ Reset</button>
+</div>
+<div class="card" style="text-align:center"><svg id="pfSvg" class="graphsvg" style="max-width:380px" viewBox="0 0 380 320"></svg></div>
+<div id="pfRead" class="clue" style="text-align:center"></div>
+<p><b>Another way to see it:</b> join <b>OP</b>. Then OA = OB = OP are radii, so triangles OAP and OBP are <b>isosceles</b> with base angles <b>a</b> and <b>b</b>. The angles of triangle APB are a, b and ∠APB, and ∠APB = a + b. Since they sum to 180°, we get a + b + (a + b) = 180°, so <b>a + b = 90°</b> — the right angle again.</p>
+<p><b>The useful converse:</b> it also works backwards — if ∠APB = 90°, then P must lie on the circle with AB as diameter. That is how you can build a right angle, or find the centre of a circle through a right-angled corner.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Prove the angle in a semicircle is 90°. Use either the angle at the centre (a diameter gives a straight angle of 180° at O, halved to 90°) or the two isosceles triangles (a + b = 90°). Then explain the converse.')">✏️ Write the proof yourself</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>A right angle you cannot shake loose, hidden inside every diameter. Notice how much of this lesson was really <em>last</em> lesson, viewed from a new angle — one strong idea quietly doing more work. Take a breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> did seeing the semicircle right angle as "just the 180° case" of the keystone make it feel obvious, or surprising? Both reactions are worth having.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> We name honestly what the <em>learning</em> feeds.</p>
+<div class="card">
+<p><b>What it feeds:</b> today feeds the pleasure of a <b>special case</b> — how a general truth, aimed at exactly the right target, produces something clean and memorable. The right angle in a semicircle (Thales' theorem, one of the oldest results in geometry) is the sort of fact that engineers and builders reach for: a way to test or make a right angle using nothing but a circle. It also feeds the habit of asking "what happens in the extreme case?" — pushing an idea to its limit is where much of mathematics is discovered.</p>
+<p class="small">Carry one idea forward: when you meet a general rule, try its most special case — it often hands you a new theorem for free.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> show you can state, use and justify the angle in a semicircle.</p>
+<ul>
+<li>Draw a circle with a diameter AB, mark a point P on the circle, and join PA and PB. State that <b>∠APB = 90°</b> and give the reason (angle in a semicircle).</li>
+<li>Given one acute angle of a triangle drawn on a diameter, find the other, <b>writing the reason</b> at each step (angle in a semicircle, then angles in a triangle).</li>
+<li>Explain in your own words <b>why</b> the angle is 90° — using the angle at the centre (a diameter gives 180° at O, halved).</li>
+<li><span class="stretch">stretch</span> State and use the <b>converse</b>: if a triangle has a right angle, its hypotenuse is a diameter of the circle through all three vertices.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-drawn diagram, a triangle built and measured on a diameter in the <b>Geometry Studio</b> (Measure → Angle), a written proof, or a spoken/video explanation.</p>
+<div class="card" style="border:2px solid #365a68;background:#eef3f6">
+<h3 style="margin-top:0">📐 Verify it in the Geometry Studio</h3>
+<p>Draw a circle and a diameter AB, place P on the circle, and use <b>Measure → Angle</b> to read ∠APB for several positions of P. Confirm it stays 90°, and save it with a sentence on why — that is your evidence.</p>
+<a class="guidebtn" style="background:#365a68" href="../../tools/geometry-studio.html?task=ct03-final&amp;return=../lessons/circle-theorems/03-the-angle-in-a-semicircle.html">📐 Open in the Geometry Studio →</a>
+</div>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_CIRCLE_SEMICIRCLE_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Knows the angle on a diameter is 90°.</td><td>States "angle in a semicircle = 90°".</td><td>Uses it with the reason to find angles.</td><td>Explains why via the angle at the centre.</td></tr>
+<tr><td><b>Application</b></td><td>Identifies the right angle.</td><td>Finds one missing angle.</td><td>Finds all angles of the triangle, with reasons.</td><td>Uses the converse to identify a diameter.</td></tr>
+<tr><td><b>Communication</b></td><td>Marks the right angle.</td><td>Names the theorem once.</td><td>Gives a reason at each step.</td><td>Writes a clear, ordered proof.</td></tr>
+<tr><td><b>Reflection</b></td><td>Notices the 90° angle.</td><td>Notices it stays 90° as P moves.</td><td>Connects it to the 180° centre angle.</td><td>Sees it as the special case of the keystone.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+
+
+
+<div id="practiceView" hidden><div class="practice">
+<h1>The angle in a semicircle — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle with a diameter AB and a point P on the circle. Show angle APB is 90 degrees, and explain why using the angle at the centre.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_circle_l03_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["O","A","B","P","r","∠","°","arc"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function clean(v){return String(v).toLowerCase().replace(/[,\s]/g,'').replace(/=/g,'').replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-').trim();}
+function NEO_wordNum(str){
+  var s=String(str).toLowerCase().replace(/[-–—]/g,' ').replace(/\band\b/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return NaN;
+  // normalise common fraction phrases to single tokens
+  s=s.replace(/\bone half\b|\ba half\b/g,'half')
+     .replace(/\bthree quarters?\b/g,'threeq')
+     .replace(/\bone quarter\b|\ba quarter\b/g,'quarter')
+     .replace(/\btwo thirds?\b/g,'twothird')
+     .replace(/\bone third\b|\ba third\b/g,'third');
+  var frac={half:0.5,quarter:0.25,threeq:0.75,third:1/3,twothird:2/3};
+  if(frac[s]!=null) return frac[s];
+  var ones={zero:0,nought:0,nil:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+  var tens={twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+  var parts=s.split(' '),total=0,cur=0,used=false,fracAdd=0,i,w;
+  for(i=0;i<parts.length;i++){
+    w=parts[i];
+    if(w==='a'||w==='') continue;
+    if(ones[w]!=null){cur+=ones[w];used=true;}
+    else if(tens[w]!=null){cur+=tens[w];used=true;}
+    else if(w==='hundred'){cur=(cur||1)*100;used=true;}
+    else if(w==='thousand'){total+=(cur||1)*1000;cur=0;used=true;}
+    else if(frac[w]!=null){fracAdd+=frac[w];used=true;}
+    else if(w==='point'){
+      total+=cur;cur=0;var dec='0.',j,any=false;
+      for(j=i+1;j<parts.length;j++){if(ones[parts[j]]!=null&&ones[parts[j]]<10){dec+=ones[parts[j]];any=true;}else return NaN;}
+      if(!any) return NaN;
+      return used?total+parseFloat(dec):NaN;
+    }
+    else return NaN;
+  }
+  return used?total+cur+fracAdd:NaN;
+}
+function num(v){
+  var s=String(v).toLowerCase().trim();
+  if(!s) return NaN;
+  var wn=NEO_wordNum(s); if(!isNaN(wn)) return wn;
+  s=s.replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'');
+  s=s.replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+  if(fm){var d=parseFloat(fm[2]);return d===0?NaN:parseFloat(fm[1])/d;}
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+
+/* ============ CONSTRUCTION ENGINE — shared SVG helpers ============ */
+var SVGNS="http://www.w3.org/2000/svg";
+function svgPt(svg,e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*380/r.width, y:(e.clientY-r.top)*320/r.height};}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function arcPts(cx,cy,r,a0,a1,n){var s="",i,a;for(i=0;i<=n;i++){a=a0+(a1-a0)*i/n;s+=(i?" L ":"M ")+(cx+r*Math.cos(a)).toFixed(1)+" "+(cy+r*Math.sin(a)).toFixed(1);}return s;}
+/* intersection of two circles (centre c1 r1, centre c2 r2) → upper point (smaller y) or null */
+function circInt(c1,r1,c2,r2){
+  var d=dist(c1,c2); if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;
+  var a=(d*d+r1*r1-r2*r2)/(2*d), hh=r1*r1-a*a; if(hh<0)hh=0; var h=Math.sqrt(hh);
+  var ux=(c2.x-c1.x)/d, uy=(c2.y-c1.y)/d, mx=c1.x+a*ux, my=c1.y+a*uy;
+  var p1={x:mx-h*uy,y:my+h*ux}, p2={x:mx+h*uy,y:my-h*ux};
+  return p1.y<=p2.y?p1:p2;
+}
+var U=40; /* pixels per unit */
+function ptDot(p,col,label,dy){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="6.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+(label?'<text x="'+p.x.toFixed(1)+'" y="'+(p.y+(dy||-12)).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+label+'</text>':'');}
+
+/* ============ CIRCLE GEOMETRY — shared local helpers ============ */
+var cO={x:190,y:158}, cR=116;
+function ocp(d){var t=d*Math.PI/180;return {x:cO.x+cR*Math.cos(t), y:cO.y+cR*Math.sin(t)};}
+function norm360(d){d=d%360; if(d<0)d+=360; return d;}
+function arcPath(a0,a1){ /* degrees; sweeps a0 -> a1 (a1 may exceed a0) */
+  var s="",n=Math.max(2,Math.round(Math.abs(a1-a0)/4)),i,d,p;
+  for(i=0;i<=n;i++){d=a0+(a1-a0)*i/n;p=ocp(d);s+=(i?" L ":"M ")+p.x.toFixed(1)+" "+p.y.toFixed(1);}
+  return s;
+}
+function segLine(p,q,col,w,dash){return '<line x1="'+p.x.toFixed(1)+'" y1="'+p.y.toFixed(1)+'" x2="'+q.x.toFixed(1)+'" y2="'+q.y.toFixed(1)+'" stroke="'+col+'" stroke-width="'+(w||2.5)+'"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';}
+function txt(x,y,t,col,sz){return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" font-size="'+(sz||12.5)+'" font-weight="bold" fill="'+(col||"#2f3429")+'">'+t+'</text>';}
+
+/* ============ CIRCLE THEOREM LAB — reusable component (CT-02+) ============ */
+/* A circle with fixed + draggable points on the circumference and live angle
+   readouts. Presettable per lesson: centre angle, inscribed angle(s), ratio
+   reveal, trail. Reused across CT-02–05, CT-07, CT-09. */
+function angDeg(f,t){return Math.atan2(t.y-f.y,t.x-f.x)*180/Math.PI;}
+function arcSweepPath(cx,cy,rr,a0,sweep){
+  var n=Math.max(6,Math.round(Math.abs(sweep)/6)),s="",i,d;
+  for(i=0;i<=n;i++){d=(a0+sweep*i/n)*Math.PI/180;s+=(i?" L ":"M ")+(cx+rr*Math.cos(d)).toFixed(1)+" "+(cy+rr*Math.sin(d)).toFixed(1);}
+  return s;
+}
+function shortSweep(a0,a1,through){var sw=norm360(a1-a0),t=norm360(through-a0);return (t<=sw)?sw:-(360-sw);}
+function labDot(p,col,label,dy,dx){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="6.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+(label?'<text x="'+(p.x+(dx||0)).toFixed(1)+'" y="'+(p.y+(dy||-12)).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+label+'</text>':'');}
+
+/* right-angle square at vertex vx, in the corner between arms toward u and w */
+function rAngle(vx,u,w,sz){var a1=Math.atan2(u.y-vx.y,u.x-vx.x),a2=Math.atan2(w.y-vx.y,w.x-vx.x);var ux=Math.cos(a1),uy=Math.sin(a1),wx=Math.cos(a2),wy=Math.sin(a2);var p1={x:vx.x+sz*ux,y:vx.y+sz*uy},p2={x:vx.x+sz*(ux+wx),y:vx.y+sz*(uy+wy)},p3={x:vx.x+sz*wx,y:vx.y+sz*wy};return '<path d="M '+p1.x.toFixed(1)+' '+p1.y.toFixed(1)+' L '+p2.x.toFixed(1)+' '+p2.y.toFixed(1)+' L '+p3.x.toFixed(1)+' '+p3.y.toFixed(1)+'" fill="none" stroke="#365a68" stroke-width="2.5"/>';}
+function makeCTLab(opt){
+  var st={aA:opt.aA, aB:opt.aB, aP:opt.aP, ratio:false, trailOn:false, pts:[], drag:false};
+  function A(){return ocp(st.aA);} function B(){return ocp(st.aB);} function P(){return ocp(st.aP);}
+  /* central angle standing on the SAME arc AB that P stands on (the arc not containing P) */
+  function central(){
+    var a=norm360(st.aA), b=norm360(st.aB), p=norm360(st.aP);
+    var ccw=norm360(b-a);
+    var pIn=(norm360(p-a)<ccw);
+    if(pIn) return {start:b, sweep:norm360(360-ccw), m:norm360(360-ccw)};
+    return {start:a, sweep:ccw, m:ccw};
+  }
+  function inscribed(){return central().m/2;}
+  function clampP(deg){
+    var d=norm360(deg), minGap=10;
+    if(Math.min(norm360(d-st.aA),norm360(st.aA-d))<minGap) d=norm360(st.aA+minGap);
+    if(Math.min(norm360(d-st.aB),norm360(st.aB-d))<minGap) d=norm360(st.aB+minGap);
+    return d;
+  }
+  function render(){
+    var s=document.getElementById(opt.svg); if(!s)return;
+    var a=A(),b=B(),p=P(),c=central(),ins=inscribed(),h="";
+    var insR=Math.round(ins), cShown=2*insR;  /* show centre as exactly twice the rounded circumference angle */
+    h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
+    /* radii + central angle marker */
+    h+=segLine(cO,a,"#c9a24b",2.5)+segLine(cO,b,"#c9a24b",2.5);
+    if(opt.diameter){ h+=segLine(a,b,"#8a6a1f",3); }
+    else { h+='<path d="'+arcSweepPath(cO.x,cO.y,25,c.start,c.sweep)+'" fill="none" stroke="#b8860b" stroke-width="3"/>'; }
+    /* chords + inscribed angle marker (right-angle square in diameter mode) */
+    h+=segLine(p,a,"#365a68",2.5)+segLine(p,b,"#365a68",2.5);
+    var iaA=angDeg(p,a), iaB=angDeg(p,b), thr=angDeg(p,{x:(a.x+b.x)/2,y:(a.y+b.y)/2}), isw=shortSweep(iaA,iaB,thr);
+    if(opt.diameter){ h+=rAngle(p,a,b,15); }
+    else { h+='<path d="'+arcSweepPath(p.x,p.y,20,iaA,isw)+'" fill="none" stroke="#365a68" stroke-width="3"/>'; }
+    /* trail of past P positions (invariance) */
+    if(st.trailOn) st.pts.forEach(function(q){var pp=ocp(q);h+='<circle cx="'+pp.x.toFixed(1)+'" cy="'+pp.y.toFixed(1)+'" r="3.2" fill="#9fb0c0"/>';});
+    /* points */
+    h+=labDot(cO,"#2f3429","O",18);
+    h+=labDot(a,"#3f5f45","A",(a.y<cO.y?-13:20));
+    h+=labDot(b,"#3f5f45","B",(b.y<cO.y?-13:20));
+    h+=labDot(p,"#b24c4c","P",(p.y<cO.y?-13:20));
+    /* value labels */
+    var midC=(c.start+c.sweep/2)*Math.PI/180;
+    if(!opt.diameter) h+='<text x="'+(cO.x+44*Math.cos(midC)).toFixed(1)+'" y="'+(cO.y+44*Math.sin(midC)+4).toFixed(1)+'" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#8a6a1f">'+cShown+'°</text>';
+    var midI=(iaA+isw/2)*Math.PI/180;
+    h+='<text x="'+(p.x+(opt.diameter?40:36)*Math.cos(midI)).toFixed(1)+'" y="'+(p.y+(opt.diameter?40:36)*Math.sin(midI)+4).toFixed(1)+'" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#365a68">'+insR+'°</text>';
+    s.innerHTML=h;
+    var r=document.getElementById(opt.read); if(!r)return;
+    if(opt.diameter){
+      var base='<b>AB is a diameter</b>, so the angle at the centre ∠AOB is a <b>straight line = 180°</b>. ';
+      if(st.ratio) r.innerHTML=base+'The angle at the circumference is half the centre angle: ∠APB = ½ × 180° = <b style="color:#b24c4c">90°</b> — a <b>right angle</b>, wherever P sits on the semicircle.';
+      else r.innerHTML=base+'∠APB = <b>'+insR+'°</b> — a <b>right angle</b>, wherever P sits. Press <b>Why 90°?</b>';
+      return;
+    }
+    var reflex=cShown>180?' <span class="small">(reflex — P is on the minor arc)</span>':'';
+    if(st.ratio){
+      r.innerHTML='∠AOB (centre) = <b>'+cShown+'°</b>'+reflex+' &nbsp;·&nbsp; ∠APB (circumference) = <b>'+insR+'°</b><br><b style="color:#b24c4c">∠AOB = 2 × ∠APB</b> — the angle at the centre is twice the angle at the circumference on the same arc.';
+    } else if(opt.mode==='name'){
+      r.innerHTML='Gold angle <b>∠AOB</b> is the <b>angle at the centre</b>; blue angle <b>∠APB</b> is the <b>angle at the circumference</b>. Both stand on arc <b>AB</b>. Drag <b>P</b> — what happens to ∠APB?';
+    } else {
+      r.innerHTML='∠AOB (centre) = <b>'+cShown+'°</b>'+reflex+' &nbsp;·&nbsp; ∠APB (circumference) = <b>'+insR+'°</b>. Drag <b>P</b> — the circumference angle holds steady. Press <b>Reveal the ratio</b>.';
+    }
+  }
+  function setP(deg){st.aP=clampP(deg); if(st.trailOn) st.pts.push(st.aP); render();}
+  var api={
+    render:render, setP:setP, state:st,
+    toggleRatio:function(){st.ratio=!st.ratio;var btn=document.getElementById(opt.ratioBtn);if(btn)btn.textContent=opt.diameter?(st.ratio?'🔗 Hide why':'🔗 Why 90°?'):(st.ratio?'🔗 Hide the ratio':'🔗 Reveal the ratio');render();},
+    trail:function(){st.trailOn=!st.trailOn; if(!st.trailOn)st.pts=[]; render();},
+    newAB:function(){
+      if(opt.diameter){ var t=15+Math.floor(Math.random()*150); st.aA=norm360(t); st.aB=norm360(t+180); st.aP=norm360(t+40+Math.floor(Math.random()*100)); st.pts=[]; render(); return; }
+      var span=60+Math.floor(Math.random()*70);           /* minor-arc span 60–130° */
+      var centreBottom=90+(-20+Math.floor(Math.random()*41)); /* around the bottom */
+      st.aA=norm360(centreBottom-span/2); st.aB=norm360(centreBottom+span/2);
+      st.aP=norm360(centreBottom+180);                    /* P on the far (major) arc */
+      st.pts=[]; render();
+    }
+  };
+  function init(){
+    var s=document.getElementById(opt.svg); if(!s)return;
+    function move(e){var q=svgPt(s,e); setP(angDeg(cO,q));e.preventDefault();}
+    s.addEventListener("pointerdown",function(e){st.drag=true;try{s.setPointerCapture(e.pointerId);}catch(x){}move(e);});
+    s.addEventListener("pointermove",function(e){if(st.drag)move(e);});
+    s.addEventListener("pointerup",function(e){st.drag=false;try{s.releasePointerCapture(e.pointerId);}catch(x){}});
+    s.addEventListener("pointercancel",function(){st.drag=false;});
+    render();
+  }
+  api.init=init;
+  return api;
+}
+
+/* ---- Connection instance: diameter case, naming ---- */
+var cnLab=makeCTLab({svg:"cnSvg", read:"cnRead", diameter:true, aA:180, aB:0, aP:250});
+/* ---- Reflection HERO instance: diameter Lab with "Why 90?" ---- */
+var rfLab=makeCTLab({svg:"rfSvg", read:"rfRead", ratioBtn:"rfRatioBtn", diameter:true, aA:180, aB:0, aP:235});
+
+/* ============ MOVEMENT: the right angle and the other two ============ */
+var MV=[
+ {alpha:35, ask:"B"},   /* given angle at A, find angle at B = 90-35 = 55 */
+ {alpha:52, ask:"B"},   /* 38 */
+ {alpha:28, ask:"APB"}, /* the right angle = 90 */
+ {alpha:61, ask:"B"},   /* 29 */
+ {alpha:47, ask:"B"}    /* 43 */
+];
+var mvIdx=0;
+function mvCircle(){return {O:{x:190,y:132}, R:96};}
+function mvPt(d){var c=mvCircle(),t=d*Math.PI/180;return {x:c.O.x+c.R*Math.cos(t),y:c.O.y+c.R*Math.sin(t)};}
+function mvArc(vx,u,w,rr,col){var a1=angDeg(vx,u),a2=angDeg(vx,w),thr=angDeg(vx,{x:(u.x+w.x)/2,y:(u.y+w.y)/2});return '<path d="'+arcSweepPath(vx.x,vx.y,rr,a1,shortSweep(a1,a2,thr))+'" fill="none" stroke="'+col+'" stroke-width="2.5"/>';}
+function mvBis(vx,u,w,d){var a1=Math.atan2(u.y-vx.y,u.x-vx.x),a2=Math.atan2(w.y-vx.y,w.x-vx.x),bx=Math.cos(a1)+Math.cos(a2),by=Math.sin(a1)+Math.sin(a2),L=Math.hypot(bx,by)||1;return {x:vx.x+d*bx/L,y:vx.y+d*by/L};}
+function mvTxt(p,t,col){return '<text x="'+p.x.toFixed(1)+'" y="'+p.y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+p.x.toFixed(1)+'" y="'+p.y.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="'+col+'">'+t+'</text>';}
+function mvRender(){
+  var q=MV[mvIdx], c=mvCircle(), A=mvPt(180), B=mvPt(0), P=mvPt(norm360(-2*q.alpha)), h="";
+  h+='<circle cx="'+c.O.x+'" cy="'+c.O.y+'" r="'+c.R+'" fill="none" stroke="#cdbfa9" stroke-width="1.5"/>';
+  h+=segLine(A,B,"#8a6a1f",3);                         /* diameter */
+  h+=segLine(P,A,"#365a68",2.5)+segLine(P,B,"#365a68",2.5);
+  h+='<circle cx="'+c.O.x+'" cy="'+c.O.y+'" r="4" fill="#2f3429"/>';
+  h+=labDot(A,"#3f5f45","A",20)+labDot(B,"#3f5f45","B",20)+labDot(P,"#b24c4c","P",-13);
+  /* given acute angle at A */
+  h+=mvArc(A,B,P,20,"#365a68")+mvTxt(mvBis(A,B,P,34),q.alpha+"°","#365a68");
+  if(q.ask==="APB"){
+    h+=mvTxt(mvBis(P,A,B,26),"?","#b24c4c");
+    document.getElementById("mvRead").innerHTML="Question "+(mvIdx+1)+" of "+MV.length+": AB is a diameter. Find <b>∠APB</b>, the angle at P, in degrees.";
+  } else {
+    h+=rAngle(P,A,B,14);
+    h+=mvArc(B,A,P,20,"#b24c4c")+mvTxt(mvBis(B,A,P,34),"?","#b24c4c");
+    document.getElementById("mvRead").innerHTML="Question "+(mvIdx+1)+" of "+MV.length+": AB is a diameter, so ∠APB = 90°. Find <b>∠PBA</b> (marked ?), in degrees.";
+  }
+  document.getElementById("mvSvg").innerHTML=h;
+  document.getElementById("mvAns").value="";
+  var fb=document.getElementById("mvFb"); fb.style.display="none"; fb.textContent="";
+}
+function mvAnswer(){var q=MV[mvIdx];return q.ask==="APB"?90:90-q.alpha;}
+function mvCheck(){
+  var q=MV[mvIdx], fb=document.getElementById("mvFb"), val=document.getElementById("mvAns").value;
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Type an angle in degrees first.";return;}
+  if(num(val)===mvAnswer()){
+    fb.className="feedback good";
+    fb.innerHTML=q.ask==="APB"
+      ? "✓ Correct — 90°. Reason: <b>the angle in a semicircle is 90°</b> (AB is a diameter)."
+      : "✓ Correct — "+mvAnswer()+"°. Reason: the <b>angle in a semicircle is 90°</b>, and the angles in a triangle sum to 180°, so the two acute angles add to 90° ("+q.alpha+" + "+mvAnswer()+" = 90).";
+  } else {
+    fb.className="feedback bad";
+    fb.innerHTML=q.ask==="APB"
+      ? "Not yet — AB is a diameter, so the angle at P is the angle in a semicircle."
+      : "Not yet — the right angle at P uses up 90°, so the other two acute angles must add to 90°. Subtract "+q.alpha+" from 90.";
+  }
+}
+function mvHintBtn(){var q=MV[mvIdx],fb=document.getElementById("mvFb");fb.style.display="block";fb.className="feedback warn";fb.innerHTML="💡 "+(q.ask==="APB"?"An angle drawn on a diameter is a right angle.":"90 − "+q.alpha+" gives the other acute angle.");}
+function mvNext(){mvIdx=(mvIdx+1)%MV.length;mvRender();}
+function mvInit(){mvRender();}
+
+/* ============ CREATIVITY: why a right angle? (three lines from the keystone) ============ */
+var pfA=180, pfB=0, pfP=235, pfStep_=0;
+function pfStep(n){var b=document.getElementById("pfB"+n);if(b&&b.disabled)return;pfStep_=Math.max(pfStep_,n);pfBtns();pfRender();}
+function pfBtns(){for(var k=1;k<=3;k++){var b=document.getElementById("pfB"+k);if(b)b.disabled=(pfStep_<k-1);}}
+function pfReset(){pfStep_=0;pfBtns();pfRender();}
+function pfRender(){
+  var s=document.getElementById("pfSvg"); if(!s)return;
+  var A=ocp(pfA),B=ocp(pfB),P=ocp(pfP),h="";
+  h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
+  /* diameter (thick from step 1) */
+  h+=segLine(A,B,(pfStep_>=1?"#8a6a1f":"#c9a24b"),(pfStep_>=1?4:2.5));
+  /* chords */
+  h+=segLine(P,A,"#365a68",2.5)+segLine(P,B,"#365a68",2.5);
+  /* step 2: straight-angle marker + 180 label */
+  if(pfStep_>=2){
+    h+='<path d="'+arcSweepPath(cO.x,cO.y,24,angDeg(cO,A),shortSweep(angDeg(cO,A),angDeg(cO,B),angDeg(cO,P)))+'" fill="none" stroke="#b8860b" stroke-width="3"/>';
+    var midd=(angDeg(cO,A)+shortSweep(angDeg(cO,A),angDeg(cO,B),angDeg(cO,P))/2)*Math.PI/180;
+    h+='<text x="'+(cO.x+40*Math.cos(midd)).toFixed(1)+'" y="'+(cO.y+40*Math.sin(midd)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">180°</text><text x="'+(cO.x+40*Math.cos(midd)).toFixed(1)+'" y="'+(cO.y+40*Math.sin(midd)+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a6a1f">180°</text>';
+  }
+  /* step 3: right-angle square at P */
+  if(pfStep_>=3) h+=rAngle(P,A,B,16);
+  h+=labDot(cO,"#2f3429","O",(cO.y<P.y?18:-12))+labDot(A,"#3f5f45","A",20)+labDot(B,"#3f5f45","B",20)+labDot(P,"#b24c4c","P",-13);
+  s.innerHTML=h;
+  var r=document.getElementById("pfRead");
+  if(pfStep_===0) r.innerHTML='We want to show the angle at P is 90°. Press ① to begin.';
+  else if(pfStep_===1) r.innerHTML='<b>AB is a diameter</b>, so it passes straight through the centre <b>O</b>.';
+  else if(pfStep_===2) r.innerHTML='A diameter is a <b>straight line</b>, so the angle it makes at the centre is <b>∠AOB = 180°</b>.';
+  else r.innerHTML='By the <b>angle at the centre</b> theorem, the angle at the circumference is half: ∠APB = ½ × 180° = <b>90°</b>. The angle in a semicircle is a right angle. ∎';
+}
+function pfInit(){pfBtns();pfRender();}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    keystone:{title:'Centre and circumference',prompt:'The angle at the centre is how many times the angle at the circumference on the same arc?',answer:2,hint:'Twice — the keystone theorem from Lesson 2.'},
+    straight:{title:'Angles on a straight line',prompt:'The angles on a straight line add up to how many degrees?',answer:180,hint:'A straight line makes 180 degrees.'},
+    diameter:{title:'What is a diameter?',prompt:'A chord that passes through the centre of a circle is called a...?',answer:'diameter',hint:'It is the longest chord — the diameter.'}
+  }
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · The right angle",q:"A triangle is drawn on a <b>diameter</b> of a circle, with its third vertex P on the circle. What is the size of the angle at P, in degrees?",a:[],eq:function(v){return num(v)===90;},prompt:"An angle drawn on a diameter is the angle in a semicircle.",hint:"The angle in a semicircle is a right angle.",sol:"90° — the angle in a semicircle is a right angle, because a diameter subtends 180° at the centre and the circumference angle is half."},
+ {label:"2 of 6 · The other acute angle",q:"A triangle drawn on a diameter has one acute angle of 40°. What is the other acute angle, in degrees?",a:[],eq:function(v){return num(v)===50;},prompt:"The angle in a semicircle is 90°, so the two acute angles share the remaining 90°.",hint:"90 − 40.",sol:"50° — the right angle (angle in a semicircle) is 90°, so the two acute angles add to 90°: 90 − 40 = 50°."},
+ {label:"3 of 6 · Name the reason",q:"What is the name of the theorem stating that an angle drawn on a diameter is 90°?",a:["angle in a semicircle","the angle in a semicircle","angle in the semicircle","semicircle"],eq:function(v){return false;},prompt:"It names the special half-circle the angle stands in.",hint:"The angle in a s________.",sol:"The 'angle in a semicircle' theorem — an angle at the circumference standing on a diameter is a right angle."},
+ {label:"4 of 6 · The fraction",q:"On a diameter the angle at the centre is 180°. The angle at the circumference is what fraction of it? (Give a fraction or a decimal.)",a:["half","one half","a half"],eq:function(v){return Math.abs(num(v)-0.5)<1e-9;},prompt:"Angle at the centre = 2 × angle at the circumference.",hint:"It is one half — write 1/2 or 0.5.",sol:"One half (1/2 = 0.5) — the circumference angle is half the centre angle, so ½ × 180° = 90°."},
+ {label:"5 of 6 · The converse",q:"Points A, P and B lie on a circle and ∠APB = 90°. Then AB must be a ____ of the circle. (One word.)",a:["diameter","a diameter","the diameter"],eq:function(v){return false;},prompt:"Which chord gives a 90° angle at the circumference?",hint:"Only a diameter subtends a right angle — so AB is a d________.",sol:"Diameter — the converse of the theorem: a right angle at the circumference must stand on a diameter, so AB is a diameter (and the centre is its midpoint)."},
+ {label:"6 of 6 · The largest angle",q:"A triangle is drawn on a diameter and one acute angle is 62°. What is the largest angle in the triangle, in degrees?",a:[],eq:function(v){return num(v)===90;},prompt:"One angle is the angle in a semicircle. Is it larger than either acute angle?",hint:"The right angle (90°) is larger than either acute angle.",sol:"90° — the angle on the diameter is 90° (angle in a semicircle); the acute angles are 62° and 28°, both smaller, so 90° is the largest."}
+]
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Remember: the angle in a semicircle is 90°, so the other two angles add to 90°. Use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  cnLab.init();
+  rfLab.init();
+  mvInit();
+  pfInit();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

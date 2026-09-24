@@ -601,6 +601,14 @@
           "file": "lessons/circle-theorems/02-the-angle-at-the-centre.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-03-the-angle-in-a-semicircle",
+          "num": "Lesson 03",
+          "title": "The angle in a semicircle",
+          "file": "lessons/circle-theorems/03-the-angle-in-a-semicircle.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

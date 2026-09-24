@@ -98,3 +98,13 @@ Keystone lesson. Hero staged as the **Circle Theorem Lab: 2:1 discovery** (Gerry
 **CT-02 proof clarity (post-review):** Creativity proof upgraded — angle labels (x, y, 2x, 2y, 180−2x, 180−2y) now placed on each angle bisector with a background halo so they lift clear of the arms; and a new intermediate step shows the isosceles apex angles ∠AOP = 180−2x, ∠BOP = 180−2y, deriving 2x/2y from the straight line P-O-Q (angle sum) rather than assuming the exterior-angle fact learners may have forgotten. Now a 5-step build.
 
 **CT-02 guide PDFs aligned (post-review):** the `circleangle` proof diagram and the Learner/Adult worked example were updated to match the interactive — halo bisector labels, the 180−2x/180−2y apex-angle step, and the straight-line (angle-sum) derivation replacing the exterior-angle assumption.
+
+**CT-03 — The angle in a semicircle — ★ BUILT & LIVE (v0.1)**
+First corollary of the keystone. Hero = **Circle Theorem Lab, diameter case → 90°** (Gerry-approved). Extended `makeCTLab` with a **diameter mode** (antipodal A,B locked as a diameter, diameter line drawn, right-angle square at P via `rAngle`, straight-line 180°→90° readout, "Why 90°?" toggle) — reusable addition to the shared Lab.
+- **Connection:** diameter-case lab (name the straight angle at O, right angle at P).
+- **Movement:** right-triangle-on-a-diameter numeric — given one acute angle find the other (acute angles sum to 90°) or state the 90°; reason required.
+- **Reflection (hero):** drag P around the semicircle — ∠APB stays 90° (square), "Why 90°?" reveals ½ × 180°.
+- **Creativity:** 3-line proof (diameter → ∠AOB = 180° straight line → ½ = 90°), plus the isosceles a+b=90° alternative and the **converse** (right angle ⇒ hypotenuse is a diameter).
+- **Practice:** 6 reason-first Qs; gate 6a (Q1 90/ninety; Q4 half / 0.5 / 1⁄2), converse + largest-angle reasoning.
+- **Guides:** new reusable `circleangle` **semicircle** diagram; angle-in-a-semicircle worked examples.
+- **QA:** jsdom proved ∠APB = 90° for all P on the diameter + diameter stays antipodal on reshuffle; MOVEMENT + PROOF + gate 6a all green; visual QA of Lab/Movement/Proof + guide diagrams. Studio `ct03-final` added. Site 68 lessons / 0 missing / links valid.

@@ -134,6 +134,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_01_The_Circle_and_its_Parts/NEO_Maths_Y10_Circle_Theorems_Lesson_01_The_Circle_and_its_Parts_v0.1.html",
     "circle-theorems-02-the-angle-at-the-centre":
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_02_The_Angle_at_the_Centre/NEO_Maths_Y10_Circle_Theorems_Lesson_02_The_Angle_at_the_Centre_v0.1.html",
+    "circle-theorems-03-the-angle-in-a-semicircle":
+        "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_03_The_Angle_in_a_Semicircle/NEO_Maths_Y10_Circle_Theorems_Lesson_03_The_Angle_in_a_Semicircle_v0.1.html",
     "trigonometry-01-the-constant-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":
