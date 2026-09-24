@@ -649,6 +649,14 @@
           "file": "lessons/circle-theorems/08-the-perpendicular-from-the-centre-to-a-chord.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-09-combining-the-theorems",
+          "num": "Lesson 09",
+          "title": "Combining the theorems",
+          "file": "lessons/circle-theorems/09-combining-the-theorems.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
