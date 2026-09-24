@@ -130,6 +130,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous/Lesson_10_Inequalities_on_a_Number_Line/NEO_Maths_Y10_Equations_Lesson_10_Inequalities_on_a_Number_Line_v0.1.html",
     "equations-11-inequalities-as-regions":
         "03_Intermediate/01_Lessons/Equations_Inequalities_Simultaneous/Lesson_11_Inequalities_as_Regions/NEO_Maths_Y10_Equations_Lesson_11_Inequalities_as_Regions_v0.1.html",
+    "circle-theorems-01-the-circle-and-its-parts":
+        "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_01_The_Circle_and_its_Parts/NEO_Maths_Y10_Circle_Theorems_Lesson_01_The_Circle_and_its_Parts_v0.1.html",
     "trigonometry-01-the-constant-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":

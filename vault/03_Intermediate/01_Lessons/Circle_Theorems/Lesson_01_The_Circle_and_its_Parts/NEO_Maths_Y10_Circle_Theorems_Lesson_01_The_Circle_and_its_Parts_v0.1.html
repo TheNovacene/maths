@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEO Mathematics: The circle and its parts</title>
+<style>
+body{margin:0;background:#efe9df;color:#2f3429}
+.neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
+h1{color:#3f5f45;margin-bottom:6px}h2{color:#6a7f4e}
+.info{background:#fffaf0;padding:15px;border-left:6px solid #d8b26e;border-radius:12px;margin:18px 0}
+.guides{background:#eef3e8;padding:14px;border-radius:12px;margin:16px 0}
+.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,.guidebtn{padding:9px 13px;border-radius:8px;border:1px solid #738697;background:#fff;cursor:pointer;font-weight:600;text-decoration:none;color:#2f3429;display:inline-block}
+.guidebtn{background:#5c6b4f;color:#fff;border:none}.scratchbtn{background:#365a68;color:#fff;border:none}
+details{padding:15px;margin:12px 0;border-radius:14px}summary{font-size:1.25em;font-weight:bold;cursor:pointer}
+.kw{background:#e8f0e3}.hs{background:#e5eef2}.es{background:#f1e9dc}.dw{background:#ece7f2}.lb{background:#eef0df}.nt{background:#e7efe8}.ft{background:#f3eadc}
+.toolbox{background:#f8f4ee;border:1px solid #cdbfa9;padding:18px;border-radius:14px}
+.readout,.card{background:#fff;padding:12px;border-radius:10px;margin:10px 0}
+.feedback{display:none;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.good{background:#e3f0df}.bad{background:#f6dddd}.warn{background:#fff1cf}
+.small{font-size:.95em;color:#4f554b}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid #cdbfa9;padding:8px;vertical-align:top;text-align:center}th{background:#f3eadc}
+.practice{font-family:Georgia,'Times New Roman',serif;max-width:960px;margin:auto;padding:24px;background:#f8f4ee;line-height:1.55;border-radius:18px}
+.practice h1{font-size:2.2em}
+.practice input{width:100%;font-size:1em;padding:12px;border:1px solid #bcae98;border-radius:8px;box-sizing:border-box}
+.progress-dot{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #8c9cab;font-weight:bold;background:#fff}
+.progress-dot.active{background:#e5edf4}.progress-dot.done{background:#e3f0df}
+.chip{display:inline-block;padding:7px 12px;border-radius:20px;border:1px solid #8c9cab;background:#fff;cursor:pointer;font-weight:600;margin:3px}
+.chip.active{background:#dce8ef;border-color:#365a68}
+.bignum{font-size:1.2em;font-weight:bold;color:#3f5f45;text-align:center;margin:4px 0}
+.clue{background:#fffaf0;border:1px solid #e2d4bb;border-radius:10px;padding:10px 12px;margin:8px 0}
+.graphsvg{width:100%;background:#fbf7ef;border:1px solid #cdbfa9;border-radius:12px;display:block;margin:auto}
+.numin{max-width:70px;font-size:1em;padding:8px;border:1px solid #bcae98;border-radius:8px;text-align:center}
+.stretch{background:#efe7f4;border:1px solid #b9a2cf;border-radius:8px;padding:2px 8px;font-size:.85em;font-weight:bold;color:#5c3f7a}
+.uk{font-family:'Times New Roman',Georgia,serif;font-style:italic}
+</style>
+</head>
+<body>
+<div id="lessonView">
+<div class="neo">
+<h1>NEO Mathematics: Circle Theorems</h1>
+<h2>The circle and its parts</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>What are all the lines and regions hiding inside a circle?</em></h2>
+
+<div class="info">
+<p><b>Lesson type:</b> Core — the opening lesson of the circle theorems unit, where a plain circle turns out to be full of named parts and hidden rules.</p>
+<p><b>Stepping Stone:</b> name and identify the <b>parts of a circle</b> — centre, radius, diameter, chord, arc, sector, segment, tangent and circumference — and describe the <b>arc that an angle stands on</b> (subtends), the idea every theorem in this unit is built on.</p>
+<p><b>You will need:</b> the idea of a circle as a round curve, angle notation such as ∠APB, and the optional <b>✏️ Scratchpad</b>. No calculator today — this lesson is about seeing and naming.</p>
+<p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
+<p><b>45-minute shape:</b> Connect 12 · Move 12 · Reflect 9 · Create 8 · Rest/Nourish 4</p>
+</div>
+
+<div class="guides">
+<h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
+<p>Choose only the support that helps now. Every route returns you to this lesson.</p>
+<div class="buttonrow">
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_01_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_01_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle and mark its centre O. Add and label as many named parts as you can — radius, diameter, chord, arc, sector, segment, tangent. Which are lines, and which are regions?')">✏️ Open Maths Scratchpad</button>
+<button class="guidebtn" onclick="openPractice()">✏️ Open Practice Companion</button>
+</div>
+<div id="reconnectionPanel" class="card" style="display:none" aria-live="polite"></div>
+</div>
+
+<!-- ================= CONNECTION ================= -->
+<details class="kw" open>
+<summary>🌿 Connection — A circle is full of named parts</summary>
+<div class="card">
+<h3 style="margin-top:0">🔤 The idea for this lesson</h3>
+<p style="margin:6px 0">A circle looks like the plainest shape there is — just a round curve. But hidden inside it is a whole vocabulary, and every circle theorem to come is built from these words. The curve itself is the <b>circumference</b>; its middle is the <b>centre</b>. A straight line from the centre to the curve is a <b>radius</b>; a straight line right across through the centre is a <b>diameter</b> (two radii in a line). Any straight line joining two points on the curve — through the centre or not — is a <b>chord</b>. A piece of the curve itself is an <b>arc</b>. A line that just grazes the circle at a single point is a <b>tangent</b>. And the curve cuts the inside into <b>regions</b>: a wedge between two radii is a <b>sector</b>; the region between a chord and its arc is a <b>segment</b>. Learn to see these, and the rest of the unit has something to stand on.</p>
+</div>
+<p><b>What to do:</b> read each part's name below the circle, then <b>click that part on the diagram</b>. Work through all nine. A wrong click just nudges you — try again.</p>
+<p><b>What you are trying to notice:</b> some parts are <b>lines</b> (radius, diameter, chord, tangent), some are <b>curves</b> (circumference, arc), and some are <b>regions</b> of the inside (sector, segment). The <b>centre</b> is a single point. Sorting them into those families is half the battle.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🎯 Name that part</h3>
+<div class="card" style="text-align:center"><svg id="piSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="A circle with a radius, diameter, chord, tangent, arc, sector and segment to identify"></svg></div>
+<div id="piRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="piSkip()">Skip this one →</button><button onclick="piRevealAll()">🏷️ Reveal every label</button><button onclick="piRestart()">↺ Start again</button></div>
+<p><b>Carry this forward:</b> centre, radius, diameter, chord, arc, tangent, circumference, sector, segment — the nine words the whole unit is built from.</p>
+</div>
+</details>
+
+<!-- ================= MOVEMENT (primary) ================= -->
+<details class="hs">
+<summary>🚶 Movement — Match the part to its definition</summary>
+<p><b>What to do:</b> a circle theorem is only as secure as the words underneath it. Read each <b>definition</b> and choose the <b>one part</b> it describes. Precision matters — a chord is not a diameter unless it passes through the centre.</p>
+<p><b>What you are trying to notice:</b> each part is pinned down by a <em>property</em>, not a picture. "From the centre to the curve" is a radius wherever you draw it; "touches at exactly one point" is a tangent whatever its angle.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧩 Which part fits the definition?</h3>
+<div id="mvRead" class="readout" style="font-weight:bold"></div>
+<div id="mvOpts" class="buttonrow" style="justify-content:center"></div>
+<div id="mvFb" class="feedback"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="mvNext()">Next definition →</button></div>
+<p><b>Carry this forward:</b> know each part by its defining property. That is what lets you spot it in a busy diagram later.</p>
+</div>
+<div class="card" style="border:2px solid #365a68;background:#eef3f6">
+<h3 style="margin-top:0">📐 Build and label it yourself</h3>
+<p>Now draw a circle in the <b>Geometry Studio</b> and label its parts for real — centre, a radius, a diameter, a chord, a tangent, and shade a sector and a segment. Your task travels with you, and a <b>Return to lesson</b> button brings you straight back.</p>
+<a class="guidebtn" style="background:#365a68" href="../../tools/geometry-studio.html?task=ct01-parts&amp;return=../lessons/circle-theorems/01-the-circle-and-its-parts.html">📐 Open in the Geometry Studio →</a>
+</div>
+</details>
+
+<!-- ================= REFLECTION ================= -->
+<details class="es">
+<summary>🪞 Reflection — Which arc does an angle stand on?</summary>
+<p><b>What to do:</b> two points <b>A</b> and <b>B</b> sit on the circle, with a third point <b>P</b> you can <b>drag</b> around the curve. The angle <b>∠APB</b> at P is said to <b>stand on</b> (or <b>subtend</b>) an arc. Drag P and watch which arc lights up.</p>
+<p><b>What you are trying to notice:</b> the angle at P stands on the arc <b>AB that does not contain P</b> — the arc "opposite" the angle. Slide P anywhere along its own arc and the arc it stands on <em>never changes</em>: it is always the far arc between A and B. This one idea — the arc an angle stands on — is the hinge of every theorem in this unit.</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🔦 The subtending spotlight</h3>
+<div class="card" style="text-align:center"><svg id="spSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="Points A and B on a circle with a draggable point P, showing the arc that angle APB stands on"></svg></div>
+<div id="spRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="spNewAB()">↔ Move A and B</button><button id="spCtrBtn" onclick="spToggleCentre()">➕ Show the same arc at the centre</button></div>
+<p><b>Carry this forward:</b> the angle ∠APB <b>subtends</b> (stands on) the arc AB on the far side from P. The <em>same</em> arc AB also subtends an angle at the centre, ∠AOB — a link we open up in the next lesson.</p>
+</div>
+</details>
+
+<!-- ================= CREATIVITY (stretch) ================= -->
+<details class="dw">
+<summary>🎨 Creativity — The longest chord, and two kinds of region <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> drag the <b>chord</b> up and down. The readout shows its length. Find where the chord is <em>longest</em>. Then use the buttons to shade a <b>sector</b> and a <b>segment</b> and read how they differ.</p>
+<p><b>What you are trying to notice:</b> a chord grows as it slides toward the middle, and it is <em>longest</em> exactly when it passes through the <b>centre</b> — that longest chord is the <b>diameter</b>. A <b>sector</b> is bounded by <em>two radii</em> and an arc (a pizza slice); a <b>segment</b> is bounded by <em>one chord</em> and an arc (a slice off the top).</p>
+<div class="toolbox">
+<h3 style="margin-top:0">🧭 Slide the chord — when is it longest?</h3>
+<div class="card" style="text-align:center"><svg id="rgSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="A draggable chord in a circle whose length is longest through the centre, with sector and segment shading"></svg></div>
+<div id="rgRead" class="clue" style="text-align:center"></div>
+<div class="buttonrow" style="justify-content:center"><button onclick="rgShade('none')">Chord only</button><button onclick="rgShade('sector')">🍕 Shade a sector</button><button onclick="rgShade('segment')">🌙 Shade a segment</button></div>
+<p><b>Make it your own:</b> on the Scratchpad, draw a circle and try to draw a chord longer than the diameter. Convince yourself in a sentence why you cannot.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle and its centre. Draw several chords. Which is the longest, and why can no chord beat the diameter? Then shade a sector and a segment and label each.')">✏️ Create on the Scratchpad</button>
+</div>
+</details>
+
+<!-- ================= REST ================= -->
+<details class="lb">
+<summary>🌙 Rest — A pause to let it settle</summary>
+<p>You have taken a shape you thought you already knew and found a whole language inside it. That is often how mathematics goes: the familiar turns out to be full of structure once you have the words for it. Take a slow breath before moving on.</p>
+<div class="card">
+<p><b>Notice one thing:</b> which part was hardest to keep apart from another — chord and diameter, or sector and segment? Naming the confusion is how it clears. There is no right answer here, just what your attention caught.</p>
+<p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
+</div>
+</details>
+
+<!-- ================= NUTRITION ================= -->
+<details class="nt">
+<summary>🍎 Nutrition — What this feeds</summary>
+<p><b>Mode: intellectual.</b> Circle geometry is abstract deductive mathematics, so we name honestly what the <em>learning</em> feeds rather than dressing it up as something it is not.</p>
+<div class="card">
+<p><b>What it feeds:</b> today feeds a taste for <b>precision of language</b> — the quiet power of having exactly the right word, so that "a line from the centre to the edge" becomes simply <em>radius</em> and everyone knows what you mean. And it feeds <b>anticipation</b>: you have just met the idea of an angle standing on an arc, and something tells you that idea is going somewhere. Circles turn up everywhere humans build and navigate — a bridge arch, a camera's field of view, a cog, a wheel — and the vocabulary you are gathering is the shared language engineers and designers reach for.</p>
+<p class="small">Carry one idea forward: when a subject feels slippery, the fix is usually to name its parts precisely first.</p>
+</div>
+</details>
+
+<!-- ================= FINAL TASK ================= -->
+<details class="ft">
+<summary>🛠️ Final Task — Evidence for today</summary>
+<p><b>Your task:</b> produce a fully labelled circle, and show you can tell the parts apart by their properties.</p>
+<ul>
+<li>Draw a circle, mark the <b>centre O</b>, and clearly label a <b>radius</b>, a <b>diameter</b>, a <b>chord</b> (not through the centre), an <b>arc</b>, a <b>tangent</b>, and the <b>circumference</b>. Shade and label one <b>sector</b> and one <b>segment</b>.</li>
+<li>In one sentence each, explain the difference between a <b>chord and a diameter</b>, and between a <b>sector and a segment</b>.</li>
+<li>Mark two points A and B and a third point P on the circle, draw ∠APB, and state <b>which arc the angle stands on</b> (subtends).</li>
+<li><span class="stretch">stretch</span> Explain why the <b>diameter is the longest possible chord</b>.</li>
+</ul>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-drawn labelled circle, a circle built and labelled in the <b>Geometry Studio</b>, a labelled poster, or a spoken/video walkthrough naming each part.</p>
+<div class="card" style="border:2px solid #365a68;background:#eef3f6">
+<h3 style="margin-top:0">📐 Do it in the Geometry Studio</h3>
+<p>Build and label your circle in the Studio, shade a sector and a segment, mark ∠APB and note the arc it stands on, then save it as your evidence and return here.</p>
+<a class="guidebtn" style="background:#365a68" href="../../tools/geometry-studio.html?task=ct01-final&amp;return=../lessons/circle-theorems/01-the-circle-and-its-parts.html">📐 Open in the Geometry Studio →</a>
+</div>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_CIRCLE_PARTS_FirstName_Date</code></p>
+<table>
+<tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
+<tr><td><b>Understanding</b></td><td>Names the centre and radius.</td><td>Tells a chord from a diameter.</td><td>Identifies all nine parts correctly.</td><td>Sorts parts into lines, curves and regions and justifies each.</td></tr>
+<tr><td><b>Application</b></td><td>Draws a circle with a centre.</td><td>Draws and labels three parts.</td><td>Draws and labels all parts, with a sector and a segment shaded.</td><td>Marks ∠APB and states the arc it subtends.</td></tr>
+<tr><td><b>Communication</b></td><td>Labels one part.</td><td>Uses correct names for most parts.</td><td>Uses precise vocabulary throughout.</td><td>Defines each part by its property, not just by a picture.</td></tr>
+<tr><td><b>Reflection</b></td><td>Names one thing noticed.</td><td>Notices two parts are easy to confuse.</td><td>Explains chord vs diameter and sector vs segment.</td><td>Explains why the diameter is the longest chord.</td></tr>
+</table>
+</details>
+
+</div></div>
+
+<!-- ================= PRACTICE COMPANION ================= -->
+
+<div id="practiceView" hidden><div class="practice">
+<h1>The circle and its parts — Practice Companion</h1>
+<button onclick="returnLesson()">← Return to lesson</button>
+<p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
+<div id="practiceDots" class="buttonrow"></div>
+<div class="toolbox">
+<p id="practiceLabel" style="font-weight:bold"></p>
+<div id="practiceQuestion" class="readout"></div>
+<input id="practiceAnswer" placeholder="Your answer">
+<div class="buttonrow">
+<button onclick="pPrompt()">🤔 Socratic prompt</button>
+<button onclick="pHint()">💡 Hint</button>
+<button onclick="pCheck()">✅ Check</button>
+<button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle and label every part you can: centre, radius, diameter, chord, arc, tangent, circumference. Shade a sector and a segment.')">✏️ Scratchpad</button>
+</div>
+<div id="practiceSupport" class="readout" style="display:none"></div>
+<div id="practiceFeedback" class="feedback"></div>
+</div>
+<div class="buttonrow"><button id="practicePrev" onclick="pPrev()">← Previous</button><button id="practiceNext" onclick="pNext()">Next →</button></div>
+</div></div>
+
+
+<!-- NEO Maths Scratchpad — GreenPrint standard -->
+<div id="neoScratchpadOverlay" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(39,45,35,.70);padding:16px;overflow:auto;">
+  <div role="dialog" aria-modal="true" aria-labelledby="neoScratchpadTitle" style="max-width:980px;margin:10px auto;background:#f7f3ea;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px;font-family:Arial,sans-serif;color:#2f3429;">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div>
+        <h2 id="neoScratchpadTitle" style="margin:0;color:#3f5f45;">✏️ NEO Maths Scratchpad</h2>
+        <p id="neoScratchpadSubtitle" style="margin:4px 0 0;color:#5c6b4f;">Use the Scratchpad to predict, sketch, test and revise.</p>
+      </div>
+      <button type="button" onclick="closeMathsScratchpad()" style="padding:9px 13px;background:#fff;border:1px solid #7d8875;border-radius:9px;font-weight:bold;cursor:pointer;">× Close</button>
+    </div>
+    <p style="background:#fffaf0;padding:10px;border-radius:10px;margin:14px 0;">You can use this board, paper or another way of recording your thinking. The Scratchpad is optional.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.96em;">
+      <button id="scratchPenBtn" type="button" onclick="setScratchTool('pen')" style="padding:7px 10px;border:1px solid #4d6b47;background:#e5f0e2;border-radius:8px;cursor:pointer;white-space:nowrap;">✏️ Pen</button>
+      <button id="scratchLineBtn" type="button" onclick="setScratchTool('line')" style="padding:7px 10px;border:1px solid #54718a;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">📏 Line</button>
+      <label for="scratchColour" style="font-weight:bold;white-space:nowrap;">Colour</label>
+      <select id="scratchColour" onchange="updateScratchColour()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:115px;">
+        <option value="#2f3429">Charcoal</option><option value="#315d72">Ocean blue</option><option value="#5c6b4f">Moss green</option><option value="#70466b">Plum</option><option value="#9a5f3f">Earth brown</option><option value="#b24c4c">Berry red</option>
+      </select>
+      <label for="scratchWidth" style="font-weight:bold;white-space:nowrap;">Width</label>
+      <select id="scratchWidth" onchange="updateScratchWidth()" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:92px;">
+        <option value="2">Thin</option><option value="4" selected>Medium</option><option value="7">Thick</option>
+      </select>
+      <button id="scratchEraserBtn" type="button" onclick="setScratchTool('eraser')" style="padding:7px 10px;border:1px solid #7d8875;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">🧽 Eraser</button>
+      <button type="button" onclick="scratchUndo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↶ Undo</button>
+      <button type="button" onclick="scratchRedo()" style="padding:7px 10px;border:1px solid #738697;background:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;">↷ Redo</button>
+      <button type="button" onclick="setScratchTool('note')" style="padding:7px 10px;border:1px solid #8a7932;background:#fff7c7;border-radius:8px;cursor:pointer;white-space:nowrap;">🗒 Sticky Note</button>
+      <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;">
+        <label for="scratchTemplate" style="font-weight:bold;white-space:nowrap;">Background</label>
+        <select id="scratchTemplate" onchange="changeScratchTemplate(this.value)" style="padding:7px 8px;border:1px solid #bcae98;border-radius:8px;min-width:145px;">
+          <option value="blank">Blank</option><option value="square-grid">Square grid</option><option value="isometric">Isometric grid</option><option value="coordinate-grid">Coordinate grid</option><option value="ratio-table">Ratio table</option><option value="double-number-line">Double number line</option>
+        </select>
+      </span>
+    </div>
+    <div id="neoScratchCanvasWrap" style="position:relative;background:#fff;border:1px solid #cdbfa9;border-radius:12px;overflow:hidden;touch-action:none;aspect-ratio:920/560;">
+      <canvas id="neoScratchBackgroundCanvas" width="920" height="560" aria-hidden="true" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff;pointer-events:none;"></canvas>
+      <canvas id="neoScratchCanvas" width="920" height="560" aria-label="Scratchpad drawing layer" style="position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;touch-action:none;cursor:crosshair;"></canvas>
+      <div id="neoStickyLayer" aria-label="Scratchpad sticky notes" style="position:absolute;inset:0;pointer-events:none;"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <button type="button" onclick="newScratchPage()" style="padding:9px 13px;background:#e5edf4;border:1px solid #315d72;border-radius:8px;cursor:pointer;">📄 New page</button>
+      <button type="button" onclick="saveScratchPage()" style="padding:9px 13px;background:#e5f0e2;border:1px solid #4d6b47;border-radius:8px;cursor:pointer;">💾 Save working page</button>
+      <button type="button" onclick="downloadScratchImage()" style="padding:9px 13px;background:#f3e6f1;border:1px solid #70466b;border-radius:8px;cursor:pointer;">🖼 Save as image</button>
+      <button type="button" onclick="clearScratchpad()" style="padding:9px 13px;background:#fffaf0;border:1px solid #8a7932;border-radius:8px;cursor:pointer;">🗑 Clear board</button>
+    </div>
+    <div id="scratchStatus" aria-live="polite" style="display:none;margin-top:10px;padding:10px;border-radius:9px;background:#e5edf4;"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById("neoScratchpadOverlay");
+  const subtitle = document.getElementById("neoScratchpadSubtitle");
+  const canvas = document.getElementById("neoScratchCanvas");
+  const bgCanvas = document.getElementById("neoScratchBackgroundCanvas");
+  const stickyLayer = document.getElementById("neoStickyLayer");
+  const ctx = canvas.getContext("2d");
+  const bg = bgCanvas.getContext("2d");
+  let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
+  let drawing = false, current = null, strokes = [], redo = [], notes = [];
+  const storageKey = "neoMathsScratchpad_circle_l01_v01";
+  function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
+  function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
+  function drawBackground(){
+    bg.clearRect(0,0,bgCanvas.width,bgCanvas.height); bg.fillStyle = "#fff"; bg.fillRect(0,0,bgCanvas.width,bgCanvas.height); bg.save(); bg.lineWidth = 1; bg.strokeStyle = "#e6dccb";
+    if(template === "square-grid" || template === "coordinate-grid"){ const _cx=bgCanvas.width/2,_cy=bgCanvas.height/2; for(let x=_cx; x>=0; x-=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let x=_cx+28; x<=bgCanvas.width; x+=28){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,bgCanvas.height); bg.stroke(); } for(let y=_cy; y>=0; y-=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } for(let y=_cy+28; y<=bgCanvas.height; y+=28){ bg.beginPath(); bg.moveTo(0,y); bg.lineTo(bgCanvas.width,y); bg.stroke(); } }
+    if(template === "isometric"){ bg.strokeStyle="#e3d8c3"; bg.lineWidth=1; const W=bgCanvas.width, Hh=bgCanvas.height, s=34, slope=Math.tan(Math.PI/6), st=s*slope; for(let x=0;x<=W;x+=s){ bg.beginPath(); bg.moveTo(x,0); bg.lineTo(x,Hh); bg.stroke(); } for(let c=0;c<=Hh+slope*W;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c-slope*W); bg.stroke(); } for(let c=-slope*W;c<=Hh;c+=st){ bg.beginPath(); bg.moveTo(0,c); bg.lineTo(W,c+slope*W); bg.stroke(); } }
+    if(template === "coordinate-grid"){ bg.strokeStyle = "#9fb2bd"; bg.lineWidth = 2; bg.beginPath(); bg.moveTo(bgCanvas.width/2,0); bg.lineTo(bgCanvas.width/2,bgCanvas.height); bg.moveTo(0,bgCanvas.height/2); bg.lineTo(bgCanvas.width,bgCanvas.height/2); bg.stroke(); }
+    if(template === "ratio-table"){ bg.strokeStyle = "#cdbfa9"; bg.lineWidth = 1.5; for(let x=80; x<=840; x+=190){ bg.beginPath(); bg.moveTo(x,70); bg.lineTo(x,490); bg.stroke(); } for(let y=70; y<=490; y+=70){ bg.beginPath(); bg.moveTo(80,y); bg.lineTo(840,y); bg.stroke(); } }
+    if(template === "double-number-line"){ bg.strokeStyle = "#315d72"; bg.lineWidth = 3; [210,350].forEach(function(y){ bg.beginPath(); bg.moveTo(90,y); bg.lineTo(830,y); bg.stroke(); for(let x=90; x<=830; x+=74){ bg.beginPath(); bg.moveTo(x,y-10); bg.lineTo(x,y+10); bg.stroke(); } }); }
+    bg.restore();
+  }
+  function drawStroke(s){ if(!s || !s.points || !s.points.length) return; ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round"; if(s.tool === "eraser"){ ctx.globalCompositeOperation = "destination-out"; ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = Math.max(18, s.width * 5); } else { ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = s.colour; ctx.lineWidth = s.width; } const pts = s.points; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); if(s.tool === "line"){ const last = pts[pts.length-1]; ctx.lineTo(last.x, last.y); } else { pts.slice(1).forEach(function(p){ ctx.lineTo(p.x,p.y); }); if(pts.length === 1) ctx.lineTo(pts[0].x+0.1, pts[0].y+0.1); } ctx.stroke(); ctx.restore(); }
+  function renderInk(){ ctx.clearRect(0,0,canvas.width,canvas.height); strokes.forEach(drawStroke); }
+  function renderNotes(){ stickyLayer.innerHTML = ""; notes.forEach(function(note, i){ const card = document.createElement("div"); card.style.cssText = "position:absolute;left:"+note.x+"%;top:"+note.y+"%;width:180px;min-height:110px;background:#fff7c7;border:1px solid #b9a85b;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.16);pointer-events:auto;"; const bar = document.createElement("div"); bar.textContent = "Sticky note"; bar.style.cssText = "font-weight:bold;background:#f1e39a;border-radius:8px 8px 0 0;padding:6px;cursor:move;"; const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "×"; remove.style.cssText = "float:right;border:none;background:transparent;cursor:pointer;font-weight:bold;"; remove.onclick = function(){ notes.splice(i,1); renderNotes(); store(); }; bar.appendChild(remove); const area = document.createElement("textarea"); area.value = note.text || ""; area.placeholder = "Type a thought..."; area.style.cssText = "width:100%;height:90px;border:none;background:transparent;padding:8px;resize:none;outline:none;"; area.oninput = function(){ note.text = area.value; store(); }; let drag = null; bar.onpointerdown = function(e){ drag = {sx:e.clientX, sy:e.clientY, bx:note.x, by:note.y}; bar.setPointerCapture(e.pointerId); }; bar.onpointermove = function(e){ if(!drag) return; const r = stickyLayer.getBoundingClientRect(); note.x = Math.max(0, Math.min(90, drag.bx + ((e.clientX-drag.sx)/r.width)*100)); note.y = Math.max(0, Math.min(85, drag.by + ((e.clientY-drag.sy)/r.height)*100)); card.style.left = note.x + "%"; card.style.top = note.y + "%"; }; bar.onpointerup = function(e){ drag = null; store(); try{ bar.releasePointerCapture(e.pointerId); }catch(err){} }; card.appendChild(bar); card.appendChild(area); stickyLayer.appendChild(card); }); }
+  function renderAllScratch(){ drawBackground(); renderInk(); renderNotes(); }
+  function store(){ try{ localStorage.setItem(storageKey, JSON.stringify({template, strokes, redo, notes, colour, width})); }catch(err){} }
+  function restore(){ try{ const saved = JSON.parse(localStorage.getItem(storageKey) || "null"); if(!saved) return; template = saved.template || template; strokes = saved.strokes || []; redo = saved.redo || []; notes = saved.notes || []; colour = saved.colour || colour; width = saved.width || width; document.getElementById("scratchTemplate").value = template; document.getElementById("scratchColour").value = colour; document.getElementById("scratchWidth").value = String(width); }catch(err){} }
+  function updateButtons(){ document.getElementById("scratchPenBtn").style.background = tool==="pen" ? "#e5f0e2" : "#fff"; document.getElementById("scratchLineBtn").style.background = tool==="line" ? "#e5edf4" : "#fff"; document.getElementById("scratchEraserBtn").style.background = tool==="eraser" ? "#e5f0e2" : "#fff"; canvas.style.cursor = tool==="eraser" ? "cell" : tool==="note" ? "copy" : "crosshair"; }
+  canvas.addEventListener("pointerdown", function(e){ if(tool === "note"){ const r = canvas.getBoundingClientRect(); notes.push({x:((e.clientX-r.left)/r.width)*100, y:((e.clientY-r.top)/r.height)*100, text:""}); renderNotes(); window.setScratchTool("pen"); status("Sticky note added. Type your thought or drag the note by its top bar.", "#fff7c7"); store(); e.preventDefault(); return; } drawing = true; canvas.setPointerCapture(e.pointerId); const p = point(e); current = {tool, width, colour, points: tool==="line" ? [p,p] : [p]}; strokes.push(current); redo = []; renderInk(); e.preventDefault(); });
+  canvas.addEventListener("pointermove", function(e){ if(!drawing || !current) return; const p = point(e); if(current.tool === "line") current.points[1] = p; else current.points.push(p); renderInk(); e.preventDefault(); });
+  function finish(e){ if(!drawing) return; drawing = false; current = null; try{ canvas.releasePointerCapture(e.pointerId); }catch(err){} store(); e.preventDefault(); }
+  canvas.addEventListener("pointerup", finish); canvas.addEventListener("pointercancel", finish);
+  window.openMathsScratchpad = function(requestedTemplate, customSubtitle){ if(requestedTemplate){ template = requestedTemplate; document.getElementById("scratchTemplate").value = template; } subtitle.textContent = customSubtitle || "Use the Scratchpad to predict, sketch, test and revise."; overlay.hidden = false; document.body.style.overflow = "hidden"; renderAllScratch(); };
+  window.closeMathsScratchpad = function(){ store(); overlay.hidden = true; document.body.style.overflow = ""; };
+  window.setScratchTool = function(t){ tool = t; updateButtons(); if(t === "line") status("Line tool: press at the start point, drag to the end point, then release."); if(t === "note") status("Click anywhere on the Scratchpad to place a sticky note.", "#fff7c7"); };
+  window.updateScratchColour = function(){ colour = document.getElementById("scratchColour").value; store(); };
+  window.updateScratchWidth = function(){ width = Number(document.getElementById("scratchWidth").value); store(); };
+  window.changeScratchTemplate = function(v){ template = v; drawBackground(); store(); status("Background changed. Your drawing marks are unchanged.", "#e3f0df"); };
+  window.scratchUndo = function(){ if(!strokes.length){ status("Nothing to undo yet.", "#fff1cf"); return; } redo.push(strokes.pop()); renderInk(); store(); };
+  window.scratchRedo = function(){ if(!redo.length){ status("Nothing to redo yet.", "#fff1cf"); return; } strokes.push(redo.pop()); renderInk(); store(); };
+  window.newScratchPage = function(){ if((strokes.length || notes.length) && !confirm("Start a new Scratchpad page? This clears the current learner marks and notes.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("New Scratchpad page started."); };
+  window.saveScratchPage = function(){ store(); status("Working page saved in this browser.", "#e3f0df"); };
+  window.clearScratchpad = function(){ if(!confirm("Clear learner marks and sticky notes? The selected background will remain.")) return; strokes = []; redo = []; notes = []; renderAllScratch(); store(); status("Learner marks cleared. Background preserved.", "#fff1cf"); };
+  window.downloadScratchImage = function(){ const exportCanvas = document.createElement("canvas"); exportCanvas.width = canvas.width; exportCanvas.height = canvas.height; const ex = exportCanvas.getContext("2d"); ex.drawImage(bgCanvas,0,0); ex.drawImage(canvas,0,0); notes.forEach(function(note){ const x=(note.x/100)*canvas.width, y=(note.y/100)*canvas.height; ex.fillStyle="#fff7c7"; ex.strokeStyle="#b9a85b"; ex.lineWidth=2; ex.fillRect(x,y,180,110); ex.strokeRect(x,y,180,110); ex.fillStyle="#2f3429"; ex.font="14px Arial"; const words=(note.text||"").split(/\s+/); let line="", yy=y+24; words.forEach(function(w){ const test=line+w+" "; if(ex.measureText(test).width>160){ ex.fillText(line,x+10,yy); line=w+" "; yy+=18; } else line=test; }); ex.fillText(line,x+10,yy); }); const link=document.createElement("a"); link.download="NEO_Maths_Quadratics_Scratchpad.png"; link.href=exportCanvas.toDataURL("image/png"); link.click(); status("Scratchpad image saved.", "#e3f0df"); };
+  restore(); updateButtons(); renderAllScratch();
+})();
+</script>
+
+
+<script>
+/* Focused symbol palette for this lesson. */
+window.NEO_PALETTE_SYMBOLS=["O","A","B","P","r","∠","°","arc"];
+/* ---------------- View switching + helpers ---------------- */
+function openPractice(){document.getElementById("lessonView").hidden=true;document.getElementById("practiceView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function returnLesson(){document.getElementById("practiceView").hidden=true;document.getElementById("lessonView").hidden=false;window.scrollTo({top:0,behavior:"smooth"});}
+function clean(v){return String(v).toLowerCase().replace(/[,\s]/g,'').replace(/=/g,'').replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-').trim();}
+function NEO_wordNum(str){
+  var s=String(str).toLowerCase().replace(/[-–—]/g,' ').replace(/\band\b/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return NaN;
+  // normalise common fraction phrases to single tokens
+  s=s.replace(/\bone half\b|\ba half\b/g,'half')
+     .replace(/\bthree quarters?\b/g,'threeq')
+     .replace(/\bone quarter\b|\ba quarter\b/g,'quarter')
+     .replace(/\btwo thirds?\b/g,'twothird')
+     .replace(/\bone third\b|\ba third\b/g,'third');
+  var frac={half:0.5,quarter:0.25,threeq:0.75,third:1/3,twothird:2/3};
+  if(frac[s]!=null) return frac[s];
+  var ones={zero:0,nought:0,nil:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+  var tens={twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+  var parts=s.split(' '),total=0,cur=0,used=false,fracAdd=0,i,w;
+  for(i=0;i<parts.length;i++){
+    w=parts[i];
+    if(w==='a'||w==='') continue;
+    if(ones[w]!=null){cur+=ones[w];used=true;}
+    else if(tens[w]!=null){cur+=tens[w];used=true;}
+    else if(w==='hundred'){cur=(cur||1)*100;used=true;}
+    else if(w==='thousand'){total+=(cur||1)*1000;cur=0;used=true;}
+    else if(frac[w]!=null){fracAdd+=frac[w];used=true;}
+    else if(w==='point'){
+      total+=cur;cur=0;var dec='0.',j,any=false;
+      for(j=i+1;j<parts.length;j++){if(ones[parts[j]]!=null&&ones[parts[j]]<10){dec+=ones[parts[j]];any=true;}else return NaN;}
+      if(!any) return NaN;
+      return used?total+parseFloat(dec):NaN;
+    }
+    else return NaN;
+  }
+  return used?total+cur+fracAdd:NaN;
+}
+function num(v){
+  var s=String(v).toLowerCase().trim();
+  if(!s) return NaN;
+  var wn=NEO_wordNum(s); if(!isNaN(wn)) return wn;
+  s=s.replace(/÷/g,'/').replace(/(tan|sin|cos)\s*θ?/g,'').replace(/=/g,'');
+  s=s.replace(/½/g,'0.5').replace(/¼/g,'0.25').replace(/¾/g,'0.75').replace(/−/g,'-');
+  s=s.replace(/(\d)\s*(cm|mm|km|m)\b/g,'$1').replace(/[, ]+/g,'');
+  var fm=s.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+  if(fm){var d=parseFloat(fm[2]);return d===0?NaN:parseFloat(fm[1])/d;}
+  var m=s.match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):NaN;
+}
+function normText(v){return String(v).toLowerCase().replace(/\s+/g,' ').replace(/[-_]/g,' ').replace(/[.,]/g,'').trim();}
+
+/* ============ CONSTRUCTION ENGINE — shared SVG helpers ============ */
+var SVGNS="http://www.w3.org/2000/svg";
+function svgPt(svg,e){var r=svg.getBoundingClientRect();return {x:(e.clientX-r.left)*380/r.width, y:(e.clientY-r.top)*320/r.height};}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+function arcPts(cx,cy,r,a0,a1,n){var s="",i,a;for(i=0;i<=n;i++){a=a0+(a1-a0)*i/n;s+=(i?" L ":"M ")+(cx+r*Math.cos(a)).toFixed(1)+" "+(cy+r*Math.sin(a)).toFixed(1);}return s;}
+/* intersection of two circles (centre c1 r1, centre c2 r2) → upper point (smaller y) or null */
+function circInt(c1,r1,c2,r2){
+  var d=dist(c1,c2); if(d===0||d>r1+r2||d<Math.abs(r1-r2))return null;
+  var a=(d*d+r1*r1-r2*r2)/(2*d), hh=r1*r1-a*a; if(hh<0)hh=0; var h=Math.sqrt(hh);
+  var ux=(c2.x-c1.x)/d, uy=(c2.y-c1.y)/d, mx=c1.x+a*ux, my=c1.y+a*uy;
+  var p1={x:mx-h*uy,y:my+h*ux}, p2={x:mx+h*uy,y:my-h*ux};
+  return p1.y<=p2.y?p1:p2;
+}
+var U=40; /* pixels per unit */
+function ptDot(p,col,label,dy){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="6.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+(label?'<text x="'+p.x.toFixed(1)+'" y="'+(p.y+(dy||-12)).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+label+'</text>':'');}
+
+/* ============ CIRCLE GEOMETRY — shared local helpers ============ */
+var cO={x:190,y:158}, cR=116;
+function ocp(d){var t=d*Math.PI/180;return {x:cO.x+cR*Math.cos(t), y:cO.y+cR*Math.sin(t)};}
+function norm360(d){d=d%360; if(d<0)d+=360; return d;}
+function arcPath(a0,a1){ /* degrees; sweeps a0 -> a1 (a1 may exceed a0) */
+  var s="",n=Math.max(2,Math.round(Math.abs(a1-a0)/4)),i,d,p;
+  for(i=0;i<=n;i++){d=a0+(a1-a0)*i/n;p=ocp(d);s+=(i?" L ":"M ")+p.x.toFixed(1)+" "+p.y.toFixed(1);}
+  return s;
+}
+function segLine(p,q,col,w,dash){return '<line x1="'+p.x.toFixed(1)+'" y1="'+p.y.toFixed(1)+'" x2="'+q.x.toFixed(1)+'" y2="'+q.y.toFixed(1)+'" stroke="'+col+'" stroke-width="'+(w||2.5)+'"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';}
+function txt(x,y,t,col,sz){return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="middle" font-size="'+(sz||12.5)+'" font-weight="bold" fill="'+(col||"#2f3429")+'">'+t+'</text>';}
+
+/* ============ CONNECTION (hero): parts identifier / label-matcher ============ */
+/* Clock-zone layout: each part sits in its own sector so revealed labels never clash. */
+var piRad=ocp(-55), piD1=ocp(180), piD2=ocp(0),
+    piArc0=-108, piArc1=-72,
+    piSecA=-165, piSecB=-128,
+    piC1=ocp(20), piC2=ocp(58),
+    piT=ocp(90),
+    piSgA=112, piSgB=156, piSg1=ocp(112), piSg2=ocp(156);
+var piOrder=["centre","radius","diameter","chord","tangent","arc","circumference","sector","segment"];
+var piPrompt={
+  centre:"Click the <b>centre</b> of the circle.",
+  radius:"Click a <b>radius</b> — from the centre out to the curve.",
+  diameter:"Click the <b>diameter</b> — right across, through the centre.",
+  chord:"Click a <b>chord</b> — joining two points on the curve, not through the centre.",
+  tangent:"Click the <b>tangent</b> — the line touching the circle at one point.",
+  arc:"Click the highlighted <b>arc</b> — a piece of the curve itself.",
+  circumference:"Click the <b>circumference</b> — the curve going all the way round.",
+  sector:"Click the shaded <b>sector</b> — the wedge between two radii.",
+  segment:"Click the shaded <b>segment</b> — between a chord and its arc."
+};
+var piIdx=0, piSolved={}, piDoneAll=false;
+function piMid(p,q){return {x:(p.x+q.x)/2,y:(p.y+q.y)/2};}
+function piHotspots(){
+  var H=[], push=function(n,p){H.push({n:n,p:p});};
+  var lerp=function(a,b,t){return {x:a.x+(b.x-a.x)*t, y:a.y+(b.y-a.y)*t};};
+  var t,a;
+  push("centre",cO);
+  for(t=0.22;t<=0.86;t+=0.16) push("radius",lerp(cO,piRad,t));
+  for(t=0.10;t<=0.90;t+=0.10) push("diameter",lerp(piD1,piD2,t));      /* whole length, both sides of O */
+  for(t=0.15;t<=0.85;t+=0.14) push("chord",lerp(piC1,piC2,t));
+  var tL={x:piT.x-92,y:piT.y}, tR={x:piT.x+92,y:piT.y};
+  for(t=0.10;t<=0.90;t+=0.13) push("tangent",lerp(tL,tR,t));
+  for(a=piArc0;a<=piArc1;a+=5) push("arc",ocp(a));
+  var an0=norm360(piArc0), an1=norm360(piArc1);
+  for(a=0;a<360;a+=12){ if(a>=an0-4 && a<=an1+4) continue; push("circumference",ocp(a)); }
+  var sMid=(piSecA+piSecB)/2*Math.PI/180;
+  for(t=0.30;t<=0.74;t+=0.14) push("sector",{x:cO.x+t*cR*Math.cos(sMid), y:cO.y+t*cR*Math.sin(sMid)});
+  var sgArc=ocp((piSgA+piSgB)/2), sgChordMid=lerp(piSg1,piSg2,0.5);
+  push("segment",lerp(sgChordMid,sgArc,0.35));
+  push("segment",lerp(sgChordMid,sgArc,0.65));
+  return H;
+}
+/* label anchor + (optional) leader target for each part, kept inside the 380x320 viewBox */
+var piLbl={
+  centre:{x:206,y:144,t:"O",c:"#2f3429"},
+  radius:{x:300,y:50,t:"radius",c:"#3f5f45",lead:piMid(cO,piRad)},
+  diameter:{x:243,y:178,t:"diameter",c:"#2f3429"},
+  chord:{x:309,y:256,t:"chord",c:"#7a5a34",lead:{x:(ocp(20).x+ocp(58).x)/2,y:(ocp(20).y+ocp(58).y)/2}},
+  tangent:{x:190,y:300,t:"tangent",c:"#365a68",lead:{x:190,y:cO.y+cR}},
+  arc:{x:190,y:26,t:"arc",c:"#b24c4c",lead:ocp((piArc0+piArc1)/2)},
+  circumference:{x:54,y:131,t:"circumference",c:"#5c6b4f",sz:11,lead:ocp(192)},
+  sector:{x:132,y:120,t:"sector",c:"#8a6a1f"},
+  segment:{x:82,y:270,t:"segment",c:"#70466b",lead:{x:cO.x+0.86*cR*Math.cos(((piSgA+piSgB)/2)*Math.PI/180),y:cO.y+0.86*cR*Math.sin(((piSgA+piSgB)/2)*Math.PI/180)}}
+};
+function piLabelPos(n){return piLbl[n]||cO;}
+function piRender(){
+  var s=document.getElementById("piSvg"); if(!s)return; var h="", show=function(n){return piSolved[n]||piDoneAll;};
+  var secA=ocp(piSecA), secB=ocp(piSecB);
+  /* sector fill */
+  h+='<path d="M '+cO.x+' '+cO.y+' L '+secA.x.toFixed(1)+' '+secA.y.toFixed(1)+' '+arcPath(piSecA,piSecB).replace(/^M/," L")+' Z" fill="rgba(201,162,75,.30)" stroke="none"/>';
+  /* segment fill (chord piSg1-piSg2 + its arc) */
+  h+='<path d="M '+piSg1.x.toFixed(1)+' '+piSg1.y.toFixed(1)+' '+arcPath(piSgA,piSgB).replace(/^M/," L")+' Z" fill="rgba(112,70,107,.26)" stroke="none"/>';
+  h+=segLine(piSg1,piSg2,"#70466b",1.6);
+  /* circumference */
+  h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
+  /* highlighted arc */
+  h+='<path d="'+arcPath(piArc0,piArc1)+'" fill="none" stroke="#b24c4c" stroke-width="6" stroke-linecap="round"/>';
+  /* tangent line at T (horizontal) */
+  h+=segLine({x:piT.x-92,y:piT.y},{x:piT.x+92,y:piT.y},"#365a68",3);
+  h+='<circle cx="'+piT.x.toFixed(1)+'" cy="'+piT.y.toFixed(1)+'" r="3.5" fill="#365a68"/>';
+  /* diameter, radius, chord, sector radii */
+  h+=segLine(piD1,piD2,"#2f3429",3);
+  h+=segLine(cO,piRad,"#3f5f45",3);
+  h+=segLine(piC1,piC2,"#7a5a34",3);
+  h+=segLine(cO,secA,"#c9a24b",2.5)+segLine(cO,secB,"#c9a24b",2.5);
+  /* centre dot */
+  h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="4.5" fill="#2f3429"/>';
+  /* labels (with a light leader) once solved */
+  piOrder.forEach(function(n){
+    if(!show(n))return; var L=piLbl[n]; if(!L)return;
+    if(L.lead) h+='<line x1="'+L.x.toFixed(1)+'" y1="'+L.y.toFixed(1)+'" x2="'+L.lead.x.toFixed(1)+'" y2="'+L.lead.y.toFixed(1)+'" stroke="#b7ab93" stroke-width="1" stroke-linecap="round"/>';
+    h+=txt(L.x,L.y,L.t,L.c,L.sz||12.5);
+  });
+  s.innerHTML=h;
+  var r=document.getElementById("piRead");
+  if(piDoneAll){r.innerHTML='✓ All nine parts named. Notice the families: <b>lines</b> (radius, diameter, chord, tangent), <b>curves</b> (arc, circumference) and <b>regions</b> (sector, segment) — plus the single point, the <b>centre</b>.';}
+  else{r.innerHTML='<b>'+(piIdx+1)+' of 9.</b> '+piPrompt[piOrder[piIdx]];}
+}
+function piNearest(pt){var hs=piHotspots(),best=null,bd=1e9,i,d;for(i=0;i<hs.length;i++){d=dist(pt,hs[i].p);if(d<bd){bd=d;best=hs[i].n;}}return best;}
+function piPick(name){
+  if(piDoneAll)return;
+  var target=piOrder[piIdx], r=document.getElementById("piRead");
+  if(name===target){
+    piSolved[target]=true;
+    if(piIdx>=piOrder.length-1){piDoneAll=true;}
+    else{piIdx++;}
+    piRender();
+  } else {
+    piRender();
+    r.innerHTML='Not there — that looks like the <b>'+name+'</b>. '+piPrompt[target];
+  }
+}
+function piSkip(){if(piDoneAll)return;piSolved[piOrder[piIdx]]=true;if(piIdx>=piOrder.length-1)piDoneAll=true;else piIdx++;piRender();}
+function piRevealAll(){piDoneAll=true;piRender();}
+function piRestart(){piIdx=0;piSolved={};piDoneAll=false;piRender();}
+function piInit(){
+  var s=document.getElementById("piSvg"); if(!s)return;
+  s.addEventListener("pointerdown",function(e){var p=svgPt(s,e);var n=piNearest(p);if(n)piPick(n);e.preventDefault();});
+  piRender();
+}
+
+/* ============ MOVEMENT (primary): match part to defining property ============ */
+var MV=[
+ {def:"A straight line from the centre out to any point on the circle.",ans:"radius",opts:["radius","diameter","chord","tangent"]},
+ {def:"A straight line joining two points on the circle and passing through the centre.",ans:"diameter",opts:["chord","diameter","radius","arc"]},
+ {def:"A straight line joining two points on the circle — it need not pass through the centre.",ans:"chord",opts:["chord","tangent","radius","arc"]},
+ {def:"A straight line that touches the circle at exactly one point.",ans:"tangent",opts:["tangent","chord","diameter","arc"]},
+ {def:"A region bounded by two radii and the arc between them (a pizza slice).",ans:"sector",opts:["sector","segment","chord","arc"]},
+ {def:"A region bounded by one chord and the arc it cuts off (a slice off the top).",ans:"segment",opts:["segment","sector","tangent","diameter"]},
+ {def:"A part of the circle's curve, running between two points on it.",ans:"arc",opts:["arc","chord","tangent","sector"]},
+ {def:"The whole curve going right round the circle — its perimeter.",ans:"circumference",opts:["circumference","arc","diameter","radius"]}
+];
+var mvIdx=0, mvAnswered=false;
+function mvRender(){
+  var q=MV[mvIdx];
+  document.getElementById("mvRead").innerHTML='<b>Definition '+(mvIdx+1)+' of '+MV.length+':</b> '+q.def;
+  var o="";for(var i=0;i<q.opts.length;i++){o+='<button onclick="mvPick('+i+')">'+q.opts[i]+'</button>';}
+  document.getElementById("mvOpts").innerHTML=o;
+  var fb=document.getElementById("mvFb");fb.style.display="none";fb.textContent="";
+  mvAnswered=false;
+}
+function mvPick(i){
+  var q=MV[mvIdx],fb=document.getElementById("mvFb");fb.style.display="block";
+  if(q.opts[i]===q.ans){fb.className="feedback good";fb.innerHTML="✓ Yes — that is a <b>"+q.ans+"</b>.";mvAnswered=true;}
+  else{fb.className="feedback bad";fb.innerHTML="Not quite — that is a <b>"+q.opts[i]+"</b>. Re-read the definition and try another.";}
+}
+function mvNext(){mvIdx=(mvIdx+1)%MV.length;mvRender();}
+function mvInit(){mvRender();}
+
+/* ============ REFLECTION: which arc does the angle stand on? ============ */
+var spAA=200, spAB=340, spAP=270, spShowCentre=false, spDrag=false;
+function spWhichArc(){
+  /* returns [start,end] of the arc AB that does NOT contain P (degrees, ascending sweep) */
+  var lo=Math.min(spAA,spAB), hi=Math.max(spAA,spAB), pn=norm360(spAP);
+  var pIn = (pn>lo && pn<hi);
+  if(pIn) return [hi, lo+360]; /* highlight the outside arc */
+  return [lo, hi];
+}
+function spAngleAtP(){
+  var A=ocp(spAA),B=ocp(spAB),P=ocp(spAP);
+  var a1=Math.atan2(A.y-P.y,A.x-P.x), a2=Math.atan2(B.y-P.y,B.x-P.x);
+  var d=Math.abs(a1-a2)*180/Math.PI; if(d>180)d=360-d; return d;
+}
+function spRender(){
+  var s=document.getElementById("spSvg"); if(!s)return; var A=ocp(spAA),B=ocp(spAB),P=ocp(spAP),h="";
+  var arc=spWhichArc();
+  h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
+  /* highlighted subtended arc */
+  h+='<path d="'+arcPath(arc[0],arc[1])+'" fill="none" stroke="#b24c4c" stroke-width="7" stroke-linecap="round"/>';
+  /* optional centre angle on same arc */
+  if(spShowCentre){
+    h+=segLine(cO,A,"#c9a24b",2.5)+segLine(cO,B,"#c9a24b",2.5);
+    h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="4" fill="#8a6a1f"/>'+txt(cO.x,cO.y+16,"O","#8a6a1f");
+  }
+  /* chords PA, PB */
+  h+=segLine(P,A,"#365a68",3)+segLine(P,B,"#365a68",3);
+  /* points */
+  h+='<circle cx="'+A.x.toFixed(1)+'" cy="'+A.y.toFixed(1)+'" r="6" fill="#3f5f45" stroke="#fff" stroke-width="2"/>'+txt(A.x+ (A.x>cO.x?14:-14),A.y,"A","#3f5f45");
+  h+='<circle cx="'+B.x.toFixed(1)+'" cy="'+B.y.toFixed(1)+'" r="6" fill="#3f5f45" stroke="#fff" stroke-width="2"/>'+txt(B.x+ (B.x>cO.x?14:-14),B.y,"B","#3f5f45");
+  h+='<circle cx="'+P.x.toFixed(1)+'" cy="'+P.y.toFixed(1)+'" r="7.5" fill="#b24c4c" stroke="#fff" stroke-width="2"/>'+txt(P.x+ (P.x>cO.x?15:-15),P.y-2,"P","#b24c4c");
+  s.innerHTML=h;
+  var r=document.getElementById("spRead");
+  r.innerHTML='∠APB ≈ <b>'+spAngleAtP().toFixed(0)+'°</b>. It <b>stands on</b> the highlighted arc <b>AB</b> — the arc that does <em>not</em> contain P. Drag <b>P</b>: the arc it stands on stays the same.';
+}
+function spSetP(deg){spAP=norm360(deg);
+  /* keep P clear of A and B */
+  var minGap=14;
+  if(Math.abs(norm360(spAP-spAA))<minGap||Math.abs(norm360(spAA-spAP))<minGap)spAP=norm360(spAA+minGap);
+  if(Math.abs(norm360(spAP-spAB))<minGap||Math.abs(norm360(spAB-spAP))<minGap)spAP=norm360(spAB+minGap);
+  spRender();}
+function spNewAB(){
+  var opts=[[190,330],[210,20],[150,300],[240,60],[180,20]];
+  var pick=opts[Math.floor(Math.random()*opts.length)];
+  spAA=pick[0];spAB=pick[1];
+  /* place P on the larger arc, away from A,B */
+  var lo=Math.min(spAA,spAB),hi=Math.max(spAA,spAB);
+  var insideMid=(lo+hi)/2, outsideMid=norm360((hi+lo+360)/2);
+  spAP=(hi-lo>180)?insideMid:outsideMid;
+  spRender();
+}
+function spToggleCentre(){spShowCentre=!spShowCentre;var b=document.getElementById("spCtrBtn");if(b)b.textContent=spShowCentre?"➖ Hide the centre angle":"➕ Show the same arc at the centre";spRender();}
+function spInit(){
+  var s=document.getElementById("spSvg"); if(!s)return;
+  function move(e){var p=svgPt(s,e);spSetP(Math.atan2(p.y-cO.y,p.x-cO.x)*180/Math.PI);e.preventDefault();}
+  s.addEventListener("pointerdown",function(e){spDrag=true;try{s.setPointerCapture(e.pointerId);}catch(x){}move(e);});
+  s.addEventListener("pointermove",function(e){if(spDrag)move(e);});
+  s.addEventListener("pointerup",function(e){spDrag=false;try{s.releasePointerCapture(e.pointerId);}catch(x){}});
+  s.addEventListener("pointercancel",function(){spDrag=false;});
+  spRender();
+}
+
+/* ============ CREATIVITY (stretch): longest chord + sector/segment ============ */
+var rgUnits=6, rgScale=cR/6, rgD=58, rgShadeMode="none", rgDrag=false;
+var rgSecA=250, rgSecB=310;
+function rgChord(){var h=Math.sqrt(Math.max(0,cR*cR-rgD*rgD));return {L:{x:cO.x-h,y:cO.y+rgD},R:{x:cO.x+h,y:cO.y+rgD},h:h};}
+function rgRender(){
+  var s=document.getElementById("rgSvg"); if(!s)return; var c=rgChord(), h="";
+  h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
+  if(rgShadeMode==="sector"){
+    var sa=ocp(rgSecA),sb=ocp(rgSecB);
+    h+='<path d="M '+cO.x+' '+cO.y+' L '+sa.x.toFixed(1)+' '+sa.y.toFixed(1)+' '+arcPath(rgSecA,rgSecB).replace(/^M/," L")+' Z" fill="rgba(201,162,75,.30)" stroke="#c9a24b" stroke-width="2"/>';
+    h+=txt((cO.x+ocp((rgSecA+rgSecB)/2).x)/2,(cO.y+ocp((rgSecA+rgSecB)/2).y)/2,"sector","#8a6a1f",12);
+  }
+  if(rgShadeMode==="segment"){
+    /* segment above the chord: chord endpoints + minor arc over the top */
+    var aL=Math.atan2(c.L.y-cO.y,c.L.x-cO.x)*180/Math.PI, aR=Math.atan2(c.R.y-cO.y,c.R.x-cO.x)*180/Math.PI;
+    /* go the short way over the top (through angle 270 = up) */
+    var a0=aR, a1=aL; if(a1<a0)a1+=360; /* aR(right,near -?) up to aL */
+    h+='<path d="M '+c.R.x.toFixed(1)+' '+c.R.y.toFixed(1)+' '+arcPath(a0-360,a1-360).replace(/^M/," L")+' Z" fill="rgba(112,70,107,.26)" stroke="#70466b" stroke-width="2"/>';
+    h+=txt(cO.x,cO.y+(rgD+cR)/2+4,"segment","#70466b",12);
+  }
+  /* centre + radius reference to a chord end */
+  h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="4.5" fill="#2f3429"/>'+txt(cO.x,cO.y-8,"O","#2f3429");
+  /* the chord */
+  h+=segLine(c.L,c.R,(Math.abs(rgD)<1.5?"#b24c4c":"#7a5a34"),4);
+  /* draggable handle */
+  h+='<circle cx="'+cO.x+'" cy="'+(cO.y+rgD).toFixed(1)+'" r="8" fill="#365a68" stroke="#fff" stroke-width="2"/>';
+  s.innerHTML=h;
+  var len=2*c.h/rgScale, r=document.getElementById("rgRead");
+  var msg='Chord length ≈ <b>'+len.toFixed(1)+' units</b> (radius = '+rgUnits+' units). ';
+  if(Math.abs(rgD)<3) msg+='This chord passes through the <b>centre</b> — it is the <b>diameter</b>, the <em>longest possible chord</em> at <b>'+(2*rgUnits)+' units</b>.';
+  else msg+='Drag the handle toward the centre to make it longer.';
+  if(rgShadeMode==="sector") msg+=' A <b>sector</b> is bounded by <b>two radii</b> and an arc.';
+  if(rgShadeMode==="segment") msg+=' A <b>segment</b> is bounded by <b>one chord</b> and an arc.';
+  r.innerHTML=msg;
+}
+function rgSetD(d){rgD=Math.max(-(cR-8),Math.min(cR-8,d));rgRender();}
+function rgShade(m){rgShadeMode=m;rgRender();}
+function rgInit(){
+  var s=document.getElementById("rgSvg"); if(!s)return;
+  function move(e){var p=svgPt(s,e);rgSetD(p.y-cO.y);e.preventDefault();}
+  s.addEventListener("pointerdown",function(e){var p=svgPt(s,e);if(Math.abs(p.x-cO.x)<70&&Math.abs((p.y)-(cO.y+rgD))<40){rgDrag=true;try{s.setPointerCapture(e.pointerId);}catch(x){}move(e);}});
+  s.addEventListener("pointermove",function(e){if(rgDrag)move(e);});
+  s.addEventListener("pointerup",function(e){rgDrag=false;try{s.releasePointerCapture(e.pointerId);}catch(x){}});
+  s.addEventListener("pointercancel",function(){rgDrag=false;});
+  rgRender();
+}
+
+/* ---------------- Reconnection Routes ---------------- */
+(function(){
+  var RECONNECT={
+    parts:{title:'Naming the parts',prompt:'A straight line from the centre of a circle to a point on the curve is called the...?',answer:'radius',hint:'It begins with r — the radius.'},
+    chorddia:{title:'Chord or diameter',prompt:'A chord that passes through the centre has a special name. What is it?',answer:'diameter',hint:'It is the longest chord of all — the diameter.'},
+    subtend:{title:'Standing on an arc',prompt:'The angle ∠APB stands on the arc AB that does NOT contain which labelled point?',answer:'p',hint:'The angle stands on the far arc — the one without P.'}
+  }
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
+  window.showReconnect=function(key){
+    var r=RECONNECT[key];
+    document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'
+     +'<input id="reconnectAnswer" placeholder="Your answer" style="width:100%;max-width:220px;padding:9px;border:1px solid #bcae98;border-radius:8px;margin-top:8px">'
+     +'<div class="buttonrow"><button onclick="checkReconnect(\''+key+'\')">Check</button><button onclick="reconnectHint(\''+key+'\')">Hint</button><button onclick="closeReconnect()">Return to the lesson</button></div>'
+     +'<div id="reconnectFeedback" class="feedback"></div></div>';
+  };
+  window.checkReconnect=function(key){
+    var r=RECONNECT[key],fb=document.getElementById('reconnectFeedback'),v=document.getElementById('reconnectAnswer').value;fb.style.display='block';
+    if(!v.trim()){fb.className='feedback warn';fb.textContent='Enter an answer, or use the hint.';return;}
+    if(matches(r,v)){fb.className='feedback good';fb.textContent='Ready to return. This idea is secure enough for the current lesson.';}
+    else{fb.className='feedback bad';fb.textContent='Not yet. Use the hint, or sketch it on the Scratchpad, then try again.';}
+  };
+  window.reconnectHint=function(key){var fb=document.getElementById('reconnectFeedback');fb.style.display='block';fb.className='feedback warn';fb.innerHTML='<b>💡 Hint:</b> '+RECONNECT[key].hint;};
+  window.closeReconnect=function(){var p=document.getElementById('reconnectionPanel');p.style.display='none';p.innerHTML='';};
+})();
+
+/* ---------------- PRACTICE COMPANION ---------------- */
+var PRACTICE=[
+ {label:"1 of 6 · Name the part",q:"A straight line drawn from the <b>centre</b> of a circle to a point on the circumference is called what?",a:["radius","a radius","the radius"],eq:function(v){return false;},prompt:"It is the fixed distance from the centre out to the curve.",hint:"It begins with r.",sol:"Radius — a straight line from the centre to any point on the circle."},
+ {label:"2 of 6 · Chord vs diameter",q:"What is the special name for a chord that passes through the <b>centre</b> of the circle?",a:["diameter","a diameter","the diameter"],eq:function(v){return false;},prompt:"Any chord through the centre is also two radii in a straight line.",hint:"It is the longest chord — the d______.",sol:"Diameter — a chord through the centre; it is the longest chord and equals two radii."},
+ {label:"3 of 6 · The longest chord",q:"A circle has radius 5 cm. How long, in cm, is its longest chord (the diameter)?",a:[],eq:function(v){return num(v)===10;},prompt:"The longest chord passes through the centre — it is made of two radii.",hint:"Two radii of 5 cm end to end: 5 + 5.",sol:"10 cm — the diameter is the longest chord and equals two radii, 5 + 5 = 10 cm."},
+ {label:"4 of 6 · Radius from diameter",q:"A circle has diameter 9 cm. What is the length of its radius, in cm?",a:[],eq:function(v){return Math.abs(num(v)-4.5)<1e-9;},prompt:"The radius is half the diameter.",hint:"Half of 9 — you may write it as 4.5 or 9/2.",sol:"4.5 cm (also written 9/2 cm) — the radius is half the diameter, and half of 9 is 4.5."},
+ {label:"5 of 6 · Name the region",q:"A region of the inside of a circle bounded by <b>two radii</b> and the arc between them is called a...?",a:["sector","a sector","the sector"],eq:function(v){return false;},prompt:"Think of a slice of pizza cut from the centre.",hint:"Two radii and an arc — a sector.",sol:"Sector — bounded by two radii and an arc. (A segment, by contrast, is bounded by one chord and an arc.)"},
+ {label:"6 of 6 · Standing on an arc",q:"Points A, B and P lie on a circle. The angle ∠APB stands on (subtends) the arc AB. Does that arc contain P? Answer yes or no.",a:["no","it does not","does not","does not contain p","no it does not"],eq:function(v){return false;},prompt:"The angle at P stands on the arc opposite it — the far side from P.",hint:"The subtended arc is the one that does NOT contain P.",sol:"No — an angle stands on the arc that does not contain its vertex, so ∠APB stands on the arc AB on the far side from P."}
+]
+var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
+function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
+function pLockMsg(i){var r=[];if(!pPromptUsed[i])r.push("use the Socratic prompt");if(!pHintUsed[i])r.push("use the hint");var t=Math.max(0,2-pAttempts[i]);if(t===2)r.push("check two answers");else if(t===1)r.push("check one more answer");return "Worked solution unlocks after you "+r.join(", ")+".";}
+function pLock(){var b=document.getElementById("practiceSolutionButton");if(!b)return;var u=pUnlocked(pIndex);b.disabled=!u;b.setAttribute("aria-disabled",String(!u));b.style.opacity=u?"1":".5";b.style.cursor=u?"pointer":"not-allowed";b.title=u?"Worked solution is available.":pLockMsg(pIndex);}
+function renderPractice(){
+  var q=PRACTICE[pIndex];
+  document.getElementById("practiceLabel").textContent="Question "+q.label;
+  document.getElementById("practiceQuestion").innerHTML=q.q;
+  document.getElementById("practiceAnswer").value="";
+  document.getElementById("practiceSupport").style.display="none";
+  document.getElementById("practiceFeedback").style.display="none";
+  document.getElementById("practicePrev").disabled=pIndex===0;
+  document.getElementById("practiceNext").textContent=pIndex===PRACTICE.length-1?"Finish":"Next →";
+  document.getElementById("practiceDots").innerHTML=PRACTICE.map(function(_,i){return '<span class="progress-dot'+(pDone[i]?' done':i===pIndex?' active':'')+'">'+(i+1)+'</span>';}).join("");
+  pLock();
+}
+function pPrompt(){pPromptUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>🤔 Socratic prompt:</b> "+PRACTICE[pIndex].prompt;pLock();}
+function pHint(){pHintUsed[pIndex]=true;var s=document.getElementById("practiceSupport");s.style.display="block";s.innerHTML="<b>💡 Hint:</b> "+PRACTICE[pIndex].hint;pLock();}
+function pCheck(){
+  var q=PRACTICE[pIndex],val=document.getElementById("practiceAnswer").value,fb=document.getElementById("practiceFeedback");
+  fb.style.display="block";
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Enter an answer first, or use the prompt.";pLock();return;}
+  pAttempts[pIndex]++;
+  var learner=normText(val), stripped=learner.replace(/^(a|an|the)\s+/,"");
+  var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
+  if(!ok && q.eq){ ok=q.eq(val)===true; }
+  if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Re-read the definition, or use the prompt and hint.";}
+  renderPractice();
+  document.getElementById("practiceFeedback").style.display="block";
+  document.getElementById("practiceFeedback").className=fb.className;
+  document.getElementById("practiceFeedback").textContent=fb.textContent;
+}
+function pSolution(){
+  var s=document.getElementById("practiceSupport");s.style.display="block";
+  if(!pUnlocked(pIndex)){s.innerHTML="<b>🔒 Worked solution locked.</b> "+pLockMsg(pIndex);pLock();return;}
+  s.innerHTML="<b>👀 Worked solution:</b> "+PRACTICE[pIndex].sol;
+}
+function pPrev(){if(pIndex>0){pIndex--;renderPractice();}}
+function pNext(){if(pIndex<PRACTICE.length-1){pIndex++;renderPractice();}else{var fb=document.getElementById("practiceFeedback");fb.style.display="block";fb.className="feedback";fb.style.background="#e5edf4";fb.textContent="Practice complete. "+pDone.filter(Boolean).length+" of "+PRACTICE.length+" secure so far. Return to any question or the lesson.";}}
+
+/* ---------------- init ---------------- */
+function initLesson(){
+  piInit();
+  mvInit();
+  spInit();
+  rgInit();
+  renderPractice();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initLesson);else initLesson();
+</script>
+</body>
+</html>

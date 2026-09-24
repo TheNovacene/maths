@@ -580,6 +580,23 @@
       ]
     },
     {
+      "id": "circle-theorems",
+      "title": "Circle Theorems",
+      "stage": "Intermediate",
+      "strand": "Geometry",
+      "source": "vault/03_Intermediate/01_Lessons/Circle_Theorems",
+      "lessons": [
+        {
+          "id": "circle-theorems-01-the-circle-and-its-parts",
+          "num": "Lesson 01",
+          "title": "The circle and its parts",
+          "file": "lessons/circle-theorems/01-the-circle-and-its-parts.html",
+          "status": "live",
+          "cornerstones": []
+        }
+      ]
+    },
+    {
       "id": "ks3-interactive-library",
       "title": "KS3 Interactive Library",
       "stage": "Key Stage 3",
