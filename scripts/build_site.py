@@ -140,6 +140,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_04_Angles_in_the_Same_Segment/NEO_Maths_Y10_Circle_Theorems_Lesson_04_Angles_in_the_Same_Segment_v0.1.html",
     "circle-theorems-05-cyclic-quadrilaterals":
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_05_Cyclic_Quadrilaterals/NEO_Maths_Y10_Circle_Theorems_Lesson_05_Cyclic_Quadrilaterals_v0.1.html",
+    "circle-theorems-06-tangents":
+        "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_06_Tangents/NEO_Maths_Y10_Circle_Theorems_Lesson_06_Tangents_v0.1.html",
     "trigonometry-01-the-constant-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":

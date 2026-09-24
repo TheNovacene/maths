@@ -625,6 +625,14 @@
           "file": "lessons/circle-theorems/05-cyclic-quadrilaterals.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-06-tangents",
+          "num": "Lesson 06",
+          "title": "Tangents to a circle",
+          "file": "lessons/circle-theorems/06-tangents.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

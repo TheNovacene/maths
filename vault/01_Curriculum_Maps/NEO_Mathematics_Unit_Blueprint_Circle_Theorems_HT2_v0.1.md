@@ -135,3 +135,13 @@ Fourth angle-in-a-circle theorem; completes the family. Hero = **Cyclic-quad Lab
 **CT-05 proof fix (post-review):** in the Creativity proof, the two central-angle labels (2∠A, 2∠C) were on the wrong sides of diagonal BD — ∠A subtends the arc through C so 2∠A belongs on the C-side, and 2∠C on the A-side. Corrected, and each central angle is now drawn as its own coloured arc (2∠A blue on the C-side, 2∠C red on the A-side) matching the vertex colours.
 
 **Proof house-style (post-review):** generalised the *proof* moments to symbols rather than measured values, per Gerry — CT-04 Creativity proof + Learner/Adult guide proof now use ∠AOB = 2x and inscribed x; CT-05 proof + guides use ∠A = a, ∠C = c with central 2a, 2c. Added a reusable `symbolic` flag to the `sameseg` and `cyclicquad` guide diagrams (label x, or a/b/c/d, instead of degrees). Discovery/Movement panels keep real measured angles. CT-02 proof already used x,y; CT-03 legitimately uses 180/90 as the special-case values.
+
+**CT-06 — Tangents to a circle — ★ BUILT & LIVE (v0.1) · opens the tangent/chord family**
+Hero = **Tangent-kite (both results in one)** (Gerry-approved). New bespoke **`tkLab`**: a draggable external point P with its two tangents to A, B and radii OA, OB — right-angle squares at A/B and equal tangent-length readouts hold as P is dragged; reveal explains the RHS congruence.
+- **Connection/Reflection:** tangent kite — tangent⟂radius (90°) and PA = PB, both invariant under drag.
+- **Movement:** mixed use of the two facts + the kite relation ∠AOB + ∠APB = 180° (radangle, kite, length, right-triangle items).
+- **Creativity:** 3-step proof — right angles → OA=OB & shared OP → RHS congruence ⇒ PA=PB; plus the shortest-distance reason for tangent⟂radius.
+- **Practice:** 6 reason-first Qs; gate 6a (Q6 half / 0.5 / 1⁄2).
+- **Guides:** new reusable `tangentkite` diagram (right-angle squares + equal-radius/equal-tangent ticks).
+- **QA:** jsdom proved tangent⟂radius (dot-product ≈ 0) AND PA=PB across positions; MOVEMENT/PROOF/gate 6a green; one visual montage. Studio `ct06-final` added. Site 71 lessons / 0 missing / links valid.
+Built in **lean single-pass mode** (fewer render round-trips) to conserve budget.
