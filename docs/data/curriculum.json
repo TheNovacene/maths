@@ -657,6 +657,14 @@
           "file": "lessons/circle-theorems/09-combining-the-theorems.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-10-proof-and-problem-solving",
+          "num": "Lesson 10",
+          "title": "Proof and problem-solving",
+          "file": "lessons/circle-theorems/10-proof-and-problem-solving.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

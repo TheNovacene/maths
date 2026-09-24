@@ -148,6 +148,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_08_The_Perpendicular_from_the_Centre_to_a_Chord/NEO_Maths_Y10_Circle_Theorems_Lesson_08_The_Perpendicular_from_the_Centre_to_a_Chord_v0.1.html",
     "circle-theorems-09-combining-the-theorems":
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_09_Combining_the_Theorems/NEO_Maths_Y10_Circle_Theorems_Lesson_09_Combining_the_Theorems_v0.1.html",
+    "circle-theorems-10-proof-and-problem-solving":
+        "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_10_Proof_and_Problem_Solving/NEO_Maths_Y10_Circle_Theorems_Lesson_10_Proof_and_Problem_Solving_v0.1.html",
     "trigonometry-01-the-constant-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":
