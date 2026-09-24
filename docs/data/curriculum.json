@@ -633,6 +633,14 @@
           "file": "lessons/circle-theorems/06-tangents.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-07-the-alternate-segment-theorem",
+          "num": "Lesson 07",
+          "title": "The alternate segment theorem",
+          "file": "lessons/circle-theorems/07-the-alternate-segment-theorem.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },
