@@ -609,6 +609,14 @@
           "file": "lessons/circle-theorems/03-the-angle-in-a-semicircle.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-04-angles-in-the-same-segment",
+          "num": "Lesson 04",
+          "title": "Angles in the same segment",
+          "file": "lessons/circle-theorems/04-angles-in-the-same-segment.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

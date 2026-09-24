@@ -108,3 +108,13 @@ First corollary of the keystone. Hero = **Circle Theorem Lab, diameter case → 
 - **Practice:** 6 reason-first Qs; gate 6a (Q1 90/ninety; Q4 half / 0.5 / 1⁄2), converse + largest-angle reasoning.
 - **Guides:** new reusable `circleangle` **semicircle** diagram; angle-in-a-semicircle worked examples.
 - **QA:** jsdom proved ∠APB = 90° for all P on the diameter + diameter stays antipodal on reshuffle; MOVEMENT + PROOF + gate 6a all green; visual QA of Lab/Movement/Proof + guide diagrams. Studio `ct03-final` added. Site 68 lessons / 0 missing / links valid.
+
+**CT-04 — Angles in the same segment — ★ BUILT & LIVE (v0.1)**
+Second corollary of the keystone. Hero = **Circle Theorem Lab, two apexes on the same arc** (Gerry-approved). Extended `makeCTLab` with **twoApex mode**: a second draggable point Q, nearest-point drag selection, `clampMajor` keeping both apexes in the same segment, twin readouts, "Why equal?" reveal (both = ½ the same ∠AOB).
+- **Connection:** two-apex lab, name the equal angles ∠APB, ∠AQB.
+- **Movement:** same-segment equality numeric (given one, the other is equal), reason required.
+- **Reflection (hero):** drag P and Q anywhere on the arc — both angles stay equal; "Why equal?" shows each = ½∠AOB.
+- **Creativity:** 3-step proof (draw ∠AOB; ∠APB = ½∠AOB; ∠AQB = ½ the *same* angle ⇒ equal); look-ahead to opposite-segment (supplementary) → CT-05.
+- **Practice:** 6 reason-first Qs; gate 6a (Q3 half/0.5/1⁄2), same-vs-different-segment.
+- **Guides:** new reusable `sameseg` (bowtie) diagram; same-segment worked examples.
+- **QA:** jsdom proved ∠APB = ∠AQB across a grid of P,Q positions + clamp keeps them off the minor arc; MOVEMENT/PROOF/gate 6a green; visual QA. Studio `ct04-final` added. Site 69 lessons / 0 missing / links valid.
