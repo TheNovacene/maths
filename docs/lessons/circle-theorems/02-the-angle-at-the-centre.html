@@ -670,6 +670,12 @@ function pfInit(){pfBtns();pfRender();}
     subtend:{title:'Standing on an arc',prompt:'∠AOB at the centre and ∠APB at the edge can both stand on the same ____ (fill the word).',answer:'arc',hint:'They subtend the same arc AB.'},
     doubling:{title:'Centre and circumference',prompt:'The angle at the centre is how many times the angle at the circumference on the same arc?',answer:2,hint:'It is double — two times.'}
   }
+  function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
+  window.openReconnect=function(){
+    var p=document.getElementById('reconnectionPanel');p.style.display='block';
+    var btns=Object.keys(RECONNECT).map(function(k){return '<button class="guidebtn" onclick="showReconnect(\''+k+'\')">'+RECONNECT[k].title+'</button>';}).join('');
+    p.innerHTML='<h3>🧭 Reconnection Routes</h3><p>Choose a short recap only if it helps you re-enter this lesson. Using a route is part of learning.</p><div class="buttonrow">'+btns+'<button onclick="closeReconnect()">Return to the lesson</button></div><div id="reconnectTask"></div>';
+  };
   window.showReconnect=function(key){
     var r=RECONNECT[key];
     document.getElementById('reconnectTask').innerHTML='<div class="toolbox"><h3>'+r.title+'</h3><div>'+r.prompt+'</div>'

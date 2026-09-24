@@ -641,6 +641,14 @@
           "file": "lessons/circle-theorems/07-the-alternate-segment-theorem.html",
           "status": "live",
           "cornerstones": []
+        },
+        {
+          "id": "circle-theorems-08-the-perpendicular-from-the-centre-to-a-chord",
+          "num": "Lesson 08",
+          "title": "The perpendicular from the centre to a chord",
+          "file": "lessons/circle-theorems/08-the-perpendicular-from-the-centre-to-a-chord.html",
+          "status": "live",
+          "cornerstones": []
         }
       ]
     },

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEO Mathematics: Tangents to a circle</title>
+<title>NEO Mathematics: The perpendicular from the centre to a chord</title>
 <style>
 body{margin:0;background:#efe9df;color:#2f3429}
 .neo{font-family:Arial,sans-serif;max-width:1000px;margin:auto;padding:22px;background:#f7f3ea;line-height:1.55;border-radius:18px}
@@ -80,7 +80,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   .fracpreview[hidden]{display:none}
   .fracpreview .flabel{font-size:.85em;color:#5c6b4f;margin-right:.4em}
 </style>
-<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Circle Theorems &middot; <strong>Lesson 06 &mdash; Tangents to a circle</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
+<div class="neo-chrome neo-chrome-header"><a class="neo-home" href="../../index.html">&larr; NEO Maths home</a><div class="neo-crumb">Circle Theorems &middot; <strong>Lesson 08 &mdash; The perpendicular from the centre to a chord</strong></div><button class="neo-comfort-btn" type="button" onclick="neoComfortToggle()" aria-expanded="false" aria-controls="neoComfortPanel" title="Comfort and access settings">Aa&nbsp;Comfort</button></div><div id="neoComfortPanel" class="neo-comfort neo-comfort-panel" hidden aria-label="Comfort and access settings"><div class="neo-comfort-group"><span>Text size</span><div class="neo-comfort-row"><button class="opt" data-k="text" data-v="normal" onclick="neoComfortSet(&#39;text&#39;,&#39;normal&#39;)">A</button><button class="opt" data-k="text" data-v="large" onclick="neoComfortSet(&#39;text&#39;,&#39;large&#39;)">A+</button><button class="opt" data-k="text" data-v="larger" onclick="neoComfortSet(&#39;text&#39;,&#39;larger&#39;)">A++</button></div></div><div class="neo-comfort-group"><span>Comfort</span><div class="neo-comfort-row"><button class="opt" data-k="spacing" onclick="neoComfortToggleOpt(&#39;spacing&#39;)">More spacing</button><button class="opt" data-k="calm" onclick="neoComfortToggleOpt(&#39;calm&#39;)">Calmer colours</button><button class="opt" data-k="motion" onclick="neoComfortToggleOpt(&#39;motion&#39;)">Reduce motion</button></div></div><button class="neo-comfort-reset" type="button" onclick="neoComfortReset()">Reset</button></div>
 <script>
 (function(){
  var KEY="neoComfort",d=document.documentElement,st={text:"normal",spacing:false,calm:false,motion:false};
@@ -101,13 +101,13 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <div id="lessonView">
 <div class="neo">
 <h1>NEO Mathematics: Circle Theorems</h1>
-<h2>Tangents to a circle</h2>
-<h2 style="font-size:1.25em">Driving Question: <em>How does a line that only touches a circle behave?</em></h2>
+<h2>The perpendicular from the centre to a chord</h2>
+<h2 style="font-size:1.25em">Driving Question: <em>Why does dropping a perpendicular from the centre always cut a chord in half?</em></h2>
 
 <div class="info">
-<p><b>Lesson type:</b> Core — the opening lesson of the second family: lines that <b>touch</b> the circle rather than cross it.</p>
-<p><b>Stepping Stone:</b> discover, and then <b>justify</b>, that a <b>tangent meets the radius at 90°</b> at the point of contact, and that the <b>two tangents from an external point are equal</b> — and use both (with reasons) to find angles and lengths.</p>
-<p><b>You will need:</b> what a <b>tangent</b> is (Lesson 1), that a <b>radius</b> joins the centre to the circle, congruent triangles (RHS), and that angles in a triangle sum to 180°.</p>
+<p><b>Lesson type:</b> Core — the <b>subtlest</b> theorem of the unit, linking a tangent to an inscribed angle across a chord. Take it slowly.</p>
+<p><b>Stepping Stone:</b> discover, and then <b>justify</b>, that the <b>perpendicular from the centre to a chord bisects it</b> — and use it, with Pythagoras, to find chord lengths and distances from the centre.</p>
+<p><b>You will need:</b> that a <b>tangent is perpendicular to the radius</b> (Lesson 6), the <b>angle in a semicircle</b> (Lesson 3), <b>angles in the same segment</b> (Lesson 4), and that angles in a triangle sum to 180°.</p>
 <p><b>NEO Cornerstones:</b> Connection · Movement · Reflection · Creativity · Rest · Nutrition</p>
 <p><b>45-minute shape:</b> Connect 9 · Move 11 · Reflect 12 · Create 9 · Rest/Nourish 4</p>
 </div>
@@ -116,8 +116,8 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <h3>📚 Lesson Support, Reconnection and Scratchpad</h3>
 <p>Choose only the support that helps now. Every route returns you to this lesson.</p>
 <div class="buttonrow">
-<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_06_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
-<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_06_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_08_Learner_Guide_v0.1.pdf" target="_blank" rel="noopener">🌱 Open Learner Guide</a>
+<a class="guidebtn" href="NEO_Maths_Y10_Circle_Theorems_Lesson_08_Supporting_Adult_Guidance_v0.1.pdf" target="_blank" rel="noopener">📘 Open Supporting Adult Guidance</a>
 <button class="guidebtn" onclick="openReconnect()">🧭 Reconnection Routes</button>
 <button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle with centre O and a point P outside it. Draw the two tangents from P, touching at A and B. Draw radii OA and OB. Measure the angles at A and B, and the lengths PA and PB. What do you notice?')">✏️ Open Maths Scratchpad</button>
 
@@ -127,82 +127,81 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 <!-- ================= CONNECTION ================= -->
 <details class="kw" open>
-<summary>🌿 Connection — A line that just touches</summary>
+<summary>🌿 Connection — The centre always finds the middle</summary>
 <div class="card">
 <h3 style="margin-top:0">🔤 The idea for this lesson</h3>
-<p style="margin:6px 0">Every line so far has <em>crossed</em> the circle (a chord) or missed it. A <b>tangent</b> is the in-between case: it <b>touches</b> the circle at exactly one point, the <b>point of contact</b>. Tangents behave with a beautiful simplicity, captured in two facts. First, a tangent always meets the <b>radius</b> drawn to the point of contact at exactly <b>90°</b>. Second, if you stand at a point <b>P</b> outside the circle you can draw <em>two</em> tangents, and they are always <b>equal in length</b> — the figure OAPB they make with the two radii is a <b>kite</b>. Both facts come from the humblest source again: the two radii are equal.</p>
+<p style="margin:6px 0">Draw any <b>chord</b> across a circle, then drop a <b>perpendicular</b> from the <b>centre O</b> down to it. Something tidy always happens: the foot of that perpendicular lands exactly on the <b>midpoint</b> of the chord. In other words, the <b>perpendicular from the centre bisects the chord</b> — it cuts it into two equal halves, AM = MB. The reason is the humblest one in the whole unit, met yet again: the two radii OA and OB are equal, so the two right-angled triangles either side of the perpendicular are identical. This single fact, teamed with Pythagoras, lets you find chord lengths and distances from the centre without measuring.</p>
 </div>
-<p><b>What to do:</b> P is a point outside the circle, with its two tangents touching at <b>A</b> and <b>B</b>, and radii <b>OA</b>, <b>OB</b> drawn. <b>Drag P</b> around and watch the right angles and the two tangent lengths.</p>
-<p><b>What you are trying to notice:</b> the little squares at A and B never open up — the tangent always meets the radius at 90°. And the two tangent lengths PA and PB stay exactly equal, wherever P goes.</p>
+<p><b>What to do:</b> the chord is <b>AB</b>, and <b>M</b> is where the perpendicular from the centre O meets it. <b>Drag A</b> or <b>B</b> around the circle to reshape the chord, and watch the two half-chords <b>AM</b> and <b>MB</b>.</p>
+<p><b>What you are trying to notice:</b> however you move the chord, the little tick marks stay matched — <b>AM is always equal to MB</b>, and OM always meets the chord at a right angle.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔦 The tangent kite</h3>
-<div class="card" style="text-align:center"><svg id="cnSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="A circle with two tangents from an external point P, forming a kite with the radii"></svg></div>
+<h3 style="margin-top:0">🔦 The perpendicular finds the midpoint</h3>
+<div class="card" style="text-align:center"><svg id="cnSvg" class="graphsvg" style="max-width:400px" viewBox="0 0 380 320" role="img" aria-label="A chord with the perpendicular from the centre meeting it at its midpoint"></svg></div>
 <div id="cnRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center"><button onclick="cnLab.newP()">🔀 Move P further / nearer</button></div>
-<p><b>Carry this forward:</b> a <b>tangent meets the radius at 90°</b>, and the <b>two tangents from a point are equal</b>.</p>
+<p><b>Carry this forward:</b> the <b>perpendicular from the centre to a chord bisects the chord</b>.</p>
 </div>
 </details>
 
 <!-- ================= MOVEMENT (primary) ================= -->
 <details class="hs">
-<summary>🚶 Movement — Use the two tangent facts</summary>
-<p><b>What to do:</b> each diagram uses one of the two facts — the 90° tangent–radius angle, or the equal tangent lengths (and the kite they make). Work out the marked value and type it in, with the reason.</p>
-<p><b>What you are trying to notice:</b> spotting <em>which</em> fact a diagram needs is the skill. A radius to a point of contact means a right angle is hiding there; two tangents from one point means two equal lengths — and the kite OAPB means ∠AOB and ∠APB add to 180°.</p>
+<summary>🚶 Movement — Chords, halves and right triangles</summary>
+<p><b>What to do:</b> each diagram gives some measurements of a chord and the circle. Use the bisector fact and, where needed, <b>Pythagoras</b> (radius, distance from the centre, half-chord form a right-angled triangle) to find the marked value, with the reason.</p>
+<p><b>What you are trying to notice:</b> once the perpendicular halves the chord, you have a <b>right-angled triangle</b> whose hypotenuse is a radius. That triangle links three lengths — the radius, the distance OM, and half the chord — so any two give the third.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🧮 Find the marked value</h3>
-<div class="card" style="text-align:center"><svg id="mvSvg" class="graphsvg" style="max-width:360px" viewBox="0 0 320 300" role="img" aria-label="A tangent figure with a value to find"></svg></div>
+<h3 style="margin-top:0">🧮 Find the marked length</h3>
+<div class="card" style="text-align:center"><svg id="mvSvg" class="graphsvg" style="max-width:340px" viewBox="0 0 340 250" role="img" aria-label="A chord with the perpendicular from the centre, some lengths given and one to find"></svg></div>
 <div id="mvRead" class="readout" style="font-weight:bold"></div>
 <div class="buttonrow" style="justify-content:center;align-items:center">
-<input id="mvAns" class="numin" style="max-width:90px" placeholder="answer" inputmode="numeric">
+<input id="mvAns" class="numin" style="max-width:90px" placeholder="length (cm)" inputmode="numeric">
 <button onclick="mvCheck()">✅ Check</button>
 <button onclick="mvHintBtn()">💡 Hint</button>
 <button onclick="mvNext()">Next →</button>
 </div>
 <div id="mvFb" class="feedback"></div>
-<p><b>Carry this forward:</b> tangent ⟂ radius (90°); equal tangents; and in the kite, ∠AOB + ∠APB = 180°.</p>
+<p><b>Carry this forward:</b> the perpendicular bisects the chord; the radius, distance OM and half-chord form a right-angled triangle; equal chords are equidistant from the centre.</p>
 </div>
 </details>
 
 <!-- ================= REFLECTION (hero) ================= -->
 <details class="es">
-<summary>🪞 Reflection — Two facts that hold as you drag <span class="stretch">keystone case</span></summary>
-<p><b>What to do:</b> the external point <b>P</b> is fully draggable — move it near the circle, far away, all the way round. Keep your eye on the two right-angle squares and the two length labels. Then press <b>Why?</b>.</p>
-<p><b>What you are trying to notice:</b> two invariants at once. The tangent–radius angle is <em>always</em> 90°, and the two tangent lengths are <em>always</em> equal. The reason for both is a single pair of congruent right-angled triangles.</p>
+<summary>🪞 Reflection — Two halves that stay equal <span class="stretch">keystone case</span></summary>
+<p><b>What to do:</b> the chord <b>AB</b> is fully adjustable — <b>drag A</b> and <b>drag B</b> anywhere on the circle. Keep your eye on the perpendicular <b>OM</b> and the two tick-marked halves. Then press <b>Why?</b>.</p>
+<p><b>What you are trying to notice:</b> for <em>every</em> chord, the perpendicular from the centre lands on the midpoint — AM stays equal to MB. The reason is a single pair of congruent right-angled triangles, made identical by the two equal radii.</p>
 <div class="toolbox">
-<h3 style="margin-top:0">🔬 The tangent-kite lab</h3>
-<div class="card" style="text-align:center"><svg id="rfSvg" class="graphsvg" style="max-width:410px" viewBox="0 0 380 320" role="img" aria-label="Draggable external point with two equal tangents and right angles at the radii"></svg></div>
+<h3 style="margin-top:0">🔬 The chord-bisector lab</h3>
+<div class="card" style="text-align:center"><svg id="rfSvg" class="graphsvg" style="max-width:410px" viewBox="0 0 380 320" role="img" aria-label="Draggable chord with the perpendicular from the centre always bisecting it"></svg></div>
 <div id="rfRead" class="clue" style="text-align:center"></div>
-<div class="buttonrow" style="justify-content:center"><button id="rfRatioBtn" onclick="rfLab.reveal()">🔗 Why?</button><button onclick="rfLab.newP()">🔀 Move P further / nearer</button></div>
-<p><b>Carry this forward:</b> a <b>tangent is perpendicular to the radius</b> at the point of contact, and the <b>two tangents from an external point are equal</b> — two congruent right triangles make both true.</p>
+<div class="buttonrow" style="justify-content:center"><button id="rfRatioBtn" onclick="rfLab.reveal()">🔗 Why?</button></div>
+<p><b>Carry this forward:</b> <b>the perpendicular from the centre to a chord bisects the chord</b> — two congruent right triangles, made equal by the radii, are the reason.</p>
 </div>
 </details>
 
 <!-- ================= CREATIVITY (stretch) ================= -->
 <details class="dw">
-<summary>🎨 Creativity — <em>Why</em> are the two tangents equal? <span class="stretch">stretch</span></summary>
-<p><b>What to do:</b> press the steps to build the proof. It rests on congruent triangles (RHS) — right angle, hypotenuse, side.</p>
-<p><b>What you are trying to notice:</b> the two triangles OAP and OBP share the line OP, have equal radii OA = OB, and each has a right angle at the point of contact. That is enough to make them identical — so their third sides, PA and PB, must be equal.</p>
+<summary>🎨 Creativity — <em>Why</em> does it bisect? <span class="stretch">stretch</span></summary>
+<p><b>What to do:</b> press the steps to build the proof. It rests on congruent triangles (RHS) — right angle, hypotenuse, side — exactly the argument you met for the two equal tangents.</p>
+<p><b>What you are trying to notice:</b> the two triangles OMA and OMB share the perpendicular OM, have equal radii OA = OB, and each has a right angle at M. That is enough to make them identical — so their third sides, AM and MB, must be equal.</p>
 <div class="toolbox">
 <h3 style="margin-top:0">🧩 Build the proof</h3>
 <div class="buttonrow" style="justify-content:center">
-<button id="pfB1" onclick="pfStep(1)">① Right angles (tangent ⟂ radius)</button>
-<button id="pfB2" onclick="pfStep(2)" disabled>② OA = OB, OP shared</button>
-<button id="pfB3" onclick="pfStep(3)" disabled>③ Congruent (RHS) ⇒ PA = PB</button>
+<button id="pfB1" onclick="pfStep(1)">① Drop OM ⟂ AB (right angles at M)</button>
+<button id="pfB2" onclick="pfStep(2)" disabled>② OA = OB (radii), OM shared</button>
+<button id="pfB3" onclick="pfStep(3)" disabled>③ Congruent (RHS) ⇒ AM = MB</button>
 <button onclick="pfReset()">↺ Reset</button>
 </div>
 <div class="card" style="text-align:center"><svg id="pfSvg" class="graphsvg" style="max-width:380px" viewBox="0 0 380 320"></svg></div>
 <div id="pfRead" class="clue" style="text-align:center"></div>
-<p><b>The other fact:</b> the tangent–radius right angle is itself worth a reason — the radius to the point of contact is the <em>shortest</em> line from the centre O to the tangent, and the shortest line from a point to a line is always <b>perpendicular</b> to it. So the tangent meets the radius at 90°.</p>
-<button class="scratchbtn" onclick="openMathsScratchpad('blank','Prove the two tangents from a point P are equal. Draw radii OA, OB and OP. Use the right angles at A and B, OA = OB (radii) and the shared OP to show triangles OAP and OBP are congruent (RHS), so PA = PB.')">✏️ Write the proof yourself</button>
+<p><b>The converse is true too:</b> if a line from the centre meets a chord at its <b>midpoint</b>, it must be <b>perpendicular</b> to the chord — the same congruent triangles run in reverse.</p>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Prove the perpendicular from the centre bisects a chord. Draw radii OA, OB and the perpendicular OM to chord AB. Use the right angles at M, OA = OB (radii) and the shared OM to show triangles OMA and OMB are congruent (RHS), so AM = MB.')">✏️ Write the proof yourself</button>
 </div>
 </details>
 
 <!-- ================= REST ================= -->
 <details class="lb">
 <summary>🌙 Rest — A pause to let it settle</summary>
-<p>A new kind of line — one that touches without crossing — and already two clean facts. Notice how the same humble idea (equal radii) that powered the whole first family is quietly at work again. Take a breath before moving on.</p>
+<p>After the hard climb of the alternate segment theorem, this one is a gentler slope — the same equal-radii idea that has powered the whole unit, arriving one more time. Notice how a single perpendicular line turns a chord into two matching right-angled triangles. Take a breath before moving on.</p>
 <div class="card">
-<p><b>Notice one thing:</b> the kite OAPB is symmetrical about the line OP. Where else have you relied on a line of symmetry to know two things must be equal? Spotting symmetry is a shortcut worth keeping.</p>
+<p><b>Notice one thing:</b> the perpendicular from the centre is also a <b>line of symmetry</b> for the chord and its two radii. Where else in this unit has a line of symmetry told you two things must be equal? Spotting symmetry is a shortcut worth keeping.</p>
 <p class="small">You can jot it on the Scratchpad, say it aloud, or simply hold it in mind. You can pause here and return whenever you are ready.</p>
 </div>
 </details>
@@ -212,40 +211,41 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <summary>🍎 Nutrition — What this feeds</summary>
 <p><b>Mode: intellectual.</b> We name honestly what the <em>learning</em> feeds.</p>
 <div class="card">
-<p><b>What it feeds:</b> tangents are where circle geometry meets the physical world most directly — a wheel on a road, a belt around a pulley, a planet's path grazing a gravitational curve, the line of sight that just clears a hill. The tangent–radius right angle is the reason a spinning object flung loose flies off <em>perpendicular</em> to the radius. Today feeds an appreciation of how a clean piece of geometry underwrites real motion and design — and, again, the quiet pleasure of two facts from one idea.</p>
-<p class="small">Carry one idea forward: a tangent is the direction of "just touching" — the instantaneous direction of travel around a curve.</p>
+<p><b>What it feeds:</b> this result is the quiet workhorse of circle geometry — it is how you find a circle's centre from an arc (draw two chords, bisect each perpendicularly, and the centre is where the bisectors cross), and it underlies everything from locating the centre of a broken plate to the geometry of arches, lenses and gears. Today feeds an appreciation of how a <b>perpendicular bisector</b> pins down a centre, and the recurring pleasure of a whole family of facts flowing from one humble idea — that all radii are equal.</p>
+<p class="small">Carry one idea forward: perpendicular bisectors of two chords meet at the centre of the circle.</p>
 </div>
 </details>
 
 <!-- ================= FINAL TASK ================= -->
 <details class="ft">
 <summary>🛠️ Final Task — Evidence for today</summary>
-<p><b>Your task:</b> show you can state, use and justify the two tangent facts.</p>
+<p><b>Your task:</b> show you can state, use and justify the perpendicular-bisector result.</p>
 <ul>
-<li>Draw a circle with centre O and a point P outside it. Construct the two tangents from P (touching at A and B) and the radii OA, OB. Mark the <b>right angles</b> and show <b>PA = PB</b>, giving reasons.</li>
-<li>Use the facts to find missing angles and lengths in a tangent diagram, <b>writing the reason</b> at each step.</li>
-<li>Explain in your own words <b>why</b> the two tangents are equal (congruent triangles) and <b>why</b> the tangent meets the radius at 90°.</li>
-<li><span class="stretch">stretch</span> Show that in the kite OAPB, ∠AOB + ∠APB = 180°, and use it to find one from the other.</li>
+<li>Draw a circle with centre O and a chord AB. Drop the perpendicular from O to the chord, mark the foot M, and show <b>AM = MB</b>, giving the reason.</li>
+<li>Use the result with <b>Pythagoras</b> to find a chord length and a distance from the centre, <b>writing the reason</b> at each step.</li>
+<li>Explain in your own words <b>why</b> the perpendicular bisects the chord (congruent right-angled triangles).</li>
+<li><span class="stretch">stretch</span> Show how to find the <b>centre</b> of a circle from an arc, by perpendicularly bisecting two chords.</li>
 </ul>
-<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-drawn diagram, a construction measured in the <b>Geometry Studio</b> (Measure → Angle), a written proof, or a spoken/video explanation.</p>
+<p><strong>Submission choices:</strong> an annotated Scratchpad image, a photographed hand-drawn diagram, a construction measured in the <b>Geometry Studio</b> (Measure → Distance / Angle), a written proof, or a spoken/video explanation.</p>
 <div class="card" style="border:2px solid #365a68;background:#eef3f6">
 <h3 style="margin-top:0">📐 Verify it in the Geometry Studio</h3>
-<p>Draw a circle and a point P outside it, construct the two tangents and the radii, and use <b>Measure → Angle</b> to check the radius–tangent angles are 90°. Compare the two tangent lengths, drag P, and confirm they stay equal. Save it with a sentence on why.</p>
-<a class="guidebtn" style="background:#365a68" href="../../tools/geometry-studio.html?task=ct06-final&amp;return=../lessons/circle-theorems/06-tangents.html">📐 Open in the Geometry Studio →</a>
+<p>Draw a circle and a chord AB, drop the perpendicular from the centre to the chord, and use <b>Measure → Angle</b> to check it is 90° and <b>Measure → Distance</b> to compare AM and MB. Drag A or B and confirm they stay equal. Save it with a sentence on why.</p>
+<a class="guidebtn" style="background:#365a68" href="../../tools/geometry-studio.html?task=ct08-final&amp;return=../lessons/circle-theorems/08-the-perpendicular-from-the-centre-to-a-chord.html">📐 Open in the Geometry Studio →</a>
 </div>
-<p><strong>Filename pattern:</strong> <code>NEO_MATH_CIRCLE_TANGENTS_FirstName_Date</code></p>
+<p><strong>Filename pattern:</strong> <code>NEO_MATH_CIRCLE_CHORDPERP_FirstName_Date</code></p>
 <table>
 <tr><th>Criterion</th><th>Emerging</th><th>Developing</th><th>Secure</th><th>Mastering</th></tr>
-<tr><td><b>Understanding</b></td><td>Knows a tangent touches at one point.</td><td>States tangent ⟂ radius, and equal tangents.</td><td>Uses both facts with reasons.</td><td>Explains why via congruent triangles.</td></tr>
-<tr><td><b>Application</b></td><td>Marks the right angle.</td><td>Finds one angle or length.</td><td>Solves multi-step tangent problems.</td><td>Uses the kite ∠AOB + ∠APB = 180°.</td></tr>
-<tr><td><b>Communication</b></td><td>Labels the point of contact.</td><td>Names a fact once.</td><td>Gives a reason at each step.</td><td>Writes a clear congruence proof.</td></tr>
-<tr><td><b>Reflection</b></td><td>Notices the two lengths look equal.</td><td>Notices they stay equal as P moves.</td><td>Connects both facts to equal radii.</td><td>Sees the kite's symmetry as the reason.</td></tr>
+<tr><td><b>Understanding</b></td><td>Knows the perpendicular cuts the chord.</td><td>States that it bisects the chord.</td><td>Uses it with Pythagoras and reasons.</td><td>Explains why via congruent triangles.</td></tr>
+<tr><td><b>Application</b></td><td>Marks the midpoint M.</td><td>Finds one half-chord.</td><td>Solves multi-step chord/distance problems.</td><td>Uses equal-chords-equidistant and the converse.</td></tr>
+<tr><td><b>Communication</b></td><td>Labels O, M and the right angle.</td><td>Names the result once.</td><td>Gives a reason at each step.</td><td>Writes a clear congruence proof.</td></tr>
+<tr><td><b>Reflection</b></td><td>Notices the halves look equal.</td><td>Notices they stay equal as the chord moves.</td><td>Connects it to equal radii.</td><td>Sees the perpendicular bisector as locating the centre.</td></tr>
 </table>
 </details>
 
 </div>
 <div class="neo-practice-cta" style="background:#fffaf0; padding:20px; margin-top:22px; border-left:6px solid #5c6b4f; border-radius:14px; text-align:center;"><h2 style="margin:0 0 14px;">✏️ Ready to strengthen your understanding?</h2><button type="button" onclick="openPractice()" style="padding:13px 22px; background:#5c6b4f; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:1.05em; cursor:pointer;">Open Practice Companion</button></div>
 </div>
+
 
 <!-- ================= PRACTICE COMPANION ================= -->
 
@@ -255,7 +255,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 
 
 <div id="practiceView" hidden><div class="practice">
-<h1>Tangents to a circle — Practice Companion</h1>
+<h1>The perpendicular from the centre to a chord — Practice Companion</h1>
 <button onclick="returnLesson()">← Return to lesson</button>
 <p>Use support in this order: <b>🤔 Socratic prompt → 💡 hint → ✅ check → 👀 worked solution</b>. The worked solution unlocks separately for each question, once you have used the prompt, used the hint and checked two answers.</p>
 <div id="practiceDots" class="buttonrow"></div>
@@ -268,7 +268,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
 <button onclick="pHint()">💡 Hint</button>
 <button onclick="pCheck()">✅ Check</button>
 <button id="practiceSolutionButton" onclick="pSolution()" disabled>👀 Worked solution</button>
-<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle with centre O and an external point P. Draw the two tangents to A and B, and radii OA, OB. Show the right angles at A and B and that PA = PB, using congruent triangles.')">✏️ Scratchpad</button>
+<button class="scratchbtn" onclick="openMathsScratchpad('blank','Draw a circle with a tangent touching at T, and a chord TB. Mark the angle between the tangent and the chord. Pick a point P on the far arc and measure angle TPB. What do you notice?')">✏️ Scratchpad</button>
 </div>
 <div id="practiceSupport" class="readout" style="display:none"></div>
 <div id="practiceFeedback" class="feedback"></div>
@@ -336,7 +336,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{border:1px solid
   const bg = bgCanvas.getContext("2d");
   let tool = "pen", colour = "#2f3429", width = 4, template = "blank";
   let drawing = false, current = null, strokes = [], redo = [], notes = [];
-  const storageKey = "neoMathsScratchpad_circle_l06_v01";
+  const storageKey = "neoMathsScratchpad_circle_l08_v01";
   function status(msg, col){ const box = document.getElementById("scratchStatus"); box.style.display = "block"; box.style.background = col || "#e5edf4"; box.textContent = msg; }
   function point(e){ const r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)*canvas.width/r.width, y:(e.clientY-r.top)*canvas.height/r.height }; }
   function drawBackground(){
@@ -581,120 +581,128 @@ function makeCTLab(opt){
   return api;
 }
 
-/* ============ TANGENT-KITE LAB (draggable external point P) ============ */
-var TKUN=cR/6; /* 6 units = radius */
-function tkLen(dist){return Math.sqrt(Math.max(0,dist*dist-cR*cR));}
-function makeTKLab(opt){
-  var st={ang:opt.ang, dist:opt.dist, reveal:false, drag:false};
-  function alphaDeg(){return Math.acos(Math.min(0.999,cR/st.dist))*180/Math.PI;}
-  function P(){var t=st.ang*Math.PI/180;return {x:cO.x+st.dist*Math.cos(t),y:cO.y+st.dist*Math.sin(t)};}
-  function A(){return ocp(st.ang+alphaDeg());}
-  function B(){return ocp(st.ang-alphaDeg());}
-  function mid(p,q,f){return {x:p.x+(q.x-p.x)*f,y:p.y+(q.y-p.y)*f};}
-  function lenLab(p,q,col){var m=mid(p,q,0.5),L=(tkLen(st.dist)/TKUN).toFixed(1);var nx=-(q.y-p.y),ny=(q.x-p.x),n=Math.hypot(nx,ny)||1;var x=m.x+11*nx/n,y=m.y+11*ny/n;return '<text x="'+x.toFixed(1)+'" y="'+(y+4).toFixed(1)+'" text-anchor="middle" font-size="12.5" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+L+'u</text><text x="'+x.toFixed(1)+'" y="'+(y+4).toFixed(1)+'" text-anchor="middle" font-size="12.5" font-weight="bold" fill="'+col+'">'+L+'u</text>';}
+/* ============ CHORD-BISECTOR LAB ============ */
+/* Chord AB (both ends draggable on the circle). M = foot of the perpendicular from the centre O
+   to AB. The perpendicular OM bisects the chord: AM = MB. Reveal shows the two congruent right
+   triangles OMA, OMB (RHS: OA = OB radii, OM shared, right angles at M). */
+function cbFoot(A,B){var dx=B.x-A.x,dy=B.y-A.y,L2=dx*dx+dy*dy||1,t=((cO.x-A.x)*dx+(cO.y-A.y)*dy)/L2;return {x:A.x+t*dx,y:A.y+t*dy};}
+function cbTick(u,v,col){var m={x:(u.x+v.x)/2,y:(u.y+v.y)/2},a=Math.atan2(v.y-u.y,v.x-u.x)+Math.PI/2;return '<line x1="'+(m.x-5*Math.cos(a)).toFixed(1)+'" y1="'+(m.y-5*Math.sin(a)).toFixed(1)+'" x2="'+(m.x+5*Math.cos(a)).toFixed(1)+'" y2="'+(m.y+5*Math.sin(a)).toFixed(1)+'" stroke="'+col+'" stroke-width="2"/>';}
+function makeCBLab(opt){
+  var UN=cR/7;
+  var st={aA:opt.aA, aB:opt.aB, reveal:false, drag:null};
+  function A(){return ocp(st.aA);}
+  function B(){return ocp(st.aB);}
+  function len(P,Q){return Math.hypot(P.x-Q.x,P.y-Q.y);}
   function render(){
-    var s=document.getElementById(opt.svg); if(!s)return; var a=A(),b=B(),p=P(),h="";
+    var s=document.getElementById(opt.svg); if(!s)return;
+    var A0=A(),B0=B(),M=cbFoot(A0,B0),h="";
+    var am=(len(A0,M)/UN), mb=(len(B0,M)/UN);
     h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
-    h+=segLine(cO,a,"#c9a24b",2.5)+segLine(cO,b,"#c9a24b",2.5);   /* radii */
-    h+=segLine(cO,p,"#7a5a34",1.6,"4 4");                          /* OP (kite axis) */
-    h+=segLine(p,a,"#365a68",2.5)+segLine(p,b,"#365a68",2.5);     /* tangents */
-    h+=rAngle(a,cO,p,13)+rAngle(b,cO,p,13);                        /* right angles at A,B */
-    h+=lenLab(p,a,"#365a68")+lenLab(p,b,"#365a68");
-    h+=labDot(cO,"#2f3429","O",18)+labDot(a,"#3f5f45","A",(a.y<cO.y?-13:20))+labDot(b,"#3f5f45","B",(b.y<cO.y?-13:20))+labDot(p,"#b24c4c","P",(p.x>cO.x?18:-14));
+    if(st.reveal){ h+=segLine(cO,A0,"#c9a24b",2)+segLine(cO,B0,"#c9a24b",2); h+=cbTick(cO,A0,"#b8860b")+cbTick(cO,B0,"#b8860b"); }
+    h+=segLine(A0,B0,"#2f3429",2.5);                 /* chord AB */
+    h+=segLine(cO,M,"#b24c4c",2.5);                  /* perpendicular OM */
+    h+=rAngle(M,cO,A0,11);                           /* right angle at M */
+    h+=cbTick(A0,M,"#365a68")+cbTick(M,B0,"#365a68");/* equal half-chords */
+    h+=labDot(cO,"#2f3429","O",-12)+labDot(M,"#8a6a1f","M",(M.y<cO.y?-13:18));
+    h+=labDot(A0,"#3f5f45","A",(A0.y<cO.y?-13:18))+labDot(B0,"#3f5f45","B",(B0.y<cO.y?-13:18));
     s.innerHTML=h;
     var r=document.getElementById(opt.read); if(!r)return;
-    var L=(tkLen(st.dist)/TKUN).toFixed(1);
-    if(st.reveal) r.innerHTML='Triangles <b>OAP</b> and <b>OBP</b>: OA = OB (radii), OP is shared, and ∠OAP = ∠OBP = <b>90°</b>. So they are <b>congruent (RHS)</b> — hence <b>PA = PB</b>, and each tangent meets its radius at a right angle.';
-    else r.innerHTML='Each tangent meets its radius at <b>90°</b> (squares at A and B). The two tangent lengths are equal: <b>PA = PB = '+L+' units</b>. Drag <b>P</b>; press <b>Why?</b>';
+    if(st.reveal) r.innerHTML='<b>Why they are equal:</b> draw the radii <b>OA</b> and <b>OB</b> — they are <b>equal</b> (both radii). Triangles <b>OMA</b> and <b>OMB</b> share <b>OM</b> and each has a <b>right angle</b> at M, so they are <b>congruent</b> (RHS). Their third sides match: <b>AM = MB</b> = <b>'+am.toFixed(1)+'</b> units. The perpendicular from the centre <b>bisects</b> the chord.';
+    else r.innerHTML='<b>OM</b> is perpendicular to the chord, and the two half-chords are equal: <b>AM = '+am.toFixed(1)+'</b> units, <b>MB = '+mb.toFixed(1)+'</b> units.'+(opt.ratioBtn?' Drag <b>A</b> or <b>B</b>; press <b>Why?</b>':' Drag <b>A</b> or <b>B</b> and watch them stay equal.');
   }
-  function setFromXY(q){st.ang=angDeg(cO,q);st.dist=Math.max(cR+24,Math.min(168,dist(cO,q)));render();}
-  var api={render:render,setFromXY:setFromXY,state:st,
-    reveal:function(){st.reveal=!st.reveal;var btn=document.getElementById(opt.ratioBtn);if(btn)btn.textContent=st.reveal?'🔗 Hide why':'🔗 Why?';render();},
-    newP:function(){st.ang=-40+Math.floor(Math.random()*80)+(Math.random()<.5?180:0);st.dist=140+Math.floor(Math.random()*26);st.reveal=false;var b=document.getElementById(opt.ratioBtn);if(b)b.textContent='🔗 Why?';render();}};
+  var api={render:render,state:st,
+    reveal:function(){st.reveal=!st.reveal;var b=document.getElementById(opt.ratioBtn);if(b)b.textContent=st.reveal?'🔗 Hide why':'🔗 Why?';render();}};
   function init(){var s=document.getElementById(opt.svg);if(!s)return;
-    function move(e){setFromXY(svgPt(s,e));e.preventDefault();}
-    s.addEventListener("pointerdown",function(e){st.drag=true;try{s.setPointerCapture(e.pointerId);}catch(x){}move(e);});
+    function nearest(ang){var dA=Math.min(norm360(ang-st.aA),norm360(st.aA-ang)),dB=Math.min(norm360(ang-st.aB),norm360(st.aB-ang));return dA<=dB?'A':'B';}
+    function move(e){var q=svgPt(s,e),ang=norm360(angDeg(cO,q));
+      if(st.drag==='A') st.aA=ang; else st.aB=ang; render(); e.preventDefault();}
+    s.addEventListener("pointerdown",function(e){var q=svgPt(s,e);st.drag=nearest(norm360(angDeg(cO,q)));try{s.setPointerCapture(e.pointerId);}catch(x){}move(e);});
     s.addEventListener("pointermove",function(e){if(st.drag)move(e);});
-    s.addEventListener("pointerup",function(e){st.drag=false;try{s.releasePointerCapture(e.pointerId);}catch(x){}});
-    s.addEventListener("pointercancel",function(){st.drag=false;});
+    s.addEventListener("pointerup",function(e){st.drag=null;try{s.releasePointerCapture(e.pointerId);}catch(x){}});
+    s.addEventListener("pointercancel",function(){st.drag=null;});
     render();}
   api.init=init; return api;
 }
-var cnLab=makeTKLab({svg:"cnSvg", read:"cnRead", ang:-25, dist:150});
-var rfLab=makeTKLab({svg:"rfSvg", read:"rfRead", ratioBtn:"rfRatioBtn", ang:-20, dist:152});
+var cnLab=makeCBLab({svg:"cnSvg", read:"cnRead", aA:200, aB:340});
+var rfLab=makeCBLab({svg:"rfSvg", read:"rfRead", ratioBtn:"rfRatioBtn", aA:205, aB:335});
 
-/* ============ MOVEMENT: use the two tangent facts ============ */
+/* ============ MOVEMENT: bisector + Pythagoras + equidistant ============ */
 var MV=[
- {kind:"radangle"},                 /* ∠OAP = 90 */
- {kind:"kite", given:"APB", v:48},  /* ∠AOB = 180-48 = 132 */
- {kind:"length", v:9},              /* PB = 9 */
- {kind:"tri", v:32},                /* ∠AOP = 90-32 = 58 */
- {kind:"kite", given:"AOB", v:140}  /* ∠APB = 40 */
+ {kind:"bisect", am:7},                       /* MB = AM = 7 */
+ {kind:"dist", r:10, chord:16},               /* OM = sqrt(100-64) = 6 */
+ {kind:"half", r:13, om:5},                   /* AM = sqrt(169-25) = 12 */
+ {kind:"chord", r:17, om:8},                  /* AB = 2*sqrt(289-64) = 30 */
+ {kind:"equid", d:12}                         /* equal chords -> same distance = 12 */
 ];
 var mvIdx=0;
-function mvC(){return {O:{x:150,y:150}, R:88, Pd:150, Pa:-18};}
-function mvGeo(){var c=mvC();var Pang=c.Pa*Math.PI/180,P={x:c.O.x+c.Pd*Math.cos(Pang),y:c.O.y+c.Pd*Math.sin(Pang)};
-  var al=Math.acos(c.R/c.Pd)*180/Math.PI;
-  function op(d){var t=d*Math.PI/180;return {x:c.O.x+c.R*Math.cos(t),y:c.O.y+c.R*Math.sin(t)};}
-  return {O:c.O,R:c.R,P:P,A:op(c.Pa+al),B:op(c.Pa-al)};}
-function mvArc2(vx,u,w,rr,col){var a1=angDeg(vx,u),a2=angDeg(vx,w),thr=angDeg(vx,{x:(u.x+w.x)/2,y:(u.y+w.y)/2});return '<path d="'+arcSweepPath(vx.x,vx.y,rr,a1,shortSweep(a1,a2,thr))+'" fill="none" stroke="'+col+'" stroke-width="2.5"/>';}
-function mvBis2(vx,u,w,d){var a1=Math.atan2(u.y-vx.y,u.x-vx.x),a2=Math.atan2(w.y-vx.y,w.x-vx.x),bx=Math.cos(a1)+Math.cos(a2),by=Math.sin(a1)+Math.sin(a2),L=Math.hypot(bx,by)||1;return {x:vx.x+d*bx/L,y:vx.y+d*by/L};}
-function mvT(p,t,col){return '<text x="'+p.x.toFixed(1)+'" y="'+(p.y+4).toFixed(1)+'" text-anchor="middle" font-size="14" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+p.x.toFixed(1)+'" y="'+(p.y+4).toFixed(1)+'" text-anchor="middle" font-size="14" font-weight="bold" fill="'+col+'">'+t+'</text>';}
+function mvGeo(){var O={x:170,y:126}, R=96, d=54, half=Math.sqrt(R*R-d*d);
+  var yline=O.y+d; return {O:O,R:R,A:{x:O.x-half,y:yline},B:{x:O.x+half,y:yline},M:{x:O.x,y:yline}};}
+function mvT(p,t,col){return '<text x="'+p.x.toFixed(1)+'" y="'+(p.y+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="none" stroke="#fbf7ef" stroke-width="4">'+t+'</text><text x="'+p.x.toFixed(1)+'" y="'+(p.y+4).toFixed(1)+'" text-anchor="middle" font-size="13" font-weight="bold" fill="'+col+'">'+t+'</text>';}
+function mvMid(p,q){return {x:(p.x+q.x)/2,y:(p.y+q.y)/2};}
 function mvRender(){
-  var q=MV[mvIdx], g=mvGeo(), O=g.O,A=g.A,B=g.B,P=g.P,h="";
+  var q=MV[mvIdx], g=mvGeo(), O=g.O,A=g.A,B=g.B,M=g.M,h="", read="";
   h+='<circle cx="'+O.x+'" cy="'+O.y+'" r="'+g.R+'" fill="none" stroke="#cdbfa9" stroke-width="1.5"/>';
-  h+=segLine(O,A,"#c9a24b",2.5)+segLine(O,B,"#c9a24b",2.5)+segLine(P,A,"#365a68",2.5)+segLine(P,B,"#365a68",2.5);
-  h+=rAngle(A,O,P,12)+rAngle(B,O,P,12);
-  h+=labDot(O,"#2f3429","O",-12)+labDot(A,"#3f5f45","A",(A.y<O.y?-12:20))+labDot(B,"#3f5f45","B",(B.y<O.y?-12:20))+labDot(P,"#b24c4c","P",18);
-  var read="";
-  if(q.kind==="radangle"){ h+=mvT(mvBis2(A,O,P,22),"?","#b24c4c"); read="OA is a radius and PA a tangent. Find ∠OAP (marked ?), in degrees."; }
-  else if(q.kind==="length"){ h+=mvT({x:(P.x+A.x)/2-8,y:(P.y+A.y)/2},q.v+"u","#365a68"); h+=mvT({x:(P.x+B.x)/2-8,y:(P.y+B.y)/2},"?","#b24c4c"); read="PA and PB are tangents from P. PA = "+q.v+" units. Find PB (marked ?), in units."; }
-  else if(q.kind==="tri"){ h+=segLine(O,P,"#7a5a34",1.4,"4 4"); h+=mvArc2(P,A,O,20,"#365a68")+mvT(mvBis2(P,A,O,32),q.v+"°","#365a68"); h+=mvArc2(O,A,P,20,"#b24c4c")+mvT(mvBis2(O,A,P,30),"?","#b24c4c"); read="In right-angled triangle OAP, ∠APO = "+q.v+"°. Find ∠AOP (marked ?), in degrees."; }
-  else { /* kite */ h+=segLine(O,P,"#7a5a34",1.4,"4 4");
-    if(q.given==="APB"){ h+=mvArc2(P,A,B,20,"#365a68")+mvT(mvBis2(P,A,B,30),q.v+"°","#365a68"); h+=mvArc2(O,A,B,22,"#b24c4c")+mvT(mvBis2(O,A,B,34),"?","#b24c4c"); read="OAPB is a kite: ∠APB = "+q.v+"°. Find the angle at the centre ∠AOB (marked ?), in degrees."; }
-    else { h+=mvArc2(O,A,B,22,"#365a68")+mvT(mvBis2(O,A,B,34),q.v+"°","#365a68"); h+=mvArc2(P,A,B,20,"#b24c4c")+mvT(mvBis2(P,A,B,30),"?","#b24c4c"); read="OAPB is a kite: ∠AOB = "+q.v+"°. Find the angle between the tangents ∠APB (marked ?), in degrees."; }
-  }
+  h+=segLine(A,B,"#2f3429",2.5)+segLine(O,M,"#b24c4c",2.2)+rAngle(M,O,A,11);
+  h+=labDot(O,"#2f3429","O",-12)+labDot(M,"#8a6a1f","M",18)+labDot(A,"#3f5f45","A",-12)+labDot(B,"#3f5f45","B",-12);
+  if(q.kind==="bisect"){ h+=segLine(O,A,"#c9a24b",1.6,"3 3");
+    h+=mvT(mvMid(A,M),q.am,"#365a68")+mvT(mvMid(M,B),"?","#b24c4c");
+    read="The perpendicular from O meets the chord at M, and AM = "+q.am+" cm. Find MB (marked ?), in cm."; }
+  else if(q.kind==="dist"){ h+=segLine(O,A,"#c9a24b",2);
+    h+=mvT({x:mvMid(O,A).x-10,y:mvMid(O,A).y},q.r,"#8a6a1f")+mvT({x:mvMid(A,B).x,y:mvMid(A,B).y-14},"AB="+q.chord,"#365a68")+mvT({x:M.x+16,y:mvMid(O,M).y},"?","#b24c4c");
+    read="The radius OA = "+q.r+" cm and the chord AB = "+q.chord+" cm. Find the distance OM from the centre to the chord (marked ?), in cm."; }
+  else if(q.kind==="half"){ h+=segLine(O,A,"#c9a24b",2);
+    h+=mvT({x:mvMid(O,A).x-10,y:mvMid(O,A).y},q.r,"#8a6a1f")+mvT({x:M.x+16,y:mvMid(O,M).y},q.om,"#b24c4c")+mvT(mvMid(A,M),"?","#365a68");
+    read="The radius OA = "+q.r+" cm and OM = "+q.om+" cm. Find AM, half the chord (marked ?), in cm."; }
+  else if(q.kind==="chord"){ h+=segLine(O,A,"#c9a24b",2);
+    h+=mvT({x:mvMid(O,A).x-10,y:mvMid(O,A).y},q.r,"#8a6a1f")+mvT({x:M.x+16,y:mvMid(O,M).y},q.om,"#b24c4c")+mvT({x:mvMid(A,B).x,y:mvMid(A,B).y-14},"AB=?","#365a68");
+    read="The radius OA = "+q.r+" cm and OM = "+q.om+" cm. Find the full chord AB (marked ?), in cm."; }
+  else { h+=segLine(O,A,"#c9a24b",1.6,"3 3");
+    h+=mvT({x:M.x+16,y:mvMid(O,M).y},q.d,"#b24c4c");
+    read="Chord AB is "+q.d+" cm from the centre. A second chord CD has the same length as AB. How far is CD from the centre, in cm?"; }
   document.getElementById("mvSvg").innerHTML=h;
   document.getElementById("mvRead").innerHTML="Question "+(mvIdx+1)+" of "+MV.length+": "+read;
   document.getElementById("mvAns").value="";
   var fb=document.getElementById("mvFb");fb.style.display="none";fb.textContent="";
 }
-function mvAnswer(){var q=MV[mvIdx];if(q.kind==="radangle")return 90;if(q.kind==="length")return q.v;if(q.kind==="tri")return 90-q.v;return 180-q.v;}
+function mvAnswer(){var q=MV[mvIdx];
+  if(q.kind==="bisect") return q.am;
+  if(q.kind==="dist") return Math.round(Math.sqrt(q.r*q.r-(q.chord/2)*(q.chord/2)));
+  if(q.kind==="half") return Math.round(Math.sqrt(q.r*q.r-q.om*q.om));
+  if(q.kind==="chord") return Math.round(2*Math.sqrt(q.r*q.r-q.om*q.om));
+  return q.d;}
 function mvReason(){var q=MV[mvIdx];
-  if(q.kind==="radangle")return "a tangent meets the radius at 90° at the point of contact";
-  if(q.kind==="length")return "the two tangents from a point are equal";
-  if(q.kind==="tri")return "triangle OAP is right-angled at A, so the other two angles add to 90°";
-  return "OAPB is a kite with right angles at A and B, so ∠AOB + ∠APB = 180°";}
+  if(q.kind==="bisect") return "the perpendicular from the centre bisects the chord, so MB = AM";
+  if(q.kind==="equid") return "equal chords are equidistant from the centre";
+  return "the radius, the distance OM and half the chord form a right-angled triangle (Pythagoras)";}
 function mvCheck(){var fb=document.getElementById("mvFb"),val=document.getElementById("mvAns").value;fb.style.display="block";
-  if(!val.trim()){fb.className="feedback warn";fb.textContent="Type an answer first.";return;}
-  if(num(val)===mvAnswer()){fb.className="feedback good";fb.innerHTML="✓ Correct — "+mvAnswer()+(MV[mvIdx].kind==="length"?" units":"°")+". Reason: <b>"+mvReason()+"</b>.";}
-  else{fb.className="feedback bad";fb.innerHTML="Not yet — use that <b>"+mvReason()+"</b>.";}}
+  if(!val.trim()){fb.className="feedback warn";fb.textContent="Type an answer in cm first.";return;}
+  if(num(val)===mvAnswer()){fb.className="feedback good";fb.innerHTML="✓ Correct — "+mvAnswer()+" cm. Reason: <b>"+mvReason()+"</b>.";}
+  else{fb.className="feedback bad";fb.innerHTML="Not yet — use <b>"+mvReason()+"</b>.";}}
 function mvHintBtn(){var fb=document.getElementById("mvFb");fb.style.display="block";fb.className="feedback warn";fb.innerHTML="💡 "+mvReason()+".";}
 function mvNext(){mvIdx=(mvIdx+1)%MV.length;mvRender();}
 function mvInit(){mvRender();}
 
-/* ============ CREATIVITY: why the two tangents are equal (RHS congruence) ============ */
-var pfAng=-22, pfDist=150, pfStep_=0;
+/* ============ CREATIVITY: why the perpendicular bisects the chord (RHS congruence) ============ */
+var pfStep_=0;
 function pfStep(n){var b=document.getElementById("pfB"+n);if(b&&b.disabled)return;pfStep_=Math.max(pfStep_,n);pfBtns();pfRender();}
 function pfBtns(){for(var k=1;k<=3;k++){var b=document.getElementById("pfB"+k);if(b)b.disabled=(pfStep_<k-1);}}
 function pfReset(){pfStep_=0;pfBtns();pfRender();}
 function pfRender(){
   var s=document.getElementById("pfSvg"); if(!s)return;
-  var al=Math.acos(cR/pfDist)*180/Math.PI, t=pfAng*Math.PI/180;
-  var P={x:cO.x+pfDist*Math.cos(t),y:cO.y+pfDist*Math.sin(t)}, A=ocp(pfAng+al), B=ocp(pfAng-al), h="";
+  var A=ocp(212), B=ocp(328), M=cbFoot(A,B), h="";
   h+='<circle cx="'+cO.x+'" cy="'+cO.y+'" r="'+cR+'" fill="none" stroke="#5c6b4f" stroke-width="2.5"/>';
-  h+=segLine(cO,A,"#c9a24b",2.5)+segLine(cO,B,"#c9a24b",2.5)+segLine(P,A,"#365a68",2.5)+segLine(P,B,"#365a68",2.5);
-  if(pfStep_>=1) h+=rAngle(A,cO,P,13)+rAngle(B,cO,P,13);
-  if(pfStep_>=2){ h+=segLine(cO,P,"#7a5a34",2,"5 4");
-    function tick(u,v){var m={x:(u.x+v.x)/2,y:(u.y+v.y)/2},ang=Math.atan2(v.y-u.y,v.x-u.x)+Math.PI/2;return '<line x1="'+(m.x-5*Math.cos(ang)).toFixed(1)+'" y1="'+(m.y-5*Math.sin(ang)).toFixed(1)+'" x2="'+(m.x+5*Math.cos(ang)).toFixed(1)+'" y2="'+(m.y+5*Math.sin(ang)).toFixed(1)+'" stroke="#b24c4c" stroke-width="2"/>';}
-    h+=tick(cO,A)+tick(cO,B); }
-  h+=labDot(cO,"#2f3429","O",18)+labDot(A,"#3f5f45","A",(A.y<cO.y?-13:20))+labDot(B,"#3f5f45","B",(B.y<cO.y?-13:20))+labDot(P,"#b24c4c","P",18);
+  h+=segLine(A,B,"#2f3429",2.5);
+  if(pfStep_>=1){ h+=segLine(cO,M,"#b24c4c",2.4); h+=rAngle(M,cO,A,12)+rAngle(M,cO,B,12); }
+  if(pfStep_>=2){ h+=segLine(cO,A,"#c9a24b",2.2)+segLine(cO,B,"#c9a24b",2.2); h+=cbTick(cO,A,"#b8860b")+cbTick(cO,B,"#b8860b"); }
+  if(pfStep_>=3){ h+=cbTick(A,M,"#365a68")+cbTick(M,B,"#365a68"); }
+  h+=labDot(cO,"#2f3429","O",-12)+labDot(A,"#3f5f45","A",18)+labDot(B,"#3f5f45","B",18);
+  if(pfStep_>=1) h+=labDot(M,"#8a6a1f","M",18);
   s.innerHTML=h;
   var r=document.getElementById("pfRead");
-  if(pfStep_===0) r.innerHTML='We will show the two tangents PA and PB are equal. Press ① to mark the right angles.';
-  else if(pfStep_===1) r.innerHTML='A <b>tangent meets the radius at 90°</b> at the point of contact — the radius is the shortest line from O to the tangent, and the shortest line is perpendicular. So ∠OAP = ∠OBP = 90°.';
-  else if(pfStep_===2) r.innerHTML='In triangles OAP and OBP: <b>OA = OB</b> (radii, tick marks), <b>OP is shared</b>, and both have a <b>right angle</b>.';
-  else r.innerHTML='Right angle, hypotenuse OP, and one equal side (OA = OB) ⇒ the triangles are <b>congruent (RHS)</b>. Therefore <b>PA = PB</b> — the two tangents from P are equal. ∎';
+  if(pfStep_===0) r.innerHTML='We will show the perpendicular from O bisects the chord AB. Press ① to drop the perpendicular OM.';
+  else if(pfStep_===1) r.innerHTML='Drop <b>OM</b> perpendicular to AB. Then <b>∠OMA = ∠OMB = 90°</b> — two right-angled triangles.';
+  else if(pfStep_===2) r.innerHTML='<b>OA = OB</b> (radii, tick marks), and <b>OM is shared</b> by both triangles.';
+  else r.innerHTML='Right angle, hypotenuse (OA = OB), and the shared side OM ⇒ triangles <b>OMA ≅ OMB</b> (RHS). So <b>AM = MB</b> — the perpendicular from the centre bisects the chord. ∎';
 }
 function pfInit(){pfBtns();pfRender();}
 
@@ -702,8 +710,8 @@ function pfInit(){pfBtns();pfRender();}
 (function(){
   var RECONNECT={
     radii:{title:'Equal radii',prompt:'Two radii of the same circle are always... (equal / different)?',answer:'equal',hint:'Every radius of a circle is the same length.'},
-    tangent:{title:'What is a tangent?',prompt:'A line that touches a circle at exactly one point is called a...?',answer:'tangent',hint:'It just grazes the circle — a tangent.'},
-    rhs:{title:'RHS congruence',prompt:'Two right-angled triangles with equal hypotenuses and one other equal side are congruent by which rule? (three letters)',answer:'rhs',hint:'Right angle, Hypotenuse, Side — RHS.'}
+    rhs:{title:'RHS congruence',prompt:'Two right-angled triangles with equal hypotenuses and one other equal side are congruent by which rule? (three letters)',answer:'rhs',hint:'Right angle, Hypotenuse, Side — RHS.'},
+    pythag:{title:'Pythagoras',prompt:'In a right-angled triangle with legs 3 and 4, how long is the hypotenuse?',answer:'5',hint:'3² + 4² = 25, and √25 = 5.'}
   }
 
   function matches(r,v){ if(typeof r.answer==='number'){var n=num(v);return !isNaN(n)&&Math.abs(n-r.answer)<=0.001;} var s=normText(v); return s.includes(normText(r.answer)); }
@@ -731,12 +739,12 @@ function pfInit(){pfBtns();pfRender();}
 
 /* ---------------- PRACTICE COMPANION ---------------- */
 var PRACTICE=[
- {label:"1 of 6 · Equal tangents",q:"PA and PB are tangents to a circle from an external point P. PA = 8 cm. How long is PB, in cm?",a:[],eq:function(v){return num(v)===8;},prompt:"The two tangents from a point are equal.",hint:"PB is the same length as PA.",sol:"8 cm — the two tangents from an external point are equal, so PB = PA = 8 cm."},
- {label:"2 of 6 · Tangent and radius",q:"A tangent touches a circle at A, and OA is the radius to that point. What is the angle ∠OAP between the radius and the tangent, in degrees?",a:[],eq:function(v){return num(v)===90;},prompt:"A tangent meets the radius at the point of contact at a right angle.",hint:"It is a right angle.",sol:"90° — a tangent is perpendicular to the radius at the point of contact."},
- {label:"3 of 6 · Name it",q:"What word describes a straight line that touches a circle at exactly one point?",a:["tangent","a tangent"],eq:function(v){return false;},prompt:"It touches without crossing.",hint:"It starts with t.",sol:"Tangent — a line touching the circle at exactly one point (the point of contact)."},
- {label:"4 of 6 · The kite angle",q:"From an external point P the two tangents make ∠APB = 56°. In the kite OAPB (right angles at A and B), find the angle at the centre ∠AOB, in degrees.",a:[],eq:function(v){return num(v)===124;},prompt:"Angles of the kite add to 360°, and the two angles at A and B are each 90°.",hint:"∠AOB + ∠APB = 180°, so 180 − 56.",sol:"124° — in kite OAPB the angles sum to 360° with 90° at A and B, so ∠AOB + ∠APB = 180°, giving ∠AOB = 180 − 56 = 124°."},
- {label:"5 of 6 · Right triangle",q:"In triangle OAP, the radius–tangent angle at A is 90° and ∠APO = 40°. Find ∠AOP, in degrees.",a:[],eq:function(v){return num(v)===50;},prompt:"Angles in the triangle sum to 180°, and one is 90°.",hint:"90 + 40 + ∠AOP = 180, so ∠AOP = 90 − 40.",sol:"50° — triangle OAP is right-angled at A, so the other two acute angles add to 90°: ∠AOP = 90 − 40 = 50°."},
- {label:"6 of 6 · The axis of symmetry",q:"OP is the axis of symmetry of the kite OAPB, so it splits ∠APB into two equal parts. Each part is what fraction of ∠APB? (fraction or decimal)",a:["half","one half","a half"],eq:function(v){return Math.abs(num(v)-0.5)<1e-9;},prompt:"Two equal parts.",hint:"Split into two equal parts — each is one half. Write 1/2 or 0.5.",sol:"One half (1/2 = 0.5) — OP bisects ∠APB by symmetry, so each part is half of ∠APB."}
+ {label:"1 of 6 · Half of a chord",q:"The perpendicular from the centre meets a chord AB at M. AM = 9 cm. How long is MB, in cm?",a:[],eq:function(v){return num(v)===9;},prompt:"The perpendicular from the centre bisects the chord.",hint:"MB is the same as AM.",sol:"9 cm — the perpendicular from the centre bisects the chord, so MB = AM = 9 cm."},
+ {label:"2 of 6 · Distance from the centre",q:"A chord of length 16 cm is drawn in a circle of radius 10 cm. How far is the chord from the centre, in cm?",a:[],eq:function(v){return num(v)===6;},prompt:"Half the chord, the distance from the centre, and the radius form a right-angled triangle.",hint:"Half-chord = 8, radius = 10, so distance = √(10² − 8²).",sol:"6 cm — half the chord is 8 cm, so the distance is √(10² − 8²) = √36 = 6 cm."},
+ {label:"3 of 6 · Half-chord from the radius",q:"In a circle of radius 13 cm, a chord is 5 cm from the centre. How long is half the chord, in cm?",a:[],eq:function(v){return num(v)===12;},prompt:"Radius, distance and half-chord form a right-angled triangle.",hint:"Half-chord = √(13² − 5²).",sol:"12 cm — half the chord is √(13² − 5²) = √144 = 12 cm."},
+ {label:"4 of 6 · The whole chord",q:"In a circle of radius 17 cm, a chord is 8 cm from the centre. How long is the whole chord, in cm?",a:[],eq:function(v){return num(v)===30;},prompt:"Find half the chord first, then double it.",hint:"Half-chord = √(17² − 8²) = 15, so the chord is 2 × 15.",sol:"30 cm — half the chord is √(17² − 8²) = 15 cm, so the whole chord is 2 × 15 = 30 cm."},
+ {label:"5 of 6 · Equal chords",q:"Two chords of a circle are equal in length. One is 7 cm from the centre. How far is the other from the centre, in cm?",a:[],eq:function(v){return num(v)===7;},prompt:"Equal chords are equidistant from the centre.",hint:"The distances are equal.",sol:"7 cm — equal chords are equidistant from the centre, so the other is also 7 cm away."},
+ {label:"6 of 6 · Say it in words",q:"The perpendicular from the centre cuts a chord into two parts. Each part is what fraction of the whole chord? (fraction or word)",a:["half","one half","a half"],eq:function(v){return Math.abs(num(v)-0.5)<1e-9;},prompt:"The perpendicular bisects the chord — two equal parts.",hint:"Two equal parts — each is one half. Write 1/2, 0.5 or 'half'.",sol:"One half (1/2 = 0.5) — the perpendicular from the centre bisects the chord, so each part is half of it."}
 ]
 var pIndex=0, pAttempts=PRACTICE.map(function(){return 0;}), pPromptUsed=PRACTICE.map(function(){return false;}), pHintUsed=PRACTICE.map(function(){return false;}), pDone=PRACTICE.map(function(){return false;});
 function pUnlocked(i){return pPromptUsed[i]&&pHintUsed[i]&&pAttempts[i]>=2;}
@@ -765,7 +773,7 @@ function pCheck(){
   var ok=(q.a||[]).some(function(x){var nx=normText(x);return nx===learner||nx===stripped||learner.indexOf(nx)>=0;});
   if(!ok && q.eq){ ok=q.eq(val)===true; }
   if(ok){pDone[pIndex]=true;fb.className="feedback good";fb.textContent="Correct.";}
-  else{fb.className="feedback bad";fb.textContent="Not quite yet. Use the tangent facts: 90° at the point of contact, or the two equal tangents. Use the prompt and hint.";}
+  else{fb.className="feedback bad";fb.textContent="Not quite yet. Remember: the perpendicular from the centre bisects the chord, and radius/distance/half-chord form a right-angled triangle. Use the prompt and hint.";}
   renderPractice();
   document.getElementById("practiceFeedback").style.display="block";
   document.getElementById("practiceFeedback").className=fb.className;
@@ -791,7 +799,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script>
 
 <script src="../../assets/progress.js"></script>
-<script>NEOProgress.autoTrack('circle-theorems-06-tangents');</script>
+<script>NEOProgress.autoTrack('circle-theorems-08-the-perpendicular-from-the-centre-to-a-chord');</script>
 
 <script>
 /* Maths symbol palette on every answer field (design push). Per-lesson override: window.NEO_PALETTE_SYMBOLS */

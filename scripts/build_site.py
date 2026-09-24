@@ -144,6 +144,8 @@ SOURCES = {
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_06_Tangents/NEO_Maths_Y10_Circle_Theorems_Lesson_06_Tangents_v0.1.html",
     "circle-theorems-07-the-alternate-segment-theorem":
         "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_07_The_Alternate_Segment_Theorem/NEO_Maths_Y10_Circle_Theorems_Lesson_07_The_Alternate_Segment_Theorem_v0.1.html",
+    "circle-theorems-08-the-perpendicular-from-the-centre-to-a-chord":
+        "03_Intermediate/01_Lessons/Circle_Theorems/Lesson_08_The_Perpendicular_from_the_Centre_to_a_Chord/NEO_Maths_Y10_Circle_Theorems_Lesson_08_The_Perpendicular_from_the_Centre_to_a_Chord_v0.1.html",
     "trigonometry-01-the-constant-ratio":
         "03_Intermediate/01_Lessons/Introduction_to_Trigonometry/Lesson_01_The_Constant_Ratio/NEO_Maths_Y10_Trigonometry_Lesson_01_The_Constant_Ratio_v0.1.html",
     "trigonometry-02-naming-the-sides":
